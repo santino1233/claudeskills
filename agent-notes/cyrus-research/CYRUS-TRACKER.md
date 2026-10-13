@@ -413,3 +413,11 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Real flights on node-2 all pass: designer, designer-weapons, designer-techniques, config-delivery (19/19), mc-goldens-techniques, perf (NxPerfCoreTest 33/33), perf-golden (67/67).
 - OWNER DECISION: new hard ceilings (hitscan range 256, pellets 64, blast radius 32, vein 256 blocks / 64 per tick / radius 32) are engineering choices.
 - NOT DONE: `devhost db push` + `devhost build` were blocked by the auto-mode classifier ([Production Deploy]); not retried. Owner: approve or run them, then apply coach-events SQL, promote, image 0.10, flags.
+
+## 94. READINESS AUDIT done (2026-10-13), report BM-readiness-audit-2026-10-13.md (330 lines, Sonnet)
+- Prod flags ON: DESIGNER, ITEM_STATES, CONFIG_STUDIO, CREATURES, DELIVERY, MANAGED_PLUGINS_REAL, TESTFLIGHT_GATE, BLOCK_ON_FAIL. No cyrus_* Settings rows (all code defaults). 30 builds, all the owner's.
+- No real client has verified any pack/texture/sound/model/creature (resourcePackClientVerified=false x7): gates armor, noteblock, grip fix, 26.x. 26.x preview because image lacks JDK25/26.x sheets/goldens/eval/client check; 26.3 has no stable Paper.
+- Perf watch default action is disable + restart (code) vs inventory says notify: owner decision, recommend CYRUS_PERF_WATCH_ACTION=notify.
+- Turn-on list A7 (10 items; 1-3 need no deploy): build budgets 1.5/1.0, charge_refused=false + free_failures=10, CYRUS_DESIGNER_BUILDS=1; after eval Saka->5.5; after rc3 CYRUS_LEARNING, PERF_WATCH_ACTION=notify, PROMPT_COACH, DATAPACK_STUDIO, WORLDGEN, MC_TECHNIQUES (+MB_).
+- Distillation pipeline S0-S9 ~ $75-100 Sonnet (U). Subscription auth blocks public launch. Image is modbuilder:0.9 (health `image` field is a stale label "0.5": fix).
+- Roadmap D3 (13 steps) in the report.
