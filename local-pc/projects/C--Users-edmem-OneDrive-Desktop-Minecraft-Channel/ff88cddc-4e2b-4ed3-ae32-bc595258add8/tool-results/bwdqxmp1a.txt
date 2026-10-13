@@ -1,0 +1,714 @@
+"""One-click creative pass: transcript + signals + project context -> a complete edit.json.
+
+    mcs autoplan <slug> [--mode funny] [--no-cold-open] [--seed 1]
+    mcs engage <slug>          # only the engagement pass (auto zooms) on an existing edit
+
+This is the deterministic baseline so "add footage + mic -> video" works with no human or LLM in the
+loop. A Claude pass (/mc-edit) on top is still better at context and jokes; it can start from this.
+
+Pipeline:
+  1. segments   keep speech (+ action peaks), drop dead air; "fast forward" gaps become 4x montages
+  2. beats      keyword lexicon + voice peaks + death screens -> taxonomy moments with a score
+  3. modes      each segment gets a mood from its beats (sad on deaths, scary on panic, ...)
+  4. cold open  strongest late beat is teased first, then "N MINUTES EARLIER"
+  5. treatments per beat: SFX / zoom / shake / freeze / text / meme cutaway / green screen, within budgets
+  6. engage     guarantee a visual change every mode.zoom.every_s seconds (punch-ins, jump-cut reframes)
+  7. music      one bed per run of the same mode; captions emphasis; watermark; outro CTA
+Every event is anchored to its segment ({"seg": id, ...}) so shorts can be cut from the edit later.
+"""
+from __future__ import annotations
+
+import json
+import random
+import re
+from pathlib import Path
+
+from . import assets as A
+from .edl import seg_duration
+from .paths import STUDIO, project_dir
+from .scaffold import keep_ranges
+
+# (regex, moment, score, text-pop template or None). {W} = the matched word, upper-cased.
+LEXICON: list[tuple[str, str, int, str | None]] = [
+    (r"\b(i'?m (actually )?(gonna|going to) die|i'?m dying|help me)\b", "panic", 5, None),
+    (r"\b(oh my god|oh my gosh|omg)\b", "shock", 4, None),
+    (r"\b(died|dead|killed me|i'?m dead|rip)\b", "death", 4, None),
+    (r"\bwhat the\b|\bwait,? what\b|\bhuh\b", "confusion", 3, "WHAT?!"),
+    (r"\b(no no|nooo+|oh no|nope)\b", "fail", 3, None),
+    (r"\b(let'?s go!|let'?s goo+o*|we did it|finally!?|yes!+)", "victory", 4, None),
+    (r"\b(diamonds?)\b", "loot", 4, "+1 {W}"),
+    (r"\b(netherite|emeralds?|treasure)\b", "loot", 3, "+1 {W}"),
+    (r"\b(creeper|zombie|skeleton|enderman|warden|spider|phantom)s?\b", "jumpscare", 4, "{W}!"),
+    (r"\b(explod\w*|tnt|blew up)\b", "explosion", 4, None),
+    (r"\b(lava|drown\w*)\b", "panic", 3, "{W}?!"),
+    (r"\b(water)\b", "shock", 2, "{W}?!"),
+    (r"\b(fast forward|skip ahead|a few (minutes|hours) later)\b", "time_skip", 4, None),
+    (r"\b(welcome back|hello|hey guys)\b", "intro", 2, None),
+    (r"\b(bye|see you next time|that'?s the end)\b", "outro", 3, None),
+    (r"\b(challenge)\b", "challenge", 3, None),
+    (r"\b(only kidding|just kidding|jk)\b", "irony", 3, None),
+    (r"\b(simple as that|too easy|easy)\b", "flex", 3, None),
+    (r"\b(why|are you kidding|seriously|stupid)\b", "rage", 2, None),
+    (r"\b(pickaxe|sword|crafting table|furnace)\b", "small_win", 1, None),
+    (r"\b(the nether|nether portal|end portal|end city|stronghold|ancient city|woodland mansion|ocean monument|"
+     r"bastion|nether fortress|trial chambers?)\b", "location", 2, None),
+    (r"\b(ender dragon|the wither|elder guardian)\b", "boss", 3, None),
+]
+
+# motion graphics the planner may place on its own (each: max uses per video, min gap seconds)
+LOCATION_ICON = {"the nether": "portal", "nether portal": "portal", "end portal": "eye", "end city": "eye", "stronghold": "eye",
+                 "ancient city": "skull", "bastion": "gold", "nether fortress": "skull"}
+BOSS_COLOR = {"ender dragon": "pink", "the wither": "white", "elder guardian": "blue"}
+
+# which mood a beat pulls its segment into (strongest beat wins)
+MOMENT_MODE = {"death": "sad", "panic": "scary", "jumpscare": "scary", "shock": "exciting",
+               "explosion": "exciting", "victory": "exciting", "loot": "happy", "rage": "angry",
+               "small_win": "happy", "flex": "happy"}
+
+# per-moment treatment recipe
+TREAT = {
+    "panic":     {"zoom": 1.3, "shake": 14, "sfx": (["panic", "jumpscare"], ["reaction", "stinger", "hit"])},
+    "shock":     {"zoom": 1.35, "sfx": (["shock", "emphasis"], ["hit", "stinger"])},
+    "death":     {"zoom": 1.25, "freeze": 0.7, "sfx": (["death", "sad"], ["stinger", "voice_line"]),
+                  "greenscreen": ["death"]},
+    "confusion": {"zoom": 1.2, "sfx": (["confusion"], ["reaction", "voice_line"]), "meme": ["confusion", "awkward"]},
+    "fail":      {"zoom": 1.2, "freeze": 0.5, "sfx": (["fail"], ["stinger", "voice_line"]), "meme": ["fail"]},
+    "victory":   {"zoom": 1.3, "sfx": (["victory"], ["stinger", "voice_line", "hit"]), "greenscreen": ["victory"]},
+    "loot":      {"zoom": 1.35, "sfx": (["loot", "small_win"], ["ui_sound", "stinger", "literal"])},
+    "jumpscare": {"zoom": 1.5, "shake": 18, "sfx": (["jumpscare"], ["reaction", "hit", "stinger"])},
+    "explosion": {"zoom": 1.4, "shake": 20, "sfx": (["explosion"], ["hit", "literal"])},
+    "time_skip": {"sfx": (["time_skip"], ["whoosh", "stinger", "voice_line"])},
+    "irony":     {"zoom": 1.2, "sfx": (["irony", "punchline"], ["hit", "stinger"])},
+    "flex":      {"zoom": 1.2, "sfx": (["flex", "small_win"], ["ui_sound", "stinger"])},
+    "rage":      {"zoom": 1.3, "shake": 12, "sfx": (["rage"], ["reaction", "hit"])},
+    "challenge": {"zoom": 1.15, "sfx": (["suspense", "challenge"], ["stinger", "riser"])},
+    "small_win": {"sfx": (["small_win"], ["ui_sound"])},
+    "intro":     {},
+    "outro":     {"freeze": 1.2, "sfx": (["outro", "fail", "sad"], ["stinger"])},
+    "emphasis":  {"zoom": 1.25, "sfx": (["emphasis", "punchline"], ["hit"])},
+}
+
+
+def load_json(p: Path, default=None):
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return default
+
+
+class Planner:
+    def __init__(self, slug: str, mode: str | None = None, cold_open: bool = True, seed: int = 1):
+        self.slug = slug
+        self.proj = project_dir(slug)
+        self.pj = load_json(self.proj / "project.json", {})
+        self.tr = load_json(self.proj / "work" / "transcript.json", {"segments": []})
+        self.sig = load_json(self.proj / "work" / "signals.json", {})
+        self.modes = load_json(STUDIO / "modes.json", {})
+        self.brand = load_json(STUDIO / "brand" / "brand.json", {})
+        ctx = f"{self.pj.get('title', '')} {self.pj.get('context', '')}".lower()
+        self.base_mode = mode or ("narration" if "narrat" in ctx or "story" in ctx else
+                                  "pov" if re.search(r"\bpov\b", ctx) else "funny")
+        self.cold_open = cold_open
+        self.rng = random.Random(seed)
+        self.words = [w for s in self.tr["segments"] for w in s.get("words", [])]
+        self.used: list[str] = []
+        self.caption_hides: list[dict] = []
+        self.uses: dict[str, int] = {}
+        self.mg_used: dict[str, list] = {}
+        self.warn: list[str] = []
+
+    # ------------------------------------------------------------ assets
+    def pick(self, moments, roles=None, categories=None, **kw) -> dict | None:
+        q = A.Query(moments=moments, roles=roles or [], categories=categories or [], project=self.slug,
+                    exclude=self.used, limit=4, seed=self.rng.randint(0, 10 ** 6), **kw)
+        res = A.find(q)
+        if not res:
+            return None
+        choice = res[0] if len(res) == 1 or self.rng.random() < 0.6 else self.rng.choice(res[:3])
+        self.uses[choice["id"]] = self.uses.get(choice["id"], 0) + 1
+        if choice.get("frequency") != "signature" or self.uses[choice["id"]] >= 2:
+            self.used.append(choice["id"])                   # signature sounds: at most twice per video
+        return choice
+
+    # ------------------------------------------------------------ 1. beats
+    def beats(self) -> list[dict]:
+        out = []
+        n = len(self.words)
+        for i in range(n):
+            window = " ".join(w["word"] for w in self.words[i:i + 6]).lower()
+            window = re.sub(r"[^\w' ?!]", "", window)
+            for rx, moment, score, tmpl in LEXICON:
+                m = re.match(rf"\s*({rx})", window)
+                if m:
+                    span = len(m.group(1).split())
+                    last = self.words[min(n - 1, i + span - 1)]
+                    word = re.sub(r"[^\w']", "", self.words[i + span - 1]["word"] if i + span - 1 < n else "").upper()
+                    out.append({"t": self.words[i]["start"], "end": last["end"], "moment": moment, "score": score,
+                                "text": tmpl.replace("{W}", word.rstrip("S") if tmpl.startswith("+1") else word)
+                                if tmpl else None, "phrase": m.group(1), "keyword": word.lower()})
+                    break
+        for p in self.sig.get("voice_peaks", []):           # loud moments with no keyword -> emphasis
+            if not any(abs(b["t"] - p["t"]) < 1.5 for b in out) and p.get("above_baseline_db", 0) >= 18:
+                out.append({"t": p["t"], "end": p["t"] + 0.4, "moment": "emphasis", "score": 2, "text": None,
+                            "phrase": "", "keyword": ""})
+        for d in self.sig.get("death_screens", []):
+            out.append({"t": d["t"], "end": d["t"] + 0.5, "moment": "death", "score": 5, "text": None,
+                        "phrase": "<death screen>", "keyword": "", "death_screen": True})
+        # de-duplicate: one beat per 1.2 s, keep the strongest
+        out.sort(key=lambda b: (b["t"], -b["score"]))
+        kept: list[dict] = []
+        for b in out:
+            if kept and b["t"] - kept[-1]["t"] < 1.2:
+                if b["score"] > kept[-1]["score"]:
+                    kept[-1] = b
+                continue
+            kept.append(b)
+        return kept
+
+    # ------------------------------------------------------------ 2. segments
+    def segments(self, beats: list[dict]) -> list[dict]:
+        dur = self.pj.get("duration_s") or (self.words[-1]["end"] + 2 if self.words else 0)
+        # only *voice* peaks keep extra footage: on a mixed track every punch/dig registers as a game
+        # peak, and keeping context around those would glue all the dead air back together
+        events = [p for p in self.sig.get("voice_peaks", []) if p.get("above_baseline_db", 0) >= 16]
+        ranges = keep_ranges(self.words, events, dur, pad=0.18, max_gap=0.55, keep_action=0.6) if self.words \
+            else [[0, dur]]
+        for d in self.sig.get("death_screens", []):         # always keep the death screen itself
+            ranges.append([d["t"] - 0.1, min(dur, d["t"] + 1.6)])
+        # time-skip montages: after "fast forward", keep the silent stretch at 4x
+        montages = []
+        for b in beats:
+            if b["moment"] == "time_skip":
+                nxt = next((w["start"] for w in self.words if w["start"] > b["end"] + 0.5), dur)
+                a, z = b["end"] + 0.3, min(nxt - 0.2, b["end"] + 0.3 + 24)
+                if z - a > 3:
+                    montages.append([a, z])
+        ranges = merge_ranges(ranges)
+        segs = []
+        for a, z in ranges:
+            for ma, mz in montages:                          # carve montage parts out of kept ranges
+                if a < ma < z:
+                    segs.append({"in": a, "out": ma})
+                    a = ma
+            segs.append({"in": a, "out": z})
+        for ma, mz in montages:
+            segs.append({"in": ma, "out": mz, "speed": 4.0, "montage": True})
+        segs = [s for s in segs if s["out"] - s["in"] > 0.35]
+        # remove overlap between montages and kept ranges
+        segs.sort(key=lambda s: s["in"])
+        cleaned: list[dict] = []
+        for s in segs:
+            if cleaned and s["in"] < cleaned[-1]["out"]:
+                if s.get("montage"):
+                    cleaned[-1]["out"] = s["in"]
+                else:
+                    s["in"] = cleaned[-1]["out"]
+            if s["out"] - s["in"] > 0.35:
+                cleaned.append(s)
+        # split at strong beats so a freeze or a mood attaches to the beat's own short segment,
+        # not to the whole take around it
+        final: list[dict] = []
+        for s in cleaned:
+            cuts: dict[float, float] = {}
+            for b in beats:
+                if b["score"] < 3:
+                    continue
+                if TREAT.get(b["moment"], {}).get("freeze") and s["in"] + 0.5 < b["end"] + 0.12 < s["out"] - 0.5:
+                    cuts[round(b["end"] + 0.12, 3)] = TREAT_FREEZE(beats, b["end"] + 0.12)
+                if b["moment"] in MOMENT_MODE and s["in"] + 1.0 < b["t"] - 0.5 < s["out"] - 0.5:
+                    cuts.setdefault(round(b["t"] - 0.5, 3), 0.0)
+            a = s["in"]
+            for c in sorted(cuts):
+                final.append({**s, "in": a, "out": c, **({"freeze_end": cuts[c]} if cuts[c] else {})})
+                a = c
+            final.append({**s, "in": a})
+        final = [s for s in final if s["out"] - s["in"] > 0.3]
+        for k, s in enumerate(final):
+            s["id"] = f"s{k + 1:03d}"
+            s["type"] = "source"
+            s.pop("montage", None)
+            for key in ("in", "out"):
+                s[key] = round(s[key], 3)
+        dark = self.sig.get("dark", [])
+        flags = [any(a < s["out"] and s["in"] < b for a, b in dark) for s in final]
+        for i in range(1, len(flags) - 1):                   # no on/off/on flicker between neighbours
+            if flags[i - 1] and flags[i + 1]:
+                flags[i] = True
+        i = 0
+        while i < len(flags):                                # brighten whole dark stretches, not 1-second islands
+            if flags[i]:
+                j = i
+                while j + 1 < len(flags) and flags[j + 1]:
+                    j += 1
+                run = sum((final[k]["out"] - final[k]["in"]) / final[k].get("speed", 1) for k in range(i, j + 1))
+                for k in range(i, j + 1):
+                    if run >= 4.0:
+                        final[k].setdefault("effects", []).append("brighten")
+                i = j + 1
+            else:
+                i += 1
+        return final
+
+    # ------------------------------------------------------------ 3. modes
+    STORY_MODES = {"panic": "scary", "jumpscare": "scary", "death": "sad"}
+
+    def assign_modes(self, segs: list[dict], beats: list[dict]) -> None:
+        """The look stays in the base mode. It only changes for a real story SECTION: 8+ s of scary
+        (panic/jumpscare run) or the sad ending after a death. Per-beat mood flips were unwatchable."""
+        dur = lambda s: (s["out"] - s["in"]) / s.get("speed", 1)  # noqa: E731
+        cand = []
+        for s in segs:
+            inside = [b for b in beats if s["in"] - 0.2 <= b["t"] < s["out"] and b["score"] >= 4]
+            m = next((self.STORY_MODES[b["moment"]] for b in sorted(inside, key=lambda b: -b["score"])
+                      if b["moment"] in self.STORY_MODES), None)
+            cand.append(m)
+        for s in segs:
+            s["mode"] = self.base_mode
+        i = 0
+        while i < len(segs):
+            m = cand[i]
+            if not m:
+                i += 1
+                continue
+            j = i                                            # extend while the same mood keeps recurring
+            while j + 1 < len(segs) and (cand[j + 1] == m or (j + 2 < len(segs) and cand[j + 2] == m)):
+                j += 1
+            total = sum(dur(segs[k]) + segs[k].get("freeze_end", 0) for k in range(i, j + 1))
+            is_ending = j >= len(segs) - 2
+            if total >= 8.0 or (m == "sad" and is_ending and total >= 2.0):
+                if m == "sad" and is_ending:
+                    j = len(segs) - 1                         # a sad ending stays sad to the last frame
+                for k in range(i, j + 1):
+                    segs[k]["mode"] = m
+            i = j + 1
+
+    # ------------------------------------------------------------ helpers
+    def seg_of(self, segs: list[dict], t: float) -> dict | None:
+        return next((s for s in segs if s["in"] <= t < s["out"] + 1e-6 and not s["id"].startswith("cold")), None)
+
+    # ------------------------------------------------------------ main
+    def plan(self) -> dict:
+        beats = self.beats()
+        segs = self.segments(beats)
+        self.assign_modes(segs, beats)
+        overlays, texts, sfx, emphasis = [], [], [], set()
+        last = {"sfx": -9.0, "text": -9.0, "meme": -60.0, "gs": -60.0}
+        duration = sum(seg_duration(s) for s in segs)
+        self.n_sfx, self.max_sfx = 0, max(6, int(duration / 60 * 14))   # ~14 beat SFX per minute, max
+        meme_budget = max(1, int(duration / 40))
+        gs_budget = max(1, int(duration / 50))
+        cutaways: list[tuple[str, dict]] = []                # (after seg id, cutaway seg)
+
+        for b in sorted(beats, key=lambda b: -b["score"]):   # strongest beats claim resources first
+            s = self.seg_of(segs, b["t"])
+            if not s:
+                continue
+            r = TREAT.get(b["moment"], {})
+            mode = self.modes.get(s["mode"], {})
+            zi = mode.get("zoom", {}).get("intensity", 1.0)
+            if b["keyword"]:
+                emphasis.add(b["keyword"])
+            if r.get("zoom") and b["score"] >= 3 and s.get("speed", 1) == 1:
+                to = 1 + (r["zoom"] - 1) * zi
+                s.setdefault("zoom", []).append({"src_at": round(b["t"], 3), "to": round(to, 3), "in": 0.06,
+                                                 "hold": max(0.4, b["end"] - b["t"] + 0.3), "out": 0.15})
+            if r.get("shake") and mode.get("shake", 1) > 0:
+                s.setdefault("shake", []).append({"src_at": round(b["t"], 3), "dur": 0.45,
+                                                  "amp": round(r["shake"] * mode.get("shake", 1))})
+            if r.get("sfx") and abs(b["t"] - last["sfx"]) > 4.0 and self.n_sfx < self.max_sfx:
+                moments, roles = r["sfx"]
+                a = self.pick(moments + mode.get("sfx_moments", [])[:1], roles,
+                              categories=["sfx_meme", "sfx_ui", "sfx_minecraft", "sfx_mlg", "sfx_laugh"],
+                              max_duration=6)
+                if a:
+                    hit = "hit" in a.get("roles", [])
+                    # impacts land on the word; reactions/stingers right AFTER it (never on the punchline)
+                    t = b["t"] if hit else b["end"] + 0.1
+                    if self.seg_of(segs, t) is s:
+                        ev = {"asset": a["id"], "seg": s["id"], "src_at": round(t, 3),
+                              "align": "peak" if hit else "onset", "_beat": b["moment"]}
+                        cap = sfx_cap(a)
+                        if cap:
+                            ev["dur"] = cap
+                        sfx.append(ev)
+                        self.n_sfx += 1
+                        last["sfx"] = b["t"]
+            mg = self.motion_beat(b, s, overlays)
+            recent_same = any(t["text"] == b.get("text") and abs(t.get("src_at", -99) - b["t"]) < 30 for t in texts)
+            if b.get("text") and abs(b["t"] - last["text"]) > 3.5 and not recent_same and not mg:
+                texts.append({"text": b["text"], "seg": s["id"], "src_at": round(b["t"], 3), "dur": 1.1,
+                              "y": 0.32, **({"style": "minecraft"} if b["moment"] == "loot" else {})})
+                last["text"] = b["t"]
+            if r.get("meme") and meme_budget and b["score"] >= 3 and abs(b["t"] - last["meme"]) > 25 \
+                    and s["out"] - b["end"] < 1.5:
+                a = self.pick(r["meme"], categories=["meme_video"], max_duration=12, max_rating="clean")
+                if a:
+                    lo, hi = meme_window(a, self.rng)
+                    cutaways.append((s["id"], {"id": f"meme-{len(cutaways) + 1}", "type": "cutaway",
+                                               "asset": a["id"], "in": lo, "out": round(hi, 2)}))
+                    meme_budget -= 1
+                    last["meme"] = b["t"]
+            if r.get("greenscreen") and gs_budget and not b.get("death_screen") and abs(b["t"] - last["gs"]) > 30 \
+                    and b["score"] >= 4 and b.get("phrase"):
+                a = self.pick(r["greenscreen"], categories=["green_screen"], max_duration=10, max_rating="clean")
+                if a and (a.get("moments") or [None])[0] not in r["greenscreen"]:
+                    a = None                                     # only overlays made FOR this kind of moment
+                if a:
+                    full = a.get("placement") == "fullscreen"
+                    overlays.append({"type": "greenscreen", "asset": a["id"], "seg": s["id"],
+                                     "src_at": round(b["end"], 3), "dur": min(3.0, a["duration_s"]),
+                                     **({} if full else {"x": 0.78, "y": 0.62, "scale": 0.5})})
+                    gs_budget -= 1
+                    last["gs"] = b["t"]
+            self.sticker_beat(b, s, overlays, mg or abs(b["t"] - last["meme"]) < 0.01 or abs(b["t"] - last["gs"]) < 0.01,
+                              duration)
+            if b["moment"] == "death" and b.get("death_screen"):
+                s["freeze_end"] = max(s.get("freeze_end", 0), 1.6)
+                s.setdefault("zoom", []).append({"src_at": round(b["t"] + 0.05, 3), "to": 1.35, "in": 1.4,
+                                                 "focus": [0.5, 0.22]})
+                s["mode"] = "sad"
+
+        # running gag: a content word said 4+ times within 45 s gets a counter ("STICKS x1", "x2", ...)
+        for word, times in running_gags(self.words).items():
+            for n, (t, seg_t) in enumerate(times, 1):
+                s = self.seg_of(segs, t)
+                if not s:
+                    continue
+                last_one = n == len(times)
+                texts.append({"text": f"{word.upper()} x{n}", "seg": s["id"], "src_at": round(t, 3),
+                              "dur": 1.5 if last_one else 0.9, "style": "minecraft", "x": 0.84, "y": 0.22,
+                              "size": 120 if last_one else 80})
+                if n == 1 or last_one or n % 3 == 0:
+                    sfx.append({"asset": "sfx_ui.pop", "seg": s["id"], "src_at": round(t, 3), "align": "peak",
+                                "volume_db": -4})
+                emphasis.add(word)
+
+        for after, cut in cutaways:                          # insert meme cutaways after their beat segment
+            k = next(i for i, x in enumerate(segs) if x["id"] == after)
+            segs.insert(k + 1, cut)
+
+        # montage labels
+        for s in segs:
+            if s.get("speed", 1) > 1:
+                texts.append({"text": f"x{int(s['speed'])} SPEED", "seg": s["id"], "rel": 0.0, "dur": 1.4,
+                              "style": "label", "x": 0.86, "y": 0.1})
+
+        # ---- cold open: tease the strongest late beat
+        lead = []
+        dur_src = self.pj.get("duration_s") or 0
+        cands = [b for b in beats if b["moment"] in ("panic", "death", "shock", "jumpscare", "explosion")
+                 and b["t"] > dur_src * 0.4 and b["score"] >= 4]
+        if self.cold_open and cands and duration > 40:
+            # tease with the creator's own line when there is one ("I'm actually gonna die"), then the death screen
+            top = max(cands, key=lambda b: (b["score"], bool(b["phrase"]) and not b.get("death_screen"), b["t"]))
+            a = max(0.0, top["t"] - 1.2)
+            z = top["end"] + 0.8
+            lead.append({"id": "cold-1", "type": "source", "in": round(a, 3), "out": round(z, 3),
+                         "zoom": [{"src_at": round(top["t"], 3), "to": 1.3, "in": 0.06, "hold": 0.6, "out": 0.2}]})
+            ds = next((d for d in self.sig.get("death_screens", []) if d["t"] > top["t"]), None)
+            if ds:
+                lead.append({"id": "cold-2", "type": "source", "in": round(ds["t"] - 0.05, 3),
+                             "out": round(ds["t"] + 0.9, 3), "freeze_end": 0.4,
+                             "zoom": [{"src_at": round(ds["t"], 3), "to": 1.35, "in": 0.3, "focus": [0.5, 0.22]}]})
+            first_src = next((s["in"] for s in segs if s["type"] == "source"), 0)
+            gap = top["t"] - first_src
+            label = f"{max(1, round(gap / 60))} MINUTE{'S' if round(gap / 60) > 1 else ''} EARLIER" if gap >= 75 \
+                else "EARLIER..."
+            a_rewind = self.pick(["time_skip"], ["whoosh", "stinger"], categories=["sfx_meme", "sfx_ui"])
+            if a_rewind:
+                sfx.append({"asset": a_rewind["id"], "seg": segs[0]["id"], "rel": 0.0, "dur": 1.2})
+            overlays.append({"type": "motion", "template": "time_card", "vars": {"text": label},
+                             "seg": segs[0]["id"], "rel": 0.0})
+            sfx.append(self._sfx_for(["shock", "panic"], ["hit", "stinger"], "cold-1", top["t"], "peak"))
+        segs = lead + segs
+        sfx = [x for x in sfx if x]
+
+        # ---- intro title + outro CTA
+        title = self.pj.get("title") or self.slug
+        first_main = next(s for s in segs if not s["id"].startswith("cold"))
+        overlays.append({"type": "motion", "template": "title_card",
+                         "vars": {"title": title.upper()[:40], "subtitle": self.brand.get("channel_name", "")},
+                         "seg": first_main["id"], "rel": 1.9 if lead else 0.4})
+        self.caption_hides.append({"seg": first_main["id"], "rel": 1.9 if lead else 0.4, "dur": 2.5})  # title owns the frame
+        if duration > 45:                                # subscribe CTA in a CALM stretch - never on a joke or a panic
+            t, calm = 0.0, None
+            for s in segs:
+                d = seg_duration(s, lambda i: A.get(i))
+                strong = any(s["type"] == "source" and s["in"] <= b["t"] < s["out"] and b["score"] >= 3 for b in beats)
+                if (s["type"] == "source" and not s["id"].startswith("cold") and s.get("mode") == self.base_mode
+                        and not strong and d >= 3.5 and 0.35 * duration <= t <= 0.75 * duration):
+                    calm = s
+                    break
+                t += d
+            if calm:
+                overlays.append({"type": "motion", "template": "crodie_subscribe",     # mascot CTA
+                                 "vars": {},
+                                 "seg": calm["id"], "rel": 0.3})
+                self.caption_hides.append({"seg": calm["id"], "rel": 0.3, "dur": 3.5})
+        # (mode stingers are a manual tool now - automatic colour flashes were distracting)
+
+        edl = {"version": 1, "project": self.slug, "title": title, "mode": self.base_mode,
+               "generator": "autoplan", "segments": segs, "overlays": overlays, "text": texts,
+               "audio": {"sfx": sfx, "bleeps": [], "music": []},
+               "captions": {"enabled": True, "emphasis_words": sorted(emphasis)[:20], "hide": self.caption_hides}}
+        wm = self.brand.get("watermark", {})
+        if wm.get("enabled"):
+            edl["watermark"] = {"text": wm.get("text", ""), "opacity": wm.get("opacity", 0.55),
+                                **({"image": wm["image"]} if wm.get("image") else {})}
+        engage(edl, self.words, self.modes)
+        self.music(edl)
+        for x in edl["audio"]["sfx"]:
+            x.pop("_beat", None)
+        return edl
+
+    STICKER_MOMENTS = {"death", "shock", "jumpscare", "panic", "victory", "loot", "fail", "rage", "confusion",
+                       "explosion", "irony", "flex"}
+
+    def sticker_beat(self, b: dict, s: dict, overlays: list, busy: bool, duration: float) -> None:
+        """The channel mascot reacts: a Crodie emote pops in a corner on a big beat (crying on a death, screaming
+        on a jumpscare, heart eyes on loot). Sparse: strong beats only, >=25 s apart, ~1 per 40 s, never on a beat
+        that already got a meme / green screen / game-UI graphic. A death screen is the payoff: it always gets the
+        crying reaction, and the panic right before it stays clean so the two don't stack."""
+        if busy or b["score"] < 4 or b["moment"] not in self.STICKER_MOMENTS:
+            return
+        deaths = [d["t"] for d in self.sig.get("death_screens", [])]
+        if not b.get("death_screen") and any(0 < d - b["t"] < 15 for d in deaths):
+            return                                       # leave the build-up clean for the death payoff
+        ts = self.mg_used.setdefault("sticker_pop", [])
+        if not b.get("death_screen") and (len(ts) >= max(1, min(5, int(duration / 40)))
+                                          or any(abs(b["t"] - t) < 25 for t in ts)):
+            return
+        q = A.Query(moments=[b["moment"]], roles=["emotes"], categories=["brand_sticker"], project=self.slug,
+                    exclude=self.used, limit=8, seed=self.rng.randint(0, 10 ** 6))
+        res = [a for a in A.find(q) if b["moment"] in (a.get("moments") or [])]
+        made_for = [a for a in res if a["moments"][0] == b["moment"]]   # emotes drawn FOR this moment first
+        pool = (made_for or res)[:3]
+        if not pool:
+            return
+        a = pool[0] if len(pool) == 1 or self.rng.random() < 0.6 else self.rng.choice(pool)
+        self.used.append(a["id"])
+        ts.append(b["t"])
+        badge = a["id"].startswith("crodie.badge_")
+        at = b["t"] + 0.6 if b.get("death_screen") else b["end"] + 0.1
+        overlays.append({"type": "motion", "template": "sticker_pop", "seg": s["id"], "src_at": round(at, 3),
+                         "vars": {"image": a["path"],                     # studio-relative (brand/crodie/...)
+                                  "position": "center" if badge else ("top-right" if len(ts) % 2 else "top-left"),
+                                  "style": "stamp" if badge else "pop"},
+                         **({"dur": 2.2} if b.get("death_screen") else {})})
+
+    def motion_beat(self, b: dict, s: dict, overlays: list) -> bool:
+        """Game-UI motion graphics for beats that literally match them. Sparing by design: each template has a
+        per-video cap and a minimum gap, and only fires on a clear spoken trigger (creator: no overuse)."""
+        kw = (b.get("phrase") or b.get("keyword") or "").lower()
+        used = self.mg_used
+        def ok(name, cap, gap):
+            ts = used.setdefault(name, [])
+            return len(ts) < cap and all(abs(b["t"] - t) > gap for t in ts)
+        ov = None
+        if b["moment"] == "loot" and b["score"] >= 4 and ok("advancement_toast", 2, 40):
+            ov = {"template": "advancement_toast", "vars": {"title": kw.title().rstrip("!") + "!", "kind": "task"}}
+        elif b["moment"] == "location" and ok("location_tag", 2, 60):
+            ov = {"template": "location_tag",
+                  "vars": {"text": kw.upper(), "sub": "", "icon": LOCATION_ICON.get(kw, "compass")}}
+        elif b["moment"] == "boss" and ok("boss_bar", 1, 0):
+            ov = {"template": "boss_bar", "vars": {"name": kw.title().replace("The ", ""),
+                                                    "color": BOSS_COLOR.get(kw, "pink")}}
+        if not ov:
+            return False
+        used[ov["template"]].append(b["t"])
+        overlays.append({"type": "motion", **ov, "seg": s["id"], "src_at": round(b["end"] + 0.05, 3)})
+        return True
+
+    def _sfx_for(self, moments, roles, seg_id, t, align):
+        a = self.pick(moments, roles, categories=["sfx_meme", "sfx_ui", "sfx_mlg"], max_duration=4)
+        return {"asset": a["id"], "seg": seg_id, "src_at": round(t, 3), "align": align} if a else None
+
+    # ------------------------------------------------------------ music per mode run
+    FAMILY = {"funny": "funny", "happy": "funny", "pov": "funny", "broll": "funny", "narration": "narration",
+              "exciting": "exciting", "angry": "exciting", "scary": "scary", "sad": "sad", "flashback": "sad",
+              "serious": "serious"}
+
+    def music(self, edl: dict) -> None:
+        """A bed per *music family* run. Beds only change for runs >= 12 s (mood blips don't swap songs);
+        a short sad/death ending gets silence so the sting lands."""
+        t = 0.0
+        runs: list[list] = []                                # [family, start, end]
+        for s in edl["segments"]:
+            d = seg_duration(s, lambda i: A.get(i))
+            if s["id"].startswith("cold"):
+                t += d
+                continue
+            f = self.FAMILY.get(s.get("mode") or edl["mode"], "funny") if s["type"] != "cutaway" \
+                else (runs[-1][0] if runs else "funny")
+            if runs and runs[-1][0] == f:
+                runs[-1][2] = t + d
+            else:
+                runs.append([f, t, t + d])
+            t += d
+        if runs and runs[-1][0] == "sad" and runs[-1][2] - runs[-1][1] < 12:
+            runs.pop()
+        merged: list[list] = []
+        for r in runs:
+            if merged and (r[2] - r[1] < 12 or merged[-1][0] == r[0]):
+                merged[-1][2] = r[2]
+            else:
+                merged.append(r)
+        for m, a, z in merged:
+            cfg = self.modes.get(m, {}).get("music", {})
+            lo, hi = cfg.get("energy", [1, 5])
+            pick = self.pick(cfg.get("moments", ["exploring"]), ["music_bed"], categories=["music"], max_risk="medium",
+                             min_energy=lo, max_energy=hi, min_duration=30)
+            if pick:
+                edl["audio"]["music"].append({"asset": pick["id"], "at": round(a, 3), "until": round(z, 3),
+                                              "in": round(min(20.0, (pick["duration_s"] or 60) * 0.1), 1),
+                                              "fade_in": 0.8, "fade_out": 1.0, "duck": True, "_mode": m})
+        for x in edl["audio"]["music"]:
+            x.pop("_mode", None)
+
+
+STOP = set("""the and that this with have just like what then they there their them your you're gonna going
+want okay yeah right here really know think about because could would should actually only also into
+from were when where which will been being some something make made get got put take took let's lets
+one two other more thing things stuff now well see look come came guys video today minecraft""".split())
+
+
+def running_gags(words: list[dict], min_count: int = 4, window: float = 45.0) -> dict[str, list]:
+    """Content words repeated a lot in a short span - the editor's classic counter gag."""
+    occ: dict[str, list[float]] = {}
+    for w in words:
+        k = re.sub(r"[^a-z']", "", w["word"].lower())
+        if len(k) >= 4 and k not in STOP:
+            occ.setdefault(k.rstrip("s") if k.endswith("s") and len(k) > 4 else k, []).append(w["start"])
+    gags = {}
+    for k, ts in occ.items():
+        best: list[float] = []
+        for i in range(len(ts)):
+            run = [t for t in ts[i:] if t - ts[i] <= window]
+            if len(run) > len(best):
+                best = run
+        if len(best) >= min_count:
+            gags[k + ("s" if any(re.sub(r"[^a-z]", "", w["word"].lower()) == k + "s" for w in words) else "")] = \
+                [(t, t) for t in best[:10]]
+    ranked = sorted(gags.items(), key=lambda kv: -len(kv[1]))
+    # one gag per video; a second only if it's just as strong (6+ repeats)
+    return dict(ranked[:1] + [kv for kv in ranked[1:2] if len(kv[1]) >= 6])
+
+
+def meme_window(a: dict, rng) -> tuple[float, float]:
+    """Use a meme for its comedic beat, not its whole runtime: short clips play in full, longer ones get a
+    1.4-2.8 s window around their peak (or inside the tagged use_window). Not a strict rule - variety on purpose."""
+    lo = a.get("use_in") or 0.0
+    hi = a.get("use_out") or a.get("duration_s") or 2.0
+    if hi - lo <= 3.5 and rng.random() < 0.7:
+        return round(lo, 2), round(hi, 2)
+    length = rng.uniform(1.4, 2.8)
+    peak = a.get("peak_s")
+    start = max(lo, min((peak - 0.6) if peak is not None else lo, hi - length))
+    return round(start, 2), round(min(hi, start + length), 2)
+
+
+def sfx_cap(a: dict) -> float | None:
+    """Long sounds get trimmed to the useful part (the renderer fades the cut). Voice lines finish their sentence."""
+    natural = (a.get("tail_s") or a.get("duration_s") or 0) - (a.get("onset_s") or 0)
+    roles = a.get("roles") or []
+    cap = 6.0 if "voice_line" in roles else 3.0 if ("stinger" in roles or "reaction" in roles) else \
+        1.6 if ("hit" in roles or "whoosh" in roles or "ui_sound" in roles) else 4.0
+    return round(cap, 2) if natural > cap + 0.3 else None
+
+
+def TREAT_FREEZE(beats: list[dict], cut: float) -> float:
+    b = min(beats, key=lambda b: abs(b["end"] + 0.12 - cut))
+    return TREAT.get(b["moment"], {}).get("freeze", 0.0)
+
+
+def merge_ranges(rs: list[list[float]]) -> list[list[float]]:
+    out: list[list[float]] = []
+    for a, z in sorted(rs):
+        if out and a <= out[-1][1] + 0.05:
+            out[-1][1] = max(out[-1][1], z)
+        else:
+            out.append([a, z])
+    return out
+
+
+# ------------------------------------------------------------------ engagement pass
+def engage(edl: dict, words: list[dict], modes: dict) -> int:
+    """Keep attention: no stretch longer than the mode's every_s without a visual change.
+
+    * consecutive talking segments alternate 1.0x / 1.1x framing, so jump cuts read as deliberate
+    * gaps get a punch-in on the most stressed word (longest word or one ending in ! / ?),
+      or a slow push-in when there is no good word
+    Auto zooms carry "auto": true and are replaced on re-run; hand-placed zooms are never touched.
+    """
+    added = 0
+    segs = edl["segments"]
+    prev_reframed = False
+    for i, s in enumerate(segs):
+        if s.get("type", "source") != "source" or s.get("speed", 1) > 1:
+            prev_reframed = False
+            continue
+        s["zoom"] = [z for z in s.get("zoom", []) if not z.get("auto")]
+        mode = modes.get(s.get("mode") or edl.get("mode", "funny"), {})
+        every = mode.get("zoom", {}).get("every_s", 3.5)
+        inten = mode.get("zoom", {}).get("intensity", 1.0)
+        snap = mode.get("zoom", {}).get("snap", True)
+        live = s["out"] - s["in"]
+        adjacent = i > 0 and segs[i - 1].get("type", "source") == "source" and abs(segs[i - 1]["out"] - s["in"]) < 2.5
+        if adjacent and not prev_reframed and not s["id"].startswith("cold"):
+            s["zoom"].insert(0, {"at": 0.0, "to": round(1 + 0.1 * inten, 3), "in": 0, "out": 0, "auto": True})
+            prev_reframed = True
+            added += 1
+        else:
+            prev_reframed = False
+        # find gaps between existing changes inside the segment
+        marks = sorted([0.0, live] + [(z["src_at"] - s["in"]) if "src_at" in z else z.get("at", 0)
+                                      for z in s["zoom"] if not (z.get("auto") and z.get("at") == 0.0)])
+        for a, b in zip(marks, marks[1:]):
+            t = a + every
+            while t < b - 0.8:
+                cand = [w for w in words if s["in"] + t - every * 0.5 <= w["start"] <= s["in"] + min(b - 0.6, t + every * 0.5)]
+                if cand:
+                    w = max(cand, key=lambda w: (w["word"].endswith(("!", "?")), w["end"] - w["start"]))
+                    at = w["start"] - s["in"]
+                    if snap:
+                        z = {"src_at": round(w["start"], 3), "to": round(1 + 0.2 * inten, 3), "in": 0.05,
+                             "hold": round(max(0.4, w["end"] - w["start"] + 0.25), 2), "out": 0.15, "auto": True}
+                    else:
+                        z = {"src_at": round(w["start"], 3), "to": round(1 + 0.12 * inten, 3), "in": 1.2,
+                             "hold": 0.6, "out": 0.6, "auto": True}
+                else:
+                    at = t
+                    z = {"at": round(t, 3), "to": round(1 + 0.1 * inten, 3), "in": min(2.0, b - t), "out": 0.3,
+                         "auto": True}
+                s["zoom"].append(z)
+                added += 1
+                t = at + every
+        if not s["zoom"]:
+            s.pop("zoom")
+    return added
+
+
+def autoplan(slug: str, mode: str | None = None, cold_open: bool = True, seed: int = 1) -> Path:
+    p = Planner(slug, mode, cold_open, seed)
+    edl = p.plan()
+    dest = p.proj / "edit.json"
+    if dest.exists():
+        hist = p.proj / "history"
+        hist.mkdir(exist_ok=True)
+        from datetime import datetime
+        dest.replace(hist / f"edit.{datetime.now():%Y%m%d-%H%M%S}.json")
+    dest.write_text(json.dumps(edl, indent=2), encoding="utf-8")
+    n = lambda k: len(edl[k]) if k in edl else 0  # noqa: E731
+    print(f"[autoplan] {len(edl['segments'])} segments, {len(edl['audio']['sfx'])} sfx, {n('text')} text pops, "
+          f"{n('overlays')} overlays, {len(edl['audio']['music'])} music beds, base mode {edl['mode']}")
+    return dest
+
+
+def engage_cmd(slug: str) -> None:
+    proj = project_dir(slug)
+    edl = json.loads((proj / "edit.json").read_text(encoding="utf-8"))
+    tr = load_json(proj / "work" / "transcript.json", {"segments": []})
+    words = [w for s in tr["segments"] for w in s.get("words", [])]
+    k = engage(edl, words, load_json(STUDIO / "modes.json", {}))
+    (proj / "edit.json").write_text(json.dumps(edl, indent=2), encoding="utf-8")
+    print(f"[engage] {k} auto zooms")

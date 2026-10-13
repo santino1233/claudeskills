@@ -1,0 +1,365 @@
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000023fedf62740] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Error submitting packet to decoder: Invalid data found when processing input
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Decode error rate 1 exceeds maximum 0.666667
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Task finished with error code: -1145393733 (Error number -1145393733 occurred)
+[vist#0:0/vp8 @ 0000023fedea07c0] [dec:libvpx @ 0000023fedf3dc80] Terminating thread with return code -1145393733 (Error number -1145393733 occurred)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys,numpy as np;b=np.frombuffer(sys.stdin.buffer.read(),np.uint8).reshape(-1,4);print(len(b),(b[:,3]<16).mean())
+    ^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[libvpx @ 0000013ff34c1bc0] Failed to decode frame: Bitstream not supported by this decoder
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Error submitting packet to decoder: Invalid data found when processing input
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Decode error rate 1 exceeds maximum 0.666667
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Task finished with error code: -1145393733 (Error number -1145393733 occurred)
+[vist#0:0/vp8 @ 0000013ff6280c80] [dec:libvpx @ 0000013ff6280e40] Terminating thread with return code -1145393733 (Error number -1145393733 occurred)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys,numpy as np;b=np.frombuffer(sys.stdin.buffer.read(),np.uint8).reshape(-1,4);print(len(b),(b[:,3]<16).mean())
+    ^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys,numpy as np;b=np.frombuffer(sys.stdin.buffer.read(),np.uint8).reshape(-1,4);print(len(b),(b[:,3]<16).mean())
+    ^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+[vost#0:0/rawvideo @ 000002566783d400] Error submitting a packet to the muxer: Invalid argument
+    Last message repeated 1 times
+[out#0/rawvideo @ 0000025667839080] Error muxing a packet
+[out#0/rawvideo @ 0000025667839080] Task finished with error code: -22 (Invalid argument)
+[out#0/rawvideo @ 0000025667839080] Terminating thread with return code -22 (Invalid argument)
+[out#0/rawvideo @ 0000025667839080] Error writing trailer: Invalid argument
+[out#0/rawvideo @ 0000025667839080] Error closing file: Invalid argument
+{'codec': 'vp8', 'width': 1920, 'height': 1080, 'fps': 60.0, 'pix_fmt': 'yuv420p', 'has_alpha': True} {'green': 0.0, 'blue': 0.0, 'black': 0.0, 'white': 0.0, 'transparent': 0.0} 2.0

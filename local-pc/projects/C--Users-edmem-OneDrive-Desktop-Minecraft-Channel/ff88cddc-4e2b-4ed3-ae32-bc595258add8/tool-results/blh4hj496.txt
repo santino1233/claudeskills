@@ -1,0 +1,341 @@
+340 Counter({'none': 243, 'game': 93, 'english': 3, 'other': 1}) Counter({'clean': 326, 'mild': 13, 'explicit': 1})
+sfx_meme.clock-01 | Foley & Real Wor | Steady clock ticking, tense passing-time b | None | None | clean
+sfx_meme.clock-ticking-1 | Foley & Real Wor | Steady clock ticking, tense passing-time b | None | None | clean
+sfx_meme.cracker-bite-crackle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.cracker-bite-crackle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.cracker-bite-crackle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.8 | None | None | clean
+sfx_meme.1~4 | Foley & Real Wor | Crickets chirping in an empty night, the c | None | None | clean
+sfx_meme.asset~42 | Foley & Real Wor | Crickets chirping in an empty night, the c | None | [0, 5.0] | clean
+sfx_meme.crickets-silence-sound-effect-1 | Foley & Real Wor | Crickets chirping in an empty night, the c | None | [0, 5.0] | clean
+sfx_meme.crickets-sound-sr | Foley & Real Wor | Crickets chirping in an empty night, the c | None | [0, 5.0] | clean
+sfx_meme.crowd-booing | Foley & Real Wor | Crowd booing disapprovingly (5.2s). | None | None | clean
+sfx_meme.crowd-clapping-sound-sr | Foley & Real Wor | Crowd applauding, building then fading (9. | None | [0, 5.0] | clean
+sfx_meme.crowd-hype-up-sound-sr | Foley & Real Wor | Crowd hyping up with cheering and chanting | None | [0, 5.0] | clean
+sfx_meme.crowd-talking-large-crowd-talki | Foley & Real Wor | Large crowd murmuring and chattering (5.8s | None | None | clean
+sfx_meme.cuckoo-clock-3-times | Cartoon & Anime | Cuckoo clock chiming three times with a wo | None | None | clean
+sfx_meme.dolphin-chatter-1 | Foley & Real Wor | Dolphin squeaks, whistles and clicks (4.0s | None | None | clean
+sfx_meme.dolphin | Foley & Real Wor | Dolphin squeaks, whistles and clicks (2.5s | None | None | clean
+sfx_meme.dolphins-sound-sr | Foley & Real Wor | Dolphin squeaks, whistles and clicks (2.1s | None | None | clean
+sfx_meme.drinking | Foley & Real Wor | Liquid being drunk with glugs and gulps (7 | None | None | clean
+sfx_meme.dry-short-paper-crumple-01 | Foley & Real Wor | Dry paper being crumpled in the hand (0.6s | None | None | clean
+sfx_meme.dry-short-paper-crumple-02 | Foley & Real Wor | Dry paper being crumpled in the hand (0.6s | None | None | clean
+sfx_meme.dry-short-paper-crumple-03 | Foley & Real Wor | Dry paper being crumpled in the hand (0.6s | None | None | clean
+sfx_meme.dry-short-paper-crumple-04 | Foley & Real Wor | Dry paper being crumpled in the hand (0.8s | None | None | clean
+sfx_meme.dry-short-paper-crumple-05 | Foley & Real Wor | Dry paper being crumpled in the hand (0.7s | None | None | clean
+sfx_meme.dry-short-paper-crumple-06 | Foley & Real Wor | Dry paper being crumpled in the hand (0.8s | None | None | clean
+sfx_meme.dry-short-paper-crumple-07 | Foley & Real Wor | Dry paper being crumpled in the hand (0.8s | None | None | clean
+sfx_meme.duck-quack~2 | Cartoon & Anime | Duck quacking (3.0s). | None | None | clean
+sfx_meme.duck-quack | Cartoon & Anime | Duck quacking (3.1s). | None | None | clean
+sfx_meme.eat-or-munch-2 | Foley & Real Wor | Crunchy bite and munching (1.0s). | None | None | clean
+sfx_meme.eat-or-munch | Foley & Real Wor | Crunchy bite and munching (1.1s). | None | None | clean
+sfx_meme.explosion | Hits, Punches &  | Large explosion blast with a rumbling tail | None | None | clean
+sfx_meme.explode1 | Hits, Punches &  | Large explosion blast with a rumbling tail | None | None | clean
+sfx_meme.explode4 | Hits, Punches &  | Large explosion blast with a rumbling tail | None | None | clean
+sfx_meme.explosion-sound-sr | Hits, Punches &  | Large explosion blast with a rumbling tail | None | None | clean
+sfx_meme.fart-2 | Cartoon & Anime | Comedic fart gag sound (0.6s). | None | None | mild
+sfx_meme.fart~3 | Cartoon & Anime | Comedic fart gag sound (1.4s). | None | None | mild
+sfx_meme.fart | Cartoon & Anime | Comedic fart gag sound (0.7s). | None | None | mild
+sfx_meme.fast-tip-toes | Foley & Real Wor | Fast tiptoe footsteps, sneaking away (1.3s | None | None | clean
+sfx_meme.falling | Foley & Real Wor | Person falling with whistling wind ending  | None | None | clean
+sfx_meme.fart~2 | Cartoon & Anime | Comedic fart gag sound (3.0s). | None | None | mild
+sfx_meme.fart-with-reverb | Cartoon & Anime | Comedic fart gag sound (3.2s). | None | None | mild
+sfx_meme.fire-burning-sound-sr | Foley & Real Wor | Crackling fire burning (10.2s). | None | [0, 5.0] | clean
+sfx_meme.asset~15 | Foley & Real Wor | Crackling fire burning (36.7s). | None | [0, 5.0] | clean
+sfx_meme.fire | Foley & Real Wor | Crackling fire burning (3.9s). | None | None | clean
+sfx_meme.glass-breaking-glass-breaking-s | Foley & Real Wor | Glass shattering and smashing (1.1s). | None | None | clean
+sfx_meme.glitch | Glitch & Tech | Digital glitch and static stutter (3.1s). | None | None | clean
+sfx_meme.glug-glug | Foley & Real Wor | Liquid being drunk with glugs and gulps (4 | None | None | clean
+sfx_meme.gulp-gulp-gulp | Foley & Real Wor | Liquid being drunk with glugs and gulps (1 | None | [0, 5.0] | clean
+sfx_meme.cocking-gun-cocking-gun-free-do | Foley & Real Wor | Gun cocking or reloading, metallic clicks  | None | None | clean
+sfx_meme.asset~31 | Foley & Real Wor | Gunfire, shots or machine-gun burst (7.0s) | None | None | clean
+sfx_meme.asset~26 | Foley & Real Wor | Hissing, like a creeper fuse or steam (2.1 | None | None | clean
+sfx_meme.hollow-tripple-knock-01 | Foley & Real Wor | Knocking on door or wood (0.9s). | None | None | clean
+sfx_meme.asset~32 | Foley & Real Wor | Long vehicle or ship horn honk (2.3s). | None | None | clean
+sfx_meme.kentut-fart | Cartoon & Anime | Comedic fart gag sound (1.9s). | None | None | mild
+sfx_meme.kiss | Foley & Real Wor | Smooch kiss sound (5.3s). | None | None | clean
+sfx_meme.lost-connection-radio-interfere | Glitch & Tech | Radio static and interference, signal lost | None | None | clean
+sfx_meme.long-brain-fart-funny | Cartoon & Anime | Cartoon brain-fart gag with a long fart no | Met the woman make you bull... | None | explicit
+sfx_meme.long-continuous-rustle-01 | Foley & Real Wor | Small foley rustle or crackle texture (4.0 | None | None | clean
+sfx_meme.long-continuous-rustle-02 | Foley & Real Wor | Small foley rustle or crackle texture (2.7 | None | None | clean
+sfx_meme.long-fart-1 | Cartoon & Anime | Comedic fart gag sound (1.4s). | None | None | mild
+sfx_meme.burp-loud-burp-longest-burp-lon | Cartoon & Anime | Loud long burp (2.0s). | None | None | mild
+sfx_meme.m40a3 | Foley & Real Wor | Gunfire, shots or machine-gun burst (2.4s) | None | None | clean
+sfx_meme.machine-gun-funny | Foley & Real Wor | Gunfire, shots or machine-gun burst (4.7s) | None | None | clean
+sfx_meme.mechanical-rattle-01 | Foley & Real Wor | Mechanical rattle (1.2s). | None | None | clean
+sfx_meme.minecraft-damage-oof | Minecraft | Minecraft player hurt 'oof' damage sound ( | None | None | clean
+sfx_meme.minecraft-fall-damage-crack | Minecraft | Minecraft fall damage bone-crack hit (2.0s | None | None | clean
+sfx_meme.minecraft-eating | Minecraft | Minecraft eating crunch sounds (8.8s). | None | [0, 5.0] | clean
+sfx_meme.mouth-blow-long-01 | Foley & Real Wor | Air blown out of the mouth (2.2s). | None | None | clean
+sfx_meme.mouth-blow-medium-01 | Foley & Real Wor | Air blown out of the mouth (2.0s). | None | None | clean
+sfx_meme.mouth-blow-medium-02 | Foley & Real Wor | Air blown out of the mouth (1.9s). | None | None | clean
+sfx_meme.mouth-blow-short-01 | Foley & Real Wor | Air blown out of the mouth (1.4s). | None | None | clean
+sfx_meme.mouth-puff-01 | Foley & Real Wor | Short puff of breath from the mouth (0.4s) | None | None | clean
+sfx_meme.mouth-puff-02 | Foley & Real Wor | Short puff of breath from the mouth (0.9s) | None | None | clean
+sfx_meme.mouth-puff-03 | Foley & Real Wor | Short puff of breath from the mouth (0.7s) | None | None | clean
+sfx_meme.mouth-puff-04 | Foley & Real Wor | Short puff of breath from the mouth (0.7s) | None | None | clean
+sfx_meme.mouth-puff-05 | Foley & Real Wor | Short puff of breath from the mouth (0.7s) | None | None | clean
+sfx_meme.mouth-puff-06 | Foley & Real Wor | Short puff of breath from the mouth (0.8s) | None | None | clean
+sfx_meme.mouth-puff-07 | Foley & Real Wor | Short puff of breath from the mouth (0.6s) | None | None | clean
+sfx_meme.munch-sound-effect | Foley & Real Wor | Crunchy bite and munching (1.0s). | None | None | clean
+sfx_meme.ninja-star-ninja-star-throwing- | Foley & Real Wor | Ninja star thrown, slicing air and stickin | None | [0, 5.0] | clean
+sfx_meme.nuke-bomb | Hits, Punches &  | Large explosion blast with a rumbling tail | None | None | clean
+sfx_meme.old-computer | Glitch & Tech | Old computer boot with beeps, whirs and da | None | [0, 5.0] | clean
+sfx_meme.old-telephone-ringing-old-telep | Foley & Real Wor | Old telephone ringing repeatedly (20.9s). | None | [0, 5.0] | clean
+sfx_meme.old-telephone-2 | Foley & Real Wor | Old telephone ringing repeatedly (25.9s). | None | [0, 5.0] | clean
+sfx_meme.1 | Foley & Real Wor | Paper page turn or rustle foley (1.3s). | None | None | clean
+sfx_meme.paper | Foley & Real Wor | Paper page turn or rustle foley (0.6s). | None | None | clean
+sfx_meme.party-horn~3 | Foley & Real Wor | Party blower horn toot (1.0s). | None | None | clean
+sfx_meme.peeing-320 | Foley & Real Wor | Peeing / urination stream sound (9.6s). | None | [0, 5.0] | mild
+sfx_meme.phone-busy-mobile-phone-busy-ce | Glitch & Tech | Phone busy tone beeping (7.5s). | None | None | clean
+sfx_meme.plastic-crackle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.plastic-crackle-02 | Foley & Real Wor | Small foley rustle or crackle texture (2.3 | None | None | clean
+sfx_meme.quack-sound | Cartoon & Anime | Duck quacking (0.9s). | None | None | clean
+sfx_meme.reloading | Foley & Real Wor | Gun cocking or reloading, metallic clicks  | None | None | clean
+sfx_meme.crazy-realistic-knocking-sound- | Foley & Real Wor | Knocking on door or wood (5.3s). | None | None | clean
+sfx_meme.crazy-realistic-knocking-sound- | Foley & Real Wor | Knocking on door or wood (9.1s). | None | [0, 5.0] | clean
+sfx_meme.record-scratch-1-sound-sr | Cartoon & Anime | Record scratch halting the music (0.8s). | None | None | clean
+sfx_meme.record-scratch-2-sound-sr | Cartoon & Anime | Record scratch halting the music (1.4s). | None | None | clean
+sfx_meme.reload-gun-hd | Foley & Real Wor | Gun cocking or reloading, metallic clicks  | None | None | clean
+sfx_meme.rock-slides | Foley & Real Wor | Rocks sliding and tumbling in a rockslide  | None | [0, 5.0] | clean
+sfx_meme.rubbery-plastic-crackle-01 | Foley & Real Wor | Small foley rustle or crackle texture (1.0 | None | None | clean
+sfx_meme.rubbery-plastic-crackle-02 | Foley & Real Wor | Small foley rustle or crackle texture (1.1 | None | None | clean
+sfx_meme.rubbery-plastic-crackle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.rubbery-plastic-crackle-04 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.rubbery-plastic-crackle-05 | Foley & Real Wor | Small foley rustle or crackle texture (2.0 | None | None | clean
+sfx_meme.rubbery-rustle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.8 | None | None | clean
+sfx_meme.rubbery-rustle-02 | Foley & Real Wor | Small foley rustle or crackle texture (1.0 | None | None | clean
+sfx_meme.rubbery-rustle-03 | Foley & Real Wor | Small foley rustle or crackle texture (1.2 | None | None | clean
+sfx_meme.run~2 | Foley & Real Wor | Running footsteps (8.2s). | None | [0, 5.0] | clean
+sfx_meme.footsteps-running-footsteps-war | Foley & Real Wor | Running footsteps (9.0s). | None | [0, 5.0] | clean
+sfx_meme.run | Foley & Real Wor | Running footsteps (13.0s). | None | [0, 5.0] | clean
+sfx_meme.rustling-paper-page-turn-01 | Foley & Real Wor | Paper page turn or rustle foley (1.0s). | None | None | clean
+sfx_meme.rustling-paper-page-turn-02 | Foley & Real Wor | Paper page turn or rustle foley (1.1s). | None | None | clean
+sfx_meme.rustling-paper-page-turn-03 | Foley & Real Wor | Paper page turn or rustle foley (1.0s). | None | None | clean
+sfx_meme.rustling-paper-page-turn-04 | Foley & Real Wor | Paper page turn or rustle foley (1.0s). | None | None | clean
+sfx_meme.rustling-paper-page-turn-05 | Foley & Real Wor | Paper page turn or rustle foley (1.2s). | None | None | clean
+sfx_meme.shaker-shake-01 | Foley & Real Wor | Short shaker shake (0.6s). | None | None | clean
+sfx_meme.shaker-shake-02 | Foley & Real Wor | Short shaker shake (0.7s). | None | None | clean
+sfx_meme.shaky-knock-01 | Foley & Real Wor | Knocking on door or wood (0.2s). | None | None | clean
+sfx_meme.single-footstep-tap-01 | Foley & Real Wor | Single footstep tap (0.3s). | None | None | clean
+sfx_meme.single-footstep-tap-02 | Foley & Real Wor | Single footstep tap (0.3s). | None | None | clean
+sfx_meme.single-footstep-tap-03 | Foley & Real Wor | Single footstep tap (0.3s). | None | None | clean
+sfx_meme.single-footstep-tap-04 | Foley & Real Wor | Single footstep tap (0.3s). | None | None | clean
+sfx_meme.single-knock-01 | Foley & Real Wor | Knocking on door or wood (0.2s). | None | None | clean
+sfx_meme.single-knock-02 | Foley & Real Wor | Knocking on door or wood (0.2s). | None | None | clean
+sfx_meme.single-knock-03 | Foley & Real Wor | Knocking on door or wood (0.2s). | None | None | clean
+sfx_meme.single-knock-04 | Foley & Real Wor | Knocking on door or wood (0.2s). | None | None | clean
+sfx_meme.single-tap-01 | UI, Clicks & Not | Single dry tap click (0.1s). | None | None | clean
+sfx_meme.single-tap-02 | UI, Clicks & Not | Single dry tap click (0.2s). | None | None | clean
+sfx_meme.single-tap-03 | UI, Clicks & Not | Single dry tap click (0.1s). | None | None | clean
+sfx_meme.single-tap-04 | UI, Clicks & Not | Single dry tap click (0.1s). | None | None | clean
+sfx_meme.single-tap-05 | UI, Clicks & Not | Single dry tap click (0.1s). | None | None | clean
+sfx_meme.single-tap-06 | UI, Clicks & Not | Single dry tap click (0.3s). | None | None | clean
+sfx_meme.single-tap-07 | UI, Clicks & Not | Single dry tap click (0.3s). | None | None | clean
+sfx_meme.single-tap-08 | UI, Clicks & Not | Single dry tap click (0.3s). | None | None | clean
+sfx_meme.asset~43 | Foley & Real Wor | Long siren wail (110.4s). | None | [0, 5.0] | clean
+sfx_meme.slot-machine-jackpot-win | UI, Clicks & Not | Slot machine jackpot with coins pouring an | None | [0, 5.0] | clean
+sfx_meme.slurp | Foley & Real Wor | Liquid being drunk with glugs and gulps (2 | None | None | clean
+sfx_meme.small-dry-crackle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.small-dry-crackle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.small-dry-crackle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.soft-dry-rustle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.soft-dry-rustle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.soft-dry-rustle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.soft-dry-rustle-04 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.soft-dry-rustle-05 | Foley & Real Wor | Small foley rustle or crackle texture (0.8 | None | None | clean
+sfx_meme.splat-sound-effect-360p | Foley & Real Wor | Wet splat impact (5.1s). | None | None | clean
+sfx_meme.splat~2 | Foley & Real Wor | Wet splat impact (1.0s). | None | None | clean
+sfx_meme.spray-hiss-01 | Foley & Real Wor | Short spray-can hiss burst (0.3s). | None | None | clean
+sfx_meme.spray-hiss-02 | Foley & Real Wor | Short spray-can hiss burst (0.3s). | None | None | clean
+sfx_meme.spray-hiss-03 | Foley & Real Wor | Short spray-can hiss burst (0.5s). | None | None | clean
+sfx_meme.spray-hiss-04 | Foley & Real Wor | Short spray-can hiss burst (1.0s). | None | None | clean
+sfx_meme.spray-hiss-05 | Foley & Real Wor | Short spray-can hiss burst (0.5s). | None | None | clean
+sfx_meme.spray-hiss-06 | Foley & Real Wor | Short spray-can hiss burst (1.3s). | None | None | clean
+sfx_meme.spray-hiss-07 | Foley & Real Wor | Short spray-can hiss burst (1.9s). | None | None | clean
+sfx_meme.spray-hiss-08 | Foley & Real Wor | Short spray-can hiss burst (3.8s). | None | None | clean
+sfx_meme.spray-hiss-09 | Foley & Real Wor | Short spray-can hiss burst (2.2s). | None | None | clean
+sfx_meme.squeaky-door-opening-squeaky-do | Foley & Real Wor | Squeaky door creaking open and closed (4.6 | None | None | clean
+sfx_meme.sword-sound-effect-128k | Foley & Real Wor | Sword unsheathing and slash (2.6s). | None | None | clean
+sfx_meme.tape-rewind | Glitch & Tech | VHS tape rewinding whir (3.5s). | None | None | clean
+sfx_meme.tearing-rustle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.tearing-rustle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.tearing-rustle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.3 | None | None | clean
+sfx_meme.tearing-rustle-04 | Foley & Real Wor | Small foley rustle or crackle texture (0.4 | None | None | clean
+sfx_meme.tearing-rustle-05 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.tearing-rustle-06 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.toilet-flush-high-quality-flush | Foley & Real Wor | Toilet flushing (4.3s). | None | None | mild
+sfx_meme.asset~24 | Foley & Real Wor | Toilet flushing (13.5s). | None | [0, 5.0] | mild
+sfx_meme.tripple-knock-01 | Foley & Real Wor | Knocking on door or wood (0.8s). | None | None | clean
+sfx_meme.typewriter-typewriter-soundtype | UI, Clicks & Not | Typewriter typing with a final bell ding ( | None | None | clean
+sfx_meme.ny-video-online-audio-converter | Foley & Real Wor | Unidentified short audio clip, noisy and m | None | None | clean
+sfx_meme.alarm-1 | Foley & Real Wor | Warning alarm beeping (1.6s). | None | None | clean
+sfx_meme.alarm-2 | Foley & Real Wor | Warning alarm beeping (1.7s). | None | None | clean
+sfx_meme.water-droplet | Foley & Real Wor | Single water drip plink (2.0s). | None | None | clean
+sfx_meme.wet-fart-meme-sound-effect-hd-g | Cartoon & Anime | Comedic fart gag sound (1.3s). | None | None | mild
+sfx_meme.wet-rustle-01 | Foley & Real Wor | Small foley rustle or crackle texture (0.8 | None | None | clean
+sfx_meme.wet-rustle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.6 | None | None | clean
+sfx_meme.wet-rustle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.3 | None | None | clean
+sfx_meme.wet-rustle-04 | Foley & Real Wor | Small foley rustle or crackle texture (0.9 | None | None | clean
+sfx_meme.wet-rustle-05 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.wet-rustle-06 | Foley & Real Wor | Small foley rustle or crackle texture (1.1 | None | None | clean
+sfx_meme.wind-320 | Foley & Real Wor | Wind blowing ambience (17.3s). | None | [0, 5.0] | clean
+sfx_meme.asset~16 | Foley & Real Wor | Glass shattering and smashing (1.6s). | None | None | clean
+sfx_meme.window-smash-glass-smash-window | Foley & Real Wor | Glass shattering and smashing (3.4s). | None | None | clean
+sfx_meme.lone-wolf-howling-wolf-howling- | Foley & Real Wor | Wolf howling in the night (6.0s). | None | None | clean
+sfx_meme.wolf-howling-alpha-wolf-howling | Foley & Real Wor | Wolf howling in the night (20.3s). | None | [0, 5.0] | clean
+sfx_meme.wood-crackle-01 | Foley & Real Wor | Small foley rustle or crackle texture (1.4 | None | None | clean
+sfx_meme.wood-crackle-02 | Foley & Real Wor | Small foley rustle or crackle texture (0.7 | None | None | clean
+sfx_meme.wood-crackle-03 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.wood-crackle-04 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.wood-crackle-05 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.wood-crackle-06 | Foley & Real Wor | Small foley rustle or crackle texture (0.8 | None | None | clean
+sfx_meme.wood-crackle-07 | Foley & Real Wor | Small foley rustle or crackle texture (0.5 | None | None | clean
+sfx_meme.zipper-zip-01 | Foley & Real Wor | Zipper zip (0.2s). | None | None | clean
+sfx_meme.zipper-zip-02 | Foley & Real Wor | Zipper zip (0.6s). | None | None | clean
+sfx_meme.zipper-zip-03 | Foley & Real Wor | Zipper zip (0.4s). | None | None | clean
+sfx_meme.zipper-zip-04 | Foley & Real Wor | Zipper zip (0.3s). | None | None | clean
+sfx_meme.zipper-zip-05 | Foley & Real Wor | Zipper zip (0.5s). | None | None | clean
+sfx_meme.zipper-zip-06 | Foley & Real Wor | Zipper zip (0.7s). | None | None | clean
+sfx_meme.zipper-zip-07 | Foley & Real Wor | Zipper zip (0.7s). | None | None | clean
+sfx_meme.zipper-zip-08 | Foley & Real Wor | Zipper zip (1.3s). | None | None | clean
+sfx_meme.zipper-zip-09 | Foley & Real Wor | Zipper zip (1.2s). | None | None | clean
+sfx_meme.zipper-zip-10 | Foley & Real Wor | Zipper zip (0.8s). | None | None | clean
+sfx_meme.zombie-eating-zombie-eating-pvz | Foley & Real Wor | Zombie groaning and munching on brains (6. | None | None | clean
+sfx_meme.ball-bouncing | Foley & Real Wor | Ball bouncing on the floor (3.9s). | None | None | clean
+sfx_meme.cartoon-running | Foley & Real Wor | Running footsteps (6.5s). | None | None | clean
+sfx_meme.crumple-paper-01 | Foley & Real Wor | Dry paper being crumpled in the hand (1.8s | None | None | clean
+sfx_meme.crumple-paper-02 | Foley & Real Wor | Dry paper being crumpled in the hand (1.8s | None | None | clean
+sfx_meme.crumple-paper-03 | Foley & Real Wor | Dry paper being crumpled in the hand (2.5s | None | None | clean
+sfx_meme.duck-quak | Cartoon & Anime | Duck quacking (3.7s). | None | None | clean
+sfx_meme.flip-paper-01 | Foley & Real Wor | Paper page turn or rustle foley (6.7s). | None | None | clean
+sfx_meme.flip-paper-02 | Foley & Real Wor | Paper page turn or rustle foley (6.0s). | None | None | clean
+sfx_meme.helicopter-meme | Meme Sounds | 'Helicopter helicopter' meme chant over ro | Helicopter, helicopter | None | clean
+sfx_meme.machine-gun | Foley & Real Wor | Gunfire, shots or machine-gun burst (5.1s) | None | None | clean
+sfx_meme.one-piece-gulp | Foley & Real Wor | Liquid being drunk with glugs and gulps (1 | None | None | clean
+sfx_meme.snore-mimimimimimi | Cartoon & Anime | Cartoon snoring 'mimimi' (5.7s). | None | None | clean
+sfx_meme.tear-paper-01 | Foley & Real Wor | Paper being torn for a long stretch (21.0s | None | [0, 5.0] | clean
+sfx_meme.turn-big-paper-01 | Foley & Real Wor | Paper page turn or rustle foley (7.6s). | None | None | clean
+sfx_meme.turn-big-paper-02 | Foley & Real Wor | Paper page turn or rustle foley (2.3s). | None | None | clean
+sfx_meme.turn-big-paper-03 | Foley & Real Wor | Paper page turn or rustle foley (6.8s). | None | None | clean
+sfx_meme.turn-fast-paper-01 | Foley & Real Wor | Paper page turn or rustle foley (1.2s). | None | None | clean
+sfx_meme.turn-fast-paper-02 | Foley & Real Wor | Paper page turn or rustle foley (0.8s). | None | None | clean
+sfx_meme.turn-fast-paper-03 | Foley & Real Wor | Paper page turn or rustle foley (0.8s). | None | None | clean
+sfx_meme.turn-paper-album-01 | Foley & Real Wor | Paper page turn or rustle foley (46.6s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-album-02 | Foley & Real Wor | Paper page turn or rustle foley (34.1s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-album-fast-03 | Foley & Real Wor | Paper page turn or rustle foley (43.6s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-album-fast-04 | Foley & Real Wor | Paper page turn or rustle foley (15.7s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-album-fast-05 | Foley & Real Wor | Paper page turn or rustle foley (5.8s). | None | None | clean
+sfx_meme.turn-paper-big-01 | Foley & Real Wor | Paper page turn or rustle foley (57.0s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-big-02 | Foley & Real Wor | Paper page turn or rustle foley (86.9s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-big-book-01 | Foley & Real Wor | Paper page turn or rustle foley (94.0s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-journal-creak-01 | Foley & Real Wor | Paper page turn or rustle foley (44.5s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-journal-creak-02 | Foley & Real Wor | Paper page turn or rustle foley (17.6s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-journal-creak-03 | Foley & Real Wor | Paper page turn or rustle foley (18.5s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-journal-fast-01 | Foley & Real Wor | Paper page turn or rustle foley (17.0s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-medium-book-02 | Foley & Real Wor | Paper page turn or rustle foley (42.0s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-small-01 | Foley & Real Wor | Paper page turn or rustle foley (3.4s). | None | None | clean
+sfx_meme.turn-paper-small-02 | Foley & Real Wor | Paper page turn or rustle foley (64.6s). | None | [0, 5.0] | clean
+sfx_meme.turn-paper-small-03 | Foley & Real Wor | Paper page turn or rustle foley (6.5s). | None | None | clean
+sfx_meme.wolf-howling | Foley & Real Wor | Wolf howling in the night (12.8s). | None | [0, 5.0] | clean
+sfx_meme.999-social-credit-siren | Game Sounds | '999 social credit' siren meme with Chines | None | None | mild
+sfx_meme.alert-mgs-sound-sr | Game Sounds | Metal Gear Solid '!' enemy-spotted alert s | None | None | clean
+sfx_meme.among-us-emergency-meeting | Game Sounds | Among Us sound cue (3.1s). | None | None | clean
+sfx_meme.among-us-reporting-body | Game Sounds | Among Us sound cue (3.5s). | None | None | clean
+sfx_meme.among-us-role-reveal | Game Sounds | Among Us sound cue (4.5s). | None | None | clean
+sfx_meme.among-us | ndtracks (copyri | Among Us track, long dark beat (72.6s). | None | [0, 20.0] | clean
+sfx_meme.among-us-sus | Game Sounds | Among Us sound cue (5.5s). | None | None | clean
+sfx_meme.among-us-trap-remix-bass-booste | ndtracks (copyri | Among Us track, long dark beat (10.5s). | None | None | clean
+sfx_meme.among-us-all-vote-out-typing | Game Sounds | Among Us sound cue (2.1s). | None | None | clean
+sfx_meme.among-us-troll-face | Game Sounds | Among Us sound cue (5.5s). | None | None | clean
+sfx_meme.animal-crossing | ndtracks (copyri | Long relaxed Animal Crossing village music | None | [0, 20.0] | clean
+sfx_meme.basicbeam-fire | Game Sounds | Game-style energy beam firing (5.7s). | None | None | clean
+sfx_meme.boom-headshot-mp3-128k-1 | Meme Sounds | Announcer shouting 'Boom! Headshot!' with  | Boom, headshot! | [0.57, 5.35] | clean
+sfx_meme.cod-terriorist-shouting | Game Sounds | Short shouting voice clip from a Call of D | None | None | clean
+sfx_meme.cod-zombies-ka-boom | Game Sounds | Call of Duty Zombies 'Kaboom' nuke announc | Kaboom! | None | clean
+sfx_meme.counter-strike-jingle-cs-radio- | Game Sounds | Counter-Strike radio voice calling out an  | Enemy spotted | None | clean
+sfx_meme.call-of-duty-zombie-yell-meme | Game Sounds | Call of Duty zombie long growling yell (3. | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-1 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-2 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-3 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-4 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-5 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-6 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.call-of-duty-zombies-scream-7 | Reactions & Scre | Short Call of Duty zombie scream or roar ( | None | None | clean
+sfx_meme.dark-souls | Stingers & Jingl | Dark Souls 'You Died' death sting, dark sw | None | None | clean
+sfx_meme.enemy-spotted-sound-effect-coun | Game Sounds | Counter-Strike radio voice calling out an  | Enemy spotted | [0.65, 2.47] | clean
+sfx_meme.engineer-no01 | Game Sounds | Team Fortress 2 Engineer saying 'Nope' (0. | Nope. | None | clean
+sfx_meme.ff7-chocobo-wark | Game Sounds | Final Fantasy VII chocobo 'wark' cry (1.9s | None | None | clean
+sfx_meme.ff7-enter-fight | Game Sounds | Final Fantasy VII battle-start swirl (1.8s | None | None | clean
+sfx_meme.fnaf-2-hallway-noise-meme | Game Sounds | Five Nights at Freddy's dark ambience / ju | None | None | clean
+sfx_meme.fnaf | Game Sounds | Five Nights at Freddy's dark ambience / ju | None | [0, 5.0] | clean
+sfx_meme.fnaf-2 | Game Sounds | Five Nights at Freddy's dark ambience / ju | None | None | clean
+sfx_meme.fortnite-chug-jug-sound | Game Sounds | Fortnite chug jug drinking sound over musi | None | [0, 5.0] | clean
+sfx_meme.fatality-mk-sound-sr | Game Sounds | Mortal Kombat announcer saying 'Fatality'  | Fatality! | None | clean
+sfx_meme.asset~25 | Game Sounds | Mortal Kombat announcer saying 'Fatality'  | Fatality! | None | clean
+sfx_meme.free-fire-danzer-zone | Game Sounds | Free Fire danger-zone warning alert (9.9s) | None | [0, 5.0] | clean
+sfx_meme.gta-mission-passed | Stingers & Jingl | GTA San Andreas mission complete jingle (9 | None | [0, 5.0] | clean
+sfx_meme.gta-san-andreas-mission-complet | Stingers & Jingl | GTA San Andreas mission complete jingle (7 | None | None | clean
+sfx_meme.gta-san-andreas-abertura-oficia | ndtracks (copyri | GTA San Andreas opening theme music (10.0s | None | None | clean
+sfx_meme.gta-v-wasted-busted | Stingers & Jingl | GTA V 'Wasted' death screen sting (7.8s). | None | None | clean
+sfx_meme.practice-mode-geometry-dash | ndtracks (copyri | Geometry Dash practice mode music loop (16 | None | None | clean
+sfx_meme.go-go-go-sound-effect-counter-s | Game Sounds | Counter-Strike radio 'go go go' command (2 | Go go go | [0.49, 1.19] | clean
+sfx_meme.gta-5-wasted | Stingers & Jingl | GTA V 'Wasted' death screen sting (8.9s). | None | [0, 5.0] | clean
+sfx_meme.asset~12 | Game Sounds | Announcer voice stuttering 'ko-ko-ko combo | None | None | clean
+sfx_meme.mario-jump~2 | Game Sounds | Super Mario jump boing (1.2s). | None | None | clean
+sfx_meme.mgs-alert~2 | Game Sounds | Metal Gear Solid '!' enemy-spotted alert s | None | None | clean
+sfx_meme.mgs-alert | Game Sounds | Metal Gear Solid '!' enemy-spotted alert s | None | None | clean
+sfx_meme.mario-1-up | Stingers & Jingl | Super Mario 1-up extra life jingle (0.8s). | None | None | clean
+sfx_meme.mario-coin-sound | UI, Clicks & Not | Super Mario coin ding (1.7s). | None | None | clean
+sfx_meme.mario-death | Stingers & Jingl | Retro game death or game-over jingle (2.8s | None | None | clean
+sfx_meme.mario-die | Stingers & Jingl | Retro game death or game-over jingle (2.7s | None | None | clean
+sfx_meme.mario-fall-waa | Game Sounds | Mario falling with a long 'waaah' cry (3.0 | None | None | clean
+sfx_meme.asset~40 | Game Sounds | Super Mario jump boing (0.8s). | None | None | clean
+sfx_meme.mario-jump~3 | Game Sounds | Super Mario jump boing (2.3s). | None | None | clean
+sfx_meme.mario-jump-sound-sr | Game Sounds | Super Mario jump boing (1.0s). | None | None | clean
+sfx_meme.mario-jump | Game Sounds | Super Mario jump boing (2.2s). | None | None | clean
+sfx_meme.mario-kart-race-start-mario-kar | Game Sounds | Mario Kart race-start countdown beeps and  | None | None | clean
+sfx_meme.mario-kart-race-start | Game Sounds | Mario Kart race-start countdown beeps and  | None | None | clean
+sfx_meme.mario-kart-start-sound-sr | Game Sounds | Mario Kart race-start countdown beeps and  | None | None | clean
+sfx_meme.super-mario-64-mario-yahoo-soun | Game Sounds | Mario 'yahoo' voice from Super Mario 64 (2 | Yahoo! | [0.25, 1.11] | clean
+sfx_meme.mario-gameover | Stingers & Jingl | Retro game death or game-over jingle (3.8s | None | None | clean
+sfx_meme.mario-jump-small | Game Sounds | Super Mario jump boing (0.6s). | None | None | clean
+sfx_meme.mario-pipe | Game Sounds | Super Mario pipe warp sound, quiet (0.8s). | None | None | clean
+sfx_meme.mario-powerup | Game Sounds | Super Mario power-up ascending sound (1.0s | None | None | clean
+sfx_meme.mario-warning | Game Sounds | Mario low-time warning beeps (2.9s). | None | None | clean
+sfx_meme.mario-world-clear | Stingers & Jingl | Mario world clear victory fanfare (6.3s). | None | None | clean
+sfx_meme.metal-gear-solid-alert | Game Sounds | Metal Gear Solid '!' enemy-spotted alert s | None | None | clean
+sfx_meme.metalgearsolid-swf | Game Sounds | Metal Gear Solid '!' enemy-spotted alert s | None | None | clean
+sfx_meme.shotgun-metal-slug-sound-effect | Game Sounds | Metal Slug shotgun shot with announcer 'Sh | Shotgun! | [0.97, 3.55] | clean
+sfx_meme.microsoft-windows-95-startup | Game Sounds | Windows startup or shutdown chime (7.0s). | None | None | clean
+sfx_meme.microsoft-windows-xp-shutdown | Game Sounds | Windows startup or shutdown chime (4.0s). | None | None | clean
+sfx_meme.microsoft-windows-xp-startup | Game Sounds | Windows startup or shutdown chime (5.0s). | None | None | clean
+sfx_meme.mission-failed-mw2-sound-sr | Stingers & Jingl | Call of Duty MW2 'Mission failed' sting wi | Mission failed | None | clean
+sfx_meme.ps2-startup-screen | Game Sounds | PS2 startup boot sound, long quiet tail (1 | None | [0, 5.0] | clean
+sfx_meme.pac-man-death | Stingers & Jingl | Retro game death or game-over jingle (2.1s | None | None | clean
+sfx_meme.pew-pew-dknight556-1379997159 | Game Sounds | Laser 'pew' shot (0.4s). | Pew | None | clean
+sfx_meme.poppy-playtime-theme | ndtracks (copyri | Poppy Playtime theme music-box melody (57. | None | [0, 20.0] | clean
+sfx_meme.roblox-death-sound | Game Sounds | Classic Roblox 'oof' death sound (3.0s). | None | None | clean
+sfx_meme.roblox-death-sound~2 | Game Sounds | Classic Roblox 'oof' death sound (0.9s). | None | None | clean
+sfx_meme.roblox-oof-sound-effect-128k | Game Sounds | Classic Roblox 'oof' death sound (1.8s). | None | None | clean
+sfx_meme.screaming-into-the-mic-roblox-k | Game Sounds | Classic Roblox 'oof' death sound (9.9s). | None | [0, 5.0] | clean
+sfx_meme.perfect-street-fighter~2 | Game Sounds | Street Fighter announcer saying 'Perfect'  | Perfect! | None | clean
+sfx_meme.super-mario-jump | Game Sounds | Super Mario jump boing (7.7s). | None | None | clean
+sfx_meme.super-mario-world | ndtracks (copyri | Long Super Mario World music track (110.3s | None | [0, 20.0] | clean
+sfx_meme.toasty | Game Sounds | Mortal Kombat 'Toasty!' voice (1.2s). | Toasty! | None | clean
+sfx_meme.throwing-flashbang-cs-go | Game Sounds | CS:GO flashbang throw and bang (1.0s). | None | None | clean
+sfx_meme.defuse-valorant | Game Sounds | Valorant spike defuse beeps (1.0s). | None | None | clean
+sfx_meme.valorant-loading-screen | Game Sounds | Valorant menu or loading music (5.0s). | None | None | clean
+sfx_meme.yoshi-mlem~2 | Game Sounds | Yoshi tongue 'mlem' lick and gulp (2.1s). | None | None | clean
+sfx_meme.yoshi-mlem | Game Sounds | Yoshi tongue 'mlem' lick and gulp (2.0s). | None | None | clean
+sfx_meme.fortnite-death-effect | Game Sounds | Fortnite elimination/death effect (0.7s). | None | None | clean
+sfx_meme.mario-scream | Game Sounds | Mario falling with a long 'waaah' cry (2.9 | None | None | clean
+sfx_meme.pokemon-ball-sound | Game Sounds | Pokemon ball throw and capture sound (1.4s | None | None | clean
+sfx_meme.sonic-spring | Game Sounds | Sonic spring bounce boing (1.0s). | None | None | clean
+sfx_meme.super-mario-death-sound-sound-e | Stingers & Jingl | Retro game death or game-over jingle (9.8s | None | [0, 5.0] | clean
+sfx_meme.valorant-chamber-enemy-ult | Game Sounds | Valorant Chamber ultimate voice line (2.3s | You want to play? Let's play. | None | clean
+sfx_meme.valorant-footstep | Game Sounds | Valorant-style running footsteps (9.7s). | None | [0, 5.0] | clean
+sfx_meme.valorant-spike-plant | Game Sounds | Valorant spike plant beeps (1.7s). | None | None | clean
+sfx_meme.valorant-teleporter | Game Sounds | Valorant teleporter whoosh-zap (1.5s). | None | None | clean
+sfx_meme.valorant-theme-extended-mp3cut- | Game Sounds | Valorant menu or loading music (8.1s). | None | [0, 5.0] | clean
+sfx_meme.beeping-digital-glitch-01 | Glitch & Tech | Beeping digital glitch stutter (6.8s). | None | None | clean
+sfx_meme.beeping-digital-glitch-02 | Glitch & Tech | Beeping digital glitch stutter (3.0s). | None | None | clean

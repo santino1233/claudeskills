@@ -1,0 +1,992 @@
+"""Autopilot: "I just play the game and an entire edited video appears".  # [autopilot]
+
+    mcs autopilot run            foreground loop: watch the OBS folders, edit every new recording by itself
+    mcs autopilot once           process everything that is pending right now, then exit
+    mcs autopilot status         what it is doing + the recent runs
+    mcs autopilot enable|disable flip autopilot.enabled in settings.json
+
+Per recording, one at a time, fully automatic (a worker process at BELOW_NORMAL priority):
+    new project -> transcribe -> analyze -> scaffold -> autoplan -> render -> Shorts -> title/description/tags
+    -> copy video + Shorts + COPY-PASTE.txt into  <output_folder>\\<YYYY-MM-DD HH-MM> <title>\\
+
+Rules: the original recordings are only ever READ (never moved, renamed, deleted or modified); nothing is uploaded and
+no network is used; if Minecraft is running or OBS is still recording nothing starts (autopilot.wait_for_game);
+a file is only picked up once its size has been stable for 30 s, ffprobe can read it and it is older than 30 s;
+one failing file is recorded as failed and the loop moves on.
+
+State: studio/autopilot_state.json (path, size, mtime -> status queued/processing/done/skipped/failed + slug + error).
+"""
+from __future__ import annotations
+
+import argparse
+import atexit
+import ctypes
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import threading
+import time
+from datetime import datetime
+from pathlib import Path
+
+from .paths import PROJECTS, ROOT, STUDIO
+
+STATE_FILE = STUDIO / "autopilot_state.json"
+LOG_DIR = STUDIO / "autopilot_logs"
+NAME_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})[ _](\d{2})-(\d{2})-(\d{2})")   # OBS: 2026-10-10 00-01-44
+MEDIA_EXT = {".mp4", ".mkv"}
+BELOW_NORMAL = 0x00004000
+NO_WINDOW = 0x08000000
+STALE_LOCK_S = 90
+_state_lock = threading.RLock()
+
+
+# ------------------------------------------------------------------ files next to the state file
+def paths_for(state_path: Path | None = None) -> dict:
+    sp = Path(state_path or STATE_FILE)
+    if sp == STATE_FILE:
+        return {"state": sp, "lock": STUDIO / "autopilot.lock", "status": STUDIO / "autopilot_status.json",
+                "kick": STUDIO / "autopilot.kick"}
+    return {"state": sp, "lock": sp.with_suffix(".lock"), "status": sp.with_suffix(".status.json"),
+            "kick": sp.with_suffix(".kick")}
+
+
+def _read_json(p: Path, default=None):
+    try:
+        return json.loads(Path(p).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return default
+
+
+def _write_json(p: Path, data) -> None:
+    p = Path(p)
+    tmp = p.with_name(p.name + f".{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    for _ in range(5):                                     # OneDrive / antivirus can briefly hold the target
+        try:
+            os.replace(tmp, p)
+            return
+        except PermissionError:
+            time.sleep(0.2)
+    p.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+# ------------------------------------------------------------------ config
+def load_config(overrides: dict | None = None) -> dict:
+    """autopilot.* settings (+ optional overrides for tests / CLI flags). stable_s / poll_s are not user settings."""
+    from . import settings as SET
+    c = dict(SET.global_settings()["autopilot"])
+    c.update({k: v for k, v in (overrides or {}).items() if v is not None})
+    c.setdefault("stable_s", 30.0)
+    c.setdefault("poll_s", 10.0)
+    return c
+
+
+# ------------------------------------------------------------------ state
+def load_state(path: Path | None = None) -> dict:
+    st = _read_json(path or STATE_FILE, None)
+    if not isinstance(st, dict) or not isinstance(st.get("files"), dict):
+        st = {"version": 1, "files": {}}
+    return st
+
+
+def save_state(st: dict, path: Path | None = None) -> None:
+    _write_json(path or STATE_FILE, st)
+
+
+def _key(p: Path) -> str:
+    return os.path.normcase(str(Path(p).resolve()))
+
+
+# ------------------------------------------------------------------ system probes (module level: tests monkeypatch)
+def _hidden(cmd: list[str], timeout: float = 25) -> str:
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, creationflags=NO_WINDOW,
+                           encoding="utf-8", errors="replace")
+        return r.stdout or ""
+    except (OSError, subprocess.TimeoutExpired):
+        return ""
+
+
+_cache: dict[str, tuple[float, object]] = {}
+
+
+def _cached(name: str, ttl: float, fn):
+    t, v = _cache.get(name, (0.0, None))
+    if time.time() - t > ttl:
+        v = fn()
+        _cache[name] = (time.time(), v)
+    return v
+
+
+def _minecraft_probe() -> bool:
+    script = ("$p=@(Get-CimInstance Win32_Process -Filter \"Name='javaw.exe' OR Name='java.exe' OR "
+              "Name='Minecraft.Windows.exe'\" | ForEach-Object { [pscustomobject]@{n=$_.Name;c=[string]$_.CommandLine} });"
+              "$w=@(Get-Process -Name javaw,java,Minecraft.Windows -ErrorAction SilentlyContinue | "
+              "ForEach-Object { [string]$_.MainWindowTitle });"
+              "[pscustomobject]@{p=$p;w=$w} | ConvertTo-Json -Compress -Depth 4")
+    out = _hidden(["powershell", "-NoProfile", "-NonInteractive", "-Command", script])
+    try:
+        d = json.loads(out)
+    except ValueError:
+        return False
+    procs = d.get("p") or []
+    procs = [procs] if isinstance(procs, dict) else procs
+    for p in procs:
+        n, c = (p.get("n") or "").lower(), (p.get("c") or "").lower()
+        if n == "minecraft.windows.exe":
+            return True
+        if n in ("javaw.exe", "java.exe") and ("minecraft" in c or ".minecraft" in c):
+            return True
+    titles = d.get("w") or []
+    titles = [titles] if isinstance(titles, str) else titles
+    return any(t.lower().startswith("minecraft") and "launcher" not in t.lower() for t in titles)
+
+
+def minecraft_running() -> bool:
+    """A Minecraft game is open: javaw.exe whose command line mentions minecraft, Bedrock, or a window 'Minecraft...'."""
+    return bool(_cached("minecraft", 8.0, _minecraft_probe))
+
+
+def obs_running() -> bool:
+    out = _cached("obs", 5.0, lambda: _hidden(["tasklist", "/fi", "IMAGENAME eq obs64.exe", "/fo", "csv", "/nh"], 15))
+    return "obs64.exe" in str(out).lower()
+
+
+# ------------------------------------------------------------------ recordings
+def list_recordings(cfg: dict) -> list[Path]:
+    """mp4/mkv files named like an OBS recording, directly inside the watch folders (not recursive). Ignores the
+    output folder, thumbnails, '_x' files, and an .mkv whose .mp4 twin (same timestamp) is also there."""
+    out_root = Path(cfg["output_folder"]).resolve() if cfg.get("output_folder") else None
+    found: dict[str, Path] = {}
+    for folder in cfg.get("watch_folders") or []:
+        d = Path(folder).resolve()
+        if not d.is_dir():
+            continue
+        try:
+            entries = sorted(d.iterdir())
+        except OSError:
+            continue
+        for f in entries:
+            try:
+                if not f.is_file() or f.suffix.lower() not in MEDIA_EXT or f.name.startswith("_"):
+                    continue
+                if not NAME_RE.match(f.stem) or "thumb" in f.name.lower():
+                    continue
+                if out_root and out_root in f.resolve().parents:
+                    continue
+            except OSError:
+                continue
+            prev = found.get(f.stem)
+            if prev is None or (prev.suffix.lower() == ".mkv" and f.suffix.lower() == ".mp4"):
+                found[f.stem] = f
+    return sorted(found.values(), key=lambda p: p.stem)
+
+
+def session_dt(path: Path) -> datetime:
+    m = NAME_RE.match(Path(path).stem)
+    if m:
+        try:
+            return datetime(*[int(x) for x in m.groups()])
+        except ValueError:
+            pass
+    return datetime.fromtimestamp(Path(path).stat().st_mtime)
+
+
+def probe_media(path: Path) -> dict | None:
+    """ffprobe -> {"duration": s, "audio": [stream dicts], "video": n}, or None when the file is unreadable."""
+    out = _hidden(["ffprobe", "-v", "error", "-print_format", "json", "-show_streams", "-show_format", str(path)], 40)
+    try:
+        d = json.loads(out)
+        dur = float(d["format"]["duration"])
+    except (ValueError, KeyError, TypeError):
+        return None
+    streams = d.get("streams", [])
+    video = [s for s in streams if s.get("codec_type") == "video"]
+    if not video or dur <= 0:
+        return None
+    return {"duration": dur, "audio": [s for s in streams if s.get("codec_type") == "audio"], "video": len(video)}
+
+
+def choose_tracks(audio: list[dict]) -> dict | None:
+    """OBS multi-track layout: >=3 audio streams -> #2 desktop/game, #3 mic, #1 full mix (ignored). Exactly 2 -> #1 is
+    the mix. 1 -> a single mixed track (voice + game together). None when there is no audio at all."""
+    n = len(audio)
+    if n >= 3:
+        return {"layout": "3-track", "game_stream": 1, "mic_stream": 2,
+                "note": "OBS tracks: 1 = full mix (ignored), 2 = desktop/game audio, 3 = mic"}
+    if n == 2:
+        return {"layout": "2-track", "game_stream": 0, "mic_stream": None,
+                "note": "2 audio tracks: treating track 1 as the full mix (voice + game on one track)"}
+    if n == 1:
+        return {"layout": "1-track", "game_stream": 0, "mic_stream": None,
+                "note": "single mixed audio track (voice + game together)"}
+    return None
+
+
+class ReadyTracker:
+    """A file is READY when its size+mtime have not changed for stable_s AND its mtime is older than stable_s."""
+
+    def __init__(self, stable_s: float = 30.0):
+        self.stable_s = stable_s
+        self.seen: dict[str, dict] = {}
+
+    def observe(self, key: str, size: int, mtime: float, now: float) -> None:
+        cur = self.seen.get(key)
+        if not cur or cur["size"] != size or cur["mtime"] != mtime:
+            self.seen[key] = {"size": size, "mtime": mtime, "since": now}
+
+    def prime(self, key: str) -> None:
+        if key in self.seen:
+            self.seen[key]["since"] = float("-inf")
+
+    def ready(self, key: str, mtime: float, now: float) -> bool:
+        cur = self.seen.get(key)
+        return bool(cur) and now - cur["since"] >= self.stable_s and now - mtime >= self.stable_s
+
+    def growing(self, key: str, now: float) -> bool:
+        cur = self.seen.get(key)
+        return bool(cur) and now - cur["since"] < self.stable_s
+
+
+# ------------------------------------------------------------------ single-instance lock
+def pid_alive(pid: int) -> bool:
+    try:
+        k = ctypes.windll.kernel32
+        h = k.OpenProcess(0x1000, False, int(pid))            # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        code = ctypes.c_ulong()
+        ok = k.GetExitCodeProcess(h, ctypes.byref(code))
+        k.CloseHandle(h)
+        return bool(ok) and code.value == 259                 # STILL_ACTIVE
+    except (AttributeError, OSError):
+        return False
+
+
+def lock_holder(lock: Path) -> int | None:
+    d = _read_json(lock, None)
+    try:
+        if d and pid_alive(d["pid"]) and time.time() - Path(lock).stat().st_mtime < STALE_LOCK_S:
+            return int(d["pid"])
+    except (KeyError, OSError, TypeError, ValueError):
+        pass
+    return None
+
+
+def acquire_lock(lock: Path) -> bool:
+    holder = lock_holder(lock)
+    if holder is not None:
+        return holder == os.getpid()
+    try:
+        Path(lock).unlink()
+    except OSError:
+        pass
+    try:
+        fd = os.open(str(lock), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except OSError:
+        return False
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump({"pid": os.getpid(), "started": time.time()}, f)
+    return True
+
+
+def release_lock(lock: Path) -> None:
+    d = _read_json(lock, None)
+    if d and d.get("pid") == os.getpid():
+        try:
+            Path(lock).unlink()
+        except OSError:
+            pass
+
+
+def touch_lock(lock: Path) -> None:
+    try:
+        os.utime(lock, None)
+    except OSError:
+        pass
+
+
+# ------------------------------------------------------------------ the engine
+class Autopilot:
+    def __init__(self, overrides: dict | None = None, state_path: Path | None = None, log=None):
+        self.overrides = overrides or {}
+        self.p = paths_for(state_path)
+        self.stop_ev = threading.Event()
+        self.tracker: ReadyTracker | None = None
+        self.proc: subprocess.Popen | None = None
+        self.log = log or (lambda m: print(f"[autopilot] {m}", flush=True))
+        self.status_data: dict = {}
+
+    # ---- helpers
+    def cfg(self) -> dict:
+        c = load_config(self.overrides)
+        if self.tracker is None or self.tracker.stable_s != c["stable_s"]:
+            self.tracker = ReadyTracker(c["stable_s"])
+        return c
+
+    def set_status(self, state: str, message: str, **extra) -> None:
+        self.status_data = {"state": state, "message": message, "pid": os.getpid(), "updated": time.time(), **extra}
+        _write_json(self.p["status"], self.status_data)
+
+    def _load(self) -> dict:
+        return load_state(self.p["state"])
+
+    def _save(self, st: dict) -> None:
+        save_state(st, self.p["state"])
+
+    # ---- scanning
+    def rescan(self, cfg: dict, st: dict, now: float | None = None) -> int:
+        """Sync the state file with the watch folders. Returns the number of queued entries."""
+        now = now or time.time()
+        if self.tracker is None:
+            self.cfg()
+        tr = self.tracker
+        files = st["files"]
+        max_age = float(cfg.get("max_age_h") or 0) * 3600
+        stems_taken = {e.get("stem") for e in files.values() if e.get("status") in ("queued", "processing", "done")}
+        for f in list_recordings(cfg):
+            try:
+                s = f.stat()
+            except OSError:
+                continue
+            k = _key(f)
+            e = files.get(k)
+            if e is None:
+                if max_age and now - s.st_mtime > max_age:
+                    continue                                    # old catalogue file: never even recorded
+                if f.stem in stems_taken:
+                    continue                                    # .mp4/.mkv twin or same recording in two folders
+                e = files[k] = {"key": k, "path": str(f), "name": f.name, "stem": f.stem, "status": "queued",
+                                "size": s.st_size, "mtime": s.st_mtime, "slug": None, "error": "",
+                                "first_seen": now}
+                stems_taken.add(f.stem)
+            elif (e["size"], e["mtime"]) != (s.st_size, s.st_mtime):
+                e["size"], e["mtime"] = s.st_size, s.st_mtime
+                if e["status"] in ("skipped", "failed"):        # the file changed: give it another chance
+                    e.update(status="queued", error="", slug=e.get("slug"))
+            tr.observe(k, s.st_size, s.st_mtime, now)
+        for k in [k for k in files if files[k].get("status") == "queued" and not Path(files[k]["path"]).exists()]:
+            files.pop(k)                                         # vanished before we got to it
+        return sum(1 for e in files.values() if e["status"] == "queued")
+
+    def next_ready(self, cfg: dict, st: dict, now: float | None = None) -> dict | None:
+        """First queued file that is stable + readable + long enough. Marks unreadable files failed and short /
+        silent ones skipped (without raising)."""
+        now = now or time.time()
+        for e in sorted((e for e in st["files"].values() if e["status"] == "queued"), key=lambda e: e["stem"]):
+            if not self.tracker.ready(e["key"], e["mtime"], now):
+                continue
+            info = probe_media(Path(e["path"]))
+            if info is None:
+                e.update(status="failed", error="not a readable video (ffprobe could not open it - corrupt or incomplete)",
+                         finished=time.time())
+                self.log(f"{e['name']}: unreadable, marked failed")
+                continue
+            e["duration_s"] = round(info["duration"], 1)
+            tracks = choose_tracks(info["audio"])
+            if info["duration"] < float(cfg["min_length_s"]):
+                e.update(status="skipped", error=f"shorter than {int(cfg['min_length_s'])} s "
+                         f"({info['duration']:.0f} s)", finished=time.time())
+                self.log(f"{e['name']}: too short ({info['duration']:.0f} s), skipped")
+                continue
+            if tracks is None:
+                e.update(status="skipped", error="no audio track in the recording", finished=time.time())
+                continue
+            e["tracks"] = tracks
+            return e
+        return None
+
+    def blocked_reason(self, cfg: dict) -> str | None:
+        if not cfg.get("wait_for_game"):
+            return None
+        if minecraft_running():
+            return "Waiting for Minecraft to close…"
+        if obs_running():
+            now = time.time()
+            for f in list_recordings(cfg):
+                try:
+                    if now - f.stat().st_mtime < cfg["stable_s"]:
+                        return "Waiting for OBS to stop recording…"
+                except OSError:
+                    pass
+        return None
+
+    # ---- one tick
+    def tick(self, force: bool = False, ignore_game: bool = False) -> str:
+        """-> off | locked | idle | blocked | processed"""
+        cfg = self.cfg()
+        if ignore_game:
+            cfg = {**cfg, "wait_for_game": False}
+        if not (cfg["enabled"] or force):
+            self.set_status("off", "Autopilot is off.")
+            return "off"
+        if not acquire_lock(self.p["lock"]):
+            self.set_status("locked", f"Another autopilot is already running (pid {lock_holder(self.p['lock'])}).")
+            return "locked"
+        touch_lock(self.p["lock"])
+        with _state_lock:
+            st = self._load()
+            for e in st["files"].values():                     # a crash left it 'processing': try again
+                if e["status"] == "processing" and not self.proc:
+                    e["status"] = "queued"
+                    e["error"] = "interrupted, retrying"
+            queued = self.rescan(cfg, st)
+            cand = self.next_ready(cfg, st)
+            self._save(st)
+        reason = self.blocked_reason(cfg) if (cand or queued) else None
+        if reason:
+            self.set_status("waiting", reason, queued=queued)
+            return "blocked"
+        if not cand:
+            growing = [e for e in st["files"].values() if e["status"] == "queued"]
+            self.set_status("idle", "Finishing the recording…" if growing else "Waiting for a recording…",
+                            queued=len(growing))
+            return "idle"
+        self.process(cfg, cand)
+        return "processed"
+
+    # ---- processing one recording
+    def unique_slug(self, e: dict, st: dict) -> str:
+        if e.get("slug") and (PROJECTS / e["slug"] / "project.json").exists():
+            return e["slug"]                                    # resume the half-finished project
+        dt = session_dt(Path(e["path"]))
+        base = f"session-{dt:%Y-%m-%d-%H%M}"
+        slug, n = base, 1
+        taken = {x.get("slug") for x in st["files"].values() if x is not e}
+        while slug in taken or (PROJECTS / slug).exists():
+            n += 1
+            slug = f"{base}-{n}"
+        return slug
+
+    def process(self, cfg: dict, e: dict) -> None:
+        name = e["name"]
+        with _state_lock:
+            st = self._load()
+            cur = st["files"].get(e["key"], e)
+            retry = bool(cur.get("retry"))
+            cur.update(status="processing", started=time.time(), error="", stage="starting", pct=None,
+                       tracks=e.get("tracks"), duration_s=e.get("duration_s"), retry=False)
+            cur["slug"] = self.unique_slug(cur, st)
+            slug = cur["slug"]
+            self._save(st)
+        self.log(f"editing {name} -> {slug}")
+        self.set_status("processing", f"Editing: {name} – starting", file=name, slug=slug, stage="starting", pct=None)
+        cmd = [sys.executable, "-m", "mcstudio.autopilot", "work", "--file", e["path"], "--slug", slug,
+               "--out", str(cfg["output_folder"]), "--shorts" if cfg["make_shorts"] else "--no-shorts",
+               "--final" if cfg["render_final"] else "--preview"] + (["--replan"] if retry else [])
+        env = dict(os.environ, PYTHONUNBUFFERED="1", PYTHONIOENCODING="utf-8", HF_HUB_OFFLINE="1")
+        LOG_DIR.mkdir(exist_ok=True)
+        logf = LOG_DIR / f"{slug}.log"
+        tail: list[str] = []
+        result, err = None, None
+        stage, pct = "starting", None
+        try:
+            self.proc = subprocess.Popen(cmd, cwd=STUDIO, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                                         encoding="utf-8", errors="replace", env=env,
+                                         creationflags=BELOW_NORMAL | NO_WINDOW)      # polite to the PC
+            threading.Thread(target=self._watch_worker, args=(self.proc,), daemon=True).start()
+            with logf.open("a", encoding="utf-8") as lf:
+                lf.write(f"--- {datetime.now().isoformat(timespec='seconds')} {name}\n")
+                for line in self.proc.stdout:
+                    line = line.rstrip()
+                    lf.write(line + "\n")
+                    if line.startswith("@@STAGE "):
+                        stage, pct = line[8:].strip(), None
+                    elif line.startswith("@@PCT "):
+                        try:
+                            pct = int(float(line[6:]))
+                        except ValueError:
+                            pass
+                    elif line.startswith("@@RESULT "):
+                        try:
+                            result = json.loads(line[9:])
+                        except ValueError:
+                            pass
+                        continue
+                    elif line.startswith("@@ERROR "):
+                        err = line[8:].strip()
+                        continue
+                    else:
+                        if line.strip():
+                            tail.append(line)
+                            tail = tail[-30:]
+                        continue
+                    msg = f"Editing: {name} – {stage}" + (f" ({pct}%)" if pct is not None else "")
+                    self.set_status("processing", msg, file=name, slug=slug, stage=stage, pct=pct)
+                    with _state_lock:
+                        s2 = self._load()
+                        if e["key"] in s2["files"]:
+                            s2["files"][e["key"]].update(stage=stage, pct=pct)
+                            self._save(s2)
+            rc = self.proc.wait()
+        except Exception as ex:  # noqa: BLE001 - one bad file must never kill the loop
+            rc, err = -1, f"{type(ex).__name__}: {ex}"
+        finally:
+            self.proc = None
+        interrupted = self.stop_ev.is_set()
+        with _state_lock:
+            st = self._load()
+            cur = st["files"].get(e["key"], e)
+            st["files"][e["key"]] = cur
+            cur.pop("stage", None)
+            cur.pop("pct", None)
+            if interrupted:
+                cur.update(status="queued", error="interrupted (autopilot stopped), will resume")
+            elif rc == 0 and result:
+                cur.update(status="done", error="", finished=time.time(), title=result.get("title"),
+                           out_dir=result.get("out_dir"), warnings=result.get("warnings") or [])
+                self.log(f"done: {name} -> {result.get('out_dir')}")
+            else:
+                msg = err or (tail[-1] if tail else f"worker exited with code {rc}")
+                cur.update(status="failed", error=msg[:600], finished=time.time())
+                self.log(f"FAILED: {name}: {msg}")
+            self._save(st)
+
+    def _watch_worker(self, proc: subprocess.Popen) -> None:
+        while proc.poll() is None:
+            if self.stop_ev.is_set():
+                kill_tree(proc.pid)
+                return
+            touch_lock(self.p["lock"])
+            time.sleep(2)
+
+    # ---- loops
+    def settle(self, cfg: dict, wait: float = 2.0) -> None:
+        """For `once`: two samples apart; files whose size did not change are treated as stable (mtime still has
+        to be older than stable_s)."""
+        with _state_lock:
+            st = self._load()
+            self.rescan(cfg, st)
+            self._save(st)
+        time.sleep(wait)
+        with _state_lock:
+            st = self._load()
+            now = time.time()
+            before = {k: (v["size"], v["mtime"]) for k, v in st["files"].items()}
+            self.rescan(cfg, st, now)
+            for k, v in st["files"].items():
+                if before.get(k) == (v["size"], v["mtime"]):
+                    self.tracker.prime(k)
+            self._save(st)
+
+    def once(self, ignore_game: bool = False, force_enabled: bool = True) -> list[str]:
+        """Process everything that is ready now; returns the tick results."""
+        cfg = self.cfg()
+        self.settle({**cfg, "wait_for_game": False})
+        out = []
+        while not self.stop_ev.is_set():
+            r = self.tick(force=force_enabled, ignore_game=ignore_game)
+            out.append(r)
+            if r != "processed":
+                break
+        release_lock(self.p["lock"])
+        return out
+
+    def run_forever(self, stop: threading.Event | None = None) -> None:
+        if stop is not None:
+            self.stop_ev = stop
+        self.log("started")
+        try:
+            while not self.stop_ev.is_set():
+                kicked = False
+                if self.p["kick"].exists():
+                    try:
+                        self.p["kick"].unlink()
+                    except OSError:
+                        pass
+                    kicked = True
+                try:
+                    r = self.tick(force=kicked, ignore_game=kicked)
+                except Exception as ex:  # noqa: BLE001 - never crash the loop
+                    self.log(f"tick error: {type(ex).__name__}: {ex}")
+                    r = "error"
+                if r == "off":
+                    release_lock(self.p["lock"])
+                nap = 1.0 if r == "processed" else float(self.cfg()["poll_s"])
+                t_end = time.time() + nap
+                while time.time() < t_end and not self.stop_ev.is_set() and not self.p["kick"].exists():
+                    self.stop_ev.wait(1.0)
+        finally:
+            if self.proc:
+                kill_tree(self.proc.pid)
+            release_lock(self.p["lock"])
+            self.set_status("stopped", "Autopilot stopped.")
+
+    def request_stop(self) -> None:
+        self.stop_ev.set()
+        if self.proc:
+            kill_tree(self.proc.pid)
+
+
+def kill_tree(pid: int) -> None:
+    _hidden(["taskkill", "/F", "/T", "/PID", str(pid)], 15)
+
+
+# ------------------------------------------------------------------ background thread for the UI server
+_bg: Autopilot | None = None
+_bg_thread: threading.Thread | None = None
+
+
+def start_background() -> None:
+    """Called by the studio server: a daemon thread that idles while autopilot.enabled is off and works when it is on.
+    A CLI instance holding the lock makes this one stand down (the lock has a PID + heartbeat)."""
+    global _bg, _bg_thread
+    if _bg_thread and _bg_thread.is_alive():
+        return
+    _bg = Autopilot()
+    _bg_thread = threading.Thread(target=_bg.run_forever, name="autopilot", daemon=True)
+    _bg_thread.start()
+    atexit.register(stop_background)
+
+
+def stop_background() -> None:
+    if _bg:
+        _bg.request_stop()
+    if _bg_thread:
+        _bg_thread.join(timeout=8)
+
+
+# ------------------------------------------------------------------ API used by the server / CLI
+def api_state(state_path: Path | None = None, limit: int = 40) -> dict:
+    p = paths_for(state_path)
+    cfg = load_config()
+    st = load_state(p["state"])
+    status = _read_json(p["status"], {}) or {}
+    holder = lock_holder(p["lock"])
+    alive = holder is not None
+    if not alive and status.get("state") not in (None, "stopped"):
+        status = {**status, "state": "stopped", "message": "Autopilot is not running."}
+    runs = sorted(st["files"].values(), key=lambda e: e.get("finished") or e.get("started") or e.get("first_seen") or 0,
+                  reverse=True)[:limit]
+    counts: dict = {}
+    for e in st["files"].values():
+        counts[e["status"]] = counts.get(e["status"], 0) + 1
+    if not cfg["enabled"] and not (alive and status.get("state") == "processing"):
+        status = {"state": "off", "message": "Autopilot is off. Turn it on and play: your video will appear by itself."}
+    elif cfg["enabled"] and not alive:
+        status = {"state": "stopped", "message": "Autopilot is on, but nothing is running it yet (it starts with the "
+                  "studio UI, or run: uv run mcs autopilot run)."}
+    return {"config": {k: cfg[k] for k in ("enabled", "watch_folders", "output_folder", "min_length_s", "max_age_h",
+                                           "wait_for_game", "make_shorts", "render_final")},
+            "status": status, "alive": alive, "pid": holder, "counts": counts, "runs": runs}
+
+
+def kick(state_path: Path | None = None) -> None:
+    _write_json(paths_for(state_path)["kick"], {"at": time.time()})
+
+
+def retry(key: str, state_path: Path | None = None) -> bool:
+    p = paths_for(state_path)
+    with _state_lock:
+        st = load_state(p["state"])
+        e = st["files"].get(key)
+        if not e or e["status"] in ("processing", "queued"):
+            return False
+        e.update(status="queued", error="", retry=True)
+        save_state(st, p["state"])
+    return True
+
+
+def rescan_now(state_path: Path | None = None) -> dict:
+    """List the watch folders into the state file (no processing)."""
+    ap = Autopilot(state_path=state_path)
+    cfg = ap.cfg()
+    with _state_lock:
+        st = ap._load()
+        ap.rescan(cfg, st)
+        ap._save(st)
+    return api_state(state_path)
+
+
+# ------------------------------------------------------------------ title (no --title needed)
+TITLE_BASES = [          # (publish theme, title) in priority order for "what was this session about"
+    ("dragon", "I Fought the Ender Dragon"), ("nether", "I Went to the Nether in Minecraft"),
+    ("dig", "I Dug Straight Down in Minecraft"), ("craft", "I Can't Even Craft in Minecraft"),
+    ("build", "I Built a House in Minecraft"), ("diamonds", "I Found Diamonds in Minecraft"),
+    ("creeper", "A Creeper Ruined My Minecraft Run"), ("mobs", "Mobs Ambushed Me in Minecraft"),
+    ("lava", "Minecraft Lava Panic"), ("drown", "Minecraft Drowning Panic"), ("death", "I Died in Minecraft"),
+    ("panic", "Minecraft Panic Moments"),
+]
+FALLBACK_TITLE = "Minecraft Funny Moments"
+
+
+def derive_title(slug: str) -> str:
+    """Heuristic title from the transcript (publish.py's keyword themes). Avoids words that switch the planner's mood
+    (story / narrate / pov)."""
+    from . import publish as PB
+    tr = _read_json(PROJECTS / slug / "work" / "transcript.json", {}) or {}
+    text = " ".join(s.get("text", "") for s in tr.get("segments", []))
+    hits = {t: PB._hits(text, t) for t, _ in TITLE_BASES}
+    best = max(hits.values()) if hits else 0
+    if best <= 0:
+        return FALLBACK_TITLE
+    for theme, title in TITLE_BASES:
+        if hits[theme] == best:
+            return title
+    return FALLBACK_TITLE
+
+
+# ------------------------------------------------------------------ deliverables
+def clean_name(s: str, n: int = 80) -> str:
+    s = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "", s).replace("…", "...").strip(" .")
+    s = re.sub(r"\s+", " ", s)
+    return (s[:n].rstrip(" .") or "Minecraft video")
+
+
+def copy_paste_text(d: dict, shorts: list[dict], video_name: str) -> str:
+    bar = "=" * 72
+
+    def block(title: str, body: str) -> str:
+        return f"{bar}\n{title}\n{bar}\n{body.strip()}\n"
+
+    tags = d.get("tags") or []
+    parts = [f"COPY-PASTE.txt for {video_name}\nEverything below is ready to paste into YouTube Studio / your "
+             f"image generator. Generated automatically ({d.get('generator') or 'heuristic'}).\n"]
+    parts.append(block("TITLE OPTIONS (pick one, 60 characters max)",
+                       "\n".join(f"{i}. {t}" for i, t in enumerate(d.get("title_options") or [d.get("title", "")], 1))))
+    parts.append(block("DESCRIPTION", d.get("description") or ""))
+    parts.append(block(f"TAGS (paste as one line; {sum(len(t) for t in tags) + max(0, len(tags) - 1)} characters)",
+                       ", ".join(tags)))
+    parts.append(block("HASHTAGS", " ".join(d.get("hashtags") or [])))
+    parts.append(block("THUMBNAIL TEXT OPTIONS", "\n".join(d.get("thumbnail_text_options") or [])))
+    parts.append(block("THUMBNAIL PROMPT (with text)", d.get("thumbnail_prompt") or ""))
+    parts.append(block("THUMBNAIL PROMPT (without text, add the words yourself)", d.get("thumbnail_prompt_no_text") or ""))
+    parts.append(block("SHORTS COVER PROMPT (vertical 9:16)", d.get("shorts_cover_prompt") or ""))
+    if d.get("warnings"):
+        parts.append(block("HEADS UP", "\n".join(f"- {w}" for w in d["warnings"])))
+    for i, s in enumerate(shorts, 1):
+        parts.append(block(f"SHORT {i}: {s.get('file', '')}",
+                           f"TITLE:\n{s.get('title', '')}\n\nDESCRIPTION:\n{s.get('description', '')}\n\n"
+                           f"TAGS:\n{', '.join(s.get('tags') or [])}\n\nCOVER PROMPT:\n{s.get('cover_prompt', '')}"))
+    return "\n".join(parts)
+
+
+def deliver(slug: str, out_root: Path, dt: datetime, final: bool) -> dict:
+    """Copy the finished video + Shorts and write COPY-PASTE.txt into <out_root>\\<YYYY-MM-DD HH-MM> <title>\\."""
+    from . import publish as PB
+    d = PB.load(slug)
+    title = (d.get("title_options") or [d.get("title") or slug])[0]
+    folder_name = f"{dt:%Y-%m-%d %H-%M} {clean_name(title, 70)}"
+    out_root.mkdir(parents=True, exist_ok=True)
+    folder, n = out_root / folder_name, 1
+    while folder.exists() and (_read_json(folder / ".autopilot.json", {}) or {}).get("slug") != slug:
+        n += 1
+        folder = out_root / f"{folder_name} ({n})"
+    folder.mkdir(parents=True, exist_ok=True)
+    _write_json(folder / ".autopilot.json", {"slug": slug})
+    src = PROJECTS / slug / "out" / (f"{slug}.mp4" if final else f"{slug}_preview.mp4")
+    if not src.exists():
+        raise RuntimeError(f"rendered video not found: {src}")
+    vname = clean_name(title) + ("" if final else " (preview 540p)") + ".mp4"
+    shutil.copy2(src, folder / vname)
+    shorts = []
+    for i, s in enumerate(d.get("shorts") or [], 1):
+        ssrc = PROJECTS / s["slug"] / "out" / (f"{s['slug']}.mp4" if final else f"{s['slug']}_preview.mp4")
+        if not ssrc.exists():
+            continue
+        fname = f"Short {i} - {clean_name(re.sub(chr(35) + 'shorts', '', s.get('title', ''), flags=re.I), 50)}.mp4"
+        shutil.copy2(ssrc, folder / fname)
+        shorts.append({**s, "file": fname})
+    (folder / "COPY-PASTE.txt").write_text(copy_paste_text(d, shorts, vname), encoding="utf-8-sig")
+    return {"out_dir": str(folder), "title": title, "video": vname, "shorts": [s["file"] for s in shorts]}
+
+
+# ------------------------------------------------------------------ the worker (runs in its own low-priority process)
+def _emit(tag: str, payload="") -> None:
+    print(f"@@{tag} {payload}".rstrip(), flush=True)
+
+
+def work(file: str, slug: str, out_root: str, shorts: bool, final: bool, replan: bool = False) -> dict:
+    """The whole assembly line for one recording. Raises on failure (the parent records it)."""
+    from . import publish as PB
+    from .analyze import analyze
+    from .autoplan import autoplan
+    from .ingest import new_project
+    from .render import render
+    from .scaffold import scaffold
+    from .settings import load as load_settings
+    from .shorts import make_shorts
+    from .transcribe import transcribe
+
+    path = Path(file)
+    proj = PROJECTS / slug
+    warnings: list[str] = []
+    t0 = time.time()
+    info = probe_media(path)
+    if not info:
+        raise RuntimeError("not a readable video")
+    tracks = choose_tracks(info["audio"])
+    if not tracks:
+        raise RuntimeError("no audio track")
+
+    _emit("STAGE", "creating project")
+    if not (proj / "project.json").exists():
+        new_project(slug, str(path), None, tracks["mic_stream"], tracks["game_stream"], 0.0, None, False,
+                    no_mic=tracks["mic_stream"] is None)
+        pj = json.loads((proj / "project.json").read_text(encoding="utf-8"))
+        pj.update({"session": path.stem, "source_recording": str(path), "autopilot": {"tracks": tracks}})
+        pj.setdefault("notes", []).append("autopilot: " + tracks["note"])
+        (proj / "project.json").write_text(json.dumps(pj, indent=2), encoding="utf-8")
+    print(f"[autopilot] audio: {tracks['note']}", flush=True)
+
+    if not (proj / "work" / "transcript.json").exists():
+        _emit("STAGE", "transcribing")
+        transcribe(slug)
+    if not (proj / "work" / "signals.json").exists():
+        _emit("STAGE", "analyzing")
+        analyze(slug)
+
+    pj = json.loads((proj / "project.json").read_text(encoding="utf-8"))
+    if pj.get("title", slug) in (slug, "") or pj.get("title_auto"):
+        pj["title"], pj["title_auto"] = derive_title(slug), True        # --title is not needed in this flow
+        (proj / "project.json").write_text(json.dumps(pj, indent=2), encoding="utf-8")
+    print(f"[autopilot] title: {pj['title']}", flush=True)
+
+    edl_p = proj / "edit.json"
+    planned = edl_p.exists() and json.loads(edl_p.read_text(encoding="utf-8")).get("generator") == "autoplan"
+    if replan or not planned:
+        _emit("STAGE", "planning the edit")
+        try:
+            scaffold(slug, force=edl_p.exists())
+        except (SystemExit, Exception) as ex:  # noqa: BLE001 - the scaffold is only a first draft
+            warnings.append(f"scaffold skipped: {ex}")
+        autoplan(slug)
+
+    n_segs = len(json.loads(edl_p.read_text(encoding="utf-8"))["segments"])
+    _emit("STAGE", "rendering" if final else "rendering preview")
+    segdir = proj / "work" / ("full" if final else "preview") / "segs"
+    stop_poll = threading.Event()
+
+    def poll_progress():
+        last = -1
+        while not stop_poll.wait(3):
+            n = len(list(segdir.glob("*.mkv"))) if segdir.exists() else 0
+            pct = min(90, int(90 * n / max(n_segs, 1)))
+            if pct != last:
+                _emit("PCT", pct)
+                last = pct
+    threading.Thread(target=poll_progress, daemon=True).start()
+    try:
+        render(slug, preview=not final, record=final)
+    finally:
+        stop_poll.set()
+    _emit("PCT", 100)
+
+    made: list[str] = []
+    if shorts:
+        sh = load_settings(slug)["shorts"]
+        if sh["enabled"]:
+            _emit("STAGE", "cutting Shorts")
+            try:
+                made = make_shorts(slug, render=False)
+            except (SystemExit, Exception) as ex:  # noqa: BLE001
+                warnings.append(f"shorts: {ex}")
+            for k, s in enumerate(made, 1):
+                _emit("STAGE", f"rendering Short {k}/{len(made)}")
+                try:
+                    render(s, preview=not final, record=False)
+                except Exception as ex:  # noqa: BLE001 - a failed Short must not lose the main video
+                    warnings.append(f"{s}: render failed: {str(ex)[:200]}")
+                    shutil.rmtree(PROJECTS / s, ignore_errors=True)
+        else:
+            warnings.append("Shorts are switched off in Settings > Shorts")
+
+    _emit("STAGE", "writing title, description and tags")
+    PB.generate(slug, use_llm=False)                                    # heuristic: no LLM, no network
+    if final:
+        PB.patch(slug, {"status": "rendered"})                          # Publishing board: Awaiting upload
+
+    _emit("STAGE", "copying to the Finished folder")
+    res = deliver(slug, Path(out_root), session_dt(path), final)
+    res.update({"slug": slug, "warnings": warnings, "elapsed_s": round(time.time() - t0), "tracks": tracks["layout"]})
+    _emit("RESULT", json.dumps(res, ensure_ascii=False))
+    return res
+
+
+# ------------------------------------------------------------------ CLI
+def _print_status(state_path: Path | None = None) -> None:
+    s = api_state(state_path)
+    c = s["config"]
+    print(f"autopilot: {'ON' if c['enabled'] else 'off'}  |  {s['status'].get('message', '')}")
+    print(f"  watching : {'; '.join(c['watch_folders'])}")
+    print(f"  finished : {c['output_folder']}")
+    print(f"  runs     : {s['counts'] or 'none yet'}")
+    for e in s["runs"][:15]:
+        extra = e.get("out_dir") or e.get("error") or ""
+        print(f"  {e['status']:<10} {e['name']:<28} {e.get('slug') or '':<28} {extra}")
+
+
+def main(argv: list[str] | None = None) -> None:
+    ap = argparse.ArgumentParser(prog="mcs autopilot", description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="action", required=True)
+    for name in ("run", "once"):
+        p = sub.add_parser(name)
+        p.add_argument("--watch", action="append", help="watch folder (repeatable; default: settings)")
+        p.add_argument("--output", help="Finished folder (default: settings)")
+        p.add_argument("--min-length", type=float)
+        p.add_argument("--max-age-h", type=float)
+        p.add_argument("--no-wait-game", action="store_true", help="do not wait for Minecraft / OBS")
+        p.add_argument("--no-shorts", action="store_true")
+        p.add_argument("--preview-only", action="store_true", help="only a 540p preview")
+        p.add_argument("--state-file", help="alternative state file (tests)")
+        p.add_argument("--stable-s", type=float, help="seconds a file must be stable (default 30)")
+    sub.add_parser("status")
+    sub.add_parser("enable")
+    sub.add_parser("disable")
+    w = sub.add_parser("work", help=argparse.SUPPRESS)
+    w.add_argument("--file", required=True)
+    w.add_argument("--slug", required=True)
+    w.add_argument("--out", required=True)
+    w.add_argument("--shorts", dest="shorts", action="store_true", default=True)
+    w.add_argument("--no-shorts", dest="shorts", action="store_false")
+    w.add_argument("--final", dest="final", action="store_true", default=True)
+    w.add_argument("--preview", dest="final", action="store_false")
+    w.add_argument("--replan", action="store_true")
+    a = ap.parse_args(argv)
+
+    if a.action == "work":
+        try:
+            work(a.file, a.slug, a.out, a.shorts, a.final, a.replan)
+        except BaseException as ex:  # noqa: BLE001 - report to the parent loop, which marks the file failed
+            import traceback
+            traceback.print_exc()
+            _emit("ERROR", f"{type(ex).__name__}: {ex}")
+            sys.exit(1)
+        return
+    if a.action in ("enable", "disable"):
+        from . import settings as SET
+        SET.save_global({"autopilot": {"enabled": a.action == "enable"}})
+        print(f"autopilot.enabled = {a.action == 'enable'}")
+        return
+    state_path = Path(a.state_file) if getattr(a, "state_file", None) else None
+    if a.action == "status":
+        _print_status(state_path)
+        return
+    ov = {"watch_folders": a.watch, "output_folder": a.output, "min_length_s": a.min_length,
+          "max_age_h": a.max_age_h, "stable_s": a.stable_s}
+    if a.no_wait_game:
+        ov["wait_for_game"] = False
+    if a.no_shorts:
+        ov["make_shorts"] = False
+    if a.preview_only:
+        ov["render_final"] = False
+    eng = Autopilot(ov, state_path)
+    if a.action == "once":
+        res = eng.once()
+        _print_status(state_path)
+        if "blocked" in res:
+            print(f"[autopilot] stopped early: {eng.status_data.get('message')}")
+        return
+    try:
+        eng.run_forever()
+    except KeyboardInterrupt:
+        eng.request_stop()
+
+
+if __name__ == "__main__":
+    main()

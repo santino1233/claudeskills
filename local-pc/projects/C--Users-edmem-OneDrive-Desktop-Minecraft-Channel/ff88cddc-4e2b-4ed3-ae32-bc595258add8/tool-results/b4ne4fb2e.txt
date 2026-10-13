@@ -1,0 +1,828 @@
+"""Local web UI backend:  uv run mcs ui   ->  http://127.0.0.1:8765
+
+Binds to localhost only. Serves the static app in studio/ui, a JSON API over the catalog and projects,
+media from the Editing Pack / catalog thumbnails / project folders, and runs pipeline stages as
+background jobs with streamed logs.
+"""
+from __future__ import annotations
+
+import json
+import os
+import re
+import shutil
+import sqlite3
+import subprocess
+import sys
+import threading
+import time
+import uuid
+from datetime import datetime
+from pathlib import Path
+
+from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+
+from . import assets as A
+from .edl import EDLError, build_spans, resolve_time, seg_duration, validate
+from .paths import ASSETS_DB, CATALOG, PACK, PROJECTS, ROOT, STUDIO, STYLE, TAXONOMY
+
+UI = STUDIO / "ui"
+app = FastAPI(title="MC Studio")
+
+
+@app.middleware("http")
+async def no_cache_ui(request, call_next):
+    resp = await call_next(request)
+    if not request.url.path.startswith(("/media/", "/api/")):
+        resp.headers["Cache-Control"] = "no-cache"   # always revalidate the app shell after edits
+    return resp
+
+
+# ------------------------------------------------------------------ helpers
+def inside(base: Path, rel: str) -> Path:
+    p = (base / rel).resolve()
+    if base.resolve() not in p.parents and p != base.resolve():
+        raise HTTPException(403, "path escapes base")
+    if not p.exists():
+        raise HTTPException(404, f"not found: {rel}")
+    return p
+
+
+def read_json(p: Path, default=None):
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return default
+
+
+def db() -> sqlite3.Connection:
+    return A.connect()   # Row factory + busy timeout + adds the `favorite` column to DBs built by older merges
+
+
+# ------------------------------------------------------------------ media
+@app.get("/media/pack/{rel:path}")
+def media_pack(rel: str):
+    return FileResponse(inside(PACK, rel))
+
+
+@app.get("/media/lib/{root}/{rel:path}")
+def media_lib(root: str, rel: str):
+    if root not in ("Editing Pack", "Stock Library"):
+        raise HTTPException(403)
+    return FileResponse(inside(ROOT / root, rel))
+
+
+@app.get("/media/studio/{rel:path}")
+def media_studio(rel: str):
+    if not rel.startswith(("brand/", "motion/")):
+        raise HTTPException(403)
+    return FileResponse(inside(STUDIO, rel))
+
+
+@app.get("/media/catalog/{rel:path}")
+def media_catalog(rel: str):
+    return FileResponse(inside(CATALOG, rel))
+
+
+@app.get("/media/project/{slug}/{rel:path}")
+def media_project(slug: str, rel: str):
+    return FileResponse(inside(PROJECTS / slug, rel))
+
+
+@app.get("/media/abs")
+def media_abs(path: str):
+    """Raw recordings referenced by absolute path in project.json (only those)."""
+    allowed = set()
+    for pj in PROJECTS.glob("*/project.json"):
+        for s in (read_json(pj, {}).get("sources") or {}).values():
+            if isinstance(s, dict) and s.get("file"):
+                f = Path(s["file"])
+                allowed.add(str((f if f.is_absolute() else pj.parent / f).resolve()))
+    p = str(Path(path).resolve())
+    if p not in allowed:
+        raise HTTPException(403, "not a project source")
+    return FileResponse(p)
+
+
+# ------------------------------------------------------------------ catalog
+@app.get("/api/taxonomy")
+def taxonomy():
+    return read_json(TAXONOMY)
+
+
+@app.get("/api/style")
+def style():
+    return read_json(STYLE)
+
+
+@app.get("/api/stats")
+def stats():
+    s = A.stats()
+    con = db()
+    s["usage"] = [dict(r) for r in con.execute(
+        "SELECT asset_id, COUNT(*) n FROM usage GROUP BY asset_id ORDER BY n DESC LIMIT 15")]
+    return s
+
+
+def row_out(r: sqlite3.Row) -> dict:
+    d = A.as_dict(r)
+    d.pop("abs_path", None)
+    return d
+
+
+@app.get("/api/assets")
+def list_assets(q: str = "", moment: list[str] = Query(default=[]), category: list[str] = Query(default=[]),
+                role: list[str] = Query(default=[]), rating: list[str] = Query(default=[]),
+                risk: list[str] = Query(default=[]), kind: str = "", key_mode: str = "", root: str = "",
+                ranked: bool = False, project: str = "", limit: int = 60, offset: int = 0,
+                favorites: bool = False):
+    if ranked and (moment or q or role):
+        # same scorer the planner uses
+        res = A.find(A.Query(moments=moment, roles=role, categories=category, text=q or None,
+                             max_rating="explicit", max_risk="high", project=project or None, limit=limit,
+                             favorites_only=favorites))
+        for r in res:
+            r.pop("abs_path", None)
+        return {"total": len(res), "items": res}
+    where, args = ["1=1"], []
+    if q:
+        terms = [t for t in "".join(c if c.isalnum() else " " for c in q).split() if t]
+        if terms:
+            ids = [r[0] for r in db().execute("SELECT id FROM assets_fts WHERE assets_fts MATCH ?",
+                                              (" ".join(f'"{t}"*' for t in terms),))]
+            where.append(f"id IN ({','.join('?' * len(ids))})" if ids else "0")
+            args += ids
+    for col, vals in (("category", category), ("content_rating", rating), ("copyright_risk", risk)):
+        if vals:
+            # untagged assets (no rating yet) stay visible instead of silently disappearing
+            extra = " OR content_rating IS NULL" if col == "content_rating" else ""
+            where.append(f"({col} IN ({','.join('?' * len(vals))}){extra})")
+            args += vals
+    for m in moment:
+        where.append("moments LIKE ?")
+        args.append(f'%"{m}"%')
+    for ro in role:
+        where.append("roles LIKE ?")
+        args.append(f'%"{ro}"%')
+    if kind:
+        where.append("kind = ?")
+        args.append(kind)
+    if root:
+        where.append("root = ?")
+        args.append(root)
+    if key_mode:
+        where.append("key_mode = ?")
+        args.append(key_mode)
+    if favorites:
+        where.append("favorite = 1")
+    con = db()
+    w = " AND ".join(where)
+    total = con.execute(f"SELECT COUNT(*) FROM assets WHERE {w}", args).fetchone()[0]
+    rows = con.execute(f"SELECT * FROM assets WHERE {w} ORDER BY category, title LIMIT ? OFFSET ?",
+                       args + [limit, offset]).fetchall()
+    return {"total": total, "items": [row_out(r) for r in rows]}
+
+
+@app.get("/api/assets/{aid}")
+def get_asset(aid: str):
+    try:
+        d = A.get(aid)
+    except KeyError:
+        raise HTTPException(404) from None
+    d.pop("abs_path", None)
+    d["used_in"] = [dict(r) for r in db().execute(
+        "SELECT project, COUNT(*) n FROM usage WHERE asset_id=? GROUP BY project", (aid,))]
+    return d
+
+
+class FavoriteBody(BaseModel):
+    on: bool
+
+
+@app.post("/api/assets/{aid}/favorite")
+def favorite_asset(aid: str, body: FavoriteBody):
+    try:
+        d = A.set_favorite(aid, body.on)   # favorites.json + DB row, no rebuild
+    except KeyError:
+        raise HTTPException(404, f"unknown asset {aid}") from None
+    return get_asset(d["id"])
+
+
+class AssetPatch(BaseModel):
+    fields: dict
+
+
+EDITABLE = {"description", "moments", "roles", "tags", "quote", "mood", "energy", "content_rating",
+            "copyright_risk", "placement", "key_mode", "use_window", "volume_db", "frequency", "notes"}
+
+
+@app.patch("/api/assets/{aid}")
+def patch_asset(aid: str, body: AssetPatch):
+    bad = set(body.fields) - EDITABLE
+    if bad:
+        raise HTTPException(400, f"not editable: {sorted(bad)}")
+    path = CATALOG / "overrides.json"
+    ov = read_json(path, {})
+    ov.setdefault(aid, {}).update(body.fields)
+    path.write_text(json.dumps(ov, indent=2, ensure_ascii=False), encoding="utf-8")
+    r = subprocess.run([sys.executable, str(CATALOG / "merge_catalog.py")], capture_output=True, text=True)
+    if r.returncode != 0:
+        raise HTTPException(500, r.stderr[-2000:])
+    return get_asset(aid)
+
+
+# ------------------------------------------------------------------ projects
+def project_status(p: Path) -> dict:
+    w = p / "work"
+    outs = sorted((p / "out").glob("*.mp4"), key=lambda f: f.stat().st_mtime, reverse=True) if (p / "out").exists() else []
+    edl = read_json(p / "edit.json")
+    pj = read_json(p / "project.json", {})
+    return {
+        "slug": p.name, "title": pj.get("title", p.name), "duration_s": pj.get("duration_s"),
+        "transcribed": (w / "transcript.json").exists(), "analyzed": (w / "signals.json").exists(),
+        "has_edit": edl is not None, "segments": len(edl["segments"]) if edl else 0,
+        "outputs": [{"name": f.name, "size": f.stat().st_size,
+                     "mtime": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="seconds")} for f in outs],
+        "modified": datetime.fromtimestamp(max((f.stat().st_mtime for f in p.glob("*.json")), default=p.stat().st_mtime)).isoformat(timespec="seconds"),
+        "job": next((j.public() for j in reversed(JOBS.values()) if j.slug == p.name and j.status == "running"), None),
+        "kind": pj.get("kind", "episode"), "parent": pj.get("parent"), "context": pj.get("context", ""),
+        "generator": (edl or {}).get("generator"), "format": (edl or {}).get("format", "landscape"),
+        "shorts": sorted(c.name for c in PROJECTS.glob(f"{p.name}--short-*") if (c / "edit.json").exists()),
+    }
+
+
+@app.get("/api/projects")
+def projects():
+    out = [project_status(p) for p in PROJECTS.iterdir() if (p / "project.json").exists()]
+    return sorted(out, key=lambda x: x["modified"], reverse=True)
+
+
+class NewProject(BaseModel):
+    slug: str
+    game: str
+    mic: str | None = None
+    mic_stream: int | None = None
+    mic_offset: float = 0.0
+    title: str | None = None
+    context: str = ""
+    facecam: str | None = None
+    facecam_offset: float = 0.0
+
+
+@app.post("/api/projects")
+def new_project(body: NewProject):
+    import re
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{1,40}", body.slug):
+        raise HTTPException(400, "slug: lowercase letters, digits, - and _ only")
+    from .ingest import new_project as np_
+    try:
+        np_(body.slug, body.game, body.mic or None, body.mic_stream, 0, body.mic_offset, body.title, False,
+            facecam=body.facecam or None, facecam_offset=body.facecam_offset, context=body.context)
+    except SystemExit as e:
+        raise HTTPException(400, str(e)) from None
+    return project_status(PROJECTS / body.slug)
+
+
+@app.get("/api/projects/{slug}")
+def project(slug: str):
+    p = inside(PROJECTS, slug)
+    w = p / "work"
+    pj = read_json(p / "project.json", {})
+    srcs = pj.get("sources", {})
+    game = srcs.get("game", {}).get("file")
+    return {
+        **project_status(p),
+        "project": pj,
+        "game_url": ("/media/abs?path=" + str((Path(game) if Path(game).is_absolute() else p / game).resolve()))
+        if game else None,
+        "edit": read_json(p / "edit.json"),
+        "transcript": read_json(w / "transcript.json"),
+        "signals": read_json(w / "signals.json"),
+        "beats": (p / "BEATS.md").read_text(encoding="utf-8") if (p / "BEATS.md").exists() else None,
+        "sheets": sorted(f"work/sheets/{f.name}" for f in (w / "sheets").glob("*.jpg")) if (w / "sheets").exists() else [],
+        "report": read_json(w / "full" / "render_report.json") or read_json(w / "preview" / "render_report.json"),
+    }
+
+
+@app.get("/api/projects/{slug}/timeline")
+def timeline(slug: str):
+    """EDL resolved into output time, grouped by track, for the timeline view."""
+    p = inside(PROJECTS, slug)
+    edl = read_json(p / "edit.json")
+    if not edl:
+        return {"duration": 0, "tracks": {}, "warnings": []}
+    warnings: list[str] = []
+
+    def lookup(i):
+        try:
+            return A.get(i)
+        except KeyError:
+            warnings.append(f"unknown asset {i}")
+            return None
+    try:
+        validate(edl)
+        spans = build_spans(edl, lookup)
+    except (EDLError, KeyError, TypeError) as e:
+        return {"duration": 0, "tracks": {}, "warnings": [f"EDL error: {e}"]}
+    tracks: dict[str, list] = {"segments": [], "overlays": [], "text": [], "sfx": [], "music": [], "bleeps": [],
+                               "zooms": []}
+    t = 0.0
+    for i, s in enumerate(edl["segments"]):
+        d = seg_duration(s, lookup)
+        tracks["segments"].append({"i": i, "start": t, "end": t + d, "type": s.get("type", "source"),
+                                   "label": s.get("id") or s.get("asset") or f"seg{i}", "src_in": s.get("in"),
+                                   "src_out": s.get("out"), "speed": s.get("speed", 1), "effects": s.get("effects", []),
+                                   "mode": s.get("mode") or edl.get("mode", "funny")})
+        for z in s.get("zoom", []) + [dict(x, shake=True) for x in s.get("shake", [])]:
+            a = z["at"] if "at" in z else (z["src_at"] - s["in"]) / s.get("speed", 1)
+            dz = z.get("dur") or (z.get("in", 0.12) + z.get("hold", 0.6) + z.get("out", 0.18))
+            tracks["zooms"].append({"start": t + a, "end": t + min(a + dz, d),
+                                    "label": "shake" if z.get("shake") else f"x{z.get('to', 1.3)}"})
+        t += d
+    total = t
+
+    def add(track, evs, default_dur, label_fn):
+        for k, ev in enumerate(evs):
+            at = resolve_time(ev, spans, warnings, f"{track}[{k}]") if ("at" in ev or "src_at" in ev) else 0.0
+            if at is None:
+                continue
+            a = lookup(ev["asset"]) if ev.get("asset") else None
+            dur = ev.get("dur") or (ev.get("until", total) - at if track == "music" else None) \
+                or (a.get("tail_s") or a.get("duration_s") if a else None) or default_dur
+            tracks[track].append({"k": k, "start": at, "end": min(total, at + dur), "label": label_fn(ev, a),
+                                  "asset": ev.get("asset"), "thumb": a.get("thumb") if a else None})
+    add("overlays", edl.get("overlays", []), 1.5, lambda e, a: f"{e['type']}: {(a or {}).get('title') or e.get('file')}")
+    add("text", edl.get("text", []), 1.2, lambda e, a: e.get("text", ""))
+    add("sfx", edl.get("audio", {}).get("sfx", []), 1.0, lambda e, a: (a or {}).get("title") or e.get("asset"))
+    add("music", edl.get("audio", {}).get("music", []), total, lambda e, a: (a or {}).get("title") or e.get("asset"))
+    add("bleeps", edl.get("audio", {}).get("bleeps", []), 0.4, lambda e, a: "bleep")
+    return {"duration": total, "tracks": tracks, "warnings": warnings, "format": edl.get("format", "landscape")}
+
+
+class EditBody(BaseModel):
+    edit: dict
+
+
+@app.put("/api/projects/{slug}/edit")
+def save_edit(slug: str, body: EditBody):
+    p = inside(PROJECTS, slug)
+    try:
+        validate(body.edit)
+    except (EDLError, KeyError, TypeError) as e:
+        raise HTTPException(400, f"invalid EDL: {e}") from None
+    cur = p / "edit.json"
+    if cur.exists():
+        hist = p / "history"
+        hist.mkdir(exist_ok=True)
+        shutil.copy2(cur, hist / f"edit.{datetime.now():%Y%m%d-%H%M%S}.json")
+    cur.write_text(json.dumps(body.edit, indent=2, ensure_ascii=False), encoding="utf-8")
+    return {"ok": True}
+
+
+# ------------------------------------------------------------------ jobs
+class Job:
+    def __init__(self, slug: str, stage: str, cmd: list[str], cwd: Path):
+        self.id = uuid.uuid4().hex[:8]
+        self.slug, self.stage, self.cmd, self.cwd = slug, stage, cmd, cwd
+        self.status = "running"
+        self.lines: list[str] = []
+        self.started = time.time()
+        self.ended: float | None = None
+        self.rc: int | None = None
+        self.proc: subprocess.Popen | None = None
+        self.result: dict | None = None     # set from a "@@RESULT {json}" line printed by the command
+        threading.Thread(target=self._run, daemon=True).start()
+
+    def _run(self):
+        env = dict(os.environ, PYTHONUNBUFFERED="1", PYTHONIOENCODING="utf-8")
+        try:
+            self.proc = subprocess.Popen(self.cmd, cwd=self.cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                         text=True, encoding="utf-8", errors="replace", env=env)
+            for line in self.proc.stdout:
+                if line.startswith("@@RESULT "):
+                    try:
+                        self.result = json.loads(line[9:])
+                    except ValueError:
+                        pass
+                    continue
+                self.lines.append(line.rstrip())
+                if len(self.lines) > 4000:
+                    del self.lines[:1000]
+            self.rc = self.proc.wait()
+            self.status = "done" if self.rc == 0 else "failed"
+        except Exception as e:  # noqa: BLE001
+            self.lines.append(f"!! {e}")
+            self.status = "failed"
+        self.ended = time.time()
+
+    def public(self, tail: int = 200) -> dict:
+        return {"id": self.id, "slug": self.slug, "stage": self.stage, "status": self.status, "rc": self.rc,
+                "started": self.started, "elapsed": round((self.ended or time.time()) - self.started, 1),
+                "log": self.lines[-tail:], "result": self.result}
+
+
+JOBS: dict[str, Job] = {}
+STAGES = {
+    "auto": ["auto", "--shorts", "3"], "auto-final": ["auto", "--final", "--shorts", "3"],
+    "autoplan": ["autoplan"], "engage": ["engage"], "shorts": ["shorts", "--render", "--preview"],
+    "shorts-final": ["shorts", "--render"],
+    "transcribe": ["transcribe"], "transcribe-fast": ["transcribe", "--model", "small.en"],
+    "analyze": ["analyze"], "scaffold": ["scaffold"], "scaffold-force": ["scaffold", "--force"],
+    "check": ["check", "--timeline"], "preview": ["render", "--preview"], "render": ["render"],
+}
+
+
+def claude_bin() -> str | None:
+    return shutil.which("claude")
+
+
+def plan_prompt(slug: str) -> str:
+    return (f"Use the mc-edit skill to plan and edit project '{slug}' (studio/projects/{slug}). "
+            "Read the transcript, signals and overview sheets, write BEATS.md, choose assets with "
+            "`uv run mcs assets find`, write the full edit.json, run `uv run mcs check` and a preview render, "
+            "verify frames at the big beats, fix issues, and summarise what you did.")
+
+
+@app.get("/api/claude")
+def claude_info(slug: str = ""):
+    return {"available": bool(claude_bin()), "prompt": plan_prompt(slug or "<slug>")}
+
+
+class RunBody(BaseModel):
+    prompt: str | None = None
+
+
+@app.post("/api/projects/{slug}/run/{stage}")
+def run_stage(slug: str, stage: str, body: RunBody | None = None):
+    inside(PROJECTS, slug)
+    if any(j.slug == slug and j.status == "running" for j in JOBS.values()):
+        raise HTTPException(409, "a job is already running for this project")
+    if stage == "plan":
+        cb = claude_bin()
+        if not cb:
+            raise HTTPException(400, "claude CLI not on PATH - copy the prompt into Claude Code instead")
+        prompt = (body.prompt if body and body.prompt else plan_prompt(slug))
+        cmd = [cb, "-p", prompt, "--allowedTools",
+               "Read,Glob,Grep,Edit,Write,Bash(uv run mcs:*),Bash(ffmpeg:*),Bash(ffprobe:*)"]
+        job = Job(slug, stage, cmd, STUDIO.parent)
+    elif stage in STAGES:
+        job = Job(slug, stage, [sys.executable, "-m", "mcstudio.cli", *STAGES[stage][:1], slug, *STAGES[stage][1:]], STUDIO)
+    else:
+        raise HTTPException(400, f"unknown stage {stage}")
+    JOBS[job.id] = job
+    return job.public()
+
+
+@app.get("/api/jobs")
+def jobs(slug: str = ""):
+    return [j.public(tail=3) for j in JOBS.values() if not slug or j.slug == slug][-30:]
+
+
+@app.get("/api/jobs/{jid}")
+def job(jid: str, tail: int = 300):
+    if jid not in JOBS:
+        raise HTTPException(404)
+    return JOBS[jid].public(tail)
+
+
+@app.post("/api/jobs/{jid}/cancel")
+def cancel(jid: str):
+    j = JOBS.get(jid)
+    if j and j.proc and j.status == "running":
+        subprocess.run(["taskkill", "/F", "/T", "/PID", str(j.proc.pid)], capture_output=True)
+        j.status = "cancelled"
+    return {"ok": True}
+
+
+# ------------------------------------------------------------------ identity: brand / modes / motion
+@app.get("/api/brand")
+def brand():
+    b = read_json(STUDIO / "brand" / "brand.json", {})
+    av = STUDIO / "brand" / "avatar"
+    b["avatar_states"] = sorted(f"brand/avatar/{f.name}" for f in av.glob("*.png")
+                                if f.name not in ("skin.png", "preview.png")) if av.exists() else []
+    b["avatar_preview"] = "brand/avatar/preview.png" if (av / "preview.png").exists() else None
+    return b
+
+
+class BrandPatch(BaseModel):
+    channel_name: str | None = None
+    tagline: str | None = None
+    watermark_text: str | None = None
+
+
+@app.patch("/api/brand")
+def patch_brand(body: BrandPatch):
+    p = STUDIO / "brand" / "brand.json"
+    b = read_json(p, {})
+    if body.channel_name:
+        b["channel_name"] = body.channel_name
+    if body.tagline is not None:
+        b["tagline"] = body.tagline
+    if body.watermark_text is not None:
+        b.setdefault("watermark", {})["text"] = body.watermark_text
+    p.write_text(json.dumps(b, indent=2, ensure_ascii=False), encoding="utf-8")
+    return brand()
+
+
+# ------------------------------------------------------------------ brand library (channel mascot art)
+BRAND_SRC = ROOT / "Crodie"            # the creator's original brand sheets / channel art
+SHEET_FILES = {"emotes.png", "character renders.png", "logos and text.png", "overlays.png", "other overlays.png",
+               "assets.png", "assets 2.png", "mc skin.png"}
+
+
+@app.get("/media/brandsrc/{rel:path}")
+def media_brandsrc(rel: str):
+    return FileResponse(inside(BRAND_SRC, rel))
+
+
+@app.get("/api/brand/library")
+def brand_library():
+    b = read_json(STUDIO / "brand" / "brand.json", {})
+    stickers = read_json(STUDIO / "brand" / "crodie" / "stickers.json", [])
+    favs = set((read_json(CATALOG / "favorites.json", {}) or {}).get("ids") or [])
+    moods = (b.get("avatar") or {}).get("moods") or {}
+    mood_of = {v: k for k, v in moods.items()}
+    wm = (b.get("watermark") or {}).get("image")
+    for st in stickers:
+        st["favorite"] = st["id"] in favs
+        st["avatar_mood"] = mood_of.get(st["file"])
+        st["watermark"] = st["file"] == wm
+        st["snippet"] = {"type": "motion", "template": "sticker_pop", "seg": "<seg id>", "src_at": 0.0,
+                         "vars": {"image": st["file"],
+                                  "style": "slide" if st["set"] == "cta" else
+                                           "stamp" if "badge" in st["id"] else "pop",
+                                  "position": "bottom-left" if st["set"] == "cta" else
+                                              "center" if "badge" in st["id"] else "top-right"}}
+    art = sorted(f.name for f in BRAND_SRC.glob("*.png") if f.name not in SHEET_FILES) if BRAND_SRC.exists() else []
+    sheets = sorted(f.name for f in BRAND_SRC.glob("*.png") if f.name in SHEET_FILES) if BRAND_SRC.exists() else []
+    av = STUDIO / "brand" / "avatar"
+    return {"channel_name": b.get("channel_name"), "colors": b.get("colors", {}), "logo": b.get("logo", {}),
+            "watermark": b.get("watermark", {}), "avatar_moods": moods,
+            "avatar_preview": "brand/avatar/preview.png" if (av / "preview.png").exists() else None,
+            "art": art, "sheets": sheets, "stickers": stickers}
+
+
+class BrandAvatarMood(BaseModel):
+    mood: str
+    file: str
+
+
+@app.post("/api/brand/avatar")
+def brand_avatar(body: BrandAvatarMood):
+    """Use a sticker as the narrator avatar's face for one mood, then rebuild the avatar states."""
+    from . import avatar as AV
+    if body.mood not in AV.MOODS:
+        raise HTTPException(400, f"mood must be one of {AV.MOODS}")
+    inside(STUDIO, body.file)
+    p = STUDIO / "brand" / "brand.json"
+    b = read_json(p, {})
+    b.setdefault("avatar", {}).setdefault("moods", {})[body.mood] = body.file
+    p.write_text(json.dumps(b, indent=2, ensure_ascii=False), encoding="utf-8")
+    d = STUDIO / "brand" / "avatar"
+    AV.build(STUDIO / (b["avatar"].get("skin") or "brand/avatar/skin.png"), d)
+    subprocess.run([sys.executable, "-m", "mcstudio.avatar", "preview"], cwd=STUDIO, capture_output=True)
+    return brand_library()
+
+
+class BrandWatermark(BaseModel):
+    file: str | None = None            # None -> text watermark
+
+
+@app.post("/api/brand/watermark")
+def brand_watermark(body: BrandWatermark):
+    p = STUDIO / "brand" / "brand.json"
+    b = read_json(p, {})
+    wm = b.setdefault("watermark", {})
+    if body.file:
+        inside(STUDIO, body.file)
+        wm["image"] = body.file
+    else:
+        wm.pop("image", None)
+    p.write_text(json.dumps(b, indent=2, ensure_ascii=False), encoding="utf-8")
+    return brand_library()
+
+
+class BrandLogo(BaseModel):
+    slot: str                           # main | icon | badge
+    file: str
+
+
+@app.post("/api/brand/logo")
+def brand_logo(body: BrandLogo):
+    if body.slot not in ("main", "icon", "badge"):
+        raise HTTPException(400, "slot must be main, icon or badge")
+    inside(STUDIO, body.file)
+    p = STUDIO / "brand" / "brand.json"
+    b = read_json(p, {})
+    b.setdefault("logo", {})[body.slot] = body.file
+    p.write_text(json.dumps(b, indent=2, ensure_ascii=False), encoding="utf-8")
+    return brand_library()
+
+
+@app.post("/api/brand/sticker-preview")
+def brand_sticker_preview(body: dict):
+    """Render a quick sticker_pop preview for one sticker (cached by motion.py)."""
+    st = next((x for x in read_json(STUDIO / "brand" / "crodie" / "stickers.json", []) if x["id"] == body.get("id")),
+              None)
+    if not st:
+        raise HTTPException(404)
+    vars_ = {"image": st["file"], "style": body.get("style") or "pop", "position": body.get("position") or "center"}
+    cmd = [sys.executable, "-m", "mcstudio.motion_previews", "--render", "sticker_pop", "--vars", json.dumps(vars_),
+           "--orientation", body.get("orientation") or "landscape", "--preview"]
+    job = Job("_motion", f"sticker:{st['id']}", cmd, STUDIO)
+    JOBS[job.id] = job
+    return job.public()
+
+
+@app.get("/api/modes")
+def modes():
+    return read_json(STUDIO / "modes.json", {})
+
+
+def _motion_template_out(t: dict) -> dict:
+    from . import motion as M
+    from . import motion_previews as MP
+    name = t["name"]
+    try:
+        resolved = M.resolve_vars(name)
+    except Exception:  # noqa: BLE001 - a half-written template.json shouldn't break the page
+        resolved = {}
+    vars_out = []
+    for key, spec in (t.get("vars") or {}).items():
+        if key == "opaque":                       # set by the opaque flag, not a form field
+            continue
+        label, options = spec.get("label", key), spec.get("options") or spec.get("enum")
+        if not options:   # enum-like labels: "Block style: color | stone | dirt"
+            mm = re.fullmatch(r"(.*?):\s*([\w-]+(?:\s*\|\s*[\w-]+)+)\s*", label)
+            if mm:
+                label, options = mm.group(1).strip(), [o.strip() for o in mm.group(2).split("|")]
+        vars_out.append({"key": key, "type": spec.get("type", "string"), "label": label,
+                         "default": resolved.get(key, spec.get("default")), "brand": spec.get("brand"),
+                         "options": options, "min": spec.get("min"),
+                         "max": spec.get("max"), "step": spec.get("step"), "help": spec.get("help")})
+    p = MP.paths(name)
+    return {"name": name, "description": t.get("description", ""), "kind": t.get("kind", "overlay"),
+            "duration": t.get("duration"), "stretchable": bool(t.get("stretchable")),
+            "min_duration": t.get("min_duration"), "cut_at": t.get("cut_at"),
+            "orientations": t.get("orientations", ["landscape", "vertical"]),
+            "opaque_ok": "opaque" in (t.get("vars") or {}), "vars": vars_out,
+            "preview_mp4": MP.rel_url(p["mp4"]) if p["mp4"].exists() else None,
+            "poster": MP.rel_url(p["jpg"]) if p["jpg"].exists() else None,
+            "preview": f"motion/previews/{name}.jpg" if p["jpg"].exists() else None}   # Brand page compat
+
+
+@app.get("/api/motion")
+def motion_templates():
+    """Every template under studio/motion/templates (discovered on each call), with previews if made."""
+    from . import motion as M
+    out = []
+    tdir = M.TEMPLATES
+    for d in sorted(tdir.iterdir()) if tdir.exists() else []:
+        if not (d / "template.json").exists():
+            continue
+        try:
+            out.append(_motion_template_out(M._manifest(d.name)))
+        except Exception as e:  # noqa: BLE001
+            out.append({"name": d.name, "description": f"(template.json unreadable: {e})", "vars": [],
+                        "orientations": [], "broken": True})
+    return {"templates": out, "missing_previews": [t["name"] for t in out
+                                                   if not t.get("preview_mp4") and not t.get("broken")]}
+
+
+class MotionRender(BaseModel):
+    name: str
+    vars: dict = {}
+    orientation: str = "landscape"
+    preview: bool = True
+    duration: float | None = None
+
+
+@app.post("/api/motion/render")
+def motion_render(body: MotionRender):
+    from . import motion as M
+    try:
+        m = M._manifest(body.name)
+        M.resolve_vars(body.name, {k: v for k, v in body.vars.items() if k != "opaque"})
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from None
+    if body.orientation not in m.get("orientations", []):
+        raise HTTPException(400, f"'{body.name}' has no {body.orientation} version")
+    cmd = [sys.executable, "-m", "mcstudio.motion_previews", "--render", body.name,
+           "--vars", json.dumps({k: v for k, v in body.vars.items() if k != "opaque"}),
+           "--orientation", body.orientation]
+    if body.preview:
+        cmd.append("--preview")
+    if body.duration:
+        cmd += ["--duration", str(body.duration)]
+    job = Job("_motion", f"motion:{body.name}", cmd, STUDIO)
+    JOBS[job.id] = job
+    return job.public()
+
+
+class MotionPreviews(BaseModel):
+    names: list[str] = []
+    force: bool = False
+
+
+@app.post("/api/motion/previews")
+def motion_previews(body: MotionPreviews | None = None):
+    """Regenerate previews: the given names, else only templates missing one."""
+    body = body or MotionPreviews()
+    if any(j.slug == "_motion" and j.stage == "motion-previews" and j.status == "running" for j in JOBS.values()):
+        raise HTTPException(409, "previews are already being generated")
+    cmd = [sys.executable, "-m", "mcstudio.motion_previews", *body.names]
+    if not body.names:
+        cmd.append("--missing")
+    if body.force:
+        cmd.append("--force")
+    job = Job("_motion", "motion-previews", cmd, STUDIO)
+    JOBS[job.id] = job
+    return job.public()
+
+
+# ------------------------------------------------------------------ stock library
+LIB_FOLDERS = ["Inbox", "Minecraft B-Roll", "Real World B-Roll", "Reactions & Memes", "Sound Effects", "Music",
+               "Overlays & Green Screen"]
+TAG_PROMPT = ("Tag the new Stock Library assets: follow studio/catalog/TAGGING.md for the `library` batch "
+              "(studio/catalog/tag_batches/library.json), look at its contact sheets, write "
+              "studio/catalog/tags/library_<date>.json, then run: python studio/catalog/merge_catalog.py")
+
+
+@app.post("/api/library/upload")
+async def library_upload(folder: str = Form("Inbox"), files: list[UploadFile] = File(...)):
+    if folder not in LIB_FOLDERS:
+        raise HTTPException(400, f"folder must be one of {LIB_FOLDERS}")
+    dest = ROOT / "Stock Library" / folder
+    dest.mkdir(parents=True, exist_ok=True)
+    saved = []
+    for f in files:
+        target = dest / Path(f.filename or "upload.bin").name
+        with target.open("wb") as out:
+            while chunk := await f.read(1 << 20):
+                out.write(chunk)
+        saved.append(target.name)
+    job = Job("_library", "library-scan", [sys.executable, "-m", "mcstudio.cli", "library", "scan"], STUDIO)
+    JOBS[job.id] = job
+    return {"saved": saved, "job": job.public()}
+
+
+@app.get("/api/library/status")
+def library_status():
+    import contextlib
+    import io
+
+    from .library import status
+    with contextlib.redirect_stdout(io.StringIO()):
+        st = status()
+    return {**st, "folders": LIB_FOLDERS, "claude": bool(claude_bin()), "tag_prompt": TAG_PROMPT}
+
+
+@app.post("/api/library/tag")
+def library_tag():
+    cb = claude_bin()
+    if not cb:
+        raise HTTPException(400, "claude CLI not on PATH - copy the prompt into Claude Code instead")
+    job = Job("_library", "library-tag", [cb, "-p", TAG_PROMPT, "--allowedTools",
+                                          "Read,Glob,Grep,Write,Bash(python:*),Bash(uv run:*)"], ROOT)
+    JOBS[job.id] = job
+    return job.public()
+
+
+# ------------------------------------------------------------------ file picker
+@app.get("/api/fs")
+def fs(path: str = ""):
+    p = Path(path).expanduser() if path else Path.home() / "Videos"
+    if not p.exists():
+        p = Path.home()
+    p = p.resolve()
+    entries = []
+    try:
+        for c in sorted(p.iterdir(), key=lambda c: (not c.is_dir(), c.name.lower())):
+            if c.name.startswith("."):
+                continue
+            if c.is_dir() or c.suffix.lower() in {".mkv", ".mp4", ".mov", ".wav", ".mp3", ".flac", ".m4a", ".webm"}:
+                st = c.stat()
+                entries.append({"name": c.name, "path": str(c), "dir": c.is_dir(), "size": st.st_size,
+                                "mtime": datetime.fromtimestamp(st.st_mtime).isoformat(timespec="minutes")})
+    except PermissionError:
+        pass
+    return {"path": str(p), "parent": str(p.parent) if p.parent != p else None, "entries": entries}
+
+
+@app.get("/api/health")
+def health():
+    return {"ok": True, "ffmpeg": bool(shutil.which("ffmpeg")), "claude": bool(claude_bin()),
+            "assets_db": ASSETS_DB.exists()}
+
+
+app.mount("/", StaticFiles(directory=UI, html=True), name="ui")
+
+
+def serve(host: str = "127.0.0.1", port: int = 8765, open_browser: bool = True):
+    import uvicorn
+    if open_browser:
+        threading.Timer(1.2, lambda: __import__("webbrowser").open(f"http://{host}:{port}")).start()
+    uvicorn.run(app, host=host, port=port, log_level="warning")

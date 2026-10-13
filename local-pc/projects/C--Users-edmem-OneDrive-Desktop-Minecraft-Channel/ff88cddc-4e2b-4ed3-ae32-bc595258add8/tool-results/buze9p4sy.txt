@@ -1,0 +1,713 @@
+"""Feature settings: one central on/off switchboard for everything the auto-editor and renderer do.
+
+    studio/settings.json                 global settings (only keys that differ from the defaults are needed)
+    projects/<slug>/settings.json        per-episode overrides (only changed keys; null = inherit)
+
+    load(slug)  ->  defaults <- settings.json <- parent episode overrides (for shorts) <- episode overrides
+
+SCHEMA is the single source of truth: it defines every setting's default, label, help text, type and where it
+applies ("plan" = autoplan/engage/shorts/scaffold decide not to place it, "render" = the renderer also strips it
+from an EXISTING edit.json, "both"). The UI renders the schema generically, so adding a setting = one entry here
+plus the line of code that reads it.
+
+Render-time switches are applied by `apply_render(edl, S, ...)` when the renderer loads an EDL: the edit.json on
+disk is never modified, so turning a switch back on restores the original edit.
+"""
+from __future__ import annotations
+
+import copy
+import json
+import re
+from pathlib import Path
+
+from .paths import PROJECTS, STUDIO
+
+GLOBAL_FILE = STUDIO / "settings.json"
+
+SFX_ROLES = ["hit", "whoosh", "riser", "voice_line", "reaction", "laugh_track", "stinger", "ui_sound", "literal",
+             "ambience", "transition"]
+EFFECTS = ["flash", "bw", "deepfry", "vignette", "sepia", "invert"]     # "brighten" has its own switch
+
+
+def _b(key, label, default, help_, applies, **kw):
+    return {"key": key, "label": label, "type": "bool", "default": default, "help": help_, "applies": applies, **kw}
+
+
+def _n(key, label, default, help_, applies, lo, hi, step, unit="", **kw):
+    return {"key": key, "label": label, "type": "number", "default": default, "help": help_, "applies": applies,
+            "min": lo, "max": hi, "step": step, "unit": unit, **kw}
+
+
+def _off(key, label, help_, applies, options, **kw):
+    """Multi-select stored as the list of DISABLED items (new items added later default to allowed)."""
+    return {"key": key, "label": label, "type": "multi", "invert": True, "default": [], "help": help_,
+            "applies": applies, "options": options, **kw}
+
+
+# options given as a string are filled in dynamically by schema(): looks / modes / templates
+SCHEMA: list[dict] = [
+    {"key": "looks", "label": "Filters & colour", "icon": "◐", "master": "enabled",
+     "help": "Colour looks, mood grades and segment effects. The master switch turns ALL filtering off (neutral, raw "
+             "capture colours).",
+     "settings": [
+         _b("enabled", "Filters & colour grading", True, "Master switch. Off = no look, no mood grade, no effects, "
+            "no cave brightening: the footage renders exactly as recorded.", "render"),
+         {"key": "default_look", "label": "Default look", "type": "select", "default": "", "options": "looks+inherit",
+          "help": "The base colour polish for every video that doesn't pick its own (edit.json \"look\" still wins). "
+                  "Inherit = style.json (clean).", "applies": "render"},
+         _off("disabled_looks", "Allowed looks", "Switched-off looks are never applied, even if an edit asks for one: "
+              "they fall back to the default look, then clean, then none.", "render", "looks"),
+         _n("intensity", "Filter strength", 1.0, "Blends the graded picture with the original. 1 = full look + mood "
+            "grade, 0.5 = half strength, 0 = no grading.", "render", 0, 1, 0.05, "×"),
+         _b("mode_looks", "Mood grades", True, "Let moods recolour the picture (sad = desaturated blue, scary = dark "
+            "green, flashback = sepia...). Off = moods still change captions, music and pacing, but not colour.",
+            "render"),
+         _b("brighten_dark", "Auto-brighten dark scenes", True, "Lift caves / underwater / night footage. Off = the "
+            "planner stops adding it and the renderer ignores existing 'brighten' effects.", "both"),
+         _b("effects", "Segment effects", True, "Hand-placed segment effects (flash, black & white, deep-fry, "
+            "vignette, sepia, invert).", "render"),
+         _off("disabled_effects", "Allowed effects", "Switch off individual segment effects.", "render", EFFECTS,
+              requires="looks.effects"),
+     ]},
+    {"key": "modes", "label": "Moods (modes)", "icon": "☯",
+     "help": "Story moods switch grade, captions, music and SFX palette per section.",
+     "settings": [
+         _b("auto_story_modes", "Automatic story moods", True, "The planner switches into scary / sad for real story "
+            "sections (8+ s of panic, a sad ending after a death). Off = the whole video stays in the base mood.",
+            "plan"),
+         _off("disabled_modes", "Allowed moods", "A switched-off mood is never used: the planner skips it and the "
+              "renderer plays those segments in the video's base mood (or funny).", "both", "modes"),
+         _b("letterbox", "Cinematic bars", True, "Black letterbox bars in moods that use them (serious).", "render"),
+     ]},
+    {"key": "captions", "label": "Captions & text", "icon": "T",
+     "help": "Spoken captions and animated on-screen text.",
+     "settings": [
+         _b("enabled", "Captions (subtitles)", True, "Word-by-word captions from the transcript.", "both"),
+         _b("emphasis", "Emphasis colours", True, "Keywords (creeper, diamonds, the running gag...) drawn in the "
+            "emphasis colour.", "both", requires="captions.enabled"),
+         _b("pov_header", "POV header", True, "\"POV:\" header at the start of POV-mood sections.", "render"),
+         _b("text_pops", "Text pops", True, "Impact / Minecraft text on beats (WHAT?!, +1 DIAMOND, CREEPER!).",
+            "both"),
+         _b("running_gags", "Running-gag counters", True, "A word said 4+ times in 45 s gets a counter "
+            "(\"STICKS x3\") with a pop sound.", "both"),
+         _b("speed_labels", "Speed labels", True, "\"x4 SPEED\" label on fast-forward montages.", "both"),
+     ]},
+    {"key": "audio", "label": "Sound & music", "icon": "♪",
+     "help": "Sound effects, music beds, meme audio and the mix.",
+     "settings": [
+         _b("sfx", "Sound effects", True, "All beat SFX (hits, whooshes, stingers, voice lines...). Off = none are "
+            "placed and existing ones are muted.", "both"),
+         _off("disabled_sfx_roles", "Allowed SFX types", "Switch off whole kinds of sound. A sound tagged with any "
+              "switched-off type is skipped.", "both", SFX_ROLES, requires="audio.sfx"),
+         _n("sfx_volume_db", "SFX volume", 0.0, "Nudge every SFX up or down (on top of the automatic voice-matched "
+            "level).", "render", -12, 6, 0.5, "dB", requires="audio.sfx"),
+         _n("max_sfx_per_min", "Max SFX per minute", 14, "Upper limit for beat SFX the planner places.", "plan",
+            0, 30, 1, "/min", requires="audio.sfx"),
+         _b("favorites_only", "Only my favourite sounds", False, "SFX and music only from starred assets (★). "
+            "With few favourites, many beats will get no sound.", "plan"),
+         _b("music", "Music beds", True, "Background music per mood section.", "both"),
+         _n("music_volume_db", "Music volume", 0.0, "Nudge the music beds up or down.", "render", -12, 6, 0.5, "dB",
+            requires="audio.music"),
+         _b("ducking", "Ducking under the voice", True, "Music and SFX dip while you talk. Off = constant level.",
+            "render"),
+         _b("overlay_audio", "Meme & green-screen audio", True, "Sound from meme cutaways and green-screen / video "
+            "overlays. Off = they play silent.", "render"),
+         _b("bleeps", "Bleeps", True, "Censor bleeps placed in the edit.", "render"),
+         _b("speech_gate", "Game noise gate", True, "Single-track recordings: pull game noise down between your "
+            "words.", "render"),
+     ]},
+    {"key": "memes", "label": "Memes & green screens", "icon": "☺",
+     "help": "Meme cutaways (full-screen clips) and keyed green-screen overlays.",
+     "settings": [
+         _b("cutaways", "Meme cutaways", True, "Short reaction clips cut into the timeline after a beat. Off at "
+            "render = they are removed from the timeline (the video gets shorter).", "both"),
+         _n("max_cutaways_per_min", "Max meme cutaways per minute", 1.5, "Planner budget.", "plan", 0, 4, 0.25,
+            "/min", requires="memes.cutaways"),
+         _b("greenscreens", "Green screens", True, "Keyed overlays (death, victory...).", "both"),
+         _n("max_greenscreens_per_min", "Max green screens per minute", 1.2, "Planner budget.", "plan", 0, 4, 0.1,
+            "/min", requires="memes.greenscreens"),
+         _off("disabled_placements", "Allowed green-screen placements", "Fullscreen = full-frame effects, corner = "
+              "small keyed clip in the corner.", "plan", ["fullscreen", "corner"], requires="memes.greenscreens"),
+         _b("favorites_only", "Only my favourite memes", False, "Memes and green screens only from starred assets.",
+            "plan"),
+     ]},
+    {"key": "camera", "label": "Camera & pacing", "icon": "⌖",
+     "help": "Zooms, shakes, freezes, montages and the cold open.",
+     "settings": [
+         _b("beat_zooms", "Beat zooms", True, "Punch-ins on beats (and hand-placed zooms at render).", "both"),
+         _b("engage_zooms", "Engagement zooms", True, "Auto zooms that keep something changing every few seconds "
+            "(1.0x/1.1x reframes across jump cuts, punch-ins on stressed words).", "both"),
+         _n("zoom_strength", "Zoom strength", 1.0, "Scales every zoom (1 = as planned, 0.5 = half as far).",
+            "render", 0.25, 1.5, 0.05, "×"),
+         _b("shakes", "Screen shakes", True, "Shake on panic / jumpscare / explosion beats.", "both"),
+         _b("freeze_frames", "Freeze frames", True, "Freeze on fails, deaths and the outro.", "both"),
+         _b("speed_montage", "Fast-forward montages", True, "\"Fast forward\" gaps become x4 speed montages instead "
+            "of being cut.", "plan"),
+         _b("cold_open", "Cold open", True, "Tease the strongest late beat first, then \"N MINUTES EARLIER\". Off "
+            "at render = the teaser segments and their time card are removed.", "both"),
+     ]},
+    {"key": "motion", "label": "Motion graphics", "icon": "✦", "master": "enabled",
+     "help": "Channel motion-graphics templates (HyperFrames).",
+     "settings": [
+         _b("enabled", "Motion graphics", True, "Master switch for every animated template overlay and card.",
+            "both"),
+         _b("title_card", "Intro title card", True, "Episode title card at the start.", "both"),
+         _b("time_card", "Time card", True, "\"3 MINUTES EARLIER\" after the cold open.", "both"),
+         _b("subscribe_cta", "Subscribe call-to-action", True, "Crodie subscribe CTA in a calm stretch.", "both"),
+         _b("advancement_toast", "Advancement toasts", True, "Minecraft \"Advancement made!\" on loot (diamonds).",
+            "both"),
+         _b("location_tag", "Location tags", True, "Place label when a named place is mentioned (the Nether...).",
+            "both"),
+         _b("boss_bar", "Boss bars", True, "Boss health bar when a boss is named.", "both"),
+         _off("disabled_templates", "Allowed templates", "Block any template from automatic use AND from rendering "
+              "(existing edits skip it with a warning).", "both", "templates"),
+     ]},
+    {"key": "brand", "label": "Brand", "icon": "◆",
+     "help": "Channel identity elements.",
+     "settings": [
+         _b("watermark", "Watermark / logo bug", True, "The channel logo (or @handle) in the corner.", "both"),
+         _b("avatar", "Narrator avatar", True, "Talking Crodie avatar in narration sections.", "render"),
+         _b("stickers", "Crodie sticker reactions", True, "Mascot emote pops on big beats (crying on a death...).",
+            "both"),
+     ]},
+    {"key": "editing", "label": "Cutting", "icon": "✂",
+     "help": "How the footage is cut.",
+     "settings": [
+         _b("cut_guard", "Cut guard (never clip words)", True, "Extends cuts to the real end of speech using the "
+            "audio.", "render"),
+         _b("cut_fades", "Cut fades", True, "12 ms audio fades on every cut (no clicks).", "render"),
+         _b("dead_air_removal", "Dead-air removal", True, "Cut silences out. Off = keep the whole recording.",
+            "plan"),
+         _n("max_gap_s", "Longest pause kept", 0.55, "Auto-edit: pauses longer than this are cut.", "plan", 0.2, 3,
+            0.05, "s", requires="editing.dead_air_removal"),
+     ]},
+    {"key": "shorts", "label": "Shorts", "icon": "▮",
+     "help": "9:16 shorts cut from the episode.",
+     "settings": [
+         _b("enabled", "Make shorts in one-click runs", True, "The one-click pipeline cuts shorts after the "
+            "episode.", "plan"),
+         _n("count", "Number of shorts", 3, "How many shorts to cut.", "plan", 1, 8, 1),
+         _n("min_s", "Shortest short", 12, "Minimum length.", "plan", 5, 60, 1, "s"),
+         _n("max_s", "Longest short", 45, "Maximum length.", "plan", 15, 60, 1, "s"),
+         _b("hook_banner", "Hook banner", True, "Headline pinned at the top for the first seconds.", "both"),
+     ]},
+]
+
+# motion templates the specific switches above control (render strips them too)
+TEMPLATE_SWITCH = {"title_card": "title_card", "time_card": "time_card", "crodie_subscribe": "subscribe_cta",
+                   "subscribe": "subscribe_cta", "advancement_toast": "advancement_toast",
+                   "location_tag": "location_tag", "boss_bar": "boss_bar", "hook_banner": None,
+                   "sticker_pop": None}
+
+
+def defaults() -> dict:
+    return {sec["key"]: {s["key"]: copy.deepcopy(s["default"]) for s in sec["settings"]} for sec in SCHEMA}
+
+
+def _spec(section: str, key: str) -> dict | None:
+    sec = next((s for s in SCHEMA if s["key"] == section), None)
+    return next((s for s in sec["settings"] if s["key"] == key), None) if sec else None
+
+
+# ------------------------------------------------------------------ dynamic option lists
+def _read(p: Path, default=None):
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return default
+
+
+def options(kind: str) -> list[dict]:
+    if kind.startswith("looks"):
+        looks = _read(STUDIO / "looks.json", {})
+        out = [{"value": k, "label": v.get("label", k), "help": v.get("about", "")}
+               for k, v in looks.items() if not k.startswith("_")]
+        return ([{"value": "", "label": "Inherit (style.json)"}] if kind.endswith("+inherit") else []) + out
+    if kind == "modes":
+        modes = _read(STUDIO / "modes.json", {})
+        return [{"value": k, "label": v.get("label", k), "color": v.get("color")}
+                for k, v in modes.items() if not k.startswith("_") and k != "funny"]   # funny = the fallback
+    if kind == "templates":
+        out = []
+        tdir = STUDIO / "motion" / "templates"
+        for d in sorted(tdir.iterdir()) if tdir.exists() else []:
+            t = _read(d / "template.json")
+            if t is not None:
+                out.append({"value": d.name, "label": d.name, "help": t.get("description", ""),
+                            "poster": f"/media/studio/motion/previews/{d.name}.jpg"
+                            if (STUDIO / "motion" / "previews" / f"{d.name}.jpg").exists() else None})
+        return out
+    return []
+
+
+def schema() -> dict:
+    """SCHEMA with dynamic option lists resolved, plus the defaults (for the UI)."""
+    secs = copy.deepcopy(SCHEMA)
+    for sec in secs:
+        for s in sec["settings"]:
+            s["path"] = f"{sec['key']}.{s['key']}"
+            if isinstance(s.get("options"), str):
+                s["options"] = options(s["options"])
+            elif isinstance(s.get("options"), list) and s["options"] and isinstance(s["options"][0], str):
+                s["options"] = [{"value": o, "label": o.replace("_", " ")} for o in s["options"]]
+    return {"sections": secs, "defaults": defaults()}
+
+
+# ------------------------------------------------------------------ load / save
+def deep_merge(a: dict, b: dict) -> dict:
+    out = dict(a)
+    for k, v in (b or {}).items():
+        if v is None:                                      # null = inherit
+            continue
+        out[k] = deep_merge(out[k], v) if isinstance(v, dict) and isinstance(out.get(k), dict) else v
+    return out
+
+
+def project_file(slug: str) -> Path:
+    return PROJECTS / slug / "settings.json"
+
+
+DOC = ("Feature switches for the auto-editor and renderer. Edit in the UI (Settings page), with `mcs settings set "
+       "<section.key> <value>`, or by hand. Per-episode overrides live in projects/<slug>/settings.json. Schema, "
+       "labels and help: mcstudio/settings.py (SCHEMA).")
+
+
+def read_global() -> dict:
+    d = _read(GLOBAL_FILE, {}) or {}
+    return {k: v for k, v in d.items() if not k.startswith("_") and isinstance(v, dict)}
+
+
+def read_project(slug: str) -> dict:
+    return _read(project_file(slug), {}) or {}
+
+
+def global_settings() -> dict:
+    return deep_merge(defaults(), read_global())
+
+
+def load(slug: str | None = None) -> dict:
+    S = global_settings()
+    if slug:
+        pj = _read(PROJECTS / slug / "project.json", {}) or {}
+        parent = pj.get("parent")
+        if parent and parent != slug:                    # shorts inherit their episode's overrides
+            S = deep_merge(S, read_project(parent))
+        S = deep_merge(S, read_project(slug))
+    return S
+
+
+def coerce(path: str, value):
+    """Validate / convert one value against the schema. Raises ValueError."""
+    section, _, key = path.partition(".")
+    spec = _spec(section, key)
+    if not spec:
+        raise ValueError(f"unknown setting {path!r}")
+    if value is None:
+        return None
+    t = spec["type"]
+    if t == "bool":
+        if isinstance(value, str):
+            v = value.strip().lower()
+            if v in ("1", "true", "on", "yes"):
+                return True
+            if v in ("0", "false", "off", "no"):
+                return False
+            raise ValueError(f"{path}: expected on/off, got {value!r}")
+        return bool(value)
+    if t == "number":
+        try:
+            x = float(value)
+        except (TypeError, ValueError):
+            raise ValueError(f"{path}: expected a number, got {value!r}") from None
+        x = max(spec["min"], min(spec["max"], x))
+        return int(x) if float(spec["step"]).is_integer() and x.is_integer() else round(x, 4)
+    if t == "select":
+        opts = spec["options"]
+        allowed = [o["value"] for o in options(opts)] if isinstance(opts, str) else opts
+        if value not in allowed:
+            raise ValueError(f"{path}: {value!r} not in {allowed}")
+        return value
+    if t == "multi":
+        if isinstance(value, str):
+            value = [v.strip() for v in value.split(",") if v.strip()]
+        if not isinstance(value, list):
+            raise ValueError(f"{path}: expected a list")
+        return sorted(dict.fromkeys(str(v) for v in value))
+    return value
+
+
+def _clean_patch(patch: dict) -> dict:
+    out: dict = {}
+    for section, vals in (patch or {}).items():
+        if not isinstance(vals, dict):
+            raise ValueError(f"section {section!r} must be an object")
+        for key, value in vals.items():
+            out.setdefault(section, {})[key] = coerce(f"{section}.{key}", value)
+    return out
+
+
+def _write(p: Path, data: dict) -> None:
+    data = {s: v for s, v in data.items() if v}
+    if not data:
+        if p.exists():
+            p.unlink()
+        return
+    p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def write_global(S: dict) -> None:
+    """settings.json always holds the COMPLETE global settings (easy to read and hand-edit)."""
+    d = defaults()
+    full = {sec: {k: S.get(sec, {}).get(k, v) for k, v in keys.items()} for sec, keys in d.items()}
+    GLOBAL_FILE.write_text(json.dumps({"_doc": DOC, **full}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def save_global(patch: dict) -> dict:
+    """Merge a {section: {key: value}} patch into settings.json; null resets a key to its default."""
+    S, d = global_settings(), defaults()
+    for section, vals in _clean_patch(patch).items():
+        for key, value in vals.items():
+            S[section][key] = d[section][key] if value is None else value
+    write_global(S)
+    return global_settings()
+
+
+def save_project(slug: str, patch: dict) -> dict:
+    """Per-episode overrides: only changed keys are stored; null removes the override (inherit)."""
+    if not (PROJECTS / slug).is_dir():
+        raise ValueError(f"unknown project {slug!r}")
+    cur = read_project(slug)
+    for section, vals in _clean_patch(patch).items():
+        for key, value in vals.items():
+            sec = cur.setdefault(section, {})
+            if value is None:
+                sec.pop(key, None)
+            else:
+                sec[key] = value
+    _write(project_file(slug), cur)
+    return load(slug)
+
+
+def reset_global(section: str | None = None) -> dict:
+    S = global_settings()
+    if section:
+        S[section] = defaults()[section]
+    else:
+        S = defaults()
+    write_global(S)
+    return global_settings()
+
+
+def reset_project(slug: str, section: str | None = None) -> dict:
+    cur = read_project(slug)
+    if section:
+        cur.pop(section, None)
+    else:
+        cur = {}
+    _write(project_file(slug), cur)
+    return load(slug)
+
+
+# ------------------------------------------------------------------ helpers used by the planner / renderer
+def template_ok(S: dict, name: str | None) -> bool:
+    """May this motion template be used / rendered?"""
+    if not name:
+        return True
+    mo = S["motion"]
+    if not mo["enabled"] or name in mo["disabled_templates"]:
+        return False
+    sw = TEMPLATE_SWITCH.get(name)
+    if sw and not mo.get(sw, True):
+        return False
+    if name == "sticker_pop" and not S["brand"]["stickers"]:
+        return False
+    if name == "hook_banner" and not S["shorts"]["hook_banner"]:
+        return False
+    return True
+
+
+def role_ok(S: dict, roles) -> bool:
+    return not (set(roles or []) & set(S["audio"]["disabled_sfx_roles"]))
+
+
+def mode_ok(S: dict, mode: str | None) -> bool:
+    return not mode or mode == "funny" or mode not in S["modes"]["disabled_modes"]
+
+
+GAG_RX = re.compile(r"^[A-Z0-9']+ X\d+$")
+
+
+def text_kind(t: dict) -> str:
+    """speed | gag | pop: classify an EDL text event so its switch can remove it from existing edits."""
+    s = str(t.get("text", ""))
+    if t.get("style") == "label" and "SPEED" in s.upper():
+        return "speed"
+    if GAG_RX.match(s.upper()) and t.get("style") == "minecraft":
+        return "gag"
+    return "pop"
+
+
+def apply_render(edl: dict, S: dict, asset_lookup=None) -> list[str]:
+    """Render-time kill switches. Mutates `edl` (the in-memory copy the renderer just loaded) and returns notes for
+    the render report. Segment removal (cutaways, cards, cold open) happens here, BEFORE spans are built, so all
+    timing stays consistent; events anchored to a removed segment are dropped with it."""
+    notes: list[str] = []
+    L, M, C, Au, Me, Ca, Br, Ed = (S[k] for k in ("looks", "modes", "captions", "audio", "memes", "camera",
+                                                  "brand", "editing"))
+    count: dict[str, int] = {}
+
+    def note(k: str, n: int = 1):
+        count[k] = count.get(k, 0) + n
+
+    # ---- segments that leave the timeline
+    removed: set[str] = set()
+    keep = []
+    for s in edl["segments"]:
+        t = s.get("type", "source")
+        why = None
+        if t == "cutaway" and not Me["cutaways"]:
+            why = "meme cutaway"
+        elif t == "card" and s.get("template") and not template_ok(S, s["template"]):
+            why = f"card {s['template']}"
+        elif str(s.get("id", "")).startswith("cold") and not Ca["cold_open"]:
+            why = "cold-open segment"
+        if why:
+            note(f"removed {why}")
+            if s.get("id"):
+                removed.add(s["id"])
+            elif t != "source":
+                notes.append(f"removed an id-less {why}: events anchored by output time ('at') after it shift earlier")
+            continue
+        keep.append(s)
+    if not keep:
+        notes.append("settings would remove every segment - kept the timeline as is")
+        keep, removed = edl["segments"], set()
+    edl["segments"] = keep
+    first_main = next((s.get("id") for s in keep if not str(s.get("id", "")).startswith("cold")), None)
+
+    def anchored_out(ev: dict) -> bool:
+        return ev.get("seg") in removed
+
+    base = edl.get("mode") or "funny"
+    if not mode_ok(S, base):
+        notes.append(f"base mood {base!r} is switched off - using funny")
+        edl["mode"] = base = "funny"
+
+    # ---- per-segment switches
+    for s in keep:
+        if s.get("mode") and not mode_ok(S, s["mode"]):
+            note(f"mood {s['mode']} -> {base}")
+            s["mode"] = base
+        fx = []
+        for e in s.get("effects", []):
+            if e == "brighten":
+                ok = L["enabled"] and L["brighten_dark"]
+            else:
+                ok = L["enabled"] and L["effects"] and e not in L["disabled_effects"]
+            if ok:
+                fx.append(e)
+            else:
+                note(f"effect {e} off")
+        if "effects" in s:
+            s["effects"] = fx
+        if s.get("zoom"):
+            z2 = []
+            for z in s["zoom"]:
+                if z.get("auto") and not Ca["engage_zooms"]:
+                    note("engagement zoom off")
+                    continue
+                if not z.get("auto") and not Ca["beat_zooms"]:
+                    note("beat zoom off")
+                    continue
+                if Ca["zoom_strength"] != 1.0:
+                    z = {**z, "to": round(1 + (z.get("to", 1.3) - 1) * Ca["zoom_strength"], 4)}
+                z2.append(z)
+            s["zoom"] = z2
+        if s.get("shake") and not Ca["shakes"]:
+            note("shake off", len(s["shake"]))
+            s["shake"] = []
+        if s.get("freeze_end") and not Ca["freeze_frames"]:
+            note("freeze frame off")
+            s.pop("freeze_end")
+        if s.get("type") == "cutaway" and not Au["overlay_audio"]:
+            s["mute"] = True
+        if not Br["avatar"]:
+            s.pop("avatar", None)
+
+    # ---- overlays
+    ovs = []
+    for o in edl.get("overlays", []):
+        if anchored_out(o):
+            continue
+        if o.get("type") == "greenscreen" and not Me["greenscreens"]:
+            note("green screen off")
+            continue
+        if o.get("template") and not template_ok(S, o["template"]):
+            note(f"template {o['template']} off")
+            continue
+        if o.get("type") in ("greenscreen", "video") and not Au["overlay_audio"]:
+            o = {**o, "audio": False}
+        ovs.append(o)
+    if not Ca["cold_open"] and removed:
+        # the "N MINUTES EARLIER" card + rewind whoosh sit on the first main segment at rel 0
+        ovs = [o for o in ovs if not (o.get("template") == "time_card" and o.get("seg") == first_main)]
+    if "overlays" in edl:
+        edl["overlays"] = ovs
+
+    # ---- text
+    texts, gag_keys = [], set()
+    for t in edl.get("text", []):
+        if anchored_out(t):
+            continue
+        k = text_kind(t)
+        on = {"speed": C["speed_labels"], "gag": C["running_gags"], "pop": C["text_pops"]}[k]
+        if not on:
+            note(f"{'text pop' if k == 'pop' else k + ' label' if k == 'speed' else 'running-gag counter'} off")
+            if k == "gag":
+                gag_keys.add((t.get("seg"), t.get("src_at")))
+            continue
+        texts.append(t)
+    if "text" in edl:
+        edl["text"] = texts
+
+    # ---- audio
+    aud = edl.setdefault("audio", {})
+    sfx = []
+    for ev in aud.get("sfx", []):
+        if anchored_out(ev):
+            continue
+        if not Au["sfx"]:
+            note("sfx off")
+            continue
+        if gag_keys and ev.get("asset") == "sfx_ui.pop" and (ev.get("seg"), ev.get("src_at")) in gag_keys:
+            continue
+        a = None
+        if asset_lookup and ev.get("asset") and Au["disabled_sfx_roles"]:
+            a = asset_lookup(ev["asset"])
+        if a and not role_ok(S, a.get("roles")):
+            note("sfx type off")
+            continue
+        if not Ca["cold_open"] and removed and ev.get("seg") == first_main and ev.get("rel") == 0.0:
+            continue                                    # the cold open's rewind whoosh
+        if Au["sfx_volume_db"]:
+            ev = {**ev, "volume_db": round(ev.get("volume_db", 0) + Au["sfx_volume_db"], 2)}
+        sfx.append(ev)
+    aud["sfx"] = sfx
+    music = []
+    for m in aud.get("music", []):
+        if anchored_out(m):
+            continue
+        if not Au["music"]:
+            note("music bed off")
+            continue
+        if Au["music_volume_db"]:
+            m = {**m, "volume_db": round(m.get("volume_db", 0) + Au["music_volume_db"], 2)}
+        if not Au["ducking"]:
+            m = {**m, "duck": False}
+        music.append(m)
+    aud["music"] = music
+    if not Au["bleeps"] and aud.get("bleeps"):
+        note("bleep off", len(aud["bleeps"]))
+        aud["bleeps"] = []
+    else:
+        aud["bleeps"] = [b for b in aud.get("bleeps", []) if not anchored_out(b)]
+
+    # ---- captions / brand / cutting
+    cap = edl.setdefault("captions", {})
+    if not C["enabled"]:
+        cap["enabled"] = False
+    if not C["emphasis"]:
+        cap["emphasis_words"] = []
+    cap["hide"] = [h for h in cap.get("hide", []) if not anchored_out(h)]
+    if not Br["watermark"] and edl.pop("watermark", None):
+        note("watermark off")
+    if not Br["avatar"] and isinstance(edl.get("avatar"), dict):
+        edl["avatar"] = {**edl["avatar"], "always": False}
+    if not Ed["cut_guard"]:
+        edl["guard_cuts"] = False
+    shorts = edl.get("shorts")
+    if shorts and removed:
+        edl["shorts"] = [x for x in shorts if x.get("from") not in removed and x.get("to") not in removed]
+
+    notes += [f"settings: {k}" + (f" (x{n})" if n > 1 else "") for k, n in sorted(count.items())]
+    return notes
+
+
+def apply_modes(modes: dict, S: dict) -> dict:
+    """Mood definitions with switched-off features stripped (used by the renderer and captions)."""
+    out = copy.deepcopy(modes)
+    for k, m in out.items():
+        if k.startswith("_") or not isinstance(m, dict):
+            continue
+        if not S["looks"]["enabled"] or not S["looks"]["mode_looks"]:
+            m["grade"] = ""
+        if not S["modes"]["letterbox"]:
+            m["letterbox"] = False
+        if not S["captions"]["pov_header"]:
+            m.pop("header", None)
+        if not S["brand"]["avatar"]:
+            m["avatar_on"] = False
+    return out
+
+
+# ------------------------------------------------------------------ CLI:  mcs settings show|set|reset
+def flat(S: dict) -> dict:
+    return {f"{s}.{k}": v for s, sec in S.items() for k, v in sec.items()}
+
+
+def cli(argv: list[str]) -> None:
+    import argparse
+    ap = argparse.ArgumentParser(prog="mcs settings", description="Feature switches (studio/settings.json; "
+                                 "per-episode overrides with --slug).")
+    sub = ap.add_subparsers(dest="action", required=True)
+    p = sub.add_parser("show")
+    p.add_argument("--slug")
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--changed", action="store_true", help="only settings that differ from the defaults")
+    p = sub.add_parser("set")
+    p.add_argument("key", help="dotted key, e.g. looks.enabled")
+    p.add_argument("value", help="on/off, a number, a choice, a comma list, or 'inherit' / 'default'")
+    p.add_argument("--slug")
+    p = sub.add_parser("reset")
+    p.add_argument("section", nargs="?")
+    p.add_argument("--slug")
+    a = ap.parse_args(argv)
+    if a.action == "show":
+        S = load(a.slug)
+        if a.json:
+            print(json.dumps(S, indent=2))
+            return
+        d = flat(defaults())
+        ov = flat({s: v for s, v in read_project(a.slug).items()}) if a.slug else {}
+        for k, v in flat(S).items():
+            if a.changed and v == d[k]:
+                continue
+            mark = " (episode)" if k in ov else (" *" if v != d[k] else "")
+            print(f"  {k:<34} {json.dumps(v)}{mark}")
+        return
+    if a.action == "set":
+        section, _, key = a.key.partition(".")
+        if not _spec(section, key):
+            raise SystemExit(f"unknown setting {a.key!r} (see: mcs settings show)")
+        raw = a.value
+        if raw.lower() in ("inherit", "default", "null"):
+            value = None
+        else:
+            try:
+                value = json.loads(raw)
+            except ValueError:
+                value = raw
+            if _spec(section, key)["type"] == "multi" and isinstance(value, str):
+                value = [v for v in value.split(",") if v]
+        try:
+            S = save_project(a.slug, {section: {key: value}}) if a.slug else save_global({section: {key: value}})
+        except ValueError as e:
+            raise SystemExit(str(e)) from None
+        print(f"{a.key} = {json.dumps(S[section][key])}" + (f"  (episode {a.slug})" if a.slug else ""))
+        return
+    if a.action == "reset":
+        if a.slug:
+            reset_project(a.slug, a.section)
+        else:
+            reset_global(a.section)
+        print(f"reset {a.section or 'all'}" + (f" for {a.slug}" if a.slug else ""))

@@ -1,0 +1,304 @@
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+    print(x['id'],'|',x.get('rel') or x.get('path') or x.get('name'),'|',x.get('duration_s'),au.get('punch_db'))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edmem\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u266b' in position 113: character maps to <undefined>
+<class 'dict'> 3
+{"id": "sfx_meme.2-hours-later-sound-sr", "path": "_Incoming/Meme Pack/Meme Sound Effects/2 Hours Later - Sound - SR.mp3", "title": "2 Hours Later - Sound - SR", "kind": "audio", "duration_s": 2.501, "has_audio": true, "audio": {"onset_s": 0.48, "peak_s": 0.6, "tail_s": 2.22, "loud_db": -15.4, "punch_db": 7.3}}
+sfx_meme.2-hours-later-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/2 Hours Later - Sound - SR.mp3 | 2.501 7.3
+sfx_meme.a-few-moments-later-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/A Few Moments Later - Sound - SR.mp3 | 2.141 7.1
+sfx_meme.alert-mgs-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/ALERT MGS - Sound - SR.mp3 | 1.733 19.0
+sfx_meme.air-horn-djair-horn-funnyair-horn-air-horn | _Incoming/Meme Pack/Meme Sound Effects/Air horn sound effect djair horn sound effect funnyair horn sound effectair horn sound effect.mp3 | 3.931 2.4
+sfx_meme.alarm-alarm-sound-wake-up-iphonealarm-sound-iphonealarm-soun | _Incoming/Meme Pack/Meme Sound Effects/Alarm sound effectalarm sound wake up iphonealarm sound iphonealarm sound wake upalarm sound fir.mp3 | 4.872 11.2
+sfx_meme.ambulance-siren | _Incoming/Meme Pack/Meme Sound Effects/Ambulance siren sound effect.mp3 | 10.358 6.1
+sfx_meme.among-us-all-vote-out-typing | _Incoming/Meme Pack/Meme Sound Effects/Among Us (All Vote Out Typing) - Sound Effect (HD).mp3 | 2.103 4.1
+sfx_meme.among-us | _Incoming/Meme Pack/Meme Sound Effects/Among Us.wav | 72.574 1.9
+sfx_meme.among-us-sus | _Incoming/Meme Pack/Meme Sound Effects/Among us Sus.mp3 | 5.457 3.5
+sfx_meme.animal-crossing | _Incoming/Meme Pack/Meme Sound Effects/Animal Crossing.mp3 | 156.479 40.9
+sfx_meme.anime-wow-anime-wow-downloadjapanese-anime-wow-anime-wow-ori | _Incoming/Meme Pack/Meme Sound Effects/Anime wow sound effectanime wow sound effect downloadJapanese anime wow sound effectanime wow ori.mp3 | 4.245 11.5
+sfx_meme.anvil | _Incoming/Meme Pack/Meme Sound Effects/Anvil.mp3 | 8.4 26.6
+sfx_meme.are-you-serious-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Are you Serious - Sound - SR.mp3 | 8.885 23.8
+sfx_meme.aww | _Incoming/Meme Pack/Meme Sound Effects/Aww Sound Effect.mp3 | 1.834 10.0
+sfx_meme.bruh-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/BRUH - Sound - SR.mp3 | 1.085 4.6
+sfx_meme.ba-dun-dun-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Ba Dun Dun - Sound - SR.mp3 | 1.061 2.5
+sfx_meme.ba-dun-tsss-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Ba Dun TSSS - Sound - SR.mp3 | 2.117 27.6
+sfx_meme.badum-tss-badum-badum-badumbadum-tssbadum-tss-no-copyrightba | _Incoming/Meme Pack/Meme Sound Effects/Badum tss sound effectbadum badum badumbadum tssbadum tss sound effect no copyrightbadum tss.mp3 | 2.207 27.8
+sfx_meme.banana-peel-slip | _Incoming/Meme Pack/Meme Sound Effects/Banana peel slip-sound effect.mp3 | 2.181 8.8
+sfx_meme.bell-bell-dingbell-youtuber-usebell-for-free | _Incoming/Meme Pack/Meme Sound Effects/Bell sound effectbell sound effect dingbell sound effect youtuber usebell sound effect for free.mp3 | 1.816 7.3
+sfx_meme.bing-bing-bang | _Incoming/Meme Pack/Meme Sound Effects/Bing bing bang.mp3 | 8.661 6.7
+sfx_meme.birds-birds-in-the-morningbirds-no-copyrightbirds-sound | _Incoming/Meme Pack/Meme Sound Effects/Birds sound effectbirds sound effect in the morningbirds sound effect no copyrightbirds sound.mp3 | 4.793 16.1
+sfx_meme.bomb-timer-bomb-timer-soundbomb-timer-ringtonebomb-timer-fre | _Incoming/Meme Pack/Meme Sound Effects/Bomb timer sound effectBomb timer soundBomb timer ringtoneBomb timer free fire.mp3 | 11.272 4.7
+sfx_meme.bone-crack | _Incoming/Meme Pack/Meme Sound Effects/Bone Crack.mp3 | 1.656 27.9
+sfx_meme.bone-cracking-loud-bone-cracking-finger-bone-cracking | _Incoming/Meme Pack/Meme Sound Effects/Bone cracking sound effectloud bone cracking sound effectfinger bone cracking sound effect.mp3 | 2.103 21.2
+sfx_meme.burp-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Burp - Sound - SR.mp3 | 1.661 5.3
+sfx_meme.burp-loud-burp-longest-burp-long-burp-big-burp | _Incoming/Meme Pack/Meme Sound Effects/Burp sound effectloud burp sound effectlongest burp sound effectlong burp sound effectbig burp.mp3 | 1.972 17.8
+sfx_meme.buzzer-wrong-answer-buzzer-wrong-answer-buzzer-wrong-answer | _Incoming/Meme Pack/Meme Sound Effects/Buzzer wrong answer - gaming sound effect(hd)buzzer wrong answer sound effectbuzzer wrong answer.mp3 | 2.129 1.8
+sfx_meme.camera-shutter-camera-shutter-soundcamera-shuttercamera-shut | _Incoming/Meme Pack/Meme Sound Effects/Camera shutter sound effectcamera shutter soundcamera shuttercamera shutter sound effect free.mp3 | 1.502 6.3
+sfx_meme.cartoon-running-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Cartoon Running - Sound - SR.mp3 | 3.389 6.1
+sfx_meme.cartoon-running~2 | _Incoming/Meme Pack/Meme Sound Effects/Cartoon Running - Sound Effect (HD).mp3 | 1.789 7.1
+sfx_meme.cartoon-whistle | _Incoming/Meme Pack/Meme Sound Effects/Cartoon Whistle - sound effect (HD).mp3 | 7.484 2.1
+sfx_meme.cartoon-accent-cartoon-ascent-no-copyrightcartoon-accent-fre | _Incoming/Meme Pack/Meme Sound Effects/Cartoon accent sound effectcartoon ascent sound effect no copyrightcartoon accent sound effectfree.mp3 | 1.633 6.3
+sfx_meme.cartoon-dizzy-birds | _Incoming/Meme Pack/Meme Sound Effects/Cartoon dizzy birds sound effect.mp3 | 4.114 21.8
+sfx_meme.cartoon-elephant-selephant-voice-soundelephant-soundelephant | _Incoming/Meme Pack/Meme Sound Effects/Cartoon elephant sound effectselephant voice soundelephant soundelephant sound trumpetelephant.mp3 | 7.667 4.2
+sfx_meme.cartoon-fart-fart | _Incoming/Meme Pack/Meme Sound Effects/Cartoon fart sound effectFart sound effect.mp3 | 2.625 6.9
+sfx_meme.cartoon-slip-2-cartoon-slip-2-downloadcartoon-slip-2-free | _Incoming/Meme Pack/Meme Sound Effects/Cartoon slip 2 sound effectcartoon slip 2 sound effect downloadcartoon slip 2 sound effect free.mp3 | 2.077 9.0
+sfx_meme.cartoon-splat | _Incoming/Meme Pack/Meme Sound Effects/Cartoon splat sound effect.mp3 | 2.024 17.0
+sfx_meme.cartoon-spring-boing-1cartoon-spring-free-downloadcartoon-sp | _Incoming/Meme Pack/Meme Sound Effects/Cartoon spring boing sound effect 1cartoon spring sound effect free downloadcartoon spring bounce.mp3 | 1.267 12.7
+sfx_meme.cartoon-spring-boing-2cartoon-spring-free-downloadcartoon-sp | _Incoming/Meme Pack/Meme Sound Effects/Cartoon spring boing sound effect 2cartoon spring sound effect free downloadcartoon spring bounce.mp3 | 1.11 10.3
+sfx_meme.cartoon-stretch-cartoon-rubber-stretch | _Incoming/Meme Pack/Meme Sound Effects/Cartoon stretch sound effectcartoon rubber stretch sound effect.mp3 | 5.055 8.1
+sfx_meme.cartoon-teeth-chattering-cold-teeth-chattering-teeth-chatter | _Incoming/Meme Pack/Meme Sound Effects/Cartoon teeth chattering sound effectcold teeth chattering sound effectteeth chattering sound.mp3 | 6.596 22.6
+sfx_meme.cash-register-kaching | _Incoming/Meme Pack/Meme Sound Effects/Cash Register (Kaching) - Sound Effect (HD).mp3 | 3.088 14.4
+sfx_meme.cat-meowing-cat-meowing-happycat-meowing-loudmeow-sound | _Incoming/Meme Pack/Meme Sound Effects/Cat meowing sound effectCat meowing sound effect happyCat meowing sound effect loudMeow sound.mp3 | 28.46 81.9
+sfx_meme.censor-beep-loud-censor-beep-free-censor-beep-censor-beep | _Incoming/Meme Pack/Meme Sound Effects/Censor beep sound effectloud censor beep sound effectfree censor beep sound effectcensor beep.mp3 | 4.898 21.3
+sfx_meme.children-yay-children-yay-fullsoundeffects | _Incoming/Meme Pack/Meme Sound Effects/Children yay sound effectchildren yay@fullsoundeffects.mp3 | 4.01 6.4
+sfx_meme.chomp | _Incoming/Meme Pack/Meme Sound Effects/Chomp.mp3 | 1.776 7.3
+sfx_meme.clapping-audience-clapping-clapping-soundcrowd-clapping | _Incoming/Meme Pack/Meme Sound Effects/Clapping sound effectaudience clapping sound effectclapping soundcrowd clapping sound effect.mp3 | 4.062 10.7
+sfx_meme.clash-royal-laugh | _Incoming/Meme Pack/Meme Sound Effects/Clash royal laugh.mp3 | 1.95 1.5
+sfx_meme.climax-climax-no-copyrightclimax-2climax-mp3 | _Incoming/Meme Pack/Meme Sound Effects/Climax sound effectclimax sound effect no copyrightclimax sound effect 2climax sound effect mp3.mp3 | 1.345 14.8
+sfx_meme.cocking-gun-cocking-gun-free-downloadgun-cocking-for-edits | _Incoming/Meme Pack/Meme Sound Effects/Cocking gun sound effectCocking gun sound effect free downloadgun cocking sound effect for edits.mp3 | 3.827 19.1
+sfx_meme.coin-insert-coin-insert-coin-lpbinsert-coin | _Incoming/Meme Pack/Meme Sound Effects/Coin insert sound effectCoin sound effectInsert coin sound effect lpbInsert coin sound effect.mp3 | 8.66 25.9
+sfx_meme.crickets-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Crickets - Sound - SR.mp3 | 9.509 15.5
+sfx_meme.crowd-clapping-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Crowd Clapping - Sound - SR.mp3 | 9.149 9.0
+sfx_meme.crowd-hype-up-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Crowd Hype Up - Sound - SR.mp3 | 9.485 5.7
+sfx_meme.crowd-laughing-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Crowd Laughing - Sound - SR.mp3 | 9.389 13.9
+sfx_meme.crowd-laughing-crowd-laughing-no-copyrightcrowd-laughingsmal | _Incoming/Meme Pack/Meme Sound Effects/Crowd laughing sound effectcrowd laughing sound effect no copyrightcrowd laughingsmall crowd.mp3 | 9.6 13.9
+sfx_meme.crowd-talking-large-crowd-talking-crowd-talking-no-copyright | _Incoming/Meme Pack/Meme Sound Effects/Crowd talking sound effectlarge crowd talking sound effectcrowd talking sound effect no copyright.mp3 | 5.76 7.1
+sfx_meme.dark-souls | _Incoming/Meme Pack/Meme Sound Effects/Dark Souls.mp3 | 7.082 5.7
+sfx_meme.dial-up-internet-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Dial Up Internet - Sound - SR.mp3 | 2.381 3.9
+sfx_meme.diarrea | _Incoming/Meme Pack/Meme Sound Effects/Diarrea.mp3 | 1.95 7.2
+sfx_meme.dinosaur-man-scream-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Dinosaur Man Scream - Sound - SR.mp3 | 5.117 4.3
+sfx_meme.discord-connect | _Incoming/Meme Pack/Meme Sound Effects/Discord Connect.mp3 | 1.277 15.6
+sfx_meme.discord-notification | _Incoming/Meme Pack/Meme Sound Effects/Discord Notification.mp3 | 0.511 10.4
+sfx_meme.discord-disconnect | _Incoming/Meme Pack/Meme Sound Effects/Discord disconnect.mp3 | 1.207 11.3
+sfx_meme.discord-ping-discord-notification-sounddiscord-join-sounddis | _Incoming/Meme Pack/Meme Sound Effects/Discord ping sound effectdiscord notification sounddiscord join sounddiscord sounddiscord leave.mp3 | 1.11 9.8
+sfx_meme.distorted-windows-startup-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Distorted Windows Startup - Sound - SR.mp3 | 4.445 3.5
+sfx_meme.distortion-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Distortion - Sound - SR.mp3 | 4.205 3.8
+sfx_meme.dolphins-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Dolphins - Sound - SR.mp3 | 2.069 8.0
+sfx_meme.door-bell-doorbell-soundring-doorbell-soundringing-doorbell- | _Incoming/Meme Pack/Meme Sound Effects/Door bell sound effectDoorbell soundRing doorbell soundRinging doorbell sound effectding dong.mp3 | 8.529 14.5
+sfx_meme.dramatic-fart-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Dramatic Fart - Sound - SR.mp3 | 15.149 19.3
+sfx_meme.drum-roll-and-the-winner-is-drum-roll-bass-drum-roll-snare | _Incoming/Meme Pack/Meme Sound Effects/Drum roll sound effectand the winner is drum roll sound effectbass drum roll sound effectsnare.mp3 | 5.473 13.5
+sfx_meme.drumroll-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Drumroll - Sound - SR.mp3 | 5.021 12.6
+sfx_meme.drumroll | _Incoming/Meme Pack/Meme Sound Effects/Drumroll.mp3 | 7.656 11.9
+sfx_meme.duck-toy-squeaky-dog-toy-duck-toy-squeaky-dog-toy-download-s | _Incoming/Meme Pack/Meme Sound Effects/Duck toy squeaky dog toy sound effectduck toy squeaky dog toy sound effect (download)squeaky duck.mp3 | 1.711 10.0
+sfx_meme.easy-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/EASY - Sound - SR.mp3 | 1.781 8.9
+sfx_meme.explosion-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Explosion - Sound - SR.mp3 | 2.909 7.2
+sfx_meme.fbi-open-up-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/FBI Open Up - Sound - SR.mp3 | 2.381 9.5
+sfx_meme.fnaf-2 | _Incoming/Meme Pack/Meme Sound Effects/FNAF (2).mp3 | 7.872 10.0
+sfx_meme.fnaf | _Incoming/Meme Pack/Meme Sound Effects/FNAF.mp3 | 8.638 15.3
+sfx_meme.fairy-dust-fairy-dust-no-copyrightfairy-dust-imovie | _Incoming/Meme Pack/Meme Sound Effects/Fairy dust sound effectFairy dust sound effect no copyrightfairy dust sound effect imovie.mp3 | 16.157 22.2
+sfx_meme.falcon-punch-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Falcon Punch - Sound - SR.mp3 | 2.165 9.8
+sfx_meme.famous-guy-yelp-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Famous Guy Yelp - Sound - SR.mp3 | 1.589 4.6
+sfx_meme.fanfare-victory | _Incoming/Meme Pack/Meme Sound Effects/Fanfare victory sound effect.mp3 | 9.835 4.5
+sfx_meme.fast-forward-vhs-fast-forward-tape-fast-forward-funny-sound | _Incoming/Meme Pack/Meme Sound Effects/Fast forward sound effectvhs fast forward sound effecttape fast forward sound effectfunny sound.mp3 | 3.905 4.5
+sfx_meme.fatality-mk-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Fatality MK - Sound - SR.mp3 | 1.997 11.3
+sfx_meme.female-scream | _Incoming/Meme Pack/Meme Sound Effects/Female Scream.mp3 | 19.598 16.2
+sfx_meme.fire-burning-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Fire Burning - Sound - SR.mp3 | 10.181 15.5
+sfx_meme.footsteps-running-footsteps-warzone-footsteps-cod-footsteps | _Incoming/Meme Pack/Meme Sound Effects/Footsteps sound effectrunning footsteps sound effectwarzone footsteps sound effectcod footsteps.mp3 | 8.973 33.9
+sfx_meme.funny-drum-funny-drum-soundfunny-drum-sound-downloadfunny-dr | _Incoming/Meme Pack/Meme Sound Effects/Funny drum sound effectfunny drum soundfunny drum sound downloadfunny drum roll sound effect.mp3 | 1.737 16.8
+sfx_meme.funny-gun-troll-pew-pew-pew-trrra-trrra | _Incoming/Meme Pack/Meme Sound Effects/Funny gun troll (Pew Pew Pew! Trrra Trrra) -Sound Effect.mp3 | 18.978 80.7
+sfx_meme.funny-horn-funny-horn-soundfunny-hornsfunny-horn-ringtonefun | _Incoming/Meme Pack/Meme Sound Effects/Funny horn sound effectfunny horn soundfunny hornsfunny horn ringtonefunny horn videofunny horn.mp3 | 1.58 14.8
+sfx_meme.got-em-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/GOT EM - Sound - SR.mp3 | 6.485 19.0
+sfx_meme.gta-san-andreas-mission-passed | _Incoming/Meme Pack/Meme Sound Effects/GTA San Andreas Mission Passed - Sound Effect (HD).mp3 | 7.745 10.1
+sfx_meme.gta-v-wasted-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/GTA V Wasted - Sound - SR.mp3 | 7.493 18.9
+sfx_meme.game-over-super-mario | _Incoming/Meme Pack/Meme Sound Effects/Game over super mario - sound effect (HD).mp3 | 7.484 2.2
+sfx_meme.gimme-gimme | _Incoming/Meme Pack/Meme Sound Effects/Gimme Gimme.mp3 | 15.395 15.0
+sfx_meme.glass-breaking-glass-breaking-soundloud-glass-breaking-glass | _Incoming/Meme Pack/Meme Sound Effects/Glass Breaking sound effectglass breaking soundloud glass breaking sound effectglass break.mp3 | 1.11 8.0
+sfx_meme.goat-scream-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Goat Scream - Sound - SR.mp3 | 2.429 5.1
+sfx_meme.hehe-boi-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/HEHE Boi - Sound - SR.mp3 | 1.493 10.8
+sfx_meme.hang-up-phone | _Incoming/Meme Pack/Meme Sound Effects/Hang Up Phone.mp3 | 3.622 16.3
+sfx_meme.heavenly-music-sound-srmp3 | _Incoming/Meme Pack/Meme Sound Effects/Heavenly Music - Sound - SRmp3.mp3 | 18.077 11.5
+sfx_meme.hello-hello-fnaf | _Incoming/Meme Pack/Meme Sound Effects/Hello Hello FNAF.mp3 | 2.74 10.4
+sfx_meme.hello-there-obi-wan-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Hello There Obi Wan - Sound - SR.mp3 | 1.061 13.7
+sfx_meme.hey-that-s-pretty-good-idubbz-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Hey That_s Pretty Good Idubbz - Sound - SR.mp3 | 3.221 17.4
+sfx_meme.hey-what-happened-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Hey What Happened - Sound -  SR.mp3 | 1.829 5.8
+sfx_meme.his-name-is-jeff-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/His name is Jeff - Sound - SR.mp3 | 2.045 13.0
+sfx_meme.horror-pulsating-dissonant-strings | _Incoming/Meme Pack/Meme Sound Effects/Horror pulsating dissonant strings.mp3 | 3.984 14.8
+sfx_meme.horror-transition-terror-transition-scary-soundeffects | _Incoming/Meme Pack/Meme Sound Effects/Horror transition sound effect Terror transition Scary sound effect #soundeffects.mp3 | 8.059 16.1
+sfx_meme.hu-waa-waa~2 | _Incoming/Meme Pack/Meme Sound Effects/Hu waa waa - sound effect.mp3 | 2.077 4.8
+sfx_meme.illuminati-confirmed-illuminati-no-copyrightilluminati | _Incoming/Meme Pack/Meme Sound Effects/ILLUMINATI confirmed sound effectilluminati sound effect no copyrightilluminati sound effect.mp3 | 6.596 14.8
+sfx_meme.inception-horns-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Inception Horns - Sound - SR.mp3 | 6.053 6.1
+sfx_meme.iphone-ringtone | _Incoming/Meme Pack/Meme Sound Effects/Iphone Ringtone.mp3 | 9.172 11.6
+sfx_meme.japanese-bruh-japanese-bruh-1japanese-bruh-soulja-boy | _Incoming/Meme Pack/Meme Sound Effects/Japanese bruh sound effectJapanese bruh sound effect #1Japanese bruh sound effect soulja boy.mp3 | 10.984 22.1
+sfx_meme.just-do-it-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Just Do It - Sound - SR.mp3 | 3.869 45.0
+sfx_meme.kanye-west-wolves | _Incoming/Meme Pack/Meme Sound Effects/Kanye West Wolves.mp3 | 12.817 8.4
+sfx_meme.lol-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/LOL - Sound - SR.mp3 | 1.013 12.3
+sfx_meme.legitness-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Legitness - Sound - SR.mp3 | 3.029 16.3
+sfx_meme.lone-wolf-howling-wolf-howling-no-copyright-copyright-free-s | _Incoming/Meme Pack/Meme Sound Effects/Lone wolf howling sound effect Wolf howling sound effect No copyright Copyright free #soundeffect.mp3 | 5.995 12.7
+sfx_meme.looney-tunes | _Incoming/Meme Pack/Meme Sound Effects/Looney Tunes.mp3 | 297.517 26.0
+sfx_meme.magic-book-opening-magic-book | _Incoming/Meme Pack/Meme Sound Effects/Magic book sound effectopening magic book sound effect.mp3 | 2.286 22.5
+sfx_meme.male-scream~2 | _Incoming/Meme Pack/Meme Sound Effects/Male Scream.mp3 | 7.059 3.9
+sfx_meme.mario-death | _Incoming/Meme Pack/Meme Sound Effects/Mario Death - Sound Effect (HD).mp3 | 2.808 7.3
+sfx_meme.mario-fall-waa | _Incoming/Meme Pack/Meme Sound Effects/Mario Fall (Waa) - Sound Effect (HD).mp3 | 2.991 5.6
+sfx_meme.mario-jump-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Mario Jump - Sound - SR.mp3 | 1.013 5.9
+sfx_meme.mario-kart-start-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Mario Kart Start - Sound - SR.mp3 | 4.469 8.2
+sfx_meme.mario-kart-race-start-mario-kart-race-start-tik-tokmario-kar | _Incoming/Meme Pack/Meme Sound Effects/Mario kart race start sound effectmario kart race start sound effect tik tokmario kart race start.mp3 | 4.82 5.2
+sfx_meme.minecraft-glass-break | _Incoming/Meme Pack/Meme Sound Effects/Minecraft Glass Break - Sound Effect (HD).mp3 | 1.424 31.0
+sfx_meme.minecraft-lever | _Incoming/Meme Pack/Meme Sound Effects/Minecraft Lever Sound Effect.mp3 | 2.09 87.8
+sfx_meme.mission-failed-mw2-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Mission Failed MW2 - Sound - SR.mp3 | 3.341 4.4
+sfx_meme.moai-sound | _Incoming/Meme Pack/Meme Sound Effects/Moai sound.mp3 | 3.855 4.9
+sfx_meme.mouse-click~2 | _Incoming/Meme Pack/Meme Sound Effects/Mouse Click.mp3 | 3.336 106.0
+sfx_meme.mouse-click-computer-mouse-click-keyboard-and-mouse-click | _Incoming/Meme Pack/Meme Sound Effects/Mouse click sound effectcomputer mouse click sound effectkeyboard and mouse click sound effect.mp3 | 1.11 24.3
+sfx_meme.nani | _Incoming/Meme Pack/Meme Sound Effects/NANI! - Sound Effect (HD).mp3 | 1.685 4.9
+sfx_meme.nooo | _Incoming/Meme Pack/Meme Sound Effects/NOOO .mp3 | 2.252 3.1
+sfx_meme.ninja-star-ninja-star-throwing-ninja-star-impact-flesh-and-w | _Incoming/Meme Pack/Meme Sound Effects/Ninja Star sound effectNinja star throwing sound effectNinja star impact flesh and wood sound.mp3 | 14.668 41.2
+sfx_meme.no-god-please-no-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/No God Please No - Sound - SR.mp3 | 6.413 6.6
+sfx_meme.no-no-no-no-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/No No No No - Sound - SR.mp3 | 15.701 14.1
+sfx_meme.noice-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Noice - Sound - SR.mp3 | 2.189 25.8
+sfx_meme.normal-effect-snormal-effect-s-normal-free-download-i-no-cop | _Incoming/Meme Pack/Meme Sound Effects/Normal effect sound effectsnormal effect sound effects Normal - Free Download I No Copyright.mp3 | 2.573 18.6
+sfx_meme.oh-my-god-ninja-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/OH MY GOD Ninja - Sound - SR.mp3 | 5.333 8.4
+sfx_meme.ohhhhh-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/OHHHHH - Sound - SR.mp3 | 5.645 4.5
+sfx_meme.oof-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/OOF - Sound - SR.mp3 | 0.533 5.9
+sfx_meme.oooou~2 | _Incoming/Meme Pack/Meme Sound Effects/OOOOU.m4a | 0.557 13.2
+sfx_meme.oh-common-men | _Incoming/Meme Pack/Meme Sound Effects/Oh common men - sound effect.mp3 | 1.972 12.8
+sfx_meme.oh-nooo-oh-no-no-nooh-no-bb-ki-vinesoh-no-free | _Incoming/Meme Pack/Meme Sound Effects/Oh nooo sound effectoh no no nosound effectoh no sound effect bb ki vinesoh no sound effect free.mp3 | 1.11 6.4
+sfx_meme.ohmygod-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/OhMyGod - Sound - SR.mp3 | 2.165 5.4
+sfx_meme.okay-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Okay - Sound - SR.mp3 | 0.965 10.9
+sfx_meme.old-computer | _Incoming/Meme Pack/Meme Sound Effects/Old Computer.mp3 | 26.358 9.3
+sfx_meme.old-spice | _Incoming/Meme Pack/Meme Sound Effects/Old Spice.mp3 | 2.926 17.1
+sfx_meme.old-telephone-ringing-old-telephone-ringing-soundold-telepho | _Incoming/Meme Pack/Meme Sound Effects/Old telephone ringing sound effectold telephone ringing soundOld telephone ringing sound download.mp3 | 20.911 35.6
+sfx_meme.old-telephone-2 | _Incoming/Meme Pack/Meme Sound Effects/Old telephone sound effect 2.mp3 | 25.927 62.9
+sfx_meme.pac-man-death | _Incoming/Meme Pack/Meme Sound Effects/Pac-Man Death - Sound Effect (HD).mp3 | 2.103 1.0
+sfx_meme.party-horn | _Incoming/Meme Pack/Meme Sound Effects/Party Horn - Sound Effect (HD).mp3 | 1.11 8.7
+sfx_meme.perfect-street-fighter~2 | _Incoming/Meme Pack/Meme Sound Effects/Perfect [street fighter] sound effect.mp3 | 1.685 7.7
+sfx_meme.phone-busy-mobile-phone-busy-cell-phone-busy-busy-phone-line | _Incoming/Meme Pack/Meme Sound Effects/Phone busy sound effectMobile phone busy sound effectCell phone busy sound effectBusy phone line.mp3 | 7.458 3.3
+sfx_meme.pop-1pop-up-pop-smokeballon-pop-pop-youtuber | _Incoming/Meme Pack/Meme Sound Effects/Pop sound effect 1pop up sound effectpop smokeballon pop sound effectpop sound effect youtuber.mp3 | 1.11 13.4
+sfx_meme.pop-2pop-up-pop-smokeballon-pop-pop-youtuber | _Incoming/Meme Pack/Meme Sound Effects/Pop sound effect 2pop up sound effectpop smokeballon pop sound effectpop sound effect youtuber.mp3 | 1.11 15.0
+sfx_meme.poppy-playtime-theme | _Incoming/Meme Pack/Meme Sound Effects/Poppy Playtime Theme.mp3 | 57.562 8.4
+sfx_meme.practice-mode-geometry-dash | _Incoming/Meme Pack/Meme Sound Effects/Practice mode geometry dash.mp3 | 16.556 12.5
+sfx_meme.puk-puk-downloadpuk-sound-downloadpuk-mp3-download | _Incoming/Meme Pack/Meme Sound Effects/Puk sound effectPuk sound effect downloadpuk sound downloadpuk sound effect mp3 download.mp3 | 1.894 3.9
+sfx_meme.punch-falcon-punch-anime-punch-cartoon-punch | _Incoming/Meme Pack/Meme Sound Effects/Punch sound effectfalcon punch sound effectanime punch sound effectcartoon punch sound effect.mp3 | 2.599 6.7
+sfx_meme.quack | _Incoming/Meme Pack/Meme Sound Effects/Quack.mp3 | 8.406 32.5
+sfx_meme.radar | _Incoming/Meme Pack/Meme Sound Effects/Radar Sound effect.mp3 | 23.288 27.8
+sfx_meme.record-scratch-1-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Record Scratch 1 - Sound - SR.mp3 | 0.845 5.5
+sfx_meme.record-scratch-2-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Record Scratch 2 - Sound - SR.mp3 | 1.397 7.5
+sfx_meme.rock-slides | _Incoming/Meme Pack/Meme Sound Effects/Rock Slides.mp3 | 15.372 104.5
+sfx_meme.rubber-duck-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Rubber Duck - Sound - SR.mp3 | 0.797 8.7
+sfx_meme.run | _Incoming/Meme Pack/Meme Sound Effects/Run sound effect.mp3 | 12.996 9.9
+sfx_meme.sad-trombone-fail-trombone-sad-trombone-downloadsad-trombone | _Incoming/Meme Pack/Meme Sound Effects/Sad trombone sound effectfail trombone sound effectsad trombone sound effect downloadsad trombone.mp3 | 4.323 13.1
+sfx_meme.say-whattt-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Say Whattt - Sound - SR.mp3 | 1.829 9.9
+sfx_meme.scary | _Incoming/Meme Pack/Meme Sound Effects/Scary sound effect.mp3 | 17.926 5.5
+sfx_meme.scene-change-scene-change-no-copyrightscene-change-download | _Incoming/Meme Pack/Meme Sound Effects/Scene change sound effectscene change sound effect no copyrightscene change sound effect download.mp3 | 1.685 4.5
+sfx_meme.scream-shitpost | _Incoming/Meme Pack/Meme Sound Effects/Scream shitpost.mp3 | 1.672 1.5
+sfx_meme.scream-scream-horrorscream-funnyscream-female | _Incoming/Meme Pack/Meme Sound Effects/Scream sound effectscream sound effect horrorscream sound effect funnyscream sound effect female.mp3 | 3.2 5.4
+sfx_meme.sheesh-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Sheesh - Sound - SR.mp3 | 8.813 11.3
+sfx_meme.shots-fired-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Shots Fired - Sound - SR.mp3 | 2.837 6.2
+sfx_meme.skibidi-bop-mm-dada-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Skibidi Bop MM Dada - Sound - SR..mp3 | 1.949 5.5
+sfx_meme.slap | _Incoming/Meme Pack/Meme Sound Effects/Slap.mp3 | 3.504 8.6
+sfx_meme.slurp~2 | _Incoming/Meme Pack/Meme Sound Effects/Slurp - Sound Effect (HD).mp3 | 2.103 16.3
+sfx_meme.sniper-mw2-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Sniper MW2 - Sound - SR.mp3 | 0.917 21.3
+sfx_meme.sorry-bro-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Sorry Bro - Sound - SR.mp3 | 1.421 13.2
+sfx_meme.laughing-youtuber-use-copyright-free-musicsound | _Incoming/Meme Pack/Meme Sound Effects/Sound effect laughingsound effect youtuber usesound effect copyright freesound effect musicsound.mp3 | 3.827 30.0
+sfx_meme.splat-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Splat - Sound - SR.mp3 | 0.533 17.5
+sfx_meme.spongebob-music-hawaiian | _Incoming/Meme Pack/Meme Sound Effects/SpongeBob Music Hawaiian.mp3 | 60.116 7.6
+sfx_meme.spongebob-2-hours-later-complete-spongebob-2-hours-later-mem | _Incoming/Meme Pack/Meme Sound Effects/Spongebob 2 hours later (complete) sound effectspongebob 2 hours later meme.mp3 | 59.99 14.7
+sfx_meme.squeak | _Incoming/Meme Pack/Meme Sound Effects/Squeak.mp3 | 2.784 8.5
+sfx_meme.squeaky-door-opening-squeaky-door-openingsqueaky-door-openin | _Incoming/Meme Pack/Meme Sound Effects/Squeaky door opening sound effectsqueaky door openingsqueaky door opening and closing sound effect.mp3 | 4.558 21.1
+sfx_meme.super-mario-jump | _Incoming/Meme Pack/Meme Sound Effects/Super mario jump - sound effect (HD).mp3 | 7.667 5.9
+sfx_meme.super-mario-world | _Incoming/Meme Pack/Meme Sound Effects/Super mario world.mp3 | 110.295 9.7
+sfx_meme.swear | _Incoming/Meme Pack/Meme Sound Effects/Swear.mp3 | 2.573 0.0
+sfx_meme.tv-turn-off-tube-tv-turn-off-crt-tv-turn-off-tv-turn-off | _Incoming/Meme Pack/Meme Sound Effects/TV turn off sound effectTube TV turn off sound effectCRT TV turn off sound effectTV turn off.mp3 | 3.67 13.8
+sfx_meme.ta-da-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Ta Da - Sound - SR.mp3 | 1.853 2.9
+sfx_meme.taco-bell-sound | _Incoming/Meme Pack/Meme Sound Effects/Taco Bell - Sound.mp3 | 1.973 5.8
+sfx_meme.tape-rewind-tape-rewind-soundtape-rewind-longtape-rewind-eff | _Incoming/Meme Pack/Meme Sound Effects/Tape rewind sound effecttape rewind soundtape rewind sound effect longtape rewind effect.mp3 | 3.174 5.3
+sfx_meme.thugs-of-lifethugs-of-life-song-clipthugs-of-life-thugs-of-l | _Incoming/Meme Pack/Meme Sound Effects/Thugs of lifethugs of life song clipthugs of life sound effectthugs of life musicfree sound.mp3 | 5.812 14.2
+sfx_meme.toasty-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Toasty - Sound - SR.mp3 | 0.989 5.4
+sfx_meme.troll | _Incoming/Meme Pack/Meme Sound Effects/Troll - sound effect (HD).mp3 | 34.782 10.0
+sfx_meme.try-me-btch~2 | _Incoming/Meme Pack/Meme Sound Effects/Try me btch.m4a | 0.789 6.6
+sfx_meme.typewriter-typewriter-soundtypewriter-no-copyrighttypewriter | _Incoming/Meme Pack/Meme Sound Effects/Typewriter sound effecttypewriter soundtypewriter sound effect no copyrighttypewriter sound.mp3 | 4.088 17.1
+sfx_meme.typing-on-keyboard-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Typing on Keyboard - Sound - SR.mp3 | 6.869 30.2
+sfx_meme.typing | _Incoming/Meme Pack/Meme Sound Effects/Typing.wav | 3.14 24.7
+sfx_meme.ugh-fine-i-guess-you-are-my-little-pog-champ | _Incoming/Meme Pack/Meme Sound Effects/Ugh Fine I Guess you are my Little Pog Champ - Sound Effect (HD).mp3 | 5.055 6.9
+sfx_meme.vine-boom | _Incoming/Meme Pack/Meme Sound Effects/Vine Boom.mp3 | 3.088 14.0
+sfx_meme.weeeee-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/WEEEEE - Sound - SR.mp3 | 6.605 11.1
+sfx_meme.wtf | _Incoming/Meme Pack/Meme Sound Effects/WTF sound effect.mp3 | 4.245 7.2
+sfx_meme.wait-a-minute-who-are-you-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Wait a Minute Who Are You - Sound - SR.mp3 | 4.469 16.6
+sfx_meme.we-ll-be-right-back-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/We_ll Be Right Back - Sound - SR.mp3 | 2.909 9.0
+sfx_meme.wet-fart-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Wet Fart - Sound - SR.mp3 | 1.469 8.3
+sfx_meme.whip-1-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Whip 1 - Sound - SR.mp3 | 0.893 5.9
+sfx_meme.whip-2-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Whip 2 - Sound - SR.mp3 | 1.085 14.2
+sfx_meme.whip-3-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Whip 3 - Sound - SR.mp3 | 1.733 6.8
+sfx_meme.why-are-you-running-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Why are you running - Sound - SR.mp3 | 3.437 11.3
+sfx_meme.window-smash-glass-smash-window-breaking-loudwindow-breaking | _Incoming/Meme Pack/Meme Sound Effects/Window smash sound effectglass smash sound effectwindow breaking sound effect loudwindow breaking.mp3 | 3.357 15.0
+sfx_meme.windows-11-startup-sound | _Incoming/Meme Pack/Meme Sound Effects/Windows 11 Startup Sound.mp3 | 4.156 13.2
+sfx_meme.windows-error-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Windows Error - Sound - SR.mp3 | 1.325 11.2
+sfx_meme.windows-startup-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/Windows Startup - Sound - SR.mp3 | 4.877 6.7
+sfx_meme.wolf-howling-alpha-wolf-howling-wild-wolf-howling-shorts | _Incoming/Meme Pack/Meme Sound Effects/Wolf howling sound effectAlpha wolf howling sound effectWild wolf howling sound effect#Shorts.mp3 | 20.284 11.4
+sfx_meme.yeet-sound-sr | _Incoming/Meme Pack/Meme Sound Effects/YEET - Sound - SR.mp3 | 1.157 2.8
+sfx_meme.yelling-yee-ha-yee-ha-yee-ha-soundha-ha-ha | _Incoming/Meme Pack/Meme Sound Effects/Yelling Yee Ha sound effectYee ha sound effectYee ha soundha ha sound effectHa sound effect.mp3 | 2.077 18.6
+sfx_meme.yoshi-mlem~2 | _Incoming/Meme Pack/Meme Sound Effects/Yoshi Mlem - Sound Effect (HD).mp3 | 2.103 5.8
+sfx_meme.zombie-eating-zombie-eating-pvz | _Incoming/Meme Pack/Meme Sound Effects/Zombie eating sound effectZombie eating sound effect pvz.mp3 | 6.256 15.5
+sfx_meme.ahh | _Incoming/Meme Pack/Meme Sound Effects/ahh.mp3 | 1.056 8.9
+sfx_meme.fortnite-death-effect | _Incoming/Meme Pack/Meme Sound Effects/fortnite-death-effect.mp3 | 0.696 14.2
+sfx_meme.laughing-meme | _Incoming/Meme Pack/Meme Sound Effects/laughing meme.mp3 | 1.741 5.1
+sfx_meme.laughing-to-death | _Incoming/Meme Pack/Meme Sound Effects/laughing to death.mp3 | 5.085 16.3
+sfx_meme.uh-oh-uh-oh-cartoonuh-oh-free-downloaduh-oh | _Incoming/Meme Pack/Meme Sound Effects/uh oh sound effectuh oh sound effect cartoonuh oh sound effect free downloaduh oh sound effect.mp3 | 1.424 6.6
+sfx_meme.wenamechainsama | _Incoming/Meme Pack/Meme Sound Effects/wenamechainsama.mp3 | 9.569 10.5
+sfx_meme.background-cinematic-epic-music-by-infraction-no-copyright-m | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Background_Cinematic_Epic_Music_by_Infraction_No_Copyright_Music_Mercury.mp3 | 188.012 5.4
+sfx_meme.beastboyshub-background-music-no-copyright-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/BeastBoyShub_Background_Music_No_Copyright_Music.mp3 | 43.491 26.8
+sfx_meme.biz-baz-studio-apprehensive-at-best | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Biz Baz Studio - Apprehensive at Best.mp3 | 199.32 7.1
+sfx_meme.bug-wheel-background-no-copyright-music-16-11-23-00-06-56-89 | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Bug Wheel Background No Copyright Music_16-11-23_00-06-56-898.mp3 | 147.215 15.2
+sfx_meme.chinese-rap | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Chinese Rap.mp3 | 21.757 15.8
+sfx_meme.christoffer-moe-ditlevsen-the-stakeout-royalty-free-music-25 | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Christoffer_Moe_Ditlevsen_-_The_Stakeout__Royalty_Free_Music_256k.mp3 | 144.096 12.5
+sfx_meme.cinematic-trailer-teaser-nocopyright-background-music-adrena | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Cinematic_Trailer_Teaser_NoCopyright_Background_Music_Adrenaline_by_Soundridemusic.mp3 | 59.536 11.1
+sfx_meme.death-note-l-s-theme-a-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Death Note - (L's Theme A) Music.mp3 | 180.291 10.6
+sfx_meme.dream-speedrun-music-zowex-remix-remix | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Dream Speedrun Music - Zowex REMIX (Remix).mp3 | 218.5 16.1
+sfx_meme.dua-lipa-one-kiss-slowed-reverb-tiktok-version | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Dua lipa - one kiss (slowed  reverb tiktok version).mp3 | 187.826 9.1
+sfx_meme.envelope-by-thefatrat-japanese-electronic-music-no-copyright | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Envelope__by_TheFatRat____Japanese_Electronic_Music__No_Copyright__256k.mp3 | 133.08 8.2
+sfx_meme.funny-background-music-music-05-star-wars-cantina-band-no-co | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Funny Background Music  Music #05 Star Wars Cantina Band(Gaming)  NO COPYRIGHT  SS 1912.mp3 | 53.336 15.1
+sfx_meme.funny-background-music-music-27-brain-trust-wayne-jones-no-c | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Funny Background Music  Music #27 Brain Trust(Wayne Jones)  NO COPYRIGHT  SS 1912.mp3 | 123.971 15.6
+sfx_meme.gaiety-in-the-golden-age-aaron-kenny-comedy-background-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Gaiety in the Golden Age (Aaron Kenny) - Comedy Background Music (HD).mp3 | 113.429 12.8
+sfx_meme.ghostpocalypse-action-music-background-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Ghostpocalypse (Action Music) - Gaming Background Music (HD).mp3 | 110.922 14.3
+sfx_meme.hidden-agenda-kevin-macleod-background-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Hidden Agenda (Kevin MacLeod) - Background Music (HD).mp3 | 134.745 15.8
+sfx_meme.laureate-background-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Laureate - Gaming Background Music (HD).mp3 | 52.361 9.0
+sfx_meme.meadows-ramzoid | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Meadows - Ramzoid.mp3 | 178.824 13.1
+sfx_meme.music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Music.mp3 | 45.819 9.5
+sfx_meme.naruto-ost-2-afternoon-of-konoha | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Naruto OST 2 - Afternoon of Konoha.mp3 | 102.168 9.1
+sfx_meme.nintendo-wii-shop-channel-music-extended-hq | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Nintendo Wii - Shop Channel Music (Extended) HQ.mp3 | 891.008 12.6
+sfx_meme.on-a-hunt | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/On_a_Hunt.mp3 | 121.846 12.3
+sfx_meme.richard-carter-le-monde | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Richard Carter - Le Monde.mp3 | 134.908 14.2
+sfx_meme.ropes-away | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Ropes_Away.mp3 | 103.259 8.8
+sfx_meme.slay-over-slowed-reverb-256k | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/SLAY__Over_Slowed___Reverb_256k.mp3 | 152.976 7.2
+sfx_meme.spear-of-justice-undertale-dual-mix | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Spear of Justice (Undertale) -Dual Mix-.mp3 | 212.138 6.8
+sfx_meme.spine-chilling-cardiac-tension-biz-baz-studio-no-copyright-m | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Spine Chilling Cardiac Tension - Biz Baz Studio  No Copyright Music  YouTube Audio Library.mp3 | 115.38 10.1
+sfx_meme.thefatrat-xenogenesis256k | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/TheFatRat_-_Xenogenesis256k.mp3 | 233.4 10.8
+sfx_meme.tropic256k | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Tropic256k.mp3 | 140.136 15.7
+sfx_meme.undertale-ost-046-spear-of-justice | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Undertale OST_ 046 - Spear of Justice.mp3 | 115.566 9.8
+sfx_meme.very-emotional-sad-background-music-update-sad-music-no-copy | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/Very Emotional Sad Background Music Update  Sad Music No Copyright.mp3 | 33.355 5.9
+sfx_meme.able-sisters-background-music-for-videos-download-link-minec | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/able sisters background music for gaming videos  download link  Minecraft videos.mp3 | 69.056 17.1
+sfx_meme.sasageyo-attack-on-titan-but-is-it-okay-if-it-s-lofi-hiphop | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/sasageyo (Attack on Titan but is it okay if it's lofi hiphop_).mp3 | 152.091 18.9
+sfx_meme.tanjiro-no-uta-demon-slayer-but-is-it-okay-if-it-s-lofi-hiph | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/tanjiro no uta (Demon Slayer but is it okay if it's lofi hiphop_).mp3 | 157.455 11.6
+sfx_meme.videoplayback-2 | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (1)/BG MUSIC (1)/videoplayback_2.mp3 | 104.792 8.2
+sfx_meme.a-night-alone-tracktribe | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/A Night Alone - TrackTribe.mp3 | 218.644 17.1
+sfx_meme.a-long-cold-riot-youtube-audio-library | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/A_Long_Cold_-_Riot___YouTube_Audio_Library.mp3 | 109.27 11.8
+sfx_meme.achilles-strings-kevin-macleod-youtube-audio-library | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Achilles_-_Strings_-_Kevin_MacLeod___YouTube_Audio_Library.mp3 | 61.074 14.0
+sfx_meme.act-three-audionautix-youtube-audio-library | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Act_Three_-_Audionautix___YouTube_Audio_Library.mp3 | 202.109 8.0
+sfx_meme.action-hero-jingle-punks-youtube-audio-library | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Action_Hero_-_Jingle_Punks___YouTube_Audio_Library.mp3 | 87.353 9.7
+sfx_meme.anime-kei-fighting-spirit-naruto-sad | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Anime Kei - Fighting Spirit (Naruto Sad).mp3 | 96.967 8.7
+sfx_meme.baltic-levity-thatched-villagers-kevin-macleod-youtube-audio | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Baltic_Levity_-_Thatched_Villagers_-_Kevin_MacLeod___YouTube_Audio_Library.mp3 | 48.248 14.4
+sfx_meme.black-and-white-max-surla-media-right-productions-youtube-au | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Black_and_White_-_Max_Surla,_Media_Right_Productions___YouTube_Audio_Library.mp3 | 133.381 14.0
+sfx_meme.bumper-tag-john-deley | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Bumper Tag - John Deley.mp3 | 172.225 14.0
+sfx_meme.bunny-hop-quincas-moreira | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Bunny Hop - Quincas Moreira.mp3 | 174.241 11.3
+sfx_meme.cartoon-hoedown-media-right-productions | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Cartoon Hoedown - Media Right Productions.mp3 | 93.518 11.0
+sfx_meme.chunk | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Chunk.mp3 | 168.368 13.3
+sfx_meme.claudio-the-worm-the-green-orbs-youtube-audio-library | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Claudio_The_Worm_-_The_Green_Orbs___YouTube_Audio_Library.mp3 | 121.208 12.9
+sfx_meme.dog-park-silent-partner | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Dog Park - Silent Partner.mp3 | 92.839 10.2
+sfx_meme.eyes-of-glory-aakash-gandhi | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Eyes of Glory - Aakash Gandhi.mp3 | 151.307 13.6
+sfx_meme.fluffing-a-duck-background-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Fluffing a Duck - Gaming Background Music (HD).mp3 | 67.315 13.6
+sfx_meme.fortaleza-topher-mohr-and-alex-elena | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Fortaleza - Topher Mohr and Alex Elena.mp3 | 179.232 10.0
+sfx_meme.get-outside-jason-farnham | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Get Outside! - Jason Farnham.mp3 | 90.385 14.4
+sfx_meme.hall-of-the-mountain-king-kevin-macleod | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Hall of the Mountain King - Kevin MacLeod.mp3 | 152.976 17.1
+sfx_meme.introducing-the-4-corners-official-audio | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Introducing_The_4_Corners_official_audio.mp3 | 136.011 13.3
+sfx_meme.jazz-in-paris-media-right-productions | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Jazz In Paris - Media Right Productions.mp3 | 102.296 10.0
+sfx_meme.kazoom-quincas-moreira | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Kazoom - Quincas Moreira.mp3 | 230.943 10.5
+sfx_meme.kurt-cheel | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Kurt - Cheel.mp3 | 198.044 9.7
+sfx_meme.lynn-music-boulangerie-background-music-1 | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Lynn Music Boulangerie - Gaming Background Music (HD)-1.mp3 | 90.501 12.3
+sfx_meme.retro-wayne-jones-music-no-copyright-audio-library-kgje8o9mw | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Retro - Wayne Jones Music No Copyright Audio Library [kgje8O9mw8c].mp3 | 242.672 14.6
+sfx_meme.sad-music-2 | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/SAD MUSIC #2.mp3 | 10.56 11.7
+sfx_meme.sad-music | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/SAD MUSIC.mp3 | 9.12 17.1
+sfx_meme.sand-castle-quincas-moreira | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Sand Castle - Quincas Moreira.mp3 | 177.989 12.2
+sfx_meme.spring-in-my-step-silent-partner | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Spring In My Step - Silent Partner.mp3 | 118.727 8.1
+sfx_meme.undertale-ost-005-ruins-qypr77rg1to | _Incoming/drive-download-20261006T102307Z-1-001/BG MUSIC (2)/BG MUSIC (2)/Undertale OST_ 005 - Ruins [QyPR77rg1to].mp3 | 92.434 11.3
+sfx_meme.undertale-ost-006-uwa-so-temperate-rhu4rpqushg | 

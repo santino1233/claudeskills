@@ -1,0 +1,266 @@
+sci-fi-swoosh-01-03 | Whooshes & Swooshes/Sci-fi Swoosh 01 - 0 | sfx_ui 1.5 | Whoosh | whoosh | mi no 0.288 0.352 | 2 Sci-fi swoosh
+sci-fi-swoosh-01-04 | Whooshes & Swooshes/Sci-fi Swoosh 01 - 0 | sfx_ui 1.5 | Whoosh | whoosh | mi no 0.224 0.416 | 2 Sci-fi swoosh
+sci-fi-swoosh-01-05 | Whooshes & Swooshes/Sci-fi Swoosh 01 - 0 | sfx_ui 1.5 | Whoosh | whoosh | br no 0.352 0.384 | 2 Sci-fi swoosh
+sci-fi-swoosh-01-06 | Whooshes & Swooshes/Sci-fi Swoosh 01 - 0 | sfx_ui 1.5 | Whoosh | whoosh | br no 0.352 0.544 | 2 Sci-fi swoosh
+sci-fi-swoosh-01-07 | Whooshes & Swooshes/Sci-fi Swoosh 01 - 0 | sfx_ui 1.5 | Whoosh | whoosh | br no 0.352 0.448 | 2 Sci-fi swoosh
+sci-fi-transition-01 | Whooshes & Swooshes/Sci-fi Transition 01 | sfx_ui 1.959 | Whoosh | transition,whoosh | br no 0.288 0.928 | 2 sci-fi transition sweep
+sci-fi-transition-02 | Whooshes & Swooshes/Sci-fi Transition 02 | sfx_ui 1.469 | Whoosh | transition,whoosh | br no 0.16 0.8 | 2 sci-fi transition sweep
+sci-fi-transition-03 | Whooshes & Swooshes/Sci-fi Transition 03 | sfx_ui 1.939 | Whoosh | transition,whoosh | br no 0.32 0.64 | 2 sci-fi transition sweep
+sci-fi-transition-04 | Whooshes & Swooshes/Sci-fi Transition 04 | sfx_ui 2.0 | Whoosh | transition,whoosh | mi no 0.224 0.512 | 2 sci-fi transition sweep
+sci-fi-transition-05 | Whooshes & Swooshes/Sci-fi Transition 05 | sfx_ui 2.22 | Whoosh | transition,whoosh | mi no 0.576 0.992 | 3 sci-fi transition sweep
+sci-fi-transition-06 | Whooshes & Swooshes/Sci-fi Transition 06 | sfx_ui 1.74 | Whoosh | transition,whoosh | mi mi 0.32 0.8 | 2 sci-fi transition sweep
+sci-fi-transition-07 | Whooshes & Swooshes/Sci-fi Transition 07 | sfx_ui 2.16 | Whoosh | transition,whoosh | da to 0.224 1.056 | 3 sci-fi transition sweep
+sci-fi-transition-08 | Whooshes & Swooshes/Sci-fi Transition 08 | sfx_ui 2.844 | Whoosh | transition,whoosh | da mi 0.224 0.896 | 3 sci-fi transition sweep
+sci-fi-transition-09 | Whooshes & Swooshes/Sci-fi Transition 09 | sfx_ui 2.491 | Whoosh | transition,whoosh | br no 0.16 1.088 | 3 sci-fi transition sweep
+sci-fi-transition-10 | Whooshes & Swooshes/Sci-fi Transition 10 | sfx_ui 1.898 | Whoosh | transition,whoosh | br no 0.256 1.28 | 2 sci-fi transition sweep
+sci-fi-transition-11 | Whooshes & Swooshes/Sci-fi Transition 11 | sfx_ui 1.624 | Whoosh | transition,whoosh | mi no 0.192 0.544 | 2 sci-fi transition sweep
+sci-fi-transition-12 | Whooshes & Swooshes/Sci-fi Transition 12 | sfx_ui 2.421 | Whoosh | transition,whoosh | br mi 0.352 0.64 | 3 sci-fi transition sweep
+sci-fi-transition-13 | Whooshes & Swooshes/Sci-fi Transition 13 | sfx_ui 1.512 | Whoosh | transition,whoosh | mi no 0.416 0.448 | 2 sci-fi transition sweep
+sci-fi-transition-14 | Whooshes & Swooshes/Sci-fi Transition 14 | sfx_ui 1.722 | Whoosh | transition,whoosh | br no 0.384 0.416 | 2 sci-fi transition sweep
+sci-fi-transition-15 | Whooshes & Swooshes/Sci-fi Transition 15 | sfx_ui 3.536 | Whoosh | transition,riser | mi no 0.224 0.96 | 3 sci-fi transition sweep
+sci-fi-transition-16 | Whooshes & Swooshes/Sci-fi Transition 16 | sfx_ui 2.036 | Whoosh | transition,whoosh | br mi 0.64 0.544 | 3 sci-fi transition sweep
+sci-fi-transition-17 | Whooshes & Swooshes/Sci-fi Transition 17 | sfx_ui 2.92 | Whoosh | transition,whoosh | mi no 0.448 1.216 | 3 sci-fi transition sweep
+sci-fi-transition-18 | Whooshes & Swooshes/Sci-fi Transition 18 | sfx_ui 2.003 | Whoosh | transition,whoosh | br no 0.416 0.896 | 3 sci-fi transition sweep
+sci-fi-transition-19 | Whooshes & Swooshes/Sci-fi Transition 19 | sfx_ui 1.481 | Whoosh | transition,whoosh | da mi 0.544 0.32 | 2 sci-fi transition sweep
+sci-fi-transition-20 | Whooshes & Swooshes/Sci-fi Transition 20 | sfx_ui 1.661 | Whoosh | transition,whoosh | mi no 0.288 0.64 | 2 sci-fi transition sweep
+sci-fi-transition-21 | Whooshes & Swooshes/Sci-fi Transition 21 | sfx_ui 1.571 | Whoosh | transition,whoosh | da mi 0.672 0.416 | 2 sci-fi transition sweep
+sci-fi-transition-22 | Whooshes & Swooshes/Sci-fi Transition 22 | sfx_ui 1.751 | Whoosh | transition,whoosh | br no 0.48 0.768 | 2 sci-fi transition sweep
+sci-fi-transition-23 | Whooshes & Swooshes/Sci-fi Transition 23 | sfx_ui 1.571 | Whoosh | transition,whoosh | mi no 0.48 0.544 | 2 sci-fi transition sweep
+sci-fi-transition-24 | Whooshes & Swooshes/Sci-fi Transition 24 | sfx_ui 1.661 | Whoosh | transition,whoosh | mi no 0.64 0.672 | 2 sci-fi transition sweep
+sci-fi-transition-25 | Whooshes & Swooshes/Sci-fi Transition 25 | sfx_ui 2.245 | Whoosh | transition,whoosh | br no 0.352 0.896 | 3 sci-fi transition sweep
+sci-fi-transition-26 | Whooshes & Swooshes/Sci-fi Transition 26 | sfx_ui 1.864 | Whoosh | transition,whoosh | br no 0.256 1.056 | 2 sci-fi transition sweep
+sci-fi-transition-27 | Whooshes & Swooshes/Sci-fi Transition 27 | sfx_ui 2.785 | Whoosh | transition,whoosh | da no 0.928 0.768 | 3 sci-fi transition sweep
+sci-fi-transition-28 | Whooshes & Swooshes/Sci-fi Transition 28 | sfx_ui 2.682 | Whoosh | transition,whoosh | mi no 0.096 2.016 | 3 sci-fi transition sweep
+sci-fi-transition-29 | Whooshes & Swooshes/Sci-fi Transition 29 | sfx_ui 1.303 | Whoosh | transition,whoosh | da to 0.864 0.224 | 2 sci-fi transition sweep
+sci-fi-transition-30 | Whooshes & Swooshes/Sci-fi Transition 30 | sfx_ui 1.415 | Whoosh | transition,whoosh | mi mi 0.448 0.768 | 2 sci-fi transition sweep
+sci-fi-transition-31 | Whooshes & Swooshes/Sci-fi Transition 31 | sfx_ui 1.361 | Whoosh | transition,whoosh | da mi 0.608 0.416 | 2 sci-fi transition sweep
+sci-fi-transition-32 | Whooshes & Swooshes/Sci-fi Transition 32 | sfx_ui 1.53 | Whoosh | transition,whoosh | da mi 0.512 0.672 | 2 sci-fi transition sweep
+sci-fi-transition-33 | Whooshes & Swooshes/Sci-fi Transition 33 | sfx_ui 1.999 | Whoosh | transition,whoosh | da mi 0.8 0.512 | 2 sci-fi transition sweep
+sci-fi-transition-34 | Whooshes & Swooshes/Sci-fi Transition 34 | sfx_ui 1.523 | Whoosh | transition,whoosh | da no 1.12 0.288 | 2 sci-fi transition sweep
+sci-fi-transition-35 | Whooshes & Swooshes/Sci-fi Transition 35 | sfx_ui 0.675 | Whoosh | transition,whoosh | mi no 0.192 0.288 | 2 sci-fi transition sweep
+sci-fi-transition-36 | Whooshes & Swooshes/Sci-fi Transition 36 | sfx_ui 2.965 | Whoosh | transition,whoosh | mi no 0.544 1.696 | 3 sci-fi transition sweep
+sci-fi-transition-37 | Whooshes & Swooshes/Sci-fi Transition 37 | sfx_ui 1.242 | Whoosh | transition,whoosh | da to 0.768 0.256 | 2 sci-fi transition sweep
+sci-fi-transition-38 | Whooshes & Swooshes/Sci-fi Transition 38 | sfx_ui 0.869 | Whoosh | transition,whoosh | br no 0.288 0.192 | 2 sci-fi transition sweep
+sci-fi-transition-39 | Whooshes & Swooshes/Sci-fi Transition 39 | sfx_ui 0.62 | Whoosh | transition,whoosh | br no 0.16 0.256 | 2 sci-fi transition sweep
+short-whoosh | Whooshes & Swooshes/Short Whoosh.mp3 | sfx_ui 4.0 | Whoosh | whoosh | da mi 0.16 0.32 | 2 Whoosh with a long quiet tail, file padd
+slice-woosh | Whooshes & Swooshes/Slice Whoosh.wav | sfx_ui 1.304 | Whoosh | whoosh | da mi 0.16 0.864 | 3 Slice Woosh whoosh
+smooth-woosh | Whooshes & Swooshes/Smooth Whoosh.wav | sfx_ui 12.75 | Whoosh | whoosh | da to 0.192 0.736 | 3 Smooth Woosh whoosh
+soft-slide-01-long-01 | Whooshes & Swooshes/Soft Slide 01 - Long | sfx_ui 1.24 | Whoosh | whoosh,literal | br mi 0.576 0.352 | 2 Soft slide/scrape movement sound (long 0
+soft-slide-01-long-02 | Whooshes & Swooshes/Soft Slide 01 - Long | sfx_ui 1.217 | Whoosh | whoosh,literal | br no 0.16 0.8 | 2 Soft slide/scrape movement sound (long 0
+soft-slide-01-long-03 | Whooshes & Swooshes/Soft Slide 01 - Long | sfx_ui 1.611 | Whoosh | whoosh,literal | br no 0.256 1.152 | 3 Soft slide/scrape movement sound (long 0
+soft-slide-01-long-04 | Whooshes & Swooshes/Soft Slide 01 - Long | sfx_ui 1.228 | Whoosh | whoosh,literal | br mi 0.736 0.256 | 2 Soft slide/scrape movement sound (long 0
+soft-slide-01-long-05 | Whooshes & Swooshes/Soft Slide 01 - Long | sfx_ui 1.133 | Whoosh | whoosh,literal | br no 0.128 0.768 | 2 Soft slide/scrape movement sound (long 0
+soft-slide-01-medium-01 | Whooshes & Swooshes/Soft Slide 01 - Medi | sfx_ui 0.878 | Whoosh | whoosh,literal | br mi 0.288 0.32 | 2 Soft slide/scrape movement sound (medium
+soft-slide-01-medium-02 | Whooshes & Swooshes/Soft Slide 01 - Medi | sfx_ui 0.737 | Whoosh | whoosh,literal | br mi 0.352 0.16 | 2 Soft slide/scrape movement sound (medium
+soft-slide-01-medium-03 | Whooshes & Swooshes/Soft Slide 01 - Medi | sfx_ui 0.941 | Whoosh | whoosh,literal | br no 0.64 0.16 | 2 Soft slide/scrape movement sound (medium
+soft-slide-01-medium-04 | Whooshes & Swooshes/Soft Slide 01 - Medi | sfx_ui 0.892 | Whoosh | whoosh,literal | br mi 0.32 0.32 | 2 Soft slide/scrape movement sound (medium
+soft-slide-01-medium-05 | Whooshes & Swooshes/Soft Slide 01 - Medi | sfx_ui 0.973 | Whoosh | whoosh,literal | br mi 0.256 0.48 | 2 Soft slide/scrape movement sound (medium
+soft-slide-01-short-01 | Whooshes & Swooshes/Soft Slide 01 - Shor | sfx_ui 0.599 | Whoosh | whoosh,literal | br mi 0.192 0.128 | 2 Soft slide/scrape movement sound (short 
+soft-slide-01-short-02 | Whooshes & Swooshes/Soft Slide 01 - Shor | sfx_ui 0.676 | Whoosh | whoosh,literal | br mi 0.224 0.192 | 2 Soft slide/scrape movement sound (short 
+soft-slide-01-short-03 | Whooshes & Swooshes/Soft Slide 01 - Shor | sfx_ui 0.773 | Whoosh | whoosh,literal | br no 0.352 0.16 | 2 Soft slide/scrape movement sound (short 
+soft-slide-02-short-01 | Whooshes & Swooshes/Soft Slide 02 - Shor | sfx_ui 0.552 | Whoosh | whoosh,literal | br no 0.192 0.256 | 2 Soft slide/scrape movement sound (short 
+soft-slide-02-short-02 | Whooshes & Swooshes/Soft Slide 02 - Shor | sfx_ui 0.657 | Whoosh | whoosh,literal | br no 0.192 0.288 | 2 Soft slide/scrape movement sound (short 
+soft-slide-02-short-03 | Whooshes & Swooshes/Soft Slide 02 - Shor | sfx_ui 0.652 | Whoosh | whoosh,literal | br no 0.256 0.32 | 2 Soft slide/scrape movement sound (short 
+soft-slide-02-short-04 | Whooshes & Swooshes/Soft Slide 02 - Shor | sfx_ui 0.691 | Whoosh | whoosh,literal | br no 0.352 0.096 | 2 Soft slide/scrape movement sound (short 
+soft-slide-02-short-05 | Whooshes & Swooshes/Soft Slide 02 - Shor | sfx_ui 0.739 | Whoosh | whoosh,literal | br no 0.128 0.544 | 2 Soft slide/scrape movement sound (short 
+soft-slide-03-medium-01 | Whooshes & Swooshes/Soft Slide 03 - Medi | sfx_ui 0.815 | Whoosh | whoosh,literal | br no 0.288 0.384 | 2 Soft slide/scrape movement sound (medium
+soft-slide-03-medium-02 | Whooshes & Swooshes/Soft Slide 03 - Medi | sfx_ui 1.089 | Whoosh | whoosh,literal | mi no 0.512 0.448 | 2 Soft slide/scrape movement sound (medium
+soft-slide-03-medium-03 | Whooshes & Swooshes/Soft Slide 03 - Medi | sfx_ui 0.968 | Whoosh | whoosh,literal | br no 0.16 0.608 | 2 Soft slide/scrape movement sound (medium
+soft-slide-03-short-01 | Whooshes & Swooshes/Soft Slide 03 - Shor | sfx_ui 0.361 | Whoosh | whoosh,literal | br no 0.16 0.128 | 2 Soft slide/scrape movement sound (short 
+soft-slide-03-short-02 | Whooshes & Swooshes/Soft Slide 03 - Shor | sfx_ui 0.405 | Whoosh | whoosh,literal | br no 0.192 0.16 | 2 Soft slide/scrape movement sound (short 
+soft-slide-03-short-03 | Whooshes & Swooshes/Soft Slide 03 - Shor | sfx_ui 0.528 | Whoosh | whoosh,literal | mi no 0.16 0.256 | 2 Soft slide/scrape movement sound (short 
+soft-slide-03-short-04 | Whooshes & Swooshes/Soft Slide 03 - Shor | sfx_ui 0.488 | Whoosh | whoosh,literal | br no 0.032 0.416 | 2 Soft slide/scrape movement sound (short 
+soft-slide-03-short-05 | Whooshes & Swooshes/Soft Slide 03 - Shor | sfx_ui 0.608 | Whoosh | whoosh,literal | br no 0.192 0.288 | 2 Soft slide/scrape movement sound (short 
+soft-slide-04-fast-01 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.1 | Whoosh | whoosh,literal | mi no 0.064 0.352 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-02 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | mi no 0.032 0.288 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-03 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | mi no 0.0 0.48 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-04 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | mi no 0.0 0.448 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-05 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.0 0.48 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-06 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.0 0.384 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-fast-07 | Whooshes & Swooshes/Soft Slide 04 - Fast | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.0 0.256 | 2 Soft slide/scrape movement sound (fast 0
+soft-slide-04-medium-01 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.1 | Whoosh | whoosh,literal | mi no 0.032 0.416 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-02 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.0 | Whoosh | whoosh,literal | mi no 0.256 0.32 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-03 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.0 | Whoosh | whoosh,literal | mi no 0.384 0.224 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-04 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.32 0.16 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-05 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.352 0.16 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-06 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 0.992 | Whoosh | whoosh,literal | br no 0.16 0.256 | 2 Soft slide/scrape movement sound (medium
+soft-slide-04-medium-07 | Whooshes & Swooshes/Soft Slide 04 - Medi | sfx_ui 1.0 | Whoosh | whoosh,literal | br no 0.16 0.096 | 2 Soft slide/scrape movement sound (medium
+soft-slide-05-accelerate-01 | Whooshes & Swooshes/Soft Slide 05 - Acce | sfx_ui 0.343 | Whoosh | whoosh,literal | mi no 0.096 0.128 | 2 Soft slide/scrape movement sound (accele
+soft-slide-05-accelerate-02 | Whooshes & Swooshes/Soft Slide 05 - Acce | sfx_ui 0.244 | Whoosh | whoosh,literal | mi no 0.128 0.064 | 2 Soft slide/scrape movement sound (accele
+soft-slide-05-accelerate-03 | Whooshes & Swooshes/Soft Slide 05 - Acce | sfx_ui 0.253 | Whoosh | whoosh,literal | mi no 0.16 0.032 | 2 Soft slide/scrape movement sound (accele
+soft-slide-05-accelerate-04 | Whooshes & Swooshes/Soft Slide 05 - Acce | sfx_ui 0.379 | Whoosh | whoosh,literal | mi no 0.128 0.096 | 2 Soft slide/scrape movement sound (accele
+soft-slide-05-decelerate-01 | Whooshes & Swooshes/Soft Slide 05 - Dece | sfx_ui 0.606 | Whoosh | whoosh,literal | mi no 0.096 0.224 | 2 Soft slide/scrape movement sound (decele
+soft-slide-05-decelerate-02 | Whooshes & Swooshes/Soft Slide 05 - Dece | sfx_ui 0.624 | Whoosh | whoosh,literal | mi no 0.096 0.256 | 2 Soft slide/scrape movement sound (decele
+soft-slide-05-decelerate-03 | Whooshes & Swooshes/Soft Slide 05 - Dece | sfx_ui 0.554 | Whoosh | whoosh,literal | mi no 0.192 0.192 | 2 Soft slide/scrape movement sound (decele
+soft-slide-05-medium-01 | Whooshes & Swooshes/Soft Slide 05 - Medi | sfx_ui 1.002 | Whoosh | whoosh,literal | mi no 0.16 0.48 | 2 Soft slide/scrape movement sound (medium
+soft-slide-05-medium-02 | Whooshes & Swooshes/Soft Slide 05 - Medi | sfx_ui 0.766 | Whoosh | whoosh,literal | mi no 0.224 0.448 | 2 Soft slide/scrape movement sound (medium
+soft-slide-05-medium-03 | Whooshes & Swooshes/Soft Slide 05 - Medi | sfx_ui 1.003 | Whoosh | whoosh,literal | mi no 0.256 0.64 | 2 Soft slide/scrape movement sound (medium
+soft-slide-05-short-01 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.222 | Whoosh | whoosh,literal | mi no 0.064 0.128 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-02 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.254 | Whoosh | whoosh,literal | mi no 0.064 0.16 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-03 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.375 | Whoosh | whoosh,literal | mi no 0.128 0.224 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-04 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.284 | Whoosh | whoosh,literal | mi no 0.064 0.192 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-05 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.326 | Whoosh | whoosh,literal | mi no 0.032 0.288 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-06 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.439 | Whoosh | whoosh,literal | mi no 0.032 0.32 | 2 Soft slide/scrape movement sound (short 
+soft-slide-05-short-07 | Whooshes & Swooshes/Soft Slide 05 - Shor | sfx_ui 0.534 | Whoosh | whoosh,literal | mi no 0.128 0.224 | 2 Soft slide/scrape movement sound (short 
+special-whoosh | Whooshes & Swooshes/Special Whoosh Sound | sfx_ui 0.343 | Whoosh | whoosh | da mi 0.032 0.192 | 3 Very short special whoosh
+one-whoosh | Whooshes & Swooshes/Stone Whoosh.mp3 | sfx_ui 1.752 | - | whoosh | da mi 0.416 1.216 | 3 Stone-like heavy whoosh with rumble
+3 | Whooshes & Swooshes/Swing Whoosh 03.wav | sfx_ui 0.53 | Whoosh | whoosh | da mi 0.032 0.096 | 2 Quick sharp swing whoosh
+12 | Whooshes & Swooshes/Swing Whoosh 12.wav | sfx_ui 0.506 | Whoosh | whoosh | da mi 0.032 0.096 | 2 Quick sharp swing whoosh
+16 | Whooshes & Swooshes/Swing Whoosh 16.wav | sfx_ui 0.383 | Whoosh | whoosh | da mi 0.0 0.064 | 2 Quick sharp swing whoosh
+swipe-swoosh-transition-sound-effect-for-editing-128k | Whooshes & Swooshes/Swipe Swoosh Transit | sfx_ui 0.705 | Whoosh | whoosh,transition | da mi 0.032 0.128 | 3 Swipe swoosh transition
+swoosh-sound-effect-128k | Whooshes & Swooshes/Swoosh (2).mp3 | sfx_ui 1.75 | Whoosh | whoosh,transition | da mi 0.032 0.128 | 2 Swoosh sound
+swoosh-01-02 | Whooshes & Swooshes/Swoosh 01 - 02.wav | sfx_ui 0.264 | Whoosh | whoosh | da mi 0.0 0.096 | 2 swoosh
+swoosh-01-03 | Whooshes & Swooshes/Swoosh 01 - 03.wav | sfx_ui 0.243 | Whoosh | whoosh | mi mi 0.032 0.064 | 2 swoosh
+swoosh-01-04 | Whooshes & Swooshes/Swoosh 01 - 04.wav | sfx_ui 0.333 | Whoosh | whoosh | mi mi 0.032 0.064 | 2 swoosh
+swoosh-01-05 | Whooshes & Swooshes/Swoosh 01 - 05.wav | sfx_ui 0.282 | Whoosh | whoosh | mi mi 0.0 0.096 | 2 swoosh
+swoosh-01-06 | Whooshes & Swooshes/Swoosh 01 - 06.wav | sfx_ui 0.212 | Whoosh | whoosh | mi mi 0.0 0.064 | 2 swoosh
+swoosh-01-07 | Whooshes & Swooshes/Swoosh 01 - 07.wav | sfx_ui 0.182 | Whoosh | whoosh | mi mi 0.0 0.064 | 2 swoosh
+swoosh-01-multiple-01 | Whooshes & Swooshes/Swoosh 01 - Multiple | sfx_ui 0.318 | Whoosh | whoosh | mi mi 0.032 0.096 | 2 swoosh multiple
+swoosh-01-multiple-02 | Whooshes & Swooshes/Swoosh 01 - Multiple | sfx_ui 0.367 | Whoosh | whoosh | mi mi 0.032 0.16 | 2 swoosh multiple
+swoosh-01-01 | Whooshes & Swooshes/Swoosh 01.wav | sfx_ui 0.258 | Whoosh | whoosh | da mi 0.0 0.064 | 2 Very short crisp swoosh
+swoosh-02-01 | Whooshes & Swooshes/Swoosh 02 - 01.wav | sfx_ui 0.252 | Whoosh | whoosh | br no 0.032 0.064 | 2 swoosh
+swoosh-02-02 | Whooshes & Swooshes/Swoosh 02 - 02.wav | sfx_ui 0.225 | Whoosh | whoosh | br no 0.032 0.064 | 2 swoosh
+swoosh-02-03 | Whooshes & Swooshes/Swoosh 02 - 03.wav | sfx_ui 0.24 | Whoosh | whoosh | br no 0.0 0.064 | 2 swoosh
+swoosh-02-04 | Whooshes & Swooshes/Swoosh 02 - 04.wav | sfx_ui 0.227 | Whoosh | whoosh | br no 0.0 0.096 | 2 swoosh
+swoosh-03-01 | Whooshes & Swooshes/Swoosh 03 - 01.wav | sfx_ui 0.19 | Whoosh | whoosh | mi no 0.032 0.096 | 2 swoosh
+swoosh-03-02 | Whooshes & Swooshes/Swoosh 03 - 02.wav | sfx_ui 0.251 | Whoosh | whoosh | mi no 0.0 0.096 | 2 swoosh
+swoosh-03-03 | Whooshes & Swooshes/Swoosh 03 - 03.wav | sfx_ui 0.19 | Whoosh | whoosh | mi no 0.064 0.064 | 2 swoosh
+swoosh-03-04 | Whooshes & Swooshes/Swoosh 03 - 04.wav | sfx_ui 0.35 | Whoosh | whoosh | mi no 0.0 0.096 | 2 swoosh
+swoosh-03-05 | Whooshes & Swooshes/Swoosh 03 - 05.wav | sfx_ui 0.252 | Whoosh | whoosh | mi no 0.032 0.032 | 2 swoosh
+swoosh-04-01 | Whooshes & Swooshes/Swoosh 04 - 01.wav | sfx_ui 0.182 | Whoosh | whoosh | mi no 0.032 0.128 | 2 swoosh
+swoosh-04-02 | Whooshes & Swooshes/Swoosh 04 - 02.wav | sfx_ui 0.181 | Whoosh | whoosh | mi no 0.032 0.096 | 2 swoosh
+swoosh-04-03 | Whooshes & Swooshes/Swoosh 04 - 03.wav | sfx_ui 0.15 | Whoosh | whoosh | mi no 0.032 0.064 | 2 swoosh
+swoosh-04-04 | Whooshes & Swooshes/Swoosh 04 - 04.wav | sfx_ui 0.17 | Whoosh | whoosh | mi no 0.032 0.064 | 2 swoosh
+swoosh-04-05 | Whooshes & Swooshes/Swoosh 04 - 05.wav | sfx_ui 0.154 | Whoosh | whoosh | mi no 0.032 0.032 | 2 swoosh
+swoosh-04-06 | Whooshes & Swooshes/Swoosh 04 - 06.wav | sfx_ui 0.179 | Whoosh | whoosh | br no 0.032 0.064 | 2 swoosh
+swoosh-04-double-01 | Whooshes & Swooshes/Swoosh 04 - Double 0 | sfx_ui 0.235 | Whoosh | whoosh | mi no 0.0 0.128 | 2 swoosh double
+swoosh-04-double-02 | Whooshes & Swooshes/Swoosh 04 - Double 0 | sfx_ui 0.27 | Whoosh | whoosh | mi no 0.0 0.16 | 2 swoosh double
+sfx-swoosh04 | Whooshes & Swooshes/Swoosh 04.mp3 | sfx_ui 0.885 | Whoosh | whoosh | da to 0.128 0.32 | 2 Short swoosh
+swoosh-4 | Whooshes & Swooshes/Swoosh 4.mp3 | sfx_ui 0.213 | Whoosh | whoosh | mi no 0.032 0.096 | 2 Very short swoosh
+swoosh-transition-01 | Whooshes & Swooshes/Swoosh Transition 01 | sfx_ui 1.083 | Whoosh | transition,whoosh | mi no 0.192 0.384 | 2 swoosh transition sweep
+swoosh-transition-02 | Whooshes & Swooshes/Swoosh Transition 02 | sfx_ui 0.938 | Whoosh | transition,whoosh | da mi 0.16 0.288 | 2 swoosh transition sweep
+swoosh-transition-03 | Whooshes & Swooshes/Swoosh Transition 03 | sfx_ui 0.708 | Whoosh | transition,whoosh | da to 0.16 0.16 | 2 swoosh transition sweep
+swoosh-transition-04 | Whooshes & Swooshes/Swoosh Transition 04 | sfx_ui 0.966 | Whoosh | transition,whoosh | mi no 0.256 0.192 | 2 swoosh transition sweep
+swoosh-transition-05 | Whooshes & Swooshes/Swoosh Transition 05 | sfx_ui 0.794 | Whoosh | transition,whoosh | da mi 0.128 0.32 | 2 swoosh transition sweep
+swoosh-transition-06 | Whooshes & Swooshes/Swoosh Transition 06 | sfx_ui 0.926 | Whoosh | transition,whoosh | mi no 0.256 0.16 | 2 swoosh transition sweep
+swoosh-transition-07 | Whooshes & Swooshes/Swoosh Transition 07 | sfx_ui 1.5 | Whoosh | transition,whoosh | da to 0.352 0.448 | 2 swoosh transition sweep
+swoosh-transition-08 | Whooshes & Swooshes/Swoosh Transition 08 | sfx_ui 1.208 | Whoosh | transition,whoosh | mi no 0.384 0.32 | 2 swoosh transition sweep
+swoosh-transition-09 | Whooshes & Swooshes/Swoosh Transition 09 | sfx_ui 1.792 | Whoosh | transition,whoosh | da mi 0.384 0.416 | 2 swoosh transition sweep
+swoosh-transition-10 | Whooshes & Swooshes/Swoosh Transition 10 | sfx_ui 1.125 | Whoosh | transition,whoosh | da to 0.16 0.416 | 2 swoosh transition sweep
+swoosh-transition-11 | Whooshes & Swooshes/Swoosh Transition 11 | sfx_ui 1.125 | Whoosh | transition,whoosh | da no 0.256 0.288 | 2 swoosh transition sweep
+swoosh-transition-12 | Whooshes & Swooshes/Swoosh Transition 12 | sfx_ui 1.219 | Whoosh | transition,whoosh | mi no 0.224 0.32 | 2 swoosh transition sweep
+swoosh-transition-13 | Whooshes & Swooshes/Swoosh Transition 13 | sfx_ui 1.721 | Whoosh | transition,whoosh | mi no 0.256 0.544 | 2 swoosh transition sweep
+swoosh-transition-14 | Whooshes & Swooshes/Swoosh Transition 14 | sfx_ui 2.0 | Whoosh | transition,whoosh | da mi 0.576 0.736 | 2 swoosh transition sweep
+swoosh-transition-15 | Whooshes & Swooshes/Swoosh Transition 15 | sfx_ui 2.0 | Whoosh | transition,whoosh | da mi 0.352 0.352 | 2 swoosh transition sweep
+swoosh-transition-16 | Whooshes & Swooshes/Swoosh Transition 16 | sfx_ui 2.0 | Whoosh | transition,whoosh | da no 0.224 0.672 | 2 swoosh transition sweep
+swoosh-transition-17 | Whooshes & Swooshes/Swoosh Transition 17 | sfx_ui 2.0 | Whoosh | transition,whoosh | da mi 0.096 0.704 | 2 swoosh transition sweep
+swoosh-transition-18 | Whooshes & Swooshes/Swoosh Transition 18 | sfx_ui 2.0 | Whoosh | transition,whoosh | da no 0.448 0.352 | 2 swoosh transition sweep
+swoosh-transition-19 | Whooshes & Swooshes/Swoosh Transition 19 | sfx_ui 1.51 | Whoosh | transition,whoosh | da mi 0.192 0.64 | 2 swoosh transition sweep
+swoosh-transition-20 | Whooshes & Swooshes/Swoosh Transition 20 | sfx_ui 1.046 | Whoosh | transition,whoosh | da no 0.288 0.256 | 2 swoosh transition sweep
+swoosh-transition-21 | Whooshes & Swooshes/Swoosh Transition 21 | sfx_ui 1.302 | Whoosh | transition,whoosh | mi no 0.352 0.448 | 2 swoosh transition sweep
+swoosh-transition-22 | Whooshes & Swooshes/Swoosh Transition 22 | sfx_ui 0.987 | Whoosh | transition,whoosh | da mi 0.192 0.288 | 2 swoosh transition sweep
+swoosh-transition-23 | Whooshes & Swooshes/Swoosh Transition 23 | sfx_ui 1.338 | Whoosh | transition,whoosh | da to 0.48 0.256 | 2 swoosh transition sweep
+swoosh-transition-24 | Whooshes & Swooshes/Swoosh Transition 24 | sfx_ui 0.766 | Whoosh | transition,whoosh | mi no 0.064 0.32 | 2 swoosh transition sweep
+swoosh-transition-25 | Whooshes & Swooshes/Swoosh Transition 25 | sfx_ui 0.845 | Whoosh | transition,whoosh | mi no 0.224 0.16 | 2 swoosh transition sweep
+swoosh-transition-26 | Whooshes & Swooshes/Swoosh Transition 26 | sfx_ui 0.644 | Whoosh | transition,whoosh | da mi 0.192 0.192 | 2 swoosh transition sweep
+swoosh-transition-27 | Whooshes & Swooshes/Swoosh Transition 27 | sfx_ui 0.891 | Whoosh | transition,whoosh | da no 0.16 0.224 | 2 swoosh transition sweep
+swoosh-transition-28 | Whooshes & Swooshes/Swoosh Transition 28 | sfx_ui 0.779 | Whoosh | transition,whoosh | da to 0.192 0.192 | 2 swoosh transition sweep
+swoosh-transition-29 | Whooshes & Swooshes/Swoosh Transition 29 | sfx_ui 0.992 | Whoosh | transition,whoosh | da mi 0.288 0.224 | 2 swoosh transition sweep
+swoosh-transition-30 | Whooshes & Swooshes/Swoosh Transition 30 | sfx_ui 1.44 | Whoosh | transition,whoosh | da mi 0.512 0.352 | 2 swoosh transition sweep
+swoosh-transition-31 | Whooshes & Swooshes/Swoosh Transition 31 | sfx_ui 0.929 | Whoosh | transition,whoosh | da mi 0.224 0.224 | 2 swoosh transition sweep
+swoosh-transition-32 | Whooshes & Swooshes/Swoosh Transition 32 | sfx_ui 1.689 | Whoosh | transition,whoosh | da no 0.416 0.352 | 2 swoosh transition sweep
+swoosh-transition-33 | Whooshes & Swooshes/Swoosh Transition 33 | sfx_ui 1.393 | Whoosh | transition,whoosh | da mi 0.608 0.288 | 2 swoosh transition sweep
+swoosh-transition-34 | Whooshes & Swooshes/Swoosh Transition 34 | sfx_ui 2.028 | Whoosh | transition,whoosh | mi no 0.192 0.672 | 3 swoosh transition sweep
+swoosh-transition-35 | Whooshes & Swooshes/Swoosh Transition 35 | sfx_ui 1.058 | Whoosh | transition,whoosh | da to 0.448 0.16 | 2 swoosh transition sweep
+swoosh-transition-36 | Whooshes & Swooshes/Swoosh Transition 36 | sfx_ui 0.982 | Whoosh | transition,whoosh | mi no 0.32 0.224 | 2 swoosh transition sweep
+swoosh-transition-37 | Whooshes & Swooshes/Swoosh Transition 37 | sfx_ui 0.65 | Whoosh | transition,whoosh | mi no 0.224 0.16 | 2 swoosh transition sweep
+swoosh-transition-38 | Whooshes & Swooshes/Swoosh Transition 38 | sfx_ui 0.842 | Whoosh | transition,whoosh | mi no 0.32 0.16 | 2 swoosh transition sweep
+swoosh-transition-39 | Whooshes & Swooshes/Swoosh Transition 39 | sfx_ui 2.019 | Whoosh | transition,whoosh | da mi 0.448 0.8 | 3 swoosh transition sweep
+swoosh-transition-40 | Whooshes & Swooshes/Swoosh Transition 40 | sfx_ui 2.117 | Whoosh | transition,whoosh | da mi 0.32 1.056 | 3 swoosh transition sweep
+swoosh-transition-41 | Whooshes & Swooshes/Swoosh Transition 41 | sfx_ui 1.628 | Whoosh | transition,whoosh | da no 0.416 0.64 | 2 swoosh transition sweep
+swoosh-transition-42 | Whooshes & Swooshes/Swoosh Transition 42 | sfx_ui 0.974 | Whoosh | transition,whoosh | da mi 0.128 0.544 | 2 swoosh transition sweep
+swoosh-transition-43 | Whooshes & Swooshes/Swoosh Transition 43 | sfx_ui 1.477 | Whoosh | transition,whoosh | da mi 0.128 0.64 | 2 swoosh transition sweep
+swoosh-transition-44 | Whooshes & Swooshes/Swoosh Transition 44 | sfx_ui 1.074 | Whoosh | transition,whoosh | da mi 0.416 0.32 | 2 swoosh transition sweep
+swoosh-transition-45 | Whooshes & Swooshes/Swoosh Transition 45 | sfx_ui 1.644 | Whoosh | transition,whoosh | mi no 0.256 0.8 | 2 swoosh transition sweep
+synthetic-blow-01 | Whooshes & Swooshes/Synthetic Blow 01.wa | sfx_ui 0.708 | Whoosh | whoosh | mi no 0.448 0.064 | 2 Synthetic air blow swish (0.7s).
+synthetic-blow-02 | Whooshes & Swooshes/Synthetic Blow 02.wa | sfx_ui 1.544 | Whoosh | whoosh | mi no 0.608 0.352 | 2 Synthetic air blow swish (1.5s).
+synthetic-blow-03 | Whooshes & Swooshes/Synthetic Blow 03.wa | sfx_ui 1.302 | Whoosh | whoosh | mi no 0.192 0.672 | 2 Synthetic air blow swish (1.3s).
+synthetic-blow-04 | Whooshes & Swooshes/Synthetic Blow 04.wa | sfx_ui 1.271 | Whoosh | whoosh | mi no 0.64 0.288 | 2 Synthetic air blow swish (1.3s).
+synthetic-blow-05 | Whooshes & Swooshes/Synthetic Blow 05.wa | sfx_ui 1.428 | Whoosh | whoosh | br no 0.384 0.8 | 2 Synthetic air blow swish (1.4s).
+synthetic-blow-06 | Whooshes & Swooshes/Synthetic Blow 06.wa | sfx_ui 2.716 | Whoosh | whoosh | mi no 0.704 1.536 | 2 Synthetic air blow swish (2.7s).
+synthetic-blow-07 | Whooshes & Swooshes/Synthetic Blow 07.wa | sfx_ui 0.678 | Whoosh | whoosh | br no 0.384 0.16 | 2 Synthetic air blow swish (0.7s).
+synthetic-blow-08 | Whooshes & Swooshes/Synthetic Blow 08.wa | sfx_ui 1.034 | Whoosh | whoosh | mi no 0.512 0.32 | 2 Synthetic air blow swish (1.0s).
+synthetic-blow-09 | Whooshes & Swooshes/Synthetic Blow 09.wa | sfx_ui 0.621 | Whoosh | whoosh | br no 0.288 0.16 | 2 Synthetic air blow swish (0.6s).
+synthetic-blow-10 | Whooshes & Swooshes/Synthetic Blow 10.wa | sfx_ui 0.481 | Whoosh | whoosh | mi no 0.256 0.128 | 2 Synthetic air blow swish (0.5s).
+throwing | Whooshes & Swooshes/THROWING.mp3 | sfx_ui 0.504 | - | whoosh,literal | mi mi 0.0 0.128 | 1 Quick throw swoosh
+tape-rewind~2 | Whooshes & Swooshes/Tape Rewind.m4a | sfx_ui 0.603 | Whoosh | whoosh,transition | mi no 0.224 0.16 | 2 Tape rewind
+teleport-dbz-sound-effect-256k | Whooshes & Swooshes/Teleport (DBZ Sound  | sfx_ui 1.2 | - | whoosh,literal | mi no 0.832 0.128 | 3 Dragon Ball Z instant transmission telep
+throw | Whooshes & Swooshes/Throw.mp3 | sfx_ui 0.993 | Whoosh | whoosh,literal | mi mi 0.032 0.128 | 2 Item throw whoosh
+tr1 | Whooshes & Swooshes/Transition Whoosh 01 | sfx_ui 0.312 | Whoosh | transition,whoosh | da to 0.064 0.224 | 2 Transition whoosh
+tr2 | Whooshes & Swooshes/Transition Whoosh 02 | sfx_ui 3.03 | Whoosh | transition,riser | da no 0.128 1.344 | 3 Transition whoosh
+tr3 | Whooshes & Swooshes/Transition Whoosh 03 | sfx_ui 1.324 | Whoosh | transition,whoosh | da to 0.224 0.192 | 2 Transition whoosh
+tr4 | Whooshes & Swooshes/Transition Whoosh 04 | sfx_ui 1.507 | Whoosh | transition,whoosh | da mi 0.288 0.352 | 3 Transition whoosh
+tr5 | Whooshes & Swooshes/Transition Whoosh 05 | sfx_ui 0.584 | Whoosh | transition,whoosh | da mi 0.096 0.192 | 2 Transition whoosh
+tr6 | Whooshes & Swooshes/Transition Whoosh 06 | sfx_ui 0.701 | Whoosh | transition,whoosh | da mi 0.032 0.192 | 2 Transition whoosh
+tr7 | Whooshes & Swooshes/Transition Whoosh 07 | sfx_ui 0.32 | Whoosh | transition,whoosh | da mi 0.032 0.096 | 2 Transition whoosh
+tr8 | Whooshes & Swooshes/Transition Whoosh 08 | sfx_ui 1.335 | Whoosh | transition,whoosh | da to 0.256 0.288 | 2 Transition whoosh
+tr11 | Whooshes & Swooshes/Transition Whoosh 11 | sfx_ui 0.75 | Whoosh | transition,whoosh | mi no 0.192 0.224 | 2 Transition whoosh
+tr12 | Whooshes & Swooshes/Transition Whoosh 12 | sfx_ui 1.542 | Whoosh | transition,whoosh | da mi 0.384 0.352 | 3 Transition whoosh
+tr14 | Whooshes & Swooshes/Transition Whoosh 14 | sfx_ui 0.636 | Whoosh | transition,whoosh | mi no 0.256 0.192 | 2 Transition whoosh
+tr15 | Whooshes & Swooshes/Transition Whoosh 15 | sfx_ui 0.655 | Whoosh | transition,whoosh | br no 0.16 0.224 | 2 Transition whoosh
+tr16 | Whooshes & Swooshes/Transition Whoosh 16 | sfx_ui 1.319 | Whoosh | transition,whoosh | mi mi 0.448 0.096 | 2 Transition whoosh
+tr17 | Whooshes & Swooshes/Transition Whoosh 17 | sfx_ui 0.63 | Whoosh | transition,whoosh | mi no 0.128 0.224 | 2 Transition whoosh
+tr18 | Whooshes & Swooshes/Transition Whoosh 18 | sfx_ui 0.314 | Whoosh | transition,whoosh | mi no 0.032 0.064 | 2 Transition whoosh
+tr21 | Whooshes & Swooshes/Transition Whoosh 21 | sfx_ui 0.432 | Whoosh | transition,whoosh | mi no 0.032 0.096 | 2 Transition whoosh
+tr30 | Whooshes & Swooshes/Transition Whoosh 30 | sfx_ui 2.016 | Whoosh | transition,whoosh | da mi 0.16 0.864 | 3 Transition whoosh
+tr31 | Whooshes & Swooshes/Transition Whoosh 31 | sfx_ui 2.131 | Whoosh | transition,whoosh | da no 0.448 0.416 | 3 Transition whoosh
+tr32 | Whooshes & Swooshes/Transition Whoosh 32 | sfx_ui 2.138 | Whoosh | transition,whoosh | mi no 0.416 0.512 | 3 Transition whoosh
+tr35 | Whooshes & Swooshes/Transition Whoosh 35 | sfx_ui 2.973 | Whoosh | transition,whoosh | da mi 0.352 1.472 | 3 Transition whoosh
+tr36 | Whooshes & Swooshes/Transition Whoosh 36 | sfx_ui 2.624 | Whoosh | transition,whoosh | da mi 0.224 0.96 | 3 Transition whoosh
+tr37 | Whooshes & Swooshes/Transition Whoosh 37 | sfx_ui 1.5 | Whoosh | transition,whoosh | br no 0.064 0.736 | 2 Transition whoosh
+tr38 | Whooshes & Swooshes/Transition Whoosh 38 | sfx_ui 4.0 | Whoosh | transition,riser | da mi 0.256 0.992 | 3 Transition whoosh
+tr39 | Whooshes & Swooshes/Transition Whoosh 39 | sfx_ui 4.0 | Whoosh | transition,riser | da mi 0.16 0.544 | 3 Transition whoosh
+tr40 | Whooshes & Swooshes/Transition Whoosh 40 | sfx_ui 2.0 | Whoosh | transition,whoosh | da mi 0.736 0.896 | 3 Transition whoosh
+tr41 | Whooshes & Swooshes/Transition Whoosh 41 | sfx_ui 2.256 | Whoosh | transition,whoosh | da no 0.48 0.48 | 3 Transition whoosh
+tr43 | Whooshes & Swooshes/Transition Whoosh 43 | sfx_ui 2.151 | Whoosh | transition,whoosh | da no 0.416 0.384 | 3 Transition whoosh
+tr44 | Whooshes & Swooshes/Transition Whoosh 44 | sfx_ui 2.256 | Whoosh | transition,whoosh | mi no 0.288 0.736 | 3 Transition whoosh
+tr45 | Whooshes & Swooshes/Transition Whoosh 45 | sfx_ui 0.75 | Whoosh | transition,whoosh | mi mi 0.192 0.192 | 2 Transition whoosh
+tr46 | Whooshes & Swooshes/Transition Whoosh 46 | sfx_ui 0.694 | Whoosh | transition,whoosh | mi no 0.128 0.256 | 2 Transition whoosh
+tr47 | Whooshes & Swooshes/Transition Whoosh 47 | sfx_ui 0.366 | Whoosh | transition,whoosh | br no 0.128 0.128 | 2 Transition whoosh
+tr48 | Whooshes & Swooshes/Transition Whoosh 48 | sfx_ui 0.717 | Whoosh | transition,whoosh | br no 0.16 0.16 | 2 Transition whoosh
+tr49 | Whooshes & Swooshes/Transition Whoosh 49 | sfx_ui 0.899 | Whoosh | transition,whoosh | mi no 0.128 0.32 | 2 Transition whoosh
+tr52 | Whooshes & Swooshes/Transition Whoosh 52 | sfx_ui 1.512 | Whoosh | transition,whoosh | da no 0.544 0.16 | 3 Transition whoosh
+tr53 | Whooshes & Swooshes/Transition Whoosh 53 | sfx_ui 1.396 | Whoosh | transition,whoosh | da no 0.288 0.192 | 2 Transition whoosh
+tr54 | Whooshes & Swooshes/Transition Whoosh 54 | sfx_ui 0.725 | Whoosh | transition,whoosh | mi no 0.288 0.128 | 2 Transition whoosh
+transition-woosh | Whooshes & Swooshes/Transition Whoosh.mp | sfx_ui 0.787 | Whoosh | whoosh | da to 0.16 0.352 | 3 Transition Woosh whoosh
+whip-1-sound-sr | Whooshes & Swooshes/Whip 1 - Sound - SR. | sfx_ui 0.893 | Whoosh | whoosh | br no 0.064 0.576 | 3 Quick whip whoosh
+whip-2-sound-sr | Whooshes & Swooshes/Whip 2 - Sound - SR. | sfx_ui 1.085 | Whoosh | whoosh,hit | mi no 0.096 0.384 | 3 Whip whoosh with crack
+whip-3-sound-sr | Whooshes & Swooshes/Whip 3 - Sound - SR. | sfx_ui 1.733 | Whoosh | whoosh | br no 0.256 0.48 | 3 Long whip whoosh
+whoosh | Whooshes & Swooshes/Whoosh 01.mp3 | sfx_ui 1.022 | Whoosh | whoosh,transition | da mi 0.032 0.096 | 2 Whoosh
+1~10 | Whooshes & Swooshes/Whoosh 01.wav | sfx_ui 0.403 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+2~8 | Whooshes & Swooshes/Whoosh 02.wav | sfx_ui 0.609 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+3~7 | Whooshes & Swooshes/Whoosh 03.wav | sfx_ui 0.52 | Whoosh | whoosh | da mi 0.032 0.096 | 2 Short whoosh
+4~3 | Whooshes & Swooshes/Whoosh 04.wav | sfx_ui 0.52 | Whoosh | whoosh | da mi 0.0 0.064 | 2 Short whoosh
+5~3 | Whooshes & Swooshes/Whoosh 05.wav | sfx_ui 0.494 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+6~2 | Whooshes & Swooshes/Whoosh 06.wav | sfx_ui 0.462 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+7 | Whooshes & Swooshes/Whoosh 07.wav | sfx_ui 0.472 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+8 | Whooshes & Swooshes/Whoosh 08.wav | sfx_ui 0.297 | Whoosh | whoosh | da mi 0.0 0.064 | 2 Short whoosh
+9 | Whooshes & Swooshes/Whoosh 09.wav | sfx_ui 0.406 | Whoosh | whoosh | da mi 0.0 0.032 | 2 Short whoosh
+whoosh-1 | Whooshes & Swooshes/Whoosh 1 (2).mp3 | sfx_ui 0.862 | Whoosh | whoosh | da no 0.032 0.064 | 2 Short whoosh
+oosh-1 | Whooshes & Swooshes/Whoosh 1.mp3 | sfx_ui 0.975 | - | whoosh,transition | mi no 0.064 0.096 | 3 Medium whoosh with soft swell for transi
+10 | Whooshes & Swooshes/Whoosh 10.wav | sfx_ui 0.356 | Whoosh | whoosh | da mi 0.0 0.064 | 2 Short whoosh
+11 | Whooshes & Swooshes/Whoosh 11.wav | sfx_ui 0.359 | Whoosh | whoosh | da to 0.0 0.064 | 2 Short whoosh
+12~2 | Whooshes & Swooshes/Whoosh 12.wav | sfx_ui 0.434 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+13 | Whooshes & Swooshes/Whoosh 13.wav | sfx_ui 0.418 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+oosh-2 | Whooshes & Swooshes/Whoosh 2.flac | sfx_ui 0.426 | - | whoosh,transition | da mi 0.032 0.16 | 3 Very fast sharp whoosh for transitions a
+whoosh-2 | Whooshes & Swooshes/Whoosh 2.mp3 | sfx_ui 0.888 | Whoosh | whoosh | da mi 0.032 0.064 | 2 Short whoosh
+whoosh-3 | Whooshes & Swooshes/Whoosh 3.mp3 | sfx_ui 0.731 | Whoosh | whoosh | mi no 0.032 0.128 | 2 Short whoosh
+oosh-3 | Whooshes & Swooshes/Whoosh 3.wav | sfx_ui 0.9 | - | whoosh,transition | da mi 0.032 0.096 | 2 Smooth whoosh for transitions and fast m
+whoosh-4 | Whooshes & Swooshes/Whoosh 4 (2).mp3 | sfx_ui 0.888 | Whoosh | whoosh | da mi 0.064 0.096 | 3 Short whoosh
+oosh-4 | Whooshes & Swooshes/Whoosh 4.mp3 | sfx_ui 0.758 | - | whoosh,transition | da no 0.064 0.16 | 3 Fast clean whoosh for transitions and fa
+oosh-5 | Whooshes & Swooshes/Whoosh 5.mp3 | sfx_ui 0.758 | - | whoosh,transition | mi no 0.096 0.32 | 2 Airy whoosh for transitions and fast mov
+oosh-6 | Whooshes & Swooshes/Whoosh 6.mp3 | sfx_ui 0.94 | - | whoosh,transition | da mi 0.224 0.192 | 3 Punchy whoosh for transitions and fast m
+whoosh-fire-transition | Whooshes & Swooshes/Whoosh Fire Transiti | sfx_ui 4.56 | Whoosh | whoosh,transition | da no 0.096 0.256 | 4 Fire-like whoosh transition with rumblin
+whoosh-transition-whip-swish-pan-comical-s | Whooshes & Swooshes/Whoosh Transition (W | sfx_ui 3.083 | - | whoosh,transition | mi no 0.032 0.096 | 2 Whoosh whip-pan transition, extremely sh
+woosh | Whooshes & Swooshes/Woosh.mp3 | sfx_ui 7.784 | Whoosh | whoosh | da mi 6.816 0.128 | 3 Whoosh with long tail
+whoosh-paper-01 | Whooshes & Swooshes/whoosh paper 01.wav | sfx_ui 1.018 | Whoosh | whoosh | br no 0.416 0.192 | 2 Paper whoosh swish

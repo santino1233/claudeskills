@@ -1,0 +1,659 @@
+RENAME: 10/SoundBits - Cars - Mad Mustang Mercury  ->  10/Cars - Mad Mustang Mercury
+RENAME: 10/SoundBits - Motorcycles - Honda  ->  10/Motorcycles - Honda
+RENAME: 10/SoundBits - Motorcycles - Kawasaki  ->  10/Motorcycles - Kawasaki
+RENAME: 10/SoundBits - Pass-By - Trains, Trucks & Cars 2  ->  10/Pass-By - Trains, Trucks & Cars 2
+RENAME: 10/SoundBits - Vox Bestiae - Source Elements  ->  10/Vox Bestiae - Source Elements
+RENAME: 10/SoundBits - Vox Hominis - Human Effort Voices  ->  10/Vox Hominis - Human Effort Voices
+RENAME: 10/The Noisery - City Rain  ->  10/City Rain
+RENAME: 10/The Noisery - Moaning Metal  ->  10/Moaning Metal
+RENAME: 10/The Noisery - Rich Glitch  ->  10/Rich Glitch
+RENAME: 10/The Noisery - Transit Tunes - The German Train Collection  ->  10/Transit Tunes - The German Train Collection
+RENAME: 10/TheWorkRoom - Flip Flops  ->  10/Flip Flops
+RENAME: 10/TheWorkRoom - Nigerian Walla  ->  10/Nigerian Walla
+RENAME: 10/TheWorkRoom - South African Walla  ->  10/South African Walla
+RENAME: 10/TheWorkRoom - Wire Cars  ->  10/Wire Cars
+RENAME: 10/Victor Ermakov - Industrial Ambiences - Ship Repair Factory  ->  10/Industrial Ambiences - Ship Repair Factory
+RENAME: 2/Alexander Kopeikin - Moscow Ambience  ->  2/Moscow Ambience
+RENAME: 2/Alexander Kopeikin - Transitions HD  ->  2/Transitions HD
+RENAME: 2/BeautifulNoise - Intensity by Design  ->  2/Intensity by Design
+RENAME: 2/Carlo Ascrizzi - Race Cars Essential Library  ->  2/Race Cars Essential Library
+RENAME: 2/Coll Anderson - Battle Crowd  ->  2/Battle Crowd
+RENAME: 2/Coll Anderson - Car Destruction  ->  2/Car Destruction
+RENAME: 2/Coll Anderson - Deer  ->  2/Deer
+RENAME: 2/Coll Anderson - Dog  ->  2/Dog
+RENAME: 2/Coll Anderson - Gore  ->  2/Gore
+RENAME: 2/Coll Anderson - Guns  ->  2/Guns
+RENAME: 2/Coll Anderson - House  ->  2/House
+RENAME: 2/Coll Anderson - Metal Plate  ->  2/Metal Plate
+RENAME: 2/Coll Anderson - Monster Zombie Vocal  ->  2/Monster Zombie Vocal
+RENAME: 2/Coll Anderson - Pig  ->  2/Pig
+RENAME: 2/Coll Anderson - Slapstick Comedy  ->  2/Slapstick Comedy
+RENAME: 2/Coll Anderson - Sliding Whoosh By  ->  2/Sliding Whoosh By
+RENAME: 2/Coll Anderson - Traditional Sirens  ->  2/Traditional Sirens
+RENAME: 2/Detunized - AroundBridges  ->  2/AroundBridges
+RENAME: 2/Detunized - CityTraffic  ->  2/CityTraffic
+RENAME: 2/Detunized - Computer Noises  ->  2/Computer Noises
+RENAME: 2/Detunized - DanishBunkers  ->  2/DanishBunkers
+RENAME: 2/Detunized - HumBuzz  ->  2/HumBuzz
+RENAME: 2/Detunized - JustWater  ->  2/JustWater
+RENAME: 2/Detunized - Newsreel Noises  ->  2/Newsreel Noises
+RENAME: 2/Detunized - PassingTrains  ->  2/PassingTrains
+RENAME: 2/Detunized - WindTurbines  ->  2/WindTurbines
+RENAME: 2/Eiravaein Works - Crepitus  ->  2/Crepitus
+RENAME: 2/Eiravaein Works - Epona  ->  2/Epona
+RENAME: 2/Eiravaein Works - Ilmarinen  ->  2/Ilmarinen
+RENAME: 2/Eiravaein Works - Start Select  ->  2/Start Select
+RENAME: 2/Eiravaein Works - Vaeyan I  ->  2/Vaeyan I
+RENAME: 2/Eiravaein Works - Vaeyan II  ->  2/Vaeyan II
+RENAME: 2/Giorgio Riolo - SILENTSCAPES  ->  2/SILENTSCAPES
+RENAME: 2/Julian Ray - Background Machinery  ->  2/Background Machinery
+RENAME: 2/Julian Ray - Space - The Finest FX_Sounds of Space  ->  2/Space - The Finest FX_Sounds of Space
+RENAME: 2/Kpow Sounds - Industrial Disquiet Soundpack  ->  2/Industrial Disquiet Soundpack
+RENAME: 2/Kpow Sounds - UI SOUNDPACKS  ->  2/UI SOUNDPACKS
+RENAME: 2/Mattia Cellotto - Crunch Mode  ->  2/Crunch Mode
+RENAME: 2/Mattia Cellotto - The Borax Experiment  ->  2/The Borax Experiment
+RENAME: 2/Mechanical Wave - Ambience and Weather  ->  2/Ambience and Weather
+RENAME: 2/Mechanical Wave - Foley Session 01  ->  2/Foley Session 01
+RENAME: 2/Mechanical Wave - Hits Whoosh  ->  2/Hits Whoosh
+RENAME: 2/Mechanical Wave - Rock Brick and Dirt  ->  2/Rock Brick and Dirt
+RENAME: 2/Mechanical Wave - Sci-Fi-Invaders  ->  2/Sci-Fi-Invaders
+RENAME: 2/Mechanical Wave - Undoing-Computer  ->  2/Undoing-Computer
+RENAME: 2/Mechanical Wave - Vegetable Massacres  ->  2/Vegetable Massacres
+RENAME: 2/Membrans - Analog Tape Noise Sound Pack 01  ->  2/Analog Tape Noise Sound Pack 01
+RENAME: 2/Membrans - Astro Droid Sound Pack 01  ->  2/Astro Droid Sound Pack 01
+RENAME: 2/Membrans - Bone Crackings Sound Pack 01  ->  2/Bone Crackings Sound Pack 01
+RENAME: 2/Membrans - Cartoon Arrow Sound Pack 01  ->  2/Cartoon Arrow Sound Pack 01
+RENAME: 2/Membrans - Firecrackers Sound Pack 01  ->  2/Firecrackers Sound Pack 01
+RENAME: 2/Membrans - Ice Cold Sound Pack 01  ->  2/Ice Cold Sound Pack 01
+RENAME: 2/Membrans - Monster Pack 01  ->  2/Monster Pack 01
+RENAME: 2/Membrans - Pops Sound Pack 01  ->  2/Pops Sound Pack 01
+RENAME: 2/Membrans - Rally Cars Sound Pack 01  ->  2/Rally Cars Sound Pack 01
+RENAME: 2/Membrans - Rally Cars Sound Pack 02  ->  2/Rally Cars Sound Pack 02
+RENAME: 2/Membrans - Scanners Sound Pack 01  ->  2/Scanners Sound Pack 01
+RENAME: 2/Membrans - Spaceship Interface Sound Pack 01  ->  2/Spaceship Interface Sound Pack 01
+RENAME: 2/NoizBoy - Hong Kong Action Kit - Hit Kit #1  ->  2/Hong Kong Action Kit - Hit Kit #1
+RENAME: 2/NoizBoy - Hong Kong Action Kit - Hit Kit #2  ->  2/Hong Kong Action Kit - Hit Kit #2
+RENAME: 2/Original Sounds - Docks  ->  2/Docks
+RENAME: 2/RDGSFX001 - Drones  ->  2/Drones
+RENAME: 2/RDGSFX002 - Creatures  ->  2/Creatures
+RENAME: 2/RDGSFX003 - Industrial_Warehouse  ->  2/Industrial_Warehouse
+RENAME: 2/RDGSFX004 - LA Parking Garages  ->  2/LA Parking Garages
+RENAME: 2/RDGSFX005 - Squeaks and Creaks_v2  ->  2/Squeaks and Creaks_v2
+RENAME: 2/RDGSFX006 - California Beaches  ->  2/California Beaches
+RENAME: 2/RDGSFX007 - Rips and Tears v.2  ->  2/Rips and Tears v.2
+RENAME: 2/RDGSFX008 - The Metal Shelf  ->  2/The Metal Shelf
+RENAME: 2/RDGSFX009 - Twisted Zither  ->  2/Twisted Zither
+RENAME: 2/Resonant - Sounds of Hong Kong  ->  2/Sounds of Hong Kong
+RENAME: 2/Robert Cordova - Base  ->  2/Base
+RENAME: 2/Secret Source - 001 Boat Pulley  ->  2/001 Boat Pulley
+RENAME: 2/Secret Source - 002 1964 Mercury Montclair_  ->  2/002 1964 Mercury Montclair_
+RENAME: 2/Secret Source - 003 Jaws Of Life  ->  2/003 Jaws Of Life
+RENAME: 2/Sound Ex Machina - Basketball Game Pro  ->  2/Basketball Game Pro
+RENAME: 2/Sound Ex Machina - Kitchen Sounds 1.2  ->  2/Kitchen Sounds 1.2
+RENAME: 2/Sound Ex Machina - Laughs  ->  2/Laughs
+RENAME: 2/Sound Ex Machina - Water Flow  ->  2/Water Flow
+RENAME: 2/SoundMorph - Bloody Nightmare  ->  2/Bloody Nightmare
+RENAME: 2/SoundMorph - Doom Drones  ->  2/Doom Drones
+RENAME: 2/SoundMorph - Future Weapons  ->  2/Future Weapons
+RENAME: 2/SoundMorph - Modular UI - By Richard Devine  ->  2/Modular UI - By Richard Devine
+RENAME: 2/SoundMorph - Road Riders  ->  2/Road Riders
+RENAME: 2/SoundMorph - Robotic Lifeforms  ->  2/Robotic Lifeforms
+RENAME: 2/SoundMorph - Sinematic  ->  2/Sinematic
+RENAME: 2/SoundMorph - Solar Sky  ->  2/Solar Sky
+RENAME: 2/SoundMorph - Users of Tommorow  ->  2/Users of Tommorow
+RENAME: 2/Soundopolis - Blades  ->  2/Blades
+RENAME: 2/Soundopolis - Burps and Farts  ->  2/Burps and Farts
+RENAME: 2/Soundopolis - CB Radio  ->  2/CB Radio
+RENAME: 2/Soundopolis - Foley Plus_Full  ->  2/Foley Plus_Full
+RENAME: 2/Soundopolis - Glass Smash Full  ->  2/Glass Smash Full
+RENAME: 2/Soundopolis - Gore Toolkit HD  ->  2/Gore Toolkit HD
+RENAME: 2/Soundopolis - Natures Fury_Rain_01  ->  2/Natures Fury_Rain_01
+RENAME: 2/Soundopolis - Natures Fury_Thunder  ->  2/Natures Fury_Thunder
+RENAME: 2/Soundopolis - Natures Fury_Wind_01  ->  2/Natures Fury_Wind_01
+RENAME: 2/Soundopolis - Percussion 01  ->  2/Percussion 01
+RENAME: 2/Soundopolis - Sci-Fi Electric  ->  2/Sci-Fi Electric
+RENAME: 2/Soundopolis - Tools_Construction 01  ->  2/Tools_Construction 01
+RENAME: 2/Soundopolis - Underwater  ->  2/Underwater
+RENAME: 2/Soundopolis - Water 01  ->  2/Water 01
+RENAME: 2/Soundopolis - Water Ambiences 01  ->  2/Water Ambiences 01
+RENAME: 2/TheLibrarybyEmptySea - Gateway Part1  ->  2/Gateway Part1
+RENAME: 2/TheLibrarybyEmptySea - Robobiotics  ->  2/Robobiotics
+RENAME: 2/TheLibrarybyEmptySea - SeaMonsters 2  ->  2/SeaMonsters 2
+RENAME: 2/TheLibrarybyEmptySea - UI1  ->  2/UI1
+RENAME: 2/Timothy McHugh -  Barefoot on Metal  ->  2/Barefoot on Metal
+RENAME: 2/Timothy McHugh - Cafe Ambiances  ->  2/Cafe Ambiances
+RENAME: 2/Timothy McHugh - Crowd Laughter  ->  2/Crowd Laughter
+RENAME: 2/Timothy McHugh - Gorification [HD]  ->  2/Gorification [HD]
+RENAME: 2/Varazuvi - California Foley  ->  2/California Foley
+RENAME: 2/Varazuvi - Hollywood Dragons  ->  2/Hollywood Dragons
+RENAME: 2/Varazuvi - Natural Environments  ->  2/Natural Environments
+RENAME: 2/Varazuvi - Natural Variety  ->  2/Natural Variety
+RENAME: 2/Varazuvi - Underwater Whale  ->  2/Underwater Whale
+RENAME: 2/Whatisvalis - unEarthy Ambience  ->  2/unEarthy Ambience
+RENAME: 3/3maze -  1960 Cadillac DeVille  ->  3/1960 Cadillac DeVille
+RENAME: 3/3maze -  Buttons and Switches  ->  3/Buttons and Switches
+RENAME: 3/3maze -  Cinematic Drones  ->  3/Cinematic Drones
+RENAME: 3/3maze -  Cinematic Swoosh  ->  3/Cinematic Swoosh
+RENAME: 3/3maze -  Doors, Locks and Drawers  ->  3/Doors, Locks and Drawers
+RENAME: 3/3maze -  ICE BLOCK  ->  3/ICE BLOCK
+RENAME: 3/3maze -  ROOMS  ->  3/ROOMS
+RENAME: 3/3maze -  Scratch - Multi-Surface Fingernail Scratches  ->  3/Scratch - Multi-Surface Fingernail Scratches
+RENAME: 3/3maze -  The Closet  ->  3/The Closet
+RENAME: 3/3maze -  The Kitchen  ->  3/The Kitchen
+RENAME: 3/3maze -  Trash  ->  3/Trash
+RENAME: 3/3maze -  Ultra Drones  ->  3/Ultra Drones
+RENAME: 3/3maze -  Urban Environments  ->  3/Urban Environments
+RENAME: 3/3maze - High Impact  ->  3/High Impact
+RENAME: 3/Alexander Kopeikin - Black Metal  ->  3/Black Metal
+RENAME: 3/Alexander Kopeikin - Rocks  ->  3/Rocks
+RENAME: 3/Alexander Kopeikin - Sci-Fi Metal Elements HD  ->  3/Sci-Fi Metal Elements HD
+RENAME: 3/Alexander Kopeikin - St Petersburg  ->  3/St Petersburg
+RENAME: 3/Alexey Sinitsyn - Kamchatka Peninsula Ambiences  ->  3/Kamchatka Peninsula Ambiences
+RENAME: 3/Audiobeast - The London Warehouse Firearms Library  ->  3/The London Warehouse Firearms Library
+RENAME: 3/Audionym - The Fly  ->  3/The Fly
+RENAME: 3/Blik Blinks - SIGNUM_ Sci-fi Cinematic SFX Pack  ->  3/SIGNUM_ Sci-fi Cinematic SFX Pack
+RENAME: 3/Bluezone - Cinematic Tension Sound Effects  ->  3/Cinematic Tension Sound Effects
+RENAME: 3/Bluezone - Scary Ambiences and Sound Effects  ->  3/Scary Ambiences and Sound Effects
+RENAME: 3/Bombay Sonic - Fireworks  ->  3/Fireworks
+RENAME: 3/Bombay Sonic - Heidelberg Printing Press  ->  3/Heidelberg Printing Press
+RENAME: 3/Bombay Sonic - Yamaha Rajdoot 175cc  ->  3/Yamaha Rajdoot 175cc
+RENAME: 3/Bottle Rocket Fx - Cyborg Collection  ->  3/Cyborg Collection
+RENAME: 3/Bottle Rocket Fx - Impact Collection  ->  3/Impact Collection
+RENAME: 3/Bottle Rocket Fx - Scream  ->  3/Scream
+RENAME: 3/Bottle Rocket Fx - The Drone Collection  ->  3/The Drone Collection
+RENAME: 3/Bryce Raffle Sound - Malfunction  ->  3/Malfunction
+RENAME: 3/Chupapsound -  CROWD AMBIANCE  ->  3/CROWD AMBIANCE
+RENAME: 3/Chupapsound -  Corvette C7  ->  3/Corvette C7
+RENAME: 3/Chupapsound -  DOPPLER FX  ->  3/DOPPLER FX
+RENAME: 3/Chupapsound -  Megane RS Sport car  ->  3/Megane RS Sport car
+RENAME: 3/Chupapsound -  Sounds of Le mans (Race Cars)  ->  3/Sounds of Le mans (Race Cars)
+RENAME: 3/Chupapsound - FRENCH SUBWAYS  ->  3/FRENCH SUBWAYS
+RENAME: 3/Colin Lechner - Colinized Cuckoo Clock Library  ->  3/Colinized Cuckoo Clock Library
+RENAME: 3/Colin Lechner - Colinized Sculpture Library Vol. 1  ->  3/Colinized Sculpture Library Vol. 1
+RENAME: 3/Collected Transients - Machine Emanation  ->  3/Machine Emanation
+RENAME: 3/Collected Transients - We are the People  ->  3/We are the People
+RENAME: 3/Detunized - Distant City Ambiences  ->  3/Distant City Ambiences
+RENAME: 3/Detunized - Urban Crows  ->  3/Urban Crows
+RENAME: 3/Digital Rain Lab - Bleeping Buttons  ->  3/Bleeping Buttons
+RENAME: 3/Digital Rain Lab - Dreamscapes vol.1  ->  3/Dreamscapes vol.1
+RENAME: 3/Digital Rain Lab - Dreamscapes vol.2  ->  3/Dreamscapes vol.2
+RENAME: 3/Digital Rain Lab - Lethal Energies  ->  3/Lethal Energies
+RENAME: 3/Digital Rain Lab - Sci-Fi Transitions  ->  3/Sci-Fi Transitions
+RENAME: 3/Digital Rain Lab - Signal Frontiers  ->  3/Signal Frontiers
+RENAME: 3/Eiravaein Sound - Grit  ->  3/Grit
+RENAME: 3/Eiravaein Sound - Vaeyan III  ->  3/Vaeyan III
+RENAME: 3/Eiravaein Sound - Yvaine  ->  3/Yvaine
+RENAME: 3/Fascinated Sound - The Gun Locker SFX Pack  ->  3/The Gun Locker SFX Pack
+RENAME: 3/Filmnoise - Unusual Footsteps and Movements Vol.1  ->  3/Unusual Footsteps and Movements Vol.1
+RENAME: 3/Game Audio Factory - G4FSFX08 - Harley Davidson  ->  3/G4FSFX08 - Harley Davidson
+RENAME: 3/Game Audio Factory - GAFSFX01 - Dark Materials  ->  3/GAFSFX01 - Dark Materials
+RENAME: 3/Game Audio Factory - GAFSFX02 - Cartoon Materials  ->  3/GAFSFX02 - Cartoon Materials
+RENAME: 3/Game Audio Factory - GAFSFX03 - Small Crowds Outdoors  ->  3/GAFSFX03 - Small Crowds Outdoors
+RENAME: 3/Game Audio Factory - GAFSFX04 - Liquids Materials  ->  3/GAFSFX04 - Liquids Materials
+RENAME: 3/Game Audio Factory - GAFSFX07 - Yellowstone Geysers  ->  3/GAFSFX07 - Yellowstone Geysers
+RENAME: 3/George Karagioules - SFX for Board Games  ->  3/SFX for Board Games
+RENAME: 3/George Karagioules - The Source Collection SFX Pack  ->  3/The Source Collection SFX Pack
+RENAME: 3/GriffinSound - Places With People  ->  3/Places With People
+RENAME: 3/Hzandbits - Construction Ambiances  ->  3/Construction Ambiances
+RENAME: 3/Hzandbits - Howling Winds - Interior  ->  3/Howling Winds - Interior
+RENAME: 3/Hzandbits - Urban Winds  ->  3/Urban Winds
+RENAME: 3/JC Sound - Early Gasoline Engines  ->  3/Early Gasoline Engines
+RENAME: 3/Kevin Durr - Essential Bathroom Sounds  ->  3/Essential Bathroom Sounds
+RENAME: 3/Kevin Durr - Ice cubes & Ice Blocks  ->  3/Ice cubes & Ice Blocks
+RENAME: 3/Leevaudio - Fourbit – your everyday robot voice  ->  3/Fourbit – your everyday robot voice
+RENAME: 3/Leevaudio - Okamoid - powerful commander robot voice  ->  3/Okamoid - powerful commander robot voice
+RENAME: 3/Leevaudio - Sally77 - friendly female robot voice  ->  3/Sally77 - friendly female robot voice
+RENAME: 3/Levan Nadashvili - Civilian Footsteps  ->  3/Civilian Footsteps
+RENAME: 3/Levan Nadashvili - Soldier Footsteps  ->  3/Soldier Footsteps
+RENAME: 3/MatiasMacSD - FEEL TEXTURES VOL 1  ->  3/FEEL TEXTURES VOL 1
+RENAME: 3/MatiasMacSD - INFECTED ZONE  ->  3/INFECTED ZONE
+RENAME: 3/MatiasMacSD - MENTAL STRAIN  ->  3/MENTAL STRAIN
+RENAME: 3/MatiasMacSD - NOISE  ->  3/NOISE
+RENAME: 3/MatiasMacSD - SURREAL  ->  3/SURREAL
+RENAME: 3/MatiasMacSD - THE MACHINES - ROBOTIC SOUNDS  ->  3/THE MACHINES - ROBOTIC SOUNDS
+RENAME: 3/Mattia Cellotto - Rocks Momentum  ->  3/Rocks Momentum
+RENAME: 3/Mechanical Wave - Toys  ->  3/Toys
+RENAME: 3/Michael Garcia - Narrator Voice Pack 1 - Female AI  ->  3/Narrator Voice Pack 1 - Female AI
+RENAME: 3/Michael Garcia - Narrator Voice Pack 2 - Male AI  ->  3/Narrator Voice Pack 2 - Male AI
+RENAME: 3/Mindful Audio -  Elements - Zippers  ->  3/Elements - Zippers
+RENAME: 3/Mindful Audio - Woodland Atmosphere  ->  3/Woodland Atmosphere
+RENAME: 3/Mononeshot - MOS001 WATER, Dam  ->  3/MOS001 WATER, Dam
+RENAME: 3/Monte Sound - Atmospheres of Amsterdam  ->  3/Atmospheres of Amsterdam
+RENAME: 3/Monte Sound - Atmospheres of Hockenheimring  ->  3/Atmospheres of Hockenheimring
+RENAME: 3/Monte Sound - Atmospheres of Kurdistan  ->  3/Atmospheres of Kurdistan
+RENAME: 3/Monte Sound - Atmospheres of Rio de Janeiro  ->  3/Atmospheres of Rio de Janeiro
+RENAME: 3/Monte Sound - Atmospheres of Rwanda  ->  3/Atmospheres of Rwanda
+RENAME: 3/Noisecreations - ARCADIA  ->  3/ARCADIA
+RENAME: 3/Pole Position Production -  Heckler & Koch G3 7.62x51mm  ->  3/Heckler & Koch G3 7.62x51mm
+RENAME: 3/Pole Position Production -  Heckler & Koch HK416 5.56mm  ->  3/Heckler & Koch HK416 5.56mm
+RENAME: 3/Pole Position Production -  Heckler & Koch MG4 5.56mm  ->  3/Heckler & Koch MG4 5.56mm
+RENAME: 3/Pole Position Production -  Heckler & Koch MP5 9mm  ->  3/Heckler & Koch MP5 9mm
+RENAME: 3/Pole Position Production -  Heckler & Koch MP7 4.6mm  ->  3/Heckler & Koch MP7 4.6mm
+RENAME: 3/Pole Position Production -  Heckler & Koch VP70 9mm  ->  3/Heckler & Koch VP70 9mm
+RENAME: 3/Pole Position Production - AKM 7.62x39mm  ->  3/AKM 7.62x39mm
+RENAME: 3/Pole Position Production - Alfa Romeo 159 Sportwagon 2010  ->  3/Alfa Romeo 159 Sportwagon 2010
+RENAME: 3/Pole Position Production - Barrett M98B .338 Lapua  ->  3/Barrett M98B .338 Lapua
+RENAME: 3/Pole Position Production - Beretta 93R 9mm  ->  3/Beretta 93R 9mm
+RENAME: 3/Pole Position Production - Camaro Z28 1971  ->  3/Camaro Z28 1971
+RENAME: 3/Pole Position Production - De Lisle Carbine .45ACP suppressed  ->  3/De Lisle Carbine .45ACP suppressed
+RENAME: 3/Pole Position Production - Dodge Challenger 426 Hemi - 1970  ->  3/Dodge Challenger 426 Hemi - 1970
+RENAME: 3/Pole Position Production - Enfield L85 Rifle 5.56mm  ->  3/Enfield L85 Rifle 5.56mm
+RENAME: 3/Pole Position Production - Enfield L86 LSW 5.56mm  ->  3/Enfield L86 LSW 5.56mm
+RENAME: 3/Pole Position Production - F1 Williams FW29 2007  ->  3/F1 Williams FW29 2007
+RENAME: 3/Pole Position Production - FAMAS G2 5.56mm  ->  3/FAMAS G2 5.56mm
+RENAME: 3/Pole Position Production - FN FAL 7.62x51mm  ->  3/FN FAL 7.62x51mm
+RENAME: 3/Pole Position Production - FN Five-seveN 5.7x28mm  ->  3/FN Five-seveN 5.7x28mm
+RENAME: 3/Pole Position Production - FN P90 5.7mm  ->  3/FN P90 5.7mm
+RENAME: 3/Pole Position Production - Ferrari 275 GTB 1965  ->  3/Ferrari 275 GTB 1965
+RENAME: 3/Pole Position Production - Glock 18c  ->  3/Glock 18c
+RENAME: 3/Pole Position Production - Grumman F6F Hellcat  ->  3/Grumman F6F Hellcat
+RENAME: 3/Pole Position Production - Heckler & Koch G36C 5.56mm  ->  3/Heckler & Koch G36C 5.56mm
+RENAME: 3/Pole Position Production - IMI Tavor TAR-21 5.56mm  ->  3/IMI Tavor TAR-21 5.56mm
+RENAME: 3/Pole Position Production - Ingram M10 9mm  ->  3/Ingram M10 9mm
+RENAME: 3/Pole Position Production - Iveco Daily van 2.3 l 2012  ->  3/Iveco Daily van 2.3 l 2012
+RENAME: 3/Pole Position Production - L110A2 LMG 5.56mm belt fed (FN MINIMI)  ->  3/L110A2 LMG 5.56mm belt fed (FN MINIMI)
+RENAME: 3/Pole Position Production - L7A2 GPMG 7.62x51mm  ->  3/L7A2 GPMG 7.62x51mm
+RENAME: 3/Pole Position Production - M1918 Browning Automatic Rifle .30cal  ->  3/M1918 Browning Automatic Rifle .30cal
+RENAME: 3/Pole Position Production - M1919A4 Browning Machine Gun .30cal  ->  3/M1919A4 Browning Machine Gun .30cal
+RENAME: 3/Pole Position Production - M1919A4 Browning Machine Gun .30cal on turret  ->  3/M1919A4 Browning Machine Gun .30cal on turret
+RENAME: 3/Pole Position Production - M1928A1 Thompson Submachine Gun .45cal  ->  3/M1928A1 Thompson Submachine Gun .45cal
+RENAME: 3/Pole Position Production - M3 Submachine Grease Gun .45cal  ->  3/M3 Submachine Grease Gun .45cal
+RENAME: 3/Pole Position Production - Mini Uzi 9mm  ->  3/Mini Uzi 9mm
+RENAME: 3/Pole Position Production - Plymouth Hemi Cuda 1971  ->  3/Plymouth Hemi Cuda 1971
+RENAME: 3/Pole Position Production - Porsche 911 SC 1981  ->  3/Porsche 911 SC 1981
+RENAME: 3/Pole Position Production - Remington 700 7.62x51mm  ->  3/Remington 700 7.62x51mm
+RENAME: 3/Pole Position Production - SPAS-12 12g solid slug  ->  3/SPAS-12 12g solid slug
+RENAME: 3/Pole Position Production - Saiga-12 12g solid slug  ->  3/Saiga-12 12g solid slug
+RENAME: 3/Pole Position Production - Sako TRG 22  ->  3/Sako TRG 22
+RENAME: 3/Pole Position Production - Sig P229 9mm  ->  3/Sig P229 9mm
+RENAME: 3/Pole Position Production - Skoda Octavia 1.6 (2008)  ->  3/Skoda Octavia 1.6 (2008)
+RENAME: 3/Pole Position Production - Smith & Wesson M29 .44 Magnum  ->  3/Smith & Wesson M29 .44 Magnum
+RENAME: 3/Pole Position Production - Smith & Wesson M66 .357 Magnum  ->  3/Smith & Wesson M66 .357 Magnum
+RENAME: 3/Pole Position Production - Steyr TMP 9mm  ->  3/Steyr TMP 9mm
+RENAME: 3/Pole Position Production - T-34-85 Russian World War II Tank  ->  3/T-34-85 Russian World War II Tank
+RENAME: 3/Pole Position Production - The Snow & Ice Textures Library  ->  3/The Snow & Ice Textures Library
+RENAME: 3/Pole Position Production - USAS-12 12g solid slug  ->  3/USAS-12 12g solid slug
+RENAME: 3/Pole Position Production - Uzi 9mm  ->  3/Uzi 9mm
+RENAME: 3/Pole Position Production - Various Gun Foley & Handling  ->  3/Various Gun Foley & Handling
+RENAME: 3/Pole Position Production - Vz61 Scorpion 9mm  ->  3/Vz61 Scorpion 9mm
+RENAME: 3/Qbsound Studio - Bar Effects  ->  3/Bar Effects
+RENAME: 3/Sergey Eybog - Automatic Umbrellas  ->  3/Automatic Umbrellas
+RENAME: 3/Sergey Eybog - Handheld Tranceivers  ->  3/Handheld Tranceivers
+RENAME: 3/ShapingWaves -  8-BIT GAMES  ->  3/8-BIT GAMES
+RENAME: 3/ShapingWaves -  AIR TRAVEL  ->  3/AIR TRAVEL
+RENAME: 3/ShapingWaves -  ALARMS  ->  3/ALARMS
+RENAME: 3/ShapingWaves -  Athens Rooftop  ->  3/Athens Rooftop
+RENAME: 3/ShapingWaves -  BERLIN BALCONY  ->  3/BERLIN BALCONY
+RENAME: 3/ShapingWaves -  CIRCUITS  ->  3/CIRCUITS
+RENAME: 3/ShapingWaves -  LETTERPRESS  ->  3/LETTERPRESS
+RENAME: 3/ShapingWaves -  NEW YORK  ->  3/NEW YORK
+RENAME: 3/ShapingWaves -  PLANETS  ->  3/PLANETS
+RENAME: 3/ShapingWaves -  QUADCOPTER  ->  3/QUADCOPTER
+RENAME: 3/ShapingWaves -  ROBOT VOICES  ->  3/ROBOT VOICES
+RENAME: 3/ShapingWaves -  STETHOSCOPE  ->  3/STETHOSCOPE
+RENAME: 3/ShapingWaves -  WENDLAND AUTUMN  ->  3/WENDLAND AUTUMN
+RENAME: 3/ShapingWaves - PIPING SYSTEMS  ->  3/PIPING SYSTEMS
+RENAME: 3/Shutter Sound - Worldwide Ambience  ->  3/Worldwide Ambience
+RENAME: 3/Sonocaine - The Rustle  ->  3/The Rustle
+RENAME: 3/Sound Ex Machina -  Animal Farm  ->  3/Animal Farm
+RENAME: 3/Sound Ex Machina - SOUNDS OF ISTANBUL  ->  3/SOUNDS OF ISTANBUL
+RENAME: 3/SoundBits -  Cinematic Hits & Transitions 2  ->  3/Cinematic Hits & Transitions 2
+RENAME: 3/SoundBits -  Just Ambience _ Construction Sites  ->  3/Just Ambience _ Construction Sites
+RENAME: 3/SoundBits -  Just Gore _ Add On  ->  3/Just Gore _ Add On
+RENAME: 3/SoundBits -  Just Whoosh 3 _ Whoosh Essentials  ->  3/Just Whoosh 3 _ Whoosh Essentials
+RENAME: 3/SoundBits -  Screams & Shouts 2 - Humans  ->  3/Screams & Shouts 2 - Humans
+RENAME: 3/SoundBits -  Screams & Shouts 2 - Monsters  ->  3/Screams & Shouts 2 - Monsters
+RENAME: 3/SoundBits - Computer Sound FX 2.0  ->  3/Computer Sound FX 2.0
+RENAME: 3/SoundHolder - BMW 114i E87  ->  3/BMW 114i E87
+RENAME: 3/SoundHolder - Brushcutter  ->  3/Brushcutter
+RENAME: 3/SoundHolder - Chainsaw  ->  3/Chainsaw
+RENAME: 3/SoundHolder - Roaring Stags  ->  3/Roaring Stags
+RENAME: 3/SoundMorph - Future Weapons 2  ->  3/Future Weapons 2
+RENAME: 3/SoundMorph - INTERVENTION  ->  3/INTERVENTION
+RENAME: 3/SoundMorph - Lost Transmissions  ->  3/Lost Transmissions
+RENAME: 3/SoundMorph - RUPTURE  ->  3/RUPTURE
+RENAME: 3/SoundMorph - TENSION  ->  3/TENSION
+RENAME: 3/Soundbankster - The Sci-Fi Book  ->  3/The Sci-Fi Book
+RENAME: 3/Soundiron - Sick 6  ->  3/Sick 6
+RENAME: 3/Soundiron - Subways & Streetcars  ->  3/Subways & Streetcars
+RENAME: 3/Soundreorganized - Everyday Actions 1  ->  3/Everyday Actions 1
+RENAME: 3/Soundreorganized - Tunturi Maxi Sound Effects Library  ->  3/Tunturi Maxi Sound Effects Library
+RENAME: 3/Sounds Hunter - Paper Sound Effects  ->  3/Paper Sound Effects
+RENAME: 3/Stuart Duffield - Bullet SFX  ->  3/Bullet SFX
+RENAME: 3/Stuart Duffield - Ice SFX  ->  3/Ice SFX
+RENAME: 3/Stuart Duffield - Soccer SFX  ->  3/Soccer SFX
+RENAME: 3/TS Sound - 12 Gauge Shotgun  ->  3/12 Gauge Shotgun
+RENAME: 3/TS Sound - Obnoxious Sips  ->  3/Obnoxious Sips
+RENAME: 3/TS Sound - Savannah, GA Ambiences  ->  3/Savannah, GA Ambiences
+RENAME: 3/The AudioVille - Wooden Staffs and Sword Fight  ->  3/Wooden Staffs and Sword Fight
+RENAME: 3/The Sound Pack Tree - The BIG Pack  ->  3/The BIG Pack
+RENAME: 3/The Soundcatcher - Antique Grinders  ->  3/Antique Grinders
+RENAME: 3/Timothy McHugh - Over Head Aircraft  ->  3/Over Head Aircraft
+RENAME: 3/Timothy McHugh - Playing Cards & Betting Chips  ->  3/Playing Cards & Betting Chips
+RENAME: 4/3maze - European Ambiances_  ->  4/European Ambiances_
+RENAME: 4/3maze - The Elevator  ->  4/The Elevator
+RENAME: 4/Alexander Ahura -  Groats Part1  ->  4/Groats Part1
+RENAME: 4/Alexander Ahura - Locks & Keys  ->  4/Locks & Keys
+RENAME: 4/Alexander Kopeikin - Black Metal  ->  4/Black Metal
+RENAME: 4/Antisample - Shakes and Rattles  ->  4/Shakes and Rattles
+RENAME: 4/Articulated Sounds - 100 Fountains  ->  4/100 Fountains
+RENAME: 4/Articulated Sounds - Dice  ->  4/Dice
+RENAME: 4/Articulated Sounds - Ghosts  ->  4/Ghosts
+RENAME: 4/Articulated Sounds - Ice Skating  ->  4/Ice Skating
+RENAME: 4/Articulated Sounds - Quiet Streets  ->  4/Quiet Streets
+RENAME: 4/Articulated Sounds - Thin Ice  ->  4/Thin Ice
+RENAME: 4/Articulated Sounds - Tropical Ambiences  ->  4/Tropical Ambiences
+RENAME: 4/Bluezone Corporation - Cinematic Trailer Sound Effects  ->  4/Cinematic Trailer Sound Effects
+RENAME: 4/Bluezone Corporation - Signal Communication  ->  4/Signal Communication
+RENAME: 4/Bluezone Corporation - Spectral Line - Cinematic Trailer Sounds  ->  4/Spectral Line - Cinematic Trailer Sounds
+RENAME: 4/Bluezone Corporation - Synthetic Liquid Textures  ->  4/Synthetic Liquid Textures
+RENAME: 4/Bluezone Corporation - Titanium - Cinematic Trailer Samples  ->  4/Titanium - Cinematic Trailer Samples
+RENAME: 4/Bluezone Corporation - War Zone (Designed Explosions)  ->  4/War Zone (Designed Explosions)
+RENAME: 4/Borg Sound - Gym weights  ->  4/Gym weights
+RENAME: 4/Borg Sound - Harley Davidson Sportster Iron 883  ->  4/Harley Davidson Sportster Iron 883
+RENAME: 4/Byron Abadía - 365 SFX  ->  4/365 SFX
+RENAME: 4/Charlie Atanasyan - Indonesia sound library by Faunethic  ->  4/Indonesia sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - Jordan sound library by Faunethic  ->  4/Jordan sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - Morocco sound library by Faunethic  ->  4/Morocco sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - North India sound library by Faunethic  ->  4/North India sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - Philippines sound library by Faunethic  ->  4/Philippines sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - South India sound library by Faunethic  ->  4/South India sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - Thailand sound library by Faunethic  ->  4/Thailand sound library by Faunethic
+RENAME: 4/Charlie Atanasyan - Turkey sound library by Faunethic  ->  4/Turkey sound library by Faunethic
+RENAME: 4/Chris Skyes - Shards Broken Glass  ->  4/Shards Broken Glass
+RENAME: 4/Chris Skyes - The Black Sea  ->  4/The Black Sea
+RENAME: 4/Chris Skyes - Vintage Dot Matrix Printer  ->  4/Vintage Dot Matrix Printer
+RENAME: 4/Collected Transients - Diffuse City  ->  4/Diffuse City
+RENAME: 4/Collected Transients - rOtation  ->  4/rOtation
+RENAME: 4/Creative Audio Pool - INCREDIBLE SOUNDS OF INDIA COLLECTION  ->  4/INCREDIBLE SOUNDS OF INDIA COLLECTION
+RENAME: 4/Creative Audio Pool - MOTHERLAND ETHIOPIA  ->  4/MOTHERLAND ETHIOPIA
+RENAME: 4/Creative Audio Pool - URBAN BERLIN VOL. 1  ->  4/URBAN BERLIN VOL. 1
+RENAME: 4/Creative Audio Pool - URBAN BERLIN VOL. 2  ->  4/URBAN BERLIN VOL. 2
+RENAME: 4/Detunized - Chain Ferry  ->  4/Chain Ferry
+RENAME: 4/Detunized - Infinite  ->  4/Infinite
+RENAME: 4/Detunized - Laundry Mangles  ->  4/Laundry Mangles
+RENAME: 4/Detunized - Room Tones - Office Building  ->  4/Room Tones - Office Building
+RENAME: 4/Detunized - The Keyless Piano Body  ->  4/The Keyless Piano Body
+RENAME: 4/Digital Rain Lab - Abstract Interior Tones  ->  4/Abstract Interior Tones
+RENAME: 4/Digital Rain Lab - Driving Forces  ->  4/Driving Forces
+RENAME: 4/Digital Rain Lab - Woodwork  ->  4/Woodwork
+RENAME: 4/Double Trouble Audio - Cement Factory  ->  4/Cement Factory
+RENAME: 4/Double Trouble Audio - Flowing Water  ->  4/Flowing Water
+RENAME: 4/Double Trouble Audio - Junk and Debris  ->  4/Junk and Debris
+RENAME: 4/Double Trouble Audio - Machine Hall  ->  4/Machine Hall
+RENAME: 4/Double Trouble Audio - Medieval Armor and Impacts  ->  4/Medieval Armor and Impacts
+RENAME: 4/Double Trouble Audio - Metal Resonances  ->  4/Metal Resonances
+RENAME: 4/Double Trouble Audio - Punchy Cardboard  ->  4/Punchy Cardboard
+RENAME: 4/Double Trouble Audio - Rain and Thunder  ->  4/Rain and Thunder
+RENAME: 4/Double Trouble Audio - Shards  ->  4/Shards
+RENAME: 4/Double Trouble Audio - Space Drones  ->  4/Space Drones
+RENAME: 4/Double Trouble Audio - Tanks and Jet  ->  4/Tanks and Jet
+RENAME: 4/Double Trouble Audio - Tools and Wood  ->  4/Tools and Wood
+RENAME: 4/Double Trouble Audio - Wood Impacts and Debris  ->  4/Wood Impacts and Debris
+RENAME: 4/Eiravaein Sound - Anarchy  ->  4/Anarchy
+RENAME: 4/Eiravaein Sound - BigBlock  ->  4/BigBlock
+RENAME: 4/Eiravaein Sound - Burst  ->  4/Burst
+RENAME: 4/Eiravaein Sound - Dx  ->  4/Dx
+RENAME: 4/Eiravaein Sound - Gravitas  ->  4/Gravitas
+RENAME: 4/Eiravaein Sound - Latchlocker  ->  4/Latchlocker
+RENAME: 4/Eiravaein Sound - Meridian  ->  4/Meridian
+RENAME: 4/Eiravaein Sound - Mouthy  ->  4/Mouthy
+RENAME: 4/Eiravaein Sound - Parched  ->  4/Parched
+RENAME: 4/Eneas Mentzel - DARK DEEPSEA DRONES  ->  4/DARK DEEPSEA DRONES
+RENAME: 4/Eneas Mentzel - SOUNDS OF SENEGAL  ->  4/SOUNDS OF SENEGAL
+RENAME: 4/Fascinated Sound - Scene Shop Tool Box  ->  4/Scene Shop Tool Box
+RENAME: 4/G4F SFX - Horses  ->  4/Horses
+RENAME: 4/GainWalkers - Barcelona Ambiences  ->  4/Barcelona Ambiences
+RENAME: 4/Gamemaster Audio -  Bullet Impact Sounds  ->  4/Bullet Impact Sounds
+RENAME: 4/Gamemaster Audio -  Explosion Sound Pack  ->  4/Explosion Sound Pack
+RENAME: 4/Gamemaster Audio -  Fun Casual Sounds  ->  4/Fun Casual Sounds
+RENAME: 4/Gamemaster Audio -  Fun Character Voices  ->  4/Fun Character Voices
+RENAME: 4/Gamemaster Audio -  Gun Sound Pack  ->  4/Gun Sound Pack
+RENAME: 4/Gamemaster Audio -  Human Vocalizations  ->  4/Human Vocalizations
+RENAME: 4/Gamemaster Audio -  Punch Sound Pack  ->  4/Punch Sound Pack
+RENAME: 4/Gamemaster Audio - Troll Monster Vocalizations  ->  4/Troll Monster Vocalizations
+RENAME: 4/Glitchedtones - Atmosfear  ->  4/Atmosfear
+RENAME: 4/Glitchedtones - Drones  ->  4/Drones
+RENAME: 4/Glitchedtones - Feedback Loop FX & Atmospheres  ->  4/Feedback Loop FX & Atmospheres
+RENAME: 4/Glitchedtones - Granular Textures  ->  4/Granular Textures
+RENAME: 4/Glitchedtones - Process Malfunction  ->  4/Process Malfunction
+RENAME: 4/Glitchedtones - Signal Interference  ->  4/Signal Interference
+RENAME: 4/Glitchedtones - Whooshes & Transitions  ->  4/Whooshes & Transitions
+RENAME: 4/Griffin Sound Design - Chicago Rapid Transit - The L  ->  4/Chicago Rapid Transit - The L
+RENAME: 4/Griffin Sound Design - Mugs  ->  4/Mugs
+RENAME: 4/Hammer & Spark Audio Production - Warrior IFV Custom Vehicle Recording  ->  4/Warrior IFV Custom Vehicle Recording
+RENAME: 4/Hzandbits - Elegant Machines  ->  4/Elegant Machines
+RENAME: 4/Hzandbits - Hvac Elements  ->  4/Hvac Elements
+RENAME: 4/Hzandbits - Industrial Exteriors I  ->  4/Industrial Exteriors I
+RENAME: 4/Hzandbits - Money  ->  4/Money
+RENAME: 4/Hzandbits - Urban Winds II  ->  4/Urban Winds II
+RENAME: 4/Hzandbits - Wind In Trees  ->  4/Wind In Trees
+RENAME: 4/JC Audio - Breathing In Hell  ->  4/Breathing In Hell
+RENAME: 4/JC Audio - Deep Galaxy  ->  4/Deep Galaxy
+RENAME: 4/JC Audio - Tennis Balls And Ambience  ->  4/Tennis Balls And Ambience
+RENAME: 4/Jack Powell - Shetland Pony Vox  ->  4/Shetland Pony Vox
+RENAME: 4/Joshua Reinhardt -  Ultimate Eats and Drinks  ->  4/Ultimate Eats and Drinks
+RENAME: 4/Joshua Reinhardt - Ultimate Cloth and Prop Collection  ->  4/Ultimate Cloth and Prop Collection
+RENAME: 4/Kevin Durr - Essential Water Sounds Vol. 2  ->  4/Essential Water Sounds Vol. 2
+RENAME: 4/Kevin Durr - Freight Trains Vol. 2 - Binaural Recordings  ->  4/Freight Trains Vol. 2 - Binaural Recordings
+RENAME: 4/Kevin Durr - Rusty Old Freight Trains Up Close  ->  4/Rusty Old Freight Trains Up Close
+RENAME: 4/Kevin Durr - Victor 1920's Adding Machine  ->  4/Victor 1920's Adding Machine
+RENAME: 4/MatiasMacSD - CREATURES ZONE  ->  4/CREATURES ZONE
+RENAME: 4/MatiasMacSD - INACCURACY (GLITCHES)  ->  4/INACCURACY (GLITCHES)
+RENAME: 4/MatiasMacSD - INSIDE ATMOSPHERIC ELEMENTS  ->  4/INSIDE ATMOSPHERIC ELEMENTS
+RENAME: 4/MatiasMacSD - PIANO ZONE_ATMOSPHERIC ELEMENTS  ->  4/PIANO ZONE_ATMOSPHERIC ELEMENTS
+RENAME: 4/MatiasMacSD - PRESS - INTERFACE SOUNDS  ->  4/PRESS - INTERFACE SOUNDS
+RENAME: 4/MatiasMacSD - REVERSE_PRODUCTION ELEMENTS  ->  4/REVERSE_PRODUCTION ELEMENTS
+RENAME: 4/MatiasMacSD - THE MACHINES 2_ROBOTIC SOUNDS  ->  4/THE MACHINES 2_ROBOTIC SOUNDS
+RENAME: 4/MatiasMacSD - THE WEAPONS - SCI-FI WEAPONS  ->  4/THE WEAPONS - SCI-FI WEAPONS
+RENAME: 4/Mattia Cellotto - Glacier Ice  ->  4/Glacier Ice
+RENAME: 4/Mattia Cellotto - Water Volumes  ->  4/Water Volumes
+RENAME: 4/Mechanical Wave - Rock,Brick and Dirt - Part 02  ->  4/Rock,Brick and Dirt - Part 02
+RENAME: 4/Mindful Audio - Elements - Gears  ->  4/Elements - Gears
+RENAME: 4/Mindful Audio - Elements - Ice  ->  4/Elements - Ice
+RENAME: 4/Mindful Audio - Metal Atmosphere  ->  4/Metal Atmosphere
+RENAME: 4/Mononeshot - MEDIEVAL, Smithy  ->  4/MEDIEVAL, Smithy
+RENAME: 4/Monte Sound -  Barcelona City Ambiences  ->  4/Barcelona City Ambiences
+RENAME: 4/Monte Sound -  Vienna City Ambiences  ->  4/Vienna City Ambiences
+RENAME: 4/Monte Sound - Atmospheres of Lisbon  ->  4/Atmospheres of Lisbon
+RENAME: 4/Nikkö Barrera-Amaya - Colombia, Caribbean Coast  ->  4/Colombia, Caribbean Coast
+RENAME: 4/Nikkö Barrera-Amaya - Vegetable Madness  ->  4/Vegetable Madness
+RENAME: 4/Pole Position - APC Renault VAB  ->  4/APC Renault VAB
+RENAME: 4/Pole Position - Alfa Romeo 4C 2016  ->  4/Alfa Romeo 4C 2016
+RENAME: 4/Pole Position - BMW Z4 GT3 racecar  ->  4/BMW Z4 GT3 racecar
+RENAME: 4/Pole Position - Car Debris, Impacts & Crashes  ->  4/Car Debris, Impacts & Crashes
+RENAME: 4/Pole Position - Chrysler Town & Country 3.6L VVT_  ->  4/Chrysler Town & Country 3.6L VVT_
+RENAME: 4/Pole Position - De Tomaso Pantera 1972 with BMW Alpina V8  ->  4/De Tomaso Pantera 1972 with BMW Alpina V8
+RENAME: 4/Pole Position - Ford Ltd Crown Victoria 1990  ->  4/Ford Ltd Crown Victoria 1990
+RENAME: 4/Pole Position - Grumman F8F Bearcat  ->  4/Grumman F8F Bearcat
+RENAME: 4/Pole Position - Husaberg FE501 500cc 2013 dirtbike  ->  4/Husaberg FE501 500cc 2013 dirtbike
+RENAME: 4/Pole Position - Hydraulics & Pneumatics Library  ->  4/Hydraulics & Pneumatics Library
+RENAME: 4/Pole Position - M1 Corbitt Prime Mover Cargo Truck  ->  4/M1 Corbitt Prime Mover Cargo Truck
+RENAME: 4/Pole Position - M8 Greyhound Armored Car_  ->  4/M8 Greyhound Armored Car_
+RENAME: 4/Pole Position - North American B-25 Mitchell  ->  4/North American B-25 Mitchell
+RENAME: 4/Pole Position - SAAB 99 GL 1976  ->  4/SAAB 99 GL 1976
+RENAME: 4/Pole Position - The Warfare Library  ->  4/The Warfare Library
+RENAME: 4/Pole Position - Ural 4320  ->  4/Ural 4320
+RENAME: 4/Pole Position - Volvo A30E dump truck  ->  4/Volvo A30E dump truck
+RENAME: 4/Pole Position - Volvo F12 truck 1992  ->  4/Volvo F12 truck 1992
+RENAME: 4/Pole Position - Wellcraft Scarab 34_  ->  4/Wellcraft Scarab 34_
+RENAME: 4/Raconteur Sound - Crystal Glasses- Tones and Drones_  ->  4/Crystal Glasses- Tones and Drones_
+RENAME: 4/Raconteur Sound - Odor Free Farts Library Vol. 1  ->  4/Odor Free Farts Library Vol. 1
+RENAME: 4/Raconteur Sound - Sound Sculpture Vol. 2  ->  4/Sound Sculpture Vol. 2
+RENAME: 4/Raconteur Sound - Spring in the Pacific Northwest- Ambiences  ->  4/Spring in the Pacific Northwest- Ambiences
+RENAME: 4/Raconteur Sound - Subtext Drone Library Vol. 1  ->  4/Subtext Drone Library Vol. 1
+RENAME: 4/RedSonic - Analogue Rotary Telephone  ->  4/Analogue Rotary Telephone
+RENAME: 4/RedSonic - Crickets and Frogs  ->  4/Crickets and Frogs
+RENAME: 4/RedSonic - Frying Water  ->  4/Frying Water
+RENAME: 4/RedSonic - Hums Light Machines  ->  4/Hums Light Machines
+RENAME: 4/RedSonic - Jackhammer  ->  4/Jackhammer
+RENAME: 4/RedSonic - Water on Rocks  ->  4/Water on Rocks
+RENAME: 4/Resonance Sound Design - ASSORTED FOLEY ELEMENTS  ->  4/ASSORTED FOLEY ELEMENTS
+RENAME: 4/Robin Barstow - The Zinc Mines  ->  4/The Zinc Mines
+RENAME: 4/Robin Barstow - Winds of Dovrefjell  ->  4/Winds of Dovrefjell
+RENAME: 4/Russell Gorsky - Squeaks and Creaks Two  ->  4/Squeaks and Creaks Two
+RENAME: 4/Sergey Eybog - Artificial Life  ->  4/Artificial Life
+RENAME: 4/Shapingwaves - BIG MACHINES  ->  4/BIG MACHINES
+RENAME: 4/Sonocaine - Quad City Berlin  ->  4/Quad City Berlin
+RENAME: 4/Sound Ex Machina -  BASKETBALL GAME ULTRA  ->  4/BASKETBALL GAME ULTRA
+RENAME: 4/Sound Ex Machina -  Mediterranean Summertime  ->  4/Mediterranean Summertime
+RENAME: 4/Sound Ex Machina - UI SOUNDS - MUSICAL  ->  4/UI SOUNDS - MUSICAL
+RENAME: 4/SoundBits - Abstract Ambiences  ->  4/Abstract Ambiences
+RENAME: 4/SoundBits - Collected Ambiences  ->  4/Collected Ambiences
+RENAME: 4/SoundBits - Drag & Slide  ->  4/Drag & Slide
+RENAME: 4/SoundBits - Electric Typewriters  ->  4/Electric Typewriters
+RENAME: 4/SoundBits - Electro-Mechanics ToolKit  ->  4/Electro-Mechanics ToolKit
+RENAME: 4/SoundBits - Handwriting Sound Effects  ->  4/Handwriting Sound Effects
+RENAME: 4/SoundBits - Just Impacts - Extension II  ->  4/Just Impacts - Extension II
+RENAME: 4/SoundBits - Open & Close  ->  4/Open & Close
+RENAME: 4/SoundBits - The Blacksmith  ->  4/The Blacksmith
+RENAME: 4/SoundBits - Unsettling Creaks and Squeaks  ->  4/Unsettling Creaks and Squeaks
+RENAME: 4/SoundBits - Unsettling Creaks and Squeaks – Extension I  ->  4/Unsettling Creaks and Squeaks – Extension I
+RENAME: 4/SoundBits - Whooshes & Impacts 2  ->  4/Whooshes & Impacts 2
+RENAME: 4/SoundFxwizard - SYNTHESIZED MOODS  ->  4/SYNTHESIZED MOODS
+RENAME: 4/SoundFxwizard - Textrobot  ->  4/Textrobot
+RENAME: 4/SoundHolder -  Audi A4 Allroad 2.0 TFSIAudi A4 Allroad 2.0 TFSI  ->  4/Audi A4 Allroad 2.0 TFSIAudi A4 Allroad 2.0 TFSI
+RENAME: 4/SoundHolder -  Beehive  ->  4/Beehive
+RENAME: 4/SoundHolder -  Bunkers  ->  4/Bunkers
+RENAME: 4/SoundHolder -  Cameras  ->  4/Cameras
+RENAME: 4/SoundHolder -  Cormorants  ->  4/Cormorants
+RENAME: 4/SoundHolder -  Excavator MF 860  ->  4/Excavator MF 860
+RENAME: 4/SoundHolder -  Metal Contact  ->  4/Metal Contact
+RENAME: 4/SoundHolder -  Renault Kangoo 1.6 16V_Renault Kangoo 1.6 16V  ->  4/Renault Kangoo 1.6 16V_Renault Kangoo 1.6 16V
+RENAME: 4/SoundHolder -  Renault Master II 2.8dTi  ->  4/Renault Master II 2.8dTi
+RENAME: 4/SoundHolder -  Renault Master III dCi135_  ->  4/Renault Master III dCi135_
+RENAME: 4/SoundHolder -  Tractor Case II CX90  ->  4/Tractor Case II CX90
+RENAME: 4/SoundHolder -  Water Flow  ->  4/Water Flow
+RENAME: 4/SoundMorph - ENERGY  ->  4/ENERGY
+RENAME: 4/SoundMorph - MECHANISM  ->  4/MECHANISM
+RENAME: 4/SoundMorph - Portals  ->  4/Portals
+RENAME: 4/SoundMorph - Spaces  ->  4/Spaces
+RENAME: 4/Soundopolis - Halloween 101  ->  4/Halloween 101
+RENAME: 4/Soundopolis - Heavy Metal!  ->  4/Heavy Metal!
+RENAME: 4/Soundreorganized - Keeway TX50 Moped  ->  4/Keeway TX50 Moped
+RENAME: 4/Soundreorganized - Massey-Ferguson 3060E  ->  4/Massey-Ferguson 3060E
+RENAME: 4/Stereo Chemistry - Ultimate Jersey Shore Vol. 1  ->  4/Ultimate Jersey Shore Vol. 1
+RENAME: 4/Studio238 - Ambiences 1  ->  4/Ambiences 1
+RENAME: 4/The Sound Keeper - Dark Sci-Fi UI Sounds  ->  4/Dark Sci-Fi UI Sounds
+RENAME: 4/The Sound Keeper - Normal Doors  ->  4/Normal Doors
+RENAME: 4/The Sound Pack Tree - The Sound Pack Tree  ->  4/The Sound Pack Tree
+RENAME: 4/The Soundcatcher - Antique Mills  ->  4/Antique Mills
+RENAME: 4/The Soundcatcher - Electric Cash Register  ->  4/Electric Cash Register
+RENAME: 4/The Soundcatcher - Paperlife  ->  4/Paperlife
+RENAME: 4/Tone Manufacture - Cassette Tone  ->  4/Cassette Tone
+RENAME: 4/Tovusound - Edward – Foleyart Collection Add-On Extended Footsteps  ->  4/Edward – Foleyart Collection Add-On Extended Footsteps
+RENAME: 4/West Wolf - Cityscapes And Streets  ->  4/Cityscapes And Streets
+RENAME: 4/West Wolf - Dock Ambiences and SFX  ->  4/Dock Ambiences and SFX
+RENAME: 4/West Wolf - Nature Sounds  ->  4/Nature Sounds
+RENAME: 4/West Wolf - WATER  ->  4/WATER
+RENAME: 4/Zero-G - Alien Skies - Cinematic Ambiences 2  ->  4/Alien Skies - Cinematic Ambiences 2
+RENAME: 4/Zero-G - Dark Skies - Cinematic Ambiences  ->  4/Dark Skies - Cinematic Ambiences
+RENAME: 5/344 Audio - Air Designed  ->  5/Air Designed
+RENAME: 5/344 Audio - Anime Fight Voices Vol. 1  ->  5/Anime Fight Voices Vol. 1
+RENAME: 5/344 Audio - Anime Fight Voices Vol. 2  ->  5/Anime Fight Voices Vol. 2
+RENAME: 5/344 Audio - Antique Books  ->  5/Antique Books
+RENAME: 5/344 Audio - Antique Clocks  ->  5/Antique Clocks
+RENAME: 5/344 Audio - Antique Luggage  ->  5/Antique Luggage
+RENAME: 5/344 Audio - Antique Small Metals  ->  5/Antique Small Metals
+RENAME: 5/344 Audio - Antique Telephone  ->  5/Antique Telephone
+RENAME: 5/344 Audio - Antique Typewriter  ->  5/Antique Typewriter
+RENAME: 5/344 Audio - Barbershop Vol. 1  ->  5/Barbershop Vol. 1
+RENAME: 5/344 Audio - Barbershop Vol. 2  ->  5/Barbershop Vol. 2
+RENAME: 5/344 Audio - Bass Drops & Downers Vol. 1  ->  5/Bass Drops & Downers Vol. 1
+RENAME: 5/344 Audio - Bass Drops & Downers Vol. 2  ->  5/Bass Drops & Downers Vol. 2
+RENAME: 5/344 Audio - Bass Drops & Downers Vol. 3  ->  5/Bass Drops & Downers Vol. 3
+RENAME: 5/344 Audio - British Police Radio Vol. 1  ->  5/British Police Radio Vol. 1
+RENAME: 5/344 Audio - Car Foley Vol. 1  ->  5/Car Foley Vol. 1
+RENAME: 5/344 Audio - Casino Cards Vol. 1  ->  5/Casino Cards Vol. 1
+RENAME: 5/344 Audio - Christmas Vol. 1  ->  5/Christmas Vol. 1
+RENAME: 5/344 Audio - Cinema Experience Vol. 1  ->  5/Cinema Experience Vol. 1
+RENAME: 5/344 Audio - Cinematic Fight Vol. 1  ->  5/Cinematic Fight Vol. 1
+RENAME: 5/344 Audio - Climbing Gear Foley Vol. 1  ->  5/Climbing Gear Foley Vol. 1
+RENAME: 5/344 Audio - Dinosaurs Vol. 1  ->  5/Dinosaurs Vol. 1
+RENAME: 5/344 Audio - Dinosaurs Vol. 2  ->  5/Dinosaurs Vol. 2
+RENAME: 5/344 Audio - Dog Vocalisations Vol. 1  ->  5/Dog Vocalisations Vol. 1
+RENAME: 5/344 Audio - East Coast America Vol. 1  ->  5/East Coast America Vol. 1
+RENAME: 5/344 Audio - Elemental Palette Designed Vol. 1  ->  5/Elemental Palette Designed Vol. 1
+RENAME: 5/344 Audio - Extreme Winds Vol. 1  ->  5/Extreme Winds Vol. 1
+RENAME: 5/344 Audio - Ghostly Presences Vol. 1  ->  5/Ghostly Presences Vol. 1
+RENAME: 5/344 Audio - Haunting Ambiences Vol. 3  ->  5/Haunting Ambiences Vol. 3
+RENAME: 5/344 Audio - Haunting Ambiences Vol. 5  ->  5/Haunting Ambiences Vol. 5
+RENAME: 5/344 Audio - Historical Weapons Vol. 2  ->  5/Historical Weapons Vol. 2
+RENAME: 6/Alexander Kopeikin - 100 kHz Designed Ice  ->  6/100 kHz Designed Ice
+RENAME: 6/Alexander Kopeikin - Emotion and Magic  ->  6/Emotion and Magic
+RENAME: 6/CB_Sounddesign - Applicable Sounds - Organic UI and Building Games SFX  ->  6/Applicable Sounds - Organic UI and Building Games SFX
+RENAME: 6/Cinematic Sound Design - Cartoon & Animation Vol 2  ->  6/Cartoon & Animation Vol 2
+RENAME: 6/Cinematic Sound Design - Cartoon Bloopers  ->  6/Cartoon Bloopers
+RENAME: 6/Cinematic Sound Design - Cartoon Impacts  ->  6/Cartoon Impacts
+RENAME: 6/Cinematic Sound Design - Colossal Impacts  ->  6/Colossal Impacts
+RENAME: 6/Cinematic Sound Design - Hybrid Game & UI Elements  ->  6/Hybrid Game & UI Elements
+RENAME: 6/Cinematic Sound Design - Interface & Infographics  ->  6/Interface & Infographics
+RENAME: 6/Cinematic Sound Design - Paper Foley  ->  6/Paper Foley
+RENAME: 6/Cinematic Sound Design - Sci-Fi Drones  ->  6/Sci-Fi Drones
+RENAME: 6/Cinematic Sound Design - System & UI Feedback Elements  ->  6/System & UI Feedback Elements
+RENAME: 6/Cinematic Sound Design - UI Interaction Elements  ->  6/UI Interaction Elements
+RENAME: 6/Cinematic Sound Design - Ultra Transitions & Impacts  ->  6/Ultra Transitions & Impacts
+RENAME: 6/Cinematic Sound Design - User Interface  ->  6/User Interface
+RENAME: 6/David Dumais Audio - Melee Weapons Sound Effects Pack 2  ->  6/Melee Weapons Sound Effects Pack 2
+RENAME: 6/Epic Stock Media - AAA Game Character British Female Detective  ->  6/AAA Game Character British Female Detective
+RENAME: 6/Epic Stock Media - AAA Game Character Police Officer  ->  6/AAA Game Character Police Officer
+RENAME: 6/Epic Stock Media - Anime Game  ->  6/Anime Game
+RENAME: 6/Epic Stock Media - Board Game - Sound Set Kit for Tabletop and Digital Games  ->  6/Board Game - Sound Set Kit for Tabletop and Digital Games
+RENAME: 6/Epic Stock Media - Elemental Mutation Whooshes and Impacts  ->  6/Elemental Mutation Whooshes and Impacts
+RENAME: 6/Epic Stock Media - Fake Advertisements and Radio Sound Effects Audio Construction Kit  ->  6/Fake Advertisements and Radio Sound Effects Audio Construction Kit
+RENAME: 6/Epic Stock Media - Fantasy Game 2 - Sound Kit for Enchanted Realms  ->  6/Fantasy Game 2 - Sound Kit for Enchanted Realms
+RENAME: 6/Epic Stock Media - HD Game Materials  ->  6/HD Game Materials
+RENAME: 6/Epic Stock Media - HD Lock And Mechanism Sound Design Kit  ->  6/HD Lock And Mechanism Sound Design Kit
+RENAME: 6/Epic Stock Media - Halloween Game - Haunted House and Horror Audio Scare Kit  ->  6/Halloween Game - Haunted House and Horror Audio Scare Kit
+RENAME: 6/Epic Stock Media - Humanoid Creatures Vol 4 - Monstrous and Undead Creature Vocalization Sound Sets  ->  6/Humanoid Creatures Vol 4 - Monstrous and Undead Creature Vocalization Sound Sets
+RENAME: 6/Epic Stock Media - Public Spaces - Basic Transportation Sounds  ->  6/Public Spaces - Basic Transportation Sounds
+RENAME: 6/Epic Stock Media - Public Spaces - Crowds Walla and Everyday Ambiences  ->  6/Public Spaces - Crowds Walla and Everyday Ambiences
+RENAME: 6/Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors  ->  6/Public Spaces - Storms Lakes Parks and Rural Nature Exteriors
+RENAME: 6/Epic Stock Media - Public Spaces - Urban Life Exteriors  ->  6/Public Spaces - Urban Life Exteriors
+RENAME: 6/Epic Stock Media - Shooter Game Announcer Voice  ->  6/Shooter Game Announcer Voice
+RENAME: 6/Epic Stock Media - Strange Game Ambient Loops 3  ->  6/Strange Game Ambient Loops 3
+RENAME: 6/Epic Stock Media - Synthesized Nature Loops and Sounds  ->  6/Synthesized Nature Loops and Sounds
+RENAME: 6/Epic Stock Media - Tower Defense Game  ->  6/Tower Defense Game
+RENAME: 6/Federico Soler - Effective Trailer Alarms Vol. 2  ->  6/Effective Trailer Alarms Vol. 2
+RENAME: 6/Federico Soler - Effective Trailer Booms Vol. 2  ->  6/Effective Trailer Booms Vol. 2
+RENAME: 8/InMotionAudio - Arc  ->  8/Arc
+RENAME: 8/InMotionAudio - Back Garden Storm  ->  8/Back Garden Storm
+RENAME: 8/InMotionAudio - Car Interior Driving Ambience  ->  8/Car Interior Driving Ambience
+RENAME: 8/InMotionAudio - Chimney Wind  ->  8/Chimney Wind
+RENAME: 8/InMotionAudio - Christmas Cracker  ->  8/Christmas Cracker
+RENAME: 8/InMotionAudio - Foley T-Shirt  ->  8/Foley T-Shirt
+RENAME: 8/InMotionAudio - Grand Central Station  ->  8/Grand Central Station
+RENAME: 8/InMotionAudio - Instrument Case  ->  8/Instrument Case
+RENAME: 8/InMotionAudio - Medical Thermometer  ->  8/Medical Thermometer
+RENAME: 8/InMotionAudio - Saxophone  ->  8/Saxophone
+RENAME: 8/InMotionAudio - Scratch Card  ->  8/Scratch Card
+RENAME: 8/InMotionAudio - Sinister Textures 4  ->  8/Sinister Textures 4
+RENAME: 8/InMotionAudio - Sinister Textures 5  ->  8/Sinister Textures 5
+RENAME: 8/InMotionAudio - The Commute  ->  8/The Commute
+RENAME: 8/InMotionAudio - The Death Whistle  ->  8/The Death Whistle
+RENAME: 8/InMotionAudio - USA Hotel  ->  8/USA Hotel
+RENAME: 8/InMotionAudio - Velcro  ->  8/Velcro
+RENAME: 8/InMotionAudio - Washing Basket Foley  ->  8/Washing Basket Foley
+RENAME: 8/Ivo Vicic - Campfire - Bonfire FX  ->  8/Campfire - Bonfire FX
+RENAME: 8/Ivo Vicic - Campfire FX - Ambisonic  ->  8/Campfire FX - Ambisonic
+RENAME: 8/Ivo Vicic - Church Bells  ->  8/Church Bells
+RENAME: 8/Ivo Vicic - Fireworks FX  ->  8/Fireworks FX
+RENAME: 8/Jake Fielding - British Walla and Crowd  ->  8/British Walla and Crowd
+RENAME: 8/Jake Fielding - Cinematic Horn Braams  ->  8/Cinematic Horn Braams
+RENAME: 8/Jake Fielding - Fridge Hums Vol.2  ->  8/Fridge Hums Vol.2
+RENAME: 8/Jake Fielding - Interior Wind Rain and Storms  ->  8/Interior Wind Rain and Storms
+RENAME: 8/Just Sound Effects - Highlands of Norway  ->  8/Highlands of Norway
+RENAME: 8/Just Sound Effects - Rocky Coast of Norway  ->  8/Rocky Coast of Norway
+RENAME: 9/Sonic Bat - Bars & Restaurants Ambience  ->  9/Bars & Restaurants Ambience
+RENAME: 9/Sonic Bat - Fireworks Ambience  ->  9/Fireworks Ambience
+RENAME: 9/Sonic Bat - Music Boxes  ->  9/Music Boxes
+RENAME: 9/Sonic Bat - Stormy Night Ambience  ->  9/Stormy Night Ambience
+RENAME: 9/Sonic Bat - Swimming Pool Ambience  ->  9/Swimming Pool Ambience
+RENAME: 9/Sonic Bat - Vintage Radio  ->  9/Vintage Radio
+RENAME: 9/Sonic Bat - Volleyball Match Ambience  ->  9/Volleyball Match Ambience
+RENAME: 9/Sonik Sound Library - Spanish Crowds  ->  9/Spanish Crowds
+RENAME: 9/Sonik Sound Library - Spanish Wallas  ->  9/Spanish Wallas
+RENAME: 9/Sonik Sound Library - Toy Quadcopter  ->  9/Toy Quadcopter
+RENAME: 9/Sonik Sound Library - Urban Life  ->  9/Urban Life
+
+Done.

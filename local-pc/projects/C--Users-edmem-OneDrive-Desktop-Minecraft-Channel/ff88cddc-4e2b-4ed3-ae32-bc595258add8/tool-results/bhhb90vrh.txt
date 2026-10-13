@@ -1,0 +1,333 @@
+{'key_mode_auto', 'category', 'id', 'sound', 'prev', 'kind', 'duration_s', 'path'}
+88 Hollow Pop 04.wav | 0.059 | da to 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+89 Hollow Pop 05.wav | 0.044 | ? ? None None | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+90 Hollow Pop 06.wav | 0.027 | ? ? None None | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+91 Hollow Pop 07.wav | 0.213 | da to 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+92 Hollow Pop 08.wav | 0.196 | da to 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+93 Hollow Pop 09.wav | 0.23 | da mi 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+94 Hollow Pop 10.wav | 0.165 | mi no 0.0 0.096 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+95 Huh.mp3 | 0.302 | mi mi 0.096 0.16 | reaction,voice_l | - | 2 | confusion,awkward,shock
+96 Icon Blip 01.wav | 0.295 | br no 0.064 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+97 Icon Blip 02.wav | 0.244 | mi mi 0.032 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+98 Icon Blip 03.wav | 0.358 | mi no 0.096 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+99 Icon Blip 04.wav | 0.274 | br no 0.096 0.096 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+100 Icon Blip 05.wav | 0.23 | da mi 0.0 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+101 Icon Blip 06.wav | 1.256 | da to 0.0 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+102 Icon Blip 07.wav | 0.373 | mi no 0.096 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+103 Icon Blip 08.wav | 0.414 | da mi 0.128 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+104 Icon Blip 09.wav | 0.403 | mi no 0.032 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+105 Icon Blip 10.wav | 0.648 | da mi 0.032 0.544 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+106 Icon Blip 11.wav | 0.555 | mi no 0.192 0.256 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+107 Icon Blip 13.wav | 0.289 | mi no 0.032 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+108 Icon Blip 14.wav | 0.392 | mi no 0.064 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+109 Icon Blip 15.wav | 0.354 | mi no 0.064 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+110 Jingle Bells Rattle 01.wav | 0.519 | br no 0.0 0.192 | ui_sound,literal | UI, Cl | 2 | small_win,loot,wholesome
+111 Jingle Bells Rattle 02.wav | 0.828 | br no 0.16 0.192 | ui_sound,literal | UI, Cl | 2 | small_win,loot,wholesome
+112 Jingle Bells Rattle 03.wav | 0.517 | br mi 0.032 0.224 | ui_sound,literal | UI, Cl | 2 | small_win,loot,wholesome
+113 Jingle Bells Rattle 06.wav | 0.949 | br mi 0.384 0.416 | ui_sound,literal | UI, Cl | 2 | small_win,loot,wholesome
+114 Keyboard Typing (2).mp3 | 61.068 | br no 4.064 0.032 | literal,ui_sound | UI, Cl | 2 | tech_glitch,building,pro
+115 Keyboard Typing 01.wav | 31.078 | da mi 3.712 0.352 | ambience,literal | UI, Cl | 1 | building,tech_glitch,pro
+116 Keyboard Typing 02.wav | 33.156 | mi no 7.712 0.032 | ambience,literal | UI, Cl | 1 | building,tech_glitch,pro
+117 Keyboard Typing.mp3 | 10.057 | mi no 6.016 0.064 | ui_sound | UI, Cl | 1 | building,tech_glitch
+118 Keyboard spam.mp3 | 12.116 | mi no 0.512 7.488 | literal,ui_sound | UI, Cl | 3 | rage,tech_glitch,panic
+119 Keyboard.mp3 | 19.017 | br no 1.024 0.064 | literal,ui_sound | UI, Cl | 2 | tech_glitch,progress,bui
+120 Lighter Double Click 01.wav | 0.269 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | emphasis,suspense,small_
+121 Lighter Double Click 02.wav | 0.276 | br no 0.224 0.032 | ui_sound,literal | UI, Cl | 1 | emphasis,suspense,small_
+122 Magic Book Opening.mp3 | 2.286 | mi no 0.416 0.064 | literal,ui_sound | UI, Cl | 1 | reveal,intro,building
+123 Magical Healing.mp3 | 2.093 | mi no 0.032 0.064 | ui_sound | UI, Cl | 2 | small_win,near_death,who
+124 Mario coin.wav | 0.945 | mi to 0.032 0.8 | ui_sound,hit | - | 2 | money,loot,small_win
+125 Mario pause.wav | 0.685 | mi mi 0.32 0.288 | ui_sound | - | 1 | awkward,suspense,punchli
+126 Mechanical Keyboard Click 01.wav | 0.192 | br no 0.0 0.064 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+127 Mechanical Keyboard Click 02.wav | 0.114 | mi no 0.0 0.096 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+128 Mechanical Keyboard Click 03.wav | 0.151 | mi no 0.0 0.064 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+129 Mechanical Keyboard Click 04.wav | 0.271 | mi no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+130 Mechanical Keyboard Click 05.wav | 0.131 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+131 Mechanical Keyboard Click 06.wav | 0.384 | br no 0.096 0.064 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+132 Mechanical Keyboard Click 07.wav | 0.409 | mi no 0.096 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+133 Mechanical Keyboard Click 08.wav | 0.144 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+134 Mechanical Keyboard Click 09.wav | 0.064 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+135 Mechanical Keyboard Click 10.wav | 0.048 | ? ? None None | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+136 Mechanical Keyboard Click 11.wav | 0.054 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+137 Mechanical Keyboard Click 12.wav | 0.056 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+138 Mechanical Keyboard Click 13.wav | 0.284 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+139 Mechanical Keyboard Click 14.wav | 0.048 | ? ? None None | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+140 Mechanical Keyboard Click 15.wav | 0.046 | ? ? None None | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+141 Mechanical Keyboard Click 16.wav | 0.037 | ? ? None None | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+142 Mechanical Keyboard Click 17.wav | 0.131 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+143 Mechanical Keyboard Click 18.wav | 0.089 | br no 0.032 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+144 Mechanical Keyboard Click 19.wav | 0.118 | br no 0.0 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+145 Mechanical Keyboard Multiple Clicks 01.w | 0.444 | br no 0.256 0.032 | ui_sound,literal | UI, Cl | 1 | building,tech_glitch,pro
+146 Metal Gear Solid - codec.mp3 | 2.16 | br mi 0.576 0.384 | ui_sound,stinger | - | 2 | reveal,awkward,hook
+147 Microsoft Windows 98 Error.mp3 | 3.014 | da mi 0.032 0.192 | ui_sound,hit | - | 3 | tech_glitch,fail,awkward
+148 Mouse Click (2).mp3 | 1.332 | br no 0.096 0.032 | ui_sound | UI, Cl | 1 | scene_change,emphasis
+149 Mouse Click 01 (2).wav | 0.557 | mi mi 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+150 Mouse Click 01.mp3 | 3.336 | br no 0.096 0.032 | ui_sound | UI, Cl | 1 | emphasis,small_win
+151 Mouse Click 01.wav | 0.139 | br no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+152 Mouse Click 02 (2).wav | 0.115 | mi no 0.032 0.064 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+153 Mouse Click 02 (3).wav | 0.219 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+154 Mouse Click 02.mp3 | 1.11 | br no 0.096 0.064 | ui_sound | UI, Cl | 1 | emphasis,small_win
+155 Mouse Click 02.wav | 0.104 | br no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+156 Mouse Click 03 (2).wav | 0.509 | da mi 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+157 Mouse Click 03 (3).wav | 0.375 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+158 Mouse Click 03.wav | 0.176 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+159 Mouse Click 04 (2).wav | 0.217 | mi no 0.0 0.096 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+160 Mouse Click 04.wav | 0.154 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+161 Mouse Click 05 (2).wav | 20.0 | da no 4.896 0.096 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+162 Mouse Click 05.wav | 0.325 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+163 Mouse Click 06 (2).wav | 0.256 | da no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,tech_g
+164 Mouse Click 06.wav | 0.239 | da no 0.0 0.032 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+165 Mouse Click 07.wav | 0.208 | mi no 0.064 0.096 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+166 Mouse Click 08.wav | 0.377 | mi no 0.16 0.192 | ui_sound | UI, Cl | 1 | progress,tech_glitch,emp
+167 Mouse Click.mp3 | 3.072 | br no 0.096 0.032 | ui_sound | - | 1 | awkward,small_win,reveal
+168 Mouth Blip 01.wav | 0.359 | da to 0.0 0.064 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+169 Mouth Blip 02.wav | 0.327 | da to 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+170 Multiple Small Pops 01.wav | 0.49 | br no 0.256 0.128 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+171 Multiple Small Pops 02.wav | 0.379 | br no 0.16 0.128 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+172 Multiple Small Pops 03.wav | 0.374 | br no 0.032 0.096 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+173 Multiple Small Pops 04.wav | 0.263 | br no 0.0 0.128 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+174 Multiple Small Pops 05.wav | 0.64 | br no 0.0 0.128 | ui_sound,hit | UI, Cl | 2 | small_win,emphasis,punch
+175 Multiple Small Pops 06.wav | 0.302 | br no 0.064 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+176 Multiple Small Pops 07.wav | 0.388 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+177 Multiple UI Beeps 01.wav | 0.758 | br to 0.096 0.032 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+178 Multiple UI Beeps 02.wav | 0.687 | br to 0.0 0.064 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+179 Multiple UI Beeps 03.wav | 0.742 | br to 0.032 0.48 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+180 Multiple UI Beeps 04.wav | 0.575 | br to 0.224 0.192 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+181 Multiple UI Beeps 05.wav | 0.854 | br no 0.0 0.032 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+182 Multiple UI Beeps 06.wav | 0.698 | br to 0.352 0.16 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+183 Multiple UI Beeps 07.wav | 0.689 | br mi 0.16 0.256 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+184 Multiple UI Beeps 08.wav | 0.805 | br no 0.128 0.384 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+185 Multiple UI Beeps 09.wav | 0.939 | br no 0.416 0.032 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+186 Multiple UI Beeps 10.wav | 0.494 | da to 0.16 0.32 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+187 Multiple UI Beeps 11.wav | 0.611 | mi mi 0.032 0.544 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+188 Multiple UI Beeps 12.wav | 0.52 | mi no 0.16 0.128 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+189 Multiple UI Beeps 13.wav | 0.565 | br mi 0.0 0.032 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+190 Multiple UI Beeps 14.wav | 0.45 | br to 0.032 0.064 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+191 Multiple UI Beeps 15.wav | 0.512 | br to 0.16 0.032 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+192 Multiple UI Beeps 16.wav | 1.25 | mi no 0.0 0.448 | ui_sound | UI, Cl | 2 | progress,tech_glitch,sma
+193 Party Horn (2).mp3 | 0.992 | mi no 0.128 0.416 | ui_sound | UI, Cl | 3 | victory,small_win
+194 Party Horn.mp3 | 1.11 | br no 0.128 0.416 | hit,literal | UI, Cl | 3 | victory,small_win,intro
+195 Pen Click 01.wav | 0.041 | ? ? None None | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+196 Pen Click 02.wav | 0.033 | ? ? None None | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+197 Pen Double Click 01.wav | 0.134 | br no 0.096 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+198 Pen Double Click 02.wav | 0.176 | br no 0.128 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+199 Pen Double Click 03.wav | 0.106 | br no 0.0 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+200 Plus Point 2.mp3 | 0.969 | mi mi 0.16 0.192 | ui_sound | UI, Cl | 2 | small_win,money,progress
+201 Plus Point 3.mp3 | 0.5 | mi no 0.064 0.16 | ui_sound | UI, Cl | 2 | small_win,money,progress
+202 Plus Point.mp3 | 0.474 | mi no 0.032 0.096 | ui_sound | UI, Cl | 2 | small_win,money,progress
+203 Pop 01.mp3 | 1.11 | mi mi 0.032 0.096 | ui_sound,hit | UI, Cl | 1 | emphasis,small_win,scene
+204 Pop 01.wav | 0.434 | da mi 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+205 Pop 02.mp3 | 1.11 | mi mi 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | emphasis,small_win,scene
+206 Pop 02.wav | 0.437 | da mi 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+207 Pop 03.wav | 0.363 | mi mi 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+208 Pop 04.wav | 0.439 | mi to 0.0 0.096 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+209 Pop 05.wav | 0.324 | da to 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+210 Pop 1.mp3 | 1.071 | da mi 0.0 0.064 | ui_sound | UI, Cl | 1 | emphasis,reveal,small_wi
+211 Pop 2.mp3 | 0.94 | mi to 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,reveal,small_wi
+212 Power Up.mp3 | 3.024 | br to 0.512 0.896 | ui_sound,riser | UI, Cl | 3 | small_win,flex,speed
+213 Reward.wav | 11.0 | mi no 0.096 0.512 | stinger,ui_sound | UI, Cl | 3 | victory,loot,small_win
+214 Shutter Click.mp3 | 0.888 | br no 0.0 0.192 | literal,ui_sound | UI, Cl | 2 | reveal,emphasis
+215 Shutter.mp3 | 0.952 | br no 0.032 0.16 | literal,ui_sound | UI, Cl | 2 | reveal,emphasis
+216 Single UI Beep 01.wav | 0.047 | ? ? None None | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+217 Single UI Beep 02.wav | 0.16 | mi to 0.096 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+218 Single UI Beep 03.wav | 0.273 | mi to 0.0 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+219 Single UI Beep 04.wav | 0.375 | da to 0.128 0.224 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+220 Single UI Beep 05.wav | 0.332 | br mi 0.0 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+221 Single UI Beep 06.wav | 0.286 | mi to 0.0 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+222 Single UI Beep 07.wav | 0.536 | br to 0.032 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+223 Single UI Beep 08.wav | 0.44 | br mi 0.064 0.224 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+224 Single UI Beep 09.wav | 1.348 | br mi 0.0 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+225 Single UI Beep 10.wav | 0.582 | br no 0.0 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+226 Single UI Beep 11.wav | 0.552 | br no 0.096 0.096 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+227 Single UI Beep 12.wav | 0.204 | br to 0.0 0.096 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+228 Single UI Beep 13.wav | 0.763 | br to 0.032 0.416 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+229 Single UI Beep 14.wav | 0.835 | br to 0.032 0.416 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+230 Single UI Beep 15.wav | 0.841 | mi to 0.096 0.384 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+231 Single UI Beep 16.wav | 0.85 | br to 0.0 0.384 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+232 Single UI Beep 17.wav | 0.745 | br mi 0.192 0.224 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+233 Single UI Beep 18.wav | 0.621 | br no 0.0 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+234 Single UI Beep 19.wav | 0.615 | br mi 0.224 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+235 Single UI Beep 20.wav | 0.623 | br no 0.096 0.384 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+236 Single UI Beep 21.wav | 0.308 | br no 0.064 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+237 Single UI Beep 22.wav | 0.458 | br mi 0.0 0.096 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+238 Single UI Beep 23.wav | 0.442 | br to 0.096 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+239 Single UI Beep 24.wav | 0.394 | br mi 0.032 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+240 Single UI Beep 25.wav | 0.302 | br mi 0.032 0.096 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+241 Single UI Beep 26.wav | 0.391 | br no 0.032 0.128 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+242 Single UI Beep 27.wav | 0.304 | mi no 0.0 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+243 Single UI Beep 28.wav | 0.3 | mi to 0.0 0.192 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+244 Single UI Beep 29.wav | 0.093 | br to 0.0 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+245 Single UI Beep 30.wav | 0.179 | br no 0.0 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+246 Single UI Beep 31.wav | 0.247 | mi mi 0.0 0.16 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+247 Single UI Beep 32.wav | 0.37 | br to 0.0 0.256 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+248 Single UI Beep 33.wav | 0.087 | br no 0.032 0.032 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+249 Single UI Beep 34.wav | 0.179 | br no 0.032 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+250 Single UI Beep 35.wav | 0.154 | mi no 0.032 0.064 | ui_sound | UI, Cl | 1 | small_win,emphasis,progr
+251 Single UI Blab 01.wav | 0.542 | da to 0.032 0.384 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+252 Single UI Blab 02.wav | 0.599 | da to 0.0 0.256 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+253 Single UI Blab 03.wav | 0.08 | da mi 0.0 0.064 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+254 Slap Pop 01.wav | 0.22 | br no 0.032 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+255 Slap Pop 02.wav | 0.223 | br no 0.0 0.096 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+256 Slap Pop 03.wav | 0.215 | br no 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+257 Slap Pop 04.wav | 0.242 | br no 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+258 Slap Pop 05.wav | 0.162 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+259 Slot Machine Win 01.wav | 1.852 | mi no 1.216 0.256 | ui_sound,stinger | UI, Cl | 4 | money,victory,loot
+260 Slot Machine Win 02.wav | 1.512 | br no 0.224 1.248 | ui_sound,stinger | UI, Cl | 4 | money,victory,loot
+261 Small Bell.mp3 | 2.299 | br to 0.032 1.952 | ui_sound | UI, Cl | 1 | small_win,reveal,emphasi
+262 Small Pop 01.wav | 0.072 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+263 Small Pop 02.wav | 0.053 | mi no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+264 Small Pop 03.wav | 0.068 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+265 Small Pop 04.wav | 0.057 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+266 Small Pop 05.wav | 0.033 | ? ? None None | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+267 Small Pop 06.wav | 0.032 | ? ? None None | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+268 Small Pop 07.wav | 0.07 | br no 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+269 Soft Click 01.wav | 0.122 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,small_
+270 Soft Click 02.wav | 0.125 | da no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,progress,small_
+271 Spider.mp3 | 0.575 | br no 0.128 0.256 | reaction,literal | - | 3 | jumpscare,suspense,shock
+272 Spirit Gain.mp3 | 7.296 | mi mi 3.584 2.848 | ui_sound | UI, Cl | 2 | small_win,loot
+273 Star Point.mp3 | 0.526 | da mi 0.32 0.096 | ui_sound | UI, Cl | 2 | small_win,loot,progress
+274 Strum Reward 01.wav | 0.724 | da to 0.032 0.288 | stinger,ui_sound | UI, Cl | 3 | small_win,victory,loot
+275 Strum Reward 02.wav | 0.729 | da to 0.032 0.288 | stinger,ui_sound | UI, Cl | 3 | small_win,victory,loot
+276 Strum Reward 03.wav | 0.729 | mi mi 0.032 0.288 | stinger,ui_sound | UI, Cl | 3 | small_win,victory,loot
+277 Success.mp3 | 1.663 | mi to 0.0 0.48 | ui_sound,stinger | - | 3 | victory,small_win,reveal
+278 Surprise Pop.mp3 | 1.236 | mi no 0.0 1.152 | ui_sound,hit | UI, Cl | 2 | reveal,shock,small_win
+279 Synthetic Blip 01.wav | 0.158 | mi no 0.0 0.032 | ui_sound | UI, Cl | 1 | emphasis,small_win,awkwa
+280 Synthetic Pop 01.wav | 0.159 | da to 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+281 Synthetic Pop 02.wav | 0.215 | da to 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+282 Synthetic Pop 03.wav | 0.222 | da mi 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+283 Synthetic Pop 04.wav | 0.235 | da mi 0.0 0.032 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+284 Synthetic Pop 05.wav | 0.232 | da mi 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+285 Synthetic Pop 06.wav | 0.25 | mi no 0.0 0.064 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+286 Synthetic Pop 07.wav | 0.457 | da to 0.0 0.288 | ui_sound,hit | UI, Cl | 1 | small_win,emphasis,punch
+287 Taking Photos.mp3 | 3.997 | br no 2.016 0.064 | literal,ui_sound | UI, Cl | 3 | reveal,flex,emphasis
+288 Tick.wav | 0.21 | br no 0.0 0.064 | ui_sound | UI, Cl | 1 | emphasis,progress
+289 Ting Sound Effect 2.mp3 | 2.067 | br to 0.064 0.576 | ui_sound | UI, Cl | 1 | small_win,reveal,emphasi
+290 Ting Sound Effect.mp3 | 2.136 | br to 0.064 0.576 | ui_sound | UI, Cl | 1 | small_win,reveal,emphasi
+291 Typing on Keyboard - Sound - SR.mp3 | 6.869 | br no 2.88 0.032 | literal | UI, Cl | 2 | building,tech_glitch,rev
+292 Typing.wav | 3.14 | mi no 2.816 0.128 | literal | UI, Cl | 2 | building,tech_glitch,rev
+293 UI Double Beep 01.wav | 0.529 | br mi 0.064 0.064 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+294 UI Double Beep 02.wav | 0.871 | br to 0.224 0.224 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+295 UI Double Beep 03.wav | 0.513 | br no 0.064 0.224 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+296 UI Double Beep 04.wav | 0.196 | mi no 0.0 0.064 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+297 UI Double Beep 05.wav | 0.333 | mi mi 0.128 0.16 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+298 UI Double Beep 06.wav | 0.295 | mi mi 0.0 0.192 | ui_sound | UI, Cl | 2 | small_win,emphasis,progr
+299 Windows 11 Startup Sound.mp3 | 4.156 | da to 0.896 0.416 | stinger,ui_sound | UI, Cl | 1 | intro,time_skip,reveal
+300 Windows Startup - Sound - SR.mp3 | 4.877 | da mi 1.184 2.048 | stinger,ui_sound | UI, Cl | 1 | intro,time_skip,reveal
+301 Wineglass Clang 01.wav | 0.549 | br mi 0.0 0.32 | ui_sound,hit | UI, Cl | 2 | small_win,emphasis,money
+302 Wineglass Clang 02.wav | 0.542 | mi to 0.064 0.288 | ui_sound,hit | UI, Cl | 2 | small_win,emphasis,money
+303 Wineglass Clang 03.wav | 0.135 | mi mi 0.0 0.064 | ui_sound,hit | UI, Cl | 2 | small_win,emphasis,money
+304 Wineglass Clang 04.wav | 0.146 | mi no 0.0 0.064 | ui_sound,hit | UI, Cl | 2 | small_win,emphasis,money
+305 Writing On Keyboard.mp3 | 18.912 | br no 0.0 0.032 | literal,ui_sound | UI, Cl | 2 | tech_glitch,progress,bui
+306 Wrong Answer (2).mp3 | 1.541 | mi no 0.032 1.024 | ui_sound,stinger | UI, Cl | 2 | fail,confusion,irony
+307 Wrong Answer Buzzer.mp3 | 2.129 | mi no 0.128 0.928 | ui_sound,stinger | UI, Cl | 3 | fail,irony,punchline
+308 Wrong Answer.mp3 | 1.16 | mi no 0.224 0.48 | ui_sound,stinger | UI, Cl | 2 | fail,confusion,irony
+309 XBOX achievement.mp3 | 0.366 | mi to 0.064 0.096 | ui_sound,stinger | - | 3 | small_win,victory,reveal
+310 camera.mp3 | 6.661 | mi no 0.416 0.096 | literal,ui_sound | UI, Cl | 2 | reveal,emphasis
+311 correct.mp3 | 1.272 | mi to 0.128 0.384 | ui_sound,stinger | UI, Cl | 2 | small_win,victory,progre
+312 iPhone Notification.mp3 | 1.022 | da mi 0.032 0.448 | ui_sound | UI, Cl | 1 | scene_change,cta
+313 iPhone Ringtone.mp3 | 9.172 | da mi 3.008 2.4 | ui_sound,literal | UI, Cl | 2 | awkward,reveal,time_skip
+314 mongraal-shing-shing-sound-for-twitch.mp | 5.826 | mi no 2.528 0.576 | ui_sound | UI, Cl | 2 | flex,loot
+315 pop.mp3 | 4.31 | mi mi 2.752 0.16 | ui_sound | UI, Cl | 2 | emphasis,reveal,small_wi
+316 samsung-spaceline-notification.mp3 | 2.368 | da to 0.0 0.32 | ui_sound | UI, Cl | 1 | cta
+317 slot-machine-jackpot-sound-effect.mp3 | 7.08 | mi no 0.032 2.592 | ui_sound | UI, Cl | 4 | money,victory,loot
+318 the-bluetooth-device-is-ready-to-pair.mp | 3.048 | mi mi 0.064 0.064 | ui_sound | UI, Cl | 1 | scene_change
+319 water-droplet-drip.mp3 | 0.496 | da to 0.064 0.096 | ui_sound | UI, Cl | 1 | suspense
+320 what-despicable-me-text-ringtone.mp3 | 1.777 | mi mi 0.512 0.192 | ui_sound | UI, Cl | 2 | scene_change
+321 windows start up (normal).m4a | 3.668 | da mi 1.12 2.112 | ui_sound | UI, Cl | 2 | intro,tech_glitch
+322 Aggressive Whoosh.wav | 10.75 | da to 0.576 1.664 | whoosh | Whoosh | 3 | combat,emphasis,scene_ch
+323 Bass Whoosh.mp3 | 2.844 | da to 0.48 0.32 | whoosh,transitio | - | 3 | scene_change,speed,empha
+324 Big Whoosh 08.mp3 | 2.808 | da to 0.064 2.08 | transition,whoos | Whoosh | 4 | scene_change,time_skip,e
+325 Big Whoosh 09.mp3 | 1.989 | da mi 0.48 0.256 | transition,whoos | Whoosh | 4 | scene_change,time_skip,e
+326 Big Whoosh 10.mp3 | 0.771 | da mi 0.576 0.032 | transition,whoos | Whoosh | 4 | scene_change,time_skip,e
+327 Big Whoosh 12.mp3 | 1.659 | da to 0.0 1.6 | transition,whoos | Whoosh | 3 | scene_change,speed,empha
+328 Buildup Swoosh.mp3 | 2.472 | da to 0.608 1.344 | riser,whoosh | Whoosh | 3 | suspense,reveal,scene_ch
+329 CARTOON SPIN.mp3 | 3.216 | mi mi 2.048 0.128 | whoosh,hit | - | 3 | speed,fail,confusion,sce
+330 Camera Whoosh 01.mp3 | 1.131 | mi no 0.064 0.576 | whoosh,transitio | Whoosh | 3 | scene_change,speed,revea
+331 Camera Whoosh 02.mp3 | 1.366 | br no 0.128 0.416 | whoosh,transitio | Whoosh | 3 | scene_change,speed,revea
+332 Cartoon Slide Up.mp3 | 0.998 | mi to 0.32 0.192 | whoosh | - | 2 | small_win,emphasis,revea
+333 Cinematic Wave Swoosh.wav | 11.372 | da mi 0.768 1.184 | whoosh | Whoosh | 3 | scene_change,speed,empha
+334 Cinematic Whoosh.mp3 | 2.821 | da mi 0.32 1.248 | whoosh,transitio | Whoosh | 3 | scene_change,reveal,spee
+335 Deep Whoosh.wav | 4.529 | da mi 1.216 1.056 | whoosh | Whoosh | 3 | scene_change,speed,empha
+336 Drum Whoosh.wav | 3.4 | da to 0.16 0.928 | whoosh,hit | Whoosh | 3 | scene_change,speed,empha
+337 FF7 Swipe.wav | 0.093 | br no 0.032 0.032 | whoosh,ui_sound | - | 1 | scene_change,emphasis
+338 Fast Whoosh (2).mp3 | 1.855 | da to 0.576 0.32 | whoosh,transitio | Whoosh | 3 | scene_change,speed
+339 Fast Whoosh 1.mp3 | 0.291 | da mi 0.032 0.192 | whoosh | Whoosh | 3 | scene_change,speed,empha
+340 Fast Whoosh 2.mp3 | 0.265 | mi no 0.032 0.064 | whoosh | Whoosh | 3 | scene_change,speed,empha
+341 Fast Whoosh 3.mp3 | 0.291 | da mi 0.032 0.096 | whoosh | Whoosh | 3 | scene_change,speed,empha
+342 Fast Whoosh 4.mp3 | 0.213 | da mi 0.032 0.096 | whoosh | Whoosh | 3 | scene_change,speed,empha
+343 Fast Whoosh 5.mp3 | 0.344 | da no 0.032 0.064 | whoosh | Whoosh | 3 | scene_change,speed,empha
+344 Fast Whoosh.mp3 | 1.202 | mi no 0.16 0.16 | whoosh,transitio | Whoosh | 3 | speed,scene_change
+345 Fast swoosh down.mp3 | 4.035 | mi no 0.064 0.352 | whoosh | Whoosh | 3 | scene_change,speed,fail
+346 Filter Sweep.mp3 | 3.065 | mi to 0.224 0.032 | whoosh,transitio | Whoosh | 2 | scene_change,tech_glitch
+347 Fireball Whoosh.mp3 | 5.042 | da no 0.608 1.024 | whoosh,literal | Whoosh | 4 | explosion,combat,speed
+348 Funny Whoosh.mp3 | 0.601 | br no 0.096 0.192 | whoosh | Whoosh | 3 | speed,scene_change,empha
+349 Funny Woosh.mp3 | 0.387 | da mi 0.032 0.032 | whoosh | Whoosh | 2 | scene_change,speed,punch
+350 G Whoosh.mp3 | 0.682 | mi no 0.256 0.192 | whoosh | Whoosh | 2 | scene_change,speed,empha
+351 Hard Slide 01 - Accelerate 01.wav | 0.602 | mi no 0.256 0.032 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+352 Hard Slide 01 - Accelerate 02.wav | 0.453 | mi no 0.256 0.032 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+353 Hard Slide 01 - Decelerate 01.wav | 0.86 | mi no 0.16 0.416 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+354 Hard Slide 01 - Decelerate 02.wav | 0.8 | mi no 0.0 0.448 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+355 Hard Slide 01 - Decelerate 03.wav | 0.508 | mi no 0.032 0.32 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+356 Hard Slide 01 - Decelerate 04.wav | 1.129 | mi no 0.0 0.544 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+357 Hard Slide 01 - Long 01.wav | 2.113 | mi no 0.896 0.32 | whoosh,literal | Whoosh | 3 | speed,scene_change,fail
+358 Hard Slide 01 - Long 02.wav | 2.484 | mi no 0.544 1.248 | whoosh,literal | Whoosh | 3 | speed,scene_change,fail
+359 Hard Slide 01 - Long 03.wav | 3.302 | mi no 1.568 0.608 | whoosh,literal | Whoosh | 3 | speed,scene_change,fail
+360 Hard Slide 01 - Long 04.wav | 3.467 | mi no 0.928 1.216 | whoosh,literal | Whoosh | 3 | speed,scene_change,fail
+361 Hard Slide 01 - Short 01.wav | 0.785 | mi no 0.288 0.384 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+362 Hard Slide 01 - Short 02.wav | 0.674 | mi mi 0.288 0.192 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+363 Hard Slide 01 - Short 03.wav | 0.494 | mi no 0.224 0.192 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+364 Hard Slide 01 - Short 04.wav | 0.665 | mi no 0.224 0.192 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+365 Hard Slide 01 - Short 05.wav | 0.684 | mi no 0.256 0.224 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+366 Hard Slide 01 - Slow 01.wav | 0.998 | mi no 0.128 0.736 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+367 Hard Slide 01 - Slow 02.wav | 0.929 | mi no 0.288 0.544 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+368 Hard Slide 02 - Double 01.wav | 0.504 | br no 0.288 0.16 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+369 Hard Slide 02 - Double 02.wav | 0.191 | br no 0.096 0.032 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+370 Hard Slide 02 - Double 03.wav | 0.243 | br no 0.128 0.096 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+371 Hard Slide 02 - Double 04.wav | 0.237 | br no 0.032 0.192 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+372 Hard Slide 02 - Double 05.wav | 0.291 | br no 0.032 0.256 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+373 Hard Slide 02 - Double 06.wav | 0.228 | br no 0.16 0.064 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+374 Hard Slide 02 - Long 01.wav | 0.549 | br no 0.064 0.48 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+375 Hard Slide 02 - Multiple 01.wav | 0.314 | br no 0.128 0.16 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+376 Hard Slide 02 - Multiple 02.wav | 0.535 | br no 0.288 0.224 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+377 Hard Slide 02 - Multiple 03.wav | 0.91 | br no 0.096 0.8 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+378 Hard Slide 02 - Short 01.wav | 0.254 | br no 0.0 0.224 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+379 Hard Slide 02 - Short 02.wav | 0.152 | br no 0.032 0.096 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+380 Hard Slide 02 - Short 03.wav | 0.14 | br no 0.032 0.096 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+381 Hard Slide 02 - Short 04.wav | 0.251 | br no 0.128 0.096 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+382 Hard Slide 02 - Short 05.wav | 0.239 | br no 0.0 0.224 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+383 Hard Slide 02 - Short 06.wav | 0.405 | br no 0.032 0.32 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+384 Hard Slide 02 - Short 07.wav | 0.119 | br no 0.064 0.032 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+385 Hard Slide 02 - Short 08.wav | 0.194 | br no 0.064 0.128 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+386 Hard Slide 02 - Short 09.wav | 0.188 | br no 0.0 0.16 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+387 Hard Slide 02 - Short 10.wav | 0.332 | br no 0.064 0.256 | whoosh,literal | Whoosh | 2 | speed,scene_change,fail
+388 Long Sci-fi Transition 01.wav | 1.949 | br no 0.288 1.408 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+389 Long Sci-fi Transition 02.wav | 1.949 | br no 0.8 0.832 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+390 Long Sci-fi Transition 03.wav | 1.995 | br no 1.504 0.32 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+391 Long swoosh.mp3 | 2.784 | da mi 0.448 1.056 | whoosh,transitio | Whoosh | 3 | scene_change,speed,revea
+392 Main Swoosh2.wav | 1.646 | da to 0.416 1.056 | whoosh | Whoosh | 3 | scene_change,speed,empha
+393 Metal Whoosh.mp3 | 1.248 | br no 0.032 0.16 | whoosh | - | 3 | scene_change,combat,spee
+394 Oscillating Sci-fi Transition 01.wav | 1.714 | da mi 0.096 1.216 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+395 Oscillating Sci-fi Transition 02.wav | 1.959 | br no 0.224 0.256 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+396 Oscillating Sci-fi Transition 03.wav | 2.326 | mi no 0.352 0.48 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+397 Oscillating Sci-fi Transition 04.wav | 1.963 | br no 0.448 0.576 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+398 Oscillating Sci-fi Transition 05.wav | 1.513 | br no 0.256 0.352 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+399 Oscillating Sci-fi Transition 06.wav | 1.769 | mi no 0.192 0.8 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+400 Oscillating Sci-fi Transition 07.wav | 1.512 | br no 0.32 0.448 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+401 Oscillating Sci-fi Transition 08.wav | 1.661 | da mi 0.576 0.544 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+402 Oscillating Sci-fi Transition 09.wav | 2.036 | da no 0.512 0.736 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+403 Oscillating Sci-fi Transition 10.wav | 2.052 | mi no 1.088 0.288 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+404 Oscillating Sci-fi Transition 11.wav | 1.964 | mi no 0.448 0.96 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+405 Oscillating Sci-fi Transition 12.wav | 2.64 | mi no 0.512 1.056 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+406 Oscillating Sci-fi Transition 13.wav | 1.195 | da mi 0.352 0.512 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+407 Oscillating Sci-fi Transition 14.wav | 1.714 | br no 0.224 1.056 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+408 Oscillating Sci-fi Transition 15.wav | 2.182 | mi no 0.384 1.088 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+409 Oscillating Sci-fi Transition 16.wav | 1.68 | da mi 0.128 0.352 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+410 Oscillating Sci-fi Transition 17.wav | 1.923 | mi no 0.224 0.736 | transition,whoos | Whoosh | 2 | scene_change,time_skip,s
+411 Oscillating Sci-fi Transition 18.wav | 2.366 | mi no 0.352 1.088 | transition,whoos | Whoosh | 3 | scene_change,time_skip,s
+412 Oscillating Sci-fi Transition 19.wav | 3.217 | br no 0.288 1.376 | transition,riser | Whoosh | 3 | scene_change,time_skip,s
+413 Oscillating Sci-fi Transition 20.wav | 4.566 | mi no 0.448 1.632 | transition,riser | Whoosh | 3 | scene_change,time_skip,s
+414 SWOOSH #2.mp3 | 0.768 | mi no 0.128 0.32 | whoosh,transitio | - | 1 | scene_change,speed
+415 SWOOSH #3.mp3 | 0.672 | da mi 0.224 0.192 | whoosh,transitio | - | 1 | scene_change,speed
+416 SWOOSH.mp3 | 0.744 | da no 0.064 0.16 | whoosh,transitio | - | 1 | scene_change,speed,empha
+417 Scene Change Swoosh.mp3 | 1.685 | mi no 0.032 0.704 | transition,whoos | Whoosh | 2 | scene_change,time_skip
+418 Sci-fi Swoosh 01 - 01.wav | 1.5 | mi no 0.256 0.416 | whoosh | Whoosh | 2 | scene_change,speed,empha
+419 Sci-fi Swoosh 01 - 02.wav | 1.5 | mi no 0.256 0.256 | whoosh | Whoosh | 2 | scene_change,speed,empha
