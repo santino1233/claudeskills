@@ -1,0 +1,13 @@
+{"id":"mb16f8378db9c3e2b68cbe","v":"1.21.11","status":"succeeded","code":null,"att":1,"cost":0.1553,"s":74,"plugin":"DailyRewards","files":12,"safety":"pass","model":"claude-sonnet-5","cr":true}
+{"id":"mb67f7a97b866da50800f4","v":"1.21.11","status":"succeeded","code":null,"att":1,"cost":0.2506,"s":144,"plugin":"DailyRewards","files":12,"safety":"pass","model":"claude-sonnet-5","cr":false}
+{"id":"mb900780697eb88bcaaede","v":"1.21.1","status":"succeeded","code":null,"att":2,"cost":0.4696,"s":252,"plugin":"GraveBoss","files":12,"safety":"pass","model":"claude-sonnet-5","cr":false}
+{"id":"mba4c19773c656965c1052","v":"1.21.8","status":"failed","code":"cancelled","att":1,"cost":0,"s":21,"plugin":null,"files":2,"safety":null,"model":"claude-sonnet-5","cr":false}
+{"id":"p0-adv01","v":"1.21.11","status":"failed","code":"refused","att":1,"cost":0.0079,"s":7,"plugin":null,"files":3,"safety":null,"model":null,"cr":false}
+{"id":"p0-adv02","v":"1.21.11","status":"failed","code":"refused","att":1,"cost":0.0077,"s":7,"plugin":null,"files":3,"safety":null,"model":null,"cr":false}
+{"id":"p0-econ01","v":"1.21.11","status":"succeeded","code":null,"att":2,"cost":0.4105,"s":213,"plugin":"SimpleEconomy","files":17,"safety":"pass","model":null,"cr":false}
+{"id":"p0-heal01","v":"1.21.11","status":"succeeded","code":null,"att":1,"cost":0.0865,"s":40,"plugin":"Heal","files":7,"safety":"pass","model":null,"cr":false}
+{"id":"p0-heal01c1","v":"1.21.11","status":"succeeded","code":null,"att":1,"cost":0.1696,"s":84,"plugin":"Heal","files":8,"safety":"pass","model":null,"cr":true}
+{"id":"p0-joinmsg01","v":"1.21.8","status":"succeeded","code":null,"att":1,"cost":0.0809,"s":47,"plugin":"JoinMessages","files":7,"safety":"pass","model":null,"cr":false}
+{"id":"p0-score01","v":"1.21.4","status":"succeeded","code":null,"att":1,"cost":0.3726,"s":244,"plugin":"StatBoard","files":11,"safety":"pass","model":null,"cr":false}
+{"id":"p0-spleef01","v":"1.21.11","status":"succeeded","code":null,"att":1,"cost":0.4625,"s":299,"plugin":"Spleef","files":10,"safety":"pass","model":null,"cr":false}
+{"id":"p0-zones01","v":"1.21.11","status":"succeeded","code":null,"att":2,"cost":0.3644,"s":207,"plugin":"ZoneGuard","files":10,"safety":"pass","model":null,"cr":false}
