@@ -458,3 +458,6 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 
 ## 100. Distillation S0-S3 DONE (2026-10-13 night), feature/cyrus-knowledge-distill (4 commits on ce6392c70d), NOT merged
 - S0 corpus 386 items (173 plugins, 141 datapacks, 43 resource packs, 29 Fabric/NeoForge; private catalogue /tank/cyrus-knowledge/distill). S1 +68 javap facts (89->157) on 4 versions, sheets +810 tokens each. S2 rules-2026-10-13.1 (+5, JDK wrong-package imports auto-fixed, no model turn). S3 10 goldens (77 total), Test Flight 4/4, archetype crates_keys (91), 10 eval prompts, ranked cannot-do list. Prompt growth +6.5..6.8% (<8% enforced). Needs image redeploy (sheets, rules, prompts, autofix, precheck; no Dockerfile change). Report BN-distillation-S0-S3-2026-10-13.md. Unverified: no client played the goldens; no paid eval of the new knowledge.
+
+## 101. RELIABILITY FIX MEASURED (2026-10-13 22:10 UTC): eval second1 (image 0.13) vs first1, SAME 27 prompts
+- pass@1 48% -> 88% (13/27 -> 24/27); final pass 26/27 -> 27/27; repair share of spend 78% -> 23%; cost $10.16 -> $9.44 (-7%). By lane pass@1: plain 7->8 of 8, texture 4->8 of 10, sound 0->4 of 5, designer 2->4 of 4. Cost per build barely moves because asset builds are inherently $0.4-0.5 (first attempt included); the win is reliability and waiting time. second1 continues (38 planned).
