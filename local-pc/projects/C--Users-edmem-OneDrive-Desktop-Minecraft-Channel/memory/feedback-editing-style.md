@@ -20,3 +20,12 @@ metadata:
   - VFX must fit the moment: no K.O. on a mundane line, no subscribe CTA during a panic.
   - Don't overuse effects. About 14 SFX/min, the same sound at most twice, and zooms mostly on strong beats.
   - SFX must stay clearly under the voice.
+- 2026-10-14 review of the first "Random Drops" full edit (rd-full v1) - hard rules for every future edit:
+  - NO filters/grades/brighten: he could barely see the gameplay. Looks off, one mode, never darken.
+  - NEVER show creative mode, commands being typed, F3 debug screen, pause menu, or the chat lines "Set own game mode…"/teleport/gave xp. If a survival-mode moment is unavoidable, punch in (zoom) so the chat is out of frame. The footage scan for this is `projects/rd-full/work/badmap.py` (OCR of chat + HUD hearts + inventory detector); reuse it on every episode.
+  - Use his FINAL intro take (cut retakes/"welcome to the video" repeats and gaps between takes); never cut a voice short (pad tails ~0.55 s); cut his "part two / new video" talk, edit all parts as ONE video.
+  - Montages/time-lapses: mute the chopped game audio, lay epic cinematic music + block-hit SFX over them (one pre-mixed hit track; Windows ffmpeg command lines break with 250+ inputs).
+  - Zoom in on inventory/chest close-ups; vary with keyframe-style zooms and block-wipe transitions.
+  - Motion graphics only where they literally fit the story (chaos meter, objective, time skips, deaths counter); no auto toasts/stickers/location tags.
+  - Story must be self-explaining: hook that shows the premise (random item from every block, chaos meter, "block placed in every chunk" realization), no unexplained scene jumps, drop boring inventory management.
+  - Music: fewer, longer beds; he disliked some beds (unknown which: kazoo-ish "Kazoom" and the tense "Biz Baz" were replaced by Dyalla "BMO").

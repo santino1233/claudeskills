@@ -2,3 +2,4 @@
 - [Editing feedback](feedback-editing-style.md) — SFX under voice, no clipped words, short meme beats, subtle looks, lots of zooms
 - [Cinematic + Autopilot](cinematic-autopilot.md) — record -> finished video; Flashback auto-exported cinematic shots; what is proven vs untested
 - [Hands-off preference](feedback-hands-off.md) — creator is non-technical; plain language, do the work, minimal manual steps
+- [Review page](review-page.md) — localhost "Review & train" page; learning/notes.md + prefs the editor must read
