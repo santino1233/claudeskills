@@ -1,0 +1,2 @@
+- [Visual quality bar](visual-quality-bar.md) — premium, crisp, saturated, real 3D; subtle natural backgrounds
+- [Windows tooling quirks](cyrus-windows-quirks.md) — Python relative paths, CDP screenshot scripts
