@@ -442,3 +442,8 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Rule-based lane selection (fallback, not the Haiku planner): precision 91%, recall 25%, texture 0/10.
 - Fixes shipped same day: version bump for change builds (image 0.11), coach noise on plain weapons. Image 0.11 live, flags LIVE_ASSETS + MC_TECHNIQUES on both sides.
 - Resumed with --in-flight 1 so interactive builds never queue. Cap $22 will stop it near 65 builds.
+
+## 98. OVERNIGHT PLAN (2026-10-13 night, owner asleep, "do not stop until Cyrus is ready")
+- State: main ce6392c70d = rc5 (promote running at the time of writing); image 0.12 live (0.13 to deploy with rc5). Sound library clearance: owner said yes (CYRUS_SOUND_LIBRARY_CLEARED=1 to set once the web restart is free). Storage (r51): code deployed since rc2, switch CYRUS_STORAGE OFF, quotas are PLACEHOLDERS.
+- Undeployed branches (non-Cyrus Nxeon work, owner decides): fix/game-config-envkey-audit +7, feature/singapore-hero-v5 +2, feature/creator-promo +2, fix/vps-ram-allocation +1, fix/terraria-listener +1, feature/workspace-gateway +1, feature/singapore-redesign-v4 +1, feature/singapore-network-map +1, feature/coldemail-creator-campaign +1. Cyrus: feature/cyrus-v6-library +2, feature/cyrus-v6-game-rust +2, feature/cyrus-v6-game-palworld +1 (paused game lanes).
+- Bundles (4 agents): (1) Opus plans-games-storage entitlement on feature/cyrus-plans-games; (2) Opus recipe memory + starter bank + path memory + eval gate on feature/cyrus-recipe-memory; (3) Sonnet knowledge distillation S0-S3 on feature/cyrus-knowledge-distill; (4) Sonnet QA + screenshots + polish on feature/cyrus-qa-polish. All verified by the parent (tsc, suite, flights) before any promote.
