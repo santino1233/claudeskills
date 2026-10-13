@@ -461,3 +461,10 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 
 ## 101. RELIABILITY FIX MEASURED (2026-10-13 22:10 UTC): eval second1 (image 0.13) vs first1, SAME 27 prompts
 - pass@1 48% -> 88% (13/27 -> 24/27); final pass 26/27 -> 27/27; repair share of spend 78% -> 23%; cost $10.16 -> $9.44 (-7%). By lane pass@1: plain 7->8 of 8, texture 4->8 of 10, sound 0->4 of 5, designer 2->4 of 4. Cost per build barely moves because asset builds are inherently $0.4-0.5 (first attempt included); the win is reliability and waiting time. second1 continues (38 planned).
+
+## 99. SELF-IMPROVING CORE built (2026-10-13 night), branch `feature/cyrus-recipe-memory` (worktree /tank/dev-worktrees/cyrus-learn, from main ce6392c70d), NOT merged, NOT deployed, all flags OFF
+- Commits 3a51992618 (starter bank), d24e8fa5c0 (recipe memory), 03e2db30d8 (path memory + review queue), 600f4b8e5d (eval gate), 6ebfbe4851 (docs), 445a98b67b (tests).
+- Starter bank: 16 Nxeon mods, zero model calls; bank-harness 64/64 compile+scan; Test Flight 1.21.11 + 1.21.4 passed (16/16 enabled, 28/28 RCON; bank-flights-2026-10-13.json). Matcher: 0 instant hits on 319 eval prompts.
+- Flags: CYRUS_STARTER_BANK, MB_STARTER_BANK, MB_RECIPES, MB_RECIPES_HOLDBACK_PCT, CYRUS_EVAL_GATE_BUDGET_USD; setting cyrus_tok_bank_charge=5 (placeholder).
+- Found: injected NxPerf reads config before saveDefaultConfig -> first boot of every AI build ignores config.yml values when code passes a fallback (chip task_cf6cc1c5).
+- Needs: image redeploy (bank.js, recipes.js, bank/, recipes/) + portal promote; owner accepts a baseline for the gate.
