@@ -434,3 +434,11 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - (b) Every SFX picker gets a play button so people can hear a sound before applying it. Library audition is gated by CYRUS_SOUND_LIBRARY_CLEARED (licence clearance): owner decision on which library sounds are cleared (owner SFX + CC0); generated/own sounds always playable.
 - Branch feature/cyrus-assets-catalogue (worktree /tank/dev-worktrees/cyrus-assets, from main 89eb2ce426), Sonnet agent launched.
 - Flag batch (LEARNING, PROMPT_COACH, MC_TECHNIQUES(+MB_), DATAPACK_STUDIO, CUSTOMER_APP) was DENIED by the classifier ([Feature Flag Writes]); NOT applied. Owner approval/permission rule needed.
+
+## 97. FIRST MEASURED BASELINE (2026-10-13, eval first1, 59 of 90 builds, 1.21.11, tier saka, $19.56; report /root/cyrus-eval/first1/report.md)
+- final pass 98.3%, full pass 93.2%, real Paper boot 100% (58/58), pass@1 only 57.6%, quality 0.949, cost per pass $0.34. By lane: plain $0.15 (85% pass@1), designer $0.37 (50%), texture $0.50 (47%), sound $0.49 (17%).
+- 25/59 builds (42%) needed repairs and consumed $12.76 = 65% of spend; a retried build costs about 2x. Plan-screen high estimate exceeded: texture 13/15, sound 6/6, designer 11/18, plain 3/20.
+- Repair triggers (model repairs): perf pre-check hits (perf-spawn-in-loop x7, perf-block-loop x1, perf-raw-timer x1), "No design found" x7 (design lane planned, model wrote no assets/designs json), sound check problems x5, design check x3, compile errors x4, asset/texture check x3. Failures: ast-handgun-sounds q0.5, ast-handgun-textured q0.7, ast-music-disc false refusal, cov-cosmetics nothing shipped for textures.
+- Rule-based lane selection (fallback, not the Haiku planner): precision 91%, recall 25%, texture 0/10.
+- Fixes shipped same day: version bump for change builds (image 0.11), coach noise on plain weapons. Image 0.11 live, flags LIVE_ASSETS + MC_TECHNIQUES on both sides.
+- Resumed with --in-flight 1 so interactive builds never queue. Cap $22 will stop it near 65 builds.
