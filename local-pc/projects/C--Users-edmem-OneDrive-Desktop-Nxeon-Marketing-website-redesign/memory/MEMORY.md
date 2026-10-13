@@ -1,0 +1,1 @@
+- [Nxeon marketing site](nxeon-marketing-site.md) — brief, design direction, what's placeholder
