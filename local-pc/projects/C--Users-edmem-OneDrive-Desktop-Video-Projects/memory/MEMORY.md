@@ -1,0 +1,3 @@
+- [Video editing pipeline setup](video_editing_pipeline_setup.md) — video-use+HyperFrames pipeline, OBS conventions, Vibe Coding series premise + reusable template location
+- [Video editing style preferences](video_editing_style_prefs.md) — liquid-glass aesthetic, PIP behavior, zoom discipline, precision-cut expectations, webcam-audio master + loudness check, verify-agent-work discipline
+- [Nxeon project](nxeon_project.md) — Nick's own game-server hosting platform (separate from Kodely), brand kit, promo pipeline at nxeon-promo/
