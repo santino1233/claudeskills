@@ -421,3 +421,16 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Turn-on list A7 (10 items; 1-3 need no deploy): build budgets 1.5/1.0, charge_refused=false + free_failures=10, CYRUS_DESIGNER_BUILDS=1; after eval Saka->5.5; after rc3 CYRUS_LEARNING, PERF_WATCH_ACTION=notify, PROMPT_COACH, DATAPACK_STUDIO, WORLDGEN, MC_TECHNIQUES (+MB_).
 - Distillation pipeline S0-S9 ~ $75-100 Sonnet (U). Subscription auth blocks public launch. Image is modbuilder:0.9 (health `image` field is a stale label "0.5": fix).
 - Roadmap D3 (13 steps) in the report.
+
+## 95. rc3 + portals LIVE (2026-10-13 16:00-16:55 UTC), main = 89eb2ce426
+- Build service account swapped to the new token (swap-build-account.sh; the VM auth is CLAUDE_CODE_OAUTH_TOKEN in /root/claudebox.env, old env backups /root/claudebox.env.acctbak-* on the VM: delete after a day). First small builds: $0.107 / $0.153, ok.
+- Steps run: DB backup /tank/backup/manual/nxeon-pre-rc3-20261013-160957.sql.gz (703 MB, verified); coach-events SQL applied (CyrusCoachEvent, 0 rows); .env: CYRUS_PERF_WATCH_ACTION=notify, CYRUS_DESIGNER_BUILDS=1 (backup /opt/nxeon/.env.bak-*); promote rc3 (release 20261013T163011Z-5ada5624, 812 s, no schema change); image modbuilder:0.10 on VM 88001 (guard OK, hardened scan live; rollback TAG=modbuilder:0.9 or /opt/modbuilder/.backup-20261013-164145.tgz); Settings cyrus_tok_charge_refused=false, cyrus_tok_free_failures=10; VM env MB_BUILD_BUDGET_USD=1.5, MB_CALL_BUDGET_USD=1.0 (backup /root/modbuilder.env.bak-*).
+- Portals branch (feature/cyrus-portals, 9 commits, tsc 0, 3379/3379) merged ff and promoted: release 20261013T165232Z-89eb2ce4 (752 s). New: /admin/cyrus/live, /admin/cyrus/economy (+Anthropic cost adapter, env ANTHROPIC_ADMIN_API_KEY unset = off), featured mods (Setting cyrus_featured_pages, admin Community tab), Simple/Studio switch in the customer app, docs/cyrus/CYRUS-MY-LAUNCH.md (nginx/env/Cloudflare/Stripe, NOTHING APPLIED).
+- Still OFF: CYRUS_PROMPT_COACH, CYRUS_LEARNING, CYRUS_MC_TECHNIQUES(+MB_), CYRUS_DATAPACK_STUDIO, CYRUS_WORLDGEN, CUSTOMER_APP, launch pair. /health `image` label still says 0.5 (stale constant).
+- NEXT: flip flags one at a time with smoke; paid eval baseline; cyrus.my host per CYRUS-MY-LAUNCH.md; real-client test day; The Gloam after.
+
+## 96. TODO added by owner (2026-10-13): complete asset catalogue + SFX play buttons
+- (a) A COMPLETE asset catalogue (textures, 3D models, sounds, packs, etc.) of everything uploaded or generated, visible in the customer portal ("my assets", per project and account) AND the admin portal (all accounts, moderation, size, source, licence, usage, storage).
+- (b) Every SFX picker gets a play button so people can hear a sound before applying it. Library audition is gated by CYRUS_SOUND_LIBRARY_CLEARED (licence clearance): owner decision on which library sounds are cleared (owner SFX + CC0); generated/own sounds always playable.
+- Branch feature/cyrus-assets-catalogue (worktree /tank/dev-worktrees/cyrus-assets, from main 89eb2ce426), Sonnet agent launched.
+- Flag batch (LEARNING, PROMPT_COACH, MC_TECHNIQUES(+MB_), DATAPACK_STUDIO, CUSTOMER_APP) was DENIED by the classifier ([Feature Flag Writes]); NOT applied. Owner approval/permission rule needed.

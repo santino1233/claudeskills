@@ -5,7 +5,7 @@ Rules: one account per branch/worktree at a time; heavy builds only via scripts/
 |---|---|---|---|
 | owner (claude-me) | | | |
 | friend (claude-friend) | | | |
-| claude session 2026-10-13 (haxkodi@gmail.com, desktop app) | Assembling release/cyrus-rc3 (main + 7 Cyrus branches); fixing 10 merge-seam test failures via Sonnet agent af0f12c748e704261 | release/cyrus-rc3 in /tank/dev-worktrees/cyrus-rc3 (DO NOT edit while the agent runs) | merged + tsc 0; suite 3342/3342, real flights pass (head 5ada5624f9). NEXT: devhost db push + build (classifier-blocked, owner) -> owner approval -> apply coach-events SQL, promote, image 0.10, flags one at a time |
+| claude session 2026-10-13 (haxkodi@gmail.com, desktop app) | rc3 + portals LIVE on main 89eb2ce426; image 0.10; account swapped. Next: flag flips, eval baseline, cyrus.my host, Gloam | none open (worktrees cyrus-rc3, cyrus-portals idle) | see tracker section 95 |
 
 Last handoff notes:
 -
