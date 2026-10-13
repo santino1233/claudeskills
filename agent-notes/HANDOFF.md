@@ -5,7 +5,7 @@ Rules: one account per branch/worktree at a time; heavy builds only via scripts/
 |---|---|---|---|
 | owner (claude-me) | | | |
 | friend (claude-friend) | | | |
-| claude session 2026-10-13 14:40 UTC (account haxkodi@gmail.com, desktop app) | Onboarding: reading handoff/tracker, read-only state check (main, flags, branches ahead, dirty worktrees). No code changes yet. | none yet (will create a worktree under /tank/dev-worktrees/ before any edit) | Waiting for owner's first task; candidate next step per HANDOFF-FULL §6.1: assemble release/cyrus-rc3 |
+| claude session 2026-10-13 (haxkodi@gmail.com, desktop app) | Assembling release/cyrus-rc3 (main + 7 Cyrus branches); fixing 10 merge-seam test failures via Sonnet agent af0f12c748e704261 | release/cyrus-rc3 in /tank/dev-worktrees/cyrus-rc3 (DO NOT edit while the agent runs) | merged + tsc 0; suite 3326/3336 before agent. NEXT: suite green -> owner approval -> apply coach-events SQL, promote, image 0.10, flags one at a time |
 
 Last handoff notes:
 -
