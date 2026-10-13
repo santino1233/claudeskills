@@ -1,0 +1,38 @@
+[18:11:43] console warning [.WebGL-0x298c00169c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[18:11:43] console warning [.WebGL-0x298c0154ac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[18:11:43] console warning [.WebGL-0x298c00169c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[18:11:43] console warning [.WebGL-0x298c0154ac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[18:11:49] requestfailed http://127.0.0.1:4263/dashboard/cyrus?_rsc=xkkhtJ8ixL_8871Z net::ERR_ABORTED
+[18:11:51] forge started
+[18:11:53] requestfailed http://127.0.0.1:4263/dashboard/cyrus?_rsc=xkkhtJ8ixL_8871Z net::ERR_ABORTED
+[18:11:56] t=5s compilingRow=0 dialog=false stage="Forging v1"
+[18:11:57] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:11:57] console warning The resource http://127.0.0.1:4263/_next/static/css/app/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:11:57] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:11:57] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/page.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:01] t=10s compilingRow=0 dialog=false stage="Forging v1"
+[18:12:05] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:05] console warning The resource http://127.0.0.1:4263/_next/static/css/app/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:05] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:05] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/page.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:06] t=15s compilingRow=0 dialog=false stage="Forging v1"
+[18:12:11] t=20s compilingRow=0 dialog=false stage="Forging v1"
+[18:12:15] requestfailed http://127.0.0.1:4263/dashboard/cyrus?_rsc=xkkhtJ8ixL_8871Z net::ERR_ABORTED
+[18:12:17] t=25s compilingRow=0 dialog=false stage="Forging v1"
+[18:12:18] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:18] console warning The resource http://127.0.0.1:4263/_next/static/css/app/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:18] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:18] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/page.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:22] t=30s compilingRow=0 dialog=false stage="Forging v1"
+[18:12:25] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:25] console warning The resource http://127.0.0.1:4263/_next/static/css/app/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:25] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:25] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/page.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:27] t=35s compilingRow=1 dialog=false stage="Forging v1"
+[18:12:32] t=40s compilingRow=1 dialog=false stage="Forging v1"
+[18:12:37] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:37] console warning The resource http://127.0.0.1:4263/_next/static/css/app/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:37] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/layout.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:37] console warning The resource http://127.0.0.1:4263/_next/static/css/app/dashboard/cyrus/page.css?v=1791483108730 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[18:12:37] t=45s compilingRow=0 dialog=true stage="Forged Make Me A v1"
+[18:12:38] RESULT leftCompiling= true dialog= true

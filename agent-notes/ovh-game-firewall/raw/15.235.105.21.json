@@ -1,0 +1,55 @@
+{
+  "ip": "15.235.105.21",
+  "ip_info": {
+    "ok": true,
+    "body": {
+      "rir": "ARIN",
+      "description": null,
+      "ip": "15.235.105.21/32",
+      "regions": [
+        "ca-east-bhs"
+      ],
+      "type": "failover",
+      "bringYourOwnIp": false,
+      "routedTo": {
+        "serviceName": "ns565008.ip-54-39-132.net"
+      },
+      "version": 4,
+      "canBeTerminated": true,
+      "campus": "BHS",
+      "country": "ca",
+      "isAdditionalIp": true,
+      "organisationId": null,
+      "iam": {
+        "id": "72d73995-a652-41f8-8337-8a931e87988b",
+        "state": "OK",
+        "tags": {
+          "ovh:campus": "BHS",
+          "ovh:isAdditionalIp": "true",
+          "ovh:routedTo": "ns565008.ip-54-39-132.net",
+          "ovh:type": "failover",
+          "ovh:version": "4"
+        },
+        "urn": "urn:v1:ca:resource:ip:15.235.105.21%2F32"
+      }
+    }
+  },
+  "game": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.105.21/game/15.235.105.21 -> 404: The requested object (ipOnGame = 15.235.105.21) does not exist"
+  },
+  "gameList": {
+    "ok": true,
+    "body": []
+  },
+  "rules": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.105.21/game/15.235.105.21/rule -> 404: The requested object (ipOnGame = 15.235.105.21) does not exist"
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": true,
+    "body": []
+  },
+  "firewallDetail": []
+}

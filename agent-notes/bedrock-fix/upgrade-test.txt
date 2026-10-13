@@ -1,0 +1,18 @@
+/opt/nxeon/.env: line 40: dns.write: command not found
+== 1.26.45.1 
+[2026-10-06 05:16:59:564 INFO] Version: 1.26.45.1
+[2026-10-06 05:17:01:070 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+71:transport=raknet
+== 1.26.52.3 
+[2026-10-06 05:17:11:270 INFO] Version: 1.26.52.3
+[2026-10-06 05:17:12:696 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+71:transport=raknet
+== 1.26.52.3 -e TRANSPORT=raknet
+[2026-10-06 05:17:18:384 INFO] Version: 1.26.52.3
+[2026-10-06 05:17:19:737 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+71:transport=raknet
+71:transport=raknet
+== LATEST -e TRANSPORT=raknet
+[2026-10-06 05:17:24:100 INFO] Version: 1.26.52.3
+[2026-10-06 05:17:25:435 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+71:transport=raknet

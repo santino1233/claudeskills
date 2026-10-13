@@ -1,0 +1,710 @@
+[
+ {
+  "page": "landing",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 18,
+   "noVisibleIndicator": [
+    "textarea:"
+   ],
+   "noRingCount": 1
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": true
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "landing",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 18,
+   "noVisibleIndicator": [
+    "textarea:"
+   ],
+   "noRingCount": 1
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": true
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "signin-cyrus",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 6,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 0,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "signin-cyrus",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 6,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 0,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "app-home",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "app-home",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "app-projects",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 13,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "app-projects",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 13,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "app-project",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 18,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "app-project",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 18,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "app-new",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "app-new",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "app-account",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 17,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "app-account",
+  "theme": "light",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 17,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "studio-home",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 12,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 0,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 1,
+   "names": [
+    "spin"
+   ]
+  },
+  "error": null
+ },
+ {
+  "page": "studio-home",
+  "theme": "light",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 12,
+    "sample": ".n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(24) > .c-label | .n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(26) > .c-label | .n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(28) > .c-label",
+    "detail": [
+     "#e1e0e6 on #fdfcff = 1.28:1 (need 4.5:1) <div class=\"c-label\">Creatures &amp; NPCs</div>",
+     "#e1e0e6 on #fdfcff = 1.28:1 (need 4.5:1) <div class=\"c-label\">Gameplay</div>"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 12,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 0,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "studio-build",
+  "theme": "dark",
+  "status": 200,
+  "violations": [],
+  "focus": {
+   "reached": 12,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 0,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 1,
+   "names": [
+    "spin"
+   ]
+  },
+  "error": null
+ },
+ {
+  "page": "studio-build",
+  "theme": "light",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 13,
+    "sample": ".n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(24) > .c-label | .n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(26) > .c-label | .n-cat[data-side=\"right\"][data-state=\"off\"]:nth-child(28) > .c-label",
+    "detail": [
+     "#e1e0e6 on #fdfcff = 1.28:1 (need 4.5:1) <div class=\"c-label\">Creatures &amp; NPCs</div>",
+     "#e1e0e6 on #fdfcff = 1.28:1 (need 4.5:1) <div class=\"c-label\">Gameplay</div>"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 12,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 2,
+   "h1": 0,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "admin-home",
+  "theme": "dark",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   },
+   {
+    "id": "scrollable-region-focusable",
+    "impact": "serious",
+    "help": "Scrollable region must have keyboard access",
+    "n": 2,
+    "sample": "section:nth-child(1) > .-mx-1.overflow-x-auto.px-1 | section:nth-child(2) > .-mx-1.overflow-x-auto.px-1",
+    "detail": [
+     "<div class=\"-mx-1 overflow-x-auto px-1\">",
+     "<div class=\"-mx-1 overflow-x-auto px-1\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 3,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "admin-home",
+  "theme": "light",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   },
+   {
+    "id": "scrollable-region-focusable",
+    "impact": "serious",
+    "help": "Scrollable region must have keyboard access",
+    "n": 2,
+    "sample": "section:nth-child(1) > .-mx-1.overflow-x-auto.px-1 | section:nth-child(2) > .-mx-1.overflow-x-auto.px-1",
+    "detail": [
+     "<div class=\"-mx-1 overflow-x-auto px-1\">",
+     "<div class=\"-mx-1 overflow-x-auto px-1\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 3,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "admin-flags",
+  "theme": "dark",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 3,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "admin-flags",
+  "theme": "light",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 3,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ },
+ {
+  "page": "admin-holds",
+  "theme": "dark",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 4,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": {
+   "infiniteRunning": 0,
+   "names": []
+  },
+  "error": null
+ },
+ {
+  "page": "admin-holds",
+  "theme": "light",
+  "status": 200,
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "n": 4,
+    "sample": "button[aria-controls=\"adm-group-customers\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-fleet\"] > .gap-1\\.5.items-center.flex | button[aria-controls=\"adm-group-billing\"] > .gap-1\\.5.items-center.flex",
+    "detail": [
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Customers</span>",
+     "#5f6a8c on #060b18 = 3.67:1 (need 4.5:1) <span class=\"flex items-center gap-1.5\">Fleet</span>"
+    ]
+   },
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "help": "Elements must have their visible text as part of their accessible name",
+    "n": 2,
+    "sample": "a[aria-label=\"Nxeon Ops — command center\"] | .adm-search",
+    "detail": [
+     "<a class=\"flex min-w-0 items-center\" aria-label=\"Nxeon Ops — command center\" data-nav-row=\"true\" href=\"/admin\">",
+     "<button type=\"button\" class=\"adm-search md:ml-auto\" aria-label=\"Search and commands (Ctrl+K)\">"
+    ]
+   }
+  ],
+  "focus": {
+   "reached": 20,
+   "noVisibleIndicator": [],
+   "noRingCount": 0
+  },
+  "landmarks": {
+   "main": 1,
+   "nav": 4,
+   "h1": 1,
+   "lang": "en",
+   "skip": false
+  },
+  "motion": null,
+  "error": null
+ }
+]

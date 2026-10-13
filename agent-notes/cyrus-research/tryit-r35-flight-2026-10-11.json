@@ -1,0 +1,130 @@
+{
+ "pack": {
+  "sha1": "a8fc4dcad2c6ad8b005fd3e783a619461a214340",
+  "bytes": 2360,
+  "format": 75
+ },
+ "create": {
+  "ok": true,
+  "session": {
+   "id": "ti-95d81ba11326cd86",
+   "userId": "u-tryit-flight",
+   "version": "1.21.11",
+   "address": "127.0.0.1:47252",
+   "exposed": false,
+   "owner": "TryItOwner",
+   "createdAt": "2026-10-11T04:57:11.605Z",
+   "expiresAt": "2026-10-11T05:02:11.605Z",
+   "status": "ready",
+   "resourcePack": {
+    "url": "http://127.0.0.1:35851/p/a8fc4dcad2c6ad8b005fd3e783a619461a214340.zip",
+    "sha1": "a8fc4dcad2c6ad8b005fd3e783a619461a214340",
+    "required": true
+   }
+  },
+  "checks": [
+   {
+    "id": "whitelist",
+    "command": "whitelist add TryItOwner",
+    "reply": "Added TryItOwner to the whitelist",
+    "ok": true
+   },
+   {
+    "id": "item-look",
+    "command": "tfitem nx_r35tryit ruby_sword",
+    "reply": "itemModel=nx_r35tryit:ruby_sword material=IRON_SWORD",
+    "ok": true
+   },
+   {
+    "id": "plugins",
+    "command": "plugins",
+    "reply": "ℹ Server Plugins (1):\nBukkit Plugins:\n - TfItemModel",
+    "ok": true
+   },
+   {
+    "id": "whitelist-only-owner",
+    "command": "whitelist list",
+    "reply": "There are 1 whitelisted player(s): TryItOwner",
+    "ok": true
+   }
+  ],
+  "evidence": [
+   "pack_served: GET http://127.0.0.1:35851/p/a8fc4dcad2c6ad8b005fd3e783a619461a214340.zip -> 2360 bytes, sha1 a8fc4dcad2c6ad8b005fd3e783a619461a214340 matches",
+   "unit cyrus-tryit-ti-95d81ba11326cd86: RuntimeMaxSec=300 MemoryMax=1536M CPUQuota=200% TasksMax=256 uid 65534; reap timer +360s",
+   "boot_done after 34555 ms"
+  ],
+  "ms": 46359
+ },
+ "connect": {
+  "title": "Your Try It server is running (build-host only, not reachable from the internet yet)",
+  "minutesLeft": 4,
+  "steps": [
+   "Open Minecraft Java 1.21.11 (the exact version: other versions cannot join).",
+   "Multiplayer > Add Server > address 127.0.0.1:47252.",
+   "Join as TryItOwner: the server is whitelisted to that name only.",
+   "Accept the server resource pack when asked (required: the custom items look plain without it).",
+   "It switches off by itself in about 4 minutes and everything on it is deleted. Nothing is installed on your own servers."
+  ]
+ },
+ "packHitsAfterCreate": 1,
+ "unit": [
+  "RuntimeMaxUSec=5min",
+  "CPUQuotaPerSecUSec=2s",
+  "MemoryMax=1610612736",
+  "TasksMax=256",
+  "User=65534",
+  "ActiveState=active",
+  "1"
+ ],
+ "secondForSameUser": {
+  "ok": false,
+  "code": "user_active",
+  "error": "you already have a Try-It server running; stop it first"
+ },
+ "status": {
+  "ok": true,
+  "session": {
+   "id": "ti-95d81ba11326cd86",
+   "userId": "u-tryit-flight",
+   "version": "1.21.11",
+   "address": "127.0.0.1:47252",
+   "exposed": false,
+   "owner": "TryItOwner",
+   "createdAt": "2026-10-11T04:57:11.605Z",
+   "expiresAt": "2026-10-11T05:02:11.605Z",
+   "status": "ready",
+   "resourcePack": {
+    "url": "http://127.0.0.1:35851/p/a8fc4dcad2c6ad8b005fd3e783a619461a214340.zip",
+    "sha1": "a8fc4dcad2c6ad8b005fd3e783a619461a214340",
+    "required": true
+   }
+  }
+ },
+ "stop": {
+  "ok": true,
+  "stopped": true,
+  "evidence": [
+   "unit cyrus-tryit-ti-95d81ba11326cd86 stopped (stop requested)",
+   "unit active: false; ports still listening: none; dir removed: true"
+  ]
+ },
+ "afterTeardown": [
+  "inactive",
+  "0",
+  "0"
+ ],
+ "listAfter": {
+  "ok": true,
+  "sessions": [],
+  "caps": {
+   "ttlSec": 1800,
+   "xmxMb": 1024,
+   "memMaxMb": 1536,
+   "cpuPct": 200,
+   "tasks": 256,
+   "players": 2,
+   "maxActive": 1,
+   "dailyPerUser": 3
+  }
+ }
+}

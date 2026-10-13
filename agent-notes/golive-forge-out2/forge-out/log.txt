@@ -1,0 +1,21 @@
+[06:12:45] console warning [.WebGL-0x1b2c00157e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:45] console warning [.WebGL-0x1b2c0015ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:45] console warning [.WebGL-0x1b2c00157e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:45] console warning [.WebGL-0x1b2c0015ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[06:12:46] console warning [.WebGL-0x1b2c00157e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:46] console warning [.WebGL-0x1b2c0015ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:46] console warning [.WebGL-0x1b2c00157e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[06:12:46] console warning [.WebGL-0x1b2c0015ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[06:12:53] forge started
+[06:12:56] requestfailed http://127.0.0.1:4263/dashboard/cyrus?_rsc=xkkhtJ8ixL_8871Z net::ERR_ABORTED
+[06:12:56] requestfailed http://127.0.0.1:4263/dashboard/cyrus?_rsc=xkkhtJ8ixL_8871Z net::ERR_ABORTED
+[06:12:58] t=5s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:04] t=10s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:09] t=15s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:14] t=20s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:19] t=25s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:25] t=30s compilingRow=0 dialog=false stage="Forging v1"
+[06:13:30] t=35s compilingRow=1 dialog=false stage="Forging v1"
+[06:13:35] t=40s compilingRow=1 dialog=false stage="Forging v1"
+[06:13:40] t=45s compilingRow=0 dialog=true stage="Forged Make Me A v1"
+[06:13:41] RESULT leftCompiling= true dialog= true

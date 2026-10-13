@@ -1,0 +1,40 @@
+# Game-server directory: data-source terms research (read-only), 2026-10-06
+Method: robots.txt via curl (honest UA), terms via WebFetch (summarised by a small model - quotes are as returned, re-verify by a human before relying), WebSearch. Nothing blocked was bypassed. Time-boxed; many sites' terms/API pages were not located.
+
+| Source | Games | Listing API? (URL) | Terms quote | Terms URL | robots.txt | Verdict | Why |
+|---|---|---|---|---|---|---|---|
+| minecraftservers.org (minecraft-server.net 301s here) | MC Java | None found (vote/owner only, not confirmed) | "Not to reproduce, duplicate, copy or re-sell any part of our sites in contravention of the provisions of our Terms of Website Use." / "Voting through the use of automated voting scripts, bots or programs is strictly prohibited." | https://minecraftservers.org/terms | 200; only `Disallow: /search` | NEEDS-OWNER-REVIEW | No scrape ban found, but a no-copying clause and no permission; no API. |
+| minecraft-server-list.com | MC Java | None found | unreadable: terms page 404 at /terms/ (real URL not found) | https://minecraft-server-list.com/terms/ | 200; `Disallow: /servers/` (listing pages disallowed) | DO-NOT-USE | robots disallows the listing pages; terms not found. |
+| topg.org (minecraft) | multi | None found | unreadable: /terms 404 | https://topg.org/terms | 200; empty Disallow | NEEDS-OWNER-REVIEW | No terms read, no API found. |
+| minecraft-mp.com | MC Java | Vote/owner API with per-server key only; no listing endpoint found. Site says: "Use our API to build or use vote reward plugin, get full list of voters or anything that could require access to your server data." | ToS has no scraping/republishing clause found; only "Using bot, script or any means to make multiple daily votes" prohibited | https://minecraft-mp.com/terms/ ; https://minecraft-mp.com/about/ | 200; disallows /servers/premium/, /embed/ | NEEDS-OWNER-REVIEW | No explicit prohibition but no permission; API is not discovery. Site is not affiliated with Mojang. |
+| planetminecraft.com | MC | none checked | unreadable: HTTP 403 Cloudflare challenge on robots.txt | - | unreadable: 403 | DO-NOT-USE | Blocked; do not circumvent. |
+| servers-minecraft.net | MC | - | - | - | 301 redirect | NEEDS-OWNER-REVIEW | Not investigated (redirects). |
+| minecraftlist.com | MC | - | - | - | HTTP 402 DEPLOYMENT_DISABLED | DO-NOT-USE | Site is down. |
+| minecraft.buzz | MC | none found | /terms 404 | - | 200; disallows /servertable, /votetable, /banner etc; listing pages not disallowed | NEEDS-OWNER-REVIEW | No terms found. |
+| findmcserver.com | MC | - | unreadable: 403 Cloudflare | - | unreadable: 403 | DO-NOT-USE | Blocked. |
+| namemc.com | MC | no public listing API found | not read | - | 200; Disallow GPTBot entirely | NEEDS-OWNER-REVIEW | Not investigated; hostile to AI crawlers. |
+| craftlist.org | MC | none found | not read | - | 200; disallows only query params | NEEDS-OWNER-REVIEW | Not investigated. |
+| minelist.net | MC | none found | not read | - | 200; `User-agent: *` only | NEEDS-OWNER-REVIEW | Not investigated. |
+| topminecraftservers.org | MC | none found | /terms.php 404 | - | 200; disallows login/search etc, Allow: / | NEEDS-OWNER-REVIEW | No terms read. |
+| minecraftpocket-servers.com | Bedrock | vote API presumably (same network as minecraft-mp), not verified | unreadable: help page 403 | https://minecraftpocket-servers.com/help/ | 200; `Disallow: /embed/*` | NEEDS-OWNER-REVIEW | Terms unreadable. |
+| serverlist.games, mc-list.org | MC | - | - | - | domains parked "for sale" / unreachable | DO-NOT-USE | Not real sources now. |
+| minecraft-servers.gg | MC | none found | not read | - | 200; disallows filter URLs, /api/auth/ | NEEDS-OWNER-REVIEW | Not investigated. |
+| Minetrack (Cryptkeeper) | MC | not an API: a repo file. Raw: https://raw.githubusercontent.com/Cryptkeeper/Minetrack/master/servers.json | "The MIT License (MIT) Copyright (c) 2015 Cryptkeeper Permission is hereby granted, free of charge..." | https://raw.githubusercontent.com/Cryptkeeper/Minetrack/master/LICENSE | n/a | USE (license ok) but useless | Only 2 entries (Hypixel mc.hypixel.net, CubeCraft play.cubecraft.net). Repo archived (last push 2026-01-13). Fine to copy, no discovery value. |
+| api.mcsrvstat.us | Java+Bedrock | Per-address status only, no listing | "A descriptive and non-empty `User-Agent` request header is required when querying the API, otherwise you will get a `403 Forbidden` response." / "cached for 5 minutes" | https://api.mcsrvstat.us/ | robots 404 (none) | USE (enrichment only) | Not discovery. No rate limit stated on page. |
+| api.mcstatus.io | Java+Bedrock | Per-address status only; docs say no listing endpoint exists | "Our service limits to 5 requests/second specified by client IP address." Caching automatic, per route. | https://mcstatus.io/docs (page returned via fetch; /terms 404) | robots 200, uses Cloudflare content-signal text | USE (enrichment only) | Not discovery. Separate ToS page not found. |
+| Mojang/Microsoft Featured Servers (Bedrock) | Bedrock | No public API found | n/a | - | - | DO-NOT-USE | No API. Console players can only join featured servers. |
+| minecraft.net Usage Guidelines | MC | n/a | unreadable: fetch timed out / /terms/ path 404; nothing quoted. Search snippet only: servers section covers hosting and monetisation, not server-list sites. | https://www.minecraft.net/en-us/usage-guidelines | - | NEEDS-OWNER-REVIEW | I could not read it; human must. Mojang's own list: https://www.minecraft.net/en-us/article/the-official-minecraft-server-list-live (no API found). |
+| Klei DST lobby | Don't Starve Together | https://lobby-v2-cdn.klei.com/{region}-Steam.json.gz (regions via https://lobby-v2-cdn.klei.com/regioncapabilities-v2.json) | Per a search summary (not verified; Klei forum 403): "not an official API with guaranteed stability, third-party tools are welcome to use them". Klei forum mirror returned 403. | https://kleiforums.com/forums/topic/149323-retrieving-dst-server-data-no-longer-works/ | not checked | NEEDS-OWNER-REVIEW | Public CDN files, no formal terms found; informal staff statement unverified. |
+| Palworld | Palworld | No official API found (in-game browser only, lists first 200 pinged). Third-party palservers.run.place has a REST API | not read | - | - | NEEDS-OWNER-REVIEW | No official source. |
+| Arma Reforger | Arma | No public API found | - | - | - | NEEDS-OWNER-REVIEW | Not found. |
+| Factorio | Factorio | multiplayer.factorio.com/get-games (needs account username/token) | wiki fetches gave nothing | - | - | DO-NOT-USE | Requires a personal credential; terms unread. |
+| FiveM/Cfx.re | FiveM | servers-frontend.fivem.net (undocumented) | Search summary: "Cfx doesn't provide an 'easy to use' API for their server list"; rules rewritten 2026-01-12 | https://forum.cfx.re/t/changes-regarding-fivem-servers/59866 | - | NEEDS-OWNER-REVIEW | Undocumented, terms not read. |
+| BattleMetrics | many | api.battlemetrics.com (developer docs host did not resolve) | unreadable: HTTP 403 Cloudflare (robots and /legal/terms) | https://www.battlemetrics.com/legal/terms | unreadable: 403 | DO-NOT-USE | Blocked; API needs a token (personal credential). |
+| GameTracker | many | none | not read | - | robots 404 | NEEDS-OWNER-REVIEW | Not investigated. |
+| TrackyServer, GameMonitoring, Terraria, Satisfactory, Core Keeper, ASA/EOS | - | NOT RESEARCHED | - | - | - | NEEDS-OWNER-REVIEW | Out of time budget. |
+
+## Recommended legitimate Minecraft DISCOVERY sources
+NONE. No Minecraft list site offered a documented public listing API with terms permitting third parties to republish. Minetrack's servers.json (MIT) holds just 2 servers. mcsrvstat.us and mcstatus.io are fine for enriching servers we already know (status/icon), not for finding them. Any list-site use needs written permission from the site owner.
+
+## Minetrack
+Raw list: https://raw.githubusercontent.com/Cryptkeeper/Minetrack/master/servers.json - 2 entries. License: MIT, https://raw.githubusercontent.com/Cryptkeeper/Minetrack/master/LICENSE. Repo archived.

@@ -1,0 +1,25 @@
+{
+  "ip": "15.235.177.145",
+  "ip_info": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.177.145 -> 404: This service does not exist"
+  },
+  "game": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.177.145/game/15.235.177.145 -> 404: This service does not exist"
+  },
+  "gameList": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.177.145/game -> 404: This service does not exist"
+  },
+  "rules": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.177.145/game/15.235.177.145/rule -> 404: This service does not exist"
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.177.145/firewall -> 404: This service does not exist"
+  },
+  "firewallDetail": []
+}

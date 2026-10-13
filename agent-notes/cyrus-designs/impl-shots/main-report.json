@@ -1,0 +1,83 @@
+[
+ {
+  "name": "home",
+  "path": "/",
+  "who": null,
+  "status": 200,
+  "finalUrl": "/",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "login",
+  "path": "/login",
+  "who": null,
+  "status": 200,
+  "finalUrl": "/login",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "pricing",
+  "path": "/game-servers",
+  "who": null,
+  "status": 200,
+  "finalUrl": "/game-servers",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "dashboard",
+  "path": "/dashboard",
+  "who": "customer",
+  "status": 200,
+  "finalUrl": "/dashboard",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "server",
+  "path": "/dashboard/servers/cmv40xese0005sbcype2g5g0c",
+  "who": "customer",
+  "status": 200,
+  "finalUrl": "/dashboard/servers/cmv40xese0005sbcype2g5g0c",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "deploy",
+  "path": "/dashboard/deploy",
+  "who": "customer",
+  "status": 200,
+  "finalUrl": "/dashboard/deploy",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "billing",
+  "path": "/dashboard/billing",
+  "who": "customer",
+  "status": 200,
+  "finalUrl": "/dashboard/billing",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "mods-cyrus",
+  "path": "/dashboard/cyrus",
+  "who": "customer",
+  "status": 200,
+  "finalUrl": "/dashboard/cyrus",
+  "cyrusMentions": 0,
+  "errors": []
+ },
+ {
+  "name": "admin",
+  "path": "/admin",
+  "who": "admin",
+  "status": 200,
+  "finalUrl": "/admin",
+  "cyrusMentions": 0,
+  "errors": []
+ }
+]

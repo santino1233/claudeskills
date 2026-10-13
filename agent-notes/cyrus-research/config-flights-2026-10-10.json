@@ -1,0 +1,532 @@
+{
+ "at": "2026-10-10T21:08:47.403Z",
+ "host": "node-2",
+ "what": "Cyrus Config Studio: mob stats via config, studio values-only save, deliverConfig, live /reload, bad values",
+ "realClient": false,
+ "aiModel": "none (hand-written fixture mod + the mob template schema)",
+ "schemaKeys": [
+  "mobs.frost_zombie.max_health",
+  "mobs.frost_zombie.armor",
+  "mobs.frost_zombie.move_speed",
+  "mobs.frost_zombie.knockback_resistance",
+  "mobs.frost_zombie.scale",
+  "mobs.frost_zombie.attack_damage",
+  "mobs.frost_zombie.knockback"
+ ],
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "build": {
+    "javacWarnings": 0,
+    "sources": 2,
+    "jarSha256": "bb228b6eccad467df32f2c4a2bccad12215e16c13476c306973843bc1396d822",
+    "verify": {
+     "ok": true,
+     "read": 7,
+     "viaAccessor": true,
+     "unread": [],
+     "mainAloneReadsNone": true
+    }
+   },
+   "flightA": {
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 17.3s, peak RSS 896 MB)",
+    "bootMs": 17260,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdk": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L95: [21:09:05 INFO]: Done (15.935s)! For help, type \"help\"",
+       "wall 17260 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "FrostMobs: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [21:09:05 INFO]: [FrostMobs] Enabling FrostMobs v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 841 MB, 251 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | ",
+       "difficulty 'difficulty easy' [rss 846 MB, 252 ms]: ok (optional) -> The difficulty has been set to Easy",
+       "spawn 'frostmobs spawn' [rss 881 MB, 637 ms]: ok -> spawned frost zombie ok health=20.0 | ",
+       "stats-defaults 'frostmobs stats' [rss 881 MB, 252 ms]: ok -> frost zombies: 1 | stats health=20.0 speed=0.23 damage=3.0 scale=1.0 armor=0.0 hp=20.0 | ",
+       "vanilla-max-health-default 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:max_health base get' [rss 881 MB, 258 ms]: ok -> The base value of attribute Max Health for entity Zombie is 20.0"
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 747 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4046218 gone; 0 marked processes; listening none of 47115,47148",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2vzp24-57d03f; no listening port in 47100-47199"
+      ]
+     }
+    ]
+   },
+   "studio": {
+    "badValueRefused": "invalid_values: Max health: 5000 hp is outside the allowed 1-1024 hp",
+    "preview": {
+     "applies": "reload",
+     "written": [
+      "mobs.frost_zombie.max_health",
+      "mobs.frost_zombie.move_speed",
+      "mobs.frost_zombie.scale",
+      "mobs.frost_zombie.attack_damage"
+     ]
+    },
+    "save": {
+     "revisionId": "rev1",
+     "seq": 1,
+     "kind": "config",
+     "applies": "reload",
+     "patch": [
+      {
+       "key": "mobs.frost_zombie.max_health",
+       "from": 20,
+       "to": 60
+      },
+      {
+       "key": "mobs.frost_zombie.move_speed",
+       "from": 0.23,
+       "to": 0.3
+      },
+      {
+       "key": "mobs.frost_zombie.scale",
+       "from": 1,
+       "to": 1.5
+      },
+      {
+       "key": "mobs.frost_zombie.attack_damage",
+       "from": 3,
+       "to": 7
+      }
+     ],
+     "warnings": []
+    },
+    "configYmlChangedLines": [
+     "    max_health: 60.0",
+     "    move_speed: 0.3",
+     "    scale: 1.5",
+     "    attack_damage: 7.0"
+    ]
+   },
+   "delivery": {
+    "outcome": "updated",
+    "ok": true,
+    "apply": {
+     "mode": "none",
+     "reasons": [
+      "the mod re-reads its settings with /frostmobs reload"
+     ],
+     "restarted": false,
+     "reloaded": false
+    },
+    "steps": [
+     "open:ok",
+     "recover_check:ok (none)",
+     "preflight:ok (settings checked; the mod is installed)",
+     "place:ok (config.yml: 4 setting(s) written)",
+     "record:skipped (the mod was not installed by Cyrus delivery: no delivery record to update)",
+     "apply:ok (none + /frostmobs reload: the mod re-reads its settings with /frostmobs reload)",
+     "health:ok (healthy)",
+     "commit:ok"
+    ],
+    "notes": [
+     "/frostmobs reload: queued: replayed on the Test Flight server (flight B)"
+    ],
+    "issued": [
+     "frostmobs reload"
+    ],
+    "deliveredEqualsStudio": true,
+    "badValue": {
+     "outcome": "refused",
+     "error": "Max health: 5000 hp is outside the allowed 1-1024 hp; nothing was changed"
+    },
+    "readBack": {
+     "mobs.frost_zombie.max_health": 60,
+     "mobs.frost_zombie.armor": 0,
+     "mobs.frost_zombie.move_speed": 0.3,
+     "mobs.frost_zombie.knockback_resistance": 0,
+     "mobs.frost_zombie.scale": 1.5,
+     "mobs.frost_zombie.attack_damage": 7,
+     "mobs.frost_zombie.knockback": 0
+    }
+   },
+   "flightB": {
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 16.9s, peak RSS 894 MB)",
+    "bootMs": 16861,
+    "peakRssMb": 894,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdk": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L95: [21:09:26 INFO]: Done (15.694s)! For help, type \"help\"",
+       "wall 16861 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "FrostMobs: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [21:09:26 INFO]: [FrostMobs] Enabling FrostMobs v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 838 MB, 343 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | ",
+       "difficulty 'difficulty easy' [rss 854 MB, 253 ms]: ok (optional) -> The difficulty has been set to Easy",
+       "spawn-before 'frostmobs spawn' [rss 879 MB, 673 ms]: ok -> spawned frost zombie ok health=20.0 | ",
+       "stats-before 'frostmobs stats' [rss 880 MB, 252 ms]: ok -> frost zombies: 1 | stats health=20.0 speed=0.23 damage=3.0 scale=1.0 armor=0.0 hp=20.0 | ",
+       "deliver-and-reload: wrote plugins/FrostMobs/config.yml (694 bytes) before the command",
+       "deliver-and-reload 'frostmobs reload' [rss 880 MB, 253 ms]: ok -> FrostMobs config reloaded (1 frost zombies updated) | ",
+       "stats-after-reload 'frostmobs stats' [rss 880 MB, 252 ms]: ok -> frost zombies: 1 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | ",
+       "vanilla-max-health 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:max_health base get' [rss 880 MB, 257 ms]: ok -> The base value of attribute Max Health for entity Zombie is 60.0",
+       "vanilla-movement-speed 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:movement_speed base get' [rss 880 MB, 251 ms]: ok -> The base value of attribute Speed for entity Zombie is 0.3",
+       "vanilla-scale 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:scale base get' [rss 880 MB, 252 ms]: ok -> The base value of attribute Scale for entity Zombie is 1.5",
+       "vanilla-attack-damage 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:attack_damage base get' [rss 880 MB, 251 ms]: ok -> The base value of attribute Attack Damage for entity Zombie is 7.0",
+       "spawn-after 'frostmobs spawn' [rss 880 MB, 252 ms]: ok -> spawned frost zombie ok health=60.0 | ",
+       "stats-new-zombie 'frostmobs stats' [rss 880 MB, 250 ms]: ok -> frost zombies: 2 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | ",
+       "bad-file-clamped: wrote plugins/FrostMobs/config.yml (699 bytes) before the command",
+       "bad-file-clamped 'frostmobs reload' [rss 880 MB, 253 ms]: ok -> FrostMobs config reloaded (2 frost zombies updated) | clamped mobs.frost_zombie.max_health 5000.0 -> 1024.0 | mobs.frost_zombie.move_speed is not a number; using 0.23 | ",
+       "stats-after-bad-file 'frostmobs stats' [rss 880 MB, 251 ms]: ok -> frost zombies: 2 | stats health=1024.0 speed=0.23 damage=7.0 scale=1.5 armor=0.0 hp=1024.0 | stats health=1024.0 speed=0.23 damage=7.0 scale=1.5 armor=0.0 hp=1024.0 | "
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 694 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4046478 gone; 0 marked processes; listening none of 47140,47125",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2w056n-d32d3d; no listening port in 47100-47199"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "build": {
+    "javacWarnings": 0,
+    "sources": 2,
+    "jarSha256": "7cc4120816822c96b01a8668174b9b5ce42bb701ef6cebecc31f7b632c02d113",
+    "verify": {
+     "ok": true,
+     "read": 7,
+     "viaAccessor": true,
+     "unread": [],
+     "mainAloneReadsNone": true
+    }
+   },
+   "flightA": {
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.0s, peak RSS 837 MB)",
+    "bootMs": 10037,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdk": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L100: [21:09:43 INFO]: Done (8.753s)! For help, type \"help\"",
+       "wall 10037 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "FrostMobs: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [21:09:43 INFO]: [FrostMobs] Enabling FrostMobs v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 769 MB, 406 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | ",
+       "difficulty 'difficulty easy' [rss 781 MB, 254 ms]: ok (optional) -> The difficulty has been set to Easy",
+       "spawn 'frostmobs spawn' [rss 802 MB, 650 ms]: ok -> spawned frost zombie ok health=20.0 | ",
+       "stats-defaults 'frostmobs stats' [rss 804 MB, 253 ms]: ok -> frost zombies: 1 | stats health=20.0 speed=0.23 damage=3.0 scale=1.0 armor=0.0 hp=20.0 | ",
+       "vanilla-max-health-default 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:max_health base get' [rss 804 MB, 254 ms]: ok -> The base value of attribute Max Health for entity Zombie is 20.0"
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 681 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4046855 gone; 0 marked processes; listening none of 47180,47183",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2w0ne1-36897d; no listening port in 47100-47199"
+      ]
+     }
+    ]
+   },
+   "studio": {
+    "badValueRefused": "invalid_values: Max health: 5000 hp is outside the allowed 1-1024 hp",
+    "preview": {
+     "applies": "reload",
+     "written": [
+      "mobs.frost_zombie.max_health",
+      "mobs.frost_zombie.move_speed",
+      "mobs.frost_zombie.scale",
+      "mobs.frost_zombie.attack_damage"
+     ]
+    },
+    "save": {
+     "revisionId": "rev1",
+     "seq": 1,
+     "kind": "config",
+     "applies": "reload",
+     "patch": [
+      {
+       "key": "mobs.frost_zombie.max_health",
+       "from": 20,
+       "to": 60
+      },
+      {
+       "key": "mobs.frost_zombie.move_speed",
+       "from": 0.23,
+       "to": 0.3
+      },
+      {
+       "key": "mobs.frost_zombie.scale",
+       "from": 1,
+       "to": 1.5
+      },
+      {
+       "key": "mobs.frost_zombie.attack_damage",
+       "from": 3,
+       "to": 7
+      }
+     ],
+     "warnings": []
+    },
+    "configYmlChangedLines": [
+     "    max_health: 60.0",
+     "    move_speed: 0.3",
+     "    scale: 1.5",
+     "    attack_damage: 7.0"
+    ]
+   },
+   "delivery": {
+    "outcome": "updated",
+    "ok": true,
+    "apply": {
+     "mode": "none",
+     "reasons": [
+      "the mod re-reads its settings with /frostmobs reload"
+     ],
+     "restarted": false,
+     "reloaded": false
+    },
+    "steps": [
+     "open:ok",
+     "recover_check:ok (none)",
+     "preflight:ok (settings checked; the mod is installed)",
+     "place:ok (config.yml: 4 setting(s) written)",
+     "record:skipped (the mod was not installed by Cyrus delivery: no delivery record to update)",
+     "apply:ok (none + /frostmobs reload: the mod re-reads its settings with /frostmobs reload)",
+     "health:ok (healthy)",
+     "commit:ok"
+    ],
+    "notes": [
+     "/frostmobs reload: queued: replayed on the Test Flight server (flight B)"
+    ],
+    "issued": [
+     "frostmobs reload"
+    ],
+    "deliveredEqualsStudio": true,
+    "badValue": {
+     "outcome": "refused",
+     "error": "Max health: 5000 hp is outside the allowed 1-1024 hp; nothing was changed"
+    },
+    "readBack": {
+     "mobs.frost_zombie.max_health": 60,
+     "mobs.frost_zombie.armor": 0,
+     "mobs.frost_zombie.move_speed": 0.3,
+     "mobs.frost_zombie.knockback_resistance": 0,
+     "mobs.frost_zombie.scale": 1.5,
+     "mobs.frost_zombie.attack_damage": 7,
+     "mobs.frost_zombie.knockback": 0
+    }
+   },
+   "flightB": {
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.2s, peak RSS 838 MB)",
+    "bootMs": 10233,
+    "peakRssMb": 838,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdk": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L100: [21:09:57 INFO]: Done (8.993s)! For help, type \"help\"",
+       "wall 10233 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "FrostMobs: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [21:09:56 INFO]: [FrostMobs] Enabling FrostMobs v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 774 MB, 417 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - FrostMobs | ",
+       "difficulty 'difficulty easy' [rss 794 MB, 285 ms]: ok (optional) -> The difficulty has been set to Easy",
+       "spawn-before 'frostmobs spawn' [rss 806 MB, 606 ms]: ok -> spawned frost zombie ok health=20.0 | ",
+       "stats-before 'frostmobs stats' [rss 822 MB, 251 ms]: ok -> frost zombies: 1 | stats health=20.0 speed=0.23 damage=3.0 scale=1.0 armor=0.0 hp=20.0 | ",
+       "deliver-and-reload: wrote plugins/FrostMobs/config.yml (694 bytes) before the command",
+       "deliver-and-reload 'frostmobs reload' [rss 822 MB, 253 ms]: ok -> FrostMobs config reloaded (1 frost zombies updated) | ",
+       "stats-after-reload 'frostmobs stats' [rss 822 MB, 251 ms]: ok -> frost zombies: 1 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | ",
+       "vanilla-max-health 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:max_health base get' [rss 822 MB, 258 ms]: ok -> The base value of attribute Max Health for entity Zombie is 60.0",
+       "vanilla-movement-speed 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:movement_speed base get' [rss 822 MB, 251 ms]: ok -> The base value of attribute Speed for entity Zombie is 0.3",
+       "vanilla-scale 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:scale base get' [rss 822 MB, 252 ms]: ok -> The base value of attribute Scale for entity Zombie is 1.5",
+       "vanilla-attack-damage 'attribute @e[type=minecraft:zombie,tag=cyrus_frost,limit=1,sort=nearest] minecraft:attack_damage base get' [rss 822 MB, 251 ms]: ok -> The base value of attribute Attack Damage for entity Zombie is 7.0",
+       "spawn-after 'frostmobs spawn' [rss 822 MB, 251 ms]: ok -> spawned frost zombie ok health=60.0 | ",
+       "stats-new-zombie 'frostmobs stats' [rss 822 MB, 250 ms]: ok -> frost zombies: 2 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | stats health=60.0 speed=0.3 damage=7.0 scale=1.5 armor=0.0 hp=60.0 | ",
+       "bad-file-clamped: wrote plugins/FrostMobs/config.yml (699 bytes) before the command",
+       "bad-file-clamped 'frostmobs reload' [rss 823 MB, 254 ms]: ok -> FrostMobs config reloaded (2 frost zombies updated) | clamped mobs.frost_zombie.max_health 5000.0 -> 1024.0 | mobs.frost_zombie.move_speed is not a number; using 0.23 | ",
+       "stats-after-bad-file 'frostmobs stats' [rss 823 MB, 251 ms]: ok -> frost zombies: 2 | stats health=1024.0 speed=0.23 damage=7.0 scale=1.5 armor=0.0 hp=1024.0 | stats health=1024.0 speed=0.23 damage=7.0 scale=1.5 armor=0.0 hp=1024.0 | "
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 736 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4047048 gone; 0 marked processes; listening none of 47103,47120",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2w0xwg-84e58f; no listening port in 47100-47199"
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "defaultConfigYml": "# FrostMobs configuration (generated by Cyrus from the settings schema).\nmobs:\n  frost_zombie:\n    # == Stats ==\n    # Max health (hp; 1 to 1024; balanced 4 to 200).\n    max_health: 20.0\n    # Armor (0 to 30; balanced 0 to 20).\n    armor: 0.0\n    # Movement speed (0 to 1; balanced 0.1 to 0.4). The game's movement speed attribute (Minecraft: zombie 0.23).\n    move_speed: 0.23\n    # Knockback resistance (0 to 1). 0 = normal knockback, 1 = none.\n    knockback_resistance: 0.0\n    # Size (x; 0.1 to 8; balanced 0.5 to 3).\n    scale: 1.0\n    # == Combat ==\n    # Attack damage (hp; 0 to 100; balanced 1 to 20).\n    attack_damage: 3.0\n    # Knockback (0 to 5; balanced 0 to 2).\n    knockback: 0.0\n",
+ "leftovers": {
+  "runsDir": 0
+ }
+}

@@ -1,0 +1,39 @@
+/opt/nxeon/.env: line 40: dns.write: command not found
+=== VERSION=1.26.51.1 transport=default
+[2026-10-06 05:16:03:948 INFO] Version: 1.26.51.1
+[2026-10-06 05:16:04:390 INFO] Accepting clients on [::]:19132
+udp:
+local_address 00000000000000000000000000000000:1D7F 
+tcp listen:
+00000000000000000000000000000000:4ABC 
+RAKNET_NO_REPLY timed out
+=== VERSION=1.26.51.1 transport=raknet
+[2026-10-06 05:16:16:356 INFO] Version: 1.26.51.1
+[2026-10-06 05:16:17:990 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-06 05:16:17:990 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-06 05:16:18:426 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+udp:
+00000000:4ABC 00000000:DC52 local_address 00000000000000000000000000000000:C978 00000000000000000000000000000000:4ABD 
+tcp listen:
+
+RAKNET_PONG True b'MCPE;Dedicated Server;2193;1.26.51;0;10;11933180408860794669;Bedrock level;Survival;1'
+=== VERSION=1.26.52.3 transport=default
+[2026-10-06 05:16:26:580 INFO] Version: 1.26.52.3
+[2026-10-06 05:16:27:025 INFO] Accepting clients on [::]:19132
+udp:
+local_address 00000000000000000000000000000000:1D7F 
+tcp listen:
+00000000000000000000000000000000:4ABC 
+RAKNET_NO_REPLY timed out
+=== VERSION=1.26.52.3 transport=raknet
+[2026-10-06 05:16:39:778 INFO] Version: 1.26.52.3
+[2026-10-06 05:16:41:209 INFO] IPv4 supported, port: 19132: Used for gameplay and LAN discovery
+[2026-10-06 05:16:41:209 INFO] IPv6 supported, port: 19133: Used for gameplay
+[2026-10-06 05:16:41:444 ERROR] ================ TRANSPORT TYPE ERROR  ===================
+udp:
+00000000:4ABC 00000000:EB57 local_address 00000000000000000000000000000000:4ABD 00000000000000000000000000000000:A494 
+tcp listen:
+
+RAKNET_PONG True b'MCPE;Dedicated Server;2193;1.26.52;0;10;10849868491939151170;Bedrock level;Survival;1'
+/dev/sda1       8.7G  6.1G  2.6G  71% /
+bedrock

@@ -1,0 +1,159 @@
+[
+  {
+    "mode": "mobile",
+    "route": "/admin",
+    "status": 200,
+    "finalUrl": "/admin",
+    "errors": [],
+    "bad": [],
+    "hscroll": true,
+    "over": [
+      "DIV.card",
+      "DIV.mb-2 flex flex-wrap items-center justify",
+      "SPAN.text-sm font-semibold text-emerald-400",
+      "P.mb-2 text-xs text-slate-500"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/users",
+    "status": 200,
+    "finalUrl": "/admin/users",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "TABLE.table-shell",
+      "THEAD.",
+      "TR.",
+      "TH."
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/board",
+    "status": 200,
+    "finalUrl": "/admin/board",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.flex h-full w-64 shrink-0 flex-col round",
+      "DIV.flex flex-shrink-0 items-center justify-",
+      "SPAN.flex items-center gap-1.5",
+      "SPAN.text-xs text-slate-500"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/partners",
+    "status": 200,
+    "finalUrl": "/admin/partners",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "A.flex shrink-0 items-center gap-2 rounded",
+      "TABLE.table-shell min-w-[760px]",
+      "THEAD.",
+      "TR."
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/partners/outreach",
+    "status": 200,
+    "finalUrl": "/admin/partners/outreach",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/nxlabs",
+    "status": 200,
+    "finalUrl": "/admin/nxlabs",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "TABLE.w-full text-left text-sm",
+      "THEAD.text-xs text-slate-500",
+      "TR.",
+      "TH."
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/mc-mirror",
+    "status": 200,
+    "finalUrl": "/admin/mc-mirror",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "TABLE.w-full text-left text-sm",
+      "THEAD.text-xs text-slate-400",
+      "TR.",
+      "TH.px-4 py-2"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/seo",
+    "status": 200,
+    "finalUrl": "/admin/seo",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/ops",
+    "status": 200,
+    "finalUrl": "/admin/ops",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "A.whitespace-nowrap border-b-2 px-3 py-2 t"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/mail/templates",
+    "status": 200,
+    "finalUrl": "/admin/mail/templates",
+    "errors": [
+      "error: Loading the image 'http://localhost:3131/logo.png' violates the following Content Security Policy directive: \"img-src 'self' data: blob: https:\". The action has been blocked."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/admin/game-mods",
+    "status": 0,
+    "finalUrl": "",
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_RESET at http://admin.localhost:3131/admin/game-mods\nCall log:\n  - navigating to \"http://admin.localhost:3131/admin/game-mods\", waiting until \"domcontentloaded\"\n"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  }
+]

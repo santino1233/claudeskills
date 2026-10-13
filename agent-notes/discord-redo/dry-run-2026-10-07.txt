@@ -1,0 +1,127 @@
+PLAN: 11 roles to create, 10 to update; 3 categories + 26 channels to create, 24 to update, 4 to move to Legacy; 28 settings; 3 panels. Nothing is deleted.
+
+ROLE   @everyone base permissions -> 70684528463424 (was 2222085186637377)
+ROLE ~ 👑 Owner (1545534875111661662): permissions; color; mentionable
+ROLE ~ 🛡️ Admin (1545534877481574480): permissions; color; mentionable
+ROLE ~ 🧭 Manager (1545534880803463188): permissions; color; mentionable
+ROLE + 🔨 Moderator
+SETTING discord_role_moderator_id = $role:moderator
+ROLE ~ ⚙️ Nxeon Team (1545534883131297822): name "⚙️ Staff" -> "⚙️ Nxeon Team"; permissions; color; mentionable
+ROLE ~ 🎧 Customer Support (1545534885433839707): permissions; color; hoist
+ROLE + 🤖 Bots
+SETTING discord_role_bots_id = $role:bots
+ROLE ~ 💎 Partner (1545534888063541409): permissions; color; mentionable
+ROLE ~ ✅ Verified Customer (1545534890127270049): permissions; color; hoist; mentionable
+ROLE ~ 🖥️ VPS Owner (1545534891930947694): permissions; color; mentionable
+ROLE ~ 🎮 Game Server Owner (1545534893700685935): permissions; color; mentionable
+ROLE ~ 🌐 Hosting Customer (1545534895500042320): permissions; color; mentionable
+ROLE + 📣 Announcements
+SETTING discord_role_ping_announcements_id = $role:ping_announcements
+ROLE + 🛰️ Status Alerts
+SETTING discord_role_ping_status_id = $role:ping_status
+ROLE + 🎁 Giveaways
+SETTING discord_role_ping_giveaways_id = $role:ping_giveaways
+ROLE + Minecraft
+SETTING discord_role_game_minecraft_id = $role:game_minecraft
+ROLE + Valheim
+SETTING discord_role_game_valheim_id = $role:game_valheim
+ROLE + Rust
+SETTING discord_role_game_rust_id = $role:game_rust
+ROLE + Palworld
+SETTING discord_role_game_palworld_id = $role:game_palworld
+ROLE + ARK
+SETTING discord_role_game_ark_id = $role:game_ark
+ROLE + Other Games
+SETTING discord_role_game_other_id = $role:game_other
+ROLE   hierarchy (top first, under the bot): owner > admin > manager > moderator > staff > support > bots > partner > verified > vps > game > hosting > ping_announcements > ping_status > ping_giveaways > game_minecraft > game_valheim > game_rust > game_palworld > game_ark > game_other
+  CH ~ $cat:start (1545534905654583406): name "📢 WELCOME" -> "📌 START HERE"; permission_overwrites
+  CH ~ $ch:welcome (1545534911484534794): topic; permission_overwrites
+NOTE   #welcome exists: re-post its welcome panel by hand or with --repost-panels
+  CH + #rules [text] in 1545534905654583406
+SETTING discord_channel_rules_id = $ch:rules
+  POST rules panel in $ch:rules
+  CH ~ $ch:announcements (1545534913296597022): type 0 -> 5; topic; permission_overwrites
+SETTING discord_channel_announcements_id = 1545534913296597022
+  CH + #whats-new [announcement] in 1545534905654583406
+SETTING discord_channel_whats_new_id = $ch:whats_new
+  CH ~ $ch:status (1545534908129087538): name "nxeon-server-status" -> "status"; type 0 -> 5; topic; permission_overwrites
+  CH + #link-your-account [text] in 1545534905654583406
+SETTING discord_channel_link_account_id = $ch:link_account
+  POST link_account panel in $ch:link_account
+  CH ~ $cat:support (1545534923002355751): name "🛠️ SUPPORT" -> "🎫 SUPPORT"
+  CH + #open-a-ticket [text] in 1545534923002355751
+SETTING discord_channel_open_ticket_id = $ch:open_ticket
+  POST open_ticket panel in $ch:open_ticket
+  CH + #tickets [text] in 1545534923002355751
+SETTING discord_channel_ticket_desk_id = $ch:tickets
+  CH ~ $ch:faq (1545534927083278347): name "knowledge-base" -> "faq"; topic; permission_overwrites
+  CH + #community-help [forum] in 1545534923002355751
+  CH ~ $ch:bot_commands (1545534929490681977): topic
+  CH ~ $ch:general (1543448444192948246): slowmode 3s
+  CH ~ $ch:introductions (1545534917360885880): slowmode 30s
+  CH + #showcase [forum] in 1545534915205009408
+  CH + #suggestions [forum] in 1545534915205009408
+SETTING discord_channel_suggestions_id = $ch:suggestions
+  CH + #giveaways [text] in 1545534915205009408
+SETTING discord_channel_giveaways_id = $ch:giveaways
+  CH ~ $ch:off_topic (1545534921068642354): slowmode 3s
+  CH ~ $cat:games (1545534931667656818): name "🎮 GAME SERVERS" -> "🎮 GAMES"
+  CH + #looking-for-group [forum] in 1545534931667656818
+  CH + #minecraft [text] in 1545534931667656818
+  CH + #valheim [text] in 1545534931667656818
+  CH + #rust [text] in 1545534931667656818
+  CH + #palworld [text] in 1545534931667656818
+  CH + #ark [text] in 1545534931667656818
+  CH + #other-games [text] in 1545534931667656818
+
+CAT  + 💎 CUSTOMERS
+SETTING discord_category_customers_id = $cat:customers
+  CH + #customer-lounge [text] in $cat:customers
+  CH + #beta-feedback [forum] in $cat:customers
+  CH + #creators [text] in $cat:customers
+  CH ~ $ch:v_lounge (1543448444192948247): name "General" -> "Lounge"
+  CH + Gaming 1 [voice] in 1545534936956674159
+  CH + Gaming 2 [voice] in 1545534936956674159
+  CH ~ $ch:v_support (1545534939053957232): permission_overwrites
+  CH + Community Call [stage] in 1545534936956674159
+
+CAT  + 🛟 SUPPORT DESK
+SETTING discord_category_desk_id = $cat:desk
+  CH ~ $ch:support_queue (1545537026260992101): move to new category; topic; permission_overwrites
+SETTING discord_channel_support_queue_id = 1545537026260992101
+  CH + #live-chats [text] in $cat:desk
+SETTING discord_channel_chat_desk_id = $ch:live_chats
+  CH + #escalations [text] in $cat:desk
+  CH + #ticket-transcripts [text] in $cat:desk
+SETTING discord_channel_transcripts_id = $ch:transcripts
+  CH ~ $cat:staff (1545537003968274462): permission_overwrites
+  CH ~ $ch:staff_announcements (1545537020296699994): permission_overwrites
+  CH ~ $ch:staff_chat (1545537023274778664): permission_overwrites
+  CH ~ $ch:ops_alerts (1543461615444295724): name "status-alerts" -> "ops-alerts"; move to new category; topic; permission_overwrites
+SETTING discord_status_alerts_internal_channel_id = 1543461615444295724
+  CH ~ $ch:mod_log (1545550084471656519): name "moderator-only" -> "mod-log"; move to new category; permission_overwrites
+SETTING discord_channel_mod_log_id = 1545550084471656519
+  CH + #automod-alerts [text] in 1545537003968274462
+SETTING discord_channel_automod_alerts_id = $ch:automod_alerts
+  CH ~ $ch:bot_logs (1545537028148559954): permission_overwrites
+  CH ~ $ch:staff_voice (1545537050701336761): name "Staff Meeting Room" -> "Staff Room"; move to new category; permission_overwrites
+  CH ~ $cat:management (1545537052689432686): permission_overwrites
+  CH ~ $ch:leadership (1545537065079275662): permission_overwrites
+  CH ~ $ch:meeting_notes (1545537049195454534): move to new category; permission_overwrites
+
+CAT  + 📦 LEGACY (read-only)
+SETTING discord_category_legacy_id = $legacy
+  LEGACY <- support-help (1545534925610946680): replaced by new forum #community-help (type can't be converted)
+  LEGACY <- showcase (1545534919202181200): replaced by new forum #showcase (type can't be converted)
+  LEGACY <- game-server-chat (1545534935140401283): replaced by new forum #looking-for-group (type can't be converted)
+  LEGACY <- AFK / Lounge (1545534940983201802): not in the new layout
+NOTE   category "Text Channels" is not in the new layout; once empty it can be deleted by hand (not deleted by this script)
+NOTE   category "Voice Channels" is not in the new layout; once empty it can be deleted by hand (not deleted by this script)
+NOTE   category "📡 Alerts" is not in the new layout; once empty it can be deleted by hand (not deleted by this script)
+NOTE   category "🗓️ MEETINGS" is not in the new layout; once empty it can be deleted by hand (not deleted by this script)
+
+GUILD  {"verification_level":2,"default_message_notifications":1,"explicit_content_filter":2,"rules_channel_id":"$ch:rules","system_channel_id":"$ch:mod_log","public_updates_channel_id":"$ch:staff_announcements","safety_alerts_channel_id":"$ch:automod_alerts"}
+NOTE   Owner, in Discord: Server Settings > Safety Setup > require 2FA for moderation; Onboarding questions (games, pings); AutoMod rules (see PLAN.md).
+NOTE   Owner, in Discord: Server Settings > Integrations > Nxeon Support: drop Administrator for the explicit list in PLAN.md (after the apply).
+
+DRY RUN: nothing was sent to Discord and no setting was written.

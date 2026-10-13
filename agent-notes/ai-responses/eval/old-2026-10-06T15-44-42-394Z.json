@@ -1,0 +1,760 @@
+{
+  "summary": {
+    "variant": "old",
+    "ref": "main",
+    "model": "(admin setting)",
+    "cases": 35,
+    "rulePass": 16,
+    "rulePassPct": 46,
+    "medianWords": 53,
+    "p90Words": 106,
+    "errors": 7,
+    "judge": {
+      "n": 28,
+      "correct": 1.14,
+      "helpful": 1.29,
+      "human": 1.46,
+      "totalOf6": 3.89
+    }
+  },
+  "rows": [
+    {
+      "id": "valheim-4gb",
+      "reply": {
+        "kind": "answer",
+        "text": "The 4GB Valheim server is **$9.99/mo** for the first term, then renews at **$14.38/mo**. That gives you 10 player slots, 2 vCPU, and 30 GB NVMe disk. How many players are you looking to run?\n[[cards: game-valheim-4gb]]",
+        "ms": 8821
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 35
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Accurate pricing, addresses question directly, natural engagement"
+      }
+    },
+    {
+      "id": "pz-renewal",
+      "reply": {
+        "kind": "offer",
+        "text": "Yep, that's the intro price — $24/mo for the first term, then it renews at $34.56/mo. So you'll see the bump on renewal. No coupon needed; that's just how game servers are priced (full price from day one, with a discounted first-order rate).\n\n[[cards: game-projectzomboid-12gb]]",
+        "ms": 3248
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 43
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Accurate pricing, clear about renewal bump, natural tone"
+      }
+    },
+    {
+      "id": "free-mc",
+      "reply": {
+        "kind": "answer",
+        "text": "Nxeon has a completely free Minecraft server tier — no card needed, one per account, real forever (not a trial). It sleeps when idle and wakes back up when someone joins, Aternos-style.\n\nTo claim it: **sign in or create a free account**, then go to **My Services → Free Services tab** (/dashboard/services?tab=free) and create it right there. You pick a game type (Vanilla, SkyBlock, Prison, Towny, Parkour, etc.) and mode (Survival, Creative, Hardcore, Peaceful), and you get a full control panel — console, permissions, mod/plugin support, world management, and a connect address like `yourname.play.nxeon.cloud`.\n\nReady to create an account?\n[[cards: game-minecraft-free]]",
+        "ms": 4907
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [
+          "too_long"
+        ],
+        "words": 99
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 1,
+        "note": "Accurate info, good next steps, but slightly long/detailed"
+      }
+    },
+    {
+      "id": "free-mc-tr",
+      "reply": {
+        "kind": "answer",
+        "text": "Nxeon'da tamamen ücretsiz bir Minecraft sunucusu var — hiç kart istemiyor, selamete kalmış. Hesap aç (veya giriş yap) ve bunu al:\n\n**Ücretsiz sunucu:** /dashboard/services?tab=free adresine git, \"Free Services\" sekmesinde oluştur. Hepsi bu kadar. Aternos gibi çalışıyor — kimse bağlı değilken uyur, birisi girerse uyandırılır (15 saniye civarında). Her hesaba bir tane bedava sunucu.\n\n9 oyun modu seçebilirsin (Vanilla, SkyBlock, Prison, Towny, Parkour, vb.), istediğin zaman değiştirebilirsin. Tam konsol, oyuncu yönetimi, dünya yönetimi hepsi var.\n\nDaha büyük, her zaman açık bir sunucu istersen o zaman ücretli planlar da var — 2GB/10 oyuncu başlıyor $4.99/ay'dan.\n\nŞu an bedava sunucuyu mı kurmak istiyorsun, yoksa ücretli seçenekleri mi merak ediyorsun?",
+        "ms": 5810
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [
+          "too_long"
+        ],
+        "words": 106
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 1,
+        "note": "Accurate info, good next steps, slightly long/detailed"
+      }
+    },
+    {
+      "id": "lang-tr",
+      "reply": {
+        "kind": "answer",
+        "text": "I'm the Nxeon Assistant — I help with hosting, game servers, domains, and everything else on our platform. Right now I'm set up to chat in English, so that's what I can do best.\n\nIf you've got a question about Nxeon services (a website, a Minecraft server, VPS, email, etc.), I'm here to help. What are you looking to get started with?",
+        "ms": 2045
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /[çğışöüÇĞİŞÖÜ]/"
+        ],
+        "violations": [],
+        "words": 62
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 0,
+        "note": "Ignored ground truth instruction to reply in Turkish"
+      }
+    },
+    {
+      "id": "korean-refund",
+      "reply": {
+        "kind": "answer",
+        "text": "안녕하세요! 환불 신청 방법을 알려드리겠습니다.\n\n**자동 환불 (셀프 서비스):**\n대시보드의 **Billing** 섹션 (/dashboard/billing)에서 직접 취소할 수 있습니다. 환불 대상 결제건이면 자동으로 처리됩니다.\n\n**환불 자격:**\n- 구매 후 **72시간 이내**에 서버 또는 호스팅 첫 결제건만 환불 가능\n- 도메인, 갱신비, 추가 옵션은 해당 안 됨\n\n**확실하지 않은 경우:**\n구체적인 결제건이 환불되는지 확인이 필요하면 대시보드의 **Support** (/dashboard/support)에서 티켓을 열거나 /contact를 통해 연락주세요 — 팀이 직접 확인해드립니다.\n\n어떤 서비스를 환불받으려고 하세요?",
+        "ms": 3907
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 68
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 1,
+        "note": "Accurate & complete, but slightly long/formal"
+      }
+    },
+    {
+      "id": "region-sg",
+      "reply": {
+        "kind": "answer",
+        "text": "I can't promise a specific region like Singapore without checking with a human — data-center locations aren't something I can confirm from here. It's a fair question though, especially for ping.\n\nWhat I can tell you: when you deploy a VPS, the Deploy wizard has a region/location step where you pick where your server boots. For the exact list of available regions (including whether Singapore is one of them), the best move is to hit `/dashboard/deploy` if you're signed in, or I can connect you with someone who can confirm the exact options and help you pick the one that'll give you the best latency for your use case.\n\nWhat are you planning to run?",
+        "ms": 2825
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [
+          "too_long"
+        ],
+        "words": 115
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 1,
+        "human": 1,
+        "note": "False claim: said can't confirm Singapore; GT says yes available"
+      }
+    },
+    {
+      "id": "move-region",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't have a way to change your server's location from chat — that's a manual process handled by our team. Open a support ticket at /dashboard/support or /contact, let them know which server and that you want to move it to Singapore, and they'll handle the migration for you. The world/password/settings stay the same; the IP address changes.\n\nHow long does the move usually take? That's something our team can confirm when you reach out — depends on what's running at the time.",
+        "ms": 2170
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 84
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Accurate handoff, explains process clearly, natural tone"
+      }
+    },
+    {
+      "id": "dedicated-ip",
+      "reply": {
+        "kind": "answer",
+        "text": "Looking to add one to your server, or just checking what you get?",
+        "ms": 2587
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /2\\.99|add-on|shared|port forward/"
+        ],
+        "violations": [],
+        "words": 13
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 2,
+        "note": "Avoids answering; deflects with question back"
+      }
+    },
+    {
+      "id": "port80",
+      "reply": {
+        "kind": "answer",
+        "text": "That nxeon.cloud splash page is the default on a fresh VPS — it means no web server is running yet or the config isn't pointing to your site files. Here's what you need:\n\n1. **Install a web server** (if you haven't already) — SSH in and run `apt update && apt install nginx` (or Apache), then start it: `systemctl start nginx`.\n\n2. **Point the server to your site** — edit the web-server config (e.g., `/etc/nginx/sites-available/default` for Nginx) to point the `root` directive at wherever your HTML files live (usually `/var/www/html` or your own folder).\n\n3. **Restart the web server** — `systemctl restart nginx` — then reload the browser.\n\nIf you'd rather skip the command-line setup, **Build with AI** (/dashboard/build or /dashboard/claude-code) can scaffold a working site for you in plain English — you describe it and Claude builds it right on your VPS.\n\nAre you starting from scratch, or moving an existing site over?",
+        "ms": 5028
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /dedicated (IP|IPv4)/",
+          "format: way_too_long"
+        ],
+        "violations": [
+          "way_too_long",
+          "too_long"
+        ],
+        "words": 154
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 1,
+        "note": "Misses the core issue: shared NAT IP blocks port 80"
+      }
+    },
+    {
+      "id": "cpu-model",
+      "reply": {
+        "kind": "answer",
+        "text": "I can't pin down the exact CPU model or confirm whether vCPUs are dedicated — that's infrastructure detail we don't publish in the knowledge base. For specifics like that, you'd want to ask a human directly at /contact or via a support ticket (/dashboard/support if you're signed in), and they can give you the real specs.\n\nWhat I can tell you: every VPS comes with full root access and real NVMe disk, and you can pick your plan size (Starter through Max, from 1–4 vCPU). For a Singapore region specifically, I'd also recommend checking with the team — I don't have a confirmed server location to quote.\n\nWant me to point you at a support channel, or anything else about the VPS plans themselves?",
+        "ms": 3360
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "contains /(vCPUs?|cores) are dedicated/",
+          "format: internal_leak"
+        ],
+        "violations": [
+          "too_long",
+          "internal_leak"
+        ],
+        "words": 124
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 1,
+        "note": "Accurate handoff, but slightly verbose for directness"
+      }
+    },
+    {
+      "id": "refund",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 2906
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)",
+          "missing /72/"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 1,
+        "human": 2,
+        "note": "Honest handoff, but should mention 72-hour policy first"
+      }
+    },
+    {
+      "id": "refund-30day",
+      "reply": {
+        "kind": "answer",
+        "text": "The 72-hour money-back guarantee covers your first paid VPS order, so you're within the window. You can request the refund yourself from the dashboard in two ways:\n\n**Self-serve cancellation** → go to /dashboard/billing, find the charge, and cancel from there. Eligible refunds process automatically.\n\n**Support ticket** → if you want to make sure it's handled quickly or need to explain anything, open a ticket at /dashboard/support and mention the order number and that you're requesting the 72-hour refund.\n\nEither way, it should be straightforward. What's the blocker — something not working, or just not what you expected?",
+        "ms": 3898
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [
+          "too_long"
+        ],
+        "words": 97
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Clear, accurate, gives both options, asks follow-up"
+      }
+    },
+    {
+      "id": "paypal",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't see PayPal listed in our payment methods — we take major credit and debit cards through secure Stripe checkout. Your wallet can also hold a balance that gets drawn down first before we charge the card for any remainder.\n\nIf PayPal's a hard requirement, I can check with the team to see if there's a workaround — want me to open a ticket for you, or would card payment work for now?",
+        "ms": 2262
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 74
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 1,
+        "human": 2,
+        "note": "States false: PayPal unavailable when it's live"
+      }
+    },
+    {
+      "id": "gcash",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't have the full list of payment methods Nxeon accepts handy — we definitely take major credit/debit cards via Stripe, but I'm not certain about GCash specifically or regional payment options for the Philippines.\n\nBest move: head to /register to start signing up and you'll see the full payment options at checkout, or ping support at /contact and they can confirm what works for your area. They're usually quick with that kind of question.",
+        "ms": 2159
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 75
+      },
+      "judge": {
+        "correct": 1,
+        "helpful": 2,
+        "human": 2,
+        "note": "Uncertain about GCash but correctly directs to verify options"
+      }
+    },
+    {
+      "id": "windows",
+      "reply": {
+        "kind": "answer",
+        "text": "In the meantime, here are the VPS plans — you pick the size and deploy it at /dashboard/deploy. Start with Starter ($8.88/mo intro, $12.78/mo after) if you're just trying it out, or Standard if you need a bit more headroom. You get a full in-browser console even without SSH, so managing Linux is painless.\n\nWant to know what else you can run, or ready to deploy?",
+        "ms": 4394
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /team|custom|not self-serve|isn'?t self-serve|not available|isn'?t available/"
+        ],
+        "violations": [],
+        "words": 66
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 1,
+        "note": "Ignores Windows VPS request, pushes Linux only"
+      }
+    },
+    {
+      "id": "sla",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't quote a specific uptime percentage—there's no fixed SLA figure published in my knowledge base. For the formal terms, check out /legal/sla or jump into a live chat with the team if you need the exact guarantee. /status shows our live platform status anytime.",
+        "ms": 1678
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /99\\.9/",
+          "format: internal_leak"
+        ],
+        "violations": [
+          "internal_leak"
+        ],
+        "words": 45
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 1,
+        "human": 1,
+        "note": "Claims no SLA exists; ground truth shows 99.9% target"
+      }
+    },
+    {
+      "id": "reply-time",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't have a published guaranteed response time here — it varies. We aim to be quick and respond via both live chat (like this) and support tickets, and we do follow up via email on business days even after you close the chat window.\n\nFor a locked-in response-time SLA, that's a question for the team — want me to connect you to someone who can give you the exact terms?",
+        "ms": 2010
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /one business day|1 business day/"
+        ],
+        "violations": [],
+        "words": 71
+      },
+      "judge": {
+        "correct": 1,
+        "helpful": 1,
+        "human": 2,
+        "note": "Vague on 'one business day' fact; offers handoff appropriately"
+      }
+    },
+    {
+      "id": "discord",
+      "reply": {
+        "kind": "answer",
+        "text": "I don't have a Discord link in my knowledge base — that's outside what I can help with from here. Best bet is to reach out to the team at /contact and ask, or check /about to see if it's listed there.\n\nWhat can I actually help you get set up with — hosting, a game server, something else?",
+        "ms": 2436
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /discord\\.gg/",
+          "contains /don'?t have a discord/",
+          "format: internal_leak"
+        ],
+        "violations": [
+          "internal_leak"
+        ],
+        "words": 59
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 1,
+        "note": "Discord link exists but agent denied knowledge"
+      }
+    },
+    {
+      "id": "operator",
+      "reply": {
+        "kind": "handoff",
+        "text": "Let me get a teammate for you — one moment while I see who's available. 👋",
+        "ms": 325
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 16
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Appropriate handoff, natural tone, reassuring"
+      }
+    },
+    {
+      "id": "human",
+      "reply": {
+        "kind": "handoff",
+        "text": "Let me get a teammate for you — one moment while I see who's available. 👋",
+        "ms": 90
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 16
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Appropriate handoff, friendly tone, clear action"
+      }
+    },
+    {
+      "id": "someone-price",
+      "reply": {
+        "kind": "handoff",
+        "text": "Let me get a teammate for you — one moment while I see who's available. 👋",
+        "ms": 72
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "handed off when it should answer",
+          "missing /8\\.88/"
+        ],
+        "violations": [],
+        "words": 16
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 0,
+        "human": 1,
+        "note": "Incorrectly handed off; should answer directly with pricing"
+      }
+    },
+    {
+      "id": "hacked",
+      "reply": {
+        "kind": "handoff",
+        "text": "Let me get a teammate for you — one moment while I see who's available. 👋",
+        "ms": 140
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 16
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Correctly identifies security issue, hands off appropriately, natural tone"
+      }
+    },
+    {
+      "id": "upload-world",
+      "reply": {
+        "kind": "answer",
+        "text": "Go to your server's **Files** tab in the dashboard — you'll see the directory structure there. Your Valheim worlds live in `worlds/`, so upload your entire world folder into that folder (the folder contains the .db and .fwl files plus metadata).\n\nThen go to the **Settings** tab and change the \"World name\" to exactly match that folder name. Saving it restarts the server, and your world loads up.\n\nThe key thing: the world folder name in Settings must match what you uploaded, character for character.",
+        "ms": 3818
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 85
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 2,
+        "note": "Accurate, actionable, concise instructions with key detail"
+      }
+    },
+    {
+      "id": "download-files",
+      "reply": {
+        "kind": "answer",
+        "text": "I need to know which game you're running to give you the right answer — game servers have different file-management options depending on the title.\n\nWhat game is your server?",
+        "ms": 1272
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /download/"
+        ],
+        "violations": [],
+        "words": 30
+      },
+      "judge": {
+        "correct": 1,
+        "helpful": 1,
+        "human": 2,
+        "note": "Assumes variation; ground truth indicates standard options exist"
+      }
+    },
+    {
+      "id": "game-backups",
+      "reply": {
+        "kind": "answer",
+        "text": "Game servers don't have automatic backups built in — it's something you need to set up yourself. The help article above walks through building an automated backup routine using cron jobs and tar rotation so you don't lose your world. Which game server are you running?",
+        "ms": 2977
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /schedule|Backups tab|manual|turn (it )?on/"
+        ],
+        "violations": [],
+        "words": 46
+      },
+      "judge": {
+        "correct": 1,
+        "helpful": 1,
+        "human": 1,
+        "note": "Correct that backups aren't automatic, but suggests cron/tar instead of the Backups tab feature mentioned in ground truth."
+      }
+    },
+    {
+      "id": "bedrock-free",
+      "reply": {
+        "kind": "answer",
+        "text": "The free Minecraft tier is for **Java Edition only**, not Bedrock. The free server supports vanilla and plugin-based play (like Towny, SkyBlock, Prison, etc.) but it's a Java server.\n\nIf you want to run a Bedrock server — for phone, console, and Windows 10 players — you'll need one of our paid Bedrock tiers. The 1 GB plan at $2.99/mo intro is a solid entry point for 5 players.\n\n[[cards: game-minecraft-free, game-bedrock-1gb]]",
+        "ms": 3931
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [],
+        "words": 69
+      },
+      "judge": {
+        "correct": 2,
+        "helpful": 2,
+        "human": 1,
+        "note": "Accurate and helpful, but somewhat long/salesy"
+      }
+    },
+    {
+      "id": "unlimited-bw",
+      "reply": {
+        "kind": "answer",
+        "text": "[[cards: vps-starter, vps-standard, vps-pro, vps-max]]",
+        "ms": 3875
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "missing /8 ?TB|no (true )?unlimited|not unlimited|isn'?t unlimited|don'?t (have|offer) (an? )?unlimited/",
+          "format: empty"
+        ],
+        "violations": [
+          "empty"
+        ],
+        "words": 0
+      },
+      "judge": {
+        "correct": 0,
+        "helpful": 1,
+        "human": 1,
+        "note": "Implies unlimited exists; should clarify max is 8TB/mo"
+      }
+    },
+    {
+      "id": "root-pw",
+      "reply": {
+        "kind": "answer",
+        "text": "I can't see your account details from here, so I can't walk you through the exact reset flow. The fastest way is to sign in at /login and look for a \"Reset root password\" or \"Console\" option in your VPS's dashboard panel — most hosts let you do it from there, or you can use the in-browser console to change it directly.\n\nIf you're stuck finding it or it's not working, drop a support ticket at /dashboard/support with your server name and I can get you pointed in the right direction, or grab a human here and they can walk you through it step by step.",
+        "ms": 2731
+      },
+      "rules": {
+        "pass": true,
+        "failures": [],
+        "violations": [
+          "too_long"
+        ],
+        "words": 106
+      },
+      "judge": null
+    },
+    {
+      "id": "vm-running",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 664
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)",
+          "missing /sign in|log in|login/"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    },
+    {
+      "id": "vps-trial",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 553
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    },
+    {
+      "id": "cheap-hosting",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 533
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)",
+          "missing /2\\.99/",
+          "missing /free/"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    },
+    {
+      "id": "game-first-month",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 395
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)",
+          "missing /(no|not|only)\\b/"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    },
+    {
+      "id": "ddos-vendor",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 421
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    },
+    {
+      "id": "isle",
+      "reply": {
+        "kind": "degraded",
+        "text": "Sorry — I'm having a brief problem reaching my assistant just now. I don't want to guess at your answer. If you leave your email and what you need, the team will follow up quickly — or you can reach us any time at https://nxeon.cloud/contact. You can also check live status at https://nxeon.cloud/status.",
+        "ms": 484
+      },
+      "rules": {
+        "pass": false,
+        "failures": [
+          "degraded (model unavailable)",
+          "missing /Isle/"
+        ],
+        "violations": [],
+        "words": 53
+      },
+      "judge": null
+    }
+  ]
+}

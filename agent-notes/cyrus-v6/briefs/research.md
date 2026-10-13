@@ -1,0 +1,12 @@
+# Brief: research: advanced mods and the texture/render plug-in
+
+Read `/root/agent-notes/cyrus-v6/CONTEXT.md` first (the owner's full request, the shared rules, the roster). Worktree: `git -C /opt/nxeon worktree add /tank/dev-worktrees/n/a (no repo changes) -b n/a feature/cyrus-v6`. Output dir for notes: `/root/agent-notes/cyrus-v6/research/`.
+
+## Your scope: research and write-ups only (no repo branch, no code merge)
+Use WebSearch/WebFetch heavily and cite sources. Output two markdown documents in `/root/agent-notes/cyrus-v6/research/`:
+
+**1. `ADVANCED-MODS.md`**: how someone makes genuinely **advanced** mods for each Cyrus game (Minecraft Paper/Purpur, Palworld, Terraria incl. tModLoader and TShock, Valheim, Rust, Project Zomboid). For each: what "advanced" looks like (custom items/entities/GUIs, world generation, economies, minigames, quests, AI-driven NPCs, performance mods, admin tooling), the techniques and libraries professionals use, common pitfalls, performance and compatibility concerns, and an honest assessment of what an AI can do reliably today versus what needs a human. Then a section "What Cyrus should add" (multi-file projects, configs and data files, dependency handling, tests, multi-step planning, iterative refinement, structured specs, golden examples) ranked by value, with rough effort.
+
+**2. `RENDERS-AND-TEXTURES.md`**: how Cyrus could later let mods have **AI-generated textures, icons, models and sounds** (the owner: "how we can potentially plug in the ability later down the road for making renders for people's mods"). Per game: asset formats and constraints (Minecraft resource packs and custom model data, Valheim asset bundles, Terraria PNG/xnb, Palworld, Rust's limits, Zomboid). A **generator-agnostic provider interface** (TypeScript sketch: request, result, moderation, cost estimate, caching, storage, delivery such as server resource-pack hosting), a pipeline (prompt to image to validate size/palette/format to package), cost control and token pricing considerations, content moderation and licensing/ownership questions, and a survey of the kinds of providers available (image models, 3D/voxel tools) with real caveats. **Pick no vendor and buy or sign up for nothing**; give criteria and a recommendation of what to evaluate first.
+
+Be concrete and verifiable; mark anything uncertain. Finish with a one-page executive summary at the top of each document and a short report to the coordinator.

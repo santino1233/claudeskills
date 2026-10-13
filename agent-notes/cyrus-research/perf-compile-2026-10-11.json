@@ -1,0 +1,151 @@
+{
+ "at": "2026-10-11T19:44:19.344Z",
+ "host": "node-2",
+ "jdk": null,
+ "results": [
+  {
+   "version": "1.21.1",
+   "plugin": "PerfDemo (whole NxPerf API)",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.plugins.perfdemo.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1855,
+   "warnings": [],
+   "jarSha256": "804dfce9d5b671bb32b08379c620f480d927c8377536f61fc9aa1624c5576a15",
+   "scanBlocks": [],
+   "scanWarns": [],
+   "perfcheckHits": []
+  },
+  {
+   "version": "1.21.1",
+   "plugin": "ChunkMirror bounded fixture",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1796,
+   "warnings": [],
+   "jarSha256": "c9f195e8076eb96a062fbbc33d5056a768b3aad54de6d036af666cf0c6ecf00b",
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.4",
+   "plugin": "PerfDemo (whole NxPerf API)",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.plugins.perfdemo.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1909,
+   "warnings": [],
+   "jarSha256": "6d3c5cbae1be0b9a93c48c95c8a7d236403ce44724175413b0bde7cc90009887",
+   "scanBlocks": [],
+   "scanWarns": [],
+   "perfcheckHits": []
+  },
+  {
+   "version": "1.21.4",
+   "plugin": "ChunkMirror bounded fixture",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1975,
+   "warnings": [],
+   "jarSha256": "533c281a6d77c92c30c3d5d5ffc30de6d43bf0107e683ff0d74e8a36de049c45",
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.8",
+   "plugin": "PerfDemo (whole NxPerf API)",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.plugins.perfdemo.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 2055,
+   "warnings": [],
+   "jarSha256": "2f69c41e4fb746335d70e615408f52aae6d2d40baa7ee4a0eda052bf54023bc8",
+   "scanBlocks": [],
+   "scanWarns": [],
+   "perfcheckHits": []
+  },
+  {
+   "version": "1.21.8",
+   "plugin": "ChunkMirror bounded fixture",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1954,
+   "warnings": [],
+   "jarSha256": "8f95054f375de4251988fe3a098e6ca95876681144c383a8590833cae0879550",
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.11",
+   "plugin": "PerfDemo (whole NxPerf API)",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.plugins.perfdemo.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1195,
+   "warnings": [],
+   "jarSha256": "843e39f657a644d8c94871d723610b2605d12d342014b19336d0120d8917d2fd",
+   "scanBlocks": [],
+   "scanWarns": [],
+   "perfcheckHits": []
+  },
+  {
+   "version": "1.21.11",
+   "plugin": "ChunkMirror bounded fixture",
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "compiled": true,
+   "javacMs": 1266,
+   "warnings": [],
+   "jarSha256": "73daaa3224d3476abbe91d377622be5cf11658d88a7085f76b459d3cc1437641",
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "unit": {
+  "exit": 0,
+  "out": "NxPerfCoreTest nxperf-1: 20 passed, 0 failed\n"
+ }
+}

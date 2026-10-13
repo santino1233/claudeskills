@@ -1,0 +1,72 @@
+[
+ {
+  "phase": "A api-v1 health",
+  "conc": 20,
+  "seconds": 15,
+  "requests": 6391,
+  "rps": 426,
+  "codes": {
+   "401": 6391
+  },
+  "peakRssMB": 1481
+ },
+ {
+  "phase": "B api-v1 projects (personal key)",
+  "conc": 8,
+  "seconds": 20,
+  "requests": 8198,
+  "rps": 410,
+  "codes": {
+   "200": 60,
+   "429": 8138
+  },
+  "okP50": "26.8",
+  "okP95": "36.0",
+  "okP99": "36.2",
+  "peakRssMB": 1618
+ },
+ {
+  "phase": "C platform stat (grant)",
+  "conc": 8,
+  "seconds": 20,
+  "requests": 5724,
+  "rps": 286,
+  "codes": {
+   "200": 600,
+   "429": 5124
+  },
+  "okP50": "29.9",
+  "okP95": "47.4",
+  "okP99": "93.1",
+  "peakRssMB": 1607
+ },
+ {
+  "phase": "D platform write (grant)",
+  "conc": 4,
+  "seconds": 10,
+  "requests": 2188,
+  "rps": 219,
+  "codes": {
+   "200": 240,
+   "429": 1948
+  },
+  "okP50": "20.7",
+  "okP95": "29.5",
+  "okP99": "56.3",
+  "peakRssMB": 1489
+ },
+ {
+  "phase": "E webhook outbox drain",
+  "events": 500,
+  "enqueueMs": 204,
+  "backlogBefore": 500,
+  "dispatchers": 4,
+  "loops": 4,
+  "drainMs": 521,
+  "eventsPerSec": 960,
+  "delivered": 500,
+  "duplicatesHandled": 0,
+  "pendingAfter": 0,
+  "deadAfter": 0
+ }
+]

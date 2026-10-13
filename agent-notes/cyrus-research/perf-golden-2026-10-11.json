@@ -1,0 +1,5009 @@
+{
+ "at": "2026-10-11T20:43:41.840Z",
+ "host": "node-2",
+ "versions": [
+  "1.21.1",
+  "1.21.4",
+  "1.21.8",
+  "1.21.11"
+ ],
+ "plugins": 65,
+ "pass": 259,
+ "fail": 0,
+ "na": 1,
+ "baselineIssues": [
+  "mc-ranks@1.21.1",
+  "mc-ranks@1.21.4",
+  "mc-ranks@1.21.8",
+  "mc-ranks@1.21.11"
+ ],
+ "perfHitPlugins": [
+  "mc-afk",
+  "mc-ambience",
+  "mc-announcer",
+  "mc-arena",
+  "mc-bossbar",
+  "mc-bows",
+  "mc-channels",
+  "mc-economy",
+  "mc-events",
+  "mc-furniture",
+  "mc-joinleave",
+  "mc-lagtools",
+  "mc-mounts",
+  "mc-pets",
+  "mc-sidebar",
+  "mc-skills",
+  "mc-structures",
+  "mc-tablist",
+  "mc-trails"
+ ],
+ "results": {
+  "mc-afk": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-ambience": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-announcer": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-arena": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-armor": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-armorset": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-backpack": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-books": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-bossbar": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-bows": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-brew": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-channels": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-chatfilter": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-chatformat": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-claims": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-clans": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-components": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-customcmds": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-cutscene": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-daily": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-drops": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-economy": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-enchant": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-events": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-fishing": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-food": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-furniture": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-graves": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-heads": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-holo": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-homes": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-integration": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-joinleave": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-spawn-in-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-spawn-in-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-spawn-in-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-spawn-in-loop"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-kits": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-lagtools": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration",
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration",
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration",
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-world-iteration",
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-logingate": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-machines": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-mail": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-mobs": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-moderation": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-mounts": {
+   "1.21.1": {
+    "result": "n/a",
+    "reason": "needs 1.21.4+"
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-noteblocks": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-npc": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-parkour": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-pets": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-quest": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-ranks": {
+   "1.21.1": {
+    "result": "baseline issue (same without the watchdog)",
+    "base": {
+     "good": false,
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "fail",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "perfHits": [],
+     "good": false
+    }
+   },
+   "1.21.4": {
+    "result": "baseline issue (same without the watchdog)",
+    "base": {
+     "good": false,
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "fail",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "perfHits": [],
+     "good": false
+    }
+   },
+   "1.21.8": {
+    "result": "baseline issue (same without the watchdog)",
+    "base": {
+     "good": false,
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "fail",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "perfHits": [],
+     "good": false
+    }
+   },
+   "1.21.11": {
+    "result": "baseline issue (same without the watchdog)",
+    "base": {
+     "good": false,
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "fail",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [
+      "warn:perm-attach@dev.nxeon.golden.ranks.Ranks"
+     ],
+     "perfHits": [],
+     "good": false
+    }
+   }
+  },
+  "mc-recipes": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-regions": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-rtp": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-shop": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-sidebar": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-signs": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-skills": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-spawners": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-structures": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-block-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-block-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-block-loop"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-block-loop"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-tablist": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-tpa": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-trades": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-trails": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [
+      "perf-raw-timer"
+     ],
+     "good": true
+    }
+   }
+  },
+  "mc-utility": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-vanish": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": false,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-warps": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-weapon": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  },
+  "mc-worlds": {
+   "1.21.1": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.4": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.8": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   },
+   "1.21.11": {
+    "result": "pass",
+    "base": {
+     "good": true,
+     "scan": [],
+     "warnings": []
+    },
+    "watchdog": {
+     "result": "pass",
+     "injected": true,
+     "mainPatched": true,
+     "configSection": true,
+     "warnings": [],
+     "scan": [],
+     "perfHits": [],
+     "good": true
+    }
+   }
+  }
+ }
+}

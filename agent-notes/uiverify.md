@@ -1,0 +1,5 @@
+# uiverify (2026-10-01) - branch fix/ui-verify-and-admin-images, worktree /opt/nxeon-wt-uiverify, commit c10e72af28
+Screenshots: /root/agent-notes/uiverify/{admin,customer,marketing}/ (desktop 1440 + mobile 390).
+Method: throwaway DB + fixtures, Playwright with minted session, dev server :3131 (torn down, DB dropped).
+Not verified: real mail (no IMAP so /admin/mail shows empty state: filters/unread/open-message untested), real file backend (FileBrowser driven by an in-memory FileApi harness, not committed), live game status/restart warnings (sandbox shows "Checking"), NX preloader only read statically, Minecraft skin editing beyond page render, Mailbox/promo-bar (SANDBOX banner replaced it).
+Remaining defects (not fixed): /dashboard Files toolbar root label clipped on 390px; Valheim SERVER_PASS help text says "edit it later in Settings" while already in Settings (shared deploy copy); chat bubble overlaps mobile bottom-nav "Menu"; admin Insights tab strip clips last tab (scrollable, no fade).

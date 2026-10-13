@@ -1,0 +1,518 @@
+{
+ "at": "2026-10-10T10:03:55.284Z",
+ "host": "node-2",
+ "realClient": false,
+ "bot": false,
+ "aiModel": "none (designs are fixtures; no model call)",
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "compile": {
+    "ok": true,
+    "hash": "2db7def8369ef058a512a29879daceb48bbf80f801e1ed4b0c5fdaedae0d22f8",
+    "files": 29,
+    "params": 60,
+    "configVersion": 1,
+    "warnings": [
+     "vanilla_sound_unchecked"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 27,
+    "classFiles": 29,
+    "ms": 1377,
+    "warnings": 0
+   },
+   "jar": {
+    "sha256": "b6ef8d34b718f707e82e333ec90742256769920623c67861e7e30d25772424a0",
+    "bytes": 70170,
+    "reproducible": true
+   },
+   "catalog": {
+    "ok": true,
+    "particles": 28,
+    "effects": 31,
+    "consumableBases": 25,
+    "projectiles": 4
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 17.5s, peak RSS 857 MB)",
+    "bootMs": 17463,
+    "peakRssMb": 857,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L95: [10:04:16 INFO]: Done (16.136s)! For help, type \"help\"",
+       "wall 17463 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [10:04:15 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+       "help-command 'help voidarsenal': ok -> --------- Help: VoidArsenal --------------------------- | Below is a list of all VoidArsenal commands: | /voidarsenal: VoidArsenal items: give, list, params, | reload | ",
+       "command-answers 'voidarsenal': ok -> VoidArsenal items: storm_staff, vigor_tonic, void_reaper. Use /voidarsenal give <item> [player] [count], /voidarsenal list, /voidarsenal params, /voidarsenal reload | ",
+       "list-identity-recipes 'voidarsenal list': ok -> storm_staff: identity=ok material=blaze_rod abilities=2 recipe=registered | vigor_tonic: identity=ok material=honey_bottle abilities=1 recipe=registered | void_reaper: identity=ok material=netherite_sword abilities=2 recipe=registered | ",
+       "give-console-usage 'voidarsenal give void_reaper': ok -> Usage from the console: /voidarsenal give <item> <player> [count] | ",
+       "give-offline-player 'voidarsenal give void_reaper Nobody 2': ok -> Player Nobody is not online. | ",
+       "give-unknown-item 'voidarsenal give excalibur Nobody': ok -> Unknown item excalibur. | ",
+       "params-defaults 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark",
+       "config-clamped-on-reload: wrote plugins/VoidArsenal/config.yml (5992 bytes) before the command",
+       "config-clamped-on-reload 'voidarsenal reload': ok -> VoidArsenal config reloaded (3 notes) | - clamped items.void_reaper.abilities.void_pull.cooldown_ticks -5.0 -> 0.0 | - clamped items.void_reaper.abilities.void_pull.a0.n0.strength 99.0 -> 3.0 | - items.void_reaper.abilities.void_pull.a2.sou",
+       "params-after-clamp 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark",
+       "config-migrated-on-reload: wrote plugins/VoidArsenal/config.yml (6013 bytes) before the command",
+       "config-migrated-on-reload 'voidarsenal reload': ok -> VoidArsenal config reloaded (1 note) | - config.yml migrated from version 0 to 1 (60 designer values updated, backup config.yml.bak-v0) | ",
+       "params-after-migration 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 577 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3521685 gone; 0 marked processes; listening none of 47137,47104",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv288pt3-1174c6; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "configOnDisk": true,
+     "configVersionOnDisk": 1,
+     "designerValuesOnDisk": "acfc171234bdd238",
+     "backups": [
+      "config.yml.bak-v0"
+     ],
+     "pluginLog": [
+      "[10:04:06] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Remapping plugin 'plugins/VoidArsenal-1.21.11-base.jar'...",
+      "[10:04:06] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Done remapping plugin 'plugins/VoidArsenal-1.21.11-base.jar' in 89ms.",
+      " - VoidArsenal (1.0.0)",
+      "[10:04:13] [Server thread/INFO]: [VoidArsenal] Loading server plugin VoidArsenal v1.0.0",
+      "[10:04:15] [Server thread/INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+      "[10:04:15] [Server thread/INFO]: [VoidArsenal] Designer items ready: storm_staff, vigor_tonic, void_reaper",
+      "[10:04:18] [Server thread/WARN]: [VoidArsenal] config: clamped items.void_reaper.abilities.void_pull.cooldown_ticks -5.0 -> 0.0",
+      "[10:04:18] [Server thread/WARN]: [VoidArsenal] config: clamped items.void_reaper.abilities.void_pull.a0.n0.strength 99.0 -> 3.0",
+      "[10:04:18] [Server thread/WARN]: [VoidArsenal] config: items.void_reaper.abilities.void_pull.a2.sound is not a sound key, using nx_r7design:void_reaper.pull",
+      "[10:04:19] [Server thread/INFO]: [VoidArsenal] config.yml migrated from version 0 to 1 (60 designer values updated, backup config.yml.bak-v0)",
+      "[10:04:19] [Server thread/INFO]: [VoidArsenal] Disabling VoidArsenal v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "edit": {
+    "ok": true,
+    "applied": [
+     {
+      "path": "items.void_reaper.abilities.void_pull.cooldown_ticks",
+      "label": "Void Pull: cooldown (ticks, 20 = 1 s)",
+      "from": 160,
+      "to": 100
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.trigger.target_range",
+      "label": "Void Pull: target range (blocks)",
+      "from": 24,
+      "to": 30
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.a0.n0.strength",
+      "label": "Void Pull: pull to strength",
+      "from": 1.2,
+      "to": 2
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.a2.sound",
+      "label": "Void Pull: sound key",
+      "from": "nx_r7design:void_reaper.pull",
+      "to": "minecraft:entity.warden.sonic_boom"
+     }
+    ],
+    "sourceDiff": [
+     "src/main/resources/config.yml"
+    ],
+    "javaChanged": [],
+    "readmeChanged": true,
+    "configVersion": 2,
+    "jarEntriesThatDiffer": [
+     "config.yml"
+    ],
+    "classFilesIdentical": true,
+    "jarSha256": "38c9e253c414bcfb11f424ade564dd2d4af7ede4e85c8f70333468b69c69531e",
+    "flight": {
+     "status": "completed",
+     "overall": "passed",
+     "success": true,
+     "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.3s, peak RSS 894 MB)",
+     "checks": [
+      {
+       "id": "boot_done",
+       "status": "pass",
+       "evidence": [
+        "L96: [10:04:40 INFO]: Done (16.900s)! For help, type \"help\"",
+        "wall 18267 ms from spawn"
+       ]
+      },
+      {
+       "id": "plugins_enabled",
+       "status": "pass",
+       "evidence": [
+        "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+        "L88: [10:04:40 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+        "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+       ]
+      },
+      {
+       "id": "startup_log_clean",
+       "status": "pass",
+       "evidence": [
+        "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+       ]
+      },
+      {
+       "id": "rcon_checks",
+       "status": "pass",
+       "evidence": [
+        "plugins 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+        "params-after-update 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+       ]
+      },
+      {
+       "id": "clean_stop",
+       "status": "pass",
+       "evidence": [
+        "stop via rcon; exit code 0 signal null after 725 ms; 0 shutdown log hits"
+       ]
+      },
+      {
+       "id": "no_leaks",
+       "status": "pass",
+       "evidence": [
+        "netns: java pid 3522033 gone; 0 marked processes; listening none of 47176,47133",
+        "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv289879-f9f39a; no listening port in 47100-47199"
+       ]
+      }
+     ],
+     "disk": {
+      "configOnDisk": true,
+      "configVersionOnDisk": 2,
+      "designerValuesOnDisk": "acfc171234bdd238",
+      "backups": [
+       "config.yml.bak-v1"
+      ],
+      "pluginLog": [
+       "[10:04:30] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Remapping plugin 'plugins/VoidArsenal-1.21.11-edit.jar'...",
+       "[10:04:30] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Done remapping plugin 'plugins/VoidArsenal-1.21.11-edit.jar' in 87ms.",
+       " - VoidArsenal (1.0.0)",
+       "[10:04:38] [Server thread/INFO]: [VoidArsenal] Loading server plugin VoidArsenal v1.0.0",
+       "[10:04:40] [Server thread/INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+       "[10:04:40] [Server thread/INFO]: [VoidArsenal] config.yml migrated from version 1 to 2 (60 designer values updated, backup config.yml.bak-v1)",
+       "[10:04:40] [Server thread/INFO]: [VoidArsenal] Designer items ready: storm_staff, vigor_tonic, void_reaper",
+       "[10:04:41] [Server thread/INFO]: [VoidArsenal] Disabling VoidArsenal v1.0.0"
+      ],
+      "pluginErrorLines": [],
+      "sandboxNoiseLines": 4
+     }
+    }
+   }
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "compile": {
+    "ok": true,
+    "hash": "80ad2ab1c19208e5785ea79ca87f412579571ce2c0b11f9d337fce489bd9f339",
+    "files": 29,
+    "params": 60,
+    "configVersion": 1,
+    "warnings": [
+     "vanilla_sound_unchecked"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 27,
+    "classFiles": 29,
+    "ms": 1412,
+    "warnings": 0
+   },
+   "jar": {
+    "sha256": "01931c86891a3f64afb41b4293afcbd5554b8491d44074e076e4096a45f04b37",
+    "bytes": 70158,
+    "reproducible": true
+   },
+   "catalog": {
+    "ok": true,
+    "particles": 28,
+    "effects": 31,
+    "consumableBases": 25,
+    "projectiles": 4
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 13.8s, peak RSS 782 MB)",
+    "bootMs": 13844,
+    "peakRssMb": 782,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L100: [10:05:00 INFO]: Done (12.457s)! For help, type \"help\"",
+       "wall 13844 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [10:04:59 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+       "help-command 'help voidarsenal': ok -> --------- Help: VoidArsenal --------------------------- | Below is a list of all VoidArsenal commands: | /voidarsenal: VoidArsenal items: give, list, params, | reload | ",
+       "command-answers 'voidarsenal': ok -> VoidArsenal items: storm_staff, vigor_tonic, void_reaper. Use /voidarsenal give <item> [player] [count], /voidarsenal list, /voidarsenal params, /voidarsenal reload | ",
+       "list-identity-recipes 'voidarsenal list': ok -> storm_staff: identity=ok material=blaze_rod abilities=2 recipe=registered | vigor_tonic: identity=ok material=honey_bottle abilities=1 recipe=registered | void_reaper: identity=ok material=netherite_sword abilities=2 recipe=registered | ",
+       "give-console-usage 'voidarsenal give void_reaper': ok -> Usage from the console: /voidarsenal give <item> <player> [count] | ",
+       "give-offline-player 'voidarsenal give void_reaper Nobody 2': ok -> Player Nobody is not online. | ",
+       "give-unknown-item 'voidarsenal give excalibur Nobody': ok -> Unknown item excalibur. | ",
+       "params-defaults 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark",
+       "config-clamped-on-reload: wrote plugins/VoidArsenal/config.yml (5992 bytes) before the command",
+       "config-clamped-on-reload 'voidarsenal reload': ok -> VoidArsenal config reloaded (3 notes) | - clamped items.void_reaper.abilities.void_pull.cooldown_ticks -5.0 -> 0.0 | - clamped items.void_reaper.abilities.void_pull.a0.n0.strength 99.0 -> 3.0 | - items.void_reaper.abilities.void_pull.a2.sou",
+       "params-after-clamp 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark",
+       "config-migrated-on-reload: wrote plugins/VoidArsenal/config.yml (6013 bytes) before the command",
+       "config-migrated-on-reload 'voidarsenal reload': ok -> VoidArsenal config reloaded (1 note) | - config.yml migrated from version 0 to 1 (60 designer values updated, backup config.yml.bak-v0) | ",
+       "params-after-migration 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 517 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3522452 gone; 0 marked processes; listening none of 47101,47176",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv289qa3-c2d5e9; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "configOnDisk": true,
+     "configVersionOnDisk": 1,
+     "designerValuesOnDisk": "acfc171234bdd238",
+     "backups": [
+      "config.yml.bak-v0"
+     ],
+     "pluginLog": [
+      " - VoidArsenal (1.0.0)",
+      "[10:04:56] [Server thread/INFO]: [VoidArsenal] Loading server plugin VoidArsenal v1.0.0",
+      "[10:04:59] [Server thread/INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+      "[10:04:59] [Server thread/INFO]: [VoidArsenal] Designer items ready: storm_staff, vigor_tonic, void_reaper",
+      "[10:05:02] [Server thread/WARN]: [VoidArsenal] config: clamped items.void_reaper.abilities.void_pull.cooldown_ticks -5.0 -> 0.0",
+      "[10:05:02] [Server thread/WARN]: [VoidArsenal] config: clamped items.void_reaper.abilities.void_pull.a0.n0.strength 99.0 -> 3.0",
+      "[10:05:02] [Server thread/WARN]: [VoidArsenal] config: items.void_reaper.abilities.void_pull.a2.sound is not a sound key, using nx_r7design:void_reaper.pull",
+      "[10:05:03] [Server thread/INFO]: [VoidArsenal] config.yml migrated from version 0 to 1 (60 designer values updated, backup config.yml.bak-v0)",
+      "[10:05:03] [Server thread/INFO]: [VoidArsenal] Disabling VoidArsenal v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "edit": {
+    "ok": true,
+    "applied": [
+     {
+      "path": "items.void_reaper.abilities.void_pull.cooldown_ticks",
+      "label": "Void Pull: cooldown (ticks, 20 = 1 s)",
+      "from": 160,
+      "to": 100
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.trigger.target_range",
+      "label": "Void Pull: target range (blocks)",
+      "from": 24,
+      "to": 30
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.a0.n0.strength",
+      "label": "Void Pull: pull to strength",
+      "from": 1.2,
+      "to": 2
+     },
+     {
+      "path": "items.void_reaper.abilities.void_pull.a2.sound",
+      "label": "Void Pull: sound key",
+      "from": "nx_r7design:void_reaper.pull",
+      "to": "minecraft:entity.warden.sonic_boom"
+     }
+    ],
+    "sourceDiff": [
+     "src/main/resources/config.yml"
+    ],
+    "javaChanged": [],
+    "readmeChanged": true,
+    "configVersion": 2,
+    "jarEntriesThatDiffer": [
+     "config.yml"
+    ],
+    "classFilesIdentical": true,
+    "jarSha256": "b34bc76e2537e641d3aabf5134ca821d08876493dd9803a4809dd6274235e2c9",
+    "flight": {
+     "status": "completed",
+     "overall": "passed",
+     "success": true,
+     "line": "Test Flight passed on Paper 26.2 (6 checks, boot 12.0s, peak RSS 809 MB)",
+     "checks": [
+      {
+       "id": "boot_done",
+       "status": "pass",
+       "evidence": [
+        "L101: [10:05:19 INFO]: Done (10.477s)! For help, type \"help\"",
+        "wall 12042 ms from spawn"
+       ]
+      },
+      {
+       "id": "plugins_enabled",
+       "status": "pass",
+       "evidence": [
+        "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+        "L86: [10:05:18 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+        "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+       ]
+      },
+      {
+       "id": "startup_log_clean",
+       "status": "pass",
+       "evidence": [
+        "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+       ]
+      },
+      {
+       "id": "rcon_checks",
+       "status": "pass",
+       "evidence": [
+        "plugins 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+        "params-after-update 'voidarsenal params void_reaper': ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+       ]
+      },
+      {
+       "id": "clean_stop",
+       "status": "pass",
+       "evidence": [
+        "stop via rcon; exit code 0 signal null after 458 ms; 0 shutdown log hits"
+       ]
+      },
+      {
+       "id": "no_leaks",
+       "status": "pass",
+       "evidence": [
+        "netns: java pid 3523362 gone; 0 marked processes; listening none of 47145,47103",
+        "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv28a6in-003ce2; no listening port in 47100-47199"
+       ]
+      }
+     ],
+     "disk": {
+      "configOnDisk": true,
+      "configVersionOnDisk": 2,
+      "designerValuesOnDisk": "acfc171234bdd238",
+      "backups": [
+       "config.yml.bak-v1"
+      ],
+      "pluginLog": [
+       " - VoidArsenal (1.0.0)",
+       "[10:05:16] [Server thread/INFO]: [VoidArsenal] Loading server plugin VoidArsenal v1.0.0",
+       "[10:05:18] [Server thread/INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+       "[10:05:18] [Server thread/INFO]: [VoidArsenal] config.yml migrated from version 1 to 2 (60 designer values updated, backup config.yml.bak-v1)",
+       "[10:05:18] [Server thread/INFO]: [VoidArsenal] Designer items ready: storm_staff, vigor_tonic, void_reaper",
+       "[10:05:20] [Server thread/INFO]: [VoidArsenal] Disabling VoidArsenal v1.0.0"
+      ],
+      "pluginErrorLines": [],
+      "sandboxNoiseLines": 4
+     }
+    }
+   }
+  }
+ ],
+ "javaRandom": [
+  "42 0.7275636800328681 0.6832234717598454 0.30871945533265976",
+  "7 0.7306990420600421 0.7491696031336331 0.34830970303125697"
+ ],
+ "leftovers": {
+  "runsDir": 0
+ }
+}

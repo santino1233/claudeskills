@@ -1,0 +1,663 @@
+{
+ "at": "2026-10-10T20:53:48.988Z",
+ "host": "node-2",
+ "realClient": false,
+ "bot": false,
+ "aiModel": "none (motion designs are hand-written fixtures; no model call)",
+ "fixtures": [
+  "lab_door (motion:door_hinge)",
+  "lab_pistol (motion:gun_reload, mag 3)",
+  "lab_fire (effect:fire)",
+  "broken_hinge (must be refused)"
+ ],
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "brokenSpec": {
+    "ok": true,
+    "tsErrors": [
+     "motion.clips[0].tracks[0]: hinge_axis: hinge door only rotates about y (key 1 rotates another axis)",
+     "motion.clips[0].tracks[0]: hinge_limit: hinge door rotates 140 degrees; its limits are 0..90",
+     "motion.clips[0].tracks: cap_particles_tick: 400 particles in one tick; the minecraft limit is 64",
+     "motion.machines[0].states[1].after.to: unresolved_ref: state nowhere does not exist"
+    ],
+    "serviceBundleRejected": true,
+    "compileRejected": true,
+    "workspaceProblems": [
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks[0]: hinge door only rotates about y (key 1 rotates another axis)",
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks[0]: hinge door rotates 140 degrees; its limits are 0..90",
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks: 400 particles in one tick; the minecraft limit is 64",
+     "assets/designs/broken_hinge.json: motion.machines[0].states[1].after.to: state nowhere does not exist"
+    ],
+    "goodFileStillOk": true,
+    "codes": [
+     "hinge_axis",
+     "hinge_limit",
+     "cap_particles_tick",
+     "unresolved_ref"
+    ]
+   },
+   "compile": {
+    "ok": true,
+    "hash": "e18e117345531dbce27c7d749e37ce010783d7af0b55e7082a8250d54f7dee89",
+    "files": 39,
+    "counts": {
+     "items": 0,
+     "menus": 0,
+     "quests": 0,
+     "motions": 3
+    },
+    "motionPrograms": [
+     {
+      "id": "lab_door",
+      "stats": {
+       "parts": 3,
+       "clips": 4,
+       "segments": 42,
+       "cues": 4,
+       "snaps": 0,
+       "numbers": 540
+      }
+     },
+     {
+      "id": "lab_fire",
+      "stats": {
+       "parts": 0,
+       "clips": 1,
+       "segments": 0,
+       "cues": 157,
+       "snaps": 0,
+       "numbers": 1413
+      }
+     },
+     {
+      "id": "lab_pistol",
+      "stats": {
+       "parts": 6,
+       "clips": 8,
+       "segments": 199,
+       "cues": 39,
+       "snaps": 0,
+       "numbers": 2739
+      }
+     }
+    ],
+    "warnings": [
+     "dropped_on_minecraft",
+     "dropped_on_minecraft",
+     "dropped_on_minecraft"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 37,
+    "classFiles": 59,
+    "ms": 1949,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "8a4138e5124d45a6d6aa2c559efca2055485602fee2ee5963d15236861044f87",
+    "bytes": 155178,
+    "reproducible": true
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.7s, peak RSS 900 MB)",
+    "bootMs": 18672,
+    "peakRssMb": 900,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L96: [20:54:11 INFO]: Done (17.424s)! For help, type \"help\"",
+       "wall 18672 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "MotionLab: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [20:54:10 INFO]: [MotionLab] Enabling MotionLab v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - MotionLab | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 868 MB, 252 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - MotionLab | ",
+       "motion-list 'motionlab motion list' [rss 868 MB, 254 ms]: ok -> lab_door: Lab door parts=3 clips=4 states=4 live=0/4 | lab_fire: Campfire flames parts=0 clips=1 states=2 live=0/2 | lab_pistol: Pistol on a stand parts=6 clips=8 states=8 live=0/2 | ",
+       "motion-check-door 'motionlab motion check lab_door' [rss 868 MB, 254 ms]: ok -> lab_door program: parts=3 clips=4 segments=42 cues=4 states=4 transitions=4 events=close,closed,open,opened,toggle box=1.25x2.125 | ",
+       "motion-check-pistol 'motionlab motion check lab_pistol' [rss 868 MB, 251 ms]: ok -> lab_pistol program: parts=6 clips=8 segments=199 cues=39 states=8 transitions=7 events=auto_cock,chambered,cock,fire,mag_in,reload box=1.199x0.371 | ",
+       "forceload 'forceload add -16 -16 16 16' [rss 875 MB, 553 ms]: ok (optional) -> Marked 9 chunks in minecraft:overworld from [-1, -1] to [1, 1] to be force loaded",
+       "debug-on 'motionlab motion debug on' [rss 875 MB, 253 ms]: ok -> Motion debug log on | ",
+       "spawn-door 'motionlab motion spawn lab_door world 0 -60 0 0' [rss 884 MB, 575 ms]: ok -> Spawned lab_door #1 at world 0.5 -60 0.5 yaw 0 (3 parts, tag nx_m0710n01.mi1) | ",
+       "door-entities 'execute if entity @e[type=block_display,tag=nx_m0710n01.mi1]' [rss 884 MB, 256 ms]: ok -> Test passed. Count: 3",
+       "door-interaction 'execute if entity @e[type=interaction,tag=nx_m0710n01.mi1]' [rss 884 MB, 250 ms]: ok -> Test passed. Count: 1",
+       "door-nbt-rotation-closed 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.left_rotation' [rss 884 MB, 259 ms]: ok -> Block Display has the following entity data: [0.0f, 0.0f, 0.0f, 1.0f]",
+       "door-nbt-scale 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.scale' [rss 885 MB, 251 ms]: ok -> Block Display has the following entity data: [1.0f, 2.0f, 0.1875f]",
+       "door-state-closed 'motionlab motion state 1' [rss 885 MB, 253 ms]: ok -> #1 lab_door state=closed clip=shut age=37 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.5,0,-0.094 q 0,0,0,1 s 1,2,0.188 i1 |   p2 t 0.22,0.915,0.099 q 0,0,0,1 s 0.16,0.05,0.05 i1 | ",
+       "door-toggle 'motionlab motion event 1 toggle' [rss 885 MB, 251 ms]: ok -> Queued toggle for 1 prop | ",
+       "door-state-open 'motionlab motion state 1' [rss 885 MB, 252 ms]: ok -> #1 lab_door state=open clip=ajar age=87 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.594,0,0 q 0,0.707,0,0.707 s 1,2,0.188 i1 |   p2 t -0.401,0.915,-0.72 q 0,0.707,0,0.707 s 0.16,0.05,0.05 i1 | ",
+       "door-nbt-rotation-open 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.left_rotation' [rss 885 MB, 251 ms]: ok -> Block Display has the following entity data: [0.0f, 0.7071f, 0.0f, 0.7071f]",
+       "door-nbt-interpolation 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] interpolation_duration' [rss 885 MB, 252 ms]: ok -> Block Display has the following entity data: 1",
+       "door-toggle-close 'motionlab motion event lab_door toggle' [rss 885 MB, 252 ms]: ok -> Queued toggle for 1 prop | ",
+       "door-state-closed-again 'motionlab motion state 1' [rss 886 MB, 253 ms]: ok -> #1 lab_door state=closed clip=shut age=137 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.5,0,-0.094 q 0,0,0,1 s 1,2,0.188 i1 |   p2 t 0.22,0.915,0.099 q 0,0,0,1 s 0.16,0.05,0.05 i1 | ",
+       "spawn-pistol 'motionlab motion spawn lab_pistol world 3 -60 0 90' [rss 886 MB, 252 ms]: ok -> Spawned lab_pistol #2 at world 3.5 -60 0.5 yaw 90 (6 parts, tag nx_m0710n01.mi2) | ",
+       "pistol-fire-1 'motionlab motion event 2 fire' [rss 886 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-fire-2 'motionlab motion event 2 fire' [rss 886 MB, 250 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-fire-3 'motionlab motion event 2 fire' [rss 886 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-state-empty 'motionlab motion state 2' [rss 886 MB, 253 ms]: ok -> #2 lab_pistol state=empty clip=empty age=58 ammo=0 chambered=0 |   p0 t -0.08,0.13,-0.6 q 0,0,0,1 s 0.16,0.14,0.675 i1 |   p1 t -0.07,-0.088,-0.017 q -0.105,0,0,0.994 s 0.14,0.3,0.16 i1 |   p2 t -0.075,0.255,-0.465 q 0,0,0,1 s 0.15,0.09,0.6",
+       "pistol-dry-fire 'motionlab motion event 2 fire' [rss 886 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-reload 'motionlab motion event 2 reload' [rss 887 MB, 251 ms]: ok -> Queued reload for 1 prop | ",
+       "pistol-state-reloaded 'motionlab motion state 2' [rss 887 MB, 253 ms]: ok -> #2 lab_pistol state=idle clip=idle age=143 ammo=3 chambered=1 |   p0 t -0.08,0.13,-0.6 q 0,0,0,1 s 0.16,0.14,0.675 i1 |   p1 t -0.07,-0.088,-0.017 q -0.105,0,0,0.994 s 0.14,0.3,0.16 i1 |   p2 t -0.075,0.255,-0.585 q 0,0,0,1 s 0.15,0.09,0.64",
+       "spawn-fire 'motionlab motion spawn lab_fire world -3 -60 0 0' [rss 887 MB, 251 ms]: ok -> Spawned lab_fire #3 at world -2.5 -60 0.5 yaw 0 (0 parts, tag nx_m0710n01.mi3) | ",
+       "fire-play 'motionlab motion event 3 play' [rss 887 MB, 251 ms]: ok -> Queued play for 1 prop | ",
+       "fire-state-play 'motionlab motion state 3' [rss 887 MB, 253 ms]: ok -> #3 lab_fire state=play clip=play age=34 | ",
+       "cap-per-motion 'motionlab motion spawn lab_pistol world 6 -60 0 0' [rss 887 MB, 252 ms]: ok -> Spawned lab_pistol #4 at world 6.5 -60 0.5 yaw 0 (6 parts, tag nx_m0710n01.mi4) | ",
+       "cap-per-motion-refused 'motionlab motion spawn lab_pistol world 9 -60 0 0' [rss 887 MB, 250 ms]: ok -> lab_pistol already has 2 live props (motions.lab_pistol.max_instances) | ",
+       "event-unknown-prop 'motionlab motion event 99 toggle' [rss 887 MB, 252 ms]: ok -> No live prop matches 99 | ",
+       "spawn-unknown-motion 'motionlab motion spawn car_kart world 0 -60 0' [rss 887 MB, 251 ms]: ok -> Usage: /motionlab motion spawn <id> [world x y z [yaw]] | ",
+       "spawn-console-usage 'motionlab motion spawn lab_door' [rss 887 MB, 252 ms]: ok -> Usage from the console: /motionlab motion spawn <id> <world> <x> <y> <z> [yaw] | ",
+       "ignored-event-logged 'motionlab motion event 1 explode' [rss 887 MB, 251 ms]: ok -> Queued explode for 1 prop | ",
+       "item-command-still-works 'motionlab list' [rss 887 MB, 251 ms]: ok -> ",
+       "despawn-all 'motionlab motion despawn all' [rss 887 MB, 254 ms]: ok -> Removed 4 props | ",
+       "no-entities-left 'execute if entity @e[tag=nx_m0710n01.motion]' [rss 887 MB, 251 ms]: ok -> Test failed",
+       "forceload-off 'forceload remove -16 -16 16 16' [rss 888 MB, 251 ms]: ok (optional) -> Unmarked 9 chunks in minecraft:overworld from [-1, -1] to [1, 1] for force loading"
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 645 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4024052 gone; 0 marked processes; listening none of 47144,47194",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2vghs0-09196a; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "logChecks": [
+     {
+      "id": "log-door-after-duration",
+      "status": "pass",
+      "evidence": [
+       "expected 13 ticks (TS lowering)",
+       "#1 t43 closed->opening (toggle)",
+       "#1 t56 opening->open (after)"
+      ]
+     },
+     {
+      "id": "log-door-open-sound-cue",
+      "status": "pass",
+      "evidence": [
+       "#1 t43 sound minecraft:block.wooden_door.open"
+      ]
+     },
+     {
+      "id": "log-pistol-three-shots",
+      "status": "pass",
+      "evidence": [
+       "#2 t12 idle->fire (fire) ammo=2 chambered=1",
+       "#2 t27 idle->fire (fire) ammo=1 chambered=1",
+       "#2 t42 idle->fire_last (fire) ammo=0 chambered=0"
+      ]
+     },
+     {
+      "id": "log-pistol-shot-cues",
+      "status": "pass",
+      "evidence": [
+       "#2 t12 sound minecraft:entity.firework_rocket.blast",
+       "#2 t27 sound minecraft:entity.firework_rocket.blast",
+       "#2 t42 sound minecraft:entity.firework_rocket.blast"
+      ]
+     },
+     {
+      "id": "log-pistol-reload-then-auto-cock",
+      "status": "pass",
+      "evidence": [
+       "expected 34 ticks",
+       "#2 t79 empty->reload_empty (reload) ammo=3 chambered=0",
+       "#2 t113 idle->cock (auto_cock) ammo=3 chambered=1"
+      ]
+     },
+     {
+      "id": "log-pistol-dry-fire-when-empty",
+      "status": "pass",
+      "evidence": [
+       "#2 t64 empty->dry (fire) ammo=0 chambered=0"
+      ]
+     },
+     {
+      "id": "log-fire-effect-cues",
+      "status": "pass",
+      "evidence": [
+       "#3 t10 sound minecraft:block.fire.ambient"
+      ]
+     }
+    ],
+    "motionLog": [
+     "#1 lab_door spawned at world 0.5 -60 0.5 yaw 0",
+     "#1 t1 -->closed (initial)",
+     "#1 t43 closed->opening (toggle)",
+     "#1 t43 sound minecraft:block.wooden_door.open",
+     "#1 t52 event opened",
+     "#1 t56 opening->open (after)",
+     "#1 t103 open->closing (toggle)",
+     "#1 t110 sound minecraft:block.wooden_door.close",
+     "#1 t110 event closed",
+     "#1 t111 closing->closed (after)",
+     "#2 lab_pistol spawned at world 3.5 -60 0.5 yaw 90",
+     "#2 t1 -->idle (initial) ammo=3 chambered=1",
+     "#2 t1 ignored auto_cock in idle",
+     "#2 t12 idle->fire (fire) ammo=2 chambered=1",
+     "#2 t12 sound minecraft:entity.firework_rocket.blast",
+     "#2 t16 fire->idle (after) ammo=2 chambered=1",
+     "#2 t16 ignored auto_cock in idle",
+     "#2 t27 idle->fire (fire) ammo=1 chambered=1",
+     "#2 t27 sound minecraft:entity.firework_rocket.blast",
+     "#2 t31 fire->idle (after) ammo=1 chambered=1",
+     "#2 t31 ignored auto_cock in idle",
+     "#2 t42 idle->fire_last (fire) ammo=0 chambered=0",
+     "#2 t42 sound minecraft:entity.firework_rocket.blast",
+     "#2 t46 fire_last->empty (after) ammo=0 chambered=0",
+     "#2 t64 empty->dry (fire) ammo=0 chambered=0",
+     "#2 t64 sound minecraft:block.lever.click",
+     "#2 t68 dry->empty (after) ammo=0 chambered=0",
+     "#2 t79 empty->reload_empty (reload) ammo=3 chambered=0",
+     "#2 t83 sound minecraft:block.iron_trapdoor.open",
+     "#2 t98 sound minecraft:block.iron_trapdoor.close",
+     "#2 t99 event mag_in",
+     "#2 t113 reload_empty->idle (after) ammo=3 chambered=0",
+     "#2 t113 idle->cock (auto_cock) ammo=3 chambered=1",
+     "#2 t118 sound minecraft:block.piston.contract",
+     "#2 t119 event chambered",
+     "#2 t123 cock->idle (after) ammo=3 chambered=1",
+     "#2 t123 ignored auto_cock in idle",
+     "#3 lab_fire spawned at world -2.5 -60 0.5 yaw 0",
+     "#3 t1 -->rest (initial)",
+     "#3 t10 rest->play (play)",
+     "#3 t10 sound minecraft:block.fire.ambient",
+     "#4 lab_pistol spawned at world 6.5 -60 0.5 yaw 0",
+     "#4 t1 -->idle (initial) ammo=3 chambered=1",
+     "#4 t1 ignored auto_cock in idle",
+     "#3 t50 sound minecraft:block.fire.ambient",
+     "#1 t356 ignored explode in closed"
+    ],
+    "pluginLog": [
+     "[20:54:01] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/MotionLab-1.21.11.jar'...",
+     "[20:54:01] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/MotionLab-1.21.11.jar' in 123ms.",
+     " - MotionLab (1.0.0)",
+     "[20:54:09] [Server thread/INFO]: [MotionLab] Loading server plugin MotionLab v1.0.0",
+     "[20:54:10] [Server thread/INFO]: [MotionLab] Enabling MotionLab v1.0.0",
+     "[20:54:11] [Server thread/INFO]: [MotionLab] Motion ready: lab_door, lab_fire, lab_pistol",
+     "[20:54:11] [Server thread/INFO]: [MotionLab] Designer ready: items -; menus -; quests -",
+     "[20:54:33] [Server thread/INFO]: [MotionLab] Disabling MotionLab v1.0.0"
+    ],
+    "pluginErrorLines": [],
+    "sandboxNoiseLines": 4
+   }
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "brokenSpec": {
+    "ok": true,
+    "tsErrors": [
+     "motion.clips[0].tracks[0]: hinge_axis: hinge door only rotates about y (key 1 rotates another axis)",
+     "motion.clips[0].tracks[0]: hinge_limit: hinge door rotates 140 degrees; its limits are 0..90",
+     "motion.clips[0].tracks: cap_particles_tick: 400 particles in one tick; the minecraft limit is 64",
+     "motion.machines[0].states[1].after.to: unresolved_ref: state nowhere does not exist"
+    ],
+    "serviceBundleRejected": true,
+    "compileRejected": true,
+    "workspaceProblems": [
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks[0]: hinge door only rotates about y (key 1 rotates another axis)",
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks[0]: hinge door rotates 140 degrees; its limits are 0..90",
+     "assets/designs/broken_hinge.json: motion.clips[0].tracks: 400 particles in one tick; the minecraft limit is 64",
+     "assets/designs/broken_hinge.json: motion.machines[0].states[1].after.to: state nowhere does not exist"
+    ],
+    "goodFileStillOk": true,
+    "codes": [
+     "hinge_axis",
+     "hinge_limit",
+     "cap_particles_tick",
+     "unresolved_ref"
+    ]
+   },
+   "compile": {
+    "ok": true,
+    "hash": "c45605bd127a3aa9e4542d04aeb1b44298e708d3bb22155a4b7eb2ad3944ec4c",
+    "files": 39,
+    "counts": {
+     "items": 0,
+     "menus": 0,
+     "quests": 0,
+     "motions": 3
+    },
+    "motionPrograms": [
+     {
+      "id": "lab_door",
+      "stats": {
+       "parts": 3,
+       "clips": 4,
+       "segments": 42,
+       "cues": 4,
+       "snaps": 0,
+       "numbers": 540
+      }
+     },
+     {
+      "id": "lab_fire",
+      "stats": {
+       "parts": 0,
+       "clips": 1,
+       "segments": 0,
+       "cues": 157,
+       "snaps": 0,
+       "numbers": 1413
+      }
+     },
+     {
+      "id": "lab_pistol",
+      "stats": {
+       "parts": 6,
+       "clips": 8,
+       "segments": 199,
+       "cues": 39,
+       "snaps": 0,
+       "numbers": 2739
+      }
+     }
+    ],
+    "warnings": [
+     "dropped_on_minecraft",
+     "dropped_on_minecraft",
+     "dropped_on_minecraft"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 37,
+    "classFiles": 59,
+    "ms": 2002,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "82336feb4d806ecb8aefc28283490e1334f75a7a152f6d264e066e06f9593847",
+    "bytes": 155186,
+    "reproducible": true
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.4s, peak RSS 877 MB)",
+    "bootMs": 10437,
+    "peakRssMb": 877,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L101: [20:54:48 INFO]: Done (9.180s)! For help, type \"help\"",
+       "wall 10437 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "MotionLab: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [20:54:47 INFO]: [MotionLab] Enabling MotionLab v1.0.0",
+       "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - MotionLab | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 806 MB, 252 ms]: ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - MotionLab | ",
+       "motion-list 'motionlab motion list' [rss 819 MB, 252 ms]: ok -> lab_door: Lab door parts=3 clips=4 states=4 live=0/4 | lab_fire: Campfire flames parts=0 clips=1 states=2 live=0/2 | lab_pistol: Pistol on a stand parts=6 clips=8 states=8 live=0/2 | ",
+       "motion-check-door 'motionlab motion check lab_door' [rss 819 MB, 254 ms]: ok -> lab_door program: parts=3 clips=4 segments=42 cues=4 states=4 transitions=4 events=close,closed,open,opened,toggle box=1.25x2.125 | ",
+       "motion-check-pistol 'motionlab motion check lab_pistol' [rss 819 MB, 250 ms]: ok -> lab_pistol program: parts=6 clips=8 segments=199 cues=39 states=8 transitions=7 events=auto_cock,chambered,cock,fire,mag_in,reload box=1.199x0.371 | ",
+       "forceload 'forceload add -16 -16 16 16' [rss 840 MB, 597 ms]: ok (optional) -> Marked 9 chunks in minecraft:overworld from [-1, -1] to [1, 1] to be force loaded",
+       "debug-on 'motionlab motion debug on' [rss 840 MB, 251 ms]: ok -> Motion debug log on | ",
+       "spawn-door 'motionlab motion spawn lab_door world 0 -60 0 0' [rss 848 MB, 579 ms]: ok -> Spawned lab_door #1 at world 0.5 -60 0.5 yaw 0 (3 parts, tag nx_m0710n01.mi1) | ",
+       "door-entities 'execute if entity @e[type=block_display,tag=nx_m0710n01.mi1]' [rss 848 MB, 256 ms]: ok -> Test passed. Count: 3",
+       "door-interaction 'execute if entity @e[type=interaction,tag=nx_m0710n01.mi1]' [rss 848 MB, 251 ms]: ok -> Test passed. Count: 1",
+       "door-nbt-rotation-closed 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.left_rotation' [rss 848 MB, 257 ms]: ok -> Block Display has the following entity data: [0.0f, 0.0f, 0.0f, 1.0f]",
+       "door-nbt-scale 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.scale' [rss 848 MB, 252 ms]: ok -> Block Display has the following entity data: [1.0f, 2.0f, 0.1875f]",
+       "door-state-closed 'motionlab motion state 1' [rss 849 MB, 255 ms]: ok -> #1 lab_door state=closed clip=shut age=36 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.5,0,-0.094 q 0,0,0,1 s 1,2,0.188 i1 |   p2 t 0.22,0.915,0.099 q 0,0,0,1 s 0.16,0.05,0.05 i1 | ",
+       "door-toggle 'motionlab motion event 1 toggle' [rss 849 MB, 251 ms]: ok -> Queued toggle for 1 prop | ",
+       "door-state-open 'motionlab motion state 1' [rss 849 MB, 251 ms]: ok -> #1 lab_door state=open clip=ajar age=86 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.594,0,0 q 0,0.707,0,0.707 s 1,2,0.188 i1 |   p2 t -0.401,0.915,-0.72 q 0,0.707,0,0.707 s 0.16,0.05,0.05 i1 | ",
+       "door-nbt-rotation-open 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] transformation.left_rotation' [rss 849 MB, 252 ms]: ok -> Block Display has the following entity data: [0.0f, 0.7071f, 0.0f, 0.7071f]",
+       "door-nbt-interpolation 'data get entity @e[tag=nx_m0710n01.mi1p1,limit=1] interpolation_duration' [rss 849 MB, 252 ms]: ok -> Block Display has the following entity data: 1",
+       "door-toggle-close 'motionlab motion event lab_door toggle' [rss 849 MB, 250 ms]: ok -> Queued toggle for 1 prop | ",
+       "door-state-closed-again 'motionlab motion state 1' [rss 849 MB, 252 ms]: ok -> #1 lab_door state=closed clip=shut age=136 |   p0 t -0.625,2,-0.125 q 0,0,0,1 s 1.25,0.125,0.25 i1 |   p1 t -0.5,0,-0.094 q 0,0,0,1 s 1,2,0.188 i1 |   p2 t 0.22,0.915,0.099 q 0,0,0,1 s 0.16,0.05,0.05 i1 | ",
+       "spawn-pistol 'motionlab motion spawn lab_pistol world 3 -60 0 90' [rss 849 MB, 252 ms]: ok -> Spawned lab_pistol #2 at world 3.5 -60 0.5 yaw 90 (6 parts, tag nx_m0710n01.mi2) | ",
+       "pistol-fire-1 'motionlab motion event 2 fire' [rss 850 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-fire-2 'motionlab motion event 2 fire' [rss 850 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-fire-3 'motionlab motion event 2 fire' [rss 850 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-state-empty 'motionlab motion state 2' [rss 850 MB, 252 ms]: ok -> #2 lab_pistol state=empty clip=empty age=59 ammo=0 chambered=0 |   p0 t -0.08,0.13,-0.6 q 0,0,0,1 s 0.16,0.14,0.675 i1 |   p1 t -0.07,-0.088,-0.017 q -0.105,0,0,0.994 s 0.14,0.3,0.16 i1 |   p2 t -0.075,0.255,-0.465 q 0,0,0,1 s 0.15,0.09,0.6",
+       "pistol-dry-fire 'motionlab motion event 2 fire' [rss 850 MB, 251 ms]: ok -> Queued fire for 1 prop | ",
+       "pistol-reload 'motionlab motion event 2 reload' [rss 850 MB, 251 ms]: ok -> Queued reload for 1 prop | ",
+       "pistol-state-reloaded 'motionlab motion state 2' [rss 850 MB, 252 ms]: ok -> #2 lab_pistol state=idle clip=idle age=144 ammo=3 chambered=1 |   p0 t -0.08,0.13,-0.6 q 0,0,0,1 s 0.16,0.14,0.675 i1 |   p1 t -0.07,-0.088,-0.017 q -0.105,0,0,0.994 s 0.14,0.3,0.16 i1 |   p2 t -0.075,0.255,-0.585 q 0,0,0,1 s 0.15,0.09,0.64",
+       "spawn-fire 'motionlab motion spawn lab_fire world -3 -60 0 0' [rss 850 MB, 252 ms]: ok -> Spawned lab_fire #3 at world -2.5 -60 0.5 yaw 0 (0 parts, tag nx_m0710n01.mi3) | ",
+       "fire-play 'motionlab motion event 3 play' [rss 850 MB, 251 ms]: ok -> Queued play for 1 prop | ",
+       "fire-state-play 'motionlab motion state 3' [rss 850 MB, 252 ms]: ok -> #3 lab_fire state=play clip=play age=34 | ",
+       "cap-per-motion 'motionlab motion spawn lab_pistol world 6 -60 0 0' [rss 850 MB, 253 ms]: ok -> Spawned lab_pistol #4 at world 6.5 -60 0.5 yaw 0 (6 parts, tag nx_m0710n01.mi4) | ",
+       "cap-per-motion-refused 'motionlab motion spawn lab_pistol world 9 -60 0 0' [rss 850 MB, 251 ms]: ok -> lab_pistol already has 2 live props (motions.lab_pistol.max_instances) | ",
+       "event-unknown-prop 'motionlab motion event 99 toggle' [rss 850 MB, 250 ms]: ok -> No live prop matches 99 | ",
+       "spawn-unknown-motion 'motionlab motion spawn car_kart world 0 -60 0' [rss 850 MB, 252 ms]: ok -> Usage: /motionlab motion spawn <id> [world x y z [yaw]] | ",
+       "spawn-console-usage 'motionlab motion spawn lab_door' [rss 850 MB, 251 ms]: ok -> Usage from the console: /motionlab motion spawn <id> <world> <x> <y> <z> [yaw] | ",
+       "ignored-event-logged 'motionlab motion event 1 explode' [rss 850 MB, 251 ms]: ok -> Queued explode for 1 prop | ",
+       "item-command-still-works 'motionlab list' [rss 850 MB, 252 ms]: ok -> ",
+       "despawn-all 'motionlab motion despawn all' [rss 850 MB, 254 ms]: ok -> Removed 4 props | ",
+       "no-entities-left 'execute if entity @e[tag=nx_m0710n01.motion]' [rss 850 MB, 251 ms]: ok -> Test failed",
+       "forceload-off 'forceload remove -16 -16 16 16' [rss 864 MB, 251 ms]: ok (optional) -> Unmarked 9 chunks in minecraft:overworld from [-1, -1] to [1, 1] for force loading"
+      ]
+     },
+     {
+      "id": "playtest",
+      "status": "not_run",
+      "evidence": []
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 584 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 4024683 gone; 0 marked processes; listening none of 47165,47125",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2vhgm0-db869c; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "logChecks": [
+     {
+      "id": "log-door-after-duration",
+      "status": "pass",
+      "evidence": [
+       "expected 13 ticks (TS lowering)",
+       "#1 t42 closed->opening (toggle)",
+       "#1 t55 opening->open (after)"
+      ]
+     },
+     {
+      "id": "log-door-open-sound-cue",
+      "status": "pass",
+      "evidence": [
+       "#1 t42 sound minecraft:block.wooden_door.open"
+      ]
+     },
+     {
+      "id": "log-pistol-three-shots",
+      "status": "pass",
+      "evidence": [
+       "#2 t12 idle->fire (fire) ammo=2 chambered=1",
+       "#2 t27 idle->fire (fire) ammo=1 chambered=1",
+       "#2 t43 idle->fire_last (fire) ammo=0 chambered=0"
+      ]
+     },
+     {
+      "id": "log-pistol-shot-cues",
+      "status": "pass",
+      "evidence": [
+       "#2 t12 sound minecraft:entity.firework_rocket.blast",
+       "#2 t27 sound minecraft:entity.firework_rocket.blast",
+       "#2 t43 sound minecraft:entity.firework_rocket.blast"
+      ]
+     },
+     {
+      "id": "log-pistol-reload-then-auto-cock",
+      "status": "pass",
+      "evidence": [
+       "expected 34 ticks",
+       "#2 t80 empty->reload_empty (reload) ammo=3 chambered=0",
+       "#2 t114 idle->cock (auto_cock) ammo=3 chambered=1"
+      ]
+     },
+     {
+      "id": "log-pistol-dry-fire-when-empty",
+      "status": "pass",
+      "evidence": [
+       "#2 t65 empty->dry (fire) ammo=0 chambered=0"
+      ]
+     },
+     {
+      "id": "log-fire-effect-cues",
+      "status": "pass",
+      "evidence": [
+       "#3 t10 sound minecraft:block.fire.ambient"
+      ]
+     }
+    ],
+    "motionLog": [
+     "#1 lab_door spawned at world 0.5 -60 0.5 yaw 0",
+     "#1 t1 -->closed (initial)",
+     "#1 t42 closed->opening (toggle)",
+     "#1 t42 sound minecraft:block.wooden_door.open",
+     "#1 t51 event opened",
+     "#1 t55 opening->open (after)",
+     "#1 t102 open->closing (toggle)",
+     "#1 t109 sound minecraft:block.wooden_door.close",
+     "#1 t109 event closed",
+     "#1 t110 closing->closed (after)",
+     "#2 lab_pistol spawned at world 3.5 -60 0.5 yaw 90",
+     "#2 t1 -->idle (initial) ammo=3 chambered=1",
+     "#2 t1 ignored auto_cock in idle",
+     "#2 t12 idle->fire (fire) ammo=2 chambered=1",
+     "#2 t12 sound minecraft:entity.firework_rocket.blast",
+     "#2 t16 fire->idle (after) ammo=2 chambered=1",
+     "#2 t16 ignored auto_cock in idle",
+     "#2 t27 idle->fire (fire) ammo=1 chambered=1",
+     "#2 t27 sound minecraft:entity.firework_rocket.blast",
+     "#2 t31 fire->idle (after) ammo=1 chambered=1",
+     "#2 t31 ignored auto_cock in idle",
+     "#2 t43 idle->fire_last (fire) ammo=0 chambered=0",
+     "#2 t43 sound minecraft:entity.firework_rocket.blast",
+     "#2 t47 fire_last->empty (after) ammo=0 chambered=0",
+     "#2 t65 empty->dry (fire) ammo=0 chambered=0",
+     "#2 t65 sound minecraft:block.lever.click",
+     "#2 t69 dry->empty (after) ammo=0 chambered=0",
+     "#2 t80 empty->reload_empty (reload) ammo=3 chambered=0",
+     "#2 t84 sound minecraft:block.iron_trapdoor.open",
+     "#2 t99 sound minecraft:block.iron_trapdoor.close",
+     "#2 t100 event mag_in",
+     "#2 t114 reload_empty->idle (after) ammo=3 chambered=0",
+     "#2 t114 idle->cock (auto_cock) ammo=3 chambered=1",
+     "#2 t119 sound minecraft:block.piston.contract",
+     "#2 t120 event chambered",
+     "#2 t124 cock->idle (after) ammo=3 chambered=1",
+     "#2 t124 ignored auto_cock in idle",
+     "#3 lab_fire spawned at world -2.5 -60 0.5 yaw 0",
+     "#3 t1 -->rest (initial)",
+     "#3 t10 rest->play (play)",
+     "#3 t10 sound minecraft:block.fire.ambient",
+     "#4 lab_pistol spawned at world 6.5 -60 0.5 yaw 0",
+     "#4 t1 -->idle (initial) ammo=3 chambered=1",
+     "#4 t1 ignored auto_cock in idle",
+     "#3 t50 sound minecraft:block.fire.ambient",
+     "#1 t355 ignored explode in closed"
+    ],
+    "pluginLog": [
+     " - MotionLab (1.0.0)",
+     "[20:54:46] [Server thread/INFO]: [MotionLab] Loading server plugin MotionLab v1.0.0",
+     "[20:54:47] [Server thread/INFO]: [MotionLab] Enabling MotionLab v1.0.0",
+     "[20:54:48] [Server thread/INFO]: [MotionLab] Motion ready: lab_door, lab_fire, lab_pistol",
+     "[20:54:48] [Server thread/INFO]: [MotionLab] Designer ready: items -; menus -; quests -",
+     "[20:55:10] [Server thread/INFO]: [MotionLab] Disabling MotionLab v1.0.0"
+    ],
+    "pluginErrorLines": [],
+    "sandboxNoiseLines": 4
+   }
+  }
+ ],
+ "leftovers": {
+  "runsDir": 0
+ },
+ "commit": "feature/cyrus-r21-motion (after merging feature/cyrus-r2)"
+}

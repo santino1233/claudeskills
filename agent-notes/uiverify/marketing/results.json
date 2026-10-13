@@ -1,0 +1,395 @@
+[
+  {
+    "mode": "desktop",
+    "route": "/",
+    "status": 200,
+    "finalUrl": "/",
+    "errors": [
+      "warning: [.WebGL-0x3f0400156600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x3f0403fdfe00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+      "error: A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variabl"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.hg-lab",
+      "DIV.hg-lab",
+      "DIV.hg-lab",
+      "DIV.gs-art"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/pricing",
+    "status": 200,
+    "finalUrl": "/pricing",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/mods",
+    "status": 200,
+    "finalUrl": "/mods",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.nlh-rows"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/compare",
+    "status": 200,
+    "finalUrl": "/compare",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "I.floor"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/free-valheim-server",
+    "status": 200,
+    "finalUrl": "/free-valheim-server",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/game-servers/directory",
+    "status": 200,
+    "finalUrl": "/game-servers/directory",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/vps-hosting",
+    "status": 404,
+    "finalUrl": "/vps-hosting",
+    "errors": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "bad": [
+      "404 /vps-hosting"
+    ],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/web-hosting",
+    "status": 200,
+    "finalUrl": "/web-hosting",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.",
+      "SPAN.",
+      "SPAN.",
+      "SPAN."
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/domains",
+    "status": 200,
+    "finalUrl": "/domains",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/about",
+    "status": 200,
+    "finalUrl": "/about",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/contact",
+    "status": 200,
+    "finalUrl": "/contact",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/tools/minecraft-skin-creator",
+    "status": 200,
+    "finalUrl": "/tools/minecraft-skin-creator",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/mods/games/valheim",
+    "status": 200,
+    "finalUrl": "/mods/games/valheim",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.mgh-art",
+      "IMG.",
+      "circle.[object SVGAnimatedString]",
+      "A.xmod"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/games/art/valheim",
+    "status": 404,
+    "finalUrl": "/games/art/valheim",
+    "errors": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "bad": [
+      "404 /games/art/valheim"
+    ],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/",
+    "status": 200,
+    "finalUrl": "/",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.hg-lab",
+      "SPAN.flag flag-sg",
+      "DIV.hg-lab",
+      "SPAN.flag flag-jp"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/pricing",
+    "status": 500,
+    "finalUrl": "/pricing",
+    "errors": [
+      "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGEERROR SyntaxError: Unexpected end of JSON input"
+    ],
+    "bad": [
+      "500 /pricing"
+    ],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/mods",
+    "status": 200,
+    "finalUrl": "/mods",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.nlh-rows"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/compare",
+    "status": 200,
+    "finalUrl": "/compare",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "I.floor",
+      "DIV.pass-main",
+      "DIV.pass-top",
+      "SPAN.pass-cls"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/free-valheim-server",
+    "status": 200,
+    "finalUrl": "/free-valheim-server",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/game-servers/directory",
+    "status": 200,
+    "finalUrl": "/game-servers/directory",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "ARTICLE.au-card dr-card",
+      "DIV.dr-top",
+      "SPAN.dr-badge c",
+      "P.dr-tag"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/vps-hosting",
+    "status": 404,
+    "finalUrl": "/vps-hosting",
+    "errors": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "bad": [
+      "404 /vps-hosting"
+    ],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/web-hosting",
+    "status": 200,
+    "finalUrl": "/web-hosting",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.",
+      "SPAN.",
+      "SPAN.",
+      "SPAN."
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/domains",
+    "status": 200,
+    "finalUrl": "/domains",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.nxm-glassbtn"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/about",
+    "status": 200,
+    "finalUrl": "/about",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/contact",
+    "status": 200,
+    "finalUrl": "/contact",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/tools/minecraft-skin-creator",
+    "status": 200,
+    "finalUrl": "/tools/minecraft-skin-creator",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/mods/games/valheim",
+    "status": 200,
+    "finalUrl": "/mods/games/valheim",
+    "errors": [
+      "warning: Image with src \"/logo.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.mgh-art",
+      "IMG.",
+      "A.xmod",
+      "DIV.mc-art"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/games/art/valheim",
+    "status": 404,
+    "finalUrl": "/games/art/valheim",
+    "errors": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "bad": [
+      "404 /games/art/valheim"
+    ],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  }
+]

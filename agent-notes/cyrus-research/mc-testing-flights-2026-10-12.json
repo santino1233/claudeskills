@@ -1,0 +1,666 @@
+{
+ "at": "2026-10-12T06:20:42.570Z",
+ "host": "node-2",
+ "version": "1.21.11",
+ "realClient": false,
+ "flights": [
+  {
+   "name": "control-combat",
+   "mutant": "main-thread-spam",
+   "control": true,
+   "ok": true,
+   "verdict": "main-thread-spam control: TfHello holds 20 TPS under the same load: stress passed",
+   "wallMs": 69765,
+   "overall": "passed",
+   "reasons": [],
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L95: [06:17:31 INFO]: Done (17.870s)! For help, type \"help\"",
+      "wall 19270 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "TfHello: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [06:17:31 INFO]: [TfHello] Enabling TfHello v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - TfHello | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "no RCON checks in the spec"
+     ]
+    },
+    {
+     "id": "worldgen",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "stress",
+     "status": "pass",
+     "evidence": [
+      "stress PASS: TPS held (median 19.96, lowest 18.74) under load",
+      "load: 54 minecraft:pig summoned, 108 chunks force-loaded, 0 mod command(s), bot combat (survival): 40 hits, hurt 3x, 9 kills, 0 deaths, 10 hostiles summoned",
+      "numbers: baseline 19.93 TPS at 9.1% CPU, load median 19.96 min 18.74, under 15 for 0 s, stall 0 s, MSPT max 14.2, entities max 103, RSS peak 907 MB (+47)",
+      "log while loaded: 0 \"Can't keep up\" line(s)"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 739 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 1351737 gone; 0 marked processes; listening none of 47119,47102",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv4v0si7-5cb609; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "stress": {
+    "verdict": "pass",
+    "reasons": [
+     "TPS held (median 19.96, lowest 18.74) under load"
+    ],
+    "numbers": {
+     "baselineTps": 19.93,
+     "baselineCpuPct": 9.1,
+     "tpsMin": 18.74,
+     "tpsMedian": 19.96,
+     "lowSec": 0,
+     "warnSec": 0,
+     "stallSec": 0,
+     "msptMax": 14.2,
+     "entitiesMax": 103,
+     "rssPeakMb": 907,
+     "rssGrowthMb": 47,
+     "loadSamples": 15
+    },
+    "bot": {
+     "ran": true,
+     "schema": 1,
+     "username": "NxStress",
+     "mode": "combat",
+     "joined": true,
+     "placed": 0,
+     "broken": 0,
+     "failed": 0,
+     "teleports": 0,
+     "notes": [],
+     "bot": {
+      "mineflayer": "4.39.0"
+     },
+     "gamemode": "survival",
+     "attacks": 40,
+     "hurt": 3,
+     "kills": 9,
+     "deaths": 0,
+     "summoned": 10,
+     "setupFailed": 0
+    }
+   },
+   "worldgen": null,
+   "runId": "tf-1-21-11-mv4v0si7-5cb609",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47119, rcon 47102 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "mutant-broken",
+   "mutant": "throws-on-enable",
+   "control": false,
+   "ok": true,
+   "verdict": "throws-on-enable: rejected by plugins_enabled: TfBroken: NOT enabled (log: enabling=true enableError=true",
+   "wallMs": 20097,
+   "overall": "failed",
+   "reasons": [
+    "plugins_enabled failed: TfBroken: NOT enabled (log: enabling=true enableError=true loadError=false disabled=true; rcon plugins: false)",
+    "startup_log_clean failed: 110 startup lines scanned with 5 matchers, 2 ignores: 2 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L110: [06:18:41 INFO]: Done (16.798s)! For help, type \"help\"",
+      "wall 18067 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "fail",
+     "evidence": [
+      "TfBroken: NOT enabled (log: enabling=true enableError=true loadError=false disabled=true; rcon plugins: false)",
+      "L88: [06:18:41 INFO]: [TfBroken] Enabling TfBroken v1.0.0",
+      "L90: [06:18:41 ERROR]: Error occurred while enabling TfBroken v1.0.0 (Is it up to date?)",
+      "L104: [06:18:41 INFO]: [TfBroken] Disabling TfBroken v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - TfBroken | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "110 startup lines scanned with 5 matchers, 2 ignores: 2 hits, 3 ignored (no-net-yggdrasil)",
+      "L90 [level-error] [06:18:41 ERROR]: Error occurred while enabling TfBroken v1.0.0 (Is it up to date?)",
+      "L91 [exception-header] java.lang.IllegalStateException: TfBroken deliberately failed in onEnable"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "no RCON checks in the spec"
+     ]
+    },
+    {
+     "id": "worldgen",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "stress",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 687 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 1352473 gone; 0 marked processes; listening none of 47158,47186",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv4v2ayq-a4d2e6; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "stress": null,
+   "worldgen": null,
+   "runId": "tf-1-21-11-mv4v2ayq-a4d2e6",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47158, rcon 47186 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "mutant-spam",
+   "mutant": "main-thread-spam",
+   "control": false,
+   "ok": true,
+   "verdict": "main-thread-spam: rejected by stress: the mod keeps the main thread busy every tick",
+   "wallMs": 59079,
+   "overall": "failed",
+   "reasons": [
+    "stress failed: stress FAIL: the server was already under 15 TPS before any load (10.99 TPS) while it used 126.1% of a CPU core: the mod keeps the main thread busy every tick"
+   ],
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L95: [06:19:02 INFO]: Done (16.627s)! For help, type \"help\"",
+      "wall 17863 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "TfSpam: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [06:19:01 INFO]: [TfSpam] Enabling TfSpam v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - TfSpam | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "no RCON checks in the spec"
+     ]
+    },
+    {
+     "id": "worldgen",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "stress",
+     "status": "fail",
+     "evidence": [
+      "stress FAIL: the server was already under 15 TPS before any load (10.99 TPS) while it used 126.1% of a CPU core: the mod keeps the main thread busy every tick",
+      "load: 38 minecraft:pig summoned, 72 chunks force-loaded, 0 mod command(s), bot placed 31 / broke 31 / teleported 3",
+      "numbers: baseline 10.99 TPS at 126.1% CPU, load median 10.81 min 7.55, under 15 for 31.57 s, stall 0 s, MSPT max 126.2, entities max 37, RSS peak 903 MB (+41)",
+      "log while loaded: 0 \"Can't keep up\" line(s)"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 876 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 1352795 gone; 0 marked processes; listening none of 47132,47118",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv4v2r5h-897b9d; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "stress": {
+    "verdict": "fail",
+    "reasons": [
+     "the server was already under 15 TPS before any load (10.99 TPS) while it used 126.1% of a CPU core: the mod keeps the main thread busy every tick"
+    ],
+    "numbers": {
+     "baselineTps": 10.99,
+     "baselineCpuPct": 126.1,
+     "tpsMin": 7.55,
+     "tpsMedian": 10.81,
+     "lowSec": 31.57,
+     "warnSec": 31.57,
+     "stallSec": 0,
+     "msptMax": 126.2,
+     "entitiesMax": 37,
+     "rssPeakMb": 903,
+     "rssGrowthMb": 41,
+     "loadSamples": 11
+    },
+    "bot": {
+     "ran": true,
+     "schema": 1,
+     "username": "NxStress",
+     "mode": "build",
+     "joined": true,
+     "placed": 31,
+     "broken": 31,
+     "failed": 0,
+     "teleports": 3,
+     "notes": [],
+     "bot": {
+      "mineflayer": "4.39.0"
+     }
+    }
+   },
+   "worldgen": null,
+   "runId": "tf-1-21-11-mv4v2r5h-897b9d",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47132, rcon 47118 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "control-worldgen",
+   "mutant": "ore-in-air",
+   "control": true,
+   "ok": true,
+   "verdict": "ore-in-air control: the showcase pack's amethyst ore is found in its range: worldgen passed",
+   "wallMs": 34566,
+   "overall": "passed",
+   "reasons": [],
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L97: [06:19:58 INFO]: Done (14.247s)! For help, type \"help\"",
+      "wall 15456 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "97 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "datapacks-enabled 'datapack list enabled' [rss 1171 MB, 297 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_worldg01-crystal_realm.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "worldgen",
+     "status": "pass",
+     "evidence": [
+      "amethyst_ore-crystal: nx_worldg01:amethyst_ore: 149 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:crystal (y -48..64), expected 1-4096: ok",
+      "amethyst_ore-flatland: nx_worldg01:amethyst_ore: 11 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:flatland (y 0..64), expected 0-4096: ok"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "stress",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 940 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 1353339 gone; 0 marked processes; listening none of 47168,47182",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv4v40s8-9d7676; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "stress": null,
+   "worldgen": {
+    "schema": 1,
+    "probes": [
+     {
+      "id": "amethyst_ore-crystal",
+      "status": "pass",
+      "measured": 149,
+      "expected": {
+       "min": 1,
+       "max": 4096
+      },
+      "perChunk": {
+       "2,2": 33,
+       "-3,2": 42,
+       "2,-3": 37,
+       "-3,-3": 37
+      },
+      "line": "amethyst_ore-crystal: nx_worldg01:amethyst_ore: 149 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:crystal (y -48..64), expected 1-4096: ok",
+      "feature": "nx_worldg01:amethyst_ore",
+      "dimension": "nx_worldg01:crystal",
+      "blocks": [
+       "minecraft:amethyst_block",
+       "minecraft:budding_amethyst"
+      ],
+      "chunks": [
+       [
+        2,
+        2
+       ],
+       [
+        -3,
+        2
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        -3,
+        -3
+       ]
+      ],
+      "ms": 9909,
+      "notes": [
+       "Marked 9 chunks in nx_worldg01:crystal from [1, 1] to [3, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [-4, 1] to [-2, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [1, -4] to [3, -2] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [-4, -4] to [-2, -2] to be force loaded"
+      ]
+     },
+     {
+      "id": "amethyst_ore-flatland",
+      "status": "pass",
+      "measured": 11,
+      "expected": {
+       "min": 0,
+       "max": 4096
+      },
+      "perChunk": {
+       "2,2": 0,
+       "-3,2": 11,
+       "2,-3": 0,
+       "-3,-3": 0
+      },
+      "line": "amethyst_ore-flatland: nx_worldg01:amethyst_ore: 11 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:flatland (y 0..64), expected 0-4096: ok",
+      "feature": "nx_worldg01:amethyst_ore",
+      "dimension": "nx_worldg01:flatland",
+      "blocks": [
+       "minecraft:amethyst_block",
+       "minecraft:budding_amethyst"
+      ],
+      "chunks": [
+       [
+        2,
+        2
+       ],
+       [
+        -3,
+        2
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        -3,
+        -3
+       ]
+      ],
+      "ms": 7192,
+      "notes": [
+       "Marked 9 chunks in nx_worldg01:flatland from [1, 1] to [3, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:flatland from [-4, 1] to [-2, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:flatland from [1, -4] to [3, -2] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:flatland from [-4, -4] to [-2, -2] to be force loaded"
+      ]
+     }
+    ]
+   },
+   "runId": "tf-1-21-11-mv4v40s8-9d7676",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47168, rcon 47182 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "mutant-ore-in-air",
+   "mutant": "ore-in-air",
+   "control": false,
+   "ok": true,
+   "verdict": "ore-in-air: rejected by worldgen: amethyst_ore generated too little: measured 0 ",
+   "wallMs": 25022,
+   "overall": "failed",
+   "reasons": [
+    "worldgen failed: amethyst_ore-crystal: nx_worldg01:amethyst_ore generated too little: measured 0 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:crystal (y 200..250), expected 1-4096 (count 8 x size 8 per chunk in y 200..250: at least one block expected, at most 4096)"
+   ],
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L97: [06:20:33 INFO]: Done (14.096s)! For help, type \"help\"",
+      "wall 15454 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "97 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "datapacks-enabled 'datapack list enabled' [rss 1125 MB, 262 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_worldg01-crystal_realm.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "worldgen",
+     "status": "fail",
+     "evidence": [
+      "amethyst_ore-crystal: nx_worldg01:amethyst_ore generated too little: measured 0 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:crystal (y 200..250), expected 1-4096 (count 8 x size 8 per chunk in y 200..250: at least one block expected, at most 4096)"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "stress",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 713 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 1353691 gone; 0 marked processes; listening none of 47188,47138",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv4v4rgs-181d78; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "stress": null,
+   "worldgen": {
+    "schema": 1,
+    "probes": [
+     {
+      "id": "amethyst_ore-crystal",
+      "status": "fail",
+      "measured": 0,
+      "expected": {
+       "min": 1,
+       "max": 4096
+      },
+      "perChunk": {
+       "2,2": 0,
+       "-3,2": 0,
+       "2,-3": 0,
+       "-3,-3": 0
+      },
+      "line": "amethyst_ore-crystal: nx_worldg01:amethyst_ore generated too little: measured 0 amethyst_block + budding_amethyst in 4 chunk columns of nx_worldg01:crystal (y 200..250), expected 1-4096 (count 8 x size 8 per chunk in y 200..250: at least one block expected, at most 4096)",
+      "feature": "nx_worldg01:amethyst_ore",
+      "dimension": "nx_worldg01:crystal",
+      "blocks": [
+       "minecraft:amethyst_block",
+       "minecraft:budding_amethyst"
+      ],
+      "chunks": [
+       [
+        2,
+        2
+       ],
+       [
+        -3,
+        2
+       ],
+       [
+        2,
+        -3
+       ],
+       [
+        -3,
+        -3
+       ]
+      ],
+      "ms": 7804,
+      "notes": [
+       "Marked 9 chunks in nx_worldg01:crystal from [1, 1] to [3, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [-4, 1] to [-2, 3] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [1, -4] to [3, -2] to be force loaded",
+       "Marked 9 chunks in nx_worldg01:crystal from [-4, -4] to [-2, -2] to be force loaded"
+      ]
+     }
+    ]
+   },
+   "runId": "tf-1-21-11-mv4v4rgs-181d78",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47188, rcon 47138 (private netns, 127.0.0.1)"
+   ]
+  }
+ ],
+ "allOk": true
+}

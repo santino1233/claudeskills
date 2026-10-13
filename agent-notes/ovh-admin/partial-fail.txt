@@ -1,0 +1,20 @@
+B4: signing up and browsing are NOT gated — only buying is
+B4: the schema carries the field and the token, additively
+HARD STOP at the window's end: the running vzdump is terminated and the guest is deferred to the next window
+HAZARD: every export of a "use server" module is authenticated, or explicitly anonymous
+a freshly minted state verifies for the SAME uid that requested it
+a state minted for one uid is rejected when checked against a different uid
+a tampered state (bad signature) is rejected
+every fulfilment failure that captured money notifies the customer
+every page that shows MRR derives it from serverMonthlyCents / fleetMrrCents
+every page that shows revenue derives it from REVENUE_WHERE
+every route that rate-limits sources its IP from the trusted helper
+move bridge: engine absent on main, run gated by env even once present
+no NEW call site keys anything on the caller-supplied first hop
+payAndDeploy hands its own quote to checkout instead of letting it re-quote
+serverAction returns errors for the customer instead of throwing them away
+the server danger-zone copy names the volumes a delete purges
+vpsEffectiveMonthly reflects the discounted per-month price
+vpsTerm returns the matching term by months
+vpsTermPriceCents applies commitment discounts
+vpsTermPriceCents rounds to whole cents

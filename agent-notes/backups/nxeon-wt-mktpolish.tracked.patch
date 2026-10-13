@@ -1,0 +1,737 @@
+diff --git a/app/nxm/_components/FooterColumns.tsx b/app/nxm/_components/FooterColumns.tsx
+new file mode 100644
+index 0000000000..49bd403a4b
+--- /dev/null
++++ b/app/nxm/_components/FooterColumns.tsx
+@@ -0,0 +1,35 @@
++"use client";
++
++import { useEffect, useRef } from "react";
++
++/**
++ * One footer link column. Desktop (>= 760px): a plain always-open list.
++ * Mobile: a native <details> accordion, collapsed. The markup is rendered
++ * `open` on the server so every link is in the HTML, crawlable and usable
++ * without JS; the effect collapses it on narrow screens only (the footer sits
++ * below the fold, so there is no visible flash and nothing above it moves).
++ */
++export function FooterColumn({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
++  const ref = useRef<HTMLDetailsElement>(null);
++  useEffect(() => {
++    const el = ref.current;
++    if (!el) return;
++    const mq = window.matchMedia("(min-width: 760px)");
++    const sync = () => { el.open = mq.matches; };
++    sync();
++    mq.addEventListener("change", sync);
++    return () => mq.removeEventListener("change", sync);
++  }, []);
++  return (
++    <details className="fcol" ref={ref} open>
++      <summary
++        id={id}
++        onClick={(e) => { if (window.matchMedia("(min-width: 760px)").matches) e.preventDefault(); }}
++      >
++        <h2>{title}</h2>
++        <svg className="fcol-chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
++      </summary>
++      {children}
++    </details>
++  );
++}
+diff --git a/app/nxm/_components/NxmFooter.tsx b/app/nxm/_components/NxmFooter.tsx
+index 6affd24b7e..d93f047bd3 100644
+--- a/app/nxm/_components/NxmFooter.tsx
++++ b/app/nxm/_components/NxmFooter.tsx
+@@ -1,7 +1,10 @@
+ import Link from "next/link";
+-import { NXM_ROOT } from "../_data/lib";
++import { NXM_ROOT, nxmHref } from "../_data/lib";
+ import Image from "next/image";
+ import { getSetting, getSettingBool, SETTINGS_DEFAULTS } from "@/lib/settings";
++import { getSocialLinks } from "@/lib/social-links";
++import { FOOTER_COLUMNS } from "./footer-config";
++import { FooterColumn } from "./FooterColumns";
+ import { NxmNewsletterForm } from "./NxmNewsletterForm";
+ import { NxmFooterStatus } from "./NxmFooterStatus";
+ 
+@@ -20,8 +23,9 @@ import { NxmFooterStatus } from "./NxmFooterStatus";
+  * server action (lib/actions-newsletter.ts, same one the live footer's box
+  * calls), and every nav link below points at a real /nxm route from
+  * `app/nxm/_seo/registry.ts` / `tools/nxm/nxmlib.py`'s ROUTES — never a dead
+- * `#anchor`. Items from the design's nav with no /nxm equivalent yet (CLI,
+- * Infrastructure, Partners, Careers) are dropped rather than faked.
++ * `#anchor`. Links live in ./footer-config.ts (one config source, verified by
++ * scripts/check-footer-links.ts); social icons come from lib/social-links.ts
++ * (admin Settings → General, only platforms with a saved URL render).
+  *
+  * `.container` and `.logo` from the design are NOT reused here even though
+  * the design's footer uses them: both collide with real classes elsewhere
+@@ -33,74 +37,16 @@ import { NxmFooterStatus } from "./NxmFooterStatus";
+  * two roles.
+  */
+ 
+-const PRODUCTS = [
+-  { label: "VPS Hosting", href: "/nxm/vps" },
+-  { label: "Game Servers", href: "/nxm/game-servers" },
+-  { label: "Web Hosting", href: "/nxm/web-hosting" },
+-  { label: "Business Email", href: "/nxm/business-email" },
+-  { label: "Domains", href: "/nxm/domains" },
+-];
+-
+-// The design's Developers column also lists "CLI" and "Infrastructure" —
+-// dropped, no /nxm route exists for either yet.
+-const DEVELOPERS = [
+-  { label: "API", href: "/nxm/developers" },
+-  { label: "Documentation", href: "/nxm/docs" },
+-  { label: "Status", href: "/nxm/status" },
+-];
+-
+-const RESOURCES = [
+-  { label: "NxLabs", href: "/nxm/mods" },
+-  { label: "Blog", href: "/nxm/blog" },
+-  { label: "Guides", href: "/nxm/help" },
+-  { label: "Support", href: "/nxm/contact" },
+-  { label: "Creator Program", href: "/nxm/affiliate" },
+-];
+-
+-// The design's Company column also lists "Partners" and "Careers" — dropped,
+-// no /nxm route exists for either. Acceptable Use / SLA are added on top of
+-// the design's own 4 items (About/Contact/Terms/Privacy): real, already-live
+-// legal routes (tools/nxm/routes/legal.json) worth being crawlable from here.
+-const COMPANY = [
+-  { label: "About", href: "/nxm/about" },
+-  { label: "Contact", href: "/nxm/contact" },
+-  { label: "Terms", href: "/nxm/legal/terms" },
+-  { label: "Privacy", href: "/nxm/legal/privacy" },
+-  { label: "Acceptable Use", href: "/nxm/legal/aup" },
+-  { label: "SLA", href: "/nxm/legal/sla" },
+-];
+-
+-const COLUMNS: { id: string; title: string; links: { label: string; href: string }[] }[] = [
+-  { id: "f-products", title: "Products", links: PRODUCTS },
+-  { id: "f-dev", title: "Developers", links: DEVELOPERS },
+-  { id: "f-res", title: "Resources", links: RESOURCES },
+-  { id: "f-co", title: "Company", links: COMPANY },
+-];
+-
+ export async function NxmFooter() {
+-  const [newsletterEnabled, brandNameRaw, taglineRaw, discord, x, github, youtube] = await Promise.all([
++  const [newsletterEnabled, brandNameRaw, taglineRaw, socials] = await Promise.all([
+     getSettingBool("feature_newsletter", true),
+     getSetting("brand_name"),
+     getSetting("brand_tagline"),
+-    getSetting("social_discord", ""),
+-    getSetting("social_twitter", ""),
+-    getSetting("social_github", ""),
+-    getSetting("social_youtube", ""),
++    getSocialLinks(),
+   ]);
+   const brandName = brandNameRaw.trim() || SETTINGS_DEFAULTS.brand_name;
+   const tagline = taglineRaw.trim() || SETTINGS_DEFAULTS.brand_tagline;
+ 
+-  // Discord/X/GitHub/YouTube, matching the design's own social row — only
+-  // rendered when an operator actually set the URL (same "no dead/fake link"
+-  // discipline as the rest of this project; the live MarketingFooter applies
+-  // it too, just to a different four platforms).
+-  const socials = [
+-    { key: "discord", label: "Discord", href: discord.trim() },
+-    { key: "x", label: "X", href: x.trim() },
+-    { key: "github", label: "GitHub", href: github.trim() },
+-    { key: "youtube", label: "YouTube", href: youtube.trim() },
+-  ].filter((s) => /^https?:\/\//i.test(s.href));
+-
+   const year = new Date().getFullYear();
+ 
+   return (
+@@ -114,30 +60,33 @@ export async function NxmFooter() {
+             <p>{tagline}</p>
+ 
+             {socials.length > 0 && (
+-              <div className="socials" aria-label={`${brandName} on social media`}>
++              <ul className="socials" aria-label={`${brandName} on social media`}>
+                 {socials.map((s) => (
+-                  <a key={s.key} href={s.href} target="_blank" rel="noopener noreferrer me" aria-label={`${brandName} on ${s.label}`}>
+-                    {s.label}
+-                  </a>
++                  <li key={s.key}>
++                    <a href={s.href} target="_blank" rel="noopener noreferrer me" aria-label={`${brandName} on ${s.label}`} title={s.label}>
++                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d={s.path} /></svg>
++                    </a>
++                  </li>
+                 ))}
+-              </div>
++              </ul>
+             )}
+ 
+             {newsletterEnabled && <NxmNewsletterForm />}
+           </div>
+ 
+-          {COLUMNS.map((col) => (
+-            <nav className="fcol" aria-labelledby={col.id} key={col.id}>
+-              <h2 id={col.id}>{col.title}</h2>
+-              <ul>
+-                {col.links.map((l) => (
+-                  <li key={l.href}>
+-                    <Link href={NXM_ROOT ? l.href.replace(/^\/nxm(?=\/|$)/, "") || "/" : l.href}>{l.label}</Link>
+-                  </li>
+-                ))}
+-              </ul>
+-            </nav>
+-          ))}
++          <div className="fcols">
++            {FOOTER_COLUMNS.map((col) => (
++              <FooterColumn id={col.id} title={col.title} key={col.id}>
++                <ul>
++                  {col.links.map((l) => (
++                    <li key={l.href}>
++                      <Link href={nxmHref(l.href)}>{l.label}</Link>
++                    </li>
++                  ))}
++                </ul>
++              </FooterColumn>
++            ))}
++          </div>
+         </div>
+ 
+         <div className="fbottom">
+diff --git a/app/nxm/_components/PageRuntime.tsx b/app/nxm/_components/PageRuntime.tsx
+index d0b9e4dea0..ae60c2f213 100644
+--- a/app/nxm/_components/PageRuntime.tsx
++++ b/app/nxm/_components/PageRuntime.tsx
+@@ -10,8 +10,9 @@ import { SCRIPTS } from "../_pages/scripts";
+  * runs before the page's JS. Also:
+  *  - tags <html> with `nxm-p-<slug>-root`, the scope for the design's html/body
+  *    rules (never :root:has(), which restyles the whole page on every change);
+- *  - keeps the fixed nav below staging's in-flow SANDBOX banner while it is on
+- *    screen, writing the nav's own `top` only when it changes.
++ *
++ * The nav's position under the promo bar is pure CSS now (see "Nav under the
++ * promo bar" in nxm.css): no scroll/resize listeners, no inline `top`.
+  */
+ /** Same rule as lib.ts unstage(), for the page script (links it builds client-side). */
+ const unstageJs = (js: string) => js.replace(/(["'`(=\s])\/nxm(\/[^"'`\s)<>?#]*)?(?=["'`\s)<>?#$])/g, (m, pre: string, rest?: string) =>
+@@ -39,22 +40,8 @@ export function PageRuntime({ slug, root = false }: { slug: string; root?: boole
+       });
+     }, 0);
+ 
+-    const nav = page.querySelector<HTMLElement>(".nv");
+-    let raf = 0, last = -1;
+-    const sync = () => {
+-      raf = 0;
+-      const top = Math.round(Math.max(0, page.getBoundingClientRect().top));
+-      if (nav && top !== last) { nav.style.top = `${top}px`; last = top; }
+-    };
+-    const queue = () => { if (!raf) raf = requestAnimationFrame(sync); };
+-    sync();
+-    addEventListener("scroll", queue, { passive: true });
+-    addEventListener("resize", queue);
+     return () => {
+       root.classList.remove(rootCls);
+-      removeEventListener("scroll", queue);
+-      removeEventListener("resize", queue);
+-      if (raf) cancelAnimationFrame(raf);
+     };
+   }, [slug]);
+   return null;
+diff --git a/app/nxm/_components/footer-config.ts b/app/nxm/_components/footer-config.ts
+new file mode 100644
+index 0000000000..75a0cdb873
+--- /dev/null
++++ b/app/nxm/_components/footer-config.ts
+@@ -0,0 +1,103 @@
++/**
++ * The marketing footer's link inventory — the ONE place to add/remove a page.
++ * Routes are production URLs (no /nxm prefix); NxmFooter maps them through
++ * nxmHref(). `scripts/check-footer-links.ts` asserts every href below exists
++ * in app/nxm/_data/live-routes.json so a renamed/removed page can never leave
++ * a dead footer link. Social icons come from lib/social-links.ts (admin
++ * Settings), never from here.
++ */
++export type FooterLink = { label: string; href: string };
++export type FooterColumn = { id: string; title: string; links: FooterLink[] };
++
++export const FOOTER_COLUMNS: FooterColumn[] = [
++  {
++    id: "f-products",
++    title: "Products",
++    links: [
++      { label: "VPS Hosting", href: "/vps" },
++      { label: "Gaming VPS", href: "/gaming-vps" },
++      { label: "Web Hosting", href: "/web-hosting" },
++      { label: "Business Email", href: "/business-email" },
++      { label: "Domains", href: "/domains" },
++      { label: "NxCloud (Nextcloud)", href: "/nxcloud" },
++      { label: "Block Storage", href: "/block-storage" },
++      { label: "Docker Hosting", href: "/docker-hosting" },
++      { label: "Discord Bot Hosting", href: "/discord-bot-hosting" },
++      { label: "Free VPS", href: "/free-vps" },
++      { label: "Pricing", href: "/pricing" },
++    ],
++  },
++  {
++    id: "f-games",
++    title: "Game servers",
++    links: [
++      { label: "All game servers", href: "/game-servers" },
++      { label: "Minecraft", href: "/minecraft-server-hosting" },
++      { label: "Rust", href: "/rust-server-hosting" },
++      { label: "ARK: Survival Ascended", href: "/ark-survival-ascended-server-hosting" },
++      { label: "Valheim", href: "/valheim-server-hosting" },
++      { label: "Palworld", href: "/palworld-server-hosting" },
++      { label: "Counter-Strike 2", href: "/cs2-server-hosting" },
++      { label: "FiveM", href: "/fivem-server-hosting" },
++      { label: "Terraria", href: "/terraria-server-hosting" },
++      { label: "Free Minecraft server", href: "/free-minecraft" },
++      { label: "Server directory", href: "/game-servers/directory" },
++      { label: "Mod catalogue", href: "/mods" },
++    ],
++  },
++  {
++    id: "f-locations",
++    title: "Locations",
++    links: [
++      { label: "Singapore VPS", href: "/singapore-vps-hosting" },
++      { label: "Germany VPS", href: "/germany-vps-hosting" },
++      { label: "Canada VPS", href: "/canada-vps-hosting" },
++      { label: "Singapore web hosting", href: "/singapore-web-hosting" },
++      { label: "Germany web hosting", href: "/germany-web-hosting" },
++      { label: "Canada web hosting", href: "/canada-web-hosting" },
++      { label: "Minecraft in Singapore", href: "/minecraft-server-hosting/singapore" },
++    ],
++  },
++  {
++    id: "f-tools",
++    title: "Free tools",
++    links: [
++      { label: "All tools", href: "/tools" },
++      { label: "Minecraft server status", href: "/tools/minecraft-server-status" },
++      { label: "Server size calculator", href: "/tools/server-size-calculator" },
++      { label: "Latency test", href: "/tools/latency-test" },
++      { label: "DNS lookup", href: "/tools/dns-lookup" },
++      { label: "Port checker", href: "/tools/port-checker" },
++      { label: "SSL checker", href: "/tools/ssl-checker" },
++      { label: "WHOIS", href: "/tools/whois" },
++    ],
++  },
++  {
++    id: "f-res",
++    title: "Resources",
++    links: [
++      { label: "Blog", href: "/blog" },
++      { label: "Help centre", href: "/help" },
++      { label: "Documentation", href: "/docs" },
++      { label: "API & developers", href: "/developers" },
++      { label: "Platform status", href: "/status" },
++      { label: "Features", href: "/features" },
++      { label: "Compare providers", href: "/compare" },
++      { label: "Free migration", href: "/migrate" },
++      { label: "Creator program", href: "/affiliate" },
++    ],
++  },
++  {
++    id: "f-co",
++    title: "Company & legal",
++    links: [
++      { label: "About", href: "/about" },
++      { label: "Contact & support", href: "/contact" },
++      { label: "Security", href: "/security" },
++      { label: "Terms of Service", href: "/legal/terms" },
++      { label: "Privacy Policy", href: "/legal/privacy" },
++      { label: "Acceptable Use", href: "/legal/aup" },
++      { label: "SLA", href: "/legal/sla" },
++    ],
++  },
++];
+diff --git a/app/nxm/_home/HomeScript.tsx b/app/nxm/_home/HomeScript.tsx
+index 336d8835e4..110ffdaea0 100644
+--- a/app/nxm/_home/HomeScript.tsx
++++ b/app/nxm/_home/HomeScript.tsx
+@@ -22,27 +22,8 @@ export function HomeScript() {
+       document.body.appendChild(s);
+     }
+ 
+-    // The design's nav is fixed at the top of the viewport, but on staging the
+-    // SANDBOX banner sits in flow above the page. Push the nav down by however
+-    // much of that banner is still on screen, so it never covers the nav and
+-    // never leaves a gap once scrolled away. Written on the nav itself and only
+-    // when it changes: a custom property on .nxm-home would restyle the page.
+-    const nav = home.querySelector<HTMLElement>(".nv");
+-    let raf = 0, last = -1;
+-    const sync = () => {
+-      raf = 0;
+-      const top = Math.round(Math.max(0, home.getBoundingClientRect().top));
+-      if (nav && top !== last) { nav.style.top = `${top}px`; last = top; }
+-    };
+-    const queue = () => { if (!raf) raf = requestAnimationFrame(sync); };
+-    sync();
+-    addEventListener("scroll", queue, { passive: true });
+-    addEventListener("resize", queue);
+     return () => {
+       root.classList.remove("nxm-home-root");
+-      removeEventListener("scroll", queue);
+-      removeEventListener("resize", queue);
+-      if (raf) cancelAnimationFrame(raf);
+     };
+   }, []);
+   return null;
+diff --git a/app/nxm/home.css b/app/nxm/home.css
+index 6773f44056..f7f6be6bc2 100644
+--- a/app/nxm/home.css
++++ b/app/nxm/home.css
+@@ -1423,7 +1423,7 @@
+    fade in on the same timeline instead of popping in whenever they're ready */
+ @media (prefers-reduced-motion:no-preference){
+   .nxm-home .hbg{animation:nxmSkyIn 1.6s cubic-bezier(.16,1,.3,1) both}
+-  .nxm-home .nv{animation:nxmNavIn .9s cubic-bezier(.16,1,.3,1) .05s both}
++  .nxm-home .nv{animation:nxmNavIn .9s cubic-bezier(.16,1,.3,1) .05s backwards}
+   .nxm-home .hcard-l{animation:floatA 7s ease-in-out infinite,nxmFadeIn 1.1s cubic-bezier(.16,1,.3,1) .9s both}
+   .nxm-home .hcard-r{animation:floatB 8s ease-in-out infinite,nxmFadeIn 1.1s cubic-bezier(.16,1,.3,1) 1.05s both}
+   .nxm-home .hglobe-canvas canvas{animation:nxmGlobeIn 1.8s cubic-bezier(.16,1,.3,1) both}
+diff --git a/app/nxm/nxm.css b/app/nxm/nxm.css
+index f276e99870..c58daaf941 100644
+--- a/app/nxm/nxm.css
++++ b/app/nxm/nxm.css
+@@ -327,16 +327,22 @@
+      `.fbrand-mark` stand in for those two roles instead. */
+   & .footer { border-top: 1px solid var(--line); padding: 80px 0 calc(40px + env(safe-area-inset-bottom,0px)); background: var(--bg-2); }
+   & .footer-in { max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+-  & .fgrid { display: grid; grid-template-columns: minmax(0,1.5fr) repeat(4, minmax(0,1fr)); gap: 40px; }
++  & .fgrid { display: grid; grid-template-columns: minmax(0,300px) minmax(0,1fr); gap: 48px; }
++  /* 6 link columns: 3-up on laptops, 6-up on wide screens, accordions on phones */
++  & .fcols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px 28px; align-content: start; }
++  & .fcol summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: default; }
++  & .fcol summary::-webkit-details-marker { display: none; }
++  & .fcol-chev { display: none; color: var(--muted); transition: transform .2s; flex: none; }
++  & .fcol[open] .fcol-chev { transform: rotate(180deg); }
+   & .fbrand-mark { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; min-height: 44px; }
+   & .fbrand-mark img { height: 26px; width: auto; display: block; }
+   & .fbrand p { color: var(--muted); max-width: 30ch; margin: 18px 0 22px; font-size: .95rem; }
+-  & .socials { display: flex; gap: 6px; flex-wrap: wrap; }
+-  & .socials a { color: var(--ink-2); text-decoration: none; font-size: .88rem; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; min-height: 40px; display: inline-flex; align-items: center; }
+-  & .socials a:hover { border-color: var(--line-2); color: var(--ink); }
+-  & .fcol h2 { font: 600 .92rem var(--f-body); color: var(--ink); margin: 6px 0 16px; }
++  & .socials { display: flex; gap: 8px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
++  & .socials a { color: var(--ink-2); text-decoration: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s, background .2s; }
++  & .socials a:hover, & .socials a:focus-visible { border-color: var(--line-3); color: var(--ink); background: var(--surface); }
++  & .fcol h2 { font: 600 .92rem var(--f-body); color: var(--ink); margin: 6px 0 12px; }
+   & .fcol ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+-  & .fcol a { color: var(--muted); text-decoration: none; font-size: .94rem; display: inline-flex; min-height: 32px; align-items: center; }
++  & .fcol a { color: var(--muted); text-decoration: none; font-size: .94rem; display: inline-flex; min-height: 32px; align-items: center; overflow-wrap: anywhere; }
+   & .fcol a:hover { color: var(--ink); }
+   & .fbottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+   & .fbottom a { color: var(--ink-2); text-decoration: none; display: inline-flex; align-items: center; gap: 9px; }
+@@ -358,8 +364,22 @@
+   & .nxm-foot-nlmsg.ok { color: var(--green); }
+   & .nxm-foot-nlmsg.err { color: #FF6A8A; }
+ 
+-  @media (max-width: 1080px) { & .fgrid { grid-template-columns: repeat(4, minmax(0,1fr)); } & .fbrand { grid-column: 1 / -1; } }
+-  @media (max-width: 700px) { & .fgrid { grid-template-columns: 1fr 1fr; } & .nxm-foot-nl { max-width: none; } }
++  @media (min-width: 1400px) { & .fcols { grid-template-columns: repeat(6, minmax(0,1fr)); } & .fgrid { grid-template-columns: minmax(0,280px) minmax(0,1fr); } }
++  @media (max-width: 980px) { & .fgrid { grid-template-columns: 1fr; gap: 32px; } & .fbrand p { max-width: 46ch; } & .nxm-foot-nl { max-width: 46ch; } }
++  /* Phones: link columns become tap-to-expand accordions (FooterColumns.tsx
++     opens them on desktop, collapses them here). */
++  @media (max-width: 759px) {
++    & .footer { padding-top: 56px; }
++    & .fcols { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
++    & .fcol { border-bottom: 1px solid var(--line); }
++    & .fcol summary { cursor: pointer; min-height: 52px; }
++    & .fcol h2 { margin: 0; }
++    & .fcol-chev { display: block; }
++    & .fcol ul { padding-bottom: 14px; }
++    & .fcol a { min-height: 44px; }
++    & .fbottom { margin-top: 40px; }
++    & .nxm-foot-nl { max-width: none; }
++  }
+ }
+ 
+ /* ═════════════ CLASS-NAME COLLISIONS ═════════════
+@@ -433,9 +453,38 @@
+ .nxm .nxm-p-game-servers .term-body .c, .nxm .nxm-p-game-servers .ctl-log .t { color: #8a94b8; }
+ .nxm .nxm-p-nxlabs #gf:focus-visible { outline: 2px solid #9cc9ff; outline-offset: 2px; }
+ 
++/* ═════════════ Nav under the promo bar (pure CSS, no JS offset) ═════════════
++   The design's nav is `position: fixed; top: 0` (home.css / every page.css —
++   generated). The promo strip (PromoBar, SSR) and the trial-sale bar sit IN
++   FLOW above the page, so at scroll 0 a fixed nav painted over them and only
++   snapped underneath once a hydrated script wrote `nav.style.top` (visible
++   overlap + a jump on first scroll, and PageRuntime/HomeScript ran
++   getBoundingClientRect on every scroll frame to keep doing it).
++   Fix: make the nav `position: sticky; top: 0` as the first child of the page
++   wrapper. It then sits exactly below whatever is above the wrapper (any
++   promo/sandbox height, wrapped to two lines on a phone, or dismissed), sticks
++   to the viewport top once that has scrolled away, and the SSR markup is
++   already correct: no hydration dependence, no layout shift. The negative
++   bottom margin gives the hero back the nav's own height (68px row + 1px
++   border) so the page lays out exactly as it did with a fixed nav.
++   While the mobile menu is open the nav is pinned fixed to the viewport so the
++   full-screen sheet (inset from the nav's height) lines up whatever scroll
++   offset the visitor is at; the overlay covers the promo bar for that moment. */
++.nxm :is(.nxm-home, .nxm-p) .nv {
++  position: sticky; top: 0; left: auto; right: auto;
++  margin-bottom: calc(-1 * (var(--nav-h, 68px) + 1px));
++}
++.nxm .nxm-nav-slot { display: contents; }
++.nxm :is(.nxm-home, .nxm-p) .nv.open { position: fixed; top: 0; left: 0; right: 0; margin-bottom: 0; }
++/* The design gives `.nv.open` a backdrop-filter, which turns the nav into the
++   containing block of its own `position: fixed` mobile sheet — the sheet then
++   collapsed to a ~190px strip over the nav row (broken since launch, measured
++   at 390px). Opaque instead, so the sheet is positioned against the viewport. */
++.nxm :is(.nxm-home, .nxm-p) .nv.open { -webkit-backdrop-filter: none; backdrop-filter: none; background: #060913; }
++
+ /* Trial-sale bar (components/marketing/PromoTrialPopup) on the new site: in
+    normal flow at the very top instead of sticky 72px down (that offset was
+-   tuned for the old site's header and made it overlap the new fixed nav,
+-   owner 2026-09-27). The nav already positions itself under whatever is in
+-   flow above the page (PageRuntime / HomeScript), and the bar scrolls away. */
++   tuned for the old site's header and made it overlap the new nav, owner
++   2026-09-27). The sticky nav above sits under whatever is in flow, and the
++   bar scrolls away. */
+ .nxm .marketing-promo-stack .promo-bar { position: relative; top: auto; z-index: 1; }
+diff --git a/app/nxm/page.tsx b/app/nxm/page.tsx
+index b07aee5ae4..17dbabcbf9 100644
+--- a/app/nxm/page.tsx
++++ b/app/nxm/page.tsx
+@@ -91,7 +91,9 @@ export default async function NxmHome() {
+           bug; without this, every homepage load logged a hydration-mismatch
+           console error (2026-09-27 /nxm audit). */}
+       <div className="nxm-home" suppressHydrationWarning>
+-        <StableHtml html={unstage(PRE_HEADER_HTML + header)} />
++        {/* `nxm-nav-slot` is display:contents (nxm.css) so the sticky nav is a direct
++            child of .nxm-home and can stick for the whole page. */}
++        <StableHtml className="nxm-nav-slot" html={unstage(PRE_HEADER_HTML + header)} />
+         <StableHtml as="main" id="main" html={unstage(main)} />
+         {AFTER_MAIN_HTML && <div dangerouslySetInnerHTML={{ __html: unstage(AFTER_MAIN_HTML) }} />}
+         {/* The design's script runs as soon as the markup above is parsed — not
+diff --git a/components/admin/settings/GeneralPanel.tsx b/components/admin/settings/GeneralPanel.tsx
+index 236ff531b5..9869542872 100644
+--- a/components/admin/settings/GeneralPanel.tsx
++++ b/components/admin/settings/GeneralPanel.tsx
+@@ -73,6 +73,8 @@ export function GeneralPanel({ v }: { v: Record<string, string> }) {
+       <TextField label="Facebook URL" name="social_facebook" defaultValue={v.social_facebook} placeholder="https://facebook.com/…" hint="Marketing footer icon. Must start with http(s):// or the icon stays decorative." />
+       <TextField label="Instagram URL" name="social_instagram" defaultValue={v.social_instagram} placeholder="https://instagram.com/…" hint="Marketing footer icon. Must start with http(s):// or the icon stays decorative." />
+       <TextField label="YouTube URL" name="social_youtube" defaultValue={v.social_youtube} placeholder="https://youtube.com/@…" hint="Marketing footer icon. Must start with http(s):// or the icon stays decorative." />
++      <TextField label="TikTok URL" name="social_tiktok" defaultValue={v.social_tiktok} placeholder="https://tiktok.com/@…" hint="Marketing footer icon + Organization schema (sameAs). Must start with http(s):// or the icon is omitted." />
++      <TextField label="Reddit URL" name="social_reddit" defaultValue={v.social_reddit} placeholder="https://reddit.com/r/… or /user/…" hint="Marketing footer icon + Organization schema (sameAs). Must start with http(s):// or the icon is omitted." />
+       {/*
+         The placeholder once read "… — shown on invoices", which was untrue: the invoice
+         rendered a "Billed to" party and no seller block at all, so there was nowhere for an
+diff --git a/components/marketing/StructuredData.tsx b/components/marketing/StructuredData.tsx
+index 79f629fd28..83715c5397 100644
+--- a/components/marketing/StructuredData.tsx
++++ b/components/marketing/StructuredData.tsx
+@@ -17,16 +17,8 @@ export async function OrganizationJsonLd() {
+   // it stays in sync with the marketing footer; only real http(s) URLs are included.
+   let sameAs: string[] = [];
+   try {
+-    const { getSetting } = await import("@/lib/settings");
+-    const urls = await Promise.all([
+-      getSetting("social_facebook", ""),
+-      getSetting("social_instagram", ""),
+-      getSetting("social_linkedin", ""),
+-      getSetting("social_youtube", ""),
+-      getSetting("social_twitter", ""),
+-      getSetting("social_github", ""),
+-    ]);
+-    sameAs = urls.map((u) => u.trim()).filter((u) => /^https?:\/\//i.test(u));
++    const { getSocialLinks } = await import("@/lib/social-links");
++    sameAs = (await getSocialLinks()).map((s) => s.href);
+   } catch {
+     /* settings unavailable — emit an empty sameAs rather than fail the layout */
+   }
+diff --git a/lib/actions-settings.ts b/lib/actions-settings.ts
+index 6efa5078d2..7a49dea9ed 100644
+--- a/lib/actions-settings.ts
++++ b/lib/actions-settings.ts
+@@ -106,6 +106,8 @@ const SECTION_FIELDS: Record<string, Field[]> = {
+     { key: "social_facebook", type: "string" },
+     { key: "social_instagram", type: "string" },
+     { key: "social_youtube", type: "string" },
++    { key: "social_tiktok", type: "string" },
++    { key: "social_reddit", type: "string" },
+     { key: "footer_text", type: "string" },
+     { key: "livechat_snippet", type: "string" },
+     { key: "email_mx_host", type: "string" },
+diff --git a/lib/settings.ts b/lib/settings.ts
+index a9d4e12acc..61377c4e71 100644
+--- a/lib/settings.ts
++++ b/lib/settings.ts
+@@ -52,6 +52,9 @@ export const SETTINGS_DEFAULTS = {
+   social_facebook: "",
+   social_instagram: "",
+   social_youtube: "",
++  // No known public account yet — blank until the owner sets the URL (footer + sameAs skip blanks).
++  social_tiktok: "",
++  social_reddit: "",
+   footer_text: "",
+   // Raw provider <script> body injected by components/marketing/LiveChat.tsx.
+   livechat_snippet: "",
+diff --git a/lib/social-links.ts b/lib/social-links.ts
+new file mode 100644
+index 0000000000..d0e016a5f9
+--- /dev/null
++++ b/lib/social-links.ts
+@@ -0,0 +1,34 @@
++import { getSetting } from "@/lib/settings";
++
++/**
++ * ONE source for Nxeon's social profiles: which platforms exist, which admin
++ * Setting holds each URL (Admin → Settings → General), the brand glyph, and
++ * the render order. Consumers: the new marketing footer
++ * (app/nxm/_components/NxmFooter.tsx) and the Organization JSON-LD `sameAs`
++ * (components/marketing/StructuredData.tsx).
++ *
++ * Nothing here is a URL. A platform with no Setting value is simply absent
++ * everywhere (no dead icon, no guessed handle) — an operator fills the field
++ * and the icon + `sameAs` entry appear on the next request.
++ */
++export type SocialKey = "youtube" | "instagram" | "facebook" | "linkedin" | "x" | "discord" | "github" | "tiktok" | "reddit";
++
++export const SOCIAL_PLATFORMS: readonly { key: SocialKey; label: string; setting: string; path: string }[] = [
++  { key: "youtube", label: "YouTube", setting: "social_youtube", path: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
++  { key: "instagram", label: "Instagram", setting: "social_instagram", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
++  { key: "facebook", label: "Facebook", setting: "social_facebook", path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
++  { key: "linkedin", label: "LinkedIn", setting: "social_linkedin", path: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" },
++  { key: "x", label: "X", setting: "social_twitter", path: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" },
++  { key: "discord", label: "Discord", setting: "social_discord", path: "M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" },
++  { key: "github", label: "GitHub", setting: "social_github", path: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" },
++  { key: "tiktok", label: "TikTok", setting: "social_tiktok", path: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" },
++  { key: "reddit", label: "Reddit", setting: "social_reddit", path: "M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z" },
++];
++
++export type SocialLink = { key: SocialKey; label: string; href: string; path: string };
++
++/** Only real http(s) URLs an operator has saved — everything else is dropped. */
++export async function getSocialLinks(): Promise<SocialLink[]> {
++  const vals = await Promise.all(SOCIAL_PLATFORMS.map((p) => getSetting(p.setting, "").catch(() => "")));
++  return SOCIAL_PLATFORMS.map((p, i) => ({ key: p.key, label: p.label, path: p.path, href: vals[i].trim() })).filter((s) => /^https?:\/\//i.test(s.href));
++}
+diff --git a/scripts/check-footer-links.ts b/scripts/check-footer-links.ts
+new file mode 100644
+index 0000000000..10a874e853
+--- /dev/null
++++ b/scripts/check-footer-links.ts
+@@ -0,0 +1,13 @@
++/**
++ * Asserts every link in the marketing footer config exists in the live-route
++ * manifest (app/nxm/_data/live-routes.json). Usage: npx tsx scripts/check-footer-links.ts
++ */
++import { FOOTER_COLUMNS } from "../app/nxm/_components/footer-config";
++import routes from "../app/nxm/_data/live-routes.json";
++
++const exact = new Set<string>(routes.exact);
++const patterns = routes.patterns.map((p: string) => new RegExp(p));
++const bad = FOOTER_COLUMNS.flatMap((c) => c.links).filter((l) => !exact.has(l.href) && !patterns.some((p) => p.test(l.href)));
++for (const l of bad) console.error(`dead footer link: ${l.label} -> ${l.href}`);
++console.log(`${FOOTER_COLUMNS.flatMap((c) => c.links).length} footer links checked, ${bad.length} dead`);
++process.exit(bad.length ? 1 : 0);
+diff --git a/scripts/check-responsive-marketing.ts b/scripts/check-responsive-marketing.ts
+new file mode 100644
+index 0000000000..2f18b4d95c
+--- /dev/null
++++ b/scripts/check-responsive-marketing.ts
+@@ -0,0 +1,91 @@
++/**
++ * Marketing-site responsive checker: loads each route at each viewport, fails on
++ * horizontal overflow, lists the offending elements, and (optionally) saves
++ * screenshots. Complements scripts/check-responsive.ts (portal).
++ *
++ *   npx tsx scripts/check-responsive-marketing.ts [--base http://localhost:3118]
++ *        [--routes /nxm,/nxm/pricing] [--widths 360,390,414,768,1024,1440]
++ *        [--shots /tmp/mkt-shots/run] [--json out.json] [--md out.md]
++ *
++ * Per route x width it reports: horizontal overflow (document wider than the
++ * viewport), up to 5 culprit elements (anything poking past the right edge that
++ * is not inside a horizontal scroller), images wider than the viewport,
++ * undersized tap targets (< 32px, inside the main content) and body text < 12px.
++ * Exit code 1 when any route overflows horizontally.
++ * Run heavy: scratchpad/heavy.sh, one browser at a time (this box is production).
++ */
++import { chromium } from "playwright";
++import fs from "node:fs";
++
++const arg = (k: string, d: string) => { const i = process.argv.indexOf(`--${k}`); return i > 0 ? process.argv[i + 1] : d; };
++const BASE = arg("base", "http://localhost:3118");
++export const DEFAULT_ROUTES = [
++  "/nxm", "/nxm/pricing", "/nxm/vps", "/nxm/web-hosting", "/nxm/business-email", "/nxm/domains", "/nxm/nxcloud",
++  "/nxm/game-servers", "/nxm/minecraft-server-hosting", "/nxm/rust-server-hosting", "/nxm/minecraft-server-hosting/singapore",
++  "/nxm/singapore-vps-hosting", "/nxm/germany-vps-hosting", "/nxm/free-minecraft", "/nxm/game-servers/directory",
++  "/nxm/mods", "/nxm/blog", "/nxm/tools", "/nxm/tools/server-size-calculator", "/nxm/tools/minecraft-server-status",
++  "/nxm/affiliate", "/nxm/about", "/nxm/contact", "/nxm/help", "/nxm/docs", "/nxm/status", "/nxm/compare",
++  "/nxm/migrate", "/nxm/features", "/nxm/security", "/nxm/developers", "/nxm/legal/terms", "/nxm/vps-vs-digitalocean",
++  "/nxm/aternos-alternative", "/login", "/register",
++];
++const ROUTES = arg("routes", DEFAULT_ROUTES.join(",")).split(",").filter(Boolean);
++const WIDTHS = arg("widths", "360,390,414,768,1024,1440").split(",").map(Number);
++const SHOTS = arg("shots", "");
++
++type Row = { route: string; width: number; status: number; overflowPx: number; culprits: string[]; wideImgs: number; smallTaps: number; tinyText: number; error?: string };
++
++async function main() {
++  const browser = await chromium.launch();
++  const rows: Row[] = [];
++  for (const route of ROUTES) {
++    for (const width of WIDTHS) {
++      const ctx = await browser.newContext({ viewport: { width, height: 800 }, isMobile: width < 700, hasTouch: width < 700, reducedMotion: "reduce" });
++      const page = await ctx.newPage();
++      await page.addInitScript("window.__name = (f) => f;"); // tsx/esbuild injects __name() into evaluate callbacks
++      const row: Row = { route, width, status: 0, overflowPx: 0, culprits: [], wideImgs: 0, smallTaps: 0, tinyText: 0 };
++      try {
++        const res = await page.goto(BASE + route, { waitUntil: "domcontentloaded", timeout: 180000 });
++        row.status = res?.status() ?? 0;
++        await page.waitForLoadState("networkidle", { timeout: 20000 }).catch(() => {});
++        await page.waitForTimeout(800);
++        // scroll through once so lazy / reveal-on-scroll content renders before measuring
++        await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); } scrollTo(0, 0); });
++        await page.waitForTimeout(300);
++        const m = await page.evaluate(() => {
++          const vw = document.documentElement.clientWidth;
++          const sw = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
++          const inScroller = (el: Element) => { for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if (o === "auto" || o === "scroll" || o === "hidden" || o === "clip") return true; } return false; };
++          const culprits: string[] = [];
++          let wideImgs = 0, smallTaps = 0, tinyText = 0;
++          for (const el of Array.from(document.querySelectorAll("body *"))) {
++            const cs = getComputedStyle(el);
++            if (cs.display === "none" || cs.visibility === "hidden" || cs.position === "fixed") continue;
++            const r = el.getBoundingClientRect();
++            if (!r.width || !r.height) continue;
++            if (r.right > vw + 1 && !inScroller(el) && culprits.length < 5) culprits.push(`${el.tagName.toLowerCase()}.${String((el as HTMLElement).className || "").toString().split(/\s+/).slice(0, 3).join(".")} right=${Math.round(r.right)}`);
++            if (el.tagName === "IMG" && r.width > vw + 1 && !inScroller(el)) wideImgs++;
++            if (/^(A|BUTTON)$/.test(el.tagName) && r.height < 32 && r.width < 400 && el.closest("main,section,footer,.nxm-p,.nxm-home") && (el.textContent || "").trim().length && r.top < 1e6) smallTaps++;
++            if (el.childNodes.length && Array.from(el.childNodes).some((n) => n.nodeType === 3 && (n.textContent || "").trim().length > 3) && parseFloat(cs.fontSize) < 12) tinyText++;
++          }
++          return { over: sw - vw, culprits, wideImgs, smallTaps, tinyText };
++        });
++        row.overflowPx = Math.max(0, m.over); row.culprits = m.culprits; row.wideImgs = m.wideImgs; row.smallTaps = m.smallTaps; row.tinyText = m.tinyText;
++        if (SHOTS) { fs.mkdirSync(SHOTS, { recursive: true }); await page.screenshot({ path: `${SHOTS}/${route.replace(/\W+/g, "_") || "home"}-${width}.png`, fullPage: false }); }
++      } catch (e) { row.error = String((e as Error).message).split("\n")[0]; }
++      rows.push(row);
++      console.log(`${row.overflowPx > 0 || row.error ? "FAIL" : "ok  "} ${route} @${width}  status=${row.status} overflow=${row.overflowPx}px imgs=${row.wideImgs} taps<32=${row.smallTaps} text<12=${row.tinyText}${row.culprits.length ? "  " + row.culprits.join(" | ") : ""}${row.error ? " ERR " + row.error : ""}`);
++      await ctx.close();
++    }
++  }
++  await browser.close();
++  if (arg("json", "")) fs.writeFileSync(arg("json", ""), JSON.stringify(rows, null, 1));
++  if (arg("md", "")) {
++    const head = `| Route | ${WIDTHS.map((w) => w + "px").join(" | ")} |\n|---|${WIDTHS.map(() => "---").join("|")}|\n`;
++    const body = ROUTES.map((r) => `| \`${r}\` | ${WIDTHS.map((w) => { const x = rows.find((q) => q.route === r && q.width === w)!; return x.error ? "ERR" : x.status >= 400 ? String(x.status) : x.overflowPx > 0 ? `OVERFLOW ${x.overflowPx}px` : "ok"; }).join(" | ")} |`).join("\n");
++    fs.writeFileSync(arg("md", ""), head + body + "\n");
++  }
++  const bad = rows.filter((r) => r.overflowPx > 0 || r.error);
++  console.log(`\n${rows.length} checks, ${bad.length} failing`);
++  process.exit(bad.length ? 1 : 0);
++}
++main();
+diff --git a/tools/nxm/port_home.py b/tools/nxm/port_home.py
+index ab690afef1..b655316bab 100644
+--- a/tools/nxm/port_home.py
++++ b/tools/nxm/port_home.py
+@@ -85,7 +85,7 @@ HOME_EXTRA = """
+    fade in on the same timeline instead of popping in whenever they're ready */
+ @media (prefers-reduced-motion:no-preference){
+   .nxm-home .hbg{animation:nxmSkyIn 1.6s cubic-bezier(.16,1,.3,1) both}
+-  .nxm-home .nv{animation:nxmNavIn .9s cubic-bezier(.16,1,.3,1) .05s both}
++  .nxm-home .nv{animation:nxmNavIn .9s cubic-bezier(.16,1,.3,1) .05s backwards}
+   .nxm-home .hcard-l{animation:floatA 7s ease-in-out infinite,nxmFadeIn 1.1s cubic-bezier(.16,1,.3,1) .9s both}
+   .nxm-home .hcard-r{animation:floatB 8s ease-in-out infinite,nxmFadeIn 1.1s cubic-bezier(.16,1,.3,1) 1.05s both}
+   .nxm-home .hglobe-canvas canvas{animation:nxmGlobeIn 1.8s cubic-bezier(.16,1,.3,1) both}

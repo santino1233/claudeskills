@@ -1,0 +1,18 @@
+# Brief: game-zomboid: Project Zomboid modding support
+
+Read `/root/agent-notes/cyrus-v6/CONTEXT.md` first (the owner's full request, the shared rules, the roster). Worktree: `git -C /opt/nxeon worktree add /tank/dev-worktrees/cyrus-v6-game-zomboid -b feature/cyrus-v6-game-zomboid feature/cyrus-v6`. Output dir for notes: `/root/agent-notes/cyrus-v6/game-zomboid/`.
+
+## Your scope: make Cyrus support **Project Zomboid** properly (not just generate plausible code)
+The owner: "needs proper understanding for modding language for these games, how they function in the game. We need to make sure these mods don't just break people's games, understanding for game versions, whether the mods need to be installed not just on their server but their personal computer as well to work, everything."
+
+Read first: the handoff generator for this game (`/tank/handoffs/cyrus/cyrus-handoff/cyrus/lib/engine/games/zomboid.ts` and `lib/engine/kit.ts`, also in the repo at `lib/cyrus/engine/games/zomboid.ts`; it contains comments flagged `plausible:` meaning an API name was NOT verified), the contract `lib/cyrus/games/support.ts`, and `lib/cyrus/games.ts`.
+
+Do, in order:
+1. **Research for real** with WebSearch/WebFetch: the official modding docs and loader repositories, current game and loader versions and their release cadence, how a mod is structured and loaded, the language and APIs, what players must install on their own PC versus the server, how mods commonly break this game, safety rules and the platform's mod policy. Cite every source URL. Note anything you could not confirm in `unknowns`. Project Zomboid: **Build 41 vs Build 42** have different mod folder layouts (`mods/<id>/42/` vs `common`), Lua plus script `.txt` definitions, models/textures; multiplayer needs the SAME mod on every client (Workshop IDs and `Mods=` in the server ini); B42 unstable-branch churn; how to keep mods from corrupting saves.
+2. **Write `lib/cyrus/games/zomboid.ts`** exporting a verified `GameSupport` (default export). Plain-language `reason`/`clientNote` strings, written for customers.
+3. **Upgrade the generator** `lib/cyrus/engine/games/zomboid.ts` so output is correct, idiomatic and **version-aware**: resolve every `plausible:` API against the real docs/source (fix or remove), generate a manifest (name, version, target game version, side, dependencies), structure the project as the loader expects, and make sure it cannot do harmful things.
+4. **Static validators** `lib/cyrus/games/zomboid.validate.ts`: implement `dangerousApis` (block/warn) plus structural checks (manifest present, entry points, no file/network/process access outside the allowed folder, version fields). Unit tests `test/cyrus-game-zomboid.test.ts` (pure `tsx --test`).
+5. **Verification harness assessment**: can a generated mod be compiled/linted/loaded here for real? What would it need (SDKs, game assemblies; **never redistribute proprietary game files**; say plainly what the owner would need to provide)? Implement it if it needs nothing proprietary; otherwise describe it precisely in the report and set `verification.method` honestly (`static-lint` is fine).
+6. **Readiness checklist**: what is left before this game can go live (a build/sandbox pipeline, an end-to-end test on a real server, version table maintenance). **Do not flip the game to `live`**; that is the owner's call. Write the checklist in `/root/agent-notes/cyrus-v6/game-zomboid/READINESS.md` along with a 1-page "how Project Zomboid modding works" explainer (also useful for the marketing page).
+
+Verify: `devhost tsc` clean, your tests pass, no changes outside your game's files except an additive registry hook if one is needed (tell me exactly what).

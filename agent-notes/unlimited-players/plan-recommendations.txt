@@ -1,0 +1,132 @@
+abioticfactor|Abiotic Factor — 6 GB / 4 players|6144|2|4|4|No player cap from us · ~4 recommended
+abioticfactor|Abiotic Factor — 8 GB / 6 players|8192|3|6|5|No player cap from us · ~5 recommended
+abioticfactor|Abiotic Factor — 12 GB / 8 players|12288|4|8|8|No player cap from us · ~8 recommended
+ark|ARK — 8 GB / 20 slots|8192|2|20|20|No player cap from us · ~20 recommended
+ark|ARK — 16 GB / 50 slots|16384|4|50|45|No player cap from us · ~45 recommended
+ark|ARK — 32 GB / 100 slots|32768|6|100|100|No player cap from us · ~100 recommended
+arkasa|ARK: Survival Ascended — 8 GB / 10 players|8192|3|10|10|No player cap from us · ~10 recommended
+arkasa|ARK: Survival Ascended — 12 GB / 20 players|12288|4|20|19|No player cap from us · ~19 recommended
+arkasa|ARK: Survival Ascended — 16 GB / 30 players|16384|6|30|30|No player cap from us · ~30 recommended
+armareforger|Arma Reforger — 6 GB / 16 players (Skirmish)|6144|2|16|15|Up to 128 players (game max) · ~15 recommended
+armareforger|Arma Reforger — 10 GB / 32 players (Offensive)|10240|3|32|30|Up to 128 players (game max) · ~30 recommended
+armareforger|Arma Reforger — 16 GB / 64 players (Total War)|16384|4|64|60|Up to 128 players (game max) · ~60 recommended
+ats|ATS — 1 GB / 8 players (Solo Convoy)|1024|1|8|6|Up to 8 players (game max) · ~6 recommended
+ats|ATS — 2 GB / 8 players (Standard Convoy)|2048|1|8|8|Up to 8 players (game max) · ~8 recommended
+ats|ATS — 4 GB / 8 players (Modded Convoy)|4096|2|8|8|Up to 8 players (game max) · ~8 recommended
+barotrauma|Barotrauma — 2 GB / 8 players|2048|1|8|6|No player cap from us · ~6 recommended
+barotrauma|Barotrauma — 3 GB / 12 players|3072|2|12|11|No player cap from us · ~11 recommended
+barotrauma|Barotrauma — 4 GB / 16 players|4096|2|16|16|No player cap from us · ~16 recommended
+bedrock|Bedrock — 1 GB / 5 players|1024|1|5|3|Unlimited players · ~3 recommended
+bedrock|Bedrock — 2 GB / 10 players|2048|1|10|15|Unlimited players · ~15 recommended
+bedrock|Bedrock — 4 GB / 40 players|4096|2|40|40|Unlimited players · ~40 recommended
+conan|Conan Exiles — 6 GB / 20 slots|6144|2|20|20|Up to 70 players (game max) · ~20 recommended
+conan|Conan Exiles — 8 GB / 40 slots|8192|3|40|35|Up to 70 players (game max) · ~35 recommended
+conan|Conan Exiles — 12 GB / 70 slots|12288|4|70|70|Up to 70 players (game max) · ~70 recommended
+corekeeper|Core Keeper — 2 GB / 6 players|2048|1|6|8|No player cap from us · ~8 recommended
+corekeeper|Core Keeper — 4 GB / 8 players|4096|2|8|8|No player cap from us · ~8 recommended
+corekeeper|Core Keeper — 6 GB / 8 players|6144|2|8|8|No player cap from us · ~8 recommended
+cs16|CS 1.6 — 1 GB / 16 players|1024|1|16|18|Up to 32 players (game max) · ~18 recommended
+cs16|CS 1.6 — 2 GB / 24 players|2048|1|24|20|Up to 32 players (game max) · ~20 recommended
+cs16|CS 1.6 — 3 GB / 32 players|3072|2|32|32|Up to 32 players (game max) · ~32 recommended
+cs2|CS2 — 2 GB / 12 slots|2048|2|12|12|Up to 64 players (game max) · ~12 recommended
+cs2|CS2 — 4 GB / 24 slots|4096|3|24|20|Up to 64 players (game max) · ~20 recommended
+dayz|DayZ — 6 GB / 20 players|6144|2|20|20|No player cap from us · ~20 recommended
+dayz|DayZ — 8 GB / 40 players|8192|3|40|35|No player cap from us · ~35 recommended
+dayz|DayZ — 12 GB / 60 players|12288|4|60|60|No player cap from us · ~60 recommended
+dragonwilds|Dragonwilds — 4 GB / 3 players|4096|2|3|3|Up to 6 players (game max) · ~3 recommended
+dragonwilds|Dragonwilds — 6 GB / 5 players|6144|2|5|4|Up to 6 players (game max) · ~4 recommended
+dragonwilds|Dragonwilds — 8 GB / 6 players|8192|3|6|6|Up to 6 players (game max) · ~6 recommended
+dst|Don't Starve Together — 2 GB / 6 players|2048|1|6|6|Up to 64 players (game max) · ~6 recommended
+dst|Don't Starve Together — 3 GB / 10 players|3072|1|10|10|Up to 64 players (game max) · ~10 recommended
+dst|Don't Starve Together — 4 GB / 16 players|4096|2|16|16|Up to 64 players (game max) · ~16 recommended
+eco|Eco — 8 GB / 12 players|8192|3|12|12|No player cap from us · ~12 recommended
+eco|Eco — 12 GB / 20 players|12288|4|20|18|No player cap from us · ~18 recommended
+eco|Eco — 16 GB / 24 players|16384|6|24|20|No player cap from us · ~20 recommended
+empyrion|Empyrion — 8 GB / 8 players|8192|3|8|8|No player cap from us · ~8 recommended
+empyrion|Empyrion — 12 GB / 12 players|12288|4|12|11|No player cap from us · ~11 recommended
+empyrion|Empyrion — 16 GB / 16 players|16384|6|16|16|No player cap from us · ~16 recommended
+enshrouded|Enshrouded — 6 GB / 8 players|6144|2|8|6|Up to 16 players (game max) · ~6 recommended
+enshrouded|Enshrouded — 10 GB / 12 players|10240|4|12|11|Up to 16 players (game max) · ~11 recommended
+enshrouded|Enshrouded — 16 GB / 16 players|16384|6|16|16|Up to 16 players (game max) · ~16 recommended
+ets2|ETS2 — 1 GB / 8 players (Solo Convoy)|1024|1|8|6|Up to 8 players (game max) · ~6 recommended
+ets2|ETS2 — 2 GB / 8 players (Standard Convoy)|2048|1|8|8|Up to 8 players (game max) · ~8 recommended
+ets2|ETS2 — 4 GB / 8 players (Modded Convoy)|4096|2|8|8|Up to 8 players (game max) · ~8 recommended
+factorio|Factorio — 2 GB / 8 players|2048|1|8|3|Unlimited players · ~3 recommended
+factorio|Factorio — 3 GB / 32 players|3072|2|32|50|Unlimited players · ~50 recommended
+factorio|Factorio — 4 GB / 100 players|4096|3|100|100|Unlimited players · ~100 recommended
+gmod|Garry's Mod — 2 GB / 12 slots|2048|1|12|6|Up to 128 players (game max) · ~6 recommended
+gmod|Garry's Mod — 4 GB / 24 slots|4096|2|24|35|Up to 128 players (game max) · ~35 recommended
+gmod|Garry's Mod — 6 GB / 64 slots|6144|3|64|60|Up to 128 players (game max) · ~60 recommended
+icarus|Icarus — 6 GB / 4 players|6144|2|4|4|Up to 8 players (game max) · ~4 recommended
+icarus|Icarus — 8 GB / 8 players|8192|3|8|6|Up to 8 players (game max) · ~6 recommended
+icarus|Icarus — 12 GB / 8 players|12288|4|8|8|Up to 8 players (game max) · ~8 recommended
+kf2|Killing Floor 2 — 2 GB / 6 players|2048|2|6|6|Up to 6 players (game max) · ~6 recommended
+kf2|Killing Floor 2 — 4 GB / 12 players|4096|3|12|6|Up to 6 players (game max) · ~6 recommended
+kf2|Killing Floor 2 — 6 GB / 24 players|6144|3|24|6|Up to 6 players (game max) · ~6 recommended
+minecraft|Minecraft — 2 GB / 10 slots|2048|2|10|9|Unlimited players · ~9 recommended
+minecraft|Minecraft — 4 GB / 20 slots|4096|2|20|20|Unlimited players · ~20 recommended
+minecraft|Minecraft — 8 GB / 50 slots|8192|3|50|50|Unlimited players · ~50 recommended
+mordhau|Mordhau — 4 GB / 24 players|4096|2|24|20|Up to 64 players (game max) · ~20 recommended
+mordhau|Mordhau — 6 GB / 40 players|6144|3|40|40|Up to 64 players (game max) · ~40 recommended
+mordhau|Mordhau — 8 GB / 64 players|8192|4|64|64|Up to 64 players (game max) · ~64 recommended
+necesse|Necesse — 1 GB / 6 players|1024|1|6|5|Up to 250 players (game max) · ~5 recommended
+necesse|Necesse — 2 GB / 10 players|2048|1|10|9|Up to 250 players (game max) · ~9 recommended
+necesse|Necesse — 3 GB / 16 players|3072|2|16|15|Up to 250 players (game max) · ~15 recommended
+nightingale|Nightingale — 4 GB / 4 players|4096|2|4|3|No player cap from us · ~3 recommended
+nightingale|Nightingale — 6 GB / 6 players|6144|2|6|5|No player cap from us · ~5 recommended
+nightingale|Nightingale — 8 GB / 8 players|8192|3|8|8|No player cap from us · ~8 recommended
+palworld|Palworld — 8 GB / 8 players|8192|3|8|8|Up to 32 players (game max) · ~8 recommended
+palworld|Palworld — 16 GB / 32 players|16384|4|32|32|Up to 32 players (game max) · ~32 recommended
+projectzomboid|Project Zomboid — 6 GB / 8 players|6144|2|8|8|Up to 100 players (game max) · ~8 recommended
+projectzomboid|Project Zomboid — 8 GB / 16 players|8192|3|16|16|Up to 100 players (game max) · ~16 recommended
+projectzomboid|Project Zomboid — 12 GB / 32 players|12288|4|32|30|Up to 100 players (game max) · ~30 recommended
+rust|Rust — 4 GB / 40 slots|4096|2|40|30|Unlimited players · ~30 recommended
+rust|Rust — 6 GB / 60 slots|6144|3|60|70|Unlimited players · ~70 recommended
+rust|Rust — 10 GB / 150 slots|10240|4|150|140|Unlimited players · ~140 recommended
+sandstorm|Insurgency: Sandstorm — 3 GB / 16 players|3072|2|16|14|No player cap from us · ~14 recommended
+sandstorm|Insurgency: Sandstorm — 4 GB / 24 players|4096|3|24|20|No player cap from us · ~20 recommended
+sandstorm|Insurgency: Sandstorm — 6 GB / 32 players|6144|3|32|30|No player cap from us · ~30 recommended
+satisfactory|Satisfactory — 8 GB / 4 players|8192|2|4|3|No player cap from us · ~3 recommended
+satisfactory|Satisfactory — 12 GB / 8 players|12288|4|8|9|No player cap from us · ~9 recommended
+satisfactory|Satisfactory — 16 GB / 16 players|16384|6|16|15|No player cap from us · ~15 recommended
+sdtd|7 Days to Die — 8 GB / 4 players|8192|3|4|4|No player cap from us · ~4 recommended
+sdtd|7 Days to Die — 10 GB / 8 players|10240|4|8|7|No player cap from us · ~7 recommended
+sdtd|7 Days to Die — 16 GB / 16 players|16384|6|16|16|No player cap from us · ~16 recommended
+sonsoftheforest|Sons of the Forest — 4 GB / 4 players|4096|2|4|4|Up to 8 players (game max) · ~4 recommended
+sonsoftheforest|Sons of the Forest — 6 GB / 8 players|6144|3|8|8|Up to 8 players (game max) · ~8 recommended
+soulmask|Soulmask — 6 GB / 20 players|6144|2|20|20|No player cap from us · ~20 recommended
+soulmask|Soulmask — 8 GB / 40 players|8192|3|40|30|No player cap from us · ~30 recommended
+soulmask|Soulmask — 12 GB / 60 players|12288|4|60|60|No player cap from us · ~60 recommended
+spaceengineers|Space Engineers — 8 GB / 8 players|8192|3|8|8|Up to 64 players (game max) · ~8 recommended
+spaceengineers|Space Engineers — 12 GB / 16 players|12288|4|16|19|Up to 64 players (game max) · ~19 recommended
+spaceengineers|Space Engineers — 16 GB / 32 players|16384|6|32|30|Up to 64 players (game max) · ~30 recommended
+squad|Squad — 16 GB / 50 players|16384|6|50|50|Up to 100 players (game max) · ~50 recommended
+squad|Squad — 24 GB / 80 players|24576|8|80|75|Up to 100 players (game max) · ~75 recommended
+squad|Squad — 32 GB / 100 players|32768|10|100|100|Up to 100 players (game max) · ~100 recommended
+stationeers|Stationeers — 4 GB / 4 players|4096|2|4|4|No player cap from us · ~4 recommended
+stationeers|Stationeers — 6 GB / 8 players|6144|2|8|7|No player cap from us · ~7 recommended
+stationeers|Stationeers — 8 GB / 10 players|8192|3|10|10|No player cap from us · ~10 recommended
+sunkenland|Sunkenland — 4 GB / 4 players|4096|2|4|4|Up to 15 players (game max) · ~4 recommended
+sunkenland|Sunkenland — 6 GB / 8 players|6144|3|8|7|Up to 15 players (game max) · ~7 recommended
+sunkenland|Sunkenland — 8 GB / 10 players|8192|4|10|10|Up to 15 players (game max) · ~10 recommended
+terraria|Terraria — 2 GB / 8 players|2048|1|8|8|Up to 255 players (game max) · ~8 recommended
+terraria|Terraria — 4 GB / 16 players|4096|2|16|16|Up to 255 players (game max) · ~16 recommended
+tf2|Team Fortress 2 — 2 GB / 16 players|2048|2|16|16|Up to 100 players (game max) · ~16 recommended
+tf2|Team Fortress 2 — 4 GB / 24 players|4096|3|24|30|Up to 100 players (game max) · ~30 recommended
+tf2|Team Fortress 2 — 6 GB / 32 players|6144|3|32|45|Up to 100 players (game max) · ~45 recommended
+theforest|The Forest — 4 GB / 4 players|4096|2|4|4|Up to 8 players (game max) · ~4 recommended
+theforest|The Forest — 6 GB / 8 players|6144|2|8|8|Up to 8 players (game max) · ~8 recommended
+theisle|The Isle — 12 GB / 20 players|12288|3|20|20|No player cap from us · ~20 recommended
+theisle|The Isle — 16 GB / 30 players|16384|4|30|25|No player cap from us · ~25 recommended
+theisle|The Isle — 24 GB / 40 players|24576|6|40|40|No player cap from us · ~40 recommended
+unturned|Unturned — 2 GB / 8 players|2048|1|8|8|Up to 200 players (game max) · ~8 recommended
+unturned|Unturned — 3 GB / 16 players|3072|2|16|16|Up to 200 players (game max) · ~16 recommended
+unturned|Unturned — 4 GB / 24 players|4096|2|24|20|Up to 200 players (game max) · ~20 recommended
+valheim|Valheim — 4 GB / 10 players|4096|2|10|10|Up to 10 players (game max) · ~10 recommended
+valheim|Valheim — 8 GB / 20 players|8192|3|20|10|Up to 10 players (game max) · ~10 recommended
+vintagestory|Vintage Story — 2 GB / 8 players|2048|1|8|8|Unlimited players · ~8 recommended
+vintagestory|Vintage Story — 4 GB / 16 players|4096|2|16|16|Unlimited players · ~16 recommended
+vintagestory|Vintage Story — 6 GB / 16 players|6144|2|16|19|Unlimited players · ~19 recommended
+vrising|V Rising — 6 GB / 20 players|6144|2|20|20|No player cap from us · ~20 recommended
+vrising|V Rising — 8 GB / 40 players|8192|3|40|40|No player cap from us · ~40 recommended
+vrising|V Rising — 12 GB / 80 players|12288|4|80|80|No player cap from us · ~80 recommended

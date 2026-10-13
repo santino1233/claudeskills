@@ -1,0 +1,790 @@
+{
+ "at": "2026-10-10T09:16:53.763Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (golden RigSpec fixtures)",
+ "bettermodel": "3.5.0 (bettermodel-3.5.0-paper.jar sha256 0f983569...57ed6)",
+ "paper": "26.2 build 133",
+ "jdk": "Temurin 25.0.4.1+1",
+ "prepare": {
+  "fetchBetterModel": "58 files verified (BetterModel 3.5.0 + 27 paper-library + 30 libby files), 0 problems",
+  "fetchDeps": [
+   "ok vault-api VaultAPI-1.7.jar 12926 sha256 47f6a400a8ab22012e6a320f7bfc63621ce4a246e1c60502ff7fc91d532d2601",
+   "ok luckperms-api luckperms-api-5.5.jar 149331 sha256 cd910f936adc4dee7705fb51cc29401fde4f29aba6ee73a6475a3a0515f6294f",
+   "ok placeholderapi placeholderapi-2.11.6.jar 933017 sha256 b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+   "ok protocollib ProtocolLib-5.3.0.jar 1004075 sha256 1e10c4998d591c31c31f6889e0de01e49b1367e0d3e6c82829e51c0e1fb478b9",
+   "ok bettermodel-api bettermodel-api-3.5.0.jar 584744 sha256 402505448bde8e3b1d95da90d4a047857671259aa7f450125ee7fedeeb948874",
+   "ok bettermodel-bukkit-api bettermodel-bukkit-api-3.5.0.jar 18628 sha256 447fd5b1b37fa60a153cabae20a6c9b7a76579049294e756a15441a75dac37b9"
+  ],
+  "fixtureBuild": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f  /tank/nxeon-build/tmp/testflight/inbox/fx-r6/TfCreature-1.0.2.jar"
+ },
+ "load": {
+  "stage": {
+   "creatures": [
+    {
+     "name": "banshee",
+     "key": "nx_r6cr34tr_banshee",
+     "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+     "bytes": 60629,
+     "skin": 64,
+     "quality": "pass"
+    },
+    {
+     "name": "ghoul",
+     "key": "nx_r6cr34tr_ghoul",
+     "bbmodelSha256": "97e2d2e0e53d5a02eb35e3779d9072b1945249bfa9da06e7a060182f3feabcbf",
+     "bytes": 41181,
+     "skin": 64,
+     "quality": "pass"
+    },
+    {
+     "name": "dire_wolf",
+     "key": "nx_r6cr34tr_dire_wolf",
+     "bbmodelSha256": "77c66b62af8ca43c8298970f738e816feece63278396e2f0b11735f0c3259074",
+     "bytes": 43862,
+     "skin": 64,
+     "quality": "pass"
+    }
+   ],
+   "delivered": {
+    "ok": true,
+    "action": "delivered",
+    "wrote": [
+     "plugins/BetterModel/config.yml",
+     "plugins/BetterModel/models/nx_r6cr34tr_banshee.bbmodel",
+     "plugins/BetterModel/models/nx_r6cr34tr_ghoul.bbmodel",
+     "plugins/BetterModel/models/nx_r6cr34tr_dire_wolf.bbmodel"
+    ],
+    "removed": [],
+    "restartRequired": true,
+    "bettermodel": "installed",
+    "notes": [
+     "the Nxeon-managed BetterModel plugin was installed; it starts with the next server restart",
+     "restart the server (or run /bettermodel reload) so BetterModel loads the creatures and rebuilds its resource pack"
+    ]
+   }
+  },
+  "flight": {
+   "runId": "tf-26-2-mv26k7lh-5fa59f",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (6 checks, boot 14.1s, peak RSS 855 MB)",
+   "bootMs": 14051,
+   "doneReportedSec": 12.652,
+   "peakRssMb": 855,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 802 MB]: ok -> The difficulty has been set to Easy",
+    "models 'tfcreature models nx_r6cr34tr_banshee' [rss 808 MB]: ok -> models=3 has=true keys=nx_r6cr34tr_banshee,nx_r6cr34tr_dire_wolf,nx_r6cr34tr_ghoul | ",
+    "spawn-banshee 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 837 MB]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+    "stats-1 'tfcreature stats' [rss 838 MB]: ok -> mspt=20.10 tps=15.90 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=392 | ",
+    "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 838 MB]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+    "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 838 MB]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+    "stats-2 'tfcreature stats' [rss 838 MB]: ok -> mspt=13.14 tps=17.47 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=394 | ",
+    "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 838 MB]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+    "despawn 'tfcreature despawn' [rss 838 MB]: ok -> closed=1 removed=1 zombies=0 | ",
+    "spawn-ghoul 'tfcreature spawn nx_r6cr34tr_ghoul 1' [rss 839 MB]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+    "spawn-wolf 'tfcreature spawn nx_r6cr34tr_dire_wolf 1' [rss 839 MB]: ok -> spawned=1 idle=1 trackers=2 silent=true invisible=true zombies=2 difficulty=EASY | ",
+    "attack-2 'tfcreature attack' [rss 839 MB]: ok -> attack_started=2 of=2 | ",
+    "despawn-2 'tfcreature despawn' [rss 839 MB]: ok -> closed=2 removed=2 zombies=0 | ",
+    "stats-end 'tfcreature stats' [rss 839 MB]: ok -> mspt=1.16 tps=18.38 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=397 | ",
+    "bm-reload 'bettermodel reload' [rss 840 MB]: ok (optional) -> ",
+    "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 840 MB]: ok -> models=3 has=true keys=nx_r6cr34tr_banshee,nx_r6cr34tr_dire_wolf,nx_r6cr34tr_ghoul | "
+   ],
+   "log": [
+    "114 startup lines scanned with 5 matchers, 3 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [
+    "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L97: [09:17:09 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+    "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L98: [09:17:09 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+    "rcon plugins -> \u2139 Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+   ],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [
+    {
+     "kind": "plugin",
+     "file": "bettermodel-3.5.0-paper.jar",
+     "sha256": "0f983569b45e82f657fd6267f68115cc679fa066f0e8eec2ce328596dcb57ed6",
+     "pluginName": "BetterModel",
+     "apiVersion": "1.21.4",
+     "descriptor": "paper-plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "TfCreature-1.0.2.jar",
+     "sha256": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f",
+     "pluginName": "TfCreature",
+     "apiVersion": "1.21.4",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-paper-libraries",
+     "to": "libraries",
+     "files": 27,
+     "bytes": 26409441,
+     "sha256": "d6a29dbcafe18a700a1e68abd1c045d8b8f802f449b0d608c06f8fcd2426630f"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-libby",
+     "to": "plugins/BetterModel/.libs",
+     "files": 30,
+     "bytes": 4105514,
+     "sha256": "5c96840b9c1d36286bb1644225bc54604d17cce87c7d3fb6a9cd271ad0a19fba"
+    },
+    {
+     "kind": "seed",
+     "from": "r6-models-load",
+     "to": "plugins/BetterModel/models",
+     "files": 3,
+     "bytes": 145672,
+     "sha256": "472edda502343b97dd4dadb3f2ab86f85a8c7696fa64f99e5eeb83d2e35e13b1"
+    }
+   ],
+   "collected": [
+    {
+     "path": "console.log",
+     "kind": "file",
+     "bytes": 18031,
+     "sha256": "928e2c104a3960bfc975dd8024a3be12ee2af32ec2bdce517311a0069652e29d"
+    },
+    {
+     "path": "plugins/BetterModel/",
+     "kind": "listing",
+     "entries": 44
+    },
+    {
+     "path": "plugins/BetterModel/build.zip",
+     "kind": "file",
+     "bytes": 22624,
+     "sha256": "d1bc7abaddac9105a0c49e4d03921c49c5f0b5799f30d66a751610e93050f66c"
+    }
+   ],
+   "notes": [
+    "placed 1 server file(s): plugins/BetterModel/config.yml",
+    "ports: server 47119, rcon 47161 (private netns, 127.0.0.1)"
+   ]
+  },
+  "betterModelLog": [
+   " - BetterModel (3.5.0)",
+   " - TfCreature (1.0.2)",
+   "[09:17:05 INFO]: [BetterModel] Loading server plugin BetterModel v3.5.0",
+   "[09:17:06 INFO]: [TfCreature] Loading server plugin TfCreature v1.0.2",
+   "[09:17:09 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+   "[09:17:09 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "[09:17:09 INFO]: [BetterModel] Plugin is loaded. (166 ms)",
+   "[09:17:09 INFO]: [BetterModel] Minecraft version: 26.2.0, NMS version: V26_R2",
+   "[09:17:09 INFO]: [BetterModel] Platform: Paper",
+   "[09:17:25 INFO]: [TfCreature] Disabling TfCreature v1.0.2",
+   "[09:17:25 INFO]: [BetterModel] Disabling BetterModel v3.5.0"
+  ],
+  "pack": {
+   "rawBytes": 22624,
+   "rawSha256": "d1bc7abaddac9105a0c49e4d03921c49c5f0b5799f30d66a751610e93050f66c",
+   "normalizedBytes": 21699,
+   "normalizedSha256": "6704c866bc7050bd66e0d0aeb2484f33308196bd8fa62dda4eba68f3a517aa39",
+   "entries": 60,
+   "contentSha256": "6419ec738d4f9932d092fb9dfe0f9113568511d79308f1008add0e7536f05ee2"
+  }
+ },
+ "packloader": {
+  "handoff": {
+   "ok": true,
+   "action": "added",
+   "sha1": "39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e",
+   "url": "https://packs.example.invalid/p/39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e.zip",
+   "wrote": true,
+   "entries": 60
+  },
+  "handoffAgain": {
+   "ok": true,
+   "action": "unchanged",
+   "sha1": "39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e",
+   "url": "https://packs.example.invalid/p/39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e.zip",
+   "wrote": false,
+   "entries": 60
+  },
+  "packsJson": {
+   "schema": 1,
+   "packs": [
+    {
+     "id": "419b3cbe-ee57-5b09-a499-386cd4bc564b",
+     "url": "https://packs.example.invalid/p/39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e.zip",
+     "sha1": "39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e",
+     "prompt": "This server uses animated custom creatures. Accept the pack to see them.",
+     "required": false,
+     "owner": "bettermodel",
+     "role": "bettermodel"
+    }
+   ]
+  },
+  "flight": {
+   "runId": "tf-26-2-mv26kv7q-625e3f",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (6 checks, boot 12.6s, peak RSS 796 MB)",
+   "bootMs": 12641,
+   "doneReportedSec": 11.241,
+   "peakRssMb": 796,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "nxpacks-list 'nxpacks list' [rss 795 MB]: ok -> [NxeonPackLoader] 1 pack(s) |  - 419b3cbe-ee57-5b09-a499-386cd4bc564b required=false sha1=39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e url=https://packs.example.invalid/p/39acdb7cbef73e4634f5c3a9e09e429cdf7eef9e.zip | ",
+    "nxpacks-status 'nxpacks status' [rss 796 MB]: ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T09:17:38.690907681Z geyser=false floodgate=false clientAnswers=0 | ",
+    "models 'tfcreature models nx_r6cr34tr_banshee' [rss 796 MB]: ok -> models=3 has=true keys=nx_r6cr34tr_banshee,nx_r6cr34tr_dire_wolf,nx_r6cr34tr_ghoul | ",
+    "plugins 'plugins' [rss 796 MB]: ok -> \u2139 Server Plugins (3): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (2): |  - NxeonPackLoader, TfCreature | "
+   ],
+   "log": [
+    "118 startup lines scanned with 5 matchers, 3 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [
+    "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L100: [09:17:38 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+    "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L98: [09:17:38 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+    "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L99: [09:17:38 INFO]: [TfCreature] Enabling TfCreature v1.0.2"
+   ],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [
+    {
+     "kind": "plugin",
+     "file": "NxeonPackLoader-0.1.0.jar",
+     "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+     "pluginName": "NxeonPackLoader",
+     "apiVersion": "1.21",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "bettermodel-3.5.0-paper.jar",
+     "sha256": "0f983569b45e82f657fd6267f68115cc679fa066f0e8eec2ce328596dcb57ed6",
+     "pluginName": "BetterModel",
+     "apiVersion": "1.21.4",
+     "descriptor": "paper-plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "TfCreature-1.0.2.jar",
+     "sha256": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f",
+     "pluginName": "TfCreature",
+     "apiVersion": "1.21.4",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-paper-libraries",
+     "to": "libraries",
+     "files": 27,
+     "bytes": 26409441,
+     "sha256": "d6a29dbcafe18a700a1e68abd1c045d8b8f802f449b0d608c06f8fcd2426630f"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-libby",
+     "to": "plugins/BetterModel/.libs",
+     "files": 30,
+     "bytes": 4105514,
+     "sha256": "5c96840b9c1d36286bb1644225bc54604d17cce87c7d3fb6a9cd271ad0a19fba"
+    },
+    {
+     "kind": "seed",
+     "from": "r6-models-load",
+     "to": "plugins/BetterModel/models",
+     "files": 3,
+     "bytes": 145672,
+     "sha256": "472edda502343b97dd4dadb3f2ab86f85a8c7696fa64f99e5eeb83d2e35e13b1"
+    }
+   ],
+   "collected": [
+    {
+     "path": "plugins/BetterModel/build.zip",
+     "kind": "file",
+     "bytes": 22624,
+     "sha256": "c74f7c47f24a93ca37c87c63fcf8a5cf20028a1ed5dca37e7a0c71e76bef54dc"
+    }
+   ],
+   "notes": [
+    "placed 2 server file(s): plugins/BetterModel/config.yml, plugins/NxeonPackLoader/packs.json",
+    "ports: server 47179, rcon 47194 (private netns, 127.0.0.1)"
+   ]
+  },
+  "secondBootPack": {
+   "rawSha256": "c74f7c47f24a93ca37c87c63fcf8a5cf20028a1ed5dca37e7a0c71e76bef54dc",
+   "normalizedSha256": "6704c866bc7050bd66e0d0aeb2484f33308196bd8fa62dda4eba68f3a517aa39",
+   "sameNormalizedAsFirstBoot": true
+  }
+ },
+ "malformed": {
+  "flight": {
+   "runId": "tf-26-2-mv26llt7-e3a224",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (6 checks, boot 12.4s, peak RSS 807 MB)",
+   "bootMs": 12445,
+   "doneReportedSec": 11.176,
+   "peakRssMb": 807,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 794 MB]: ok -> The difficulty has been set to Easy",
+    "models 'tfcreature models nx_r6cr34tr_banshee' [rss 794 MB]: ok -> models=3 has=true keys=nx_r6cr34tr_banshee,nx_r6cr34tr_dire_wolf,nx_r6cr34tr_ghoul | ",
+    "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 806 MB]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+    "despawn 'tfcreature despawn' [rss 806 MB]: ok -> closed=1 removed=1 zombies=0 | ",
+    "plugins 'plugins' [rss 806 MB]: ok -> \u2139 Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+   ],
+   "log": [
+    "123 startup lines scanned with 5 matchers, 3 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [
+    "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L97: [09:18:12 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+    "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L98: [09:18:13 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+    "rcon plugins -> \u2139 Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+   ],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [
+    {
+     "kind": "plugin",
+     "file": "bettermodel-3.5.0-paper.jar",
+     "sha256": "0f983569b45e82f657fd6267f68115cc679fa066f0e8eec2ce328596dcb57ed6",
+     "pluginName": "BetterModel",
+     "apiVersion": "1.21.4",
+     "descriptor": "paper-plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "TfCreature-1.0.2.jar",
+     "sha256": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f",
+     "pluginName": "TfCreature",
+     "apiVersion": "1.21.4",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-paper-libraries",
+     "to": "libraries",
+     "files": 27,
+     "bytes": 26409441,
+     "sha256": "d6a29dbcafe18a700a1e68abd1c045d8b8f802f449b0d608c06f8fcd2426630f"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-libby",
+     "to": "plugins/BetterModel/.libs",
+     "files": 30,
+     "bytes": 4105514,
+     "sha256": "5c96840b9c1d36286bb1644225bc54604d17cce87c7d3fb6a9cd271ad0a19fba"
+    },
+    {
+     "kind": "seed",
+     "from": "r6-models-bad",
+     "to": "plugins/BetterModel/models",
+     "files": 6,
+     "bytes": 145871,
+     "sha256": "e794b0e8f1ee310f390fa4f6abad8b383cda27c8b27a501115f6dce4a6b83f6f"
+    }
+   ],
+   "collected": [
+    {
+     "path": "console.log",
+     "kind": "file",
+     "bytes": 18995,
+     "sha256": "64f3cb087f7447e8a6c5330c51682aa19a31f2768ac875000fb6c347b0ee67c0"
+    }
+   ],
+   "notes": [
+    "placed 1 server file(s): plugins/BetterModel/config.yml",
+    "ports: server 47118, rcon 47103 (private netns, 127.0.0.1)"
+   ]
+  },
+  "betterModelLog": [
+   " - BetterModel (3.5.0)",
+   "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+   "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+   "[09:18:09 INFO]: [BetterModel] Loading server plugin BetterModel v3.5.0",
+   "[09:18:12 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+   "[09:18:13 WARN]: [BetterModel] Unable to load this model: nx_r6cr34tr_empty",
+   "[09:18:13 WARN]: [BetterModel] Reason: Cannot invoke \"kr.toxicity.model.api.data.raw.ModelData.assertSupported()\" because \"result\" is null",
+   "[09:18:13 WARN]: [BetterModel] If you want to see the stack trace, set debug.exception to true in config.yml",
+   "[09:18:13 WARN]: [BetterModel] Unable to load this model: nx_r6cr34tr_broken_json",
+   "[09:18:13 WARN]: [BetterModel] Reason: Unable to parse this json asset: plugins/BetterModel/models/nx_r6cr34tr_broken_json.bbmodel",
+   "[09:18:13 WARN]: [BetterModel] If you want to see the stack trace, set debug.exception to true in config.yml",
+   "[09:18:13 WARN]: [BetterModel] Unable to load this model: nx_r6cr34tr_bad_shape",
+   "[09:18:13 WARN]: [BetterModel] Reason: Unable to parse this json asset: plugins/BetterModel/models/nx_r6cr34tr_bad_shape.bbmodel",
+   "[09:18:13 WARN]: [BetterModel] If you want to see the stack trace, set debug.exception to true in config.yml",
+   "[09:18:13 INFO]: [BetterModel] Plugin is loaded. (166 ms)",
+   "[09:18:13 INFO]: [BetterModel] Minecraft version: 26.2.0, NMS version: V26_R2",
+   "[09:18:13 INFO]: [BetterModel] Platform: Paper",
+   "java.net.UnknownHostException: fill.papermc.io",
+   "java.net.UnknownHostException: fill.papermc.io",
+   "[09:18:15 INFO]: [BetterModel] Disabling BetterModel v3.5.0"
+  ]
+ },
+ "perf": {
+  "vanilla": {
+   "runId": "tf-26-2-mv26on4d-ea9e47",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (4 checks, boot 13.8s, peak RSS 742 MB)",
+   "bootMs": 13848,
+   "doneReportedSec": 12.55,
+   "peakRssMb": 742,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "not_run",
+    "startup_log_clean": "pass",
+    "rcon_checks": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "no RCON checks in the spec"
+   ],
+   "log": [
+    "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [],
+   "collected": [],
+   "notes": [
+    "ports: server 47173, rcon 47140 (private netns, 127.0.0.1)"
+   ]
+  },
+  "bettermodelOnly": {
+   "runId": "tf-26-2-mv26oz9l-c804dd",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (6 checks, boot 13.7s, peak RSS 786 MB)",
+   "bootMs": 13650,
+   "doneReportedSec": 11.966,
+   "peakRssMb": 786,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "stats 'tfcreature stats' [rss 786 MB]: ok -> mspt=1.84 tps=20.02 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=292 | "
+   ],
+   "log": [
+    "114 startup lines scanned with 5 matchers, 3 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [
+    "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L97: [09:20:51 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+    "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L98: [09:20:51 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+    "rcon plugins -> \u2139 Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+   ],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [
+    {
+     "kind": "plugin",
+     "file": "bettermodel-3.5.0-paper.jar",
+     "sha256": "0f983569b45e82f657fd6267f68115cc679fa066f0e8eec2ce328596dcb57ed6",
+     "pluginName": "BetterModel",
+     "apiVersion": "1.21.4",
+     "descriptor": "paper-plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "TfCreature-1.0.2.jar",
+     "sha256": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f",
+     "pluginName": "TfCreature",
+     "apiVersion": "1.21.4",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-paper-libraries",
+     "to": "libraries",
+     "files": 27,
+     "bytes": 26409441,
+     "sha256": "d6a29dbcafe18a700a1e68abd1c045d8b8f802f449b0d608c06f8fcd2426630f"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-libby",
+     "to": "plugins/BetterModel/.libs",
+     "files": 30,
+     "bytes": 4105514,
+     "sha256": "5c96840b9c1d36286bb1644225bc54604d17cce87c7d3fb6a9cd271ad0a19fba"
+    },
+    {
+     "kind": "seed",
+     "from": "r6-models-perf",
+     "to": "plugins/BetterModel/models",
+     "files": 3,
+     "bytes": 145672,
+     "sha256": "472edda502343b97dd4dadb3f2ab86f85a8c7696fa64f99e5eeb83d2e35e13b1"
+    }
+   ],
+   "collected": [],
+   "notes": [
+    "placed 1 server file(s): plugins/BetterModel/config.yml",
+    "ports: server 47136, rcon 47137 (private netns, 127.0.0.1)"
+   ]
+  },
+  "ramp": {
+   "runId": "tf-26-2-mv26pdoe-9e0ef9",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 26.2 (6 checks, boot 12.4s, peak RSS 826 MB)",
+   "bootMs": 12446,
+   "doneReportedSec": 11.167,
+   "peakRssMb": 826,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 790 MB]: ok -> The difficulty has been set to Easy",
+    "stats-0 'tfcreature stats' [rss 790 MB]: ok -> mspt=2.06 tps=20.02 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=317 | ",
+    "spawn-1 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 808 MB]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+    "stats-1 'tfcreature stats' [rss 809 MB]: ok -> mspt=0.84 tps=19.27 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=353 | ",
+    "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 9' [rss 810 MB]: ok -> spawned=9 idle=9 trackers=10 silent=true invisible=true zombies=10 difficulty=EASY | ",
+    "stats-10 'tfcreature stats' [rss 813 MB]: ok -> mspt=1.09 tps=19.57 zombies=9 entities=10 trackersOpen=10 scheduled=0 viewers=0 mobsAlive=9 finished=0 heapUsedMb=368 | ",
+    "spawn-50 'tfcreature spawn nx_r6cr34tr_banshee 40' [rss 814 MB]: ok -> spawned=40 idle=40 trackers=50 silent=true invisible=true zombies=49 difficulty=EASY | ",
+    "stats-50 'tfcreature stats' [rss 815 MB]: ok -> mspt=4.17 tps=19.67 zombies=42 entities=48 trackersOpen=50 scheduled=0 viewers=0 mobsAlive=42 finished=0 heapUsedMb=279 | ",
+    "attack-50 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 815 MB]: ok -> attack_started=50 of=50 sound=nx_r6cr34tr:banshee.attack | ",
+    "stats-attack 'tfcreature stats' [rss 815 MB]: ok -> mspt=0.87 tps=19.71 zombies=40 entities=48 trackersOpen=50 scheduled=0 viewers=0 mobsAlive=40 finished=0 heapUsedMb=296 | ",
+    "despawn 'tfcreature despawn' [rss 815 MB]: ok -> closed=50 removed=40 zombies=0 | ",
+    "stats-after 'tfcreature stats' [rss 815 MB]: ok -> mspt=0.22 tps=19.75 zombies=0 entities=8 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=299 | "
+   ],
+   "log": [
+    "114 startup lines scanned with 5 matchers, 3 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "plugins": [
+    "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L97: [09:21:09 INFO]: [BetterModel] Enabling BetterModel v3.5.0",
+    "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L98: [09:21:09 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+    "rcon plugins -> \u2139 Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+   ],
+   "engine": {
+    "runner": "tf-lite-2",
+    "runnerSha256": "ff6b8a3793e57c2fe7034b9956518608c91febdb65664e425a4bba66167e2ecc",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "artifacts": [
+    {
+     "kind": "plugin",
+     "file": "bettermodel-3.5.0-paper.jar",
+     "sha256": "0f983569b45e82f657fd6267f68115cc679fa066f0e8eec2ce328596dcb57ed6",
+     "pluginName": "BetterModel",
+     "apiVersion": "1.21.4",
+     "descriptor": "paper-plugin.yml"
+    },
+    {
+     "kind": "plugin",
+     "file": "TfCreature-1.0.2.jar",
+     "sha256": "d4448c6edb4b19051665ef28e9e2ecc54790b48bf07ec11e8165a7af462b283f",
+     "pluginName": "TfCreature",
+     "apiVersion": "1.21.4",
+     "descriptor": "plugin.yml"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-paper-libraries",
+     "to": "libraries",
+     "files": 27,
+     "bytes": 26409441,
+     "sha256": "d6a29dbcafe18a700a1e68abd1c045d8b8f802f449b0d608c06f8fcd2426630f"
+    },
+    {
+     "kind": "seed",
+     "from": "bettermodel-3.5.0-libby",
+     "to": "plugins/BetterModel/.libs",
+     "files": 30,
+     "bytes": 4105514,
+     "sha256": "5c96840b9c1d36286bb1644225bc54604d17cce87c7d3fb6a9cd271ad0a19fba"
+    },
+    {
+     "kind": "seed",
+     "from": "r6-models-perf",
+     "to": "plugins/BetterModel/models",
+     "files": 3,
+     "bytes": 145672,
+     "sha256": "472edda502343b97dd4dadb3f2ab86f85a8c7696fa64f99e5eeb83d2e35e13b1"
+    }
+   ],
+   "collected": [],
+   "notes": [
+    "placed 1 server file(s): plugins/BetterModel/config.yml",
+    "ports: server 47102, rcon 47107 (private netns, 127.0.0.1)"
+   ]
+  }
+ }
+}

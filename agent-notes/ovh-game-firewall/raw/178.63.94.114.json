@@ -1,0 +1,25 @@
+{
+  "ip": "178.63.94.114",
+  "ip_info": {
+    "ok": false,
+    "err": "OVH GET /ip/178.63.94.114 -> 404: This service does not exist"
+  },
+  "game": {
+    "ok": false,
+    "err": "OVH GET /ip/178.63.94.114/game/178.63.94.114 -> 404: This service does not exist"
+  },
+  "gameList": {
+    "ok": false,
+    "err": "OVH GET /ip/178.63.94.114/game -> 404: This service does not exist"
+  },
+  "rules": {
+    "ok": false,
+    "err": "OVH GET /ip/178.63.94.114/game/178.63.94.114/rule -> 404: This service does not exist"
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": false,
+    "err": "OVH GET /ip/178.63.94.114/firewall -> 404: This service does not exist"
+  },
+  "firewallDetail": []
+}

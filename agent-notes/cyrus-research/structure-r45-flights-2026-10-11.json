@@ -1,0 +1,267 @@
+{
+ "what": "Cyrus r45 v8 mod suites: synthetic suite size run (Test Flight, Paper 1.21.11)",
+ "at": "2026-10-11T08:32:49.156Z",
+ "host": "node-2",
+ "aiModel": "none (fixtures)",
+ "realClient": false,
+ "lanes": [
+  {
+   "label": "small",
+   "copies": 1,
+   "extraWeapons": 0,
+   "designFiles": 17,
+   "modules": 3,
+   "spec": {
+    "ok": true,
+    "warnings": [
+     "untested_requirement"
+    ]
+   },
+   "generation": {
+    "steps": 3,
+    "maxStepContextChars": 8517,
+    "wholeContextChars": 19092
+   },
+   "budget": [
+    {
+     "id": "design_files",
+     "label": "Design files",
+     "value": 17,
+     "max": 200,
+     "level": "ok",
+     "measured": false,
+     "note": "estimate"
+    },
+    {
+     "id": "periodic",
+     "label": "Repeating abilities per player per second",
+     "value": 0.03,
+     "max": 40,
+     "level": "ok",
+     "measured": false,
+     "note": "held_interval abilities run every period for every player holding the item"
+    },
+    {
+     "id": "listeners",
+     "label": "Event triggers in use",
+     "value": 6,
+     "max": 10,
+     "level": "ok",
+     "measured": true,
+     "note": "the plugin registers one listener per trigger type, however many items use it"
+    }
+   ],
+   "compile": {
+    "ok": true,
+    "ms": 79,
+    "files": 68,
+    "params": 308,
+    "counts": {
+     "items": 8,
+     "menus": 2,
+     "quests": 4,
+     "bosses": 2,
+     "encounters": 1
+    },
+    "bosses": 2,
+    "encounters": 1
+   },
+   "javac": {
+    "sources": 66,
+    "classFiles": 96,
+    "ms": 2266,
+    "warnings": 0
+   },
+   "jar": {
+    "bytes": 264043,
+    "sha256": "905311dcb5745fe68309adf74c9e115485edfd92323cdfd74265c016d05179b1"
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0
+   },
+   "flight": {
+    "status": "completed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.7s, peak RSS 945 MB)",
+    "bootMs": 19670,
+    "peakRssMb": 945,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass"
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass"
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass"
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass"
+     },
+     {
+      "id": "playtest",
+      "status": "not_run"
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass"
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass"
+     }
+    ],
+    "mspt": [
+     "mspt-loaded 'mspt' [rss 943 MB, 254 ms]: ok (optional) -> Server tick times (avg/min/max) from last 5s, 10s, 1m: | ◴ 1.1/0.7/9.4, 8.3/0.5/524.8, 8.3/0.5/524.8 | ",
+     "mspt-idle 'mspt' [rss 944 MB, 252 ms]: ok (optional) -> Server tick times (avg/min/max) from last 5s, 10s, 1m: | ◴ 4.1/0.1/376.1, 2.9/0.1/376.1, 6.6/0.1/524.8 | "
+    ],
+    "failures": [
+     {
+      "id": "playtest",
+      "evidence": []
+     }
+    ]
+   }
+  },
+  {
+   "label": "large",
+   "copies": 4,
+   "extraWeapons": 4,
+   "designFiles": 80,
+   "modules": 16,
+   "spec": {
+    "ok": true,
+    "warnings": [
+     "untested_requirement"
+    ]
+   },
+   "generation": {
+    "steps": 16,
+    "maxStepContextChars": 8517,
+    "wholeContextChars": 91371
+   },
+   "budget": [
+    {
+     "id": "design_files",
+     "label": "Design files",
+     "value": 80,
+     "max": 200,
+     "level": "ok",
+     "measured": false,
+     "note": "estimate"
+    },
+    {
+     "id": "periodic",
+     "label": "Repeating abilities per player per second",
+     "value": 0.13,
+     "max": 40,
+     "level": "ok",
+     "measured": false,
+     "note": "held_interval abilities run every period for every player holding the item"
+    },
+    {
+     "id": "listeners",
+     "label": "Event triggers in use",
+     "value": 6,
+     "max": 10,
+     "level": "ok",
+     "measured": true,
+     "note": "the plugin registers one listener per trigger type, however many items use it"
+    }
+   ],
+   "compile": {
+    "ok": true,
+    "ms": 90,
+    "files": 169,
+    "params": 1472,
+    "counts": {
+     "items": 44,
+     "menus": 8,
+     "quests": 16,
+     "bosses": 8,
+     "encounters": 4
+    },
+    "bosses": 8,
+    "encounters": 4
+   },
+   "javac": {
+    "sources": 167,
+    "classFiles": 197,
+    "ms": 3020,
+    "warnings": 0
+   },
+   "jar": {
+    "bytes": 555425,
+    "sha256": "f5da76751d7e5dbc4b735a82c6bb6d2dadb4ad18bcd5ca241e34d4dba47ab8d2"
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0
+   },
+   "flight": {
+    "status": "completed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.9s, peak RSS 960 MB)",
+    "bootMs": 18870,
+    "peakRssMb": 960,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass"
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass"
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass"
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass"
+     },
+     {
+      "id": "playtest",
+      "status": "not_run"
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass"
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass"
+     }
+    ],
+    "mspt": [
+     "mspt-loaded 'mspt' [rss 943 MB, 254 ms]: ok (optional) -> Server tick times (avg/min/max) from last 5s, 10s, 1m: | ◴ 1.1/0.7/9.9, 7.1/0.4/448.7, 7.1/0.4/448.7 | ",
+     "mspt-idle 'mspt' [rss 959 MB, 253 ms]: ok (optional) -> Server tick times (avg/min/max) from last 5s, 10s, 1m: | ◴ 0.4/0.1/0.6, 2.2/0.1/305.2, 5.4/0.1/448.7 | "
+    ],
+    "failures": [
+     {
+      "id": "playtest",
+      "evidence": []
+     }
+    ]
+   }
+  }
+ ]
+}

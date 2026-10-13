@@ -1,0 +1,459 @@
+[
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers",
+    "status": 200,
+    "errors": [],
+    "overflow": 1307,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers?mismatch=1",
+    "status": 200,
+    "errors": [],
+    "overflow": 1307,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers?q=fleet&per=50&sort=hostname&dir=asc",
+    "status": 200,
+    "errors": [],
+    "overflow": 1307,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=overview",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=network",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=access",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=compute",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=software",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=files",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=backups",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=move",
+    "status": 200,
+    "errors": [
+      "%c%s%c [node-ram-guard] could not read RAM snapshot for sgp-node-3: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   fetch failed",
+      "%c%s%c [node-ram-guard] could not read RAM snapshot for fsn-node-2: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   fetch failed"
+    ],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=billing",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=activity",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=danger",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=overview",
+    "status": 200,
+    "errors": [],
+    "overflow": 640,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=game",
+    "status": 200,
+    "errors": [],
+    "overflow": 640,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=network",
+    "status": 200,
+    "errors": [],
+    "overflow": 640,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/servers/cmupt8ss7000zhlbttj3vcrrs",
+    "status": 200,
+    "errors": [],
+    "overflow": 548,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=profile",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=servers",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=billing",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=support",
+    "status": 200,
+    "errors": [],
+    "overflow": 634,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=security",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=partner",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=actions",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users/cmupt8sqm0008hlbts9zp04r1",
+    "status": 200,
+    "errors": [],
+    "overflow": 358,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users",
+    "status": 200,
+    "errors": [],
+    "overflow": 783,
+    "errorBoundary": false
+  },
+  {
+    "mode": "mobile-dark",
+    "route": "/admin/users?state=flagged",
+    "status": 200,
+    "errors": [],
+    "overflow": 761,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers",
+    "status": 200,
+    "errors": [],
+    "overflow": 525,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers?mismatch=1",
+    "status": 200,
+    "errors": [],
+    "overflow": 525,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers?q=fleet&per=50&sort=hostname&dir=asc",
+    "status": 200,
+    "errors": [],
+    "overflow": 525,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=overview",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=network",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=access",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=compute",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=software",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=files",
+    "status": 0,
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_RESET at http://localhost:3187/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=files\nCall log:\n  - navigating to \"http://localhost:3187/admin/servers/cmupt8srt000vhlb"
+    ],
+    "overflow": -1,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=backups",
+    "status": 0,
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3187/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=backups\nCall log:\n  - navigating to \"http://localhost:3187/admin/servers/cmupt8srt000"
+    ],
+    "overflow": -1,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=move",
+    "status": 0,
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3187/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=move\nCall log:\n  - navigating to \"http://localhost:3187/admin/servers/cmupt8srt000vhl"
+    ],
+    "overflow": -1,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=billing",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=activity",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8srt000vhlbtqo28lfra?tab=danger",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=overview",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=game",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8ss2000xhlbtwy4x76e4?tab=network",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/servers/cmupt8ss7000zhlbttj3vcrrs",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=profile",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=servers",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=billing",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=support",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=security",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=partner",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqb0006hlbt2189ya1c?tab=actions",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users/cmupt8sqm0008hlbts9zp04r1",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  },
+  {
+    "mode": "desktop-light",
+    "route": "/admin/users?state=flagged",
+    "status": 200,
+    "errors": [],
+    "overflow": 0,
+    "errorBoundary": false
+  }
+]

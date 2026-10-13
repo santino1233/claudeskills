@@ -1,0 +1,2 @@
+Branch feature/ovh-game-firewall-guard @ e5e975277e, worktree /tank/nxeon-wt-ovhgame. Raw read-only GET captures in raw/. suite.log, fails-now.txt, base.txt = suite diff.
+LIVE FINDING 2026-10-06: strict mode ON (zero rules): 15.235.171.191 (node-4 customer vps-4z0q), 15.235.174.195 (primary, customer spyblox-vps), 51.79.226.200 (primary INTERNAL studionexis), 51.79.168.98 (primary INTERNAL cold email relay).

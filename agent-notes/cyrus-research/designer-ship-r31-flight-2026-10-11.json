@@ -1,0 +1,416 @@
+{
+ "what": "Cyrus r31: designer edit -> no-model build (real service) -> delivery enqueue -> one real Paper boot (Test Flight) -> RCON",
+ "date": "2026-10-11T02:51:49.221Z",
+ "version": "1.21.11",
+ "base": {
+  "jarSha256": "0cea6b0a0041252d3d49ca02efdda035b0475ad4acc64e3c2a8a660a2a190d8d",
+  "entries": 32
+ },
+ "build": {
+  "status": "succeeded",
+  "error": null,
+  "ms": 790,
+  "model": null,
+  "costUsd": 0,
+  "designEdit": {
+   "revisionId": "rev_r31_2",
+   "configOnly": true,
+   "changed": [
+    "src/main/resources/config.yml"
+   ]
+  },
+  "events": [
+   "Waiting for a free builder to apply your designer edit",
+   "Applying your designer edit (no AI model is used)",
+   "Compiled 3 item designs into the plugin (29 files, 60 settings in config.yml)",
+   "Only config.yml changed: repacking the existing plugin (no recompile)",
+   "Repacked with the new config.yml",
+   "Running the safety check",
+   "Ready: VoidArsenal-1.0.0.jar"
+  ],
+  "jarSha256": "30eb9b863c630af926347bfbbd6c3417b85501d495fae32d16aa750cb0999c3c",
+  "sameEntrySet": true,
+  "differingEntries": [
+   "config.yml"
+  ]
+ },
+ "deliveryBase": {
+  "request": {
+   "http": 202,
+   "jobId": "job_2",
+   "parts": [
+    {
+     "kind": "plugin",
+     "name": "VoidArsenal",
+     "delivered": true
+    }
+   ]
+  },
+  "status": {
+   "jobId": "job_2",
+   "serverId": "srv_r31",
+   "op": "deliver",
+   "subject": {
+    "buildId": "b_r31_base"
+   },
+   "state": "delivered",
+   "pending": false,
+   "ok": true,
+   "headline": "Delivered: the server restarted and came up healthy.",
+   "needsAttention": false,
+   "error": null,
+   "failedStep": null,
+   "steps": [
+    {
+     "step": "open",
+     "status": "ok",
+     "detail": ""
+    },
+    {
+     "step": "recover_check",
+     "status": "ok",
+     "detail": "none"
+    },
+    {
+     "step": "preflight",
+     "status": "ok",
+     "detail": "inventory + conflicts checked"
+    },
+    {
+     "step": "managed",
+     "status": "ok",
+     "detail": "none needed"
+    },
+    {
+     "step": "host_pack",
+     "status": "skipped",
+     "detail": "no resource pack in this delivery"
+    },
+    {
+     "step": "pack_config",
+     "status": "skipped",
+     "detail": "no pack entry to change"
+    },
+    {
+     "step": "place",
+     "status": "ok",
+     "detail": "jar placed; 0 data pack(s); 0 model(s)"
+    },
+    {
+     "step": "record",
+     "status": "ok",
+     "detail": "/root/.nxeon-cyrus/deliveries/cp_r31flight1.json"
+    },
+    {
+     "step": "apply",
+     "status": "ok",
+     "detail": "restart: a plugin jar changed (plugins load at server start)"
+    },
+    {
+     "step": "health",
+     "status": "ok",
+     "detail": "healthy"
+    },
+    {
+     "step": "commit",
+     "status": "ok",
+     "detail": ""
+    }
+   ],
+   "apply": {
+    "mode": "restart",
+    "restarted": true,
+    "reloaded": false,
+    "reasons": [
+     "a plugin jar changed (plugins load at server start)"
+    ]
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "conflicts": {
+    "blocking": [],
+    "warnings": []
+   },
+   "notes": [],
+   "keptWorldFolders": [],
+   "createdAt": "2026-10-10T12:00:01.000Z",
+   "updatedAt": "2026-10-10T12:00:02.000Z"
+  },
+  "jobStatus": "DONE",
+  "jobError": null,
+  "row": {
+   "id": "sm_1",
+   "serverId": "srv_r31",
+   "modId": "gm_b_r31_base",
+   "status": "INSTALLED",
+   "versionId": "b_r31_edit1",
+   "error": null,
+   "targetVersionId": null
+  },
+  "plugins": [
+   "VoidArsenal-1.0.0.jar"
+  ]
+ },
+ "deliveryEdit": {
+  "request": {
+   "http": 202,
+   "jobId": "job_3",
+   "parts": [
+    {
+     "kind": "plugin",
+     "name": "VoidArsenal",
+     "delivered": true
+    }
+   ]
+  },
+  "status": {
+   "jobId": "job_3",
+   "serverId": "srv_r31",
+   "op": "deliver",
+   "subject": {
+    "buildId": "b_r31_edit1"
+   },
+   "state": "updated",
+   "pending": false,
+   "ok": true,
+   "headline": "Updated: the server restarted and came up healthy.",
+   "needsAttention": false,
+   "error": null,
+   "failedStep": null,
+   "steps": [
+    {
+     "step": "open",
+     "status": "ok",
+     "detail": ""
+    },
+    {
+     "step": "recover_check",
+     "status": "ok",
+     "detail": "none"
+    },
+    {
+     "step": "preflight",
+     "status": "ok",
+     "detail": "inventory + conflicts checked"
+    },
+    {
+     "step": "managed",
+     "status": "ok",
+     "detail": "none needed"
+    },
+    {
+     "step": "host_pack",
+     "status": "skipped",
+     "detail": "no resource pack in this delivery"
+    },
+    {
+     "step": "pack_config",
+     "status": "skipped",
+     "detail": "no pack entry to change"
+    },
+    {
+     "step": "place",
+     "status": "ok",
+     "detail": "jar placed; 0 data pack(s); 0 model(s)"
+    },
+    {
+     "step": "record",
+     "status": "ok",
+     "detail": "/root/.nxeon-cyrus/deliveries/cp_r31flight1.json"
+    },
+    {
+     "step": "apply",
+     "status": "ok",
+     "detail": "restart: a plugin jar changed (plugins load at server start)"
+    },
+    {
+     "step": "health",
+     "status": "ok",
+     "detail": "healthy"
+    },
+    {
+     "step": "commit",
+     "status": "ok",
+     "detail": ""
+    }
+   ],
+   "apply": {
+    "mode": "restart",
+    "restarted": true,
+    "reloaded": false,
+    "reasons": [
+     "a plugin jar changed (plugins load at server start)"
+    ]
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "conflicts": {
+    "blocking": [],
+    "warnings": []
+   },
+   "notes": [],
+   "keptWorldFolders": [],
+   "createdAt": "2026-10-10T12:00:03.000Z",
+   "updatedAt": "2026-10-10T12:00:04.000Z"
+  },
+  "jobStatus": "DONE",
+  "jobError": null,
+  "row": {
+   "id": "sm_1",
+   "serverId": "srv_r31",
+   "modId": "gm_b_r31_base",
+   "status": "INSTALLED",
+   "versionId": "b_r31_edit1",
+   "error": null,
+   "targetVersionId": null
+  },
+  "plugins": [
+   "VoidArsenal",
+   "VoidArsenal-1.0.0.jar"
+  ]
+ },
+ "flights": [
+  {
+   "at": "2026-10-11T02:52:11.683Z",
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L95: [02:52:09 INFO]: Done (16.329s)! For help, type \"help\"",
+      "wall 17661 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [02:52:09 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "plugins 'plugins' [rss 852 MB, 251 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+      "base-value 'voidarsenal params void_reaper' [rss 852 MB, 254 ms]: ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 571 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 85828 gone; 0 marked processes; listening none of 47169,47179",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv388vd2-2a698e; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 17661,
+   "wallMs": 19805,
+   "runId": "tf-1-21-11-mv388vd2-2a698e",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   }
+  },
+  {
+   "at": "2026-10-11T02:52:31.045Z",
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L95: [02:52:28 INFO]: Done (15.669s)! For help, type \"help\"",
+      "wall 16861 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "VoidArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [02:52:28 INFO]: [VoidArsenal] Enabling VoidArsenal v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "old-config-on-disk: wrote plugins/VoidArsenal/config.yml (6013 bytes) before the command",
+      "old-config-on-disk 'voidarsenal reload' [rss 838 MB, 271 ms]: ok -> VoidArsenal config reloaded (1 note) | - config.yml migrated from version 1 to 2 (60 designer values updated, backup config.yml.bak-v1) | ",
+      "plugins 'plugins' [rss 865 MB, 251 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - VoidArsenal | ",
+      "edited-value-live 'voidarsenal params void_reaper' [rss 865 MB, 255 ms]: ok -> items.void_reaper.marks.void.duration_ticks=200 | items.void_reaper.marks.void.max_per_owner=8 | items.void_reaper.abilities.void_mark.a1.count=12 | items.void_reaper.abilities.void_mark.a1.spread=0.4 | items.void_reaper.abilities.void_mark"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 664 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 86064 gone; 0 marked processes; listening none of 47155,47161",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv389aof-8a2620; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 16861,
+   "wallMs": 19318,
+   "runId": "tf-1-21-11-mv389aof-8a2620",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   }
+  }
+ ]
+}

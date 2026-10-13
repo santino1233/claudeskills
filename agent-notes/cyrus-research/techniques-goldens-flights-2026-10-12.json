@@ -1,0 +1,488 @@
+{
+ "at": "2026-10-12T07:45:50.298Z",
+ "host": "node-2",
+ "version": "1.21.11",
+ "realClient": "mineflayer protocol client (no rendering)",
+ "harness": "golden/harness.js --only mc-combattag,mc-playerfx: compile pass + strict scan pass on 1.21.1/1.21.4/1.21.8/1.21.11 (0 warnings)",
+ "combattag": {
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 19.1s, peak RSS 909 MB)",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "pass",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "log": [
+   "94 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 1535 ms at {\"x\":-7.5,\"y\":-60,\"z\":8.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'difficulty easy' -> The difficulty has been set to Easy"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -60 2.5 {NoAI:1b,Tags:[\"nxatk\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'damage NxPlaytest 1 minecraft:mob_attack by @e[type=pig,tag=nxatk,limit=1]' -> Applied 1.0 damage to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"You are in combat with Pig\"]",
+       "messages: You are in combat with Pig: do not log out for 3 seconds."
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'combattag status NxPlaytest' -> GoldenCombatTag: NxPlaytest is in combat with Pig (3s). | "
+      ]
+     },
+     {
+      "kind": "command",
+      "status": "pass",
+      "evidence": [
+       "sent command '/home'"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"can't use /home in combat\"]",
+       "messages: You can't use /home in combat (3s left)."
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 3200 ms"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"You are no longer in combat\"]",
+       "messages: You can't use /home in combat (3s left). | You are no longer in combat."
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'combattag status NxPlaytest' -> GoldenCombatTag: NxPlaytest is not in combat. | "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:cow 2.5 -60 2.5 {NoAI:1b,Tags:[\"nxcause\"]}' -> Summoned new Cow"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:snowball 0.5 -58 2.5 {NoGravity:1b,Tags:[\"nxdirect\"]}' -> Summoned new Snowball"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'damage NxPlaytest 1 minecraft:thrown by @e[type=snowball,tag=nxdirect,limit=1] from @e[type=cow,tag=nxcause,limit=1]' -> Applied 1.0 damage to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"You are in combat with Cow\"]",
+       "messages: You are in combat with Cow: do not log out for 3 seconds."
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'combattag status NxPlaytest' -> GoldenCombatTag: NxPlaytest is in combat with Cow (3s). | "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 3600 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'combattag status NxPlaytest' -> GoldenCombatTag: NxPlaytest is not in combat. | "
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'damage NxPlaytest 1 minecraft:fall' -> Applied 1.0 damage to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "expect_no_chat",
+      "status": "pass",
+      "evidence": [
+       "none of [\"in combat with\"] in 0 message(s)",
+       "messages: (none)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'combattag status NxPlaytest' -> GoldenCombatTag: NxPlaytest is not in combat. | "
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mv4y6rxa-f4bee3"
+ },
+ "combattag_first_run_peaceful": {
+  "note": "first run on the default peaceful difficulty: no damage event for mob-type damage to players (scaled to 0), so T-1/T-2 failed; rerun with difficulty easy passed",
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "fail"
+   },
+   {
+    "id": "T-2",
+    "status": "fail"
+   },
+   {
+    "id": "T-3",
+    "status": "pass"
+   }
+  ]
+ },
+ "playerfx": {
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 18.1s, peak RSS 894 MB)",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "pass",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "log": [
+   "94 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 1950 ms at {\"x\":9.5,\"y\":-60,\"z\":9.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "expect_border",
+      "status": "pass",
+      "evidence": [
+       "this client's world border: 59999968 (2 border packet(s)); want >= 1000 "
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx border NxPlaytest 8' -> GoldenPlayerFx: NxPlaytest border set. | "
+      ]
+     },
+     {
+      "kind": "expect_border",
+      "status": "pass",
+      "evidence": [
+       "this client's world border: 8 (4 border packet(s)); want <= 9"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx status NxPlaytest' -> GoldenPlayerFx: NxPlaytest: border 8, time world, weather world, hidden 0. | "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'time set 1000' -> Set the time to 1000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx time NxPlaytest 18000' -> GoldenPlayerFx: NxPlaytest time set. | "
+      ]
+     },
+     {
+      "kind": "expect_time",
+      "status": "pass",
+      "evidence": [
+       "this client's time of day: 18000 (want 17900-18100)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx status NxPlaytest' -> GoldenPlayerFx: NxPlaytest: border 8, time 18000, weather world, hidden 0. | "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 3.5 -60 3.5 {NoAI:1b,Tags:[\"nxhid\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "expect_entity",
+      "status": "pass",
+      "evidence": [
+       "this client sees 1 pig within 16 blocks (want at least 1)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx hide NxPlaytest nxhid' -> GoldenPlayerFx: NxPlaytest hide set. | "
+      ]
+     },
+     {
+      "kind": "expect_entity",
+      "status": "pass",
+      "evidence": [
+       "this client sees 0 pig within 16 blocks (want none)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx show NxPlaytest nxhid' -> GoldenPlayerFx: NxPlaytest show set. | "
+      ]
+     },
+     {
+      "kind": "expect_entity",
+      "status": "pass",
+      "evidence": [
+       "this client sees 1 pig within 16 blocks (want at least 1)"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-4",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill NxPlaytest' -> Killed NxPlaytest"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 2500 ms"
+      ]
+     },
+     {
+      "kind": "expect_border",
+      "status": "pass",
+      "evidence": [
+       "this client's world border: 8 (13 border packet(s)); want <= 9"
+      ]
+     },
+     {
+      "kind": "expect_time",
+      "status": "pass",
+      "evidence": [
+       "this client's time of day: 18000 (want 17900-18100)"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-5",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx reconcile off' -> GoldenPlayerFx: reconcile off. | "
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill NxPlaytest' -> Killed NxPlaytest"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 2500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx status NxPlaytest' -> GoldenPlayerFx: NxPlaytest: border 8, time 18000, weather world, hidden 0. | "
+      ]
+     },
+     {
+      "kind": "expect_border",
+      "status": "pass",
+      "evidence": [
+       "this client's world border: 59999968 (14 border packet(s)); want >= 1000 "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-6",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'pfx status NxPlaytest' -> GoldenPlayerFx: NxPlaytest: border 8, time 18000, weather world, hidden 0. | "
+      ]
+     },
+     {
+      "kind": "expect_time",
+      "status": "pass",
+      "evidence": [
+       "this client's time of day: 18000 (want 17900-18100)"
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mv4y4lyd-55632b"
+ },
+ "findings": [
+  "Paper 1.21.11: after a respawn the client is sent the world's own border again while Player#getWorldBorder() still returns the per-player one (T-5 without reconcile: client 59999968, status 'border 8'); with reconcile in PlayerPostRespawnEvent the client gets it back (T-4)",
+  "personal time (setPlayerTime fixed) survives a respawn by itself (T-6)",
+  "hideEntity: the client stops seeing the entity and sees it again after showEntity (T-3)",
+  "DamageSource#getCausingEntity names the cow for a snowball (direct) from a cow (causing) (combat T-2)"
+ ]
+}

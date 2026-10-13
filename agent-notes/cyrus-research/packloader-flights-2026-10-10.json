@@ -1,0 +1,451 @@
+[
+ {
+  "name": "v12111",
+  "version": "1.21.11",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 18022,
+  "peakRssKb": 890748,
+  "timings": {
+   "toolchainMs": 239,
+   "innerMs": 34025,
+   "rconConnectMs": 279,
+   "serverWallMs": 33660,
+   "totalMs": 34309
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L96: [05:23:15 INFO]: Done (16.746s)! For help, type \"help\"",
+     "wall 18022 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L88: [05:23:15 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "list-two 'nxpacks list': ok -> [NxeonPackLoader] 2 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa url=https://packs.example.invalid/p/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.zip |  - 042b0fe7-d46b-5014-8d5d-",
+     "status-ok 'nxpacks status': ok -> [NxeonPackLoader] packs=2 config=ok loadedAt=2026-10-10T05:23:15.515703810Z geyser=false floodgate=false clientAnswers=0 | ",
+     "reload-one: wrote plugins/NxeonPackLoader/packs.json (368 bytes) before the command",
+     "reload-one 'nxpacks reload': ok -> [NxeonPackLoader] packs.json loaded (command): 1 pack(s) | ",
+     "list-one 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=cccccccccccccccccccccccccccccccccccccccc url=https://packs.example.invalid/p/cccccccccccccccccccccccccccccccccccccccc.zip | ",
+     "reload-bad-fields: wrote plugins/NxeonPackLoader/packs.json (380 bytes) before the command",
+     "reload-bad-fields 'nxpacks reload': ok -> [NxeonPackLoader] packs.json rejected: packs[0].sha1 must be 40 lower-case hex chars; packs[1].id 61965fc0-5c53-5e27-a000-500adba3ca75 appears twice (sending no packs) | ",
+     "list-after-bad 'nxpacks list': ok -> [NxeonPackLoader] 0 pack(s) (packs.json REJECTED: packs[0].sha1 must be 40 lower-case hex chars; packs[1].id 61965fc0-5c53-5e27-a000-500adba3ca75 appears twice) | ",
+     "reload-not-json: wrote plugins/NxeonPackLoader/packs.json (18 bytes) before the command",
+     "reload-not-json 'nxpacks reload': ok -> [NxeonPackLoader] packs.json rejected: not valid JSON: com.google.gson.stream.MalformedJsonException: Expected ':' at line 1 column 9 path $.this | See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json (sending no p",
+     "watch-picks-up-fix: wrote plugins/NxeonPackLoader/packs.json (660 bytes) before the command",
+     "watch-picks-up-fix 'nxpacks list': ok -> [NxeonPackLoader] 2 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa url=https://packs.example.invalid/p/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.zip |  - 042b0fe7-d46b-5014-8d5d-",
+     "usage 'nxpacks bogus': ok -> Usage: /nxpacks <list|reload|status> | ",
+     "plugins-listed 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 547 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3278251 gone; 0 marked processes; listening none of 47179,47107",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv1y78ch-1d865e; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.0s, peak RSS 870 MB)",
+  "notes": [
+   "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+   "ports: server 47179, rcon 47107 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "name": "v262",
+  "version": "26.2",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 10614,
+  "peakRssKb": 817480,
+  "timings": {
+   "toolchainMs": 265,
+   "innerMs": 26255,
+   "rconConnectMs": 8,
+   "serverWallMs": 25899,
+   "totalMs": 26582
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L101: [05:23:47 INFO]: Done (9.219s)! For help, type \"help\"",
+     "wall 10614 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L86: [05:23:46 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "list-two 'nxpacks list': ok -> [NxeonPackLoader] 2 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa url=https://packs.example.invalid/p/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.zip |  - 042b0fe7-d46b-5014-8d5d-",
+     "status-ok 'nxpacks status': ok -> [NxeonPackLoader] packs=2 config=ok loadedAt=2026-10-10T05:23:46.939857668Z geyser=false floodgate=false clientAnswers=0 | ",
+     "reload-one: wrote plugins/NxeonPackLoader/packs.json (368 bytes) before the command",
+     "reload-one 'nxpacks reload': ok -> [NxeonPackLoader] packs.json loaded (command): 1 pack(s) | ",
+     "list-one 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=cccccccccccccccccccccccccccccccccccccccc url=https://packs.example.invalid/p/cccccccccccccccccccccccccccccccccccccccc.zip | ",
+     "reload-bad-fields: wrote plugins/NxeonPackLoader/packs.json (380 bytes) before the command",
+     "reload-bad-fields 'nxpacks reload': ok -> [NxeonPackLoader] packs.json rejected: packs[0].sha1 must be 40 lower-case hex chars; packs[1].id 61965fc0-5c53-5e27-a000-500adba3ca75 appears twice (sending no packs) | ",
+     "list-after-bad 'nxpacks list': ok -> [NxeonPackLoader] 0 pack(s) (packs.json REJECTED: packs[0].sha1 must be 40 lower-case hex chars; packs[1].id 61965fc0-5c53-5e27-a000-500adba3ca75 appears twice) | ",
+     "reload-not-json: wrote plugins/NxeonPackLoader/packs.json (18 bytes) before the command",
+     "reload-not-json 'nxpacks reload': ok -> [NxeonPackLoader] packs.json rejected: not valid JSON: com.google.gson.stream.MalformedJsonException: Expected ':' at line 1 column 9 path $.this | See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json (sending no p",
+     "watch-picks-up-fix: wrote plugins/NxeonPackLoader/packs.json (660 bytes) before the command",
+     "watch-picks-up-fix 'nxpacks list': ok -> [NxeonPackLoader] 2 pack(s) |  - 61965fc0-5c53-5e27-a000-500adba3ca75 required=true sha1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa url=https://packs.example.invalid/p/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.zip |  - 042b0fe7-d46b-5014-8d5d-",
+     "usage 'nxpacks bogus': ok -> Usage: /nxpacks <list|reload|status> | ",
+     "plugins-listed 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 430 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3278643 gone; 0 marked processes; listening none of 47177,47105",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv1y82cc-f84e33; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.6s, peak RSS 798 MB)",
+  "notes": [
+   "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+   "ports: server 47177, rcon 47105 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 25,
+    "version": "25.0.4.1",
+    "dist": "jdk-25.0.4.1+1",
+    "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+   },
+   "paper": {
+    "version": "26.2",
+    "build": 133,
+    "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "name": "badboot",
+  "version": "26.2",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 11015,
+  "peakRssKb": 818228,
+  "timings": {
+   "toolchainMs": 264,
+   "innerMs": 12946,
+   "rconConnectMs": 6,
+   "serverWallMs": 12595,
+   "totalMs": 13263
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L101: [05:24:25 INFO]: Done (9.663s)! For help, type \"help\"",
+     "wall 11015 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L86: [05:24:24 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "list-rejected 'nxpacks list': ok -> [NxeonPackLoader] 0 pack(s) (packs.json REJECTED: packs[0].sha1 must be 40 lower-case hex chars; packs[1].id 61965fc0-5c53-5e27-a000-500adba3ca75 appears twice) | ",
+     "status-rejected 'nxpacks status': ok -> [NxeonPackLoader] packs=0 config=rejected loadedAt=2026-10-10T05:24:24.923638921Z geyser=false floodgate=false clientAnswers=0 | ",
+     "server-still-works 'help': ok -> --------- Help: Index (1/23) -------------------------- | Use /help [n] to get page n of help. | Aliases: Lists command aliases | Bukkit: All commands for Bukkit | Minecraft: All commands for Minecraft | NxeonPackLoader: All commands for Nx"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 427 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3279056 gone; 0 marked processes; listening none of 47127,47167",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv1y8qpy-835cca; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 26.2 (6 checks, boot 11.0s, peak RSS 799 MB)",
+  "notes": [
+   "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+   "ports: server 47127, rcon 47167 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 25,
+    "version": "25.0.4.1",
+    "dist": "jdk-25.0.4.1+1",
+    "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+   },
+   "paper": {
+    "version": "26.2",
+    "build": 133,
+    "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "name": "nofile",
+  "version": "1.21.11",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 17417,
+  "peakRssKb": 858964,
+  "timings": {
+   "toolchainMs": 254,
+   "innerMs": 19116,
+   "rconConnectMs": 6,
+   "serverWallMs": 18757,
+   "totalMs": 19408
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L96: [05:24:56 INFO]: Done (16.046s)! For help, type \"help\"",
+     "wall 17417 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L88: [05:24:56 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxeonPackLoader | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "list-none 'nxpacks list': ok -> [NxeonPackLoader] 0 pack(s) | ",
+     "reload-created: wrote plugins/NxeonPackLoader/packs.json (368 bytes) before the command",
+     "reload-created 'nxpacks reload': ok -> [NxeonPackLoader] packs.json loaded (command): 1 pack(s) | "
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 552 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3279344 gone; 0 marked processes; listening none of 47104,47141",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv1y9a3g-e2cee6; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 17.4s, peak RSS 839 MB)",
+  "notes": [
+   "ports: server 47104, rcon 47141 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ }
+]

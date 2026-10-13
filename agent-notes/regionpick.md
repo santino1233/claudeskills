@@ -1,0 +1,4 @@
+# regionpick (branch fix/order-region-default-and-overflow, worktree /opt/nxeon-wt-regionpick)
+Root cause: lib/stripe.ts + lib/actions-payment-providers.ts game "slim" intents dropped region/provider -> card-paid game orders reached placeGameOrder with no region -> global scheduleNode -> overflow to node-5 (bhs1). Wallet-only path always carried region.
+Fix: lib/region-pick.ts (pure), lib/region-placement.ts (placeInRegion), strict scheduleNode + regionAvailability in lib/node-capacity.ts, pre-charge checks (resolveGameIntentRegion / applyOrderRegion), audit detail region/regionSource/node, wizard availability+latency+preselect, shell alert, docs section at end of DOCUMENTATION.md, test/region-pick.test.ts.
+Owner decisions: allow Canada overflow with explicit opt-in? Strict refusal uses committed-RAM crit threshold (90%) so Singapore may show sold out while real RAM allows; enforce RAM guard mode still separate.

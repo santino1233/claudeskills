@@ -1,0 +1,30 @@
+diff --git a/docs/SEO-AUDIT-2026-10.md b/docs/SEO-AUDIT-2026-10.md
+index 943a412301..ea546c9050 100644
+--- a/docs/SEO-AUDIT-2026-10.md
++++ b/docs/SEO-AUDIT-2026-10.md
+@@ -4,6 +4,25 @@ Scope: every static/marketing page family on nxeon.cloud (the new `app/nxm` site
+ 
+ The tooling that produced this audit is now permanent: `scripts/seo-audit.ts` (CLI), a weekly worker sweep, and `/admin/seo/audit` (score trends, worst templates, regressions, "run audit now"). See "Ongoing checks" at the end.
+ 
++## 0. Baseline score (production, before these changes)
++
++`scripts/seo-audit.ts --base https://nxeon.cloud --per-template 15` on 2026-10-01 (158 pages sampled of 66,281 sitemap URLs; the site score weights each template by its share of the sitemap, so the 64,856-URL mod template dominates it):
++
++| template | sitemap URLs | sampled | avg score | main deductions |
++|---|---|---|---|---|
++| game-location | 615 | 15 | **80.8** | title-long, desc-long, near-duplicate (15/15) |
++| blog-index | 1 | 1 | 85 | JSON-LD missing url, og:image |
++| location-landing | 162 | 15 | 91.6 | og:image, title/description length |
++| blog-post | 346 | 15 | 92.4 | Organization without url (15/15) |
++| static | 19 | 15 | 93.7 | og:image (13/15) |
++| mod | 64,856 | 15 | 94.5 | image width/height (15/15) |
++| product | 17 | 15 | 94.9 | og:image (15/15), short titles |
++| game-landing | 65 | 15 | 95.1 | description length |
++| tool / comparison | 16 / 39 | 15 / 15 | 96.3 / 96.5 | og:image (15/15) |
++| game-region | 141 | 15 | 98.3 | description length |
++
++Site score **94.4 / 100**. The score is a hygiene score (does each page carry the right tags); it deliberately cannot see ranking quality, which is why §4 matters more than the number. The near-duplicate cluster is the one thing it ranks as the worst template.
++
+ ## 1. Headline findings (most important first)
+ 
+ | # | Finding | Evidence | Status |

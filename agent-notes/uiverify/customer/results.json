@@ -1,0 +1,268 @@
+[
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=settings",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=settings",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=files",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=files",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=mods",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=mods",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=console",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=console",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=backups",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=backups",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/deploy?product=game&family=valheim&tier=x",
+    "status": 200,
+    "finalUrl": "/dashboard/deploy?product=game&family=valheim&tier=x",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "IMG.nx-globe-arc absolute top-[36px] right-[",
+      "DIV.w-full shrink-0 px-[2px]",
+      "SECTION.transition-opacity duration-300 opacity-",
+      "DIV.flex flex-wrap items-center justify-betw"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/nxlabs",
+    "status": 200,
+    "finalUrl": "/dashboard/nxlabs",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "DIV.nxl-rail-item",
+      "ARTICLE.nxl-card",
+      "A.nxl-card-link",
+      "DIV.nxl-card-art"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "desktop",
+    "route": "/dashboard/tools/minecraft-skin-creator",
+    "status": 200,
+    "finalUrl": "/dashboard/tools/minecraft-skin-creator",
+    "errors": [
+      "warning: [.WebGL-0x26dc00167800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x26dc00167800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=settings",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=settings",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=files",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=files",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=mods",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=mods",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=console",
+    "status": 200,
+    "finalUrl": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=console",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "BUTTON.inline-flex flex-none items-center gap-2",
+      "svg.[object SVGAnimatedString]",
+      "path.[object SVGAnimatedString]"
+    ],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=backups",
+    "status": 0,
+    "finalUrl": "",
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3131/dashboard/servers/cmupr8ute000bhlu86r8xfmxe?tab=backups\nCall log:\n  - navigating to \"http://localhost:3131/dashboard/servers/cmup"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/deploy?product=game&family=valheim&tier=x",
+    "status": 0,
+    "finalUrl": "",
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3131/dashboard/deploy?product=game&family=valheim&tier=x\nCall log:\n  - navigating to \"http://localhost:3131/dashboard/deploy?product=g"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/nxlabs",
+    "status": 0,
+    "finalUrl": "",
+    "errors": [
+      "NAV Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3131/dashboard/nxlabs\nCall log:\n  - navigating to \"http://localhost:3131/dashboard/nxlabs\", waiting until \"domcontentloaded\"\n"
+    ],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  },
+  {
+    "mode": "mobile",
+    "route": "/dashboard/tools/minecraft-skin-creator",
+    "status": 200,
+    "finalUrl": "/dashboard/tools/minecraft-skin-creator",
+    "errors": [],
+    "bad": [],
+    "hscroll": false,
+    "over": [],
+    "broken": []
+  }
+]

@@ -1,0 +1,7 @@
+[
+ {"file": "config-mob.html", "w": 1440, "h": 900, "out": "v5-mock-mob-dark.png", "wait": 1200},
+ {"file": "config-mob.html", "q": "theme=light", "w": 1440, "h": 900, "out": "v5-mock-mob-light.png", "wait": 1200},
+ {"file": "config-gun.html", "q": "diff=1", "w": 1440, "h": 900, "out": "v5-mock-gun-diff-dark.png", "wait": 1200},
+ {"file": "config-gun.html", "q": "search=reload&theme=light", "w": 1440, "h": 900, "out": "v5-mock-gun-search-light.png", "wait": 1200},
+ {"file": "config-mob.html", "w": 390, "h": 844, "out": "v5-mock-mob-phone.png", "wait": 1200, "full": true}
+]

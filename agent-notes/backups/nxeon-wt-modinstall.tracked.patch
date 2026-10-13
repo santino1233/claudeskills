@@ -1,0 +1,22 @@
+diff --git a/lib/actions-mod-installs.ts b/lib/actions-mod-installs.ts
+index 030e5e591b..5f29a68d4b 100644
+--- a/lib/actions-mod-installs.ts
++++ b/lib/actions-mod-installs.ts
+@@ -14,7 +14,7 @@
+  * panel follows the job's step/progress. Ownership is checked on every call.
+  */
+ import { revalidatePath } from "next/cache";
+-import type { Prisma } from "@prisma/client";
++import type { GameMod, Prisma } from "@prisma/client";
+ import { db } from "./db";
+ import { requireUser } from "./auth";
+ import { familyFor } from "./game-config";
+@@ -95,7 +95,7 @@ export type ModsOverview = {
+   serverRunning: boolean;
+ };
+ 
+-type ModRow = Prisma.GameModGetPayload<object>;
++type ModRow = GameMod;
+ 
+ function compatFor(family: string, m: ModRow, facts: ReturnType<typeof serverFacts>): Compat {
+   const inst = engineInstallerFor(family, m.source) ?? ENGINE_INSTALLERS[family];

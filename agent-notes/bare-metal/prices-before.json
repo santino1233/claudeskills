@@ -1,0 +1,74 @@
+[
+ {
+  "id": "cmuww92xf0001hlm0s8u7x836",
+  "cpu": "AMD EPYC 4244P",
+  "ram": 32,
+  "storage": "2x 960GB NVMe (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 13399,
+  "setup": 11800
+ },
+ {
+  "id": "cmuww933d004dhlm0k9efk951",
+  "cpu": "AMD EPYC 4344P",
+  "ram": 64,
+  "storage": "2x 960GB NVMe (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 18599,
+  "setup": 16000
+ },
+ {
+  "id": "cmuww9aos03k1hlm02upwgigc",
+  "cpu": "AMD RYZEN 7 9800X3D",
+  "ram": 64,
+  "storage": "2x 960GB NVMe (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 41399,
+  "setup": 0
+ },
+ {
+  "id": "cmuww93ce00clhlm0tmkzc2t0",
+  "cpu": "AMD EPYC 4584PX",
+  "ram": 64,
+  "storage": "2x 960GB NVMe (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 32599,
+  "setup": 26000
+ },
+ {
+  "id": "cmuww95a501smhlm0wb46446p",
+  "cpu": "Intel Xeon-E3 1230v6",
+  "ram": 16,
+  "storage": "2x 2TB SATA (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 2399,
+  "setup": 1880
+ },
+ {
+  "id": "cmuww9czz04t0hlm0l6bchyce",
+  "cpu": "AMD EPYC GENOA 9124",
+  "ram": 128,
+  "storage": "0x 0GB NVMe (none)",
+  "gpu": null,
+  "fromMonthlyCents": 79799,
+  "setup": 68800
+ },
+ {
+  "id": "cmuww992u02aohlm07ib210g4",
+  "cpu": "AMD EPYC TURIN 9655",
+  "ram": 128,
+  "storage": "0x 0GB NVMe (none)",
+  "gpu": null,
+  "fromMonthlyCents": 144699,
+  "setup": 124900
+ },
+ {
+  "id": "cmuww94qc01eghlm0c5f603zn",
+  "cpu": "AMD Ryzen 7 5800X",
+  "ram": 64,
+  "storage": "2x 960GB NVMe (Soft RAID)",
+  "gpu": null,
+  "fromMonthlyCents": 12599,
+  "setup": 10000
+ }
+]

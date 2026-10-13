@@ -1,0 +1,944 @@
+{
+ "client": "none (server-side only): playback, subtitles and the pack prompt are NOT verified",
+ "render": {
+  "spec": {
+   "version": 1,
+   "name": "banshee",
+   "events": [
+    {
+     "event": "ambient",
+     "role": "ambient",
+     "subtitle": "Banshee moans",
+     "variants": [
+      {
+       "layers": [
+        {
+         "source": "synth:wail",
+         "length": 1.4,
+         "seed": 11,
+         "params": {
+          "start": 520,
+          "end": 300,
+          "breath": 0.4
+         }
+        }
+       ],
+       "processing": {
+        "reverb": 0.35
+       }
+      },
+      {
+       "layers": [
+        {
+         "source": "lib:monster_exhale_short_f2c2",
+         "pitch": 5,
+         "length": 1.2,
+         "fadeOut": 200
+        },
+        {
+         "source": "synth:wail",
+         "length": 1.1,
+         "seed": 12,
+         "gain": -6,
+         "params": {
+          "start": 600,
+          "end": 420
+         }
+        }
+       ],
+       "processing": {
+        "reverb": 0.3
+       }
+      }
+     ]
+    },
+    {
+     "event": "hurt",
+     "role": "hurt",
+     "subtitle": "Banshee shrieks",
+     "variants": [
+      {
+       "weight": 2,
+       "layers": [
+        {
+         "source": "lib:scream_male_short_21a5",
+         "pitch": 4,
+         "length": 0.6,
+         "fadeOut": 80
+        },
+        {
+         "source": "synth:wail",
+         "length": 0.45,
+         "seed": 3,
+         "gain": -6,
+         "params": {
+          "start": 1300,
+          "end": 800,
+          "harmonics": 0.8
+         }
+        }
+       ]
+      },
+      {
+       "layers": [
+        {
+         "source": "lib:gasp_male_2_b1d1",
+         "pitch": 7,
+         "length": 0.5,
+         "fadeOut": 60
+        }
+       ],
+       "processing": {
+        "highpass": 300,
+        "reverb": 0.15
+       }
+      },
+      {
+       "layers": [
+        {
+         "source": "synth:wail",
+         "length": 0.4,
+         "seed": 4,
+         "pitch": 2,
+         "params": {
+          "start": 1200,
+          "end": 700,
+          "harmonics": 0.8
+         }
+        },
+        {
+         "source": "synth:impact",
+         "length": 0.2,
+         "gain": -10,
+         "params": {
+          "thump": 90
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "event": "death",
+     "role": "death",
+     "subtitle": "Banshee fades away",
+     "variants": [
+      {
+       "layers": [
+        {
+         "source": "lib:scream_male_short_21a5",
+         "pitch": -5,
+         "length": 1.2,
+         "fadeOut": 400
+        },
+        {
+         "source": "synth:wail",
+         "start": 0.2,
+         "length": 2.2,
+         "seed": 9,
+         "gain": -4,
+         "params": {
+          "start": 900,
+          "end": 140,
+          "depth": 0.6
+         }
+        },
+        {
+         "source": "lib:impact_hit_3_4fa9",
+         "pitch": -7,
+         "gain": -8,
+         "length": 0.8
+        }
+       ],
+       "processing": {
+        "reverb": 0.5,
+        "lowpass": 7000
+       }
+      }
+     ]
+    },
+    {
+     "event": "attack",
+     "role": "attack",
+     "subtitle": "Banshee lunges",
+     "variants": [
+      {
+       "layers": [
+        {
+         "source": "lib:whoosh_short_fast_b322",
+         "pitch": -3,
+         "length": 0.6
+        },
+        {
+         "source": "synth:growl",
+         "start": 0.05,
+         "length": 0.5,
+         "seed": 5,
+         "gain": -3,
+         "params": {
+          "pitch": 140,
+          "rough": 0.8
+         }
+        }
+       ]
+      },
+      {
+       "layers": [
+        {
+         "source": "synth:whoosh",
+         "length": 0.4,
+         "seed": 6
+        },
+        {
+         "source": "lib:impact_hit_3_4fa9",
+         "start": 0.15,
+         "pitch": 3,
+         "gain": -4,
+         "length": 0.4
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "event": "step",
+     "role": "step",
+     "subtitle": "Banshee glides",
+     "variants": [
+      {
+       "layers": [
+        {
+         "source": "lib:footsteps_fast_139e",
+         "pitch": 5,
+         "length": 0.25,
+         "fadeOut": 40
+        }
+       ],
+       "processing": {
+        "lowpass": 3000
+       }
+      },
+      {
+       "layers": [
+        {
+         "source": "synth:whoosh",
+         "length": 0.22,
+         "seed": 1,
+         "params": {
+          "high": 2000
+         }
+        }
+       ]
+      },
+      {
+       "layers": [
+        {
+         "source": "synth:whoosh",
+         "length": 0.2,
+         "seed": 2,
+         "params": {
+          "high": 4000
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "tool": {
+   "runner": "cyrus-sound-runner-1",
+   "render": "sr-1",
+   "quality": "sq-1",
+   "ffmpeg": "ffmpeg version n8.1.3-16-ge0a878dd70-20261009 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "renderMs": 6750,
+  "deterministic": true,
+  "errors": [],
+  "dropped": [],
+  "files": [
+   {
+    "name": "ambient_1",
+    "bytes": 17602,
+    "oggSha256": "acb2cadf9a848ff0644c63db31772278c723eaf50c21b6781d9d9d334d4ead28",
+    "pcmSha256": "46b27b67dcdf7e5899e0d3218072bfa99e653d8549243879fe5cf42da54d28b3",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 1.645
+    },
+    "measure": {
+     "durationS": 1.645,
+     "samplePeakDb": -9.07,
+     "truePeakDb": -9.07,
+     "lufs": -19.97,
+     "silenceRatio": 0.158,
+     "dcOffset": -0.000004
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -9.2,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "ambient_2",
+    "bytes": 14900,
+    "oggSha256": "621e335ef36506bc016d3fad57914a8a31abf7c50547a5f22753f50ac75b53c0",
+    "pcmSha256": "e1306564013ef71549e2fcd90a3fc659694c4933479f33f840b341d8443edab7",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 1.34
+    },
+    "measure": {
+     "durationS": 1.34,
+     "samplePeakDb": -7.9,
+     "truePeakDb": -7.89,
+     "lufs": -19.97,
+     "silenceRatio": 0.201,
+     "dcOffset": -0.000016
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -4.61,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "hurt_1",
+    "bytes": 8022,
+    "oggSha256": "353d716b3fe383740520303925e9cccb47aea2902b9c6f11f2b57150d627fc2c",
+    "pcmSha256": "cf3d1bb43bfcdaaaae23a782fdc145e2c9c42652c2097901c64a2f624d28c00b",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.442
+    },
+    "measure": {
+     "durationS": 0.442,
+     "samplePeakDb": -1.87,
+     "truePeakDb": -1.87,
+     "lufs": -14.11,
+     "silenceRatio": 0.067,
+     "dcOffset": 0.000002
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -1.27,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "hurt_2",
+    "bytes": 8863,
+    "oggSha256": "c172b440546f9d46fa6fe912ee0c62c56c5f895f0f2de330ba57e7d07c152f90",
+    "pcmSha256": "4dde13dbb74c869a20af504b224b7756dd43dfc77fe1f680e1e5a8c73724bde5",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.599
+    },
+    "measure": {
+     "durationS": 0.599,
+     "samplePeakDb": -1.32,
+     "truePeakDb": -1.32,
+     "lufs": -17.87,
+     "silenceRatio": 0.2,
+     "dcOffset": 0.000082
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": 9.35,
+     "peakLimited": true,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "hurt_3",
+    "bytes": 7205,
+    "oggSha256": "f792a36e919c4b7feedecee3ecca2a3e08b8352e0cb8cab9614b543eb6919419",
+    "pcmSha256": "7041c98fcd3feb0c7278d8b51b98653393c91743116197cf1e0a94626abd8944",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.353
+    },
+    "measure": {
+     "durationS": 0.353,
+     "samplePeakDb": -4.67,
+     "truePeakDb": -4.6,
+     "lufs": -13.99,
+     "silenceRatio": 0.056,
+     "dcOffset": -0.000063
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -5.24,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "death_1",
+    "bytes": 23521,
+    "oggSha256": "652554e50a2b4024c94b0b769e476db2200b5b89f3508c99585c4a111b3b502e",
+    "pcmSha256": "ab9f3bb66004f498f65e7b20c42e342973ee18df9c96f8e46d84968e9d4e7bc6",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 2.558
+    },
+    "measure": {
+     "durationS": 2.558,
+     "samplePeakDb": -1.35,
+     "truePeakDb": -1.33,
+     "lufs": -13,
+     "silenceRatio": 0.094,
+     "dcOffset": -0.000002
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -1.87,
+     "peakLimited": true,
+     "truncated": false,
+     "ceilingDb": -1.84,
+     "passes": 2
+    }
+   },
+   {
+    "name": "attack_1",
+    "bytes": 8179,
+    "oggSha256": "00e0c9077071f86a0f522b66ffb645dc275309767f1303300b28857e7155cbc9",
+    "pcmSha256": "c2ed73725a73462b9d137598042ca7eeacabf0bb4282df92b7bf09776d717961",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.495
+    },
+    "measure": {
+     "durationS": 0.495,
+     "samplePeakDb": -1.44,
+     "truePeakDb": -1.44,
+     "lufs": -13.68,
+     "silenceRatio": 0.04,
+     "dcOffset": 0.000541
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": 4.26,
+     "peakLimited": true,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "attack_2",
+    "bytes": 8202,
+    "oggSha256": "08bb310fa65c643fb555b84eba95f8af4c6924214865f80c6571ac1a873bd8a9",
+    "pcmSha256": "3dcc07c03c3b7878217073e93eba09ba6965e09e0c68320668b2bd35495bd943",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.498
+    },
+    "measure": {
+     "durationS": 0.498,
+     "samplePeakDb": -2,
+     "truePeakDb": -1.8,
+     "lufs": -14.97,
+     "silenceRatio": 0.06,
+     "dcOffset": -0.000112
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": 2.8,
+     "peakLimited": true,
+     "truncated": false,
+     "ceilingDb": -2.51,
+     "passes": 2
+    }
+   },
+   {
+    "name": "step_1",
+    "bytes": 5166,
+    "oggSha256": "21da5c4cc99a2531028ad9f36f7d19a5af33481a400bbd267c01d672329bfbe2",
+    "pcmSha256": "80b17eedee06a7390ffb1b575a47d5d6422a3a55951dfb71888d7114eed67f7a",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.149
+    },
+    "measure": {
+     "durationS": 0.149,
+     "samplePeakDb": -1.86,
+     "truePeakDb": -1.86,
+     "lufs": -22.08,
+     "silenceRatio": 0.067,
+     "dcOffset": 0.000057
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": 13.68,
+     "peakLimited": true,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "step_2",
+    "bytes": 5849,
+    "oggSha256": "619313013eeef4bfd8b9ee40205d343799f1eecfc7ac2c6ff1510889f43b73ad",
+    "pcmSha256": "898ef140d10c99fdb7f927a64069d87378fbae3b08ee6a9f8814ff152abfd513",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.217
+    },
+    "measure": {
+     "durationS": 0.217,
+     "samplePeakDb": -6.13,
+     "truePeakDb": -5.99,
+     "lufs": -21.14,
+     "silenceRatio": 0.136,
+     "dcOffset": -0.00001
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -5.12,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   },
+   {
+    "name": "step_3",
+    "bytes": 5610,
+    "oggSha256": "ca0d93665bd407467462926b0a8e9b5704218b3fa50a9107510315f2287fc657",
+    "pcmSha256": "6e76e781f70f0d650d2b202d16c4fc958ff00c90bb9726d34bc31e0e7cfaa194",
+    "encoded": {
+     "codec": "vorbis",
+     "channels": 1,
+     "sampleRate": 44100,
+     "durationS": 0.197
+    },
+    "measure": {
+     "durationS": 0.197,
+     "samplePeakDb": -7.34,
+     "truePeakDb": -7.26,
+     "lufs": -21.1,
+     "silenceRatio": 0.1,
+     "dcOffset": 0.000001
+    },
+    "quality": "pass",
+    "warn": [],
+    "render": {
+     "gainDb": -6.49,
+     "peakLimited": false,
+     "truncated": false,
+     "ceilingDb": -1.5,
+     "passes": 1
+    }
+   }
+  ],
+  "probes": [
+   {
+    "file": "ambient_1.ogg",
+    "ffprobe": "vorbis,44100,1 1.645034"
+   },
+   {
+    "file": "ambient_2.ogg",
+    "ffprobe": "vorbis,44100,1 1.339683"
+   },
+   {
+    "file": "attack_1.ogg",
+    "ffprobe": "vorbis,44100,1 0.497914"
+   },
+   {
+    "file": "attack_2.ogg",
+    "ffprobe": "vorbis,44100,1 0.485896"
+   },
+   {
+    "file": "death_1.ogg",
+    "ffprobe": "vorbis,44100,1 2.558209"
+   },
+   {
+    "file": "hurt_1.ogg",
+    "ffprobe": "vorbis,44100,1 0.445193"
+   },
+   {
+    "file": "hurt_2.ogg",
+    "ffprobe": "vorbis,44100,1 0.601950"
+   },
+   {
+    "file": "hurt_3.ogg",
+    "ffprobe": "vorbis,44100,1 0.356077"
+   },
+   {
+    "file": "step_1.ogg",
+    "ffprobe": "vorbis,44100,1 0.151746"
+   },
+   {
+    "file": "step_2.ogg",
+    "ffprobe": "vorbis,44100,1 0.220000"
+   },
+   {
+    "file": "step_3.ogg",
+    "ffprobe": "vorbis,44100,1 0.200000"
+   }
+  ],
+  "probeOk": true,
+  "libraryIds": [
+   "footsteps_fast_139e",
+   "gasp_male_2_b1d1",
+   "impact_hit_3_4fa9",
+   "monster_exhale_short_f2c2",
+   "scream_male_short_21a5",
+   "whoosh_short_fast_b322"
+  ]
+ },
+ "flights": [
+  {
+   "name": "1.21.11",
+   "version": "1.21.11",
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 18018,
+   "peakRssKb": 914228,
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L104: [07:07:12 INFO]: Done (16.716s)! For help, type \"help\"",
+      "wall 18018 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L94: [07:07:11 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L97: [07:07:11 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "TfSound: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L98: [07:07:11 INFO]: [TfSound] Enabling TfSound v1.0.2",
+      "rcon plugins -> ℹ Server Plugins (3): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel, TfSound | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "104 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "pack-listed 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - e58d0951-ba93-5254-91b4-8e74304e29aa required=false sha1=835d969cb806ea5e31e8e47e4e238b629416aa7c url=https://packs.example.invalid/p/835d969cb806ea5e31e8e47e4e238b629416aa7c.zip | ",
+      "loader-status 'nxpacks status': ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T07:07:11.797713009Z geyser=false floodgate=false clientAnswers=0 | ",
+      "item-model-ruby 'tfitem nx_r1s0und ruby_sword': ok -> itemModel=nx_r1s0und:ruby_sword material=IRON_SWORD | ",
+      "sound-hurt 'tfsound nx_r1s0und:banshee.hurt HOSTILE': ok -> played=nx_r1s0und:banshee.hurt category=HOSTILE silent=true mob=ZOMBIE difficulty=PEACEFUL->EASY | ",
+      "sound-death 'tfsound nx_r1s0und:banshee.death HOSTILE': ok -> played=nx_r1s0und:banshee.death category=HOSTILE silent=true mob=ZOMBIE difficulty=EASY | ",
+      "plugins-listed 'plugins': ok -> ℹ Server Plugins (3): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel, TfSound | "
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 568 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3356968 gone; 0 marked processes; listening none of 47174,47160",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv21wwd6-b1831f; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.0s, peak RSS 893 MB)",
+   "notes": [
+    "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+    "ports: server 47174, rcon 47160 (private netns, 127.0.0.1)"
+   ],
+   "engine": {
+    "runner": "tf-lite-1",
+    "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 21,
+     "version": "21.0.12.1",
+     "dist": "jdk-21.0.12.1+1",
+     "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+    },
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "pack": {
+    "path": "syncBuildAssets (production path, real render host)",
+    "sha1": "835d969cb806ea5e31e8e47e4e238b629416aa7c",
+    "url": "https://packs.example.invalid/p/835d969cb806ea5e31e8e47e4e238b629416aa7c.zip",
+    "format": 75,
+    "bytes": 109719,
+    "prompt": "TfSound uses custom item textures and sounds. Accept the pack to see and hear them.",
+    "required": false,
+    "sounds": [
+     {
+      "set": "banshee",
+      "event": "ambient",
+      "key": "nx_r1s0und:banshee.ambient",
+      "subtitle": "Banshee moans",
+      "role": "ambient",
+      "category": "hostile",
+      "variants": 2,
+      "quality": "pass",
+      "specSha256": "0f84dee3224c84903b397ce93cf88fc77e6a5e38295d658fbc08297c64eee32b"
+     },
+     {
+      "set": "banshee",
+      "event": "hurt",
+      "key": "nx_r1s0und:banshee.hurt",
+      "subtitle": "Banshee shrieks",
+      "role": "hurt",
+      "category": "hostile",
+      "variants": 3,
+      "quality": "pass",
+      "specSha256": "0f84dee3224c84903b397ce93cf88fc77e6a5e38295d658fbc08297c64eee32b"
+     },
+     {
+      "set": "banshee",
+      "event": "death",
+      "key": "nx_r1s0und:banshee.death",
+      "subtitle": "Banshee fades away",
+      "role": "death",
+      "category": "hostile",
+      "variants": 1,
+      "quality": "pass",
+      "specSha256": "0f84dee3224c84903b397ce93cf88fc77e6a5e38295d658fbc08297c64eee32b"
+     },
+     {
+      "set": "banshee",
+      "event": "attack",
+      "key": "nx_r1s0und:banshee.attack",
+      "subtitle": "Banshee lunges",
+      "role": "attack",
+      "category": "hostile",
+      "variants": 2,
+      "quality": "pass",
+      "specSha256": "0f84dee3224c84903b397ce93cf88fc77e6a5e38295d658fbc08297c64eee32b"
+     },
+     {
+      "set": "banshee",
+      "event": "step",
+      "key": "nx_r1s0und:banshee.step",
+      "subtitle": "Banshee glides",
+      "role": "step",
+      "category": "hostile",
+      "variants": 3,
+      "quality": "pass",
+      "specSha256": "0f84dee3224c84903b397ce93cf88fc77e6a5e38295d658fbc08297c64eee32b"
+     }
+    ],
+    "textures": [
+     "ruby_sword:pass",
+     "health_potion:pass"
+    ],
+    "dropped": []
+   },
+   "loaderId": "e58d0951-ba93-5254-91b4-8e74304e29aa",
+   "namespace": "nx_r1s0und"
+  },
+  {
+   "name": "26.2",
+   "version": "26.2",
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 10410,
+   "peakRssKb": 822948,
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L105: [07:07:30 INFO]: Done (9.086s)! For help, type \"help\"",
+      "wall 10410 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L90: [07:07:30 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [07:07:30 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "TfSound: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L89: [07:07:30 INFO]: [TfSound] Enabling TfSound v1.0.2",
+      "rcon plugins -> ℹ Server Plugins (3): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel, TfSound | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "105 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "pack-listed 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - e58d0951-ba93-5254-91b4-8e74304e29aa required=false sha1=a66bce3b3ba8e6c25bd8d6ea840c6e75bc1eab9c url=https://packs.example.invalid/p/a66bce3b3ba8e6c25bd8d6ea840c6e75bc1eab9c.zip | ",
+      "loader-status 'nxpacks status': ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T07:07:30.438603754Z geyser=false floodgate=false clientAnswers=0 | ",
+      "item-model-ruby 'tfitem nx_r1s0und ruby_sword': ok -> itemModel=nx_r1s0und:ruby_sword material=IRON_SWORD | ",
+      "sound-hurt 'tfsound nx_r1s0und:banshee.hurt HOSTILE': ok -> played=nx_r1s0und:banshee.hurt category=HOSTILE silent=true mob=ZOMBIE difficulty=PEACEFUL->EASY | ",
+      "sound-death 'tfsound nx_r1s0und:banshee.death HOSTILE': ok -> played=nx_r1s0und:banshee.death category=HOSTILE silent=true mob=ZOMBIE difficulty=EASY | ",
+      "plugins-listed 'plugins': ok -> ℹ Server Plugins (3): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel, TfSound | "
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 439 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3357385 gone; 0 marked processes; listening none of 47192,47189",
+      "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv21xgla-fbfccb; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.4s, peak RSS 804 MB)",
+   "notes": [
+    "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+    "ports: server 47192, rcon 47189 (private netns, 127.0.0.1)"
+   ],
+   "engine": {
+    "runner": "tf-lite-1",
+    "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+    "node": "v24.20.0",
+    "host": "nxeon-fsn1",
+    "kernel": "7.0.2-6-pve",
+    "jdk": {
+     "release": 25,
+     "version": "25.0.4.1",
+     "dist": "jdk-25.0.4.1+1",
+     "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+    },
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "isolation": {
+     "netns": "private (loopback only)",
+     "uid": 65534,
+     "noNewPrivs": true,
+     "nice": 10,
+     "activeProcessorCount": 2
+    }
+   },
+   "pack": {
+    "path": "buildPack(allowPreview, test only)",
+    "sha1": "a66bce3b3ba8e6c25bd8d6ea840c6e75bc1eab9c",
+    "url": "https://packs.example.invalid/p/a66bce3b3ba8e6c25bd8d6ea840c6e75bc1eab9c.zip",
+    "format": 88,
+    "bytes": 109719,
+    "files": 20,
+    "sounds": [
+     {
+      "key": "nx_r1s0und:banshee.ambient",
+      "subtitleKey": "subtitles.nx_r1s0und.banshee.ambient",
+      "files": 2
+     },
+     {
+      "key": "nx_r1s0und:banshee.attack",
+      "subtitleKey": "subtitles.nx_r1s0und.banshee.attack",
+      "files": 2
+     },
+     {
+      "key": "nx_r1s0und:banshee.death",
+      "subtitleKey": "subtitles.nx_r1s0und.banshee.death",
+      "files": 1
+     },
+     {
+      "key": "nx_r1s0und:banshee.hurt",
+      "subtitleKey": "subtitles.nx_r1s0und.banshee.hurt",
+      "files": 3
+     },
+     {
+      "key": "nx_r1s0und:banshee.step",
+      "subtitleKey": "subtitles.nx_r1s0und.banshee.step",
+      "files": 3
+     }
+    ],
+    "prompt": "TfSound uses custom item textures and sounds. Accept the pack to see and hear them.",
+    "required": false
+   },
+   "loaderId": "e58d0951-ba93-5254-91b4-8e74304e29aa",
+   "namespace": "nx_r1s0und"
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "what": "Cyrus r38 bridge: delivery through the Nxeon Platform API, real Paper boot via Test Flight on node-2",
+ "date": "2026-10-11T06:40:41.869Z",
+ "version": "1.21.11",
+ "scenarios": {
+  "A": {
+   "outcome": "delivered",
+   "ok": true,
+   "failedStep": null,
+   "error": null,
+   "apply": {
+    "mode": "restart",
+    "reasons": [
+     "a plugin jar changed (plugins load at server start)",
+     "an Nxeon-managed plugin was installed, upgraded or removed",
+     "a data pack adds registry content (loads only at server start)"
+    ],
+    "restarted": true,
+    "reloaded": false
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (inventory + conflicts checked)",
+    "managed:ok (nxeon-pack-loader installed)",
+    "host_pack:ok (hosted at https://packs.example.invalid/p/2f12626cdd9063720457213be90fdee7702ed2ce.zip)",
+    "pack_config:ok (added)",
+    "place:ok (jar placed; 1 data pack(s); 0 model(s))",
+    "record:ok (/root/.nxeon-cyrus/deliveries/cp_r38real01.json)",
+    "apply:ok (restart: a plugin jar changed (plugins load at server start); an Nxeon-managed plugin was installed, upgraded or removed; a data pack adds registry content (loa)",
+    "health:ok (healthy)",
+    "commit:ok"
+   ],
+   "notes": [],
+   "files": [
+    "NxeonPackLoader",
+    "NxeonPackLoader-0.1.0.jar",
+    "TfItemModel-1.0.0.jar",
+    "nxeon-nx_dpstud10-showcase.zip"
+   ],
+   "apiCalls": 120,
+   "mutations": 69,
+   "refused": [
+    "readFile:path_refused:/opt/mc/logs/latest.log",
+    "reload:console_failed:null"
+   ],
+   "restarts": [
+    200
+   ]
+  },
+  "R": {
+   "outcome": "rolled_back",
+   "ok": false,
+   "failedStep": "record",
+   "error": "renameFile: the user disconnected Cyrus from this server",
+   "apply": null,
+   "health": null,
+   "rollback": {
+    "ok": true,
+    "restored": 1,
+    "removed": 0,
+    "mismatches": [],
+    "refs": "restored",
+    "restarted": false
+   },
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (inventory + conflicts checked)",
+    "managed:ok (nxeon-pack-loader already)",
+    "host_pack:ok (hosted at https://packs.example.invalid/p/2f12626cdd9063720457213be90fdee7702ed2ce.zip)",
+    "pack_config:ok (unchanged; other entries kept: 1)",
+    "place:ok (jar unchanged; 0 data pack(s); 0 model(s))",
+    "record:failed (renameFile: the user disconnected Cyrus from this server)",
+    "rollback:ok (1 restored, 0 removed; refs restored)"
+   ],
+   "notes": [],
+   "exactRestore": true,
+   "refusedForward": 1,
+   "rollbackOnlyRefusals": 0,
+   "refs": [
+    [
+     "nxeon-pack-loader",
+     [
+      "project:cp_r38real01"
+     ]
+    ]
+   ]
+  }
+ },
+ "flights": [
+  {
+   "at": "2026-10-11T06:41:04.482Z",
+   "plugins": [
+    "NxeonPackLoader",
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_dpstud10-showcase"
+   ],
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L101: [06:41:02 INFO]: Done (18.643s)! For help, type \"help\"",
+      "wall 20080 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L92: [06:41:02 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L95: [06:41:02 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 866 MB, 255 ms]: ok (optional) -> There are 0 of a max of 1 players online: ",
+      "datapacks-enabled 'datapack list enabled' [rss 866 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_dpstud10-showcase.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 603 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 294948 gone; 0 marked processes; listening none of 47168,47138",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv3gf5r3-73bb6b; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 20080,
+   "peakRssKb": 887332,
+   "wallMs": 22277,
+   "runId": "tf-1-21-11-mv3gf5r3-73bb6b",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   }
+  }
+ ]
+}

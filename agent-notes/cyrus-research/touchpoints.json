@@ -1,0 +1,256 @@
+{
+ "branch": "feature/cyrus-r2",
+ "commit": "05c8f053d7",
+ "date": "2026-10-10",
+ "headline": {
+  "lib_cyrus_ts_files": 286,
+  "lib_cyrus_files_importing_nxeon": 41,
+  "lib_cyrus_nxeon_import_statements": 74,
+  "lib_modbuilder_files_importing_nxeon": 4,
+  "lib_modbuilder_nxeon_import_statements": 13,
+  "distinct_nxeon_modules": 28,
+  "app_ui_files_importing_nxeon": 185,
+  "cyrus_tables": 28,
+  "fks_into_nxeon": 0,
+  "routes": 34,
+  "pages": 25,
+  "setting_keys": 71,
+  "env_names": 132,
+  "nxeon_table_call_sites": 97,
+  "top_imports": {
+   "lib/db": 27,
+   "mods/guest-fs": 9,
+   "settings": 5,
+   "preview-access": 5,
+   "auth": 3,
+   "rbac": 3,
+   "stripe": 3,
+   "rate-limit": 2,
+   "mods/engine": 2,
+   "mods/safe-fetch": 2
+  }
+ },
+ "touchpoints": [
+  {
+   "kind": "db",
+   "what": "lib/db (prisma) - Cyrus-owned tables",
+   "counts": {
+    "lib/cyrus": 27,
+    "app+components": 22,
+    "modbuilder": 3
+   },
+   "seam_status": "direct import (27 files); partial seam via deps.ts/deps-db.ts/store-prisma.ts (21 files use *Deps)",
+   "host_adapter": "CyrusStore (own DB client; same API, repoint connection string)"
+  },
+  {
+   "kind": "db",
+   "what": "Reads/writes of Nxeon tables: AuditLog 22 calls/10 files, ServerMod 18/7, User 14/13, Server 13/9, Setting 11/7, Job 9/6, GameMod 5/4, ModUpdateRun 3/2, Notification 2/1",
+   "counts": {
+    "calls": 97
+   },
+   "seam_status": "direct prisma",
+   "host_adapter": "host.audit(), host.users.get(), host.servers.get/list, host.settings, host.jobs.enqueue, host.installs.* , host.notify"
+  },
+  {
+   "kind": "db",
+   "what": "Cyrus tables: 27 Cyrus* + ModBuild = 28; 0 @relation, 0 FKs; userId/serverId are plain strings (27 userId cols, 2 serverId cols)",
+   "counts": {
+    "tables": 28,
+    "fks": 0
+   },
+   "seam_status": "already opaque",
+   "host_adapter": "none; ids become host subject ids"
+  },
+  {
+   "kind": "db",
+   "what": "Reverse coupling: Nxeon ServerMod/GameMod/ModUpdateRun rows hold Cyrus build ids; stripe webhook calls handleCyrusStripeEvent",
+   "counts": {
+    "files": 3
+   },
+   "seam_status": "direct, Nxeon->Cyrus",
+   "host_adapter": "stay Nxeon side; become HostEvents consumed via API/webhook"
+  },
+  {
+   "kind": "auth",
+   "what": "currentUser/realUser/requireUser (lib/auth), preview-access allowlist, impersonation-aware gate",
+   "counts": {
+    "lib/cyrus": 4,
+    "modbuilder": 1,
+    "app": 20
+   },
+   "seam_status": "direct import",
+   "host_adapter": "host.session.current() -> {subjectId,email,realSubjectId,verified}; host.access.mayUse(feature)"
+  },
+  {
+   "kind": "rbac",
+   "what": "hasPermission, requireAdmin, lib/rbac",
+   "counts": {
+    "lib/cyrus": 3,
+    "app": 10,
+    "hasPermission_calls": 7
+   },
+   "seam_status": "direct import",
+   "host_adapter": "host.rbac.can(subject,perm)"
+  },
+  {
+   "kind": "billing",
+   "what": "Stripe checkout/portal/webhook for token plans + top-ups (metadata cyrusUserId); lib/stripe + lib/stripe-cards; 5 checkout routes",
+   "counts": {
+    "lib/cyrus": 3,
+    "stripe-cards": 1,
+    "app": 5,
+    "webhook": 1
+   },
+   "seam_status": "direct import; billing.ts is the only Stripe consumer",
+   "host_adapter": "host.billing.createCheckout/openPortal/onEvent/listPaymentMethods (or Nxeon as payment provider)"
+  },
+  {
+   "kind": "billing",
+   "what": "Token economy (accounts/lots/ledger/reservations/plans, 71 cyrus_* setting keys incl cyrus_tok_*)",
+   "counts": {
+    "tables": 5,
+    "settingKeys": "~60"
+   },
+   "seam_status": "Cyrus-owned already (lib/cyrus/tokens)",
+   "host_adapter": "none; only funding source changes"
+  },
+  {
+   "kind": "settings",
+   "what": "lib/settings getSettingBool etc. + Setting table; 71 distinct cyrus_ keys (flags, caps, prices)",
+   "counts": {
+    "lib/cyrus": 5,
+    "app": 5,
+    "keys": 71
+   },
+   "seam_status": "direct import",
+   "host_adapter": "host.settings.get(key) behind CyrusConfig (keys stay namespaced)"
+  },
+  {
+   "kind": "flags_env",
+   "what": "process.env: CYRUS_* (about 70 names incl PACK_S3_*, SOUND_RELAY_*, TESTFLIGHT_*), MB_* (about 40, service only), MODBUILDER_URL/API_KEY, ENABLE_REAL_GAMEMODS, APP_URL, AUTH_SECRET, CLAUDE_*/ANTHROPIC_*",
+   "counts": {
+    "names": 132
+   },
+   "seam_status": "mostly Cyrus-owned; ENABLE_REAL_GAMEMODS/APP_URL/AUTH_SECRET are Nxeon",
+   "host_adapter": "CyrusEnv config object; host.baseUrl()"
+  },
+  {
+   "kind": "rate_limit",
+   "what": "checkRateLimit (lib/rate-limit)",
+   "counts": {
+    "lib/cyrus": 2,
+    "app": 8,
+    "calls": 13
+   },
+   "seam_status": "direct import (import/deps-real, studios/deps wrap it)",
+   "host_adapter": "host.rateLimit.check(key,limit,window)"
+  },
+  {
+   "kind": "email_notify",
+   "what": "Creator alerts/mayDeliverTo + Notification table + email send in worker/cyrus-lifecycle",
+   "counts": {
+    "files": 3
+   },
+   "seam_status": "direct (worker)",
+   "host_adapter": "host.notify.send({subject,channel,template})"
+  },
+  {
+   "kind": "game_install",
+   "what": "lib/mods/guest-fs (GuestFs interface; 8 type-only + 1 LocalGuestFs), mods/engine, safe-fetch, installers/minecraft + installers/cyrus, worker/mods-guest-ssh (SshGuestFs), game-config familyFor, terraria-image, mod-health, sandbox",
+   "counts": {
+    "lib/cyrus": 13,
+    "modbuilder": 4
+   },
+   "seam_status": "GuestFs already an interface injected in 8 files; SshGuestFs and engine placement are direct",
+   "host_adapter": "host.servers.list/get, host.servers.files(serverId) -> GuestFs-like (read/write/list/exec), host.servers.restart, host.servers.rcon, host.installs.record, host.games.family(), host.net.safeFetch"
+  },
+  {
+   "kind": "storage",
+   "what": "Disk: /var/lib/nxeon/modbuilds, /var/lib/nxeon/cyrus-imports, /tank/nxeon-build/tmp/{testflight,sound-library,sound-render}, /root/.nxeon-cyrus/modpack-backups, /root/.nxeon-mods/backups, /opt/mc, /opt/mb; S3 pack store via CYRUS_PACK_S3_*; no Bytes DB columns",
+   "counts": {
+    "paths": 10,
+    "s3": 1
+   },
+   "seam_status": "env-configurable stores (CYRUS_PACK_STORE, CYRUS_UPLOAD_STORE); some hardcoded paths",
+   "host_adapter": "CyrusStorage (blob put/get/url) already mostly exists in packhost/s3"
+  },
+  {
+   "kind": "queue_worker",
+   "what": "Nxeon worker/index.ts registers 5 Cyrus sweeps (modbuilder-sync, cyrus-tokens, cyrus-lifecycle, cyrus-compat-watch, cyrus-testflight-gate) + sound relay; worker/cyrus-delivery.ts, cyrus-lifecycle.ts; prisma.job x9",
+   "counts": {
+    "sweeps": 5,
+    "worker_files": 4
+   },
+   "seam_status": "direct registration in Nxeon worker",
+   "host_adapter": "CyrusScheduler.register(name,interval,fn); host.jobs.enqueue only if Nxeon job table kept"
+  },
+  {
+   "kind": "logging",
+   "what": "AuditLog writes with cyrus.* actions (admin, tokens, delivery)",
+   "counts": {
+    "files": 10,
+    "calls": 22
+   },
+   "seam_status": "direct (lib/cyrus/admin/audit.ts partly wraps)",
+   "host_adapter": "host.audit.write -> CyrusAudit table"
+  },
+  {
+   "kind": "routes_domain",
+   "what": "34 route handlers + 25 pages: /dashboard/cyrus, /admin/cyrus, /api/cyrus/*, /api/mod-builder/* (13 legacy), /api/nxlabs/cyrus/*, /mods/cyrus (marketing), /nxm/cyrus, /dashboard/nxlabs/cyrus; middleware carve-out; dashboard layout nav entry; 185 UI files import Nxeon components/lib",
+   "counts": {
+    "routes": 34,
+    "pages": 25,
+    "uiFiles": 185
+   },
+   "seam_status": "direct",
+   "host_adapter": "host.baseUrl(), host.shell (nav/layout slot), basePath config"
+  },
+  {
+   "kind": "brand_theme",
+   "what": "components/cyrus-tokens + lib/cyrus/brand.ts own; UI imports components/nx (21 files), components/ui (12), components/admin (10), components/customer (5)",
+   "counts": {
+    "files": 48
+   },
+   "seam_status": "Cyrus tokens already own; shared primitives direct",
+   "host_adapter": "copy/publish ui primitives as @cyrus/ui or keep a shared package"
+  },
+  {
+   "kind": "external",
+   "what": "modbuilder service (HTTP+API key, systemd/Docker, Claude OAuth creds /root/claudebox.env, JDK25, Maven classpath); Anthropic gateway; sound render over SSH on node-2; Test Flight on node-2; Maven/GitHub/Thunderstore/Steam/PaperMC fetch",
+   "counts": {
+    "services": 4
+   },
+   "seam_status": "already standalone-ish (MODBUILDER_URL)",
+   "host_adapter": "none; move hosts and secrets"
+  }
+ ],
+ "l2_update": {
+  "branch": "feature/cyrus-r22-separation",
+  "date": "2026-10-10",
+  "headline": {
+   "lib_cyrus_ts_files": 385,
+   "lib_cyrus_files_importing_nxeon": 26,
+   "lib_cyrus_nxeon_import_statements": 40,
+   "distinct_nxeon_modules": 16,
+   "lib_modbuilder_files_importing_nxeon": 3,
+   "lib_modbuilder_nxeon_import_statements": 11,
+   "nxeon_table_call_sites_from_lib_cyrus": 0,
+   "lib_db_importers_in_lib_cyrus": 0,
+   "remaining_top_imports": {
+    "lib/modbuilder/*": 28,
+    "lib/stripe + stripe-cards": 4,
+    "lib/cyrus-mods/*": 3,
+    "lib/rbac": 1,
+    "other (net-policy.json, cyrus-tokens, terraria-image, mod-health)": 4
+   }
+  },
+  "seam_status_now": {
+   "db": "DONE for Nxeon tables: cyrusDb (lib/cyrus/db.ts) is the only DB door; typed to Cyrus' 28 tables + raw SQL; platform tables via host.users/jobs/servers/records/settings.readStored/audit.append",
+   "queue_worker": "DONE: lib/cyrus/worker/schedule.ts registerCyrusSweeps(runner) + startCyrusSoundRelay(); platform worker calls it with one line",
+   "storage/paths": "DONE: lib/cyrus/config.ts cyrusConfig() (build host, TF/sound/meshgen roots, guest layout, modbuild/import dirs, modbuilder env file) from env, same defaults; services/modbuilder/run.sh takes CLAUDEBOX_ENV/MODBUILDER_ENV",
+   "game_install": "DONE for placement + file access: host.installs.install/uninstall (engine), host.servers.openFiles/pinnedVersion, HostGuestFs types; lib/modbuilder/install.ts (queue + legacy adopt) still direct",
+   "rbac": "perms.ts imports lib/rbac for client-safe role tables: left untouched on purpose",
+   "billing": "unchanged (owner decision); only the DB writes (stripeCustomerId, paid-server count) moved behind host.users/servers"
+  }
+ }
+}

@@ -1,0 +1,2332 @@
+{
+ "what": "Cyrus R4 worldgen real runs on node-2 (Test Flight tf-lite-3, Paper per registry pin, -Xmx1g, 2 CPUs, offline netns). Commits f2314efeb5 (showcase/baseline/broken-all run) and 8e82368896+ (broken-each, nbt). test/cyrus-worldgen-real.ts",
+ "date": "2026-10-10",
+ "showcase": [
+  {
+   "flight": "showcase",
+   "version": "1.21.1",
+   "packSha256": "7212a8c5f78afd4a74ac498ae6a118949a86c7a33b4a14aa29a3ce6182f44b50",
+   "packBytes": 9272,
+   "format": {
+    "major": 48,
+    "minor": 0
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 24294,
+   "peakRssKb": 1152688,
+   "flightWallMs": 149086,
+   "runId": "tf-1-21-1-mv28olt8-a7f59f",
+   "paper": {
+    "version": "1.21.1",
+    "build": 133,
+    "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 5,
+     "approxMs": 2770,
+     "rssMb": 1070,
+     "forceloadMs": 262
+    },
+    "crystalFar": {
+     "polls": 6,
+     "approxMs": 7879,
+     "rssMb": 1078,
+     "forceloadMs": 4855
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 923,
+     "rssMb": 1089,
+     "forceloadMs": 422
+    },
+    "netherFar": {
+     "polls": 1,
+     "approxMs": 3127,
+     "rssMb": 1113,
+     "forceloadMs": 2627
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:16:27] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:16:36] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld",
+     "[10:16:37] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether",
+     "[10:16:39] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end",
+     "[10:16:39] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:crystal",
+     "[10:16:44] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:flatland",
+     "[10:17:08] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 841 ms",
+     "[10:17:08] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 0 ms",
+     "[10:17:09] [Server thread/INFO]: Locating element nx_worldg01:ruin took 1 ms",
+     "[10:17:33] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:18:47] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_crystal]'/nx_worldg01:crystal",
+     "[10:18:47] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_crystal'",
+     "[10:18:47] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_crystal'",
+     "[10:18:47] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_crystal'",
+     "[10:18:48] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_crystal' in 0.22s",
+     "[10:18:48] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_flatland]'/nx_worldg01:flatland",
+     "[10:18:48] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_flatland'",
+     "[10:18:48] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_flatland'",
+     "[10:18:48] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_flatland'",
+     "[10:18:48] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_flatland' in 0.11s",
+     "[10:18:48] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/region": {
+      "files": 4,
+      "bytes": 3489792
+     },
+     "world_nether/DIM-1/region": {
+      "files": 8,
+      "bytes": 7819264
+     },
+     "world_nx_worldg01_crystal/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 8105984
+     },
+     "world_nx_worldg01_flatland/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7938048
+     },
+     "world_the_end/DIM1/region": {
+      "files": 4,
+      "bytes": 3477504
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L86: [10:16:44 INFO]: Done (23.077s)! For help, type \"help\"",
+      "wall 24294 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "86 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 1070 MB, 262 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-5 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1070 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1072 MB, 252 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 1072 MB, 252 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 1073 MB, 259 ms]: ok -> Marker has the following entity data: [8.5d, 84.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 1073 MB, 251 ms]: ok (optional) -> Test failed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 1073 MB, 1102 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [1568, -60, -1568] (2217 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 1073 MB, 252 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [0, -60, 0] (0 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 1073 MB, 253 ms]: ok -> The nearest nx_worldg01:ruin is at [64, ~, 48] (80 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 1073 MB, 253 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 1073 MB, 252 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 1073 MB, 252 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 1073 MB, 250 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 1073 MB, 251 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 1073 MB, 255 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 1073 MB, 253 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 1074 MB, 250 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-1 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1074 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1074 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 1074 MB, 252 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 1074 MB, 250 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 1074 MB, 251 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 1075 MB, 4855 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-6 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1078 MB, 251 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1081 MB, 251 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 1082 MB, 250 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 1084 MB, 422 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1089 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1089 MB, 251 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 1089 MB, 250 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 1113 MB, 2627 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-1 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1113 MB, 250 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1125 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 1125 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 1125 MB, 253 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 1125 MB, 258 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 1820 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3543272 gone; 0 marked processes; listening none of 47152,47143",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-1-mv28olt8-a7f59f; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "showcase",
+   "version": "1.21.4",
+   "packSha256": "409e365c833bf7b584fc6fe1f7a69e9328646cabc26fe6d39d4718e778227f75",
+   "packBytes": 9296,
+   "format": {
+    "major": 61,
+    "minor": 0
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 25294,
+   "peakRssKb": 1125456,
+   "flightWallMs": 150035,
+   "runId": "tf-1-21-4-mv28rsvf-b99045",
+   "paper": {
+    "version": "1.21.4",
+    "build": 232,
+    "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 5,
+     "approxMs": 4708,
+     "rssMb": 1095,
+     "forceloadMs": 1859
+    },
+    "crystalFar": {
+     "polls": 11,
+     "approxMs": 10089,
+     "rssMb": 1099,
+     "forceloadMs": 4572
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 880,
+     "rssMb": 1051,
+     "forceloadMs": 375
+    },
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 2933,
+     "rssMb": 1067,
+     "forceloadMs": 1430
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:18:58] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:18:59] [ServerMain/INFO]: [MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:19:00] [ServerMain/INFO]: [MCTypeRegistry] Finished initialising converters for DataConverter in 245.7ms",
+     "[10:19:06] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld",
+     "[10:19:06] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether",
+     "[10:19:09] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end",
+     "[10:19:09] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:flatland",
+     "[10:19:09] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:crystal",
+     "[10:19:39] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 2 ms",
+     "[10:19:40] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 3 ms",
+     "[10:19:40] [Server thread/INFO]: Locating element nx_worldg01:ruin took 1 ms",
+     "[10:20:04] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:21:17] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_flatland]'/nx_worldg01:flatland",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_flatland'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_flatland'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_flatland'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_flatland' in 0.17s",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_flatland'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_flatland'",
+     "[10:21:17] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_crystal]'/nx_worldg01:crystal",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_crystal'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_crystal'",
+     "[10:21:17] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_crystal'",
+     "[10:21:18] [Server thread/INFO]: [ChunkHolderManager] Saved 1074 block chunks, 106 entity chunks, 0 poi chunks in world 'world_nx_worldg01_crystal' in 0.42s",
+     "[10:21:18] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_crystal'",
+     "[10:21:18] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_crystal'",
+     "[10:21:18] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/region": {
+      "files": 4,
+      "bytes": 3477504
+     },
+     "world_nether/DIM-1/region": {
+      "files": 8,
+      "bytes": 7970816
+     },
+     "world_nx_worldg01_crystal/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 8491008
+     },
+     "world_nx_worldg01_flatland/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7954432
+     },
+     "world_the_end/DIM1/region": {
+      "files": 4,
+      "bytes": 3477504
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L107: [10:19:14 INFO]: Done (24.028s)! For help, type \"help\"",
+      "wall 25294 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "107 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 1095 MB, 1859 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-5 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1095 MB, 253 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1095 MB, 251 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 1095 MB, 252 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 1095 MB, 260 ms]: ok -> Marker has the following entity data: [8.5d, 63.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 1095 MB, 253 ms]: ok (optional) -> Test passed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 1095 MB, 257 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 1095 MB, 254 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [-32, -60, 96] (101 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 1095 MB, 254 ms]: ok -> The nearest nx_worldg01:ruin is at [64, ~, 16] (65 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 1095 MB, 254 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 1096 MB, 253 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 1096 MB, 252 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 1096 MB, 251 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 1096 MB, 250 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 1096 MB, 257 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 1096 MB, 254 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 1096 MB, 252 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-1 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1096 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1096 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 1096 MB, 252 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 1096 MB, 251 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 1096 MB, 251 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 1096 MB, 4572 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-11 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1099 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1044 MB, 251 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 1049 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 1051 MB, 375 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1051 MB, 255 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1065 MB, 252 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 1065 MB, 250 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 1067 MB, 1430 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-3 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1067 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1067 MB, 252 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 1067 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 1067 MB, 253 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 1067 MB, 256 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 1978 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3544349 gone; 0 marked processes; listening none of 47118,47113",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-4-mv28rsvf-b99045; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "showcase",
+   "version": "1.21.8",
+   "packSha256": "4541a23775e8c84e4d0f87b36c1943ce96b0a283bb5ad96644c8d22d11a3d76c",
+   "packBytes": 9310,
+   "format": {
+    "major": 81,
+    "minor": 0
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 21277,
+   "peakRssKb": 1180136,
+   "flightWallMs": 143462,
+   "runId": "tf-1-21-8-mv28v0oo-1cbf90",
+   "paper": {
+    "version": "1.21.8",
+    "build": 60,
+    "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 4,
+     "approxMs": 2418,
+     "rssMb": 1140,
+     "forceloadMs": 413
+    },
+    "crystalFar": {
+     "polls": 5,
+     "approxMs": 5833,
+     "rssMb": 1143,
+     "forceloadMs": 3328
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 1092,
+     "rssMb": 1150,
+     "forceloadMs": 339
+    },
+    "netherFar": {
+     "polls": 4,
+     "approxMs": 3613,
+     "rssMb": 1151,
+     "forceloadMs": 1609
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:21:27] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:21:28] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:21:29] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 378.5ms",
+     "[10:21:34] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld",
+     "[10:21:34] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether",
+     "[10:21:36] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end",
+     "[10:21:37] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:flatland",
+     "[10:21:37] [Server thread/INFO]: Preparing start region for dimension nx_worldg01:crystal",
+     "[10:22:04] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 2 ms",
+     "[10:22:04] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 286 ms",
+     "[10:22:05] [Server thread/INFO]: Locating element nx_worldg01:ruin took 1 ms",
+     "[10:22:29] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:23:41] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_flatland]'/nx_worldg01:flatland",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_flatland'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_flatland'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_flatland'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_flatland' in 0.16s",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_flatland'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_flatland'",
+     "[10:23:41] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_crystal]'/nx_worldg01:crystal",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_crystal'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_crystal'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_crystal'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_crystal' in 0.35s",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_crystal'",
+     "[10:23:41] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_crystal'",
+     "[10:23:41] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/region": {
+      "files": 4,
+      "bytes": 3481600
+     },
+     "world_nether/DIM-1/region": {
+      "files": 8,
+      "bytes": 8015872
+     },
+     "world_nx_worldg01_crystal/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 7954432
+     },
+     "world_nx_worldg01_flatland/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7954432
+     },
+     "world_the_end/DIM1/region": {
+      "files": 4,
+      "bytes": 3477504
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L104: [10:21:40 INFO]: Done (20.068s)! For help, type \"help\"",
+      "wall 21277 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "104 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 1139 MB, 413 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-4 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1140 MB, 251 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1141 MB, 250 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 1141 MB, 254 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 1141 MB, 255 ms]: ok -> Marker has the following entity data: [8.5d, 71.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 1141 MB, 253 ms]: ok (optional) -> Test passed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 1142 MB, 257 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 1142 MB, 538 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [-1184, -60, -1184] (1674 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 1142 MB, 255 ms]: ok -> The nearest nx_worldg01:ruin is at [48, ~, 48] (67 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 1142 MB, 255 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 1142 MB, 254 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 1142 MB, 252 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 1142 MB, 252 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 1142 MB, 251 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 1142 MB, 258 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 1142 MB, 253 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 1142 MB, 251 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-1 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1142 MB, 252 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1142 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 1142 MB, 252 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 1142 MB, 250 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 1142 MB, 252 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 1143 MB, 3328 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-5 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1143 MB, 251 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1147 MB, 251 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 1149 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 1150 MB, 339 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1150 MB, 503 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1150 MB, 251 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 1150 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 1151 MB, 1609 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-4 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1151 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1151 MB, 252 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 1151 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 1151 MB, 254 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 1151 MB, 256 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 1910 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3546385 gone; 0 marked processes; listening none of 47117,47105",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-8-mv28v0oo-1cbf90; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "showcase",
+   "version": "1.21.11",
+   "packSha256": "c3c9b67e01234f8a7de53f37b47541eaab05fc0e66f62e5803462a07c4d379c8",
+   "packBytes": 9384,
+   "format": {
+    "major": 94,
+    "minor": 1
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 16658,
+   "peakRssKb": 1239652,
+   "flightWallMs": 143160,
+   "runId": "tf-1-21-11-mv28y3ei-8aae94",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 4,
+     "approxMs": 3857,
+     "rssMb": 1195,
+     "forceloadMs": 1849
+    },
+    "crystalFar": {
+     "polls": 2,
+     "approxMs": 3272,
+     "rssMb": 1204,
+     "forceloadMs": 2270
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 828,
+     "rssMb": 1209,
+     "forceloadMs": 327
+    },
+    "netherFar": {
+     "polls": 1,
+     "approxMs": 1546,
+     "rssMb": 1209,
+     "forceloadMs": 1045
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:23:51] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:23:53] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:23:53] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 363.7ms",
+     "[10:23:57] [Server thread/INFO]: Selecting spawn point for world 'nx_worldg01:crystal'...",
+     "[10:23:59] [Server thread/INFO]: Selecting spawn point for world 'nx_worldg01:flatland'...",
+     "[10:23:59] [Server thread/INFO]: Loading 0 persistent chunks for world 'nx_worldg01:crystal'...",
+     "[10:23:59] [Server thread/INFO]: Loading 0 persistent chunks for world 'nx_worldg01:flatland'...",
+     "[10:24:24] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 1 ms",
+     "[10:24:25] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 920 ms",
+     "[10:24:25] [Server thread/INFO]: Locating element nx_worldg01:ruin took 0 ms",
+     "[10:24:50] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:26:04] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_crystal]'/nx_worldg01:crystal",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_crystal'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_crystal'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_crystal'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_crystal' in 0.17s",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_crystal'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_crystal'",
+     "[10:26:04] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nx_worldg01_flatland]'/nx_worldg01:flatland",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nx_worldg01_flatland'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nx_worldg01_flatland'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nx_worldg01_flatland'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'world_nx_worldg01_flatland' in 0.07s",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nx_worldg01_flatland'",
+     "[10:26:04] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nx_worldg01_flatland'",
+     "[10:26:04] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/region": {
+      "files": 4,
+      "bytes": 2199552
+     },
+     "world_nether/DIM-1/region": {
+      "files": 8,
+      "bytes": 7057408
+     },
+     "world_nx_worldg01_crystal/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 7979008
+     },
+     "world_nx_worldg01_flatland/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7946240
+     },
+     "world_the_end/DIM1/region": {
+      "files": 4,
+      "bytes": 2199552
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L97: [10:23:59 INFO]: Done (15.361s)! For help, type \"help\"",
+      "wall 16658 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "97 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 1193 MB, 1849 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-4 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1195 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1198 MB, 252 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 1198 MB, 255 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 1198 MB, 256 ms]: ok -> Marker has the following entity data: [8.5d, 88.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 1198 MB, 252 ms]: ok (optional) -> Test passed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 1198 MB, 254 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 1198 MB, 1173 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [1568, -60, -1568] (2217 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 1199 MB, 254 ms]: ok -> The nearest nx_worldg01:ruin is at [64, ~, 64] (90 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 1199 MB, 256 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 1199 MB, 254 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 1199 MB, 252 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 1199 MB, 251 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 1199 MB, 251 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 1199 MB, 260 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 1199 MB, 253 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 1203 MB, 437 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-1 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1203 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 1203 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 1203 MB, 251 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 1203 MB, 252 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 1203 MB, 251 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, 1, 0] (61 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 1204 MB, 2270 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-2 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1204 MB, 251 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1208 MB, 251 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 1208 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 1208 MB, 327 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1209 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1209 MB, 252 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 1209 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 1209 MB, 1045 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-1 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1209 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 1210 MB, 250 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 1210 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 1210 MB, 253 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 1210 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 5888 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3547430 gone; 0 marked processes; listening none of 47185,47182",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv28y3ei-8aae94; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "showcase",
+   "version": "26.1.2",
+   "packSha256": "dfa1ab8eb045ca65b2d673516e08bbc9c327fc779ac36f2d3d1f495df49a16e2",
+   "packBytes": 9538,
+   "format": {
+    "major": 101,
+    "minor": 1
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 14850,
+   "peakRssKb": 1005804,
+   "flightWallMs": 140373,
+   "runId": "tf-26-1-2-mv2915vx-fc3aff",
+   "paper": {
+    "version": "26.1.2",
+    "build": 74,
+    "sha256": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+    "channel": "STABLE"
+   },
+   "jdk": "25.0.4.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 6,
+     "approxMs": 7347,
+     "rssMb": 917,
+     "forceloadMs": 4329
+    },
+    "crystalFar": {
+     "polls": 6,
+     "approxMs": 6531,
+     "rssMb": 958,
+     "forceloadMs": 3522
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 841,
+     "rssMb": 962,
+     "forceloadMs": 340
+    },
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 3092,
+     "rssMb": 978,
+     "forceloadMs": 1588
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:26:12] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:26:14] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:26:14] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 311.8ms",
+     "[10:26:18] [Server thread/INFO]: Selecting spawn point for level 'nx_worldg01:crystal'...",
+     "[10:26:20] [Server thread/INFO]: Selecting spawn point for level 'nx_worldg01:flatland'...",
+     "[10:26:20] [Server thread/INFO]: Loading 0 persistent chunks for level 'nx_worldg01:crystal'...",
+     "[10:26:20] [Server thread/INFO]: Loading 0 persistent chunks for level 'nx_worldg01:flatland'...",
+     "[10:26:20] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:crystal",
+     "[10:26:20] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:flatland",
+     "[10:26:20] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved",
+     "[10:26:48] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 381 ms",
+     "[10:26:49] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 0 ms",
+     "[10:26:49] [Server thread/INFO]: Locating element nx_worldg01:ruin took 1 ms",
+     "[10:27:13] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:28:24] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:crystal",
+     "[10:28:24] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'nx_worldg01:crystal'",
+     "[10:28:24] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'nx_worldg01:crystal'",
+     "[10:28:24] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'nx_worldg01:crystal'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Saved 960 block chunks, 81 entity chunks, 0 poi chunks in world 'nx_worldg01:crystal' in 0.32s",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'nx_worldg01:crystal'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'nx_worldg01:crystal'",
+     "[10:28:25] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:flatland",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'nx_worldg01:flatland'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'nx_worldg01:flatland'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'nx_worldg01:flatland'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'nx_worldg01:flatland' in 0.15s",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'nx_worldg01:flatland'",
+     "[10:28:25] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'nx_worldg01:flatland'",
+     "[10:28:25] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/dimensions/minecraft/overworld/region": {
+      "files": 4,
+      "bytes": 2207744
+     },
+     "world/dimensions/minecraft/the_end/region": {
+      "files": 4,
+      "bytes": 2199552
+     },
+     "world/dimensions/minecraft/the_nether/region": {
+      "files": 8,
+      "bytes": 6279168
+     },
+     "world/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 8032256
+     },
+     "world/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7946240
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L108: [10:26:20 INFO]: Done (13.431s)! For help, type \"help\"",
+      "wall 14850 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "108 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 873 MB, 4329 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-6 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 917 MB, 251 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 921 MB, 252 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 921 MB, 255 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 921 MB, 254 ms]: ok -> Marker has the following entity data: [8.5d, 69.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 921 MB, 252 ms]: ok (optional) -> Test failed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 921 MB, 635 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [1024, -60, 768] (1280 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 921 MB, 251 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [0, -60, 0] (0 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 921 MB, 255 ms]: ok -> The nearest nx_worldg01:ruin is at [16, ~, 48] (50 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 921 MB, 259 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 921 MB, 254 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 921 MB, 255 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 921 MB, 252 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 921 MB, 251 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 921 MB, 258 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 921 MB, 253 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 935 MB, 465 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-2 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 935 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 937 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 937 MB, 252 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 937 MB, 251 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 937 MB, 250 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, 1, 0] (61 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 958 MB, 3522 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-6 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 958 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 962 MB, 251 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 962 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 962 MB, 340 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 962 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 962 MB, 252 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 964 MB, 252 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 978 MB, 1588 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-3 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 978 MB, 252 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 978 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 978 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 978 MB, 253 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 982 MB, 255 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 1107 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3549055 gone; 0 marked processes; listening none of 47111,47190",
+      "host: no process carries -Dnxeon.testflight.run=tf-26-1-2-mv2915vx-fc3aff; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "showcase",
+   "version": "26.2",
+   "packSha256": "454fc83acf59cb2904ef3c3a908c5ed679cae02fb65fd1cf4e1abe92006ca072",
+   "packBytes": 9643,
+   "format": {
+    "major": 107,
+    "minor": 1
+   },
+   "cost": {
+    "score": 17.6,
+    "class": "low",
+    "perDimension": [
+     {
+      "id": "nx_worldg01:crystal",
+      "terrain": 10,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 17.6
+     },
+     {
+      "id": "nx_worldg01:flatland",
+      "terrain": 1,
+      "features": 7.1,
+      "structures": 0.43,
+      "total": 8.6
+     }
+    ],
+    "notes": [
+     "heuristic per-chunk cost: 1 = a superflat chunk, 10 = vanilla overworld terrain; calibrated against node-2 Test Flight chunk generation (docs: Cyrus worldgen (R4))"
+    ]
+   },
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "bootMs": 13449,
+   "peakRssKb": 1006352,
+   "flightWallMs": 136709,
+   "runId": "tf-26-2-mv294680-43e0e8",
+   "paper": {
+    "version": "26.2",
+    "build": 133,
+    "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+    "channel": "STABLE"
+   },
+   "jdk": "25.0.4.1",
+   "perf": {
+    "crystalSpawnArea": {
+     "polls": 5,
+     "approxMs": 5746,
+     "rssMb": 925,
+     "forceloadMs": 3217
+    },
+    "crystalFar": {
+     "polls": 5,
+     "approxMs": 5170,
+     "rssMb": 961,
+     "forceloadMs": 2663
+    },
+    "flatFar": {
+     "polls": 1,
+     "approxMs": 867,
+     "rssMb": 973,
+     "forceloadMs": 365
+    },
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 2749,
+     "rssMb": 981,
+     "forceloadMs": 1245
+    }
+   },
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:28:32] [DataConverter MCTypeRegistry init thread/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:28:32] [DataConverter MCTypeRegistry init thread/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 440.7ms",
+     "[10:28:33] [ServerMain/INFO]: Found new data pack file/cyrus_worldgen.zip, loading it automatically",
+     "[10:28:37] [Server thread/INFO]: Selecting spawn point for level 'nx_worldg01:flatland'...",
+     "[10:28:37] [Server thread/INFO]: Selecting spawn point for level 'nx_worldg01:crystal'...",
+     "[10:28:39] [Server thread/INFO]: Loading 0 persistent chunks for level 'nx_worldg01:flatland'...",
+     "[10:28:39] [Server thread/INFO]: Loading 0 persistent chunks for level 'nx_worldg01:crystal'...",
+     "[10:28:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:flatland",
+     "[10:28:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:crystal",
+     "[10:28:39] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved",
+     "[10:29:06] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 4 ms",
+     "[10:29:06] [Server thread/INFO]: Locating element nx_worldg01:amethyst_hills took 31 ms",
+     "[10:29:06] [Server thread/INFO]: Locating element nx_worldg01:ruin took 3 ms",
+     "[10:29:31] [Server thread/INFO]: Locating element nx_worldg01:crystal_plains took 0 ms",
+     "[10:30:41] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:flatland",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'nx_worldg01:flatland'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'nx_worldg01:flatland'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'nx_worldg01:flatland'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'nx_worldg01:flatland' in 0.13s",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'nx_worldg01:flatland'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'nx_worldg01:flatland'",
+     "[10:30:41] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/nx_worldg01:crystal",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'nx_worldg01:crystal'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'nx_worldg01:crystal'",
+     "[10:30:41] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'nx_worldg01:crystal'",
+     "[10:30:42] [Server thread/INFO]: [ChunkHolderManager] Saved 961 block chunks, 81 entity chunks, 0 poi chunks in world 'nx_worldg01:crystal' in 0.32s",
+     "[10:30:42] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'nx_worldg01:crystal'",
+     "[10:30:42] [Server thread/INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'nx_worldg01:crystal'",
+     "[10:30:42] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved"
+    ],
+    "regions": {
+     "world/dimensions/minecraft/overworld/region": {
+      "files": 4,
+      "bytes": 2203648
+     },
+     "world/dimensions/minecraft/the_end/region": {
+      "files": 4,
+      "bytes": 2199552
+     },
+     "world/dimensions/minecraft/the_nether/region": {
+      "files": 8,
+      "bytes": 6275072
+     },
+     "world/dimensions/nx_worldg01/crystal/region": {
+      "files": 8,
+      "bytes": 7983104
+     },
+     "world/dimensions/nx_worldg01/flatland/region": {
+      "files": 8,
+      "bytes": 7946240
+     }
+    }
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L108: [10:28:39 INFO]: Done (12.141s)! For help, type \"help\"",
+      "wall 13449 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "108 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "crystal-forceload 'execute in nx_worldg01:crystal run forceload add -32 -32 47 47' [rss 839 MB, 3217 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [-2, -2] to [2, 2] to be force loaded",
+      "crystal-poll-5 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 925 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-all-loaded 'execute in nx_worldg01:crystal if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 933 MB, 251 ms]: ok -> Test passed",
+      "crystal-surface-probe 'execute in nx_worldg01:crystal positioned 8 0 8 positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:[\"cyrus_probe\"]}' [rss 933 MB, 253 ms]: ok -> Summoned new Marker",
+      "crystal-surface-height 'data get entity @e[type=minecraft:marker,tag=cyrus_probe,limit=1] Pos' [rss 933 MB, 257 ms]: ok -> Marker has the following entity data: [8.5d, 67.0d, 8.5d]",
+      "crystal-biome-here 'execute in nx_worldg01:crystal positioned 8 70 8 if biome ~ ~ ~ nx_worldg01:crystal_plains' [rss 933 MB, 253 ms]: ok (optional) -> Test passed",
+      "locate-biome-plains 'execute in nx_worldg01:crystal run locate biome nx_worldg01:crystal_plains' [rss 933 MB, 258 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, -60, 0] (0 blocks away)",
+      "locate-biome-hills 'execute in nx_worldg01:crystal run locate biome nx_worldg01:amethyst_hills' [rss 933 MB, 283 ms]: ok -> The nearest nx_worldg01:amethyst_hills is at [256, -60, 256] (362 blocks away)",
+      "locate-structure 'execute in nx_worldg01:crystal run locate structure nx_worldg01:ruin' [rss 933 MB, 256 ms]: ok -> The nearest nx_worldg01:ruin is at [64, ~, 64] (90 blocks away)",
+      "place-template 'execute in nx_worldg01:crystal run place template nx_worldg01:ruin 0 200 0' [rss 933 MB, 257 ms]: ok -> Loaded template \"nx_worldg01:ruin\" at 0, 200, 0",
+      "template-chest-placed 'execute in nx_worldg01:crystal if block 3 201 3 minecraft:chest' [rss 933 MB, 251 ms]: ok -> Test passed",
+      "template-chest-loot 'execute in nx_worldg01:crystal run data get block 3 201 3 LootTable' [rss 933 MB, 258 ms]: ok -> 3, 201, 3 has the following block data: \"nx_worldg01:chests/ruin\"",
+      "template-roof 'execute in nx_worldg01:crystal if block 3 204 3 minecraft:glowstone' [rss 933 MB, 251 ms]: ok -> Test passed",
+      "template-void-kept 'execute in nx_worldg01:crystal if block 0 204 0 minecraft:air' [rss 933 MB, 251 ms]: ok -> Test passed",
+      "place-structure 'execute in nx_worldg01:crystal run place structure nx_worldg01:ruin 8 64 8' [rss 933 MB, 259 ms]: ok -> Generated structure \"nx_worldg01:ruin\" at 8, 64, 8",
+      "place-feature-ore 'execute in nx_worldg01:crystal run place feature nx_worldg01:amethyst_ore 8 -20 8' [rss 933 MB, 256 ms]: ok (optional) -> Placed \"nx_worldg01:amethyst_ore\" at 8, -20, 8",
+      "flat-forceload 'execute in nx_worldg01:flatland run forceload add -32 -32 47 47' [rss 937 MB, 874 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [-2, -2] to [2, 2] to be force loaded",
+      "flat-poll-1 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 937 MB, 251 ms]: ok (optional) -> Test passed",
+      "flat-all-loaded 'execute in nx_worldg01:flatland if loaded -32 0 -32 if loaded 47 0 47 if loaded -32 0 47 if loaded 47 0 -32 if loaded 8 0 8' [rss 937 MB, 251 ms]: ok -> Test passed",
+      "flat-grass-layer 'execute in nx_worldg01:flatland if block 8 6 8 minecraft:grass_block' [rss 937 MB, 251 ms]: ok -> Test passed",
+      "flat-bedrock-layer 'execute in nx_worldg01:flatland if block 8 0 8 minecraft:bedrock' [rss 937 MB, 251 ms]: ok -> Test passed",
+      "flat-locate-biome 'execute in nx_worldg01:flatland run locate biome nx_worldg01:crystal_plains' [rss 937 MB, 251 ms]: ok -> The nearest nx_worldg01:crystal_plains is at [0, 1, 0] (61 blocks away)",
+      "crystal-far-forceload 'execute in nx_worldg01:crystal run forceload add 992 992 1071 1071' [rss 961 MB, 2663 ms]: ok -> Marked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] to be force loaded",
+      "crystal-far-poll-5 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 961 MB, 252 ms]: ok (optional) -> Test passed",
+      "crystal-far-all-loaded 'execute in nx_worldg01:crystal if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 972 MB, 252 ms]: ok -> Test passed",
+      "crystal-far-unload 'execute in nx_worldg01:crystal run forceload remove 992 992 1071 1071' [rss 972 MB, 250 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:crystal from [62, 62] to [66, 66] for force loading",
+      "flat-far-forceload 'execute in nx_worldg01:flatland run forceload add 992 992 1071 1071' [rss 972 MB, 365 ms]: ok -> Marked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] to be force loaded",
+      "flat-far-poll-1 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 973 MB, 252 ms]: ok (optional) -> Test passed",
+      "flat-far-all-loaded 'execute in nx_worldg01:flatland if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 973 MB, 251 ms]: ok -> Test passed",
+      "flat-far-unload 'execute in nx_worldg01:flatland run forceload remove 992 992 1071 1071' [rss 973 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in nx_worldg01:flatland from [62, 62] to [66, 66] for force loading",
+      "nether-far-forceload 'execute in minecraft:the_nether run forceload add 992 992 1071 1071' [rss 981 MB, 1245 ms]: ok (optional) -> Marked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] to be force loaded",
+      "nether-far-poll-3 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 981 MB, 252 ms]: ok (optional) -> Test passed",
+      "nether-far-all-loaded 'execute in minecraft:the_nether if loaded 992 0 992 if loaded 1071 0 1071 if loaded 992 0 1071 if loaded 1071 0 992 if loaded 1032 0 1032' [rss 982 MB, 251 ms]: ok (optional) -> Test passed",
+      "nether-far-unload 'execute in minecraft:the_nether run forceload remove 992 992 1071 1071' [rss 982 MB, 251 ms]: ok (optional) -> Unmarked 25 chunks in minecraft:the_nether from [62, 62] to [66, 66] for force loading",
+      "pack-function 'function nx_worldg01:go_crystal' [rss 983 MB, 255 ms]: ok -> Running function nx_worldg01:go_crystal",
+      "datapacks-enabled 'datapack list enabled' [rss 983 MB, 258 ms]: ok -> There are 3 data pack(s) enabled: [vanilla (built-in)], [file/cyrus_worldgen.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 974 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3550174 gone; 0 marked processes; listening none of 47160,47100",
+      "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv294680-43e0e8; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  }
+ ],
+ "baseline": [
+  {
+   "flight": "baseline-no-pack",
+   "version": "1.21.1",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 16660,
+   "peakRssKb": 1071840,
+   "perf": {
+    "netherFar": {
+     "polls": 1,
+     "approxMs": 3532,
+     "rssMb": 1041,
+     "forceloadMs": 3031
+    }
+   },
+   "regions": {
+    "world/region": {
+     "files": 4,
+     "bytes": 3477504
+    },
+    "world_nether/DIM-1/region": {
+     "files": 8,
+     "bytes": 7733248
+    },
+    "world_the_end/DIM1/region": {
+     "files": 4,
+     "bytes": 3477504
+    }
+   },
+   "afterDoneProblems": []
+  },
+  {
+   "flight": "baseline-no-pack",
+   "version": "1.21.4",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 16461,
+   "peakRssKb": 1165040,
+   "perf": {
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 3176,
+     "rssMb": 1132,
+     "forceloadMs": 1672
+    }
+   },
+   "regions": {
+    "world/region": {
+     "files": 4,
+     "bytes": 3481600
+    },
+    "world_nether/DIM-1/region": {
+     "files": 8,
+     "bytes": 7684096
+    },
+    "world_the_end/DIM1/region": {
+     "files": 4,
+     "bytes": 3477504
+    }
+   },
+   "afterDoneProblems": []
+  },
+  {
+   "flight": "baseline-no-pack",
+   "version": "1.21.8",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 18869,
+   "peakRssKb": 1156364,
+   "perf": {
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 3326,
+     "rssMb": 1122,
+     "forceloadMs": 1822
+    }
+   },
+   "regions": {
+    "world/region": {
+     "files": 4,
+     "bytes": 3481600
+    },
+    "world_nether/DIM-1/region": {
+     "files": 8,
+     "bytes": 8015872
+    },
+    "world_the_end/DIM1/region": {
+     "files": 4,
+     "bytes": 3477504
+    }
+   },
+   "afterDoneProblems": []
+  },
+  {
+   "flight": "baseline-no-pack",
+   "version": "1.21.11",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 14450,
+   "peakRssKb": 1204304,
+   "perf": {
+    "netherFar": {
+     "polls": 1,
+     "approxMs": 2909,
+     "rssMb": 1170,
+     "forceloadMs": 2406
+    }
+   },
+   "regions": {
+    "world/region": {
+     "files": 4,
+     "bytes": 2199552
+    },
+    "world_nether/DIM-1/region": {
+     "files": 8,
+     "bytes": 6336512
+    },
+    "world_the_end/DIM1/region": {
+     "files": 4,
+     "bytes": 2199552
+    }
+   },
+   "afterDoneProblems": []
+  },
+  {
+   "flight": "baseline-no-pack",
+   "version": "26.1.2",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 12044,
+   "peakRssKb": 822508,
+   "perf": {
+    "netherFar": {
+     "polls": 4,
+     "approxMs": 3772,
+     "rssMb": 791,
+     "forceloadMs": 1742
+    }
+   },
+   "regions": {
+    "world/dimensions/minecraft/overworld/region": {
+     "files": 4,
+     "bytes": 2199552
+    },
+    "world/dimensions/minecraft/the_end/region": {
+     "files": 4,
+     "bytes": 2199552
+    },
+    "world/dimensions/minecraft/the_nether/region": {
+     "files": 8,
+     "bytes": 6443008
+    }
+   },
+   "afterDoneProblems": []
+  },
+  {
+   "flight": "baseline-no-pack",
+   "version": "26.2",
+   "status": "completed",
+   "overall": "passed",
+   "bootMs": 11841,
+   "peakRssKb": 944200,
+   "perf": {
+    "netherFar": {
+     "polls": 3,
+     "approxMs": 3455,
+     "rssMb": 890,
+     "forceloadMs": 1760
+    }
+   },
+   "regions": {
+    "world/dimensions/minecraft/overworld/region": {
+     "files": 4,
+     "bytes": 2203648
+    },
+    "world/dimensions/minecraft/the_end/region": {
+     "files": 4,
+     "bytes": 2199552
+    },
+    "world/dimensions/minecraft/the_nether/region": {
+     "files": 8,
+     "bytes": 6492160
+    }
+   },
+   "afterDoneProblems": []
+  }
+ ],
+ "brokenAll": [
+  {
+   "flight": "broken-raw",
+   "version": "1.21.1",
+   "validator": {
+    "ok": false,
+    "perFile": [
+     {
+      "path": "data/nx_broken02/worldgen/biome/old_style.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/biome/old_style.json: carvers are a map {\"air\": [...]} before Minecraft 1.21.2"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/configured_feature/gone.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/configured_feature/gone.json: feature type minecraft:random_patchh does not exist in Minecraft 1.21.1"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/structure_set/bad_spacing.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/structure_set/bad_spacing.json: separation must be smaller than spacing (Minecraft refuses the set)"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/dimension/nowhere.json",
+      "rejected": false,
+      "errors": []
+     }
+    ]
+   },
+   "status": "completed",
+   "overall": "failed",
+   "runId": "tf-1-21-1-mv29ccp2-626ef7",
+   "serverRejected": true,
+   "agree": true,
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:34:56] [ServerMain/ERROR]: Registry loading errors:",
+     "> Errors in registry minecraft:worldgen/biome:",
+     ">> Errors in element nx_broken02:old_style:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/biome/old_style.json from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:231)",
+     "\tat net.minecraft.resources.RegistryDataLoader$Loader.loadFromResources(RegistryDataLoader.java:282)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:118)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$5(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:118)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadElementFromResource(RegistryDataLoader.java:203)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:227)",
+     "> Errors in registry minecraft:worldgen/configured_feature:",
+     ">> Errors in element nx_broken02:gone:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:231)",
+     "\tat net.minecraft.resources.RegistryDataLoader$Loader.loadFromResources(RegistryDataLoader.java:282)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:118)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$5(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:118)",
+     "Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadElementFromResource(RegistryDataLoader.java:203)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:227)",
+     "> Errors in registry minecraft:worldgen/structure_set:",
+     ">> Errors in element nx_broken02:bad_spacing:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:231)",
+     "\tat net.minecraft.resources.RegistryDataLoader$Loader.loadFromResources(RegistryDataLoader.java:282)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:118)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$5(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:137)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:118)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadElementFromResource(RegistryDataLoader.java:203)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:227)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:154) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:118) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]"
+    ],
+    "regions": {}
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "server exited before Done (code 0, signal null)",
+      "\tat net.minecraft.server.WorldLoader.loadAndReplaceLayer(WorldLoader.java:86) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\tat net.minecraft.server.WorldLoader.load(WorldLoader.java:36) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\tat net.minecraft.server.Main.lambda$main$1(Main.java:272) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\tat net.minecraft.Util.blockUntilDone(Util.java:892) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\tat net.minecraft.Util.blockUntilDone(Util.java:887) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\tat net.minecraft.server.Main.main(Main.java:271) ~[paper-1.21.1.jar:1.21.1-133-3cb8529]",
+      "\t... 4 more",
+      "[10:34:57 INFO]: [ReobfServer] Done remapping server in 6625ms."
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "150 startup lines scanned with 5 matchers, 2 ignores: 10 hits, 3 ignored (no-net-yggdrasil)",
+      "L47 [level-error] [10:34:56 ERROR]: Registry loading errors:",
+      "L50 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/biome/old_style.json from pack file/cyrus_wgbroken.zip",
+      "L69 [exception-header] Caused by: java.lang.IllegalStateException: Not a JSON object: []",
+      "L77 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgbroken.zip",
+      "L96 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+      "L104 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgbroken.zip",
+      "L123 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation",
+      "L130 [datapack-error] [10:34:56 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+      "L131 [exception-header] java.util.concurrent.ExecutionException: java.lang.IllegalStateException: Failed to load registries due to above errors",
+      "L139 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to above errors"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "server had already exited (code 0, signal null) before stop"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3555527 gone; 0 marked processes; listening none of 47163,47142",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-1-mv29ccp2-626ef7; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "broken-raw",
+   "version": "1.21.11",
+   "validator": {
+    "ok": false,
+    "perFile": [
+     {
+      "path": "data/nx_broken02/worldgen/biome/old_style.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"sky_color\", which Minecraft 1.21.11 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"fog_color\", which Minecraft 1.21.11 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"water_fog_color\", which Minecraft 1.21.11 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects.sky_color must be a \"#rrggbb\" string from Minecraft 1.21.11 (is 7907327)"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/configured_feature/gone.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/configured_feature/gone.json: feature type minecraft:random_patchh does not exist in Minecraft 1.21.11"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/structure_set/bad_spacing.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/structure_set/bad_spacing.json: separation must be smaller than spacing (Minecraft refuses the set)"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/dimension/nowhere.json",
+      "rejected": false,
+      "errors": []
+     }
+    ]
+   },
+   "status": "completed",
+   "overall": "failed",
+   "runId": "tf-1-21-11-mv29co97-e8f9c7",
+   "serverRejected": true,
+   "agree": true,
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:35:12] [ServerMain/ERROR]: Registry loading errors:",
+     "> Errors in registry minecraft:worldgen/configured_feature:",
+     ">> Errors in element nx_broken02:gone:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:326)",
+     "\tat net.minecraft.resources.RegistryDataLoader$Loader.loadFromResources(RegistryDataLoader.java:382)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:166)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$5(RegistryDataLoader.java:188)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:188)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:166)",
+     "Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadElementFromResource(RegistryDataLoader.java:299)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:322)",
+     "> Errors in registry minecraft:worldgen/structure_set:",
+     ">> Errors in element nx_broken02:bad_spacing:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:326)",
+     "\tat net.minecraft.resources.RegistryDataLoader$Loader.loadFromResources(RegistryDataLoader.java:382)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:166)",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$5(RegistryDataLoader.java:188)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:188)",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:166)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadElementFromResource(RegistryDataLoader.java:299)",
+     "\tat net.minecraft.resources.RegistryDataLoader.loadContentsFromManager(RegistryDataLoader.java:322)",
+     "java.util.concurrent.ExecutionException: net.minecraft.ReportedException: Registry Loading",
+     "Caused by: net.minecraft.ReportedException: Registry Loading",
+     "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:284) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+     "\tat net.minecraft.resources.RegistryDataLoader.logErrors(RegistryDataLoader.java:243) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:203) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+     "\tat net.minecraft.resources.RegistryDataLoader.load(RegistryDataLoader.java:166) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+     "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:264) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]"
+    ],
+    "regions": {}
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "server exited before Done (code 0, signal null)",
+      "\tat net.minecraft.util.Util.blockUntilDone(Util.java:1057) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\tat net.minecraft.util.Util.blockUntilDone(Util.java:1052) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\tat net.minecraft.server.Main.main(Main.java:258) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\t... 4 more",
+      "Caused by: java.lang.IllegalStateException: Failed to load registries due to errors",
+      "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:264) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\t... 12 more",
+      "[10:35:13 INFO]: [ReobfServer] Done remapping server in 7375ms."
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "120 startup lines scanned with 5 matchers, 2 ignores: 9 hits, 3 ignored (no-net-yggdrasil)",
+      "L45 [level-error] [10:35:12 ERROR]: Registry loading errors:",
+      "L48 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgbroken.zip",
+      "L65 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+      "L73 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgbroken.zip",
+      "L90 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation",
+      "L97 [datapack-error] [10:35:12 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+      "L98 [exception-header] java.util.concurrent.ExecutionException: net.minecraft.ReportedException: Registry Loading",
+      "L106 [exception-header] Caused by: net.minecraft.ReportedException: Registry Loading",
+      "L117 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to errors"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "server had already exited (code 0, signal null) before stop"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3555720 gone; 0 marked processes; listening none of 47102,47101",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv29co97-e8f9c7; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  },
+  {
+   "flight": "broken-raw",
+   "version": "26.2",
+   "validator": {
+    "ok": false,
+    "perFile": [
+     {
+      "path": "data/nx_broken02/worldgen/biome/old_style.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"sky_color\", which Minecraft 26.2 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"fog_color\", which Minecraft 26.2 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"water_fog_color\", which Minecraft 26.2 does not know",
+       "data/nx_broken02/worldgen/biome/old_style.json: effects.sky_color must be a \"#rrggbb\" string from Minecraft 1.21.11 (is 7907327)"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/configured_feature/gone.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/configured_feature/gone.json: feature type minecraft:random_patch does not exist in Minecraft 26.2"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/worldgen/structure_set/bad_spacing.json",
+      "rejected": true,
+      "errors": [
+       "data/nx_broken02/worldgen/structure_set/bad_spacing.json: separation must be smaller than spacing (Minecraft refuses the set)"
+      ]
+     },
+     {
+      "path": "data/nx_broken02/dimension/nowhere.json",
+      "rejected": false,
+      "errors": []
+     }
+    ]
+   },
+   "status": "completed",
+   "overall": "failed",
+   "runId": "tf-26-2-mv29d0wv-b84b7c",
+   "serverRejected": true,
+   "agree": true,
+   "log": {
+    "afterDoneProblems": [],
+    "worldgenLines": [
+     "[10:35:25] [DataConverter MCTypeRegistry init thread/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...",
+     "[10:35:25] [DataConverter MCTypeRegistry init thread/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 412.3ms",
+     "[10:35:26] [Worker-Main-1/ERROR]: Registry loading errors:",
+     "> Errors in registry minecraft:worldgen/configured_feature:",
+     ">> Errors in element nx_broken02:gone:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:gone from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryLoadTask$PendingRegistration.loadFromResource(RegistryLoadTask.java:110)",
+     "\tat net.minecraft.resources.ResourceManagerRegistryLoadTask.lambda$load$2(ResourceManagerRegistryLoadTask.java:55)",
+     "Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patch",
+     "\tat net.minecraft.resources.RegistryLoadTask$PendingRegistration.loadFromResource(RegistryLoadTask.java:107)",
+     "> Errors in registry minecraft:worldgen/structure_set:",
+     ">> Errors in element nx_broken02:bad_spacing:",
+     "java.lang.IllegalStateException: Failed to parse nx_broken02:bad_spacing from pack file/cyrus_wgbroken.zip",
+     "\tat net.minecraft.resources.RegistryLoadTask$PendingRegistration.loadFromResource(RegistryLoadTask.java:110)",
+     "\tat net.minecraft.resources.ResourceManagerRegistryLoadTask.lambda$load$2(ResourceManagerRegistryLoadTask.java:55)",
+     "\tat net.minecraft.resources.RegistryLoadTask$PendingRegistration.loadFromResource(RegistryLoadTask.java:107)",
+     "java.util.concurrent.ExecutionException: net.minecraft.ReportedException: Registry Loading",
+     "Caused by: net.minecraft.ReportedException: Registry Loading",
+     "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:314) ~[paper-26.2.jar:26.2-133-58e6e45]",
+     "\tat net.minecraft.resources.RegistryDataLoader.logErrors(RegistryDataLoader.java:273) ~[paper-26.2.jar:26.2-133-58e6e45]",
+     "\tat net.minecraft.resources.RegistryDataLoader.lambda$load$2(RegistryDataLoader.java:223) ~[paper-26.2.jar:26.2-133-58e6e45]",
+     "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:294) ~[paper-26.2.jar:26.2-133-58e6e45]"
+    ],
+    "regions": {}
+   },
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "server exited before Done (code 0, signal null)",
+      "\tat java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:504) ~[?:?]",
+      "\tat java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511) ~[?:?]",
+      "\tat java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450) ~[?:?]",
+      "\tat java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019) ~[?:?]",
+      "\tat java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187) ~[?:?]",
+      "Caused by: java.lang.IllegalStateException: Failed to load registries due to errors",
+      "\tat net.minecraft.resources.RegistryDataLoader.createReportWithBriefInfo(RegistryDataLoader.java:294) ~[paper-26.2.jar:26.2-133-58e6e45]",
+      "\t... 8 more"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "110 startup lines scanned with 5 matchers, 2 ignores: 9 hits, 3 ignored (no-net-yggdrasil)",
+      "L50 [level-error] [10:35:26 ERROR]: Registry loading errors:",
+      "L53 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:gone from pack file/cyrus_wgbroken.zip",
+      "L64 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patch",
+      "L71 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:bad_spacing from pack file/cyrus_wgbroken.zip",
+      "L82 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation",
+      "L88 [datapack-error] [10:35:26 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+      "L89 [exception-header] java.util.concurrent.ExecutionException: net.minecraft.ReportedException: Registry Loading",
+      "L98 [exception-header] Caused by: net.minecraft.ReportedException: Registry Loading",
+      "L108 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to errors"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "server had already exited (code 0, signal null) before stop"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3555912 gone; 0 marked processes; listening none of 47182,47147",
+      "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv29d0wv-b84b7c; no listening port in 47100-47199"
+     ]
+    }
+   ]
+  }
+ ],
+ "brokenEach": [
+  {
+   "flight": "broken-each",
+   "version": "26.2",
+   "file": "data/nx_broken02/worldgen/biome/old_style.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"sky_color\", which Minecraft 26.2 does not know",
+    "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"fog_color\", which Minecraft 26.2 does not know",
+    "data/nx_broken02/worldgen/biome/old_style.json: effects has the key \"water_fog_color\", which Minecraft 26.2 does not know",
+    "data/nx_broken02/worldgen/biome/old_style.json: effects.sky_color must be a \"#rrggbb\" string from Minecraft 1.21.11 (is 7907327)"
+   ],
+   "serverBooted": true,
+   "serverLogClean": true,
+   "serverLines": [],
+   "worldgenLines": []
+  },
+  {
+   "flight": "broken-each",
+   "version": "26.2",
+   "file": "data/nx_broken02/worldgen/configured_feature/gone.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/configured_feature/gone.json: feature type minecraft:random_patch does not exist in Minecraft 26.2"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L50 [level-error] [10:45:23 ERROR]: Registry loading errors:",
+    "L53 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:gone from pack file/cyrus_wgone.zip",
+    "L64 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patch",
+    "L70 [datapack-error] [10:45:23 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L80 [exception-header] Caused by: net.minecraft.ReportedException: Registry Loading",
+    "L90 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to errors"
+   ],
+   "worldgenLines": [
+    "[10:45:23] [Worker-Main-1/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:gone from pack file/cyrus_wgone.zip",
+    "Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patch",
+    "Caused by: net.minecraft.ReportedException: Registry Loading"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "26.2",
+   "file": "data/nx_broken02/worldgen/structure_set/bad_spacing.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/structure_set/bad_spacing.json: separation must be smaller than spacing (Minecraft refuses the set)"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L50 [level-error] [10:45:32 ERROR]: Registry loading errors:",
+    "L53 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:bad_spacing from pack file/cyrus_wgone.zip",
+    "L64 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation",
+    "L70 [datapack-error] [10:45:32 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L80 [exception-header] Caused by: net.minecraft.ReportedException: Registry Loading",
+    "L90 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to errors"
+   ],
+   "worldgenLines": [
+    "[10:45:32] [Worker-Main-1/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:bad_spacing from pack file/cyrus_wgone.zip",
+    "Caused by: net.minecraft.ReportedException: Registry Loading"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "26.2",
+   "file": "data/nx_broken02/dimension/nowhere.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/dimension/nowhere.json: biome nx_broken02:missing_biome is not defined in this pack"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L50 [level-error] [10:45:41 ERROR]: Registry loading errors:",
+    "L53 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:nowhere from pack file/cyrus_wgone.zip",
+    "L63 [exception-header] Caused by: java.lang.IllegalStateException: Failed to get element ResourceKey[minecraft:worldgen/biome / nx_broken02:missing_biome]",
+    "L69 [datapack-error] [10:45:42 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L79 [exception-header] Caused by: net.minecraft.ReportedException: Registry Loading",
+    "L89 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to errors"
+   ],
+   "worldgenLines": [
+    "[10:45:41] [Worker-Main-1/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:nowhere from pack file/cyrus_wgone.zip",
+    "Caused by: java.lang.IllegalStateException: Failed to get element ResourceKey[minecraft:worldgen/biome / nx_broken02:missing_biome]",
+    "Caused by: net.minecraft.ReportedException: Registry Loading"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "1.21.1",
+   "file": "data/nx_broken02/worldgen/biome/old_style.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/biome/old_style.json: carvers are a map {\"air\": [...]} before Minecraft 1.21.2"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L47 [level-error] [10:45:52 ERROR]: Registry loading errors:",
+    "L50 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/biome/old_style.json from pack file/cyrus_wgone.zip",
+    "L69 [exception-header] Caused by: java.lang.IllegalStateException: Not a JSON object: []",
+    "L76 [datapack-error] [10:45:52 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L77 [exception-header] java.util.concurrent.ExecutionException: java.lang.IllegalStateException: Failed to load registries due to above errors",
+    "L85 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to above errors"
+   ],
+   "worldgenLines": [
+    "[10:45:52] [ServerMain/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/biome/old_style.json from pack file/cyrus_wgone.zip"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "1.21.1",
+   "file": "data/nx_broken02/worldgen/configured_feature/gone.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/configured_feature/gone.json: feature type minecraft:random_patchh does not exist in Minecraft 1.21.1"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L47 [level-error] [10:46:08 ERROR]: Registry loading errors:",
+    "L50 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgone.zip",
+    "L69 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+    "L76 [datapack-error] [10:46:08 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L77 [exception-header] java.util.concurrent.ExecutionException: java.lang.IllegalStateException: Failed to load registries due to above errors",
+    "L85 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to above errors"
+   ],
+   "worldgenLines": [
+    "[10:46:08] [ServerMain/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/cyrus_wgone.zip",
+    "Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "1.21.1",
+   "file": "data/nx_broken02/worldgen/structure_set/bad_spacing.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/worldgen/structure_set/bad_spacing.json: separation must be smaller than spacing (Minecraft refuses the set)"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L47 [level-error] [10:46:24 ERROR]: Registry loading errors:",
+    "L50 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgone.zip",
+    "L69 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation",
+    "L76 [datapack-error] [10:46:24 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L77 [exception-header] java.util.concurrent.ExecutionException: java.lang.IllegalStateException: Failed to load registries due to above errors",
+    "L85 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to above errors"
+   ],
+   "worldgenLines": [
+    "[10:46:24] [ServerMain/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/cyrus_wgone.zip"
+   ]
+  },
+  {
+   "flight": "broken-each",
+   "version": "1.21.1",
+   "file": "data/nx_broken02/dimension/nowhere.json",
+   "validatorRejected": true,
+   "validatorErrors": [
+    "data/nx_broken02/dimension/nowhere.json: biome nx_broken02:missing_biome is not defined in this pack"
+   ],
+   "serverBooted": false,
+   "serverLogClean": false,
+   "serverLines": [
+    "L47 [level-error] [10:46:41 ERROR]: Registry loading errors:",
+    "L50 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:dimension/nowhere.json from pack file/cyrus_wgone.zip",
+    "L67 [exception-header] Caused by: java.lang.IllegalStateException: Failed to get element ResourceKey[minecraft:worldgen/biome / nx_broken02:missing_biome]",
+    "L74 [datapack-error] [10:46:41 WARN]: Failed to load datapacks, can't proceed with server load. You can either fix your datapacks or reset to vanilla with --safeMode",
+    "L75 [exception-header] java.util.concurrent.ExecutionException: java.lang.IllegalStateException: Failed to load registries due to above errors",
+    "L83 [exception-header] Caused by: java.lang.IllegalStateException: Failed to load registries due to above errors"
+   ],
+   "worldgenLines": [
+    "[10:46:41] [ServerMain/ERROR]: Registry loading errors:",
+    "java.lang.IllegalStateException: Failed to parse nx_broken02:dimension/nowhere.json from pack file/cyrus_wgone.zip",
+    "Caused by: java.lang.IllegalStateException: Failed to get element ResourceKey[minecraft:worldgen/biome / nx_broken02:missing_biome]"
+   ]
+  }
+ ],
+ "vanillaNbt": [
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.1",
+   "file": "igloo/top",
+   "bytes": 907,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 3955,
+   "blocks": 152,
+   "palette": 11,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.1",
+   "file": "pillager_outpost/base_plate",
+   "bytes": 19279,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 3955,
+   "blocks": 7680,
+   "palette": 5,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.1",
+   "file": "village/plains/houses/plains_small_house_1",
+   "bytes": 1807,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 3955,
+   "blocks": 343,
+   "palette": 24,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.1",
+   "file": "shipwreck/rightsideup_full",
+   "bytes": 3752,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palettes",
+    "size"
+   ],
+   "ourKeysSubset": false,
+   "dataVersion": 3955,
+   "blocks": 662,
+   "palette": 8,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.1",
+   "file": "ruined_portal/portal_1",
+   "bytes": 1429,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 3955,
+   "blocks": 304,
+   "palette": 18,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.11",
+   "file": "igloo/top",
+   "bytes": 925,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4671,
+   "blocks": 152,
+   "palette": 11,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.11",
+   "file": "pillager_outpost/base_plate",
+   "bytes": 19279,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4671,
+   "blocks": 7680,
+   "palette": 5,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.11",
+   "file": "village/plains/houses/plains_small_house_1",
+   "bytes": 1806,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4671,
+   "blocks": 343,
+   "palette": 24,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.11",
+   "file": "shipwreck/rightsideup_full",
+   "bytes": 3753,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palettes",
+    "size"
+   ],
+   "ourKeysSubset": false,
+   "dataVersion": 4671,
+   "blocks": 662,
+   "palette": 8,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "1.21.11",
+   "file": "ruined_portal/portal_1",
+   "bytes": 1431,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4671,
+   "blocks": 304,
+   "palette": 18,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "26.2",
+   "file": "igloo/top",
+   "bytes": 918,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4903,
+   "blocks": 152,
+   "palette": 11,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "26.2",
+   "file": "pillager_outpost/base_plate",
+   "bytes": 19277,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4903,
+   "blocks": 7680,
+   "palette": 5,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "26.2",
+   "file": "village/plains/houses/plains_small_house_1",
+   "bytes": 1798,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4903,
+   "blocks": 343,
+   "palette": 24,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "26.2",
+   "file": "shipwreck/rightsideup_full",
+   "bytes": 3754,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palettes",
+    "size"
+   ],
+   "ourKeysSubset": false,
+   "dataVersion": 4903,
+   "blocks": 662,
+   "palette": 8,
+   "reencodeRoundTrip": true
+  },
+  {
+   "flight": "nbt-vanilla",
+   "version": "26.2",
+   "file": "ruined_portal/portal_1",
+   "bytes": 1431,
+   "gzip": true,
+   "rootName": "",
+   "keys": [
+    "DataVersion",
+    "blocks",
+    "entities",
+    "palette",
+    "size"
+   ],
+   "ourKeysSubset": true,
+   "dataVersion": 4903,
+   "blocks": 304,
+   "palette": 18,
+   "reencodeRoundTrip": true
+  }
+ ]
+}

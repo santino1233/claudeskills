@@ -1,0 +1,334 @@
+{
+ "at": "2026-10-10T10:52:45.501Z",
+ "host": "node-2",
+ "realClient": false,
+ "bot": false,
+ "aiModel": "none (designs are fixtures)",
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "compile": {
+    "ok": true,
+    "hash": "1bdf74c39f210a8f1de31fc1540f8c0bf839226164bed7bcdfe863be9a943eb3",
+    "files": 30,
+    "modelStates": true
+   },
+   "javac": {
+    "ok": true,
+    "sources": 28,
+    "classFiles": 32,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "221b7abbd5d51627392954e7fc7b8e6dbf9576bbf9ed1e560681c182b960fe8a",
+    "reproducible": true
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "pack": {
+    "ok": true,
+    "sha1": "0025fb125c808cb3222e569906936550ab9fb2ee",
+    "format": 75,
+    "files": 22,
+    "itemModels": [
+     {
+      "name": "service_pistol",
+      "states": [
+       "idle",
+       "reloading",
+       "aiming"
+      ],
+      "modes": [
+       "reloading"
+      ]
+     },
+     {
+      "name": "hunter_bow",
+      "states": [
+       "idle",
+       "pulling_0",
+       "pulling_1",
+       "pulling_2"
+      ],
+      "modes": []
+     },
+     {
+      "name": "storm_rod",
+      "states": [
+       "idle",
+       "charging"
+      ],
+      "modes": [
+       "charging"
+      ]
+     }
+    ],
+    "pistolTop": "minecraft:custom_model_data",
+    "bowTop": "minecraft:using_item",
+    "swapBob": false
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 23.9s, peak RSS 897 MB)",
+    "bootMs": 23899,
+    "peakRssMb": 897,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L97: [10:53:12 INFO]: Done (22.515s)! For help, type \"help\"",
+       "wall 23899 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "StateArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [10:53:11 INFO]: [StateArsenal] Enabling StateArsenal v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - StateArsenal | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "97 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 838 MB]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - StateArsenal | ",
+       "list-identity 'statearsenal list' [rss 858 MB]: ok -> hunter_bow: identity=ok material=bow abilities=1 recipe=none | service_pistol: identity=ok material=iron_horse_armor abilities=3 recipe=none | storm_rod: identity=ok material=blaze_rod abilities=1 recipe=none | ",
+       "give-unknown 'statearsenal give excalibur Nobody' [rss 858 MB]: ok -> Unknown item excalibur. | ",
+       "forceload 'forceload add 0 0' [rss 859 MB]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+       "chest 'setblock 0 100 0 minecraft:chest' [rss 871 MB]: ok -> Changed the block at 0, 100, 0",
+       "vanilla-mode-in 'item replace block 0 100 0 container.0 with iron_horse_armor[item_model=\"nx_r10state:service_pistol\",custom_model_data={strings:[\"reloading\"]}]' [rss 871 MB]: ok -> Replaced a slot at 0, 100, 0 with [Iron Horse Armor]",
+       "vanilla-mode-out 'data get block 0 100 0 Items[0].components' [rss 871 MB]: ok -> 0, 100, 0 has the following block data: {\"minecraft:item_model\": \"nx_r10state:service_pistol\", \"minecraft:custom_model_data\": {strings: [\"reloading\"]}}",
+       "vanilla-aim-in 'item replace block 0 100 0 container.1 with iron_horse_armor[consumable={consume_seconds:3600f,animation:\"bow\",sound:\"intentionally_empty\",has_consume_particles:false}]' [rss 871 MB]: ok -> Replaced a slot at 0, 100, 0 with [Iron Horse Armor]",
+       "vanilla-aim-out 'data get block 0 100 0 Items[1].components' [rss 871 MB]: ok -> 0, 100, 0 has the following block data: {\"minecraft:consumable\": {consume_seconds: 3600.0f, sound: \"minecraft:intentionally_empty\", has_consume_particles: 0b, animation: \"bow\"...",
+       "vanilla-aim-animation 'data get block 0 100 0 Items[1].components.\"minecraft:consumable\".animation' [rss 870 MB]: ok -> 0, 100, 0 has the following block data: \"bow\"",
+       "vanilla-flags-in 'item replace block 0 100 0 container.2 with blaze_rod[item_model=\"nx_r10state:storm_rod\",custom_model_data={flags:[true,false]}]' [rss 869 MB]: ok -> Replaced a slot at 0, 100, 0 with [Blaze Rod]",
+       "vanilla-flags-out 'data get block 0 100 0 Items[2].components.\"minecraft:custom_model_data\".flags' [rss 869 MB]: ok -> 0, 100, 0 has the following block data: [1b, 0b]"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 1207 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3571981 gone; 0 marked processes; listening none of 47191,47174",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv29zi5n-8d7bc8; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "selfCheck": [
+      "model states service_pistol: mode reloading=ok cleared=ok aim=ok components=[minecraft:item_name={color: \"gray\", text: \"Service Pistol\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Right-click: fire (8 rounds). Hold: aim.\"}, {color: \"gray\", italic: 0b, text: \"Sneak + right-click: reload.\"}],minecraft:custom_model_data={strings: [\"reloading\"]},minecraft:item_model=\"nx_r10state:service_pistol\",minecraft:consumable={animation: \"bow\", consume_seconds: 3600.0f, has_consume_particles: 0b, sound: \"minecraft:intentionally_empty\"},minecraft:custom_data={PublicBukkitValues: {\"nx_r10state:item\": \"",
+      "model states storm_rod: mode charging=ok cleared=ok components=[minecraft:item_name={color: \"aqua\", text: \"Storm Rod\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Hold sneak to charge: the orb glows.\"}, {color: \"gray\", italic: 0b, text: \"Let go of sneak to release.\"}],minecraft:custom_model_data={strings: [\"charging\"]},minecraft:item_model=\"nx_r10state:storm_rod\",minecraft:custom_data={PublicBukkitValues: {\"nx_r10state:item\": \"storm_rod\"}}]"
+     ],
+     "pluginLog": [
+      "[10:52:59] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/StateArsenal-1.21.11.jar'...",
+      "[10:52:59] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/StateArsenal-1.21.11.jar' in 111ms.",
+      " - StateArsenal (1.0.0)",
+      "[10:53:09] [Server thread/INFO]: [StateArsenal] Loading server plugin StateArsenal v1.0.0",
+      "[10:53:11] [Server thread/INFO]: [StateArsenal] Enabling StateArsenal v1.0.0",
+      "[10:53:11] [Server thread/INFO]: [StateArsenal] model states service_pistol: mode reloading=ok cleared=ok aim=ok components=[minecraft:item_name={color: \"gray\", text: \"Service Pistol\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Right-click: fire (8 rounds). Hold: aim.\"}, {color: \"gray\", ital",
+      "[10:53:11] [Server thread/INFO]: [StateArsenal] model states storm_rod: mode charging=ok cleared=ok components=[minecraft:item_name={color: \"aqua\", text: \"Storm Rod\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Hold sneak to charge: the orb glows.\"}, {color: \"gray\", italic: 0b, text: \"Let go ",
+      "[10:53:11] [Server thread/INFO]: [StateArsenal] Designer items ready: hunter_bow, service_pistol, storm_rod",
+      "[10:53:17] [Server thread/INFO]: [StateArsenal] Disabling StateArsenal v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "selfCheckOk": true
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "compile": {
+    "ok": true,
+    "hash": "dc5f67325cc1a32d1d12cd1cf1e0f8bbe3e2126f2da916594c24c03044680583",
+    "files": 30,
+    "modelStates": true
+   },
+   "javac": {
+    "ok": true,
+    "sources": 28,
+    "classFiles": 32,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "502cf0c481974076692645195433af6c3599d125ffa887358471ca609e349e72",
+    "reproducible": true
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "pack": {
+    "ok": true,
+    "sha1": "8fbb0120b3f206a00f341459609b74a77db15ae1",
+    "format": 88,
+    "files": 22,
+    "itemModels": [
+     {
+      "name": "service_pistol",
+      "states": [
+       "idle",
+       "reloading",
+       "aiming"
+      ],
+      "modes": [
+       "reloading"
+      ]
+     },
+     {
+      "name": "hunter_bow",
+      "states": [
+       "idle",
+       "pulling_0",
+       "pulling_1",
+       "pulling_2"
+      ],
+      "modes": []
+     },
+     {
+      "name": "storm_rod",
+      "states": [
+       "idle",
+       "charging"
+      ],
+      "modes": [
+       "charging"
+      ]
+     }
+    ],
+    "pistolTop": "minecraft:custom_model_data",
+    "bowTop": "minecraft:using_item",
+    "swapBob": false
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 14.1s, peak RSS 877 MB)",
+    "bootMs": 14054,
+    "peakRssMb": 877,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L102: [10:53:36 INFO]: Done (12.672s)! For help, type \"help\"",
+       "wall 14054 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "StateArsenal: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [10:53:36 INFO]: [StateArsenal] Enabling StateArsenal v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - StateArsenal | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "102 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 772 MB]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - StateArsenal | ",
+       "list-identity 'statearsenal list' [rss 778 MB]: ok -> hunter_bow: identity=ok material=bow abilities=1 recipe=none | service_pistol: identity=ok material=iron_horse_armor abilities=3 recipe=none | storm_rod: identity=ok material=blaze_rod abilities=1 recipe=none | ",
+       "give-unknown 'statearsenal give excalibur Nobody' [rss 794 MB]: ok -> Unknown item excalibur. | ",
+       "forceload 'forceload add 0 0' [rss 806 MB]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+       "chest 'setblock 0 100 0 minecraft:chest' [rss 848 MB]: ok -> Changed the block at 0, 100, 0",
+       "vanilla-mode-in 'item replace block 0 100 0 container.0 with iron_horse_armor[item_model=\"nx_r10state:service_pistol\",custom_model_data={strings:[\"reloading\"]}]' [rss 848 MB]: ok -> Replaced a slot at 0, 100, 0 with [Iron Horse Armor]",
+       "vanilla-mode-out 'data get block 0 100 0 Items[0].components' [rss 848 MB]: ok -> 0, 100, 0 has the following block data: {\"minecraft:item_model\": \"nx_r10state:service_pistol\", \"minecraft:custom_model_data\": {strings: [\"reloading\"]}}",
+       "vanilla-aim-in 'item replace block 0 100 0 container.1 with iron_horse_armor[consumable={consume_seconds:3600f,animation:\"bow\",sound:\"intentionally_empty\",has_consume_particles:false}]' [rss 848 MB]: ok -> Replaced a slot at 0, 100, 0 with [Iron Horse Armor]",
+       "vanilla-aim-out 'data get block 0 100 0 Items[1].components' [rss 849 MB]: ok -> 0, 100, 0 has the following block data: {\"minecraft:consumable\": {consume_seconds: 3600.0f, sound: \"minecraft:intentionally_empty\", has_consume_particles: 0b...",
+       "vanilla-aim-animation 'data get block 0 100 0 Items[1].components.\"minecraft:consumable\".animation' [rss 849 MB]: ok -> 0, 100, 0 has the following block data: \"bow\"",
+       "vanilla-flags-in 'item replace block 0 100 0 container.2 with blaze_rod[item_model=\"nx_r10state:storm_rod\",custom_model_data={flags:[true,false]}]' [rss 849 MB]: ok -> Replaced a slot at 0, 100, 0 with [Blaze Rod]",
+       "vanilla-flags-out 'data get block 0 100 0 Items[2].components.\"minecraft:custom_model_data\".flags' [rss 849 MB]: ok -> 0, 100, 0 has the following block data: [1b, 0b]"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 809 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3572714 gone; 0 marked processes; listening none of 47138,47103",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2a08m9-8388ed; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "selfCheck": [
+      "model states service_pistol: mode reloading=ok cleared=ok aim=ok components=[minecraft:item_name={color: \"gray\", text: \"Service Pistol\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Right-click: fire (8 rounds). Hold: aim.\"}, {color: \"gray\", italic: 0b, text: \"Sneak + right-click: reload.\"}],minecraft:custom_model_data={strings: [\"reloading\"]},minecraft:item_model=\"nx_r10state:service_pistol\",minecraft:consumable={animation: \"bow\", consume_seconds: 3600.0f, has_consume_particles: 0b, sound: \"minecraft:intentionally_empty\"},minecraft:custom_data={PublicBukkitValues: {\"nx_r10state:item\": \"",
+      "model states storm_rod: mode charging=ok cleared=ok components=[minecraft:item_name={color: \"aqua\", text: \"Storm Rod\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Hold sneak to charge: the orb glows.\"}, {color: \"gray\", italic: 0b, text: \"Let go of sneak to release.\"}],minecraft:custom_model_data={strings: [\"charging\"]},minecraft:item_model=\"nx_r10state:storm_rod\",minecraft:custom_data={PublicBukkitValues: {\"nx_r10state:item\": \"storm_rod\"}}]"
+     ],
+     "pluginLog": [
+      " - StateArsenal (1.0.0)",
+      "[10:53:34] [Server thread/INFO]: [StateArsenal] Loading server plugin StateArsenal v1.0.0",
+      "[10:53:36] [Server thread/INFO]: [StateArsenal] Enabling StateArsenal v1.0.0",
+      "[10:53:36] [Server thread/INFO]: [StateArsenal] model states service_pistol: mode reloading=ok cleared=ok aim=ok components=[minecraft:item_name={color: \"gray\", text: \"Service Pistol\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Right-click: fire (8 rounds). Hold: aim.\"}, {color: \"gray\", ital",
+      "[10:53:36] [Server thread/INFO]: [StateArsenal] model states storm_rod: mode charging=ok cleared=ok components=[minecraft:item_name={color: \"aqua\", text: \"Storm Rod\"},minecraft:lore=[{color: \"gray\", italic: 0b, text: \"Hold sneak to charge: the orb glows.\"}, {color: \"gray\", italic: 0b, text: \"Let go ",
+      "[10:53:36] [Server thread/INFO]: [StateArsenal] Designer items ready: hunter_bow, service_pistol, storm_rod",
+      "[10:53:41] [Server thread/INFO]: [StateArsenal] Disabling StateArsenal v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "selfCheckOk": true
+  }
+ ],
+ "leftovers": {
+  "runsDir": 0
+ }
+}

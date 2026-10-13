@@ -1,0 +1,269 @@
+[
+  {
+    "name": "media-zeroster-1440-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-zeroster-1440-light",
+    "status": 200,
+    "overflow": 0,
+    "theme": "light",
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-zeroster-390-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-zeroster-390-light",
+    "status": 200,
+    "overflow": 0,
+    "theme": "light",
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-nokit-1440-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-nokit-1440-light",
+    "status": 200,
+    "overflow": 0,
+    "theme": "light",
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-nokit-390-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-nokit-390-light",
+    "status": 200,
+    "overflow": 0,
+    "theme": "light",
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-aixll50-1440-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-aixll50-1440-light",
+    "status": 200,
+    "overflow": 0,
+    "theme": "light",
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "media-aixll50-390-dark",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": true
+      },
+      {
+        "ready": 4,
+        "dur": 50,
+        "err": null,
+        "poster": false
+      }
+    ],
+    "canMp4": "probably",
+    "seekTo30": 30,
+    "errors": []
+  },
+  {
+    "name": "admin-partner-zeroster-1440",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [],
+    "canMp4": "probably",
+    "seekTo30": null,
+    "errors": []
+  },
+  {
+    "name": "admin-partner-nokit-1440",
+    "status": 200,
+    "overflow": 0,
+    "theme": null,
+    "videos": [],
+    "canMp4": "probably",
+    "seekTo30": null,
+    "errors": []
+  }
+]

@@ -1,0 +1,8 @@
+p='/root/agent-notes/lightmode-audit/audit-fn.mjs'; s=open(p).read()
+s=s.replace('export const auditFn = () => {','export const auditFn = () => {\n  const csCache = new Map(); const gcs = (e) => { let c = csCache.get(e); if (!c) { c = getComputedStyle(e); csCache.set(e, c); } return c; }; const bgCache = new Map();')
+s=s.replace('const cs = getComputedStyle(e);\n      const bi','const cs = gcs(e);\n      const bi')
+s=s.replace('  const effBg = (el) => {\n    const stack = [];','  const effBg0 = (el) => {\n    const stack = [];')
+s=s.replace('  const sel = (e)','  const effBg = (el) => { if (bgCache.has(el)) return bgCache.get(el); const r = effBg0(el); bgCache.set(el, r); return r; };\n  const sel = (e)',1)
+s=s.replace('const s = getComputedStyle(e); if (parseFloat(s.opacity) === 0','const s = gcs(e); if (parseFloat(s.opacity) === 0')
+s=s.replace('eo *= parseFloat(getComputedStyle(e).opacity)','eo *= parseFloat(gcs(e).opacity)')
+open(p,'w').write(s)

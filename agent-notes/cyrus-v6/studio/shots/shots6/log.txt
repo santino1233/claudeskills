@@ -1,0 +1,91 @@
+GET /dashboard/cyrus/cores 200
+cores route status 200
+GET /dashboard/cyrus 200
+SSR dark-1440 has .cyrus-root + portal shell + cyrus favicon
+legend present: 0 add-game ghost: 0 Add game btn: 0 Cores link: 0
+horizontal overflow: 0
+shot 01-network-dark-1440
+shot 02-model-picker-dark-1440
+shot 03-token-chip-tooltip-dark-1440
+shot 04-plans-estimates-dark-1440
+shot 05-command-palette-dark-1440
+shot 05b-command-palette-expand-dark-1440
+shot 06-real-code-dark-1440
+shot 07-real-explain-dark-1440
+shot 07b-real-explain-bottom-dark-1440
+shot 08-real-versions-dark-1440
+shot 09-real-compare-dark-1440
+shot 10-real-notes-avatar-dark-1440
+shot 11-expanded-panel-dark-1440
+panel wide attr: 1
+shot 11b-collapsed-after-esc-dark-1440
+panel wide after Esc: 0 panel open: 1
+shot 12-failed-code-dark-1440
+shot 13-failed-explain-dark-1440
+shot 14-template-explain-dark-1440
+shot 15-thinking-coin-dark-1440
+shot 15b-forging-coin-dark-1440
+shot 16-real-forge-done-dark-1440
+GET /dashboard/cyrus 200
+SSR light-1440 has .cyrus-root + portal shell + cyrus favicon
+legend present: 0 add-game ghost: 0 Add game btn: 0 Cores link: 0
+horizontal overflow: 0
+shot 01-network-light-1440
+shot 02-model-picker-light-1440
+shot 03-token-chip-tooltip-light-1440
+shot 04-plans-estimates-light-1440
+shot 06-real-code-light-1440
+shot 07-real-explain-light-1440
+shot 07b-real-explain-bottom-light-1440
+shot 08-real-versions-light-1440
+shot 09-real-compare-light-1440
+shot 10-real-notes-avatar-light-1440
+shot 11-expanded-panel-light-1440
+panel wide attr: 1
+shot 11b-collapsed-after-esc-light-1440
+panel wide after Esc: 0 panel open: 1
+shot 12-failed-code-light-1440
+shot 13-failed-explain-light-1440
+shot 14-template-explain-light-1440
+GET /dashboard/cyrus 200
+SSR dark-390 has .cyrus-root + portal shell + cyrus favicon
+legend present: 0 add-game ghost: 0 Add game btn: 0 Cores link: 0
+horizontal overflow: 0
+shot 01-network-dark-390
+shot 06-real-code-dark-390
+shot 07-real-explain-dark-390
+shot 11-expanded-sheet-dark-390
+overflow (sheet): 0
+shot 02-model-picker-dark-390
+GET /dashboard/cyrus 200
+SSR light-390 has .cyrus-root + portal shell + cyrus favicon
+legend present: 0 add-game ghost: 0 Add game btn: 0 Cores link: 0
+horizontal overflow: 0
+shot 01-network-light-390
+shot 06-real-code-light-390
+shot 07-real-explain-light-390
+shot 11-expanded-sheet-light-390
+overflow (sheet): 0
+shot 02-model-picker-light-390
+GET /dashboard/cyrus 200
+orbs 6
+shot 17-orb-0-2x-dark
+shot 17-orb-1-2x-dark
+shot 17-orb-2-2x-dark
+shot 17-orb-3-2x-dark
+shot 17-orb-4-2x-dark
+shot 17-orb-5-2x-dark
+GET /dashboard/cyrus 200
+orbs 6
+shot 17-orb-0-2x-light
+shot 17-orb-1-2x-light
+shot 17-orb-2-2x-light
+shot 17-orb-3-2x-light
+shot 17-orb-4-2x-light
+shot 17-orb-5-2x-light
+GET /dashboard 200
+shot 18-sidebar-dark
+shot 18b-sidebar-hover-dark
+GET /dashboard 200
+shot 18-sidebar-light
+shot 18b-sidebar-hover-light

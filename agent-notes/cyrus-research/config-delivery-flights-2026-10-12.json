@@ -1,0 +1,249 @@
+{
+ "at": "2026-10-12T08:15:37.251Z",
+ "host": "node-2",
+ "what": "Cyrus Config Studio Send to server: production job path + deliverConfig, every console call a real Paper 1.21.11 flight",
+ "realClient": false,
+ "aiModel": "none (hand-written fixture plugin)",
+ "build": {
+  "javacWarnings": 0,
+  "jarSha256": "f22186d6e6ab0abc280e2640ecd844c84aa0c6180da41ce0a94a30696984120c"
+ },
+ "checks": [
+  {
+   "name": "S1 studio save is a revision",
+   "ok": true
+  },
+  {
+   "name": "S1 send queues a job (202)",
+   "ok": true
+  },
+  {
+   "name": "S1 job DONE, status updated",
+   "ok": true,
+   "detail": "DONE updated "
+  },
+  {
+   "name": "S1 file merged: greeting + radius changed",
+   "ok": true,
+   "detail": "# CfgProbe configuration\n# Edit freely; the Cyrus Config Studio only rewrites the values it changes.\ngreeting: hi there        # shown by /cfgprobe show\nradius: 6              # chunks (recommended 1-8)\nmode: fast             # fast | slow\nowner-note: keep me    # NOT a studio setting: must survive every delivery\n"
+  },
+  {
+   "name": "S1 comments kept (header, trailing)",
+   "ok": true,
+   "detail": "# CfgProbe configuration\n# Edit freely; the Cyrus Config Studio only rewrites the values it changes.\ngreeting: hi there        # shown by /cfgprobe show\nradius: 6              # chunks (recommended 1-8)\nmode: fast             # fast | slow\nowner-note: keep me    # NOT a studio setting: must survive every delivery\n"
+  },
+  {
+   "name": "S1 the owner's own key + the untouched mode kept",
+   "ok": true
+  },
+  {
+   "name": "S1 reload applied on the REAL server",
+   "ok": true,
+   "detail": "{\"cmd\":\"cfgprobe reload\",\"before\":\"CFGPROBE greeting=hello radius=4 mode=fast\",\"reply\":\"CfgProbe reloaded: greeting=hi there radius=6 mode=fast\",\"after\":\"CFGPROBE greeting=hi there radius=6 mode=fast\",\"overall\":\"passed\",\"line\":\"Test Flight passed on Paper 1.21.11 (6 checks, boot 19.7s, peak RSS 865 MB)\",\"bootMs\":19671}"
+  },
+  {
+   "name": "S1 orchestrator health came from a real flight",
+   "ok": true,
+   "detail": "[{\"step\":\"open\",\"status\":\"ok\",\"detail\":\"\"},{\"step\":\"recover_check\",\"status\":\"ok\",\"detail\":\"none\"},{\"step\":\"preflight\",\"status\":\"ok\",\"detail\":\"settings checked; the mod is installed\"},{\"step\":\"place\",\"status\":\"ok\",\"detail\":\"config.yml: 2 setting(s) written\"},{\"step\":\"record\",\"status\":\"skipped\",\"detail\":\"the mod was not installed by Cyrus delivery: no delivery record to update\"},{\"step\":\"apply\",\"status\":\"ok\",\"detail\":\"none + /cfgprobe reload: the mod re-reads its settings with /cfgprobe reload\"},{\"step\":\"health\",\"status\":\"ok\",\"detail\":\"healthy\"},{\"step\":\"commit\",\"status\":\"ok\",\"detail\":\"\"}]"
+  },
+  {
+   "name": "S1 audit: requested + delivered",
+   "ok": true
+  },
+  {
+   "name": "S1b delivered (not refused)",
+   "ok": true,
+   "detail": "updated "
+  },
+  {
+   "name": "S1b warning on the result",
+   "ok": true,
+   "detail": "warning: Radius: 20 chunks is outside the recommended 1-8 chunks (sent as you saved it; the server may lag or the mod may clamp it) | /cfgprobe reload: CfgProbe reloaded: greeting=hi there radius=20 mode=fast"
+  },
+  {
+   "name": "S1b the real plugin runs with 20",
+   "ok": true,
+   "detail": "{\"cmd\":\"cfgprobe reload\",\"before\":\"CFGPROBE greeting=hi there radius=6 mode=fast\",\"reply\":\"CfgProbe reloaded: greeting=hi there radius=20 mode=fast\",\"after\":\"CFGPROBE greeting=hi there radius=20 mode=fast\",\"overall\":\"passed\",\"line\":\"Test Flight passed on Paper 1.21.11 (6 checks, boot 19.3s, peak RSS 855 MB)\",\"bootMs\":19269}"
+  },
+  {
+   "name": "S2 studio save is a revision",
+   "ok": true
+  },
+  {
+   "name": "S2 send queues a job (202)",
+   "ok": true
+  },
+  {
+   "name": "S2 job FAILED, status rolled_back at apply",
+   "ok": true,
+   "detail": "FAILED rolled_back apply"
+  },
+  {
+   "name": "S2 the real plugin said it failed to reload",
+   "ok": true,
+   "detail": "{\"cmd\":\"cfgprobe reload\",\"before\":\"CFGPROBE greeting=hi there radius=20 mode=fast\",\"reply\":\"CfgProbe: failed to reload: mode must be fast or slow (got turbo) (keeping the old values)\",\"after\":\"CFGPROBE greeting=hi there radius=20 mode=fast\",\"overall\":\"passed\",\"line\":\"Test Flight passed on Paper 1.21.11 (6 checks, boot 18.7s, peak RSS 860 MB)\",\"bootMs\":18671}"
+  },
+  {
+   "name": "S2 the exact old bytes are back (whole tree identical)",
+   "ok": true
+  },
+  {
+   "name": "S2 the old values were reloaded on the real server (second flight)",
+   "ok": true,
+   "detail": "{\"cmd\":\"cfgprobe reload\",\"before\":\"CFGPROBE greeting=hi there radius=20 mode=fast\",\"reply\":\"CfgProbe reloaded: greeting=hi there radius=20 mode=fast\",\"after\":\"CFGPROBE greeting=hi there radius=20 mode=fast\",\"overall\":\"passed\",\"line\":\"Test Flight passed on Paper 1.21.11 (6 checks, boot 19.1s, peak RSS 865 MB)\",\"bootMs\":19066}"
+  },
+  {
+   "name": "S2 audit: config.failed",
+   "ok": true
+  }
+ ],
+ "S1": {
+  "jobStatus": "DONE",
+  "state": "updated",
+  "headline": "Settings sent: the mod reloaded them and the server is healthy.",
+  "apply": {
+   "mode": "none",
+   "restarted": false,
+   "reloaded": false,
+   "reasons": [
+    "the mod re-reads its settings with /cfgprobe reload"
+   ]
+  },
+  "steps": [
+   "open:ok",
+   "recover_check:ok",
+   "preflight:ok",
+   "place:ok",
+   "record:skipped",
+   "apply:ok",
+   "health:ok",
+   "commit:ok"
+  ],
+  "notes": [
+   "/cfgprobe reload: CfgProbe reloaded: greeting=hi there radius=6 mode=fast"
+  ],
+  "flight": {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hello radius=4 mode=fast",
+   "reply": "CfgProbe reloaded: greeting=hi there radius=6 mode=fast",
+   "after": "CFGPROBE greeting=hi there radius=6 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.7s, peak RSS 865 MB)",
+   "bootMs": 19671
+  },
+  "fileAfter": "# CfgProbe configuration\n# Edit freely; the Cyrus Config Studio only rewrites the values it changes.\ngreeting: hi there        # shown by /cfgprobe show\nradius: 6              # chunks (recommended 1-8)\nmode: fast             # fast | slow\nowner-note: keep me    # NOT a studio setting: must survive every delivery\n",
+  "audit": [
+   "cyrus.delivery.requested",
+   "cyrus.config.delivered"
+  ]
+ },
+ "S1b": {
+  "outcome": "updated",
+  "notes": [
+   "warning: Radius: 20 chunks is outside the recommended 1-8 chunks (sent as you saved it; the server may lag or the mod may clamp it)",
+   "/cfgprobe reload: CfgProbe reloaded: greeting=hi there radius=20 mode=fast"
+  ],
+  "flight": {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hi there radius=6 mode=fast",
+   "reply": "CfgProbe reloaded: greeting=hi there radius=20 mode=fast",
+   "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.3s, peak RSS 855 MB)",
+   "bootMs": 19269
+  },
+  "fileAfter": "# CfgProbe configuration\n# Edit freely; the Cyrus Config Studio only rewrites the values it changes.\ngreeting: hi there        # shown by /cfgprobe show\nradius: 20              # chunks (recommended 1-8)\nmode: fast             # fast | slow\nowner-note: keep me    # NOT a studio setting: must survive every delivery\n"
+ },
+ "S2": {
+  "jobStatus": "FAILED",
+  "jobError": "Cyrus delivery rolled_back: /cfgprobe reload did not reload: CfgProbe: failed to reload: mode must be fast or slow (got turbo) (keeping the old values)",
+  "state": "rolled_back",
+  "failedStep": "apply",
+  "headline": "Sending the settings failed at applying the change and was rolled back: your server has the settings it had before.",
+  "error": "/cfgprobe reload did not reload: CfgProbe: failed to reload: mode must be fast or slow (got turbo) (keeping the old values)",
+  "rollback": {
+   "ok": true,
+   "restored": 1,
+   "removed": 0,
+   "mismatches": 0,
+   "restarted": false,
+   "cameBackHealthy": null
+  },
+  "steps": [
+   "open:ok",
+   "recover_check:ok",
+   "preflight:ok",
+   "place:ok",
+   "record:skipped",
+   "apply:failed",
+   "rollback:ok",
+   "rollback:ok"
+  ],
+  "flights": [
+   {
+    "cmd": "cfgprobe reload",
+    "before": "CFGPROBE greeting=hi there radius=20 mode=fast",
+    "reply": "CfgProbe: failed to reload: mode must be fast or slow (got turbo) (keeping the old values)",
+    "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.7s, peak RSS 860 MB)",
+    "bootMs": 18671
+   },
+   {
+    "cmd": "cfgprobe reload",
+    "before": "CFGPROBE greeting=hi there radius=20 mode=fast",
+    "reply": "CfgProbe reloaded: greeting=hi there radius=20 mode=fast",
+    "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+    "overall": "passed",
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.1s, peak RSS 865 MB)",
+    "bootMs": 19066
+   }
+  ],
+  "fileAfter": "# CfgProbe configuration\n# Edit freely; the Cyrus Config Studio only rewrites the values it changes.\ngreeting: hi there        # shown by /cfgprobe show\nradius: 20              # chunks (recommended 1-8)\nmode: fast             # fast | slow\nowner-note: keep me    # NOT a studio setting: must survive every delivery\n",
+  "audit": [
+   "cyrus.delivery.requested",
+   "cyrus.config.delivered",
+   "cyrus.delivery.requested",
+   "cyrus.config.failed"
+  ]
+ },
+ "flights": [
+  {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hello radius=4 mode=fast",
+   "reply": "CfgProbe reloaded: greeting=hi there radius=6 mode=fast",
+   "after": "CFGPROBE greeting=hi there radius=6 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.7s, peak RSS 865 MB)",
+   "bootMs": 19671
+  },
+  {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hi there radius=6 mode=fast",
+   "reply": "CfgProbe reloaded: greeting=hi there radius=20 mode=fast",
+   "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.3s, peak RSS 855 MB)",
+   "bootMs": 19269
+  },
+  {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "reply": "CfgProbe: failed to reload: mode must be fast or slow (got turbo) (keeping the old values)",
+   "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.7s, peak RSS 860 MB)",
+   "bootMs": 18671
+  },
+  {
+   "cmd": "cfgprobe reload",
+   "before": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "reply": "CfgProbe reloaded: greeting=hi there radius=20 mode=fast",
+   "after": "CFGPROBE greeting=hi there radius=20 mode=fast",
+   "overall": "passed",
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.1s, peak RSS 865 MB)",
+   "bootMs": 19066
+  }
+ ],
+ "allPassed": true
+}

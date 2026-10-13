@@ -1,0 +1,1858 @@
+{
+ "what": "bundle mc-coverage pass matrix: golden plugin corpus (compile = javac --release 21 -Xlint:deprecation,removal against each version's paper-api classpath + precheck + warning rules; scan = strict bytecode+source scan; boot = one shared Test Flight per version: plugin enabled + its RCON checks + no startup log hits)",
+ "realClient": false,
+ "aiModel": "none (hand-written golden plugins)",
+ "generated": "2026-10-11T19:37:24.728Z",
+ "rulesVersion": "rules-2026-10-11.1",
+ "schema": 1,
+ "versions": [
+  "1.21.1",
+  "1.21.4",
+  "1.21.8",
+  "1.21.11"
+ ],
+ "flights": [
+  {
+   "version": "1.21.1",
+   "runId": "tf-1-21-1-mv480prt-9d3303",
+   "overall": "passed",
+   "bootMs": 24628,
+   "plugins": 64
+  },
+  {
+   "version": "1.21.4",
+   "runId": "tf-1-21-4-mv482xrg-16d0ed",
+   "overall": "passed",
+   "bootMs": 22830,
+   "plugins": 65
+  },
+  {
+   "version": "1.21.8",
+   "runId": "tf-1-21-8-mv484a0v-fdf3b7",
+   "overall": "passed",
+   "bootMs": 24842,
+   "plugins": 65
+  },
+  {
+   "version": "1.21.11",
+   "runId": "tf-1-21-11-mv47zctt-defa30",
+   "overall": "passed",
+   "bootMs": 21822,
+   "plugins": 65
+  }
+ ],
+ "rows": [
+  {
+   "id": "mc-afk",
+   "archetype": "afk",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-ambience",
+   "archetype": "custom_music",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-announcer",
+   "archetype": "announcer",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-arena",
+   "archetype": "minigames_arenas",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-armorset",
+   "archetype": "armor_sets",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-backpack",
+   "archetype": "backpacks",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-books",
+   "archetype": "books_guides",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-bossbar",
+   "archetype": "bossbar_titles",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-bows",
+   "archetype": "bows_projectiles",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "Bukkit metadata API (FixedMetadataValue/MetadataValue) is deprecated on 1.21.11: sheets teach PDC tags; golden uses PDC"
+   ]
+  },
+  {
+   "id": "mc-brew",
+   "archetype": "potions_effects",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "ItemMeta.customName(Component) does not exist on 1.21.1 (compile error): sheets already said 1.21.4+, now also an explicit 1.21.1 line; golden uses displayName"
+   ]
+  },
+  {
+   "id": "mc-channels",
+   "archetype": "chat_channels",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-chatfilter",
+   "archetype": "chat_filter",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-chatformat",
+   "archetype": "chat_format",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-claims",
+   "archetype": "claims",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-clans",
+   "archetype": "clans_teams",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-customcmds",
+   "archetype": "custom_commands",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-cutscene",
+   "archetype": "cutscenes",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-daily",
+   "archetype": "playtime_rewards",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-drops",
+   "archetype": "loot",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-economy",
+   "archetype": "economy",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-enchant",
+   "archetype": "custom_enchantments",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-events",
+   "archetype": "world_events",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "1.21.11 deprecates every GameRule.* constant FOR REMOVAL (org.bukkit.GameRules replaces them, several renamed: DO_DAYLIGHT_CYCLE->ADVANCE_TIME, DO_INSOMNIA->SPAWN_PHANTOMS ...): 1.21.11 sheet fixed, warning rule gamerule-constants-1-21-11, deterministic autofix fixGameRules (same-meaning renames only)"
+   ]
+  },
+  {
+   "id": "mc-fishing",
+   "archetype": "fishing",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-food",
+   "archetype": "custom_food",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-furniture",
+   "archetype": "custom_blocks",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "same 1.21.11 spawn-chunk finding as mc-holo for ItemDisplay/Interaction furniture"
+   ]
+  },
+  {
+   "id": "mc-graves",
+   "archetype": "graves",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-heads",
+   "archetype": "player_heads",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-holo",
+   "archetype": "holograms",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "1.21.9+ (1.21.11) has no spawn chunks: a TextDisplay spawned at spawn from the console unloaded at once and 'holo clear' found 0 (passed on 1.21.4): sheets teach plugin chunk tickets / spawn near players; golden adds addPluginChunkTicket"
+   ]
+  },
+  {
+   "id": "mc-homes",
+   "archetype": "homes",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-integration",
+   "archetype": "plugin_integration",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-joinleave",
+   "archetype": "join_leave",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-kits",
+   "archetype": "kits",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-lagtools",
+   "archetype": "lag_tools",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-logingate",
+   "archetype": "login_gate",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-machines",
+   "archetype": "machines_automation",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-mail",
+   "archetype": "private_messages",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-mobs",
+   "archetype": "custom_mobs",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-moderation",
+   "archetype": "moderation",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "ProfileBanList.addBan with a name-only profile (Bukkit.createProfile(name)) throws 'An unexpected error' on 1.21.4 and 1.21.11: sheets teach OfflinePlayer.ban(reason, Duration, source) for a cached player; golden fixed"
+   ]
+  },
+  {
+   "id": "mc-mounts",
+   "archetype": "mounts_vehicles",
+   "compile": {
+    "1.21.1": "n/a",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "n/a",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "n/a",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-npc",
+   "archetype": "npcs",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-parkour",
+   "archetype": "parkour",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-pets",
+   "archetype": "pets",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-quest",
+   "archetype": "quests",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-ranks",
+   "archetype": "ranks_permissions",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "warn",
+    "1.21.4": "warn",
+    "1.21.8": "warn",
+    "1.21.11": "warn"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "runtime permission attachments are a scan WARNING (perm-attach), shown to the owner; documented in the matrix limits"
+   ]
+  },
+  {
+   "id": "mc-recipes",
+   "archetype": "recipes",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-regions",
+   "archetype": "regions",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-rtp",
+   "archetype": "back_rtp",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-shop",
+   "archetype": "admin_shop",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-sidebar",
+   "archetype": "sidebar",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-signs",
+   "archetype": "sign_tools",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-skills",
+   "archetype": "jobs_skills",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-spawners",
+   "archetype": "spawners_mob_rules",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-structures",
+   "archetype": "structure_placement",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-tablist",
+   "archetype": "tablist",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-tpa",
+   "archetype": "tpa_spawn",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-trades",
+   "archetype": "villager_trades",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "1.21.4/1.21.8/1.21.11: Bukkit.createMerchant(Component) and HumanEntity.openMerchant(Merchant, boolean) are deprecated (not on 1.21.1): sheets now teach MenuType.MERCHANT.builder().title(..).merchant(m).build(p).open(); warning rule merchant-menu-type"
+   ]
+  },
+  {
+   "id": "mc-trails",
+   "archetype": "cosmetics",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "Player.isOnGround() is deprecated on every 1.21.x (client-controlled): sheets say check the block below"
+   ]
+  },
+  {
+   "id": "mc-utility",
+   "archetype": "utility_commands",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "Test Flight runner: the `plugins` reply wraps after ~10 names and the continuation line has no dash or comma, so the 11th plugin read as NOT enabled; parsePluginList now reads every line under a 'Bukkit/Paper Plugins:' header (unit test added)"
+   ]
+  },
+  {
+   "id": "mc-vanish",
+   "archetype": "vanish_staff",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-warps",
+   "archetype": "warps",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-weapon",
+   "archetype": "custom_weapons",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-worlds",
+   "archetype": "world_management",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-components",
+   "archetype": "custom_food",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "notes": [
+    "Eating moved: FoodComponent.setEatSeconds exists only on 1.21.1 (any item edible there); 1.21.4+ needs the consumable data component. Sheets + failure rule food-eat-seconds-moved; per-version Compat in the golden plugin",
+    "ItemMeta.setFireResistant/isFireResistant are deprecated on 1.21.4+ (fine on 1.21.1): sheets teach setDamageResistant(DamageTypeTags.IS_FIRE); golden Compat per version"
+   ]
+  },
+  {
+   "id": "mc-armor",
+   "archetype": "armor_sets",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  },
+  {
+   "id": "mc-noteblocks",
+   "archetype": "custom_blocks",
+   "compile": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "scan": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   },
+   "boot": {
+    "1.21.1": "pass",
+    "1.21.4": "pass",
+    "1.21.8": "pass",
+    "1.21.11": "pass"
+   }
+  }
+ ],
+ "datapackLane": [
+  {
+   "version": "1.21.11",
+   "overall": "passed",
+   "runId": "tf-1-21-11-mv47eqjs-44af43",
+   "files": [
+    "data/nx_mc1dpk01/damage_type/zap.json",
+    "data/nx_mc1dpk01/enchantment/swiftness.json",
+    "data/nx_mc1dpk01/enchantment/venom.json",
+    "data/nx_mc1dpk01/item_modifier/shiny.json",
+    "data/nx_mc1dpk01/jukebox_song/theme.json",
+    "data/nx_mc1dpk01/loot_table/venom_blade.json",
+    "data/nx_mc1dpk01/predicate/always.json",
+    "pack.mcmeta"
+   ],
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 1110 MB, 263 ms]: ok -> The difficulty has been set to Easy",
+    "forceload 'forceload add 0 0' [rss 1114 MB, 259 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+    "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1123 MB, 626 ms]: ok -> Dropped 1 [Iron Sword]",
+    "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1123 MB, 252 ms]: ok -> Test passed",
+    "chest 'setblock 0 100 0 minecraft:chest' [rss 1126 MB, 410 ms]: ok -> Changed the block at 0, 100, 0",
+    "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1126 MB, 255 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+    "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1126 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+    "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable=\"nx_mc1dpk01:theme\"]' [rss 1126 MB, 253 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+    "summon 'summon minecraft:zombie 0 101 2 {NoAI:1b,PersistenceRequired:1b}' [rss 1127 MB, 287 ms]: ok -> Summoned new Zombie",
+    "damage 'damage @e[type=minecraft:zombie,limit=1] 1 nx_mc1dpk01:zap' [rss 1127 MB, 272 ms]: ok -> Applied 1.0 damage to Zombie",
+    "datapacks-enabled 'datapack list enabled' [rss 1127 MB, 258 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+   ]
+  },
+  {
+   "version": "1.21.1",
+   "overall": "passed",
+   "runId": "tf-1-21-1-mv47y0lp-d920b3",
+   "files": [
+    "data/nx_mc1dpk01/damage_type/zap.json",
+    "data/nx_mc1dpk01/enchantment/swiftness.json",
+    "data/nx_mc1dpk01/enchantment/venom.json",
+    "data/nx_mc1dpk01/item_modifier/shiny.json",
+    "data/nx_mc1dpk01/jukebox_song/theme.json",
+    "data/nx_mc1dpk01/loot_table/venom_blade.json",
+    "data/nx_mc1dpk01/predicate/always.json",
+    "pack.mcmeta"
+   ],
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 1050 MB, 260 ms]: ok -> The difficulty has been set to Easy",
+    "forceload 'forceload add 0 0' [rss 1050 MB, 253 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+    "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1050 MB, 269 ms]: ok -> Dropped 1 [Iron Sword]",
+    "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1050 MB, 251 ms]: ok -> Test passed",
+    "chest 'setblock 0 100 0 minecraft:chest' [rss 1051 MB, 259 ms]: ok -> Changed the block at 0, 100, 0",
+    "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1051 MB, 256 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+    "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1051 MB, 251 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+    "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable={song:\"nx_mc1dpk01:theme\"}]' [rss 1051 MB, 255 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+    "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1051 MB, 284 ms]: ok -> Summoned new Cow",
+    "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1051 MB, 259 ms]: ok (optional) -> Test passed, count: 1",
+    "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1052 MB, 266 ms]: ok -> Applied 1.0 damage to Cow",
+    "datapacks-enabled 'datapack list enabled' [rss 1052 MB, 256 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+   ]
+  },
+  {
+   "version": "1.21.4",
+   "overall": "passed",
+   "runId": "tf-1-21-4-mv47ynv5-863317",
+   "files": [
+    "data/nx_mc1dpk01/damage_type/zap.json",
+    "data/nx_mc1dpk01/enchantment/swiftness.json",
+    "data/nx_mc1dpk01/enchantment/venom.json",
+    "data/nx_mc1dpk01/item_modifier/shiny.json",
+    "data/nx_mc1dpk01/jukebox_song/theme.json",
+    "data/nx_mc1dpk01/loot_table/venom_blade.json",
+    "data/nx_mc1dpk01/predicate/always.json",
+    "pack.mcmeta"
+   ],
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 1112 MB, 322 ms]: ok -> The difficulty has been set to Easy",
+    "forceload 'forceload add 0 0' [rss 1112 MB, 253 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+    "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1113 MB, 259 ms]: ok -> Dropped 1 [Iron Sword]",
+    "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1113 MB, 252 ms]: ok -> Test passed",
+    "chest 'setblock 0 100 0 minecraft:chest' [rss 1113 MB, 258 ms]: ok -> Changed the block at 0, 100, 0",
+    "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1113 MB, 257 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+    "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1113 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+    "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable={song:\"nx_mc1dpk01:theme\"}]' [rss 1113 MB, 253 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+    "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1113 MB, 254 ms]: ok -> Summoned new Cow",
+    "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1114 MB, 258 ms]: ok (optional) -> Test passed, count: 1",
+    "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1114 MB, 267 ms]: ok -> Applied 1.0 damage to Cow",
+    "datapacks-enabled 'datapack list enabled' [rss 1114 MB, 259 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+   ]
+  },
+  {
+   "version": "1.21.8",
+   "overall": "passed",
+   "runId": "tf-1-21-8-mv47pv9w-0d4dd0",
+   "files": [
+    "data/nx_mc1dpk01/damage_type/zap.json",
+    "data/nx_mc1dpk01/enchantment/swiftness.json",
+    "data/nx_mc1dpk01/enchantment/venom.json",
+    "data/nx_mc1dpk01/item_modifier/shiny.json",
+    "data/nx_mc1dpk01/jukebox_song/theme.json",
+    "data/nx_mc1dpk01/loot_table/venom_blade.json",
+    "data/nx_mc1dpk01/predicate/always.json",
+    "pack.mcmeta"
+   ],
+   "rcon": [
+    "difficulty 'difficulty easy' [rss 1085 MB, 260 ms]: ok -> The difficulty has been set to Easy",
+    "forceload 'forceload add 0 0' [rss 1085 MB, 254 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+    "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1085 MB, 263 ms]: ok -> Dropped 1 [Iron Sword]",
+    "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1085 MB, 251 ms]: ok -> Test passed",
+    "chest 'setblock 0 100 0 minecraft:chest' [rss 1085 MB, 263 ms]: ok -> Changed the block at 0, 100, 0",
+    "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1086 MB, 256 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+    "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1086 MB, 251 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+    "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable=\"nx_mc1dpk01:theme\"]' [rss 1086 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+    "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1086 MB, 255 ms]: ok -> Summoned new Cow",
+    "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1086 MB, 257 ms]: ok (optional) -> Test passed, count: 1",
+    "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1086 MB, 266 ms]: ok -> Applied 1.0 damage to Cow",
+    "datapacks-enabled 'datapack list enabled' [rss 1087 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+   ]
+  }
+ ],
+ "bettermodel121x": [
+  {
+   "version": "1.21.11",
+   "overall": "passed",
+   "bootMs": 25026,
+   "runId": "tf-1-21-11-mv46qtjm-1f9365"
+  },
+  {
+   "version": "1.21.8",
+   "overall": "passed",
+   "bootMs": 43501,
+   "runId": "tf-1-21-8-mv46s6pm-a13ce4"
+  },
+  {
+   "version": "1.21.4",
+   "overall": "passed",
+   "bootMs": 22430,
+   "runId": "tf-1-21-4-mv46tkru-26d1e7"
+  },
+  {
+   "version": "1.21.1",
+   "overall": "passed",
+   "bootMs": 22229,
+   "runId": "tf-1-21-1-mv46ufr7-832f3a"
+  },
+  {
+   "version": "1.21.11",
+   "overall": "passed",
+   "bootMs": 24033,
+   "runId": "tf-1-21-11-mv47fd96-f7de68"
+  }
+ ],
+ "findings": {
+  "mc-trades": [
+   "1.21.4/1.21.8/1.21.11: Bukkit.createMerchant(Component) and HumanEntity.openMerchant(Merchant, boolean) are deprecated (not on 1.21.1): sheets now teach MenuType.MERCHANT.builder().title(..).merchant(m).build(p).open(); warning rule merchant-menu-type"
+  ],
+  "mc-utility": [
+   "Test Flight runner: the `plugins` reply wraps after ~10 names and the continuation line has no dash or comma, so the 11th plugin read as NOT enabled; parsePluginList now reads every line under a 'Bukkit/Paper Plugins:' header (unit test added)"
+  ],
+  "mc-components": [
+   "Eating moved: FoodComponent.setEatSeconds exists only on 1.21.1 (any item edible there); 1.21.4+ needs the consumable data component. Sheets + failure rule food-eat-seconds-moved; per-version Compat in the golden plugin",
+   "ItemMeta.setFireResistant/isFireResistant are deprecated on 1.21.4+ (fine on 1.21.1): sheets teach setDamageResistant(DamageTypeTags.IS_FIRE); golden Compat per version"
+  ],
+  "mc-events": [
+   "1.21.11 deprecates every GameRule.* constant FOR REMOVAL (org.bukkit.GameRules replaces them, several renamed: DO_DAYLIGHT_CYCLE->ADVANCE_TIME, DO_INSOMNIA->SPAWN_PHANTOMS ...): 1.21.11 sheet fixed, warning rule gamerule-constants-1-21-11, deterministic autofix fixGameRules (same-meaning renames only)"
+  ],
+  "mc-bows": [
+   "Bukkit metadata API (FixedMetadataValue/MetadataValue) is deprecated on 1.21.11: sheets teach PDC tags; golden uses PDC"
+  ],
+  "mc-trails": [
+   "Player.isOnGround() is deprecated on every 1.21.x (client-controlled): sheets say check the block below"
+  ],
+  "mc-brew": [
+   "ItemMeta.customName(Component) does not exist on 1.21.1 (compile error): sheets already said 1.21.4+, now also an explicit 1.21.1 line; golden uses displayName"
+  ],
+  "mc-ranks": [
+   "runtime permission attachments are a scan WARNING (perm-attach), shown to the owner; documented in the matrix limits"
+  ],
+  "datapack-lane": [
+   "#minecraft:enchantable/sword was removed in 1.21.11 (vanilla ids): the validator refuses it with the version reason; the prompt now names #minecraft:enchantable/sharp_weapon (every version)"
+  ],
+  "mc-moderation": [
+   "ProfileBanList.addBan with a name-only profile (Bukkit.createProfile(name)) throws 'An unexpected error' on 1.21.4 and 1.21.11: sheets teach OfflinePlayer.ban(reason, Duration, source) for a cached player; golden fixed"
+  ],
+  "mc-holo": [
+   "1.21.9+ (1.21.11) has no spawn chunks: a TextDisplay spawned at spawn from the console unloaded at once and 'holo clear' found 0 (passed on 1.21.4): sheets teach plugin chunk tickets / spawn near players; golden adds addPluginChunkTicket"
+  ],
+  "mc-furniture": [
+   "same 1.21.11 spawn-chunk finding as mc-holo for ItemDisplay/Interaction furniture"
+  ]
+ },
+ "antipatterns": {
+  "rulesVersion": "rules-2026-10-11.1",
+  "cases": {
+   "async-bukkit": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "async-bukkit-api"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "async-chat-event": {
+    "expect": {
+     "layer": "warning",
+     "rule": "async-player-chat-event"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "merchant-old": {
+    "expect": {
+     "layer": "warning",
+     "rule": "merchant-menu-type"
+    },
+    "asExpected": {
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "move-no-check": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "playermove-unfiltered"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "network": {
+    "expect": {
+     "layer": "scan",
+     "rule": "network"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "nms": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "no-server-internals"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "offline-by-name": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "offline-player-by-name"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "player-spigot": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "player-spigot"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "profession-switch": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "registry-no-switch"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "reflection": {
+    "expect": {
+     "layer": "scan",
+     "rule": "reflection"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "registry-getbyname": {
+    "expect": {
+     "layer": "warning",
+     "rule": "registry-lookup-by-name"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "string-inventory-title": {
+    "expect": {
+     "layer": "none",
+     "rule": "advisory"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   },
+   "translate-colors": {
+    "expect": {
+     "layer": "precheck",
+     "rule": "legacy-color-codes"
+    },
+    "asExpected": {
+     "1.21.1": true,
+     "1.21.4": true,
+     "1.21.8": true,
+     "1.21.11": true
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,704 @@
+{
+ "what": "Cyrus wiring phase 2: portal request -> job -> orchestrator -> real Paper (Test Flight, node-2) -> status",
+ "date": "2026-10-10T22:06:52.125Z",
+ "version": "1.21.11",
+ "scenarios": {
+  "1": {
+   "request": {
+    "http": 202,
+    "jobId": "job_2",
+    "parts": [
+     {
+      "kind": "plugin",
+      "name": "TfItemModel",
+      "delivered": true
+     },
+     {
+      "kind": "worldgen",
+      "name": "crystal_realm",
+      "delivered": true
+     }
+    ]
+   },
+   "replay": {
+    "http": 200,
+    "reused": true,
+    "sameJob": true
+   },
+   "status": {
+    "jobId": "job_2",
+    "serverId": "srv_r29",
+    "op": "deliver",
+    "subject": {
+     "buildId": "b_r29_1"
+    },
+    "state": "delivered",
+    "pending": false,
+    "ok": true,
+    "headline": "Delivered: the server restarted and came up healthy.",
+    "needsAttention": false,
+    "error": null,
+    "failedStep": null,
+    "steps": [
+     {
+      "step": "open",
+      "status": "ok",
+      "detail": ""
+     },
+     {
+      "step": "recover_check",
+      "status": "ok",
+      "detail": "none"
+     },
+     {
+      "step": "preflight",
+      "status": "ok",
+      "detail": "inventory + conflicts checked"
+     },
+     {
+      "step": "managed",
+      "status": "ok",
+      "detail": "none needed"
+     },
+     {
+      "step": "host_pack",
+      "status": "skipped",
+      "detail": "no resource pack in this delivery"
+     },
+     {
+      "step": "pack_config",
+      "status": "skipped",
+      "detail": "no pack entry to change"
+     },
+     {
+      "step": "place",
+      "status": "ok",
+      "detail": "jar placed; 1 data pack(s); 0 model(s)"
+     },
+     {
+      "step": "record",
+      "status": "ok",
+      "detail": "/root/.nxeon-cyrus/deliveries/cp_r29flight1.json"
+     },
+     {
+      "step": "apply",
+      "status": "ok",
+      "detail": "restart: a plugin jar changed (plugins load at server start); world generation changed (loads only at server start)"
+     },
+     {
+      "step": "health",
+      "status": "ok",
+      "detail": "healthy"
+     },
+     {
+      "step": "commit",
+      "status": "ok",
+      "detail": ""
+     }
+    ],
+    "apply": {
+     "mode": "restart",
+     "restarted": true,
+     "reloaded": false,
+     "reasons": [
+      "a plugin jar changed (plugins load at server start)",
+      "world generation changed (loads only at server start)"
+     ]
+    },
+    "health": {
+     "ok": true,
+     "problems": []
+    },
+    "rollback": null,
+    "conflicts": {
+     "blocking": [],
+     "warnings": []
+    },
+    "notes": [],
+    "keptWorldFolders": [],
+    "createdAt": "2026-10-10T12:00:01.000Z",
+    "updatedAt": "2026-10-10T12:00:02.000Z"
+   },
+   "jobStatus": "DONE",
+   "row": {
+    "id": "sm_1",
+    "serverId": "srv_r29",
+    "modId": "gm_b_r29_1",
+    "status": "REMOVING",
+    "versionId": "b_r29_1",
+    "error": "Rollback incomplete: the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain' | L81 [exception-header] Caused by: java.lang.ClassNotFoundException: dev.cyrus.r29.MissingMain; data pack file/nxeon-nx_worldg01-crysta",
+    "targetVersionId": null
+   },
+   "treeBefore": "6d67fae2f64c9c1a5af06fa98bf5b83a55a7cb092b5efa7108d45c64e2536cbe",
+   "treeAfter": "5d24fb0bee6dbe797bb939252a09fe4559098856093f097849685c2950a9436e",
+   "files": [
+    "TfItemModel-1.0.0.jar",
+    "nxeon-nx_worldg01-crystal_realm.zip"
+   ]
+  },
+  "2": {
+   "request": {
+    "http": 202,
+    "jobId": "job_3"
+   },
+   "rowWhileQueued": {
+    "id": "sm_1",
+    "serverId": "srv_r29",
+    "modId": "gm_b_r29_1",
+    "status": "UPDATING",
+    "versionId": "b_r29_1",
+    "error": null,
+    "targetVersionId": "b_r29_2"
+   },
+   "status": {
+    "jobId": "job_3",
+    "serverId": "srv_r29",
+    "op": "deliver",
+    "subject": {
+     "buildId": "b_r29_2"
+    },
+    "state": "rollback_incomplete",
+    "pending": false,
+    "ok": false,
+    "headline": "The delivery failed at the health check and the automatic rollback could not fully restore your server. Do not restart it yet: contact support.",
+    "needsAttention": true,
+    "error": "the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain' | L81 [exception-header] Caused by: ",
+    "failedStep": "health",
+    "steps": [
+     {
+      "step": "open",
+      "status": "ok",
+      "detail": ""
+     },
+     {
+      "step": "recover_check",
+      "status": "ok",
+      "detail": "none"
+     },
+     {
+      "step": "preflight",
+      "status": "ok",
+      "detail": "inventory + conflicts checked"
+     },
+     {
+      "step": "managed",
+      "status": "ok",
+      "detail": "none needed"
+     },
+     {
+      "step": "host_pack",
+      "status": "skipped",
+      "detail": "no resource pack in this delivery"
+     },
+     {
+      "step": "pack_config",
+      "status": "skipped",
+      "detail": "no pack entry to change"
+     },
+     {
+      "step": "place",
+      "status": "ok",
+      "detail": "jar placed; 1 data pack(s); 0 model(s)"
+     },
+     {
+      "step": "record",
+      "status": "ok",
+      "detail": "/root/.nxeon-cyrus/deliveries/cp_r29flight1.json"
+     },
+     {
+      "step": "apply",
+      "status": "ok",
+      "detail": "restart: a plugin jar changed (plugins load at server start)"
+     },
+     {
+      "step": "health",
+      "status": "failed",
+      "detail": "the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPlug"
+     },
+     {
+      "step": "rollback",
+      "status": "ok",
+      "detail": "2 restored, 1 removed; refs unchanged"
+     },
+     {
+      "step": "rollback_restart",
+      "status": "ok",
+      "detail": "restarted on the previous state"
+     },
+     {
+      "step": "rollback_health",
+      "status": "failed",
+      "detail": "the server did not come up"
+     }
+    ],
+    "apply": {
+     "mode": "restart",
+     "restarted": true,
+     "reloaded": false,
+     "reasons": [
+      "a plugin jar changed (plugins load at server start)"
+     ]
+    },
+    "health": null,
+    "rollback": {
+     "ok": true,
+     "restored": 2,
+     "removed": 1,
+     "mismatches": 0,
+     "restarted": true,
+     "cameBackHealthy": false
+    },
+    "conflicts": {
+     "blocking": [],
+     "warnings": []
+    },
+    "notes": [],
+    "keptWorldFolders": [],
+    "createdAt": "2026-10-10T12:00:03.000Z",
+    "updatedAt": "2026-10-10T12:00:04.000Z"
+   },
+   "jobStatus": "FAILED",
+   "jobError": "Cyrus delivery rollback_incomplete: the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain' | L81 [exception-header] Caused by: java.lang.ClassNotFoundException: dev.cyrus.r29.MissingMain; data pack file/nxeon-nx_worldg01-crysta",
+   "row": {
+    "id": "sm_1",
+    "serverId": "srv_r29",
+    "modId": "gm_b_r29_1",
+    "status": "REMOVING",
+    "versionId": "b_r29_1",
+    "error": "Rollback incomplete: the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain' | L81 [exception-header] Caused by: java.lang.ClassNotFoundException: dev.cyrus.r29.MissingMain; data pack file/nxeon-nx_worldg01-crysta",
+    "targetVersionId": null
+   },
+   "exactRestore": true,
+   "files": [
+    "TfItemModel-1.0.0.jar",
+    "nxeon-nx_worldg01-crystal_realm.zip"
+   ]
+  },
+  "3": {
+   "request": {
+    "http": 202,
+    "jobId": "job_4"
+   },
+   "status": {
+    "jobId": "job_4",
+    "serverId": "srv_r29",
+    "op": "uninstall",
+    "subject": {
+     "projectId": "cp_r29flight1"
+    },
+    "state": "uninstalled",
+    "pending": false,
+    "ok": true,
+    "headline": "Removed.",
+    "needsAttention": false,
+    "error": null,
+    "failedStep": null,
+    "steps": [
+     {
+      "step": "open",
+      "status": "ok",
+      "detail": ""
+     },
+     {
+      "step": "recover_check",
+      "status": "ok",
+      "detail": "none"
+     },
+     {
+      "step": "preflight",
+      "status": "ok",
+      "detail": "delivery record found"
+     },
+     {
+      "step": "pack_config",
+      "status": "ok",
+      "detail": "no pack entry"
+     },
+     {
+      "step": "place",
+      "status": "ok",
+      "detail": "removed jar yes, 1 data pack(s), 0 model(s)"
+     },
+     {
+      "step": "managed",
+      "status": "ok",
+      "detail": "none held"
+     },
+     {
+      "step": "record",
+      "status": "ok",
+      "detail": "record removed"
+     },
+     {
+      "step": "apply",
+      "status": "ok",
+      "detail": "restart: a plugin jar changed (plugins load at server start); world generation changed (loads only at server start)"
+     },
+     {
+      "step": "health",
+      "status": "ok",
+      "detail": "healthy"
+     },
+     {
+      "step": "commit",
+      "status": "ok",
+      "detail": ""
+     }
+    ],
+    "apply": {
+     "mode": "restart",
+     "restarted": true,
+     "reloaded": false,
+     "reasons": [
+      "a plugin jar changed (plugins load at server start)",
+      "world generation changed (loads only at server start)"
+     ]
+    },
+    "health": {
+     "ok": true,
+     "problems": []
+    },
+    "rollback": null,
+    "conflicts": null,
+    "notes": [],
+    "keptWorldFolders": [],
+    "createdAt": "2026-10-10T12:00:05.000Z",
+    "updatedAt": "2026-10-10T12:00:06.000Z"
+   },
+   "jobStatus": "DONE",
+   "row": null,
+   "files": []
+  }
+ },
+ "audit": [
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.requested",
+   "detail": "srv_r29 job=job_2 deliver"
+  },
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.ok",
+   "detail": "srv_r29 job=job_2 install delivered  "
+  },
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.requested",
+   "detail": "srv_r29 job=job_3 deliver"
+  },
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.failed",
+   "detail": "srv_r29 job=job_3 update rollback_incomplete health the server did not come up; plugin TfItemModel is not enabled; new error lines in the server log: L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped' | L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain' | L81 [exception-header] Caused by: java.lang.ClassNotFoundException: dev.cyrus.r29.MissingMain; data pack file/nxeon-nx_worldg01-crysta"
+  },
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.requested",
+   "detail": "srv_r29 job=job_4 uninstall"
+  },
+  {
+   "userId": "u_owner",
+   "action": "cyrus.delivery.ok",
+   "detail": "srv_r29 job=job_4 uninstall uninstalled  "
+  }
+ ],
+ "flights": [
+  {
+   "at": "2026-10-10T22:07:22.790Z",
+   "plugins": [
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_worldg01-crystal_realm"
+   ],
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L103: [22:07:20 INFO]: Done (24.521s)! For help, type \"help\"",
+      "wall 27327 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L97: [22:07:19 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - TfItemModel | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "103 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 879 MB, 347 ms]: ok (optional) -> There are 0 of a max of 1 players online: ",
+      "datapacks-enabled 'datapack list enabled' [rss 891 MB, 260 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_worldg01-crystal_realm.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 956 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 4095438 gone; 0 marked processes; listening none of 47150,47116",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2y2dea-2d98d7; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 27327,
+   "peakRssKb": 949596,
+   "wallMs": 30293,
+   "runId": "tf-1-21-11-mv2y2dea-2d98d7",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T22:11:29.318Z",
+   "plugins": [
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_worldg01-crystal_realm"
+   ],
+   "overall": "failed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "no \"Done\" line within 200s",
+      "[22:07:44 WARN]: To change this, set \"online-mode\" to \"true\" in the server.properties file.",
+      "[22:07:44 INFO]: Preparing level \"world\"",
+      "[22:07:44 INFO]: [ca.spottedleaf.moonrise.common.util.MoonriseConstants] NUMA enable flag is not set; however there is NUMA interaction support for this OS.",
+      "[22:07:44 INFO]: [ca.spottedleaf.moonrise.common.util.MoonriseConstants] Detected 1 NUMA nodes.",
+      "[22:07:45 INFO]: Selecting spawn point for world 'minecraft:overworld'..."
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": [
+      "server never reached Done; plugin state not checked"
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "100 startup lines scanned with 5 matchers, 2 ignores: 3 hits, 3 ignored (no-net-yggdrasil)",
+      "L68 [level-error] [22:07:44 ERROR]: [ModernPluginLoadingStrategy] Could not load plugin 'TfItemModel-1.0.1.jar' in folder 'plugins/.paper-remapped'",
+      "L69 [exception-header] org.bukkit.plugin.InvalidPluginException: Cannot find main class `dev.cyrus.r29.MissingMain'",
+      "L81 [exception-header] Caused by: java.lang.ClassNotFoundException: dev.cyrus.r29.MissingMain"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "no exit within 45s after stop via stdin; SIGKILL pid 4095850"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 4095850 gone; 0 marked processes; listening none of 47133,47114",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2y30st-ba73a6; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": null,
+   "peakRssKb": 816756,
+   "wallMs": 246489,
+   "runId": "tf-1-21-11-mv2y30st-ba73a6",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T22:15:36.428Z",
+   "plugins": [
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_worldg01-crystal_realm"
+   ],
+   "overall": "failed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "no \"Done\" line within 200s",
+      "Starting org.bukkit.craftbukkit.Main",
+      "2026-10-10T22:11:31.443247121Z ServerMain WARN Advanced terminal features are not available in this environment",
+      "[22:11:31 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.12.1+1-LTS; Eclipse Adoptium Temurin-21.0.12.1+1) on Linux 7.0.2-6-pve (amd64)",
+      "[22:11:31 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11",
+      "[22:11:32 INFO]: [PluginInitializerManager] Initializing plugins..."
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": [
+      "server never reached Done; plugin state not checked"
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "not_run",
+     "evidence": [
+      "6 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 0 ignored",
+      "startup never finished, so a clean log proves nothing"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "no exit within 45s after stop via stdin; SIGKILL pid 4097760"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 4097760 gone; 0 marked processes; listening none of 47143,47127",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2y8b02-f9bc42; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": null,
+   "peakRssKb": 536444,
+   "wallMs": 247098,
+   "runId": "tf-1-21-11-mv2y8b02-f9bc42",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T22:18:02.169Z",
+   "plugins": [],
+   "datapacks": [],
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L88: [22:18:00 INFO]: Done (13.094s)! For help, type \"help\"",
+      "wall 143227 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "88 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 1114 MB, 258 ms]: ok (optional) -> There are 0 of a max of 1 players online: "
+     ]
+    },
+    {
+     "id": "playtest",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 621 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 4099713 gone; 0 marked processes; listening none of 47175,47129",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2ydlqs-e92d9c; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 143227,
+   "peakRssKb": 1142068,
+   "wallMs": 145637,
+   "runId": "tf-1-21-11-mv2ydlqs-e92d9c",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  }
+ ]
+}

@@ -1,0 +1,138 @@
+rcon op: Made Tester a server operator
+[
+ {
+  "step": "join",
+  "chat": [
+   "[title] {\"color\":{\"type\":\"string\",\"value\":\"yellow\"},\"text\":{\"type\":\"string\",\"value\":\"We're glad you're here. (1 online)\"}}",
+   "[title] {\"color\":{\"type\":\"string\",\"value\":\"gold\"},\"text\":{\"type\":\"string\",\"value\":\"Welcome, Tester!\"}}",
+   "Tester has joined the server for the first time! Welcome! (1 online)"
+  ]
+ },
+ {
+  "cmd": "/balance",
+  "chat": [
+   "Your balance: 100 coins"
+  ]
+ },
+ {
+  "console": "eco give Tester 250",
+  "out": "Gave 250 coins to Tester.\n"
+ },
+ {
+  "cmd": "/balance",
+  "chat": [
+   "Your balance: 350 coins"
+  ]
+ },
+ {
+  "cmd": "/shop",
+  "window": {
+   "title": "[object Object]",
+   "slots": 45,
+   "items": [
+    "diamondx1@2",
+    "golden_applex1@4",
+    "ender_pearlx1@6"
+   ]
+  },
+  "chat": []
+ },
+ {
+  "step": "click diamond",
+  "chat": [
+   "Bought 1 diamond for 100 coins.",
+   "Tester has made the advancement [Diamonds!]"
+  ],
+  "diamonds": 1
+ },
+ {
+  "cmd": "/balance",
+  "chat": [
+   "Your balance: 250 coins"
+  ]
+ },
+ {
+  "console": "effect give Tester minecraft:instant_damage 1 0",
+  "out": "Applied effect Instant Damage to Tester"
+ },
+ {
+  "step": "after damage",
+  "health": 14.833333015441895,
+  "food": 20
+ },
+ {
+  "cmd": "/heal",
+  "chat": [
+   "You have been fully healed and fed."
+  ]
+ },
+ {
+  "step": "after /heal",
+  "health": 20,
+  "food": 20
+ },
+ {
+  "cmd": "/heal",
+  "chat": [
+   "You have been fully healed and fed."
+  ]
+ },
+ {
+  "cmd": "/feed",
+  "chat": [
+   "Your hunger has been restored."
+  ]
+ },
+ {
+  "cmd": "/zone pos1",
+  "chat": [
+   "Position 1 set to 10, -60, 2 in world."
+  ]
+ },
+ {
+  "console": "tp Tester ~10 ~ ~10",
+  "out": "Teleported Tester to 10.000000, -60.000000, 10.000000"
+ },
+ {
+  "cmd": "/zone pos2",
+  "chat": [
+   "Position 2 set to 10, -60, 10 in world."
+  ]
+ },
+ {
+  "cmd": "/zone create spawnzone",
+  "chat": [
+   "Zone spawnzone created."
+  ]
+ },
+ {
+  "cmd": "/zone list",
+  "chat": [
+   "Zones (1):",
+   "- spawnzone in world"
+  ]
+ },
+ {
+  "cmd": "/joinmsg reload",
+  "chat": [
+   "JoinMessages configuration reloaded."
+  ]
+ },
+ {
+  "cmd": "/spleef help",
+  "chat": [
+   "Spleef commands:",
+   "/spleef join - join the waiting lobby",
+   "/spleef leave - leave the game",
+   "/spleef setarena <radius> - set the arena at your position",
+   "/spleef setlobby - set the lobby at your position",
+   "/spleef stop - force-stop the current game",
+   "/spleef reload - reload the configuration"
+  ]
+ },
+ {
+  "step": "sidebar",
+  "title": "[object Object]",
+  "rows": []
+ }
+]

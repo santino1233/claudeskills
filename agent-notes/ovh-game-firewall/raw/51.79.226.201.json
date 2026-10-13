@@ -1,0 +1,78 @@
+{
+  "ip": "51.79.226.201",
+  "ip_info": {
+    "ok": true,
+    "body": {
+      "routedTo": {
+        "serviceName": "ns5002569.ip-51-79-162.net"
+      },
+      "version": 4,
+      "canBeTerminated": true,
+      "rir": "ARIN",
+      "description": null,
+      "ip": "51.79.226.201/32",
+      "regions": [
+        "ap-southeast-sgp"
+      ],
+      "type": "failover",
+      "bringYourOwnIp": false,
+      "country": "sg",
+      "isAdditionalIp": true,
+      "organisationId": null,
+      "campus": "SGP",
+      "iam": {
+        "id": "cc63ea51-1d1d-4d2e-bad7-7e3d5341c127",
+        "state": "OK",
+        "tags": {
+          "ovh:campus": "SGP",
+          "ovh:isAdditionalIp": "true",
+          "ovh:routedTo": "ns5002569.ip-51-79-162.net",
+          "ovh:type": "failover",
+          "ovh:version": "4"
+        },
+        "urn": "urn:v1:ca:resource:ip:51.79.226.201%2F32"
+      }
+    }
+  },
+  "game": {
+    "ok": true,
+    "body": {
+      "maxRules": 30,
+      "ipOnGame": "51.79.226.201",
+      "supportedProtocols": [
+        "arkSurvivalEvolved",
+        "arma",
+        "gtaMultiTheftAutoSanAndreas",
+        "gtaSanAndreasMultiplayerMod",
+        "hl2Source",
+        "minecraftJava",
+        "minecraftPocketEdition",
+        "minecraftQuery",
+        "mumble",
+        "other",
+        "rust",
+        "teamspeak2",
+        "teamspeak3",
+        "trackmaniaShootmania"
+      ],
+      "firewallModeEnabled": false,
+      "state": "ok"
+    }
+  },
+  "gameList": {
+    "ok": true,
+    "body": [
+      "51.79.226.201"
+    ]
+  },
+  "rules": {
+    "ok": true,
+    "body": []
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": true,
+    "body": []
+  },
+  "firewallDetail": []
+}

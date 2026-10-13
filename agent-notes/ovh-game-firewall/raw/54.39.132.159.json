@@ -1,0 +1,55 @@
+{
+  "ip": "54.39.132.159",
+  "ip_info": {
+    "ok": true,
+    "body": {
+      "routedTo": {
+        "serviceName": "ns565008.ip-54-39-132.net"
+      },
+      "type": "dedicated",
+      "isAdditionalIp": false,
+      "canBeTerminated": false,
+      "rir": null,
+      "regions": [
+        "ca-east-bhs"
+      ],
+      "country": null,
+      "organisationId": null,
+      "version": 4,
+      "bringYourOwnIp": false,
+      "description": null,
+      "campus": "BHS",
+      "ip": "54.39.132.159/32",
+      "iam": {
+        "id": "efd09a06-d958-4c41-9471-f89959be7dfb",
+        "state": "OK",
+        "tags": {
+          "ovh:campus": "BHS",
+          "ovh:isAdditionalIp": "false",
+          "ovh:routedTo": "ns565008.ip-54-39-132.net",
+          "ovh:type": "dedicated",
+          "ovh:version": "4"
+        },
+        "urn": "urn:v1:ca:resource:ip:54.39.132.159%2F32"
+      }
+    }
+  },
+  "game": {
+    "ok": false,
+    "err": "OVH GET /ip/54.39.132.159/game/54.39.132.159 -> 404: The requested object (ipOnGame = 54.39.132.159) does not exist"
+  },
+  "gameList": {
+    "ok": true,
+    "body": []
+  },
+  "rules": {
+    "ok": false,
+    "err": "OVH GET /ip/54.39.132.159/game/54.39.132.159/rule -> 404: The requested object (ipOnGame = 54.39.132.159) does not exist"
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": true,
+    "body": []
+  },
+  "firewallDetail": []
+}

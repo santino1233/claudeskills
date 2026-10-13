@@ -1,0 +1,14 @@
+diff --git a/test/outreach-render.test.ts b/test/outreach-render.test.ts
+index f0f3050dd2..8cbc2924b5 100644
+--- a/test/outreach-render.test.ts
++++ b/test/outreach-render.test.ts
+@@ -54,7 +54,8 @@ test("variable values are escaped and can never inject markup or links", () => {
+   const { html } = renderBody("Hi {{fullName}}", vars);
+   assert.ok(!html.includes("<img"));
+   assert.ok(!/<strong>b<\/strong>/.test(html) || html.includes("&lt;img"));
+-  assert.ok(!html.includes("javascript:"), "no javascript: href survives");
++  assert.ok(!/href="javascript/i.test(html), "no javascript: href is ever created");
++  assert.ok(!/<a /.test(html), "a variable value can't create a link");
+ });
+ 
+ test("template links: only http(s)/mailto are linked", () => {

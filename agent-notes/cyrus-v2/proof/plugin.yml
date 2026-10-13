@@ -1,0 +1,25 @@
+name: LumenBazaar
+version: 1.0.0
+main: dev.nxeon.plugins.lumenbazaar.LumenBazaarPlugin
+api-version: '1.21.11'
+description: Opens a coin shop chest menu where players can buy items with coins.
+author: Nxeon Mod Builder
+commands:
+  shop:
+    description: Opens the Lumen Bazaar shop menu.
+    usage: /shop [reload]
+    permission: lumenbazaar.shop
+  coins:
+    description: Shows your current coin balance.
+    usage: /coins
+    permission: lumenbazaar.coins
+permissions:
+  lumenbazaar.shop:
+    description: Allows opening the shop menu with /shop.
+    default: true
+  lumenbazaar.coins:
+    description: Allows checking your coin balance with /coins.
+    default: true
+  lumenbazaar.reload:
+    description: Allows reloading the shop configuration with /shop reload.
+    default: op

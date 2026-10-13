@@ -1,0 +1,823 @@
+[
+ {
+  "flight": "showcase",
+  "version": "1.21.1",
+  "packSha256": "0c7ad6f72b422c195ba96ca6a915d0d727f86b2701bdc27cb4d60f4149086910",
+  "packBytes": 9878,
+  "format": {
+   "major": 48,
+   "minor": 0
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 17463,
+  "peakRssKb": 1077260,
+  "runId": "tf-1-21-1-mv256jpu-208075",
+  "paper": {
+   "version": "1.21.1",
+   "build": 133,
+   "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+   "channel": "STABLE"
+  },
+  "jdk": "21.0.12.1",
+  "counts": {
+   "log": {
+    "recipes": 1296,
+    "advancements": 1402,
+    "dataLines": [
+     "[08:38:27] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically",
+     "[08:38:27] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:38:27] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:38:27] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:38:31] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: a2:45:0d:27:c5:8b:55:69",
+     "[08:38:41] [Server thread/WARN]: Not all defined tags for registry ResourceKey[minecraft:root / minecraft:enchantment] are present in data pack: nx_dpstud10:frosty",
+     "[08:38:41] [Server thread/WARN]: Not all defined tags for registry ResourceKey[minecraft:root / minecraft:entity_type] are present in data pack: nx_dpstud10:pals",
+     "[08:38:41] [Server thread/WARN]: Not all defined tags for registry ResourceKey[minecraft:root / minecraft:block] are present in data pack: nx_dpstud10:shiny",
+     "[08:38:41] [Server thread/WARN]: Not all defined tags for registry ResourceKey[minecraft:root / minecraft:item] are present in data pack: nx_dpstud10:gems"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1290,
+    "advancements": 1399
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L82: [08:38:36 INFO]: Done (16.195s)! For help, type \"help\"",
+     "wall 17463 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "82 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 10 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": '\"Frost Test\"', \"minecraft:enchantments\": {levels: {\"nx_dpstud10:frostbite\": 2}}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {levels: {\"nx_dpstud10:frostbite\": 2}}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 3 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed, count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 1339 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3422239 gone; 0 marked processes; listening none of 47175,47129",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-1-mv256jpu-208075; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "showcase",
+  "version": "1.21.4",
+  "packSha256": "c030de9489de9769816965eac3ca57eb6798a3f2263ad597a8a2beacf3218150",
+  "packBytes": 9836,
+  "format": {
+   "major": 61,
+   "minor": 0
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 18262,
+  "peakRssKb": 1134648,
+  "runId": "tf-1-21-4-mv25745f-356ede",
+  "paper": {
+   "version": "1.21.4",
+   "build": 232,
+   "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+   "channel": "STABLE"
+  },
+  "jdk": "21.0.12.1",
+  "counts": {
+   "log": {
+    "recipes": 1376,
+    "advancements": 1484,
+    "dataLines": [
+     "[08:38:54] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically",
+     "[08:38:54] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:38:54] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:38:54] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:38:58] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: 2e:a8:00:6f:85:87:a0:ed"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1370,
+    "advancements": 1481
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L93: [08:39:03 INFO]: Done (16.813s)! For help, type \"help\"",
+     "wall 18262 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "93 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 11 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": '\"Frost Test\"', \"minecraft:enchantments\": {levels: {\"nx_dpstud10:frostbite\": 2}}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {levels: {\"nx_dpstud10:frostbite\": 2}}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 2 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed, count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 1685 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3422675 gone; 0 marked processes; listening none of 47124,47168",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-4-mv25745f-356ede; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "showcase",
+  "version": "1.21.8",
+  "packSha256": "3457721e569f096839f9f70678fb4f5649c752de5764e343734198523aba13a3",
+  "packBytes": 9823,
+  "format": {
+   "major": 81,
+   "minor": 0
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 17864,
+  "peakRssKb": 1114128,
+  "runId": "tf-1-21-8-mv257pel-c266cd",
+  "paper": {
+   "version": "1.21.8",
+   "build": 60,
+   "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+   "channel": "STABLE"
+  },
+  "jdk": "21.0.12.1",
+  "counts": {
+   "log": {
+    "recipes": 1413,
+    "advancements": 1523,
+    "dataLines": [
+     "[08:39:22] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically",
+     "[08:39:22] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:39:22] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:39:22] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:39:25] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: cf:3e:23:df:1b:87:cd:17"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1407,
+    "advancements": 1520
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L92: [08:39:30 INFO]: Done (16.451s)! For help, type \"help\"",
+     "wall 17864 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "92 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 10 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": \"Frost Test\", \"minecraft:enchantments\": {\"nx_dpstud10:frostbite\": 2}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {\"nx_dpstud10:frostbite\": 2}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 3 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed, count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 1992 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3423155 gone; 0 marked processes; listening none of 47119,47120",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-8-mv257pel-c266cd; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "showcase",
+  "version": "1.21.11",
+  "packSha256": "bfd98d0e78b49b473a1ddb746976f2c01e807e2e3b45ee5288d79bba07590e1b",
+  "packBytes": 9844,
+  "format": {
+   "major": 94,
+   "minor": 1
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 17262,
+  "peakRssKb": 1151776,
+  "runId": "tf-1-21-11-mv258akh-033be3",
+  "paper": {
+   "version": "1.21.11",
+   "build": 132,
+   "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+   "channel": "STABLE"
+  },
+  "jdk": "21.0.12.1",
+  "counts": {
+   "log": {
+    "recipes": 1476,
+    "advancements": 1587,
+    "dataLines": [
+     "[08:39:51] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:39:51] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically",
+     "[08:39:51] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:39:51] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:39:55] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: 47:6c:73:df:5e:db:0d:9b",
+     "java.net.UnknownHostException: fill.papermc.io",
+     "java.net.UnknownHostException: fill.papermc.io"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1470,
+    "advancements": 1584
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L89: [08:39:57 INFO]: Done (15.893s)! For help, type \"help\"",
+     "wall 17262 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "89 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 13 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": \"Frost Test\", \"minecraft:enchantments\": {\"nx_dpstud10:frostbite\": 2}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {\"nx_dpstud10:frostbite\": 2}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 4 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed. Count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 861 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3423522 gone; 0 marked processes; listening none of 47101,47145",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv258akh-033be3; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "showcase",
+  "version": "26.1.2",
+  "packSha256": "b906c95b8a190bd2e5f4eb91cf8eca0f4be4aef2b98e354287556bad11ebacdb",
+  "packBytes": 9828,
+  "format": {
+   "major": 101,
+   "minor": 1
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 15851,
+  "peakRssKb": 801048,
+  "runId": "tf-26-1-2-mv258vbv-abe425",
+  "paper": {
+   "version": "26.1.2",
+   "build": 74,
+   "sha256": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+   "channel": "STABLE"
+  },
+  "jdk": "25.0.4.1",
+  "counts": {
+   "log": {
+    "recipes": 1521,
+    "advancements": 1620,
+    "dataLines": [
+     "[08:40:16] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:40:16] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically",
+     "[08:40:16] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:40:16] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:40:20] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: 0e:2f:39:c5:50:36:47:33",
+     "java.net.UnknownHostException: fill.papermc.io",
+     "java.net.UnknownHostException: fill.papermc.io"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1515,
+    "advancements": 1617
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L96: [08:40:23 INFO]: Done (14.299s)! For help, type \"help\"",
+     "wall 15851 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 8 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": \"Frost Test\", \"minecraft:enchantments\": {\"nx_dpstud10:frostbite\": 2}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {\"nx_dpstud10:frostbite\": 2}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 2 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed. Count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 814 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3423970 gone; 0 marked processes; listening none of 47179,47115",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-1-2-mv258vbv-abe425; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "showcase",
+  "version": "26.2",
+  "packSha256": "f891751c317200cc327df561033b50f9eb2f2722fd75b0723aa0e127db86cb44",
+  "packBytes": 9832,
+  "format": {
+   "major": 107,
+   "minor": 1
+  },
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 14046,
+  "peakRssKb": 895524,
+  "runId": "tf-26-2-mv259fbk-283363",
+  "paper": {
+   "version": "26.2",
+   "build": 133,
+   "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+   "channel": "STABLE"
+  },
+  "jdk": "25.0.4.1",
+  "counts": {
+   "log": {
+    "recipes": 1591,
+    "advancements": 1691,
+    "dataLines": [
+     "[08:40:41] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+     "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+     "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+     "[08:40:41] [ServerMain/INFO]: Found new data pack file/cyrus_showcase.zip, loading it automatically",
+     "[08:40:41] [ServerMain/INFO]: Found new data pack paper, loading it automatically",
+     "[08:40:44] [Server thread/WARN]: [io.netty.util.internal.MacAddressUtil] Failed to find a usable hardware address from the network interfaces; using random bytes: be:6b:e3:bf:bb:d4:4f:aa",
+     "java.net.UnknownHostException: fill.papermc.io",
+     "java.net.UnknownHostException: fill.papermc.io"
+    ]
+   },
+   "vanilla": {
+    "recipes": 1585,
+    "advancements": 1688
+   },
+   "ours": {
+    "recipes": 6,
+    "advancements": 3
+   },
+   "recipesMatch": true,
+   "advancementsMatch": true
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L96: [08:40:47 INFO]: Done (12.451s)! For help, type \"help\"",
+     "wall 14046 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "96 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "load-tag-ran 'scoreboard players get #loaded nxdp_t': ok -> #loaded has 1 [nxdp_t]",
+     "tick-tag-runs 'scoreboard players get #ticks nxdp_t': ok -> #ticks has 10 [nxdp_t]",
+     "function-runs 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "function-result 'scoreboard players get #hello nxdp_t': ok -> #hello has 143 [nxdp_t]",
+     "function-tag-runs 'function #nx_dpstud10:greet': ok -> Running function nx_dpstud10:hello",
+     "forceload 'forceload add 0 0': ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+     "loot-enchanted 'loot spawn 0 100 0 loot nx_dpstud10:test/frost_sword': ok -> Dropped 1 [Frost Test]",
+     "custom-name-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components': ok -> Iron Sword has the following entity data: {\"minecraft:custom_name\": \"Frost Test\", \"minecraft:enchantments\": {\"nx_dpstud10:frostbite\": 2}}",
+     "custom-enchantment-on-item 'data get entity @e[type=minecraft:item,limit=1] Item.components.\"minecraft:enchantments\"': ok -> Iron Sword has the following entity data: {\"nx_dpstud10:frostbite\": 2}",
+     "clear-items 'kill @e[type=minecraft:item]': ok -> Killed Iron Sword",
+     "loot-tag-entry 'loot spawn 0 100 0 loot nx_dpstud10:test/gems': ok -> Dropped 2 items",
+     "loot-treasure 'loot spawn 0 100 0 loot nx_dpstud10:chests/treasure': ok -> Dropped 3 items",
+     "loot-entity-table-resolves 'loot spawn 0 100 0 loot nx_dpstud10:extras': ok -> Dropped 4 [Emerald]",
+     "block-tag-setup 'setblock 0 100 0 minecraft:gold_block': ok -> Changed the block at 0, 100, 0",
+     "block-tag 'execute if block 0 100 0 #nx_dpstud10:shiny': ok -> Test passed",
+     "entity-tag-setup 'summon minecraft:cow 2 100 2 {NoAI:1b,Tags:[\"nxdp\"]}': ok -> Summoned new Cow",
+     "entity-tag 'execute if entity @e[type=#nx_dpstud10:pals,tag=nxdp]': ok -> Test passed. Count: 1",
+     "reload-disable 'datapack disable \"file/cyrus_showcase.zip\"': ok -> Disabling data pack [file/cyrus_showcase.zip (world)]",
+     "disabled-gone 'function nx_dpstud10:hello': ok (optional) -> Unknown function nx_dpstud10:hello",
+     "reload-enable 'datapack enable \"file/cyrus_showcase.zip\"': ok -> Enabling data pack [file/cyrus_showcase.zip (world)]",
+     "function-after-reload 'function nx_dpstud10:hello': ok -> Running function nx_dpstud10:hello",
+     "pack-listed-after-reload 'datapack list enabled': ok -> There are 3 data pack(s) enabled: [vanilla (built-in)], [file/cyrus_showcase.zip (world)], [paper (built-in)]",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 3 data pack(s) enabled: [vanilla (built-in)], [file/cyrus_showcase.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 724 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3424354 gone; 0 marked processes; listening none of 47171,47168",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv259fbk-283363; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "broken-raw",
+  "version": "1.21.11",
+  "validator": {
+   "ok": false,
+   "errors": [
+    "data/nx_broken01/loot_table/bad_fn.json: pools[0].entries[0].functions[0] function minecraft:set_countt does not exist in Minecraft 1.21.11",
+    "data/nx_broken01/recipe/no_item.json: result.id minecraft:rubyy does not exist in Minecraft 1.21.11",
+    "data/nx_broken01/recipe/old_style.json: ingredients[0] must be an item id or #tag string on Minecraft 1.21.11 (1.21.2+), not {\"item\":\"minecraft:stick\"}"
+   ]
+  },
+  "status": "completed",
+  "overall": "failed",
+  "runId": "tf-1-21-11-mv259xjl-df0980",
+  "agree": true,
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L92: [08:41:15 INFO]: Done (17.036s)! For help, type \"help\"",
+     "wall 18467 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "fail",
+    "evidence": [
+     "92 startup lines scanned with 5 matchers, 2 ignores: 3 hits, 3 ignored (no-net-yggdrasil)",
+     "L47 [level-error] [08:41:08 ERROR]: Couldn't parse data file 'nx_broken01:bad_fn' from 'nx_broken01:loot_table/bad_fn.json': DataResult.Error['Failed to parse either. First: Unknown registry key in ResourceKey[minecraft:root / minecraft:loot_function_type]: ",
+     "L48 [level-error] [08:41:09 ERROR]: Couldn't parse data file 'nx_broken01:no_item' from 'nx_broken01:recipe/no_item.json': DataResult.Error['Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:rubyy']",
+     "L49 [level-error] [08:41:09 ERROR]: Couldn't parse data file 'nx_broken01:old_style' from 'nx_broken01:recipe/old_style.json': DataResult.Error['List is too short: 0, expected range [1-9]']"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "ok-function 'function nx_broken01:ok': ok (optional) -> Running function nx_broken01:ok",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrus_broken.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 553 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3425356 gone; 0 marked processes; listening none of 47125,47117",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv259xjl-df0980; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ },
+ {
+  "flight": "broken-raw",
+  "version": "26.2",
+  "validator": {
+   "ok": false,
+   "errors": [
+    "data/nx_broken01/loot_table/bad_fn.json: pools[0].entries[0].functions[0] function minecraft:set_countt does not exist in Minecraft 26.2",
+    "data/nx_broken01/recipe/no_item.json: result.id minecraft:rubyy does not exist in Minecraft 26.2",
+    "data/nx_broken01/recipe/old_style.json: ingredients[0] must be an item id or #tag string on Minecraft 26.2 (1.21.2+), not {\"item\":\"minecraft:stick\"}"
+   ]
+  },
+  "status": "completed",
+  "overall": "failed",
+  "runId": "tf-26-2-mv25ad8x-21a388",
+  "agree": true,
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L99: [08:41:31 INFO]: Done (12.675s)! For help, type \"help\"",
+     "wall 14450 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "fail",
+    "evidence": [
+     "99 startup lines scanned with 5 matchers, 2 ignores: 3 hits, 3 ignored (no-net-yggdrasil)",
+     "L51 [level-error] [08:41:26 ERROR]: Couldn't parse data file 'nx_broken01:bad_fn' from 'nx_broken01:loot_table/bad_fn.json': DataResult.Error['Failed to parse either. First: Unknown registry key in ResourceKey[minecraft:root / minecraft:loot_function_type]: ",
+     "L52 [level-error] [08:41:27 ERROR]: Couldn't parse data file 'nx_broken01:no_item' from 'nx_broken01:recipe/no_item.json': DataResult.Error['Failed to parse either. First: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:rubyy;",
+     "L53 [level-error] [08:41:27 ERROR]: Couldn't parse data file 'nx_broken01:old_style' from 'nx_broken01:recipe/old_style.json': DataResult.Error['List is too short: 0, expected range [1-9]']"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "ok-function 'function nx_broken01:ok': ok (optional) -> Running function nx_broken01:ok",
+     "datapacks-enabled 'datapack list enabled': ok -> There are 3 data pack(s) enabled: [vanilla (built-in)], [file/cyrus_broken.zip (world)], [paper (built-in)]"
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 819 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3425912 gone; 0 marked processes; listening none of 47192,47157",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv25ad8x-21a388; no listening port in 47100-47199"
+    ]
+   }
+  ]
+ }
+]

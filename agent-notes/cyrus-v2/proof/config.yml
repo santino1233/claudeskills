@@ -1,0 +1,31 @@
+# Lumen Bazaar shop configuration
+
+# Coins every new player starts with.
+starting-balance: 100
+
+menu:
+  # Title shown at the top of the shop chest menu.
+  title: "Lumen Bazaar"
+  # Number of rows in the menu (1-6). 3 rows = 27 slots.
+  rows: 3
+
+# Slot of the close (barrier) button.
+close-slot: 22
+
+# Items for sale. Each entry needs: slot, material, amount, price, name.
+items:
+  - slot: 11
+    material: GLOWSTONE
+    amount: 16
+    price: 12
+    name: "Glowstone"
+  - slot: 13
+    material: ENDER_PEARL
+    amount: 1
+    price: 30
+    name: "Ender Pearl"
+  - slot: 15
+    material: GOLDEN_CARROT
+    amount: 8
+    price: 9
+    name: "Golden Carrot"

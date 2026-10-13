@@ -1,0 +1,10 @@
+[
+ {"file": "motion.html", "q": "ctl=0&t=17", "w": 1440, "h": 900, "out": "a-motion-dark.png", "wait": 1200},
+ {"file": "motion.html", "q": "ctl=0&t=40&theme=light&tab=export", "w": 1440, "h": 900, "out": "a-motion-light-export.png", "wait": 1200},
+ {"file": "motion.html", "q": "ctl=0&t=64&tab=checks&row=slide.pos", "w": 1440, "h": 900, "out": "a-motion-dark-checks.png", "wait": 1200},
+ {"file": "motion.html", "q": "ctl=0&t=30", "w": 390, "h": 844, "out": "a-motion-narrow.png", "wait": 1200, "full": true},
+ {"file": "presets.html", "q": "ctl=0", "w": 1440, "h": 900, "out": "b-presets-dark.png", "wait": 1200},
+ {"file": "presets.html", "q": "ctl=0&theme=light&sel=motion:door_hinge", "w": 1440, "h": 900, "out": "b-presets-light.png", "wait": 1200},
+ {"file": "presets.html", "q": "ctl=0&kind=effect&sel=effect:explosion", "w": 1440, "h": 900, "out": "b-presets-dark-effects.png", "wait": 1200},
+ {"file": "presets.html", "q": "ctl=0", "w": 390, "h": 844, "out": "b-presets-narrow.png", "wait": 1200, "full": true}
+]

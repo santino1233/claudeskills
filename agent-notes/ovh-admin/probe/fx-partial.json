@@ -1,0 +1,315 @@
+{
+ "_note": "Recorded READ-ONLY from the live OVH API on 2026-10-06 (GET only), then sanitised: IPs -> RFC 5737 documentation ranges, service names/emails replaced. Entries under 'schemaDerived' were NOT observed live (nothing was blocked/mitigated at recording time); they follow the public OVH API schema (ip.json models ip.BlockedIp / ip.SpamIp / ip.ArpBlockedIp / ip.MitigationIp).",
+ "currentCredentialWildcard": {
+  "allowedIPs": null,
+  "creation": "2026-07-23T10:59:04-04:00",
+  "expiration": null,
+  "lastUse": "2026-10-06T11:17:33-04:00",
+  "ovhSupport": false,
+  "status": "validated",
+  "rules": [
+   {
+    "method": "GET",
+    "path": "/*"
+   },
+   {
+    "method": "PUT",
+    "path": "/*"
+   },
+   {
+    "method": "POST",
+    "path": "/*"
+   },
+   {
+    "method": "DELETE",
+    "path": "/*"
+   }
+  ]
+ },
+ "ipInfoDedicatedSgp": {
+  "country": null,
+  "ip": "203.0.113.21/32",
+  "type": "dedicated",
+  "routedTo": {
+   "serviceName": "ns000004.ip-203-0-113.net"
+  },
+  "rir": null,
+  "regions": [
+   "ap-southeast-sgp"
+  ],
+  "description": null,
+  "organisationId": null,
+  "canBeTerminated": false,
+  "bringYourOwnIp": false,
+  "campus": "SGP",
+  "isAdditionalIp": false,
+  "version": 4
+ },
+ "ipInfoFailoverSgp": {
+  "bringYourOwnIp": false,
+  "type": "failover",
+  "regions": [
+   "ap-southeast-sgp"
+  ],
+  "campus": "SGP",
+  "ip": "198.51.100.191/32",
+  "canBeTerminated": true,
+  "rir": "ARIN",
+  "routedTo": {
+   "serviceName": "ns000004.ip-203-0-113.net"
+  },
+  "isAdditionalIp": true,
+  "organisationId": null,
+  "description": null,
+  "country": "sg",
+  "version": 4
+ },
+ "ipInfoFailoverBhs": {
+  "campus": "BHS",
+  "regions": [
+   "ca-east-bhs"
+  ],
+  "rir": "ARIN",
+  "type": "failover",
+  "routedTo": {
+   "serviceName": "ns000005.ip-192-0-2.net"
+  },
+  "description": null,
+  "isAdditionalIp": true,
+  "version": 4,
+  "organisationId": null,
+  "bringYourOwnIp": false,
+  "ip": "192.0.2.21/32",
+  "canBeTerminated": true,
+  "country": "ca"
+ },
+ "ipInfoDedicatedBhs": {
+  "type": "dedicated",
+  "organisationId": null,
+  "campus": "BHS",
+  "ip": "192.0.2.159/32",
+  "routedTo": {
+   "serviceName": "ns000005.ip-192-0-2.net"
+  },
+  "rir": null,
+  "regions": [
+   "ca-east-bhs"
+  ],
+  "country": null,
+  "description": null,
+  "version": 4,
+  "bringYourOwnIp": false,
+  "canBeTerminated": false,
+  "isAdditionalIp": false
+ },
+ "gameOff": {
+  "ipOnGame": "203.0.113.21",
+  "supportedProtocols": [
+   "arkSurvivalEvolved",
+   "arma",
+   "gtaMultiTheftAutoSanAndreas",
+   "gtaSanAndreasMultiplayerMod",
+   "hl2Source",
+   "minecraftJava",
+   "minecraftPocketEdition",
+   "minecraftQuery",
+   "mumble",
+   "other",
+   "rust",
+   "teamspeak2",
+   "teamspeak3",
+   "trackmaniaShootmania"
+  ],
+  "firewallModeEnabled": false,
+  "maxRules": 30,
+  "state": "ok"
+ },
+ "gameStrict": {
+  "firewallModeEnabled": true,
+  "maxRules": 30,
+  "supportedProtocols": [
+   "arkSurvivalEvolved",
+   "arma",
+   "gtaMultiTheftAutoSanAndreas",
+   "gtaSanAndreasMultiplayerMod",
+   "hl2Source",
+   "minecraftJava",
+   "minecraftPocketEdition",
+   "minecraftQuery",
+   "mumble",
+   "other",
+   "rust",
+   "teamspeak2",
+   "teamspeak3",
+   "trackmaniaShootmania"
+  ],
+  "state": "ok",
+  "ipOnGame": "198.51.100.200"
+ },
+ "firewallList": [
+  "198.51.100.117"
+ ],
+ "firewallDetailDisabled": {
+  "state": "ok",
+  "enabled": false,
+  "ipOnFirewall": "198.51.100.117"
+ },
+ "serviceInfosAuto": {
+  "renewalType": "automaticV2016",
+  "serviceId": 40983135,
+  "possibleRenewPeriod": [
+   1,
+   3,
+   6,
+   12
+  ],
+  "canDeleteAtExpiration": true,
+  "creation": "2026-09-16",
+  "contactTech": "owner@example.invalid",
+  "status": "ok",
+  "renew": {
+   "manualPayment": false,
+   "deleteAtExpiration": false,
+   "automatic": true,
+   "period": 1,
+   "forced": false
+  },
+  "contactBilling": "owner@example.invalid",
+  "engagedUpTo": null,
+  "expiration": "2026-10-16",
+  "domain": "ns000004.ip-203-0-113.net"
+ },
+ "networkSpec": {
+  "routing": {
+   "ipv4": {
+    "network": "203.0.113.0/24",
+    "ip": "203.0.113.21",
+    "gateway": "203.0.113.254"
+   },
+   "ipv6": {
+    "network": "2001:db8::1/56",
+    "gateway": "2001:db8::1",
+    "ip": "2001:db8::1/128"
+   }
+  },
+  "switching": {
+   "name": "sgp1-sdtor42-2k"
+  },
+  "connection": {
+   "value": 1000,
+   "unit": "Mbps"
+  },
+  "vmac": {
+   "quota": 128,
+   "supported": true
+  },
+  "bandwidth": {
+   "OvhToOvh": {
+    "value": 300,
+    "unit": "Mbps"
+   },
+   "type": "standard",
+   "OvhToInternet": {
+    "value": 300,
+    "unit": "Mbps"
+   },
+   "InternetToOvh": {
+    "unit": "Mbps",
+    "value": 300
+   }
+  },
+  "traffic": {
+   "inputQuotaUsed": {
+    "value": 909204639017,
+    "unit": "B"
+   },
+   "outputQuotaUsed": {
+    "value": 213966404908,
+    "unit": "B"
+   },
+   "inputQuotaSize": {
+    "unit": "B",
+    "value": 10995116277760
+   },
+   "isThrottled": false,
+   "outputQuotaSize": {
+    "value": 10995116277760,
+    "unit": "B"
+   },
+   "resetQuotaDate": "2026-10-16"
+  },
+  "vrack": {
+   "type": null,
+   "bandwidth": null
+  },
+  "ola": {
+   "supportedModes": [],
+   "availableModes": [],
+   "available": false
+  }
+ },
+ "networkSpecNoQuota": {
+  "traffic": {
+   "isThrottled": false,
+   "outputQuotaSize": null,
+   "resetQuotaDate": null,
+   "outputQuotaUsed": null,
+   "inputQuotaSize": null,
+   "inputQuotaUsed": null
+  },
+  "vrack": {
+   "bandwidth": {
+    "unit": "Mbps",
+    "value": 500
+   },
+   "type": "standard"
+  },
+  "connection": {
+   "unit": "Mbps",
+   "value": 1000
+  },
+  "switching": {
+   "name": "bhs7-11a-n56"
+  },
+  "routing": {
+   "ipv6": {
+    "network": "2607:5300:203:4300::0000/56",
+    "ip": "2607:5300:0203:439f:0000:0000:0000:0000/64",
+    "gateway": "2607:5300:0203:43ff:00ff:00ff:00ff:00ff"
+   },
+   "ipv4": {
+    "network": "54.39.132.0/24",
+    "ip": "192.0.2.159",
+    "gateway": "54.39.132.254"
+   }
+  },
+  "vmac": {
+   "quota": 256,
+   "supported": true
+  },
+  "bandwidth": {
+   "OvhToOvh": {
+    "value": 1000,
+    "unit": "Mbps"
+   },
+   "type": "included",
+   "OvhToInternet": {
+    "unit": "Mbps",
+    "value": 1000
+   },
+   "InternetToOvh": {
+    "unit": "Mbps",
+    "value": 1000
+   }
+  },
+  "ola": {
+   "availableModes": [],
+   "available": false,
+   "supportedModes": []
+  }
+ },
+ "virtualMacs": [
+  "02:00:00:8e:de:9c",
+  "02:00:00:82:90:a0"
+ ]
+}

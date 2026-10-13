@@ -1,0 +1,104 @@
+NX-Core 4-32f | Intel Xeon E5-1620v2 | 4c/32GB | 1x 120GB SATA (none) |  | 15.99 | 
+NX-Core 6-32c | Intel Xeon E5-1650v2 | 6c/32GB | 1x 120GB SATA (none) |  | 18.99 | 
+NX-Core 4-16b | Intel Xeon-E3 1230v6 | 4c/16GB | 2x 2TB SATA (Soft RAID) |  | 25.99 | 
+NX-Core 4-32g | Intel Xeon-D 1520 | 4c/32GB | 2x 2TB SATA (Soft RAID) |  | 25.99 | 
+NX-Core 4-32i | Intel Xeon-E3 1270 v6 | 4c/32GB | 2x 2TB SATA (Soft RAID) |  | 27.99 | 
+NX-Core 8-32b | Intel Xeon-D 1540 | 8c/32GB | 2x 2TB SATA (Soft RAID) |  | 29.99 | 
+NX-Core 4-32h | Intel Xeon-E3 1245 v5 | 4c/32GB | 2x 2TB SATA (Soft RAID) |  | 29.99 | 
+NX-Core 8-32c | Intel Xeon-D 1540 | 8c/32GB | 4x 2TB SATA (Soft RAID) |  | 29.99 | 
+NX-Core 4-32d | Intel Xeon D-2123IT | 4c/32GB | 2x 4TB SATA (Soft RAID) |  | 32.99 | 
+NX-Core 6-16 | Intel Xeon E5-1650v4 | 6c/16GB | 2x 450GB NVMe (Soft RAID) |  | 35.99 | 
+NX-Core 4-16a | Intel Xeon-D 1521 | 4c/16GB | 4x 4TB SATA + 1x 500GB NVMe (Soft RAID) |  | 36.99 | 
+NX-Core 4-32e | Intel Xeon E-2274G | 4c/32GB | 2x 960GB NVMe (Soft RAID) |  | 43.99 | 
+NX-Core 4-32b | Intel Core i7-7700K | 4c/32GB | 2x 450GB NVMe + 1x 4TB SATA (Soft RAID) |  | 44.99 | value
+NX-Core 4-32a | Intel Core i7-7700K | 4c/32GB | 2x 450GB NVMe (Soft RAID) |  | 44.99 | 
+NX-Core 6-32d | Intel Xeon-E 2136 | 6c/32GB | 2x 512GB NVMe (Soft RAID) |  | 45.99 | value
+NX-Core 8-32d | Intel Xeon-D 2141I | 8c/32GB | 2x 512GB NVMe (Soft RAID) |  | 57.99 | value
+NX-Core 8-32e | Intel Xeon-E 2288G | 8c/32GB | 2x 960GB NVMe (Soft RAID) |  | 63.99 | value
+NX-Core 6-32a | AMD Ryzen 5 3600X | 6c/32GB | 2x 512GB NVMe (Soft RAID) |  | 76.99 | 
+NX-Core 6-32b | AMD Ryzen 5 Pro 3600 | 6c/32GB | 4x 6TB SATA (Soft RAID) |  | 83.99 | 
+NX-Core 4-32c | Intel i7-6700k | 4c/32GB | 1x 480GB SATA (Soft RAID) |  | 83.99 | 
+NX-Core 8-64 | AMD Ryzen 7 3800X | 8c/64GB | 2x 960GB NVMe (Soft RAID) |  | 99.99 | value
+NX-Core 8-32a | AMD Ryzen 7 Pro 3700 | 8c/32GB | 4x 14TB SAS (Soft RAID) |  | 251.99 | 
+NX-Pulse 6-32 | AMD Ryzen 5 5600X | 6c/32GB | 2x 512GB NVMe (Soft RAID) |  | 99.99 | 
+NX-Pulse 8-64b | AMD Ryzen 7 9700X | 8c/64GB | 2x 512GB NVMe (Soft RAID) |  | 105.99 | value
+NX-Pulse 8-64a | AMD Ryzen 7 5800X | 8c/64GB | 2x 960GB NVMe (Soft RAID) |  | 137.99 | 
+NX-Pulse 12-32 | AMD Ryzen 9 5900X | 12c/32GB | 2x 512GB NVMe (Soft RAID) |  | 140.99 | 
+NX-Pulse 12-64 | AMD RYZEN 9 9900X | 12c/64GB | 2x 512GB NVMe (Soft RAID) |  | 162.99 | 
+NX-Pulse 16-128 | AMD RYZEN 9 9950X | 16c/128GB | 2x 960GB NVMe (Soft RAID) |  | 243.99 | 
+NX-Pulse 8-64c | AMD RYZEN 7 9800X3D | 8c/64GB | 2x 960GB NVMe (Soft RAID) |  | 455.99 | 
+NX-Pulse 16-64 | AMD RYZEN 9 9950X3D | 16c/64GB | 2x 960GB NVMe (Soft RAID) |  | 510.99 | 
+NX-Forge 16-128a | AMD Epyc 7351p | 16c/128GB | 2x 4TB SATA (Soft RAID) |  | 59.99 | 
+NX-Forge 6-32c | Intel Xeon-E 2386G | 6c/32GB | 2x 512GB NVMe (Soft RAID) |  | 88.99 | 
+NX-Forge 24-128c | AMD Epyc 7451 | 24c/128GB | 2x 4TB SATA (Soft RAID) |  | 94.99 | 
+NX-Forge 8-32c | Intel Xeon-E 2388G | 8c/32GB | 2x 512GB NVMe (Soft RAID) |  | 99.99 | 
+NX-Forge 6-32a | AMD EPYC 4244P | 6c/32GB | 2x 960GB NVMe (Soft RAID) |  | 147.99 | 
+NX-Forge 16-128b | AMD Epyc 7371 | 16c/128GB | 2x 960GB NVMe (Soft RAID) |  | 151.99 | recommended,value
+NX-Forge 12-96 | Intel Xeon Silver 4214R | 12c/96GB | 2x 1.92TB NVMe (Soft RAID) |  | 176.99 | 
+NX-Forge 8-64a | AMD EPYC 4344P | 8c/64GB | 2x 960GB NVMe (Soft RAID) |  | 203.99 | 
+NX-Forge 16-64c | AMD Epyc 7313 | 16c/64GB | 2x 960GB NVMe (Soft RAID) |  | 243.99 | 
+NX-Forge 24-128a | AMD Epyc 7402 | 24c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 259.99 | 
+NX-Forge 6-32b | AMD EPYC 4245P | 6c/32GB | 2x 960GB NVMe (Soft RAID) |  | 259.99 | 
+NX-Forge 24-128b | AMD Epyc 7413 | 24c/128GB | 2x 960GB NVMe (Soft RAID) |  | 275.99 | 
+NX-Forge 12-64a | AMD EPYC 4464P | 12c/64GB | 2x 960GB NVMe (Soft RAID) |  | 276.99 | 
+NX-Forge 24-128h | Intel Xeon Gold 6312U | 24c/128GB | 2x 960GB NVMe (Soft RAID) |  | 320.99 | 
+NX-Forge 8-32a | AMD EPYC 4344P | 8c/32GB | 2x 22TB SAS (Soft RAID) |  | 324.99 | 
+NX-Forge 8-64b | AMD EPYC 4345P | 8c/64GB | 2x 960GB NVMe (Soft RAID) |  | 324.99 | 
+NX-Forge 16-64a | AMD EPYC 4584PX | 16c/64GB | 2x 960GB NVMe (Soft RAID) |  | 357.99 | 
+NX-Forge 12-64b | AMD EPYC 4465P | 12c/64GB | 2x 960GB NVMe (Soft RAID) |  | 422.99 | 
+NX-Forge 24-96 | AMD EPYC 8224P | 24c/96GB | 2x 960GB NVMe (Soft RAID) |  | 471.99 | 
+NX-Forge 16-64b | AMD EPYC 4585PX | 16c/64GB | 2x 960GB NVMe (Soft RAID) |  | 486.99 | 
+NX-Forge 8-32b | AMD EPYC 4345P | 8c/32GB | 2x 24TB SAS (Soft RAID) |  | 625.99 | 
+NX-Forge 16-128d | AMD EPYC GENOA 9124 | 16c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 877.99 | 
+NX-Forge 16-128g | Intel Xeon Gold 6426Y | 16c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 877.99 | 
+NX-Forge 24-128g | INTEL XEON 6527P | 24c/128GB | 2x 960GB NVMe (Soft RAID) |  | 930.99 | 
+NX-Forge 24-128i | Intel Xeon Gold 6442Y | 24c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 941.99 | 
+NX-Forge 24-128d | AMD EPYC GENOA 9254 | 24c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 941.99 | 
+NX-Forge 16-128f | Intel Xeon 6517P | 16c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 973.99 | 
+NX-Forge 16-128e | AMD EPYC TURIN 9135 | 16c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 973.99 | 
+NX-Forge 24-128f | Intel Xeon 6527P | 24c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1023.99 | 
+NX-Forge 24-128e | AMD EPYC TURIN 9255 | 24c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1023.99 | 
+NX-Forge 16-128c | AMD EPYC 9135 | 16c/128GB | 16x 24TB SAS (Soft RAID) |  | 3366.99 | 
+NX-Titan 24-64 | 2x Intel Xeon E5-2680 v3 | 24c/64GB | 2x 480GB SATA (Soft RAID) |  | 83.99 | 
+NX-Titan 24-96 | 2x Intel Xeon Silver 4214R | 24c/96GB | 2x 960GB NVMe (Soft RAID) |  | 152.99 | value
+NX-Titan 28-96 | 2x Intel Xeon Gold 6132 | 28c/96GB | 2x 960GB NVMe (Soft RAID) |  | 198.99 | 
+NX-Titan 32-256a | AMD Epyc 7532 | 32c/256GB | 2x 1.92TB NVMe (Soft RAID) |  | 290.99 | 
+NX-Titan 48-256a | AMD Epyc 7642 | 48c/256GB | 2x 1.92TB NVMe (Soft RAID) |  | 350.99 | 
+NX-Titan 48-128c | AMD EPYC TURIN 9455 | 48c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 486.99 | 
+NX-Titan 32-128e | Intel Xeon Gold 6438M | 32c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 990.99 | 
+NX-Titan 32-128a | AMD EPYC GENOA 9354 | 32c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1023.99 | 
+NX-Titan 48-128a | AMD EPYC GENOA 9454 | 48c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1054.99 | 
+NX-Titan 64-128a | AMD EPYC GENOA 9554 | 64c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1071.99 | 
+NX-Titan 32-128d | Intel Xeon 6737P | 32c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1104.99 | 
+NX-Titan 32-128b | AMD EPYC TURIN 9355 | 32c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1104.99 | 
+NX-Titan 48-128b | AMD EPYC TURIN 9455 | 48c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1168.99 | 
+NX-Titan 96-128a | AMD EPYC GENOA 9654 | 96c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1314.99 | performance
+NX-Titan 64-128b | AMD EPYC TURIN 9555 | 64c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1328.99 | performance
+NX-Titan 96-128b | AMD EPYC TURIN 9655 | 96c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1590.99 | performance
+NX-Titan 128-128 | AMD EPYC TURIN 9755 | 128c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1784.99 | performance
+NX-Titan 192-128 | AMD EPYC TURIN 9965 | 192c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 1947.99 | performance
+NX-Titan 32-192 | 2x Intel Xeon Gold 6226R | 32c/192GB | 6x 3.84TB SAS (Hard RAID) |  | 2036.99 | 
+NX-Titan 16-256a | 2x Intel Xeon Gold 5515+ | 16c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 2183.99 | 
+NX-Titan 40-384 | 2x Intel Xeon Gold 6242R | 40c/384GB | 6x 3.84TB SAS (Hard RAID) |  | 2259.99 | 
+NX-Titan 48-256b | 2x AMD Epyc 9254 | 48c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 2275.99 | 
+NX-Titan 16-256b | 2x Intel Xeon Gold 5515+ | 16c/256GB | 6x 7.68TB NVMe (Soft RAID) |  | 2275.99 | 
+NX-Titan 32-256c | 2x Intel Xeon Gold 6526Y | 32c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 2305.99 | 
+NX-Titan 48-256e | 2x Intel Xeon Gold 6542Y | 48c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 2307.99 | 
+NX-Titan 36-128 | Intel Xeon Gold 6554S | 36c/128GB | 24x 22TB SAS (Soft RAID) |  | 2377.99 | 
+NX-Titan 72-256 | 2x Intel Xeon Gold 6554S | 72c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 2462.99 | 
+NX-Titan 48-768 | 2x Intel Xeon Gold 6248R | 48c/768GB | 6x 3.84TB SAS (Hard RAID) |  | 2480.99 | 
+NX-Titan 64-384 | 2x AMD Epyc 9354 | 64c/384GB | 6x 3.84TB NVMe (Soft RAID) |  | 2549.99 | 
+NX-Titan 48-256f | 2x Intel Xeon Gold 6542Y | 48c/256GB | 6x 7.68TB NVMe (Soft RAID) |  | 2580.99 | 
+NX-Titan 32-128c | 2x Intel Xeon 6517P | 32c/128GB | 6x 3.84TB NVMe (Soft RAID) |  | 2974.99 | 
+NX-Titan 48-256c | 2x AMD EPYC 9255 | 48c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 3059.99 | 
+NX-Titan 48-256d | 2x Intel Xeon 6527P | 48c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 3118.99 | 
+NX-Titan 64-256 | 2x AMD EPYC 9355 | 64c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 3379.99 | 
+NX-Titan 384-128 | 2x AMD EPYC TURIN 9965 | 384c/128GB | 2x 1.92TB NVMe (Soft RAID) |  | 3731.99 | performance
+NX-Titan 128-256 | 2x AMD EPYC 9555 | 128c/256GB | 6x 3.84TB NVMe (Soft RAID) |  | 4056.99 | performance
+NX-Titan 192-384 | 2x AMD EPYC 9655 | 192c/384GB | 6x 3.84TB NVMe (Soft RAID) |  | 4303.99 | performance
+NX-Titan 32-256b | AMD EPYC 9355 | 32c/256GB | 24x 24TB SAS (Soft RAID) |  | 4970.99 | 
+NX-GPU 8-64 | AMD Ryzen 7 5800X | 8c/64GB | 2x 960GB NVMe (Soft RAID) | 1x Radeon RX 6700 XT | 211.99 | gpu
+NX-GPU 16-192 | AMD EPYC GENOA 9124 | 16c/192GB | 2x 1.92TB NVMe (Soft RAID) | 2x NVIDIA L4 | 1574.99 | gpu
+NX-GPU 24-192 | AMD EPYC GENOA 9254 | 24c/192GB | 2x 1.92TB NVMe (Soft RAID) | 2x NVIDIA L4 | 1622.99 | gpu
+NX-GPU 32-192 | AMD EPYC GENOA 9554 | 32c/192GB | 2x 1.92TB NVMe (Soft RAID) | 2x NVIDIA L4 | 1672.99 | gpu
+NX-GPU 64-384 | 2x AMD Epyc 9354 | 64c/384GB | 2x 3.84TB NVMe (Soft RAID) | 2x NVIDIA L40S | 5988.99 | gpu

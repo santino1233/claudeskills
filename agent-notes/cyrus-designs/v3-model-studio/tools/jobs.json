@@ -1,0 +1,254 @@
+[
+{
+"file": "viewport-paint.html",
+"q": "ctl=0&hover=1",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "a-paint-dark.png",
+"wait": 1300
+},
+{
+"file": "viewport-paint.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "a-paint-light.png",
+"wait": 1300
+},
+{
+"file": "viewport-paint.html",
+"q": "ctl=0&ctx=tp&state=aim",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "a-paint-dark-thirdperson-aim.png",
+"wait": 1300
+},
+{
+"file": "viewport-paint.html",
+"q": "ctl=0&mesh=1",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "a-paint-dark-aimesh.png",
+"wait": 1500
+},
+{
+"file": "viewport-paint.html",
+"q": "ctl=0&mesh=1&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "a-paint-light-aimesh.png",
+"wait": 1500
+},
+{
+"file": "viewport-paint.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "a-paint-narrow.png",
+"wait": 1300
+},
+{
+"file": "model-editor.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "b-editor-dark.png",
+"wait": 1300
+},
+{
+"file": "model-editor.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "b-editor-light.png",
+"wait": 1300
+},
+{
+"file": "model-editor.html",
+"q": "ctl=0&compare=1&tool=rotate&tab=checks",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "b-editor-dark-compare.png",
+"wait": 1300
+},
+{
+"file": "model-editor.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "b-editor-narrow.png",
+"wait": 1300
+},
+{
+"file": "retexture.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "c-retex-dark.png",
+"wait": 1800
+},
+{
+"file": "retexture.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "c-retex-light.png",
+"wait": 1800
+},
+{
+"file": "retexture.html",
+"q": "ctl=0&ch=uv&isle=side_r&uv=rough&chopen=1",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "c-retex-dark-uv-channels.png",
+"wait": 1800
+},
+{
+"file": "retexture.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "c-retex-narrow.png",
+"wait": 1800
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "d-locked-dark-saka.png",
+"wait": 1300
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "d-locked-light-saka.png",
+"wait": 1300
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0&state=unknown",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "d-locked-dark-unknown.png",
+"wait": 1300
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0&state=experimental",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "d-locked-dark-hytale.png",
+"wait": 1300
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0&state=experimental&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "d-locked-light-hytale.png",
+"wait": 1300
+},
+{
+"file": "locked-states.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "d-locked-narrow.png",
+"wait": 1300
+},
+{
+"file": "library.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "e-library-dark.png",
+"wait": 1600
+},
+{
+"file": "library.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "e-library-light.png",
+"wait": 1600
+},
+{
+"file": "library.html",
+"q": "ctl=0&tab=mine",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "e-library-dark-mine.png",
+"wait": 1600
+},
+{
+"file": "library.html",
+"q": "ctl=0&tab=mine&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "e-library-light-mine.png",
+"wait": 1600
+},
+{
+"file": "library.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "e-library-narrow.png",
+"wait": 1600
+},
+{
+"file": "prompt-flow.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "f-flow-dark.png",
+"wait": 1300
+},
+{
+"file": "prompt-flow.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"full": false,
+"out": "f-flow-light.png",
+"wait": 1300
+},
+{
+"file": "prompt-flow.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "f-flow-narrow.png",
+"wait": 1300
+}
+]

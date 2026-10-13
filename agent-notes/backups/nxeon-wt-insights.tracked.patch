@@ -1,0 +1,681 @@
+diff --git a/ROADMAP.md b/ROADMAP.md
+index d6fa2ef30b..e80d471b5d 100644
+--- a/ROADMAP.md
++++ b/ROADMAP.md
+@@ -117,6 +117,15 @@ descriptions`, code NOT yet committed/pushed/deployed (data backfill below DID r
+   separately decide on uMod's ToS and on the ~400-row (1.2%) Modrinth backfill gap (consistent HTTP 400
+   on a handful of large batches, not yet root-caused).
+ 
++## Built 2026-10-01 (branch `feature/admin-insights-and-bot-filter`, not yet promoted)
++
++- [x] Bot traffic classification + filtering (lib/bots, isBot/botKind on Visit, honeypot, FCrDNS, crawler
++  activity from the nginx log). Owner: run `scripts/backfill-bot-classification.ts` after deploy.
++- [x] `/admin/insights` — revenue/MRR/churn/LTV/cohorts, bot-free funnel, margin, capacity forecast, jobs,
++  support, partners, email, payments, crawlers; capacity + revenue anomaly alerts; churn-risk list.
++- [ ] Next (see docs/ADMIN-INSIGHTS-PROPOSALS.md): Stripe dispute webhook, Job.startedAt/finishedAt,
++  weekly owner digest, WalletTransaction.kind.
++
+ ## Recently shipped (2026-07-23)
+ 
+ - [x] SEO foundation — sitemap.xml, robots.txt, manifest, dynamic OG image, root + per-page metadata,
+diff --git a/app/api/track/route.ts b/app/api/track/route.ts
+index 89bebdde61..1042bc9588 100644
+--- a/app/api/track/route.ts
++++ b/app/api/track/route.ts
+@@ -5,6 +5,8 @@ import { checkRateLimit } from "@/lib/rate-limit";
+ import { trustedClientIp } from "@/app/api/_lib/client-ip";
+ import { currentUser, impersonating } from "@/lib/auth";
+ import { parseUserAgent } from "@/lib/ua-parse";
++import { classifyHit } from "@/lib/bots/classify";
++import { activeIpFlag } from "@/lib/bots/ip-flags";
+ 
+ export const runtime = "nodejs";
+ 
+@@ -21,8 +23,15 @@ export const runtime = "nodejs";
+  * the admin visitors/analytics pages attribute traffic and abuse to. A forged
+  * value poisoned both.
+  *
+- * Bots are dropped by a coarse UA check. The visit "kind" (marketing vs portal)
+- * comes from a `?k=` query param the mounter sets.
++ * Bots are CLASSIFIED, not dropped (2026-10-01, lib/bots/classify.ts): the row
++ * is stored with `isBot`/`botKind`/`botReason` so every analytics read can
++ * exclude it by default (and the admin can still see it with "include bots"),
++ * and the worker re-classifier (worker/bot-classify.ts) can upgrade a verdict
++ * later from behaviour. Before this, a coarse UA regex silently dropped
++ * self-declared bots but let headless scrapers (Lightpanda, ~3k rows/day from
++ * residential proxies) and stale-UA fleets straight into the human numbers.
++ * The visit "kind" (marketing vs portal) comes from a `?k=` query param the
++ * mounter sets.
+  *
+  * Two shapes of POST arrive here:
+  *  - a PAGEVIEW (has `path`): inserts the Visit row, attaches session/pvid/utm and
+@@ -39,9 +48,6 @@ export const runtime = "nodejs";
+  * and that person is only ever counted by the coarse IP path.
+  */
+ 
+-const BOT_RE =
+-  /bot|crawl|spider|slurp|bingpreview|mediapartners|adsbot|facebookexternalhit|embedly|quora|pinterest|redditbot|whatsapp|telegrambot|discordbot|slackbot|semrush|ahrefs|mj12|dotbot|petalbot|yandex|baidu|duckduckbot|headless|phantomjs|python-requests|python-urllib|go-http|libwww|curl\/|wget\/|okhttp|axios\/|node-fetch|lighthouse|pagespeed|gtmetrix|pingdom|uptimerobot|statuscake|monitor|preview|scrapy/i;
+-
+ const VID_COOKIE = "nx_vid";
+ const VID_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
+ const CONSENT_COOKIE = "nxeon_cookie_consent";
+@@ -96,6 +102,8 @@ export async function POST(req: Request) {
+       gclid?: unknown;
+       close?: unknown;
+       dur?: unknown;
++      ix?: unknown;
++      wd?: unknown;
+     };
+ 
+     // --- CLOSE beacon: attach dwell time to the earlier pageview row ---
+@@ -105,14 +113,20 @@ export async function POST(req: Request) {
+       if (pvid && Number.isFinite(durRaw)) {
+         // Cap at 30 min so a backgrounded tab can't record an absurd dwell.
+         const durationMs = Math.min(Math.max(Math.round(durRaw), 0), 30 * 60_000);
+-        await db.visit.updateMany({ where: { pvid }, data: { durationMs } });
++        // `ix` = the visitor produced at least one real input event (pointer,
++        // scroll, key, touch) on this pageview — a bot-detection signal.
++        const interacted = typeof body.ix === "boolean" ? body.ix : undefined;
++        await db.visit.updateMany({
++          where: { pvid },
++          data: { durationMs, ...(interacted !== undefined ? { interacted } : {}) },
++        });
+       }
+       return NextResponse.json({ ok: true });
+     }
+ 
+     const ua = (req.headers.get("user-agent") ?? "").slice(0, 400);
+-    // Silently accept but skip obvious bots and empty UAs.
+-    if (!ua || BOT_RE.test(ua)) {
++    // An empty UA is never a browser running our beacon — not worth a row.
++    if (!ua) {
+       return NextResponse.json({ ok: true });
+     }
+     const { deviceType, os, browser } = parseUserAgent(ua);
+@@ -192,6 +206,21 @@ export async function POST(req: Request) {
+       utmMedium = utmMedium ?? "cpc";
+     }
+ 
++    // --- Bot classification at ingest (cheap, local: UA catalogue, official
++    // crawler IP lists, datacenter ranges, one indexed BotIpFlag lookup). No
++    // DNS here — FCrDNS verification happens asynchronously in the worker.
++    const webdriver = body.wd === true ? true : body.wd === false ? false : null;
++    const ipFlag = await activeIpFlag(ip);
++    const bot = classifyHit({ ua, ip, userId, webdriver, ipFlag });
++    if (bot.isBot && bot.crawlerId) {
++      // Self-declared crawlers rendering JS can fire this beacon for every page
++      // they crawl; cap their rows globally per crawler so a crawl of 65k pages
++      // can't balloon the Visit table (crawler volume is measured from the
++      // access log instead — worker/crawler-log.ts).
++      const cap = checkRateLimit(`trackbot:${bot.crawlerId}`, { max: 300, windowMs: 60_000 });
++      if (!cap.ok) return NextResponse.json({ ok: true });
++    }
++
+     await db.visit.create({
+       data: {
+         ip,
+@@ -211,6 +240,10 @@ export async function POST(req: Request) {
+         utmMedium,
+         utmCampaign: cleanUtm(body.utmCampaign),
+         gclid,
++        isBot: bot.isBot,
++        botKind: bot.botKind,
++        botReason: bot.botReason,
++        webdriver,
+       },
+     });
+ 
+diff --git a/components/VisitTracker.tsx b/components/VisitTracker.tsx
+index 7aa82ae619..0217b90e0e 100644
+--- a/components/VisitTracker.tsx
++++ b/components/VisitTracker.tsx
+@@ -20,11 +20,30 @@ import { usePathname } from "next/navigation";
+  *    page attributes back to the ad/campaign that brought the visitor,
+  *  - a per-pageview id (`pvid`) plus a dwell-time "close" beacon fired on navigation
+  *    away and on pagehide, so each pageview gets a real time-on-page.
++ *
++ * Bot-detection signals (2026-10-01, lib/bots/*): `wd` = navigator.webdriver on the
++ * pageview, `ix` = whether any real input event (pointer/scroll/key/touch) happened
++ * before the close beacon, and an invisible honeypot link to a robots-disallowed
++ * path (/api/track/hp) that only link-harvesting scrapers ever follow.
+  */
+ export default function VisitTracker({ kind = "marketing" }: { kind?: "marketing" | "portal" }) {
+   const pathname = usePathname();
+   // The currently-open pageview whose dwell time we still owe a close beacon for.
+   const openRef = useRef<{ pvid: string; start: number } | null>(null);
++  // Any genuine input on the current pageview (reset per pageview).
++  const interactedRef = useRef(false);
++
++  useEffect(() => {
++    if (typeof window === "undefined") return;
++    const mark = () => {
++      interactedRef.current = true;
++    };
++    const evs = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart", "wheel"] as const;
++    for (const e of evs) window.addEventListener(e, mark, { passive: true, capture: true });
++    return () => {
++      for (const e of evs) window.removeEventListener(e, mark, { capture: true });
++    };
++  }, []);
+ 
+   useEffect(() => {
+     if (typeof window === "undefined") return;
+@@ -89,6 +108,13 @@ export default function VisitTracker({ kind = "marketing" }: { kind?: "marketing
+ 
+     const pvid = genId();
+     openRef.current = { pvid, start: Date.now() };
++    interactedRef.current = false;
++    let wd: boolean | null = null;
++    try {
++      wd = navigator.webdriver === true;
++    } catch {
++      /* ignore */
++    }
+ 
+     try {
+       fetch(`/api/track?k=${kind}`, {
+@@ -104,6 +130,7 @@ export default function VisitTracker({ kind = "marketing" }: { kind?: "marketing
+           utmMedium: utm.medium ?? null,
+           utmCampaign: utm.campaign ?? null,
+           gclid: utm.gclid ?? null,
++          wd,
+         }),
+         keepalive: true,
+       }).catch(() => {});
+@@ -137,7 +164,7 @@ export default function VisitTracker({ kind = "marketing" }: { kind?: "marketing
+     openRef.current = null;
+     const dur = Date.now() - open.start;
+     if (dur < 250) return; // ignore instant bounces / strict-mode churn
+-    const body = JSON.stringify({ close: true, pvid: open.pvid, dur });
++    const body = JSON.stringify({ close: true, pvid: open.pvid, dur, ix: interactedRef.current });
+     try {
+       // sendBeacon survives unload; fall back to keepalive fetch.
+       if (navigator.sendBeacon) {
+@@ -155,7 +182,21 @@ export default function VisitTracker({ kind = "marketing" }: { kind?: "marketing
+     }
+   }
+ 
+-  return null;
++  // Honeypot: invisible to people (off-screen, aria-hidden, untabbable) and to
++  // well-behaved crawlers (/api is Disallowed in app/robots.ts, and the link is
++  // nofollow). Only scrapers that harvest every <a href> fetch it, and
++  // app/api/track/hp/route.ts flags the fetching IP.
++  return (
++    <a
++      href="/api/track/hp"
++      rel="nofollow"
++      tabIndex={-1}
++      aria-hidden="true"
++      style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
++    >
++      &#8203;
++    </a>
++  );
+ }
+ 
+ /** Read the gclid out of Google's `_gcl_aw` cookie (`GCL.<ts>.<gclid>`), if present.
+diff --git a/components/admin/GoogleAdsClicksPanel.tsx b/components/admin/GoogleAdsClicksPanel.tsx
+index 16543686aa..643793051e 100644
+--- a/components/admin/GoogleAdsClicksPanel.tsx
++++ b/components/admin/GoogleAdsClicksPanel.tsx
+@@ -12,14 +12,15 @@ import { db } from "@/lib/db";
+  */
+ export async function GoogleAdsClicksPanel() {
+   const now = Date.now();
+-  const gte = (ms: number) => ({ gclid: { not: null }, createdAt: { gte: new Date(now - ms) } });
++  // Bot-classified hits (lib/bots/*) are not real ad clicks.
++  const gte = (ms: number) => ({ gclid: { not: null }, isBot: false, createdAt: { gte: new Date(now - ms) } });
+ 
+   const [c1h, c24h, c7d, recent] = await Promise.all([
+     db.visit.count({ where: gte(3_600_000) }),
+     db.visit.count({ where: gte(86_400_000) }),
+     db.visit.count({ where: gte(7 * 86_400_000) }),
+     db.visit.findMany({
+-      where: { gclid: { not: null } },
++      where: { gclid: { not: null }, isBot: false },
+       orderBy: { createdAt: "desc" },
+       take: 25,
+       select: { id: true, createdAt: true, path: true, gclid: true, city: true, country: true, userId: true },
+diff --git a/docs/DOCUMENTATION.md b/docs/DOCUMENTATION.md
+index e44d7f824e..335df9b90a 100644
+--- a/docs/DOCUMENTATION.md
++++ b/docs/DOCUMENTATION.md
+@@ -3842,7 +3842,7 @@ disk-usage-over-time chart.
+ 
+ | Group | Sections |
+ |---|---|
+-| Overview | `/admin` dashboard, `/admin/analytics`, `/admin/visitors` |
++| Overview | `/admin` dashboard, `/admin/insights` (business analytics + bots & crawlers, 2026-10-01), `/admin/analytics`, `/admin/visitors` |
+ | Clients | `/admin/users`, `/admin/users/[id]`, `/admin/orgs`, `/admin/grant` |
+ | Support | `/admin/support`, `/admin/chat`, `/admin/feedback` |
+ | Fleet | `/admin/servers`, `/admin/nodes`, `/admin/ips`, `/admin/provisioning`, `/admin/jobs`, `/admin/monitoring`, `/admin/abuse`, `/admin/infrastructure` |
+@@ -4634,6 +4634,7 @@ Set in `/opt/nxeon/.env` (chmod 600, gitignored). **Never commit it; never print
+ | OVH | `OVH_ENDPOINT` `OVH_APPLICATION_KEY` `OVH_APPLICATION_SECRET` `OVH_CONSUMER_KEY` |
+ | Steam | `STEAM_WEB_API_KEY` (GSLT auto-mint, `lib/steam-gslt.ts`); `DAYZ_STEAM_USERNAME` `DAYZ_STEAM_PASSWORD` — a dedicated, Nxeon-owned, download-only Steam account (Steam Guard deliberately off), needed because DayZ's dedicated-server depot rejects anonymous SteamCMD login unlike every other family. Unset ⇒ `lib/game-order.ts` refuses new DayZ orders outright ("DayZ hosting isn't available yet"). See `lib/dayz-steam.ts` for the full mechanism and the one real manual step (creating that account) — no Steam account exists in this environment to set these for real. |
+ | Admin / console | `NXEON_ADMIN_HOST` `NXEON_ADMIN_HOSTS` `CONSOLE_PUBLIC_WS_URL` |
++| Analytics | `NXEON_ACCESS_LOG` — nginx access log the worker parses for crawler activity (default `/var/log/nginx/access.log`; unreadable ⇒ the crawler sweep is inert, logged once) |
+ | Environment split | `NXEON_ENV` `NXEON_COOKIE_NAME` `NXEON_NAT_CHAIN` `NXEON_TAG` `NXEON_IP_START` `NXEON_IP_END` `NXEON_SSH_PORT_START` `NXEON_SSH_PORT_END` `NXEON_CRED_FILE` |
+ 
+ **Feature flags — and what happens when each is off.** This table is the single most important thing
+@@ -14893,6 +14894,79 @@ against a server the customer insisted had a working, reachable management key.
+ **Files:** `prisma/schema.prisma`, `lib/sftp.ts`, `lib/actions-files.ts`,
+ `app/admin/servers/[id]/page.tsx`, `test/sftp-connection-target.test.ts`.
+ 
++## Bot traffic filtering + admin Insights (2026-10-01, branch `feature/admin-insights-and-bot-filter`)
++
++**Why.** Read-only diagnosis of prod on 2026-10-01 found **44% of all `Visit` rows were bots** that the
++old coarse `BOT_RE` in `/api/track` let through: `Lightpanda/1.0` (a headless browser that executes
++JS and fires the beacon — 17,147 rows in 7 days from 16,183 residential-proxy IPs; 596k requests /
++18k IPs in the access log) and a stale-UA fleet (Chrome 118-121 / Firefox 120-121 rotated across
++~400 IPs, one page each, 25-26 Sep). Declared crawlers (Googlebot, Amazonbot — 23.6k requests on
++2026-09-30 vs Googlebot's 321 — Bingbot, ClaudeBot, GPTBot, …) never reached `Visit` at all because
++they were dropped, so there was no way to see what they were doing to the ~65k static pages.
++
++**Classification** — one pure function, `lib/bots/classify.ts` `classifyHit()`, used by ingest, the
++worker, the backfill and the log parser:
++
++| Kind | Rule |
++|---|---|
++| `verified-crawler` | catalogue UA (`lib/bots/catalogue.ts`, ~70 named bots) AND the IP is in the crawler's official published IP list (Google, Bing, Apple, OpenAI ×3 — committed in `lib/bots/datacenter-ranges.json`) or passes forward-confirmed reverse DNS (`lib/bots/verify.ts`, cached 14d in `CrawlerIpVerdict`) |
++| `declared-crawler` | self-declared bot we can't (or haven't yet) verified; long-tail `bot/crawl/spider/+http` UAs |
++| `scraper` | headless/automation/HTTP-library UA (Lightpanda, HeadlessChrome, python-requests, curl, Go, bare `node`, …), empty UA, a verifiable crawler UA that FAILS FCrDNS (spoof), honeypot/velocity/session-sweep evidence |
++| `suspected-bot` | browser-looking UA scoring ≥3 on weak signals: stale browser build (≥24 majors behind, estimated from the release cadence — never a hard-coded version), iOS ≤13, non-browser/truncated UA, datacenter IP (21 providers, 12.6k v4 + 4.5k v6 merged ranges from AWS/GCP/Oracle feeds + RIPEstat ASN prefixes; Cloudflare/WARP deliberately excluded), `navigator.webdriver`, or a UA cluster (≥25 IPs/day, ≥90% referrer-less single-page landings) |
++| `human` | none of the above. A **signed-in** account is never flagged on weak signals alone. |
++
++Columns added to `Visit` (additive, nullable/defaulted): `isBot` (default false), `botKind`,
++`botReason`, `botCheckedAt`, `interacted`, `webdriver`; index `(isBot, createdAt)`. New models:
++`BotIpFlag` (expiring honeypot/velocity flags), `CrawlerIpVerdict`, `CrawlerDaily`, `CrawlerUrl`,
++`CrawlLogCursor`, `InsightsSnapshot`, `InsightsAlert`.
++
++- **Ingest** (`app/api/track/route.ts`): bots are now STORED and labelled instead of dropped (only an
++  empty UA is skipped); declared crawlers are capped at 300 rows/min each. `components/VisitTracker.tsx`
++  sends `wd` (webdriver) on the pageview and `ix` (any real pointer/scroll/key/touch) on the close
++  beacon, and renders an invisible nofollow honeypot link to `/api/track/hp` (robots-disallowed under
++  `/api`); a hit there flags the IP for 7 days (never a signed-in account, never a declared crawler).
++- **Async** (`worker/bot-classify.ts`, every 5 min): velocity (>100 anonymous pageviews/10 min/IP),
++  session sweeps (≥25 pages, ~no dwell, no interaction), UA clusters, FCrDNS verification (20
++  lookups/sweep). Only ever upgrades a verdict.
++- **Every analytics read excludes bots**: `lib/analytics.ts` `ipEx()` (now exported as `visitScope`)
++  adds `isBot: false`; also `lib/retention.ts` (win-back/retention), `lib/user-attribution.ts`
++  (acquisition source), `lib/google-ads.ts` (offline conversion upload — a bot hit can never become a
++  conversion), `components/admin/GoogleAdsClicksPanel.tsx`. `VisitorDaily` rollups are always bot-free.
++  **Admin "include bots" toggle**: per-browser cookie `nx_inc_bots` (12h, `lib/actions-insights.ts`
++  `setIncludeBots`, audited) lifts only the bot filter on live views.
++- **Crawler activity** (`worker/crawler-log.ts`, every 2 min): incremental byte-offset parse of the
++  nginx access log (≤8 MB/tick, complete lines only, logrotate-safe via inode) into `CrawlerDaily`
++  (day × bot × kind × status class × section) and `CrawlerUrl` (per-URL last status/first/last seen).
++
++**Owner actions (not run by the agent — prod writes):**
++1. Deploy (db push adds the columns/tables — all additive).
++2. Backfill existing visits (idempotent, keyset batches of 2000, resumable, re-rolls VisitorDaily):
++   `cd /opt/nxeon && npx tsx scripts/backfill-bot-classification.ts --dry-run` then without `--dry-run`.
++   Expected on today's data: ~21k of 48k rows → bot (17.3k Lightpanda scraper, ~4.1k stale-browser).
++3. Optional crawler history from the rotated logs (idempotent by inode):
++   `cd /opt/nxeon && npx tsx scripts/backfill-crawler-log.ts --dry-run` then without.
++4. Quarterly: `npx tsx scripts/refresh-datacenter-ranges.ts` and commit `lib/bots/datacenter-ranges.json`.
++
++**`/admin/insights`** (`app/admin/insights/**`, `lib/insights/**`, area `analytics`, one nav entry in
++`lib/admin-groups.ts`): tabs Overview · Revenue · Churn & LTV · Funnel · Products & margin · Capacity
++· Jobs & support · Partners & email · Payments & refunds · Bots & crawlers. Date range (`?preset=` or
++`?from=&to=`, UTC) with compare-to-previous-period on every KPI; CSV export per tab
++(`/admin/insights/export`, audited `insights.export`). Definitions reuse the console's audited ones
++(`REVENUE_WHERE`, `REAL_CASH_IN_WHERE`, `fleetMrrCents`/`serverMonthlyCents`). Honest gaps shown on
++the page: MRR history only from the first `InsightsSnapshot` (worker writes daily); job queue-wait vs
++run-time needs `Job.startedAt/finishedAt` (auto-detected when D1 adds them; until then end-to-end
++only); chargebacks are admin-recorded only (no dispute webhook); email opens are MPP-inflated;
++margins are "cost incomplete" for any node without `monthlyCostCents`. Beyond-scope features ranked in
++`docs/ADMIN-INSIGHTS-PROPOSALS.md`; the top three are implemented — **low-capacity forecast alerts**,
++**revenue/payment anomaly alerts** (both hourly → `InsightsAlert`, page-only, no email) and the
++**churn-risk list**.
++
++**Verification:** `test/bot-classify.test.ts` (real UA fixtures incl. strings from our own log),
++`test/insights-stats.test.ts`; classifier evaluated read-only against prod UA aggregates and one day
++of the nginx log; backfill (dry-run, real, idempotent re-run), worker sweeps and logrotate handling
++exercised on a throwaway DB seeded by `scripts/seed-insights-sandbox.ts` (refuses non-scratch DBs);
++EXPLAIN ANALYZE at 300k synthetic rows: all Visit reads < 220 ms, velocity query uses the new index.
++
+ ---
+ 
+ *Companion docs: `CLAUDE.md` (agent/ops conventions), `ROADMAP.md` (backlog), `docs/MIGRATION.md`
+diff --git a/lib/admin-groups.ts b/lib/admin-groups.ts
+index bee3aca13e..62e0f58f92 100644
+--- a/lib/admin-groups.ts
++++ b/lib/admin-groups.ts
+@@ -54,6 +54,7 @@ export const ADMIN_NAV: AdminGroup[] = [
+         icon: "home",
+         tabs: [
+           { label: "Overview", href: "/admin" },
++          { label: "Insights", href: "/admin/insights" },
+           { label: "Analytics", href: "/admin/analytics" },
+           { label: "Visitors", href: "/admin/visitors" },
+           { label: "Audience", href: "/admin/audience" },
+diff --git a/lib/analytics.ts b/lib/analytics.ts
+index 767acd285f..61311404ae 100644
+--- a/lib/analytics.ts
++++ b/lib/analytics.ts
+@@ -1,6 +1,7 @@
+ import { db } from "@/lib/db";
+ import { getSetting } from "@/lib/settings";
+ import { fleetMrrCents, currentRenewalPrices } from "@/lib/admin-metrics";
++import { botWhere } from "@/lib/bots/scope";
+ 
+ /**
+  * Plain (non-action) aggregation helpers for the visitor-analytics admin page.
+@@ -34,13 +35,20 @@ export async function excludedIps(): Promise<string[]> {
+   return raw.split(",").map((s) => s.trim()).filter(Boolean);
+ }
+ 
+-/** Prisma where-fragment dropping excluded IPs. Empty object when none are set,
+- *  so it spreads harmlessly into any `where`. */
+-async function ipEx(): Promise<{ ip?: { notIn: string[] } }> {
+-  const e = await excludedIps();
+-  return e.length ? { ip: { notIn: e } } : {};
++/** Prisma where-fragment every visitor-analytics read spreads into its `where`:
++ *  drops the admin's excluded IPs AND bot traffic (`isBot = false`, see
++ *  lib/bots/*). Bots are excluded by default; the admin "include bots" toggle
++ *  (cookie, lib/bots/scope.ts) lifts only the bot filter, never the IP list.
++ *  Outside a request (worker rollups) bots are always excluded. */
++async function ipEx(): Promise<{ ip?: { notIn: string[] }; isBot?: boolean }> {
++  const [e, bots] = await Promise.all([excludedIps(), botWhere()]);
++  return { ...(e.length ? { ip: { notIn: e } } : {}), ...bots };
+ }
+ 
++/** Public alias of the shared visitor scope, for other analytics modules
++ *  (lib/insights/*, lib/retention.ts, admin pages querying Visit directly). */
++export const visitScope = ipEx;
++
+ /** Distinct client IPs seen in the last `minutes` — our "live visitors now" gauge. */
+ export async function liveVisitors(minutes = 5): Promise<number> {
+   const since = new Date(Date.now() - minutes * 60_000);
+@@ -329,6 +337,7 @@ async function feedWhere(f: FeedFilter) {
+   const lte = dayEnd(f.to);
+   const where: {
+     ip?: { notIn: string[] };
++    isBot?: boolean;
+     kind?: string;
+     createdAt?: { gte?: Date; lte?: Date };
+   } = { ...(await ipEx()) };
+diff --git a/lib/google-ads.ts b/lib/google-ads.ts
+index 49b88b0fa5..642ecccbad 100644
+--- a/lib/google-ads.ts
++++ b/lib/google-ads.ts
+@@ -101,7 +101,8 @@ export async function recordAdsConversion(opts: {
+   try {
+     // Newest gclid we captured for this account (VisitTracker attributes visits to users).
+     const v = await db.visit.findFirst({
+-      where: { userId: opts.userId, gclid: { not: null } },
++      // A bot-classified hit must never become an uploaded Ads conversion.
++      where: { userId: opts.userId, gclid: { not: null }, isBot: false },
+       orderBy: { createdAt: "desc" },
+       select: { gclid: true },
+     });
+diff --git a/lib/rbac.ts b/lib/rbac.ts
+index d281681027..5d7f72c258 100644
+--- a/lib/rbac.ts
++++ b/lib/rbac.ts
+@@ -72,6 +72,7 @@ export function isStaff(role: Role): boolean {
+ const HREF_AREA: Record<string, Area> = {
+   "/admin": "overview",
+   "/admin/analytics": "analytics",
++  "/admin/insights": "analytics",
+   "/admin/audience": "analytics",
+   "/admin/deploy-funnel": "analytics",
+   "/admin/popularity": "analytics",
+diff --git a/lib/retention.ts b/lib/retention.ts
+index 6e261075bc..9aa1497d4a 100644
+--- a/lib/retention.ts
++++ b/lib/retention.ts
+@@ -69,7 +69,7 @@ export async function signupRetentionRows(): Promise<RetentionAccount[]> {
+   const ids = users.map((u) => u.id);
+ 
+   const [visits, wallet, servers, tickets, projects, invoices, hosting, audit] = await Promise.all([
+-    db.visit.groupBy({ by: ["userId"], where: { userId: { in: ids } }, _max: { createdAt: true } }),
++    db.visit.groupBy({ by: ["userId"], where: { userId: { in: ids }, isBot: false }, _max: { createdAt: true } }),
+     db.walletTransaction.groupBy({ by: ["userId"], where: { userId: { in: ids } }, _max: { createdAt: true } }),
+     db.server.groupBy({ by: ["userId"], where: { userId: { in: ids } }, _max: { createdAt: true } }),
+     db.ticket.groupBy({ by: ["userId"], where: { userId: { in: ids } }, _max: { createdAt: true } }),
+diff --git a/lib/user-attribution.ts b/lib/user-attribution.ts
+index eb10ca9222..d9b4e50f7f 100644
+--- a/lib/user-attribution.ts
++++ b/lib/user-attribution.ts
+@@ -66,6 +66,8 @@ export async function resolveAcquisitionSources(
+       const utmVisits = await db.visit.findMany({
+         where: {
+           visitorId: { in: Array.from(allVisitorIds) },
++          // Bot-classified hits never attribute a signup (lib/bots/*).
++          isBot: false,
+           OR: [{ utmSource: { not: null } }, { gclid: { not: null } }],
+         },
+         select: { visitorId: true, utmSource: true, utmMedium: true, gclid: true, createdAt: true },
+diff --git a/prisma/schema.prisma b/prisma/schema.prisma
+index 81cdba2a48..3c51c6b63b 100644
+--- a/prisma/schema.prisma
++++ b/prisma/schema.prisma
+@@ -3628,6 +3628,22 @@ model Visit {
+   // also labels the visit google/cpc. Powers the Google Ads admin diagnostic.
+   gclid       String?
+   createdAt   DateTime @default(now())
++  // ---- Bot classification (additive, 2026-10-01 — lib/bots/*, docs "Bot traffic filtering") ----
++  // Every analytics read excludes `isBot = true` by default (lib/analytics.ts
++  // `visitScope()`), with an admin "include bots" toggle. Classified at ingest by
++  // /api/track (UA catalogue + automation + stale-browser + datacenter-IP +
++  // flagged-IP signals) and RE-classified asynchronously by the worker
++  // (worker/bot-classify.ts — velocity / UA-cluster / no-interaction evidence
++  // that only exists after the fact). `botKind` is null until a row has been
++  // classified at least once (pre-2026-10-01 rows until the backfill runs):
++  //   verified-crawler | declared-crawler | suspected-bot | scraper | human
++  isBot        Boolean   @default(false)
++  botKind      String?
++  botReason    String? // short machine-readable reason list, e.g. "ua:lightpanda" or "stale-browser,dc-ip"
++  botCheckedAt DateTime? // last time the async re-classifier looked at this row
++  // Client-side signals sent by components/VisitTracker.tsx (null = old client / not sent):
++  interacted   Boolean? // any pointer/scroll/key/touch event before the close beacon
++  webdriver    Boolean? // navigator.webdriver === true (automation-controlled browser)
+ 
+   @@index([createdAt])
+   @@index([ip])
+@@ -3635,6 +3651,121 @@ model Visit {
+   @@index([sessionId])
+   @@index([pvid])
+   @@index([gclid])
++  @@index([isBot, createdAt])
++  @@index([botCheckedAt])
++}
++
++/// An IP the bot classifier has decided is automated from BEHAVIOUR (honeypot
++/// hit, velocity), consulted by /api/track at ingest so the next visit from it
++/// is classified immediately. Expires — residential proxy IPs get recycled to
++/// real people, so a flag is never permanent (lib/bots/ip-flags.ts).
++model BotIpFlag {
++  ip        String   @id
++  kind      String // scraper | suspected-bot
++  reason    String // honeypot | velocity | manual
++  hits      Int      @default(1)
++  createdAt DateTime @default(now())
++  updatedAt DateTime @updatedAt
++  expiresAt DateTime
++
++  @@index([expiresAt])
++}
++
++/// Forward-confirmed reverse DNS cache for crawler IPs (Googlebot, Bingbot,
++/// Applebot, …). A UA that CLAIMS to be Googlebot from an IP whose PTR does not
++/// resolve back into googlebot.com/google.com is a spoofing scraper. Lookups
++/// are slow, so the verdict is cached (lib/bots/verify.ts).
++model CrawlerIpVerdict {
++  ip        String   @id
++  claimed   String // catalogue id the UA claimed, e.g. "googlebot"
++  verified  Boolean
++  hostname  String?
++  checkedAt DateTime @default(now())
++
++  @@index([checkedAt])
++}
++
++/// Daily crawler-activity rollup parsed from the nginx access log by the worker
++/// (worker/crawler-log.ts). Crawlers never execute the analytics beacon reliably,
++/// so the access log is the only honest source for "what is Googlebot doing to
++/// our 65k pages". One row per (UTC day, bot, kind, status class, section).
++model CrawlerDaily {
++  id          String   @id @default(cuid())
++  date        DateTime // UTC midnight
++  bot         String // catalogue id, e.g. "googlebot", "amazonbot"
++  kind        String // verified-crawler | declared-crawler | scraper (spoofed UA)
++  statusClass String // 2xx | 3xx | 4xx | 5xx
++  section     String // first path segment bucket: "mods", "blog", "games", "asset", "api", "root", …
++  hits        Int      @default(0)
++  bytes       BigInt   @default(0)
++  updatedAt   DateTime @updatedAt
++
++  @@unique([date, bot, kind, statusClass, section])
++  @@index([date])
++  @@index([bot, date])
++}
++
++/// Per-URL crawl state for each crawler — powers coverage ("how many distinct
++/// URLs has Googlebot fetched in 30 days"), freshness and the bot-only 404/5xx
++/// list. Bounded by (#bots x #distinct page paths). Asset/API paths are not
++/// stored here (only in CrawlerDaily's aggregate).
++model CrawlerUrl {
++  id         String   @id @default(cuid())
++  bot        String
++  path       String
++  hits       Int      @default(0)
++  lastStatus Int
++  firstSeen  DateTime
++  lastSeen   DateTime
++
++  @@unique([bot, path])
++  @@index([bot, lastSeen])
++  @@index([lastStatus])
++}
++
++/// Byte-offset cursor for incremental access-log parsing (one row per log file
++/// path). `inode` detects logrotate: when it changes, the tail of the rotated
++/// file is drained first, then the new file is read from 0.
++model CrawlLogCursor {
++  id        String   @id // the log path, e.g. "/var/log/nginx/access.log"
++  inode     String
++  offset    BigInt
++  updatedAt DateTime @updatedAt
++}
++
++/// Daily snapshot of point-in-time business state that cannot be reconstructed
++/// later (MRR, paid servers, paying customers, committed vs used RAM per node).
++/// Written by the worker (worker/insights.ts) once per UTC day; powers the MRR
++/// trend and the capacity forecast on /admin/insights. Additive, append-only.
++model InsightsSnapshot {
++  id        String   @id @default(cuid())
++  date      DateTime // UTC midnight
++  metric    String // "mrr_cents" | "paid_servers" | "paying_customers" | "node_committed_ram_mb" | "node_used_ram_mb"
++  scopeId   String   @default("") // node id for per-node metrics, "" for global
++  value     Float
++  createdAt DateTime @default(now())
++
++  @@unique([date, metric, scopeId])
++  @@index([metric, date])
++}
++
++/// Alerts raised by the insights watchers (worker/insights.ts): revenue
++/// anomaly, low-capacity forecast. De-duplicated on `dedupeKey` so a
++/// persistent condition is one OPEN row, not one per sweep.
++model InsightsAlert {
++  id         String    @id @default(cuid())
++  kind       String // revenue_anomaly | capacity_forecast
++  severity   String    @default("WARN") // INFO | WARN | CRITICAL
++  title      String
++  detail     String
++  metric     Json?
++  dedupeKey  String    @unique
++  status     String    @default("OPEN") // OPEN | RESOLVED | DISMISSED
++  createdAt  DateTime  @default(now())
++  updatedAt  DateTime  @updatedAt
++  resolvedAt DateTime?
++
++  @@index([status, createdAt])
+ }
+ 
+ /// Daily rollup of first-party visitor behaviour, maintained by the worker
+diff --git a/worker/analytics.ts b/worker/analytics.ts
+index a7e9661141..9e248c4c4f 100644
+--- a/worker/analytics.ts
++++ b/worker/analytics.ts
+@@ -4,6 +4,9 @@
+ // day never aborts the sweep, and nothing here writes to Visit.
+ import { db } from "../lib/db";
+ import { computeVisitorDay } from "../lib/analytics";
++import { botReclassifySweep } from "./bot-classify";
++import { crawlerLogSweep } from "./crawler-log";
++import { insightsSnapshotSweep, insightsAlertSweep } from "./insights";
+ 
+ /** How many trailing UTC days to (re)roll each sweep. A small window so late
+  *  close-beacons (dwell time) and just-past-midnight hits still land in the
+@@ -79,3 +82,43 @@ export async function visitorRollupSweep(): Promise<void> {
+     }
+   }
+ }
++
++// ---------------------------------------------------------------------------
++// Bot filtering + crawler activity + insights — one self-scheduling tick.
++// ---------------------------------------------------------------------------
++// worker/index.ts calls `analyticsInsightsTick()` once per loop WITHOUT
++// awaiting it; this function keeps its own timers and an in-flight guard, so a
++// slow DNS lookup or a big log chunk can never stall job processing, and two
++// ticks never overlap.
++
++const TICKS = {
++  crawlerLog: { every: 2 * 60_000, last: 0 },
++  botReclassify: { every: 5 * 60_000, last: 0 },
++  snapshot: { every: 60 * 60_000, last: 0 },
++  alerts: { every: 60 * 60_000, last: 0 },
++};
++let tickRunning = false;
++
++async function runIfDue(name: keyof typeof TICKS, fn: () => Promise<unknown>) {
++  const t = TICKS[name];
++  if (Date.now() - t.last < t.every) return;
++  t.last = Date.now();
++  try {
++    await fn();
++  } catch (e) {
++    console.error(`[analytics] ${name} sweep error`, e);
++  }
++}
++
++export async function analyticsInsightsTick(): Promise<void> {
++  if (tickRunning) return;
++  tickRunning = true;
++  try {
++    await runIfDue("crawlerLog", crawlerLogSweep);
++    await runIfDue("botReclassify", botReclassifySweep);
++    await runIfDue("snapshot", insightsSnapshotSweep);
++    await runIfDue("alerts", insightsAlertSweep);
++  } finally {
++    tickRunning = false;
++  }
++}
+diff --git a/worker/index.ts b/worker/index.ts
+index 846c3b27cf..f943cee793 100644
+--- a/worker/index.ts
++++ b/worker/index.ts
+@@ -16,7 +16,7 @@ import { controlSpec } from "../lib/game-control";
+ import { backupRestore } from "./restore";
+ import { claudeBuild } from "./claude";
+ import { geoEnrichSweep } from "./geo";
+-import { visitorRollupSweep } from "./analytics";
++import { visitorRollupSweep, analyticsInsightsTick } from "./analytics";
+ import { monitorSweep, sampleServerDisks, sampleServerMemory, sampleHealthSweep } from "./monitor";
+ import { loadOutreachMailerContext, sendOutreachEmailTo } from "../lib/creator-outreach-send-core";
+ import { sshHealthSweep } from "./ssh-health";
+@@ -2989,6 +2989,11 @@ async function main() {
+         console.error("[analytics] visitor rollup error", e);
+       }
+     }
++    // Bot re-classification, crawler access-log parsing, insights snapshot +
++    // alerts. Self-scheduling and deliberately NOT awaited — it has its own
++    // in-flight guard and timers (worker/analytics.ts), so DNS lookups or a
++    // large log chunk never delay job processing.
++    void analyticsInsightsTick().catch((e) => console.error("[analytics] insights tick error", e));
+     if (Date.now() - lastBackupSweep > 15 * 60_000) {
+       lastBackupSweep = Date.now();
+       try {

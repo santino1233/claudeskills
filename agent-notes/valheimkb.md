@@ -1,0 +1,1 @@
+valheimkb: branch docs/valheim-knowledge-base, worktree /opt/nxeon-wt-valheimkb. Appended '## Knowledge base: Valheim' (~290 lines) to docs/DOCUMENTATION.md. Gaps found: valheim dataRoots in lib/game-control.ts miss /opt/valheim/config/worlds_local; no SERVER_NAME field; balloon floor; non-consecutive ports; kb-plans lacks 4GB plan. Docs only; no code changed.

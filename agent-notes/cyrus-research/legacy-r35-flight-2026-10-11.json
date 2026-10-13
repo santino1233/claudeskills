@@ -1,0 +1,130 @@
+{
+ "name": "legacy-1.21.1",
+ "version": "1.21.1",
+ "status": "completed",
+ "overall": "passed",
+ "success": true,
+ "bootMs": 41621,
+ "peakRssKb": 843004,
+ "line": "Test Flight passed on Paper 1.21.1 (6 checks, boot 41.6s, peak RSS 823 MB)",
+ "checks": [
+  {
+   "id": "boot_done",
+   "status": "pass",
+   "evidence": [
+    "L93: [04:37:26 INFO]: Done (39.016s)! For help, type \"help\"",
+    "wall 41621 ms from spawn"
+   ]
+  },
+  {
+   "id": "plugins_enabled",
+   "status": "pass",
+   "evidence": [
+    "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L83: [04:37:26 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+    "TfLegacyModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+    "L86: [04:37:26 INFO]: [TfLegacyModel] Enabling TfLegacyModel v1.0.0",
+    "rcon plugins -> Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfLegacyModel | "
+   ]
+  },
+  {
+   "id": "startup_log_clean",
+   "status": "pass",
+   "evidence": [
+    "93 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ]
+  },
+  {
+   "id": "rcon_checks",
+   "status": "pass",
+   "evidence": [
+    "pack-listed 'nxpacks list' [rss 815 MB, 670 ms]: ok -> [NxeonPackLoader] 1 pack(s) |  - a9ee94d5-f859-5bf8-81a5-6f9792322938 required=false sha1=7a7fbd5cb9789ae06f2fb29a260db09d825bf0d6 url=https://packs.example.invalid/p/7a7fbd5cb9789ae06f2fb29a260db09d825bf0d6.zip | ",
+    "loader-status 'nxpacks status' [rss 815 MB, 279 ms]: ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-11T04:37:26.263618799Z geyser=false floodgate=false clientAnswers=0 | ",
+    "legacy-ruby 'tflegacy diamond_sword 11314001' [rss 818 MB, 358 ms]: ok -> cmd=11314001 material=DIAMOND_SWORD | ",
+    "legacy-potion 'tflegacy paper 11314002' [rss 818 MB, 254 ms]: ok -> cmd=11314002 material=PAPER | ",
+    "plugins-listed 'plugins' [rss 818 MB, 254 ms]: ok -> Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfLegacyModel | "
+   ]
+  },
+  {
+   "id": "playtest",
+   "status": "not_run",
+   "evidence": []
+  },
+  {
+   "id": "clean_stop",
+   "status": "pass",
+   "evidence": [
+    "stop via rcon; exit code 0 signal null after 2816 ms; 0 shutdown log hits"
+   ]
+  },
+  {
+   "id": "no_leaks",
+   "status": "pass",
+   "evidence": [
+    "netns: java pid 185484 gone; 0 marked processes; listening none of 47191,47161",
+    "host: no process carries -Dnxeon.testflight.run=tf-1-21-1-mv3bzqtb-6c83f8; no listening port in 47100-47199"
+   ]
+  }
+ ],
+ "notes": [
+  "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+  "ports: server 47191, rcon 47161 (private netns, 127.0.0.1)"
+ ],
+ "engine": {
+  "runner": "tf-lite-4",
+  "runnerSha256": "a53a32c1a3d7bdf78b77e7b1b15b142990096f449e8029bbf61d37daff051b78",
+  "node": "v22.23.1",
+  "host": "nxeon-fsn1",
+  "kernel": "7.0.2-6-pve",
+  "jdk": {
+   "release": 21,
+   "version": "21.0.12.1",
+   "dist": "jdk-21.0.12.1+1",
+   "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+  },
+  "paper": {
+   "version": "1.21.1",
+   "build": 133,
+   "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+   "channel": "STABLE"
+  },
+  "isolation": {
+   "netns": "private (loopback only)",
+   "uid": 65534,
+   "noNewPrivs": true,
+   "nice": 10,
+   "activeProcessorCount": 2
+  }
+ },
+ "pack": {
+  "sha1": "7a7fbd5cb9789ae06f2fb29a260db09d825bf0d6",
+  "format": 34,
+  "bytes": 2518,
+  "legacy": {
+   "emitter": "cyrus-legacy-cmd-1",
+   "bindings": [
+    {
+     "texture": "ruby_sword",
+     "base": "diamond_sword",
+     "cmd": 11314001
+    },
+    {
+     "texture": "health_potion",
+     "base": "paper",
+     "cmd": 11314002
+    }
+   ],
+   "carriers": [
+    "diamond_sword",
+    "paper"
+   ]
+  },
+  "path": "syncBuildAssets (production path)"
+ },
+ "namespace": "nx_r35legcy",
+ "cmdBlock": [
+  11314001,
+  11314999
+ ],
+ "client": "none (server-side only)"
+}

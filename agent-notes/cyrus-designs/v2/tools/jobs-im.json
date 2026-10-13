@@ -1,0 +1,9 @@
+[
+{"file":"import-mod.html","q":"ctl=0","w":1440,"h":900,"out":"import-dark.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0&state=jar","w":1440,"h":900,"out":"import-dark-jar.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0&state=unsupported&theme=light","w":1440,"h":900,"out":"import-light-unsupported.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0&theme=light","w":1440,"h":900,"out":"import-light.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0","w":390,"h":844,"full":true,"out":"import-narrow.png","wait":900},
+{"file":"mod-packs.html","q":"ctl=0","w":1440,"h":900,"out":"packs-dark.png","wait":900},
+{"file":"mod-packs.html","q":"ctl=0","w":390,"h":844,"full":true,"out":"packs-narrow.png","wait":900}
+]

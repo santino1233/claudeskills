@@ -1,0 +1,428 @@
+{
+ "at": "2026-10-12T05:58:23.502Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (fixture designs)",
+ "lanes": [
+  {
+   "version": "1.21.1",
+   "jdk": "21",
+   "files": 33,
+   "hash": "f777cee498fdd51f4ce24c3e2dda14cd2ea9b7a590ec4e4e655ac5f95f6e6c40",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-weapons/run-mv4ucljh/1.21.1/NxArmory-1.21.1.jar",
+   "jarSha256": "ef2f07cd2a005c01e56c70beac558320f48ca44f095da09dfad4dacb14cd116c",
+   "sources": 31,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.4",
+   "jdk": "21",
+   "files": 33,
+   "hash": "b25097dec1193a6194f2f72ebef315607d1a116ec0285330dfb4c66c3fc3ae28",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-weapons/run-mv4ucljh/1.21.4/NxArmory-1.21.4.jar",
+   "jarSha256": "a119828a3f67b5b4371ae70cf9dc02b798f85de37af4287886bb48b4696bfc20",
+   "sources": 31,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.8",
+   "jdk": "21",
+   "files": 33,
+   "hash": "6fe88a9925080411697cdf7607dfbd90ac3945e800cbb00a79ceed67aeaab2d7",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-weapons/run-mv4ucljh/1.21.8/NxArmory-1.21.8.jar",
+   "jarSha256": "75933a3554b24d25e2a50cdde3f9f81f60939e3ba3dea5d4ed5c3e3a34a3d8bc",
+   "sources": 31,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "files": 33,
+   "hash": "e17e3ed47417ea4811fa8a0f37cc1645716c8fd52ca4a0d2661637c223142bbc",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-weapons/run-mv4ucljh/1.21.11/NxArmory-1.21.11.jar",
+   "jarSha256": "28c53686b8d9932b857d99a5e191386b4157d7420570bf39cdcecc451409f7dc",
+   "sources": 31,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "files": 33,
+   "hash": "3a691917094fb35eb0fba7647a416c6f98a022b7f556aa558de9c79f8ab36b86",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-weapons/run-mv4ucljh/26.2/NxArmory-26.2.jar",
+   "jarSha256": "da8dd3e5b5d36f6096cb5d4d400456a49fc8d77ed14ef229113440e7e618eac5",
+   "sources": 31,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "flight": {
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 17.5s, peak RSS 944 MB)",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "pass",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "rcon": [
+   "plugins 'plugins' [rss 846 MB, 252 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxArmory | ",
+   "list 'nxarmory list' [rss 859 MB, 345 ms]: ok -> blast_rod: identity=ok material=diamond_horse_armor abilities=1 recipe=none | ion_beam: identity=ok material=leather_horse_armor abilities=1 recipe=none | rocket_launcher: identity=ok material=stick abilities=2 recipe=none | scatter_gun: id",
+   "params 'nxarmory params scatter_gun' [rss 859 MB, 252 ms]: ok -> items.scatter_gun.abilities.blast.cooldown_ticks=4 | items.scatter_gun.abilities.blast.a0.range=16.0 | items.scatter_gun.abilities.blast.a0.damage=1.0 | items.scatter_gun.abilities.blast.a0.pellets=4 | items.scatter_gun.abilities.blast.a0.s"
+  ],
+  "log": [
+   "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 1834 ms at {\"x\":9.5,\"y\":-60,\"z\":-3.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=pig]' -> No entity was found"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxarmory give tap_pistol NxPlaytest' -> Gave 1 x tap_pistol to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_horse_armor"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -59 4.5 {NoAI:1b,NoGravity:1b,Silent:1b,Tags:[\"nxt\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with iron_horse_armor"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxt,limit=1] Health' -> Pig has the following entity data: 6.0f"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=pig]' -> Killed Pig"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxarmory give scatter_gun NxPlaytest' -> Gave 1 x scatter_gun to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: golden_horse_armor"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -59 4.5 {NoAI:1b,NoGravity:1b,Silent:1b,Tags:[\"nxs\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with golden_horse_armor"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 400 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxs,limit=1] Health' -> Pig has the following entity data: 6.0f"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with golden_horse_armor"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 400 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxs,limit=1] Health' -> Pig has the following entity data: 2.0f"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=pig]' -> Killed Pig"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxarmory give blast_rod NxPlaytest' -> Gave 1 x blast_rod to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: diamond_horse_armor"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -59 3 {NoAI:1b,NoGravity:1b,Silent:1b,Tags:[\"nxa\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 2.5 -59 3 {NoAI:1b,NoGravity:1b,Silent:1b,Tags:[\"nxb\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with diamond_horse_armor"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxa,limit=1] Health' -> Pig has the following entity data: 4.0f"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxb,limit=1] Health' -> Pig has the following entity data: 7.0f"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity NxPlaytest Health' -> NxPlaytest has the following entity data: 20.0f"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-4",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=pig]' -> Killed 2 entities"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxarmory give ion_beam NxPlaytest' -> Gave 1 x ion_beam to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: leather_horse_armor"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -59 4.5 {NoAI:1b,NoGravity:1b,Silent:1b,Tags:[\"nxc\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with leather_horse_armor"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 2800 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'data get entity @e[type=pig,tag=nxc,limit=1] Health' -> Pig has the following entity data: 5.0f"
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mv4ud6lg-bf2290",
+  "engine": {
+   "runner": "tf-lite-6",
+   "paper": 132
+  }
+ }
+}

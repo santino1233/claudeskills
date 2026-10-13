@@ -1,0 +1,160 @@
+{
+ "lab": "Playwright/Chromium on node-2, localhost, 4x CPU throttle, no network throttle, median of 3",
+ "budgets": {
+  "lcp": 2500,
+  "tbt": 300,
+  "cls": 0.1,
+  "inp": 200
+ },
+ "rows": [
+  {
+   "page": "landing",
+   "status": 200,
+   "ttfb": 2.6999998092651367,
+   "fcp": 488,
+   "lcp": 488,
+   "cls": 0,
+   "tbt": 284,
+   "inp": 472,
+   "kb": 505,
+   "requests": 20,
+   "byKb": {
+    "js": 47,
+    "css": 42,
+    "font": 104,
+    "img": 272,
+    "other": 0
+   },
+   "kbBudget": 2500,
+   "errors": [],
+   "over": [
+    "INP"
+   ]
+  },
+  {
+   "page": "app-home",
+   "status": 200,
+   "ttfb": 37.19999980926514,
+   "fcp": 312,
+   "lcp": 812,
+   "cls": 0.0003238442223543545,
+   "tbt": 401,
+   "inp": 80,
+   "kb": 2792,
+   "requests": 61,
+   "byKb": {
+    "js": 2428,
+    "css": 98,
+    "font": 161,
+    "img": 76,
+    "other": 4
+   },
+   "kbBudget": 900,
+   "errors": [],
+   "over": [
+    "TBT",
+    "weight"
+   ]
+  },
+  {
+   "page": "app-projects",
+   "status": 200,
+   "ttfb": 28.300000190734863,
+   "fcp": 376,
+   "lcp": 376,
+   "cls": 0.0003238442223543545,
+   "tbt": 429,
+   "inp": 120,
+   "kb": 2781,
+   "requests": 60,
+   "byKb": {
+    "js": 2424,
+    "css": 98,
+    "font": 161,
+    "img": 76,
+    "other": 4
+   },
+   "kbBudget": 900,
+   "errors": [],
+   "over": [
+    "TBT",
+    "weight"
+   ]
+  },
+  {
+   "page": "app-project",
+   "status": 200,
+   "ttfb": 35.09999990463257,
+   "fcp": 260,
+   "lcp": 976,
+   "cls": 0.0003238442223543545,
+   "tbt": 394,
+   "inp": 120,
+   "kb": 2805,
+   "requests": 64,
+   "byKb": {
+    "js": 2437,
+    "css": 100,
+    "font": 161,
+    "img": 76,
+    "other": 5
+   },
+   "kbBudget": 900,
+   "errors": [],
+   "over": [
+    "TBT",
+    "weight"
+   ]
+  },
+  {
+   "page": "app-new",
+   "status": 200,
+   "ttfb": 34.5,
+   "fcp": 268,
+   "lcp": 1164,
+   "cls": 0.0003238442223543545,
+   "tbt": 714,
+   "inp": 136,
+   "kb": 2800,
+   "requests": 61,
+   "byKb": {
+    "js": 2438,
+    "css": 98,
+    "font": 161,
+    "img": 76,
+    "other": 4
+   },
+   "kbBudget": 900,
+   "errors": [],
+   "over": [
+    "TBT",
+    "weight"
+   ]
+  },
+  {
+   "page": "app-account",
+   "status": 200,
+   "ttfb": 31.199999809265137,
+   "fcp": 416,
+   "lcp": 460,
+   "cls": 0.0003238442223543545,
+   "tbt": 482,
+   "inp": 200,
+   "kb": 2790,
+   "requests": 61,
+   "byKb": {
+    "js": 2430,
+    "css": 98,
+    "font": 161,
+    "img": 76,
+    "other": 4
+   },
+   "kbBudget": 900,
+   "errors": [],
+   "over": [
+    "TBT",
+    "weight"
+   ]
+  }
+ ]
+}

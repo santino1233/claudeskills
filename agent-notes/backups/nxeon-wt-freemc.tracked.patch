@@ -1,0 +1,1257 @@
+diff --git a/app/admin/free-minecraft/page.tsx b/app/admin/free-minecraft/page.tsx
+index e5af6a31d0..8d507f575c 100644
+--- a/app/admin/free-minecraft/page.tsx
++++ b/app/admin/free-minecraft/page.tsx
+@@ -11,6 +11,7 @@ import {
+   DeleteFreeServerButton,
+   FreemcCapacityPanel,
+ } from "@/components/admin/FreeMinecraftControls";
++import { FreeMinecraftHealthPanels } from "@/components/admin/FreeMinecraftHealthPanels";
+ 
+ export const dynamic = "force-dynamic";
+ 
+@@ -55,6 +56,8 @@ export default async function AdminFreeMinecraft() {
+ 
+       <FreemcCapacityPanel thresholds={thresholds} />
+ 
++      <FreeMinecraftHealthPanels />
++
+       {/* Deliberate design choice, not an oversight: live running/player-count
+           status is NOT fetched for every row here. Doing that as N sequential
+           SSH calls to freemc-host on every page load would be slow and fragile
+diff --git a/components/admin/settings/FreeMinecraftPanel.tsx b/components/admin/settings/FreeMinecraftPanel.tsx
+index 336940a18f..32d1c4e727 100644
+--- a/components/admin/settings/FreeMinecraftPanel.tsx
++++ b/components/admin/settings/FreeMinecraftPanel.tsx
+@@ -57,7 +57,7 @@ export function FreeMinecraftPanel({ v }: { v: Record<string, string> }) {
+         type="number"
+         min={1}
+         defaultValue={v.free_minecraft_idle_minutes}
+-        hint="A server with nobody connected stops after this long, freeing its RAM for someone else. Default 15."
++        hint="Intended idle auto-stop. NOTE: mc-router on freemc-host currently has -auto-scale-down-after=15m baked into its own docker run, and nothing reads this setting yet — changing it here has no effect until mc-router is recreated with the new flag (see DOCUMENTATION.md, free Minecraft stability rollout)."
+       />
+       <TextField
+         label="Max concurrent awake servers"
+@@ -67,6 +67,30 @@ export function FreeMinecraftPanel({ v }: { v: Record<string, string> }) {
+         defaultValue={v.free_minecraft_max_concurrent}
+         hint="Hard cap on how many free servers may be running at once across every account — protects the host VM regardless of signup volume. Default 8."
+       />
++      <TextField
++        label="Server engine for new servers"
++        name="free_minecraft_engine_default"
++        defaultValue={v.free_minecraft_engine_default || "PAPER"}
++        hint="PAPER (default) or VANILLA — the JAR a NEW server's vanilla game type boots. Existing servers keep what they were created with, so changing this never migrates anyone's world."
++      />
++      <ToggleField
++        label="Health sweep"
++        name="free_minecraft_health_enabled"
++        defaultChecked={v.free_minecraft_health_enabled !== "false"}
++        hint="Every 2 minutes: samples RAM/CPU/TPS/players of awake free servers, records crashes and wake times, runs the start queue, measures world size and purges the 7-day trash. On by default."
++      />
++      <ToggleField
++        label="Watchdog auto-restart"
++        name="free_minecraft_watchdog_autorestart"
++        defaultChecked={v.free_minecraft_watchdog_autorestart === "true"}
++        hint="Restart a server that crashed while players were connected (first crash immediately, second after 5 minutes; 3 crashes in 30 minutes pauses it for 30 minutes). Off by default."
++      />
++      <ToggleField
++        label="Upgrade prompts"
++        name="free_minecraft_upsell_enabled"
++        defaultChecked={v.free_minecraft_upsell_enabled !== "false"}
++        hint="Show a dismissible 'need more resources?' card on the free dashboard — only when that server's own measurements justify it (crashes, memory, TPS, full slots, disk, slow wakes)."
++      />
+     </SettingsForm>
+   );
+ }
+diff --git a/components/customer/freemc/FreeMcDashboard.tsx b/components/customer/freemc/FreeMcDashboard.tsx
+index 62274ae127..d0670cd248 100644
+--- a/components/customer/freemc/FreeMcDashboard.tsx
++++ b/components/customer/freemc/FreeMcDashboard.tsx
+@@ -17,6 +17,8 @@ import { OverviewRedesigned } from "./OverviewRedesigned";
+ import { SavedWorldsPanel } from "./SavedWorldsPanel";
+ import { FreeMcHero, FreeTierNote } from "./v2/FreeMcHero";
+ import { Icon } from "@/components/nx/Icon";
++import { PerformanceCard, UpgradeCard } from "./FreeMcHealthPanel";
++import type { FreeMcHealth } from "@/lib/actions-freemc-health";
+ import type { FreeMcGameType } from "./GameTypeGrid";
+ import type { FreeMcGameMode } from "./GameModeSelector";
+ 
+@@ -90,7 +92,9 @@ export function FreeMcDashboard({
+   presets,
+   gameTypes,
+   gameModes,
++  health = null,
+ }: {
++  health?: FreeMcHealth | null;
+   server: Server;
+   domain: string;
+   schemaFields: Field[];
+@@ -101,6 +105,7 @@ export function FreeMcDashboard({
+ }) {
+   const [tab, setTab] = useState<TabKey>("overview");
+   const address = `${server.subdomain}.${domain}`;
++  const exportHref = `/api/free-minecraft/world-export?type=${encodeURIComponent(server.activeGameType)}`;
+   const typeLabels = Object.fromEntries(
+     Object.entries(gameTypes).map(([key, t]) => [key, t.label]),
+   );
+@@ -120,6 +125,8 @@ export function FreeMcDashboard({
+             players: server.players,
+             gameTypeLabel: gameTypes[server.activeGameType]?.label ?? "Default",
+             gameModeLabel: gameModes[server.activeGameMode]?.label ?? "Survival",
++            breakerUntil: health?.breakerUntil ?? null,
++            queue: health?.queue ?? null,
+           }}
+         />
+ 
+@@ -150,6 +157,12 @@ export function FreeMcDashboard({
+       <FreeTierNote />
+ 
+       <div className={"min-w-0 " + LEGACY_CARDS}>
++        {tab === "overview" && health && (
++          <div className="mb-4 space-y-4">
++            <UpgradeCard health={health} exportHref={exportHref} placement="overview" />
++            <PerformanceCard health={health} />
++          </div>
++        )}
+         {tab === "overview" && (
+           <OverviewRedesigned
+             gameTypes={gameTypes}
+@@ -166,7 +179,12 @@ export function FreeMcDashboard({
+             <InventoryEditor running={server.running} />
+           </div>
+         )}
+-        {tab === "mods" && <ModsTab server={server} runsPlugins={presets[server.preset]?.kind === "plugins"} />}
++        {tab === "mods" && (
++          <div className="space-y-4">
++            {health && <UpgradeCard health={health} exportHref={exportHref} placement="mods" />}
++            <ModsTab server={server} runsPlugins={presets[server.preset]?.kind === "plugins"} />
++          </div>
++        )}
+         {tab === "roles" && <RolesTab presetKind={presets[server.preset]?.kind ?? "properties"} />}
+         {tab === "settings" && <Settings fields={schemaFields} properties={properties} />}
+         {tab === "manage" && <Manage server={server} domain={domain} />}
+@@ -348,9 +366,29 @@ function Manage({ server, domain }: { server: Server; domain: string }) {
+ 
+       <PublicListingCard server={server} />
+ 
+-      <form action={deleteAction} className="card max-w-md space-y-3">
++      <div className="card max-w-md space-y-2">
++        <h3 className="font-semibold text-[var(--fg)]">Download your world</h3>
++        <p className="text-xs text-slate-500">
++          A .tar.gz of the world you&apos;re playing now — to keep a copy, or to upload to a paid server with its file
++          manager. Works while your server is asleep (so the world is fully saved).
++        </p>
++        <a className="btn-secondary inline-flex text-sm" href={`/api/free-minecraft/world-export?type=${encodeURIComponent(server.activeGameType)}`}>
++          Download world
++        </a>
++      </div>
++
++      <form
++        action={deleteAction}
++        onSubmit={(e) => {
++          if (!window.confirm(`Delete ${server.subdomain}.${domain} and all of its worlds?`)) e.preventDefault();
++        }}
++        className="card max-w-md space-y-3"
++      >
+         <h3 className="font-semibold text-red-300">Delete this server</h3>
+-        <p className="text-xs text-slate-500">Permanent — your world is deleted along with the server. This can&apos;t be undone.</p>
++        <p className="text-xs text-slate-500">
++          Your server and every world on it are removed. We keep the files for 7 days in case you change your mind —
++          contact support within that window to get them back. After that it can&apos;t be undone.
++        </p>
+         {deleteState.error && <p className="text-sm text-red-400">{deleteState.error}</p>}
+         <button className="btn-ghost text-sm text-red-300" disabled={deletePending}>{deletePending ? "Deleting…" : "Delete this server"}</button>
+       </form>
+diff --git a/components/customer/freemc/FreeMinecraftTabContent.tsx b/components/customer/freemc/FreeMinecraftTabContent.tsx
+index 30fe006704..86d4eb19cf 100644
+--- a/components/customer/freemc/FreeMinecraftTabContent.tsx
++++ b/components/customer/freemc/FreeMinecraftTabContent.tsx
+@@ -1,5 +1,6 @@
+ import { getSetting, getSettingBool } from "@/lib/settings";
+ import { getFreeMinecraftDashboard, getFreeMinecraftSettings } from "@/lib/actions-free-minecraft";
++import { getFreeMinecraftHealth } from "@/lib/actions-freemc-health";
+ import { FREEMC_PRESETS, FREEMC_GAME_TYPES, FREEMC_GAME_MODES } from "@/lib/free-minecraft-control";
+ import { FreeMinecraftCreateForm } from "@/components/customer/FreeMinecraftPanel";
+ import { FreeMcDashboard } from "@/components/customer/freemc/FreeMcDashboard";
+@@ -29,7 +30,11 @@ export async function FreeMinecraftTabContent({
+     getFreeMinecraftDashboard(),
+   ]);
+ 
+-  const settings = dashboard ? await getFreeMinecraftSettings() : null;
++  // Health is DB-only (samples/events the worker sweep wrote), so it costs no
++  // extra SSH round trip to freemc-host. Never let it break the dashboard.
++  const [settings, health] = dashboard
++    ? await Promise.all([getFreeMinecraftSettings(), getFreeMinecraftHealth().catch(() => null)])
++    : [null, null];
+ 
+   if (!enabled) {
+     return (
+@@ -49,6 +54,7 @@ export async function FreeMinecraftTabContent({
+         presets={FREEMC_PRESETS}
+         gameTypes={FREEMC_GAME_TYPES}
+         gameModes={FREEMC_GAME_MODES}
++        health={health}
+       />
+     );
+   }
+diff --git a/components/customer/freemc/v2/FreeMcHero.tsx b/components/customer/freemc/v2/FreeMcHero.tsx
+index 2f1cf6c780..c5d1b94350 100644
+--- a/components/customer/freemc/v2/FreeMcHero.tsx
++++ b/components/customer/freemc/v2/FreeMcHero.tsx
+@@ -8,6 +8,8 @@ import {
+   stopFreeMinecraftServer,
+   restartFreeMinecraftServer,
+ } from "@/lib/actions-free-minecraft";
++import { joinFreeMinecraftStartQueue, leaveFreeMinecraftStartQueue } from "@/lib/actions-freemc-health";
++import { deployHref } from "@/lib/deploy-intent";
+ 
+ /**
+  * The free server's identity band — the same shape as the paid game panel's
+@@ -36,6 +38,10 @@ export type FreeMcHeroData = {
+   players: { online: number; max: number | null } | null;
+   gameTypeLabel: string;
+   gameModeLabel: string;
++  /** ISO time the crash-loop breaker re-opens starts, when it's engaged. */
++  breakerUntil?: string | null;
++  /** This server's place in the real start queue, when it's waiting. */
++  queue?: { position: number; requestedAt: string } | null;
+ };
+ 
+ function Vital({ label, value, sub, tone, pct }: {
+@@ -60,10 +66,16 @@ export function FreeMcHero({ data }: { data: FreeMcHeroData }) {
+   const [copied, setCopied] = useState(false);
+   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+ 
+-  const [, startAction, startPending] = useActionState(startFreeMinecraftServer, {});
+-  const [, stopAction, stopPending] = useActionState(stopFreeMinecraftServer, {});
+-  const [, restartAction, restartPending] = useActionState(restartFreeMinecraftServer, {});
++  // Power results used to be discarded, so a capacity refusal looked like a
++  // button that did nothing. They're shown now, with the queue as the way out.
++  const [startState, startAction, startPending] = useActionState(startFreeMinecraftServer, {});
++  const [stopState, stopAction, stopPending] = useActionState(stopFreeMinecraftServer, {});
++  const [restartState, restartAction, restartPending] = useActionState(restartFreeMinecraftServer, {});
++  const [queueState, queueAction, queuePending] = useActionState(joinFreeMinecraftStartQueue, {});
++  const [, leaveAction, leavePending] = useActionState(leaveFreeMinecraftStartQueue, {});
+   const busy = startPending || stopPending || restartPending;
++  const powerError = startState.error ?? restartState.error ?? stopState.error ?? null;
++  const capacityRefused = !!(startState.capacity || restartState.capacity);
+ 
+   const copy = () => {
+     void navigator.clipboard?.writeText(data.address);
+@@ -167,6 +179,38 @@ export function FreeMcHero({ data }: { data: FreeMcHeroData }) {
+           </div>
+         </div>
+ 
++        {(data.queue || data.breakerUntil || powerError || queueState.error) && (
++          <div role="status" className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-[12px] border border-amber-400/30 bg-amber-950/40 px-3.5 py-2.5 text-[12.5px] text-amber-100">
++            <Icon name="warncircle" size={14} tone="inherit" className="flex-none text-amber-300" />
++            <span className="min-w-[200px] flex-1">
++              {data.breakerUntil
++                ? "Your server crashed several times in a row, so starts are paused for a few minutes to stop it looping. Your world is safe."
++                : data.queue
++                  ? `You're #${data.queue.position} in line for a free slot — your server starts automatically when one opens (we hold your place for 20 minutes).`
++                  : queueState.error ?? powerError}
++            </span>
++            {!data.queue && capacityRefused && !data.breakerUntil && (
++              <form action={queueAction}>
++                <button disabled={queuePending} className="rounded-[9px] border border-amber-300/40 bg-amber-400/15 px-3 py-1.5 text-[12px] font-semibold text-amber-100 transition hover:bg-amber-400/25 disabled:opacity-50">
++                  {queuePending ? "Joining…" : "Start me when a slot frees"}
++                </button>
++              </form>
++            )}
++            {data.queue && (
++              <form action={leaveAction}>
++                <button disabled={leavePending} className="rounded-[9px] px-2.5 py-1.5 text-[12px] font-semibold text-amber-200/80 transition hover:text-white disabled:opacity-50">
++                  Leave the queue
++                </button>
++              </form>
++            )}
++            {(capacityRefused || data.queue) && (
++              <Link href={deployHref({ service: "game", gameFamily: "minecraft" })} className="text-[12px] font-semibold text-[#c4a6ff] underline-offset-2 hover:underline">
++                Paid servers never wait for a slot
++              </Link>
++            )}
++          </div>
++        )}
++
+         {/* Four true things about a free server, in the paid panel's vitals band. */}
+         <div className="grid grid-cols-2 gap-x-8 gap-y-3 rounded-[13px] border border-rim-soft bg-[rgba(3,9,24,.72)] px-4 py-3 backdrop-blur-sm sm:grid-cols-4">
+           <Vital
+@@ -207,7 +251,9 @@ export function FreeTierNote() {
+         spell takes a few seconds. A paid server is yours alone, never sleeps, and adds SFTP, scheduled
+         tasks, backups you control and a resource graph.
+       </p>
+-      <Link href="/dashboard/order/game?game=minecraft"
++      {/* Was /dashboard/order/game?game=minecraft — a route that doesn't exist
++          (404). The deploy wizard's real deep link, prefilled for Minecraft. */}
++      <Link href={deployHref({ service: "game", gameFamily: "minecraft" })}
+             className="flex-none rounded-[11px] border border-rim-hi bg-[rgba(6,14,36,.72)] px-4 py-2 text-[12.5px] font-semibold text-tx-dim transition hover:border-brand-400/50 hover:text-white">
+         Compare paid plans
+       </Link>
+diff --git a/docs/DOCUMENTATION.md b/docs/DOCUMENTATION.md
+index e44d7f824e..206e1b11e1 100644
+--- a/docs/DOCUMENTATION.md
++++ b/docs/DOCUMENTATION.md
+@@ -2995,6 +2995,58 @@ The command builder, the output parser and the verdict now live in
+ admin job list, and the success notification at `:160` uses the verdict's own title and body. Guarded
+ by `test/game-update.test.ts`.
+ 
++### Free Minecraft tier — stability, health sweep and the upgrade path (2026-10-01)
++
++Reference for how the free tier is kept alive on its one shared host (`freemc-host`, node-2 vmid 100,
++3 vCPU / 8 GB nominal, Docker + patched mc-router). Full investigation in Part VII
++("Free Minecraft: crashes + slowness root-caused").
++
++- **Per-container shape** (`lib/freemc-limits.ts`, unit-tested): vanilla 1536 MB / 1 vCPU, plugin types
++  2560 MB / 2 vCPU; heap 70% of the limit, initial heap half of that. JVM flags are named explicitly
++  (`FREEMC_JVM_XX_OPTS`: Aikar's G1 set minus `AlwaysPreTouch`, plus `ExitOnOutOfMemoryError`) — without
++  them HotSpot picks SerialGC for a 1-CPU/<1792 MB container. `docker run` also gets `--restart=no`,
++  `--stop-timeout=60` (mc-router's idle stop no longer SIGKILLs a world save after 10 s), log rotation
++  (10 MB x 3) and a `nxeon.freemc.engine` label.
++- **Engine**: `FreeMinecraftServer.engine` — NULL (every pre-existing row) keeps `TYPE=VANILLA`; new servers
++  take `free_minecraft_engine_default` (default `PAPER`, pinned to `FREEMC_PLUGIN_MC_VERSION` + ViaVersion).
++  A world is never migrated between engines behind the owner's back.
++- **New-server defaults** seeded into `server.properties` before first boot (never env vars, so the player's
++  Settings tab still owns them): view-distance 8, simulation-distance 6, max-players 10.
++- **Capacity** (`evaluateStart`): count cap `free_minecraft_max_concurrent` + CPU/RAM budget after reserving
++  1 vCPU + 1 GB. `recreateGameTypeContainer` now checks BEFORE `docker rm -f` (with its own running
++  container subtracted) and returns `untouched` on refusal so callers skip a pointless rollback. A refused
++  dashboard Start offers the **start queue** (`FreeMinecraftStartRequest`): the worker starts the oldest
++  waiting server when a slot frees; requests expire after 20 min; the position shown is a real count.
++- **Health sweep** (`worker/freemc-health.ts`, every 2 min, fire-and-forget, `free_minecraft_health_enabled`
++  default on): `FreeMinecraftSample` (docker stats RAM/CPU, RCON `tps`/`tick query`, players) and
++  `FreeMinecraftEvent` (CRASH/OOM/KILLED/HUNG/WAKE/WAKE_FAILED/BREAKER_OPEN/WATCHDOG_RESTART/QUEUE_STARTED/
++  CAPACITY_REFUSED). Crash-loop breaker: 3 crashes in 30 min pauses starts for 30 min
++  (`crashBreakerUntil`). Auto-restart of a server that crashed WITH players on is opt-in
++  (`free_minecraft_watchdog_autorestart`, default off; backoff 0 then 5 min). Every 6 h: `du` per server
++  (`diskMb`, soft quota vs `free_minecraft_disk_mb`) and purge of `/opt/freemc/trash` entries > 7 days.
++  The breaker cannot stop mc-router's passive wake (mc-router is outside this app) — it blocks our starts.
++- **Deletes go to trash**: deleting a server or a world `mv`s it to `/opt/freemc/trash/<id>[__world]__<ts>`
++  (`moveToTrash`) — restorable with a plain `mv` for 7 days. Plugin changes delete only `plugins/*.jar`
++  (`clearPluginJars`), never plugin data folders.
++- **Observability**: player Overview tab shows a Performance card (only measured values); `/admin/free-minecraft`
++  shows per-server health, the event feed, the upgrade-prompt funnel and a sizing table.
++- **Upgrade prompt** (`lib/freemc-upsell.ts`, unit-tested; `free_minecraft_upsell_enabled`): shown only for a
++  measured signal on that server — OOM (1+) or crashes (2+) in 7 d; memory >= 90% of limit in 3+ samples in
++  24 h; TPS < 18 in 3+ samples with players on; player cap hit; disk >= 80% of quota; 2+ wakes >= 45 s; or on
++  the Mods tab, the real Forge/Fabric limit. Evidence sentence quotes the numbers; comparison uses live
++  `GamePlan` rows; CTA = `deployHref({service:"game", gameFamily:"minecraft", gamePlanId})`; "Not now" = 7-day
++  cooldown. Funnel rows: `FreeMinecraftUpsellEvent` (SHOWN deduped per trigger/user/day, CLICKED,
++  DISMISSED; nothing logged while an admin impersonates) — available to the insights funnel.
++- **Keep your world**: `GET /api/free-minecraft/world-export?type=<gameType>` streams the caller's own world as
++  .tar.gz (asleep servers only, rate-limited); the player uploads it to the paid server's file manager/SFTP.
++  Automated free->paid transfer is NOT built: it needs a cross-node copy into a customer VM, a stopped paid
++  server, folder renaming to its `level-name`, and Paper<->vanilla dimension-layout conversion — each a
++  failure mode that should be a supervised Job, not a button. Documented as a follow-up.
++- **Rollout scripts** (`scripts/freemc/rollout/`, owner-run, dry-run by default): `01-pin-guest-memory.sh`
++  (balloon = memory on vmid 100 — the root-cause fix), `02-cleanup-orphans.sh` (43 orphan dirs / 1.4 GB +
++  orphan containers -> trash), `03-recreate-asleep.ts` (give existing asleep containers the new flags, one
++  at a time, straight back to sleep).
++
+ ## Build with AI — Claude Code on every VPS
+ 
+ **What it does.** Installs the Claude Code CLI into every provisioned VM and gives the customer a
+@@ -14893,6 +14945,78 @@ against a server the customer insisted had a working, reachable management key.
+ **Files:** `prisma/schema.prisma`, `lib/sftp.ts`, `lib/actions-files.ts`,
+ `app/admin/servers/[id]/page.tsx`, `test/sftp-connection-target.test.ts`.
+ 
++
++---
++
++## 2026-10-01 — Free Minecraft: crashes + slowness root-caused, stability fixes, health sweep, honest upgrade path
++
++Owner report: "free servers crash constantly and are very slow". Investigated read-only on `freemc-host`
++(node-2 vmid 100) via node-2's qemu guest agent; nothing on the live host was changed and no free server
++was started or stopped.
++
++**Evidence -> cause**
++- **Every OOM kill in the current boot was a GLOBAL OOM caused by Proxmox ballooning, not a container
++  limit.** Kernel log: Sep 17 10:43, Sep 20 14:30 / 15:44 / 19:26, all `constraint=CONSTRAINT_NONE,
++  global_oom`, the victim always a free-server `java` (1.5 GB RSS for plugin servers). The OOM report itself
++  shows `2097016 pages RAM, 1636846 pages reserved` — the balloon had taken ~6.2 GB of the 8 GB guest,
++  leaving ~1.8 GB. VM config: `memory: 8192, balloon: 2048`. node-2's RRD puts every one of those kills
++  inside a window where the node sat above 80% RAM (pvestatd's auto-balloon threshold): Sep 17 04:30-20:30,
++  Sep 20 09:30-20:30. Balloon stats: the guest has swapped in **86 GB** over a 20-day uptime (45.8M major
++  faults) — that is the "very slow". The app's capacity check reads `free -m`, which shrinks with the
++  balloon, so app-initiated starts were refused while mc-router (outside the app) kept waking servers into
++  a guest with no memory. Earlier boot (Sep 5-6): cgroup OOMs, fixed then by the 1536/2560 MB floors.
++- **SerialGC on every vanilla server**: `--cpus=1` + 1536 MB is below HotSpot's server-class threshold, and
++  no collector was named (no `USE_AIKAR_FLAGS`, no `JVM_XX_OPTS`). Inferred from documented JVM ergonomics,
++  not observed on a live JVM (none was awake; none was woken). Surviving logs: 5 "Can't keep up" lines of
++  2.0-3.8 s, 4 of them 2-23 s after a player joined.
++- **Plugin data wiped on every type switch and every mod-menu save**: `rm -rf /data/plugins/*` /
++  `rm -rf <data>/plugins` deleted LuckPerms' H2 DB (Roles tab), IridiumSkyblock islands, Towny towns,
++  Essentials homes and Prison mines along with the jars. The `docker exec` form also silently did nothing
++  for an asleep container, leaving the old type's jars. Now `clearPluginJars` (jars + Paper's remap cache
++  only, on the host path).
++- **`docker rm -f` before the capacity check** in `recreateGameTypeContainer`: a refusal left the account
++  with no container (the mechanism behind the 2026-09-05 sweep incident). Order reversed.
++- **No stop timeout**: mc-router's idle stop uses the container default (10 s) before SIGKILL — short for a
++  world save. Now 60 s.
++- Housekeeping found: 43 orphan world dirs (1.4 GB) + 1 orphan and 2 test containers; container logs had no
++  rotation; `free_minecraft_idle_minutes` is not read by anything (mc-router has `-auto-scale-down-after=15m`
++  baked into its own `docker run`); the dashboard's "Compare paid plans" link pointed at
++  `/dashboard/order/game?game=minecraft`, a route that does not exist; power-button errors were discarded
++  (a capacity refusal looked like a dead button); server delete had no confirm and was `rm -rf`.
++- **Load is light**: CPU averages < 0.5% across the 9 days of sysstat history, steal ~0, peak 2 servers awake
++  at once (mc-router log since Sep 20), 52 measured wakes median ~28 s (23-33 s), plugin boots 15-46 s
++  warm / 30-77 s cold. Capacity is not the problem today; memory being taken away is.
++
++**Shipped (branch `fix/free-minecraft-stability-upsell`)** — see the reference section "Free Minecraft tier —
++stability, health sweep and the upgrade path" under Game servers for the mechanics: `lib/freemc-limits.ts`,
++`lib/freemc-health.ts`, `lib/freemc-upsell.ts` (all unit-tested), `worker/freemc-health.ts`,
++`lib/actions-freemc-health.ts`, world export route, Performance + upgrade cards, admin health panels, start
++queue, crash-loop breaker, trash instead of `rm -rf`, Paper default for NEW servers only. Schema (additive):
++`FreeMinecraftServer.engine/crashBreakerUntil/lastExitSeenAt/diskMb/diskCheckedAt`, new
++`FreeMinecraftSample`, `FreeMinecraftEvent`, `FreeMinecraftStartRequest`, `FreeMinecraftUpsellEvent`. New
++settings: `free_minecraft_engine_default` (PAPER), `free_minecraft_health_enabled` (on),
++`free_minecraft_watchdog_autorestart` (off), `free_minecraft_upsell_enabled` (on).
++
++**Staged rollout (owner-run; nothing here has been applied)**
++1. `scripts/freemc/rollout/01-pin-guest-memory.sh --apply` — `qm set 100 --balloon 8192`. Hot-applied, no
++   reboot. Raises node-2's guaranteed memory floors from 48 GB to 54 GB of 62.7 GB physical (measured by the script's dry run). Rollback: `--rollback`.
++   **This alone addresses every OOM kill observed this boot.**
++2. Deploy the branch (db push is additive). Health sweep starts sampling; nothing restarts on its own
++   (auto-restart is off). Watch `/admin/free-minecraft` for a day.
++3. `scripts/freemc/rollout/02-cleanup-orphans.sh` (dry run), then `--apply` — moves orphans to the trash.
++4. `npx tsx scripts/freemc/rollout/03-recreate-asleep.ts --apply --limit 3`, repeat — existing asleep
++   containers adopt G1 flags / stop timeout / log rotation, one at a time, straight back to sleep.
++5. Optional: turn on `free_minecraft_watchdog_autorestart` once the event feed looks sane.
++6. Sizing, only if `CAPACITY_REFUSED` / queue events show real demand: **5 vCPU / 8 GB pinned** doubles
++   concurrent capacity (2 -> 4 vanilla, 1 -> 2 plugin) with no extra node RAM (node-2 runs 27 vCPUs on 12
++   threads at load ~0.8). 16 GB would need ~8 GB more than node-2 can guarantee today. vCPU change needs
++   a VM reboot with every free server asleep.
++
++**Not done / follow-ups**: mc-router's idle timeout still hardcoded on the host (recreating mc-router is an
++infra change); automated free->paid world transfer (export + manual upload instead); TPS/`tick query`
++parsing written from the documented reply format, not yet seen against a live reply; the crash breaker
++cannot block mc-router's passive wake.
++
+ ---
+ 
+ *Companion docs: `CLAUDE.md` (agent/ops conventions), `ROADMAP.md` (backlog), `docs/MIGRATION.md`
+diff --git a/lib/actions-admin-freemc.ts b/lib/actions-admin-freemc.ts
+index 201712b52d..483125282d 100644
+--- a/lib/actions-admin-freemc.ts
++++ b/lib/actions-admin-freemc.ts
+@@ -13,7 +13,7 @@ import { revalidatePath } from "next/cache";
+ import { db } from "./db";
+ import { requireArea } from "./rbac";
+ import { withServerSsh, exec, shellQuote } from "./ssh-exec";
+-import { getFreeServerStatus, FREEMC_GAME_TYPES } from "./free-minecraft-control";
++import { getFreeServerStatus, FREEMC_GAME_TYPES, moveToTrash } from "./free-minecraft-control";
+ import { getFreemcHostCapacity, FREEMC_RESERVED_CPUS, FREEMC_RESERVED_RAM_MB } from "./freemc-capacity";
+ import type { SftpServer } from "./sftp";
+ 
+@@ -91,7 +91,9 @@ export async function adminDeleteFreeMinecraftServer(id: string): Promise<Result
+     const host = await freemcHost();
+     await withServerSsh(host, async (conn) => {
+       await exec(conn, `docker rm -f ${shellQuote(row.containerName)}`, 30_000);
+-      await exec(conn, `rm -rf ${shellQuote(`/opt/freemc/servers/${row.id}`)}`, 15_000);
++      // Trash, not rm -rf — recoverable for 7 days (purged by the health sweep).
++      const moved = await moveToTrash(conn, row.id);
++      if (!moved.ok) console.error("[admin-freemc] trash move failed:", moved.error);
+     });
+   } catch (e) {
+     console.error("[admin-freemc] delete cleanup failed (row is removed regardless):", e);
+diff --git a/lib/actions-free-minecraft.ts b/lib/actions-free-minecraft.ts
+index 44cc3e4009..662e0d5245 100644
+--- a/lib/actions-free-minecraft.ts
++++ b/lib/actions-free-minecraft.ts
+@@ -34,11 +34,19 @@ import {
+   legacyPresetKeyFor,
+   recreateGameTypeContainer,
+   applyModeProperties,
++  clearPluginJars,
++  moveToTrash,
++  seedNewServerProperties,
++  serverDataPath,
+ } from "./free-minecraft-control";
+-import { getFreemcHostCapacity, wouldExceedFreemcCapacity } from "./freemc-capacity";
++import { getFreemcHostCapacity, FREEMC_RESERVED_CPUS, FREEMC_RESERVED_RAM_MB } from "./freemc-capacity";
++import { defaultEngineFor, evaluateStart } from "./freemc-limits";
+ import { validateSubdomainFormat, isSubdomainAvailable } from "./game-subdomain";
+ 
+ type Result = { error?: string };
++/** Power result: `capacity` marks a refusal the player can resolve by joining
++ *  the start queue (lib/actions-freemc-health.ts) rather than retrying blind. */
++type PowerResult = Result & { capacity?: boolean };
+ 
+ /**
+  * Translates one of the OLD flat FREEMC_PRESETS keys (still the only thing
+@@ -145,6 +153,9 @@ export async function createFreeMinecraftServer(_prev: unknown, formData: FormDa
+ 
+   const domain = await getSetting("free_minecraft_domain", "play.nxeon.cloud");
+   const ramMb = await getSettingInt("free_minecraft_ram_mb", 1024);
++  // New servers boot Paper by default (async chunk loading + the usual Paper
++  // fixes; same world format as vanilla). Existing rows keep NULL = vanilla.
++  const engine = defaultEngineFor(await getSetting("free_minecraft_engine_default", "PAPER"));
+ 
+   // Derived from userId (unique, known up front) rather than the row's own id,
+   // so creation is a single write — no awkward "create with a placeholder,
+@@ -161,6 +172,7 @@ export async function createFreeMinecraftServer(_prev: unknown, formData: FormDa
+         activeGameType: gameType,
+         activeGameMode: gameMode,
+         preset: legacyPresetKeyFor(gameType, gameMode),
++        engine,
+       },
+     });
+   } catch {
+@@ -170,8 +182,9 @@ export async function createFreeMinecraftServer(_prev: unknown, formData: FormDa
+   try {
+     const host = await freemcHost();
+     const outcome = await withServerSsh(host, async (conn) => {
+-      const setup = await exec(conn, `mkdir -p ${shellQuote(`/opt/freemc/servers/${row.id}`)}`, 15_000);
++      const setup = await exec(conn, `mkdir -p ${shellQuote(serverDataPath(row.id))}`, 15_000);
+       if (setup.code !== 0) return { ok: false as const, error: setup.stderr || "mkdir failed" };
++      await seedNewServerProperties(conn, row.id).catch((e) => console.error("[free-minecraft] property seed failed (non-fatal):", e));
+       return recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+         dataPath: `/opt/freemc/servers/${row.id}`,
+@@ -182,6 +195,7 @@ export async function createFreeMinecraftServer(_prev: unknown, formData: FormDa
+         gameType: gameTypeDef,
+         gameTypeKey: gameType,
+         gameMode: gameModeDef,
++        engine,
+       });
+     });
+     if (!outcome.ok) throw new Error(outcome.error);
+@@ -195,7 +209,12 @@ export async function createFreeMinecraftServer(_prev: unknown, formData: FormDa
+     // never let a cleanup failure here mask the real error reported below.
+     try {
+       const host = await freemcHost();
+-      await withServerSsh(host, (conn) => exec(conn, `docker rm -f ${shellQuote(containerName)}`, 15_000));
++      await withServerSsh(host, async (conn) => {
++        await exec(conn, `docker rm -f ${shellQuote(containerName)}`, 15_000);
++        // A failed create has no player data yet — remove its dir outright
++        // instead of leaving one more orphan (43 found on 2026-10-01).
++        await exec(conn, `rm -rf ${shellQuote(serverDataPath(row.id))}`, 15_000);
++      });
+     } catch (cleanupErr) {
+       console.error("[free-minecraft] post-failure container cleanup failed:", cleanupErr);
+     }
+@@ -233,7 +252,9 @@ export async function deleteFreeMinecraftServer(_prev: unknown, _formData: FormD
+     const host = await freemcHost();
+     await withServerSsh(host, async (conn) => {
+       await exec(conn, `docker rm -f ${shellQuote(row.containerName)}`, 30_000);
+-      await exec(conn, `rm -rf ${shellQuote(`/opt/freemc/servers/${row.id}`)}`, 15_000);
++      // Trash, not rm -rf: a regretted delete is recoverable for 7 days.
++      const moved = await moveToTrash(conn, row.id);
++      if (!moved.ok) console.error("[free-minecraft] trash move failed:", moved.error);
+     });
+   } catch (e) {
+     console.error("[free-minecraft] delete cleanup failed (row is removed regardless):", e);
+@@ -269,21 +290,29 @@ export async function getFreeMinecraftDashboard() {
+ /** Power controls. mc-router already starts/stops on connect/idle
+  *  automatically — these are the manual overrides (force a restart to apply a
+  *  settings change now, or stop it to free the slot without waiting it out). */
+-export async function startFreeMinecraftServer(_prev: unknown, _formData: FormData): Promise<Result> {
++export async function startFreeMinecraftServer(_prev: unknown, _formData: FormData): Promise<PowerResult> {
+   return powerAction("start");
+ }
+ export async function stopFreeMinecraftServer(_prev: unknown, _formData: FormData): Promise<Result> {
+   return powerAction("stop");
+ }
+-export async function restartFreeMinecraftServer(_prev: unknown, _formData: FormData): Promise<Result> {
++export async function restartFreeMinecraftServer(_prev: unknown, _formData: FormData): Promise<PowerResult> {
+   return powerAction("restart");
+ }
+ 
+-async function powerAction(action: "start" | "stop" | "restart"): Promise<Result> {
++async function powerAction(action: "start" | "stop" | "restart"): Promise<PowerResult> {
+   const user = await requireUser();
+   const row = await db.freeMinecraftServer.findUnique({ where: { userId: user.id } });
+   if (!row) return { error: "You don't have a free server." };
+ 
++  if (action !== "stop" && row.crashBreakerUntil && row.crashBreakerUntil > new Date()) {
++    const mins = Math.max(1, Math.ceil((row.crashBreakerUntil.getTime() - Date.now()) / 60_000));
++    return {
++      error: `Your server crashed several times in a row, so automatic and manual starts are paused for ${mins} more minute${mins === 1 ? "" : "s"} to stop it looping. Your world is safe.`,
++    };
++  }
++  const maxConcurrent = await getSettingInt("free_minecraft_max_concurrent", 8);
++
+   const rl = checkRateLimit(`freemc:power:${user.id}`, { max: 10, windowMs: 60_000 });
+   if (!rl.ok) return { error: `Too many attempts — try again in ${rl.retryAfterSec}s.` };
+ 
+@@ -317,9 +346,19 @@ async function powerAction(action: "start" | "stop" | "restart"): Promise<Result
+             const cpus = (Number.parseInt(nanoCpusRaw, 10) || 0) / 1e9;
+             const ramMb = Math.round((Number.parseInt(memBytesRaw, 10) || 0) / (1024 * 1024));
+             const capacity = await getFreemcHostCapacity(conn);
+-            const capCheck = wouldExceedFreemcCapacity(capacity, cpus, ramMb);
+-            if (capCheck.exceeds) {
+-              return { ok: false as const, error: "Free servers are at capacity right now — try again in a few minutes." };
++            const verdict = evaluateStart(
++              {
++                totalCpus: capacity.totalCpus,
++                totalRamMb: capacity.totalRamMb,
++                committedCpus: capacity.committedCpus,
++                committedRamMb: capacity.committedRamMb,
++                runningCount: capacity.runningContainers.length,
++              },
++              { cpus, ramMb },
++              { reservedCpus: FREEMC_RESERVED_CPUS, reservedRamMb: FREEMC_RESERVED_RAM_MB, maxConcurrent },
++            );
++            if (!verdict.ok) {
++              return { ok: false as const, capacity: true, error: "Every free slot on the shared node is in use right now." };
+             }
+           }
+           // If the inspect itself failed (container missing entirely), fall
+@@ -327,11 +366,19 @@ async function powerAction(action: "start" | "stop" | "restart"): Promise<Result
+           // no point capacity-gating a container that doesn't exist.
+         }
+       }
+-      const r = await exec(conn, `docker ${action} ${shellQuote(row.containerName)}`, 30_000);
++      const r = await exec(conn, `docker ${action} ${shellQuote(row.containerName)}`, 70_000);
+       if (r.code !== 0) return { ok: false as const, error: r.stderr || `docker ${action} failed` };
+       return { ok: true as const };
+     });
+-    if (!outcome.ok) return { error: outcome.error };
++    if (!outcome.ok) {
++      if ("capacity" in outcome && outcome.capacity) {
++        await db.freeMinecraftEvent
++          .create({ data: { serverId: row.id, kind: "CAPACITY_REFUSED", detail: action } })
++          .catch(() => {});
++        return { error: outcome.error, capacity: true };
++      }
++      return { error: outcome.error };
++    }
+   } catch (e) {
+     console.error(`[free-minecraft] ${action} failed:`, e);
+     return { error: "That didn't work — please try again in a moment." };
+@@ -406,8 +453,10 @@ export async function changeFreeMinecraftSubdomain(_prev: unknown, formData: For
+         gameType,
+         gameTypeKey,
+         gameMode,
++        engine: row.engine,
+       });
+       if (applied.ok) return { landed: "moved" as const };
++      if (applied.untouched) return { landed: "untouched" as const, error: applied.error };
+       console.error("[free-minecraft] subdomain recreate failed, rolling back:", applied.error);
+       const rolledBack = await recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+@@ -419,12 +468,17 @@ export async function changeFreeMinecraftSubdomain(_prev: unknown, formData: For
+         gameType,
+         gameTypeKey,
+         gameMode,
++        engine: row.engine,
+       });
+       return rolledBack.ok
+         ? { landed: "reverted" as const }
+         : { landed: "broken" as const, error: rolledBack.error };
+     });
+ 
++    if (outcome.landed === "untouched") {
++      await db.freeMinecraftServer.update({ where: { id: row.id }, data: { subdomain: row.subdomain } }).catch(() => {});
++      return { error: outcome.error ?? "Free servers are at capacity right now — try again in a few minutes." };
++    }
+     if (outcome.landed !== "moved") {
+       await db.freeMinecraftServer.update({ where: { id: row.id }, data: { subdomain: row.subdomain } }).catch(() => {});
+     }
+@@ -528,7 +582,7 @@ export async function applyFreeMinecraftSettings(_prev: unknown, formData: FormD
+       }
+       const write = await writeServerProperties(conn, row.containerName, properties);
+       if (!write.ok) throw new Error(write.error || "Could not write settings.");
+-      await exec(conn, `docker restart ${shellQuote(row.containerName)}`, 30_000);
++      await exec(conn, `docker restart ${shellQuote(row.containerName)}`, 75_000);
+     });
+   } catch (e) {
+     console.error("[free-minecraft] settings apply failed:", e);
+@@ -593,7 +647,7 @@ export async function applyFreeMinecraftPreset(_prev: unknown, formData: FormDat
+       const previousModeDef = FREEMC_GAME_MODES[row.activeGameMode] ?? FREEMC_GAME_MODES.survival;
+ 
+       const outcome = await withServerSsh(host, async (conn) => {
+-        await exec(conn, `docker exec ${shellQuote(row.containerName)} sh -c 'rm -rf /data/plugins/*'`, 15_000).catch(() => {});
++        await clearPluginJars(conn, row.id).catch(() => {});
+         const applied = await recreateGameTypeContainer(conn, {
+           containerName: row.containerName,
+           dataPath: `/opt/freemc/servers/${row.id}`,
+@@ -604,9 +658,11 @@ export async function applyFreeMinecraftPreset(_prev: unknown, formData: FormDat
+           gameType: gameTypeDef,
+           gameTypeKey: gameType,
+           gameMode: gameModeDef,
++          engine: row.engine,
+         });
+         if (applied.ok) return { ok: true as const };
+ 
++        if (applied.untouched) return { ok: false as const, error: applied.error ?? "Free servers are at capacity right now — try again in a few minutes." };
+         console.error("[free-minecraft] preset boot failed, rolling back:", applied.error);
+         const rolledBack = await recreateGameTypeContainer(conn, {
+           containerName: row.containerName,
+@@ -618,6 +674,7 @@ export async function applyFreeMinecraftPreset(_prev: unknown, formData: FormDat
+           gameType: previousTypeDef,
+           gameTypeKey: previousTypeKey,
+           gameMode: previousModeDef,
++          engine: row.engine,
+         });
+         return rolledBack.ok
+           ? { ok: false as const, error: "That preset didn't start cleanly, so we put your server back the way it was." }
+diff --git a/lib/actions-freemc-mods.ts b/lib/actions-freemc-mods.ts
+index a9d114dbbe..7721e18962 100644
+--- a/lib/actions-freemc-mods.ts
++++ b/lib/actions-freemc-mods.ts
+@@ -27,7 +27,7 @@ import { checkRateLimit } from "./rate-limit";
+ import { getSetting, getSettingInt } from "./settings";
+ import { withServerSsh, exec, shellQuote } from "./ssh-exec";
+ import type { SftpServer } from "./sftp";
+-import { FREEMC_GAME_TYPES, FREEMC_GAME_MODES, recreateGameTypeContainer } from "./free-minecraft-control";
++import { FREEMC_GAME_TYPES, FREEMC_GAME_MODES, recreateGameTypeContainer, clearPluginJars } from "./free-minecraft-control";
+ import { FREEMC_MOD_CATALOG } from "./freemc-mod-catalog";
+ 
+ type Result = { error?: string };
+@@ -87,7 +87,9 @@ export async function applyFreeMinecraftMods(_prev: unknown, formData: FormData)
+       // Clear old plugin jars first — MODRINTH_PROJECTS only ADDS/updates
+       // what it lists, it never prunes a jar no longer listed, so a mod the
+       // owner just REMOVED would otherwise keep running.
+-      await exec(conn, `rm -rf ${shellQuote(`/opt/freemc/servers/${row.id}/plugins`)}`, 15_000).catch(() => {});
++      // Jars only — see clearPluginJars: the old `rm -rf plugins` wiped every
++      // plugin's data (towns, islands, homes, LuckPerms roles) on each save.
++      await clearPluginJars(conn, row.id).catch(() => {});
+       const applied = await recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+         dataPath: `/opt/freemc/servers/${row.id}`,
+@@ -99,9 +101,11 @@ export async function applyFreeMinecraftMods(_prev: unknown, formData: FormData)
+         gameTypeKey,
+         gameMode,
+         extraEnv: extraEnvFor(selected),
++        engine: row.engine,
+       });
+       if (applied.ok) return { ok: true as const };
+ 
++      if (applied.untouched) return { ok: false as const, error: applied.error ?? "Free servers are at capacity right now — try again in a few minutes." };
+       console.error("[freemc-mods] apply failed, rolling back:", applied.error);
+       const rolledBack = await recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+@@ -114,6 +118,7 @@ export async function applyFreeMinecraftMods(_prev: unknown, formData: FormData)
+         gameTypeKey,
+         gameMode,
+         extraEnv: extraEnvFor(previousMods),
++        engine: row.engine,
+       });
+       return rolledBack.ok
+         ? { ok: false as const, error: "That mod selection didn't start cleanly, so we put your server back the way it was." }
+diff --git a/lib/actions-freemc-roles.ts b/lib/actions-freemc-roles.ts
+index 998d7d493d..30a6499059 100644
+--- a/lib/actions-freemc-roles.ts
++++ b/lib/actions-freemc-roles.ts
+@@ -193,7 +193,7 @@ async function ensureLuckPermsReady(
+     return { ok: false, error: "Couldn't prepare roles for your server — please try again." };
+   }
+ 
+-  const restart = await exec(conn, `docker restart ${shellQuote(containerName)}`, 30_000);
++  const restart = await exec(conn, `docker restart ${shellQuote(containerName)}`, 75_000);
+   if (restart.code !== 0) {
+     return { ok: false, error: "Couldn't restart your server to apply roles setup — please try again." };
+   }
+diff --git a/lib/actions-freemc-worlds.ts b/lib/actions-freemc-worlds.ts
+index eead4bdd12..5da42908a3 100644
+--- a/lib/actions-freemc-worlds.ts
++++ b/lib/actions-freemc-worlds.ts
+@@ -27,7 +27,7 @@ import { db } from "./db";
+ import { requireUser } from "./auth";
+ import { checkRateLimit } from "./rate-limit";
+ import { getSetting, getSettingInt } from "./settings";
+-import { withServerSsh, exec, shellQuote } from "./ssh-exec";
++import { withServerSsh } from "./ssh-exec";
+ import type { SftpServer } from "./sftp";
+ import {
+   FREEMC_GAME_TYPES,
+@@ -35,6 +35,8 @@ import {
+   legacyPresetKeyFor,
+   recreateGameTypeContainer,
+   applyModeProperties,
++  clearPluginJars,
++  moveToTrash,
+ } from "./free-minecraft-control";
+ 
+ type Result = { error?: string };
+@@ -137,7 +139,9 @@ export async function switchFreeMinecraftGameType(_prev: unknown, formData: Form
+       // Same reasoning as the legacy preset switch: plugin jars from the
+       // PREVIOUS type must be cleared, or itzg's entrypoint syncs the new
+       // type's env against a plugins/ dir still full of the old type's jars.
+-      await exec(conn, `docker exec ${shellQuote(row.containerName)} sh -c 'rm -rf /data/plugins/*'`, 15_000).catch(() => {});
++      // Jars only, on the host path — see clearPluginJars for the data-loss
++      // bug the old `docker exec ... rm -rf /data/plugins/*` caused.
++      await clearPluginJars(conn, row.id).catch(() => {});
+       const applied = await recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+         dataPath: `/opt/freemc/servers/${row.id}`,
+@@ -148,9 +152,11 @@ export async function switchFreeMinecraftGameType(_prev: unknown, formData: Form
+         gameType: targetType,
+         gameTypeKey: gameType,
+         gameMode: activeMode,
++        engine: row.engine,
+       });
+       if (applied.ok) return { ok: true as const };
+ 
++      if (applied.untouched) return { ok: false as const, error: applied.error ?? "Free servers are at capacity right now — try again in a few minutes." };
+       console.error("[freemc-worlds] game type switch failed, rolling back:", applied.error);
+       const rolledBack = await recreateGameTypeContainer(conn, {
+         containerName: row.containerName,
+@@ -162,6 +168,7 @@ export async function switchFreeMinecraftGameType(_prev: unknown, formData: Form
+         gameType: previousType,
+         gameTypeKey: previousTypeKey,
+         gameMode: activeMode,
++        engine: row.engine,
+       });
+       return rolledBack.ok
+         ? { ok: false as const, error: "That game type didn't start cleanly, so we put your server back the way it was." }
+@@ -287,11 +294,13 @@ export async function deleteFreeMinecraftWorld(_prev: unknown, formData: FormDat
+ 
+   try {
+     const host = await freemcHost();
+-    const dataPath = `/opt/freemc/servers/${row.id}`;
+     const folders = [gameType, `${gameType}_nether`, `${gameType}_the_end`, ...(type.extraWorldFolders ?? [])];
++    // Moved to the host's trash, not rm -rf'd — recoverable by an admin for
++    // FREEMC_TRASH_DAYS (7) days (the health sweep purges it after that).
+     await withServerSsh(host, async (conn) => {
+       for (const folder of folders) {
+-        await exec(conn, `rm -rf ${shellQuote(`${dataPath}/${folder}`)}`, 15_000);
++        const moved = await moveToTrash(conn, row.id, folder);
++        if (!moved.ok) console.error(`[freemc-worlds] trash move failed for ${folder}:`, moved.error);
+       }
+     });
+   } catch (e) {
+diff --git a/lib/actions-settings.ts b/lib/actions-settings.ts
+index 6efa5078d2..84b5d1a46c 100644
+--- a/lib/actions-settings.ts
++++ b/lib/actions-settings.ts
+@@ -298,6 +298,20 @@ const SECTION_FIELDS: Record<string, Field[]> = {
+     // every account — the circuit breaker protecting the host VM's own RAM
+     // ceiling regardless of how many accounts have created a free server.
+     { key: "free_minecraft_max_concurrent", type: "int", min: 1, max: 64 },
++    // Server JAR for NEW free servers' vanilla game type: "PAPER" (default) or
++    // "VANILLA". Existing servers keep whatever they were created with
++    // (FreeMinecraftServer.engine), so flipping this never migrates a world.
++    { key: "free_minecraft_engine_default", type: "string" },
++    // Health sweep (worker/freemc-health.ts): samples RAM/CPU/TPS/players of
++    // awake free servers, records crashes/OOMs/wakes, runs the start queue,
++    // measures disk and purges the 7-day trash. Read-mostly; default ON.
++    { key: "free_minecraft_health_enabled", type: "bool" },
++    // Lets the watchdog `docker start` a server that crashed WITH players
++    // connected (backoff 0 -> 5 min, breaker after 3 crashes / 30 min).
++    // Default OFF — turn on once the health samples look sane.
++    { key: "free_minecraft_watchdog_autorestart", type: "bool" },
++    // Evidence-based upgrade prompts on the free dashboard (lib/freemc-upsell.ts).
++    { key: "free_minecraft_upsell_enabled", type: "bool" },
+   ],
+   email: [
+     { key: "smtp_host", type: "string" },
+diff --git a/lib/free-minecraft-control.ts b/lib/free-minecraft-control.ts
+index 9127fcb722..f5357e7ea0 100644
+--- a/lib/free-minecraft-control.ts
++++ b/lib/free-minecraft-control.ts
+@@ -12,7 +12,91 @@
+ import { scryptSync } from "node:crypto";
+ import type { Client } from "ssh2";
+ import { exec, execInput, shellQuote } from "./ssh-exec";
+-import { getFreemcHostCapacity, wouldExceedFreemcCapacity } from "./freemc-capacity";
++import { getFreemcHostCapacity, FREEMC_RESERVED_CPUS, FREEMC_RESERVED_RAM_MB } from "./freemc-capacity";
++import {
++  containerResources,
++  jvmEnv,
++  resolveEngine,
++  evaluateStart,
++  seededPropertiesBody,
++  FREEMC_STOP_TIMEOUT_S,
++} from "./freemc-limits";
++import { getSettingInt } from "./settings";
++
++/** Root of every free server's data dir on freemc-host. */
++export const FREEMC_SERVERS_ROOT = "/opt/freemc/servers";
++/** Where destructive actions MOVE data instead of deleting it outright; the
++ *  health sweep purges entries older than FREEMC_TRASH_DAYS. Same filesystem
++ *  as the servers root, so the move is instant and costs no extra disk. */
++export const FREEMC_TRASH_ROOT = "/opt/freemc/trash";
++export const FREEMC_TRASH_DAYS = 7;
++
++/** cuid-shaped ids only — every path built below goes through shellQuote too,
++ *  this is belt-and-braces against a path ever escaping its server's dir. */
++const SAFE_ID_RE = /^[a-z0-9]{10,40}$/;
++const SAFE_FOLDER_RE = /^[a-z0-9_]{1,64}$/;
++
++export function serverDataPath(serverId: string): string {
++  if (!SAFE_ID_RE.test(serverId)) throw new Error("unsafe free server id");
++  return `${FREEMC_SERVERS_ROOT}/${serverId}`;
++}
++
++/**
++ * Moves a server's whole data dir (or one world folder inside it) to the
++ * trash instead of `rm -rf` — a delete stays recoverable for
++ * FREEMC_TRASH_DAYS. `touch` resets the mtime so the purge clock starts at the
++ * delete, not at the world's last save. Missing source = no-op success.
++ */
++export async function moveToTrash(
++  conn: Client,
++  serverId: string,
++  folder?: string,
++): Promise<{ ok: boolean; error?: string }> {
++  const base = serverDataPath(serverId);
++  if (folder != null && !SAFE_FOLDER_RE.test(folder)) return { ok: false, error: "unsafe folder name" };
++  const src = folder ? `${base}/${folder}` : base;
++  const stamp = new Date().toISOString().replace(/[^0-9]/g, "").slice(0, 14);
++  const dst = `${FREEMC_TRASH_ROOT}/${serverId}${folder ? `__${folder}` : ""}__${stamp}`;
++  const r = await exec(
++    conn,
++    `if [ -e ${shellQuote(src)} ]; then mkdir -p ${shellQuote(FREEMC_TRASH_ROOT)} && mv ${shellQuote(src)} ${shellQuote(dst)} && touch ${shellQuote(dst)}; fi`,
++    30_000,
++  );
++  if (r.code !== 0) return { ok: false, error: r.stderr.trim() || "move to trash failed" };
++  return { ok: true };
++}
++
++/**
++ * Removes only the plugin JARS (and Paper's remapped-jar cache) before a
++ * recreate with a different plugin set — never the per-plugin data folders.
++ *
++ * Replaces `rm -rf /data/plugins/*` (type switch / legacy preset) and
++ * `rm -rf <data>/plugins` (mod menu), which deleted every plugin's DATA along
++ * with its jar: LuckPerms' H2 database (the Roles tab), IridiumSkyblock's
++ * island database, Towny's towns/residents, Essentials homes/userdata and
++ * Prison's mines. A SkyBlock -> Vanilla -> SkyBlock round trip, or simply
++ * ticking one extra mod, silently reset all of it while the world folder
++ * itself survived — "my island is gone but the world is still there". Runs on
++ * the HOST path rather than `docker exec`, because the old `docker exec` form
++ * silently did nothing whenever the container was asleep (the `.catch` hid
++ * it), leaving the previous type's jars in place.
++ */
++export async function clearPluginJars(conn: Client, serverId: string): Promise<void> {
++  const plugins = `${serverDataPath(serverId)}/plugins`;
++  await exec(
++    conn,
++    `if [ -d ${shellQuote(plugins)} ]; then find ${shellQuote(plugins)} -maxdepth 1 -type f -name '*.jar' -delete; rm -rf ${shellQuote(`${plugins}/.paper-remapped`)}; fi`,
++    20_000,
++  );
++}
++
++/** Seeds view/simulation distance + player cap into a brand-new server's
++ *  server.properties before its first boot (never overwrites an existing
++ *  file) — see FREEMC_SEEDED_PROPERTIES for why these aren't env vars. */
++export async function seedNewServerProperties(conn: Client, serverId: string): Promise<void> {
++  const file = `${serverDataPath(serverId)}/server.properties`;
++  await execInput(conn, `test -e ${shellQuote(file)} || cat > ${shellQuote(file)}`, seededPropertiesBody(), 10_000);
++}
+ 
+ /**
+  * Deterministic per-server RCON password — HMAC-shaped via scrypt off
+@@ -708,7 +792,7 @@ export async function applyModeProperties(
+   }
+   const write = await writeServerProperties(conn, containerName, mode.properties);
+   if (!write.ok) return { ok: false, error: write.error || "Could not write server.properties." };
+-  const restart = await exec(conn, `docker restart ${shellQuote(containerName)}`, 30_000);
++  const restart = await exec(conn, `docker restart ${shellQuote(containerName)}`, 75_000);
+   if (restart.code !== 0) return { ok: false, error: restart.stderr || "docker restart failed" };
+   return { ok: true };
+ }
+@@ -863,8 +947,10 @@ export async function recreateGameTypeContainer(
+     /** Extra env vars layered on top of the type's own (e.g. the Mod Menu's
+      *  merged MODRINTH_PROJECTS list) — last-write-wins over the type's env. */
+     extraEnv?: Record<string, string>;
++    /** FreeMinecraftServer.engine — NULL for legacy rows (stay VANILLA). */
++    engine?: string | null;
+   },
+-): Promise<{ ok: boolean; error?: string }> {
++): Promise<{ ok: boolean; error?: string; untouched?: boolean }> {
+   // Vanilla OOM-killed TWICE live (2026-09-05 and again 2026-09-06, same
+   // account/world, freemc-host/node-2) before this fix. First attempt only
+   // dropped the ratio 0.85->0.75 (1024m container => 768m heap) and raised
+@@ -878,8 +964,8 @@ export async function recreateGameTypeContainer(
+   // of only living inside the bare global default, at the same 0.7 ratio
+   // plugins already use: 1536m*0.7 = 1075m heap, 461m headroom — comfortably
+   // above both observed spikes, not just the smaller one.
+-  const jvmRatio = 0.7; // headroom needed regardless of preset kind — see incident history above and FREEMC_PLUGIN_MC_VERSION's neighboring history
+-  const cpus = params.gameType.kind === "plugins" ? 2 : 1; // see recreatePresetContainer's note on mc-router's fixed 60s wake timeout
++  // (The 0.7 heap ratio and the per-kind floors/cpus now live in
++  // lib/freemc-limits.ts's containerResources — same numbers, unit-tested.)
+   // The global free_minecraft_ram_mb setting (1024 by default) is sized for
+   // the properties-only presets — plugins-kind ones (EssentialsX + LuckPerms
+   // + Vault + a type's own plugins, up to 6 loaded dimensions on something
+@@ -902,42 +988,74 @@ export async function recreateGameTypeContainer(
+   // history above, give vanilla its own floor too (1536m) for the same
+   // reason: the bare 1024m global default has now OOM-killed a real
+   // vanilla world twice with nothing but a ratio tweak between the two.
+-  const ramMb = Math.max(params.ramMb, params.gameType.kind === "plugins" ? 2560 : 1536);
+-  const jvmMb = Math.max(256, Math.round(ramMb * jvmRatio));
++  const res = containerResources(params.gameType.kind, params.ramMb);
++  const { ramMb, cpus } = res;
++  // Vanilla game type on the Paper engine (new servers since 2026-10-01, see
++  // FreeMinecraftServer.engine) — pinned to the same verified version as the
++  // plugin types, plus ViaVersion so clients on a newer release can still
++  // join (exactly what the plugin types already ship for the same reason).
++  const engine = resolveEngine(params.gameType.kind, params.engine);
++  const paperVanilla = engine === "PAPER" && params.gameType.kind !== "plugins";
+ 
+-  const envVars = { ...envForGameType(params.gameType), ...(params.extraEnv ?? {}), LEVEL: params.gameTypeKey };
++  const envVars = {
++    ...envForGameType(params.gameType),
++    ...(paperVanilla ? { MODRINTH_PROJECTS: "viaversion" } : {}),
++    ...(params.extraEnv ?? {}),
++    ...jvmEnv(res),
++    LEVEL: params.gameTypeKey,
++  };
+   const envFlags = Object.entries(envVars)
+     .map(([k, v]) => `-e ${k}=${shellQuote(v)}`)
+     .join(" ");
+ 
+-  // Removed FIRST, checked SECOND: if this account's own container was
+-  // already running, `docker rm -f` frees its committed cpus/ramMb before the
+-  // capacity snapshot below is taken, so this account's own prior usage never
+-  // counts against itself (a type switch that keeps the SAME cpu/ram class,
+-  // e.g. plugins->plugins, must never get blocked by its own old container).
+-  // This is also why every docker-run-issuing caller (create, type switch,
+-  // subdomain change, the legacy preset switch) gets this check for free
+-  // without needing its own copy — see lib/freemc-capacity.ts's module doc
+-  // for why this is gated at all and why the passive mc-router wake path
+-  // deliberately is NOT.
+-  await exec(conn, `docker rm -f ${shellQuote(params.containerName)}`, 30_000);
+-
++  // Checked FIRST, removed SECOND (changed 2026-10-01). The old order —
++  // `docker rm -f` and THEN the capacity check — meant a refusal left the
++  // account with no container at all: mc-router can't wake what doesn't
++  // exist, so the server was simply gone until someone recreated it (this is
++  // exactly how the 2026-09-05 bulk sweep deleted a connected player's
++  // container). Now the snapshot is taken first with this account's OWN
++  // running container subtracted (so a type switch never blocks on its own
++  // old usage, same as before), and only a passing check removes anything.
+   const capacity = await getFreemcHostCapacity(conn);
+-  const capCheck = wouldExceedFreemcCapacity(capacity, cpus, ramMb);
+-  if (capCheck.exceeds) {
+-    return { ok: false, error: "Free servers are at capacity right now — try again in a few minutes." };
++  const own = capacity.runningContainers.find((c) => c.containerName === params.containerName);
++  const maxConcurrent = await getSettingInt("free_minecraft_max_concurrent", 8);
++  const verdict = evaluateStart(
++    {
++      totalCpus: capacity.totalCpus,
++      totalRamMb: capacity.totalRamMb,
++      committedCpus: capacity.committedCpus - (own?.cpus ?? 0),
++      committedRamMb: capacity.committedRamMb - (own?.ramMb ?? 0),
++      runningCount: capacity.runningContainers.length - (own ? 1 : 0),
++    },
++    { cpus, ramMb },
++    { reservedCpus: FREEMC_RESERVED_CPUS, reservedRamMb: FREEMC_RESERVED_RAM_MB, maxConcurrent },
++  );
++  if (!verdict.ok) {
++    // `untouched`: nothing was removed or changed — callers must NOT run a
++    // rollback recreate (it would hit the same wall and report a scary
++    // "restoring also failed" for a server that was never modified).
++    return { ok: false, untouched: true, error: "Free servers are at capacity right now — try again in a few minutes." };
+   }
++  await exec(conn, `docker rm -f ${shellQuote(params.containerName)}`, 30_000);
+ 
+   const cmd = [
+     "docker run -d",
+     `--name ${shellQuote(params.containerName)}`,
+     "--network freemc",
+     `--memory=${ramMb}m --memory-swap=${ramMb}m --cpus=${cpus}`,
++    // No docker-level auto-restart: a crashed free server is restarted (or
++    // not) by the watchdog's backoff + breaker (worker/freemc-health.ts), or
++    // simply woken again by mc-router on the next connect — never in a tight
++    // docker restart loop that bypasses the capacity gate.
++    "--restart=no",
++    `--stop-timeout=${FREEMC_STOP_TIMEOUT_S}`,
++    // Docker's json-file driver keeps container logs forever by default.
++    "--log-opt max-size=10m --log-opt max-file=3",
++    `--label nxeon.freemc.engine=${engine}`,
+     `--label mc-router.host=${shellQuote(`${params.subdomain}.${params.domain}`)}`,
+     `-v ${shellQuote(params.dataPath)}:/data`,
+-    `-e EULA=TRUE -e TYPE=${params.gameType.type ?? "VANILLA"} -e ONLINE_MODE=FALSE`,
+-    params.gameType.kind === "plugins" ? `-e VERSION=${shellQuote(FREEMC_PLUGIN_MC_VERSION)}` : "",
+-    `-e MEMORY=${jvmMb}m`,
++    `-e EULA=TRUE -e TYPE=${engine} -e ONLINE_MODE=FALSE`,
++    params.gameType.kind === "plugins" || paperVanilla ? `-e VERSION=${shellQuote(FREEMC_PLUGIN_MC_VERSION)}` : "",
+     `-e ENABLE_RCON=true -e RCON_PASSWORD=${shellQuote(rconPasswordFor(params.ownerId))}`,
+     envFlags,
+     "itzg/minecraft-server",
+@@ -945,7 +1063,7 @@ export async function recreateGameTypeContainer(
+   const run = await exec(conn, cmd, 90_000); // plugin downloads can take longer than a plain boot
+   if (run.code !== 0) return { ok: false, error: run.stderr || "docker run failed" };
+ 
+-  const ready = await waitForServerReady(conn, params.containerName, params.gameType.kind === "plugins" ? FREEMC_PLUGIN_READY_TIMEOUT_MS : undefined);
++  const ready = await waitForServerReady(conn, params.containerName, engine === "PAPER" ? FREEMC_PLUGIN_READY_TIMEOUT_MS : undefined);
+   if (!ready.ok) return ready;
+ 
+   // IridiumSkyblock ships with `islandCreateOnJoin: false` — a customer who
+@@ -1068,7 +1186,7 @@ export async function recreateGameTypeContainer(
+   // same boot sequence as the `docker run` above — needs the same real
+   // readiness wait, not a fixed few-second sleep. This restart is also what
+   // picks up the SkyBlock config patch above, if it ran.
+-  const readyAfterMode = await waitForServerReady(conn, params.containerName, params.gameType.kind === "plugins" ? FREEMC_PLUGIN_READY_TIMEOUT_MS : undefined);
++  const readyAfterMode = await waitForServerReady(conn, params.containerName, engine === "PAPER" ? FREEMC_PLUGIN_READY_TIMEOUT_MS : undefined);
+   if (!readyAfterMode.ok) {
+     return { ok: false, error: readyAfterMode.error || "Server didn't come back up after applying the active game mode." };
+   }
+diff --git a/lib/freemc-capacity.ts b/lib/freemc-capacity.ts
+index 3e18b5d2cc..75ad55545f 100644
+--- a/lib/freemc-capacity.ts
++++ b/lib/freemc-capacity.ts
+@@ -24,6 +24,7 @@
+  */
+ import type { Client } from "ssh2";
+ import { exec, shellQuote } from "./ssh-exec";
++import { evaluateStart } from "./freemc-limits";
+ 
+ /** Free-tier container name prefix — see FreeMinecraftServer.containerName's
+  *  schema comment (`mc-free-<userId>`) and lib/actions-free-minecraft.ts's
+@@ -152,9 +153,14 @@ export function wouldExceedFreemcCapacity(
+   addCpus: number,
+   addRamMb: number,
+ ): { exceeds: boolean; dimension?: "CPU" | "RAM" } {
+-  const cpuBudget = cap.totalCpus - FREEMC_RESERVED_CPUS;
+-  const ramBudget = cap.totalRamMb - FREEMC_RESERVED_RAM_MB;
+-  if (cap.committedCpus + addCpus > cpuBudget) return { exceeds: true, dimension: "CPU" };
+-  if (cap.committedRamMb + addRamMb > ramBudget) return { exceeds: true, dimension: "RAM" };
+-  return { exceeds: false };
++  // Delegates to the unit-tested pure rule (lib/freemc-limits.ts) so the CPU/RAM
++  // math has one implementation; the count cap is applied by callers that pass
++  // free_minecraft_max_concurrent to evaluateStart directly.
++  const v = evaluateStart(
++    { ...cap, runningCount: 0 },
++    { cpus: addCpus, ramMb: addRamMb },
++    { reservedCpus: FREEMC_RESERVED_CPUS, reservedRamMb: FREEMC_RESERVED_RAM_MB, maxConcurrent: Number.POSITIVE_INFINITY },
++  );
++  if (v.ok) return { exceeds: false };
++  return { exceeds: true, dimension: v.reason === "RAM" ? "RAM" : "CPU" };
+ }
+diff --git a/lib/freemc-limits.ts b/lib/freemc-limits.ts
+index 21abe2f3ea..e5b331cb03 100644
+--- a/lib/freemc-limits.ts
++++ b/lib/freemc-limits.ts
+@@ -155,7 +155,7 @@ export const FREEMC_SEEDED_PROPERTIES: Record<string, string> = {
+ /** Renders FREEMC_SEEDED_PROPERTIES as a server.properties body. */
+ export function seededPropertiesBody(): string {
+   return (
+-    "# Seeded by Nxeon at creation — change these any time in your dashboard's Settings tab.\n" +
++    "# Seeded by Nxeon at creation - change these any time in the Settings tab of your dashboard.\n" +
+     Object.entries(FREEMC_SEEDED_PROPERTIES)
+       .map(([k, v]) => `${k}=${v}`)
+       .join("\n") +
+diff --git a/prisma/schema.prisma b/prisma/schema.prisma
+index 81cdba2a48..cbcfc7bd55 100644
+--- a/prisma/schema.prisma
++++ b/prisma/schema.prisma
+@@ -3531,6 +3531,101 @@ model FreeMinecraftServer {
+   // plugin jar. Deliberately just slugs, not full env strings: this list is
+   // validated against a fixed catalog before it ever reaches a docker command.
+   extraMods String[] @default([])
++
++  // ---- Stability + observability (2026-10-01, lib/freemc-limits.ts / worker/freemc-health.ts) ----
++  // Server JAR family this account's containers boot with. NULL = legacy row
++  // created before this column existed: keeps booting exactly what it always
++  // did (TYPE=VANILLA for the vanilla game type) so an existing vanilla world
++  // is never silently migrated to Paper's split-dimension layout. New servers
++  // get the `free_minecraft_engine_default` setting ("PAPER" by default).
++  engine            String?
++  // Crash-loop breaker: while in the future, the watchdog never auto-restarts
++  // this container and a dashboard Start is refused with an honest message.
++  crashBreakerUntil DateTime?
++  // Dedupe key for crash detection — the `.State.FinishedAt` of the last
++  // container exit the watchdog already recorded, so one exit is one event.
++  lastExitSeenAt    String?
++  // Last `du -sm` of /opt/freemc/servers/<id> (soft disk quota, compared to
++  // the `free_minecraft_disk_mb` setting) and when it was measured.
++  diskMb            Int?
++  diskCheckedAt     DateTime?
++  samples           FreeMinecraftSample[]
++  events            FreeMinecraftEvent[]
++  startRequest      FreeMinecraftStartRequest?
++}
++
++/// One live health sample of a RUNNING free container, written by the
++/// worker's freemc health sweep (worker/freemc-health.ts). Every field is a
++/// real reading — `docker stats` for memory/CPU, RCON `tick query` / Paper
++/// `tps` for tick health, mc-monitor for players — or NULL when that reading
++/// failed. Nothing here is estimated. Pruned after 14 days.
++model FreeMinecraftSample {
++  id            String              @id @default(cuid())
++  serverId      String
++  server        FreeMinecraftServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
++  at            DateTime            @default(now())
++  memUsedMb     Int?
++  memLimitMb    Int?
++  cpuPct        Float?
++  // Average milliseconds per tick (50ms = exactly 20 TPS). tps is Paper's own
++  // 1-minute figure when available, else min(20, 1000/mspt).
++  mspt          Float?
++  tps           Float?
++  playersOnline Int?
++  playersMax    Int?
++
++  @@index([serverId, at])
++  @@index([at])
++}
++
++/// Lifecycle/health events for a free server: CRASH (non-zero exit), OOM
++/// (docker inspect OOMKilled=true), WATCHDOG_RESTART, BREAKER_OPEN, WAKE
++/// (mc-router wake, `value` = measured seconds), CAPACITY_REFUSED,
++/// QUEUE_STARTED. `detail` is short plain text.
++model FreeMinecraftEvent {
++  id       String              @id @default(cuid())
++  serverId String
++  server   FreeMinecraftServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
++  kind     String
++  detail   String?
++  value    Float?
++  at       DateTime            @default(now())
++
++  @@index([serverId, at])
++  @@index([kind, at])
++}
++
++/// Honest wait-list for the shared host: one row per server whose owner asked
++/// to be started when a slot frees. The worker starts the OLDEST waiting row
++/// once capacity allows, and only if it was requested within the last 20
++/// minutes (nobody's server wakes long after they walked away). The position
++/// shown to the player is a real COUNT of older WAITING rows.
++model FreeMinecraftStartRequest {
++  id          String              @id @default(cuid())
++  serverId    String              @unique
++  server      FreeMinecraftServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
++  status      String              @default("WAITING") // WAITING | STARTED | EXPIRED | CANCELLED
++  requestedAt DateTime            @default(now())
++  resolvedAt  DateTime?
++
++  @@index([status, requestedAt])
++}
++
++/// Upgrade-prompt funnel for the free Minecraft dashboard (additive; read by
++/// /admin/free-minecraft and available to the insights funnel). One row per
++/// SHOWN (deduped to once per trigger per user per day), CLICKED or
++/// DISMISSED. `trigger` is the real signal that justified the prompt
++/// (lib/freemc-upsell.ts) — a prompt is never shown without one.
++model FreeMinecraftUpsellEvent {
++  id       String   @id @default(cuid())
++  userId   String
++  serverId String?
++  trigger  String
++  action   String // SHOWN | CLICKED | DISMISSED
++  at       DateTime @default(now())
++
++  @@index([userId, at])
++  @@index([action, at])
+ }
+ 
+ /// One row per game type a free-Minecraft account has actually applied at
+diff --git a/worker/index.ts b/worker/index.ts
+index 846c3b27cf..d9c2f8347d 100644
+--- a/worker/index.ts
++++ b/worker/index.ts
+@@ -92,6 +92,7 @@ import type { Job, Server } from "@prisma/client";
+ import { buildGameSetupScript } from "./game-variant";
+ import { syncGameServerDns } from "./game-subdomain-sync";
+ import { deleteMinecraftSubdomainDns } from "../lib/game-subdomain-dns";
++import { kickFreemcHealthSweep } from "./freemc-health";
+ 
+ const POLL_MS = 3000;
+ const MAX_ATTEMPTS = 3;
+@@ -3168,6 +3169,11 @@ async function main() {
+         console.error("[marketing] sweep error", e);
+       }
+     }
++    // Free-Minecraft health sweep (samples, crash/OOM events, watchdog, start
++    // queue, disk, trash). Self-paced to every 2 min and fire-and-forget with
++    // its own in-flight guard, so a slow freemc-host never stalls the job loop.
++    // See worker/freemc-health.ts.
++    kickFreemcHealthSweep();
+     // Creator-outreach CSV queue: at most one email per minute, never a burst
+     // — see processOutreachQueueTick's own doc comment.
+     if (Date.now() - lastOutreachQueueTick > 60_000) {

@@ -1,0 +1,152 @@
+[
+ {
+  "id": "signup-start",
+  "title": "cyrus.my sign-in -> 'Create a Cyrus account' -> Nxeon consent (create)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "signup-agree",
+  "title": "tick agree -> Nxeon /register (coming back to authorize)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "signup-register",
+  "title": "real /register form creates the Nxeon account; unverified -> verify step",
+  "ok": true,
+  "detail": "/sso/cyrus/consent?client_id=cyrus&redirect_uri=https%3A%2F%2Fcyrus.my%3A5148%2Fauth%2Fnxeon%2Fcallback&state=WbH08auKz-dhM3HZ0ZkLOaxwFFF53zqB&nonce=TzqAIb67mzOUnQLAg5QW2bSuzqtPnZMZ&prompt=create&verify=1"
+ },
+ {
+  "id": "signup-verified",
+  "title": "after verification the same handshake lands signed in on cyrus.my/studio",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "sso-nxeon",
+  "title": "cyrus.my 'Sign in with Nxeon' -> consent -> back on cyrus.my/studio with a Cyrus session",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "sso-cyrus",
+  "title": "nxeon.cloud /login 'Sign in with Cyrus' -> Nxeon dashboard",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "logout",
+  "title": "Sign out on cyrus.my ends the Nxeon session too",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "wallet-both-hosts",
+  "title": "wallet top-up on nxeon.cloud then cyrus.my (same key twice each) -> 2 credits, never 4",
+  "ok": true,
+  "detail": "wallet 1000c, tokens 1200, both hosts 1200"
+ },
+ {
+  "id": "wallet-ui",
+  "title": "cyrus.my customer app billing tab: Top up -> 'Pay from wallet' (preview account, real handshake)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "fullscreen-dark",
+  "title": "dark: Nxeon top-bar Cyrus pill (inverse colours) -> full-screen Cyrus -> Back to Nxeon",
+  "ok": true,
+  "detail": "pill rgb(255, 255, 255)"
+ },
+ {
+  "id": "fullscreen-light",
+  "title": "light: Nxeon top-bar Cyrus pill (inverse colours) -> full-screen Cyrus -> Back to Nxeon",
+  "ok": true,
+  "detail": "pill rgb(0, 0, 0)"
+ },
+ {
+  "id": "app-pages-nxeon",
+  "title": "customer app pages render on nxeon.cloud (home, projects, project, account)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "newmod-cost-first",
+  "title": "new-mod flow shows the token cost before anything is spent",
+  "ok": true,
+  "detail": "COST 30–70 tokens Simple mod on Katara: the build holds up to 70 while it runs and spends only what it uses. A failed bu"
+ },
+ {
+  "id": "live-meter",
+  "title": "running build shows the live token meter (estimated so far vs held)",
+  "ok": true,
+  "detail": "≈ 69 so far ESTIMATED of 1,200 held"
+ },
+ {
+  "id": "connect-server",
+  "title": "Connect Cyrus: consent screen, pick a server (required scopes locked on), grant recorded, Disconnect revokes",
+  "ok": true,
+  "detail": "7 boxes ticked; granted then disconnected"
+ },
+ {
+  "id": "capability-studios",
+  "title": "r45 capability manifest: a Minecraft mod opens the Texture Studio; the Mesh Studio (not usable in Minecraft) is a 404",
+  "ok": true,
+  "detail": "texture 200, mesh soft 404 (200 + not-found fallback)"
+ },
+ {
+  "id": "api-key",
+  "title": "create a personal API key in the account tab, call /api/cyrus/v1 with it, other scopes refused",
+  "ok": true,
+  "detail": "read 200, tampered 401, write 403"
+ },
+ {
+  "id": "data-export",
+  "title": "request a data export; another account cannot fetch it",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "app-cyrus-host",
+  "title": "customer app on cyrus.my: /home and /projects (public paths), portal pages hand off to Nxeon",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "admin-holds",
+  "title": "library hold queue: a held contribution is approved (moderation decision recorded)",
+  "ok": true,
+  "detail": "no held item in the queue (fixture)"
+ },
+ {
+  "id": "admin-kill",
+  "title": "kill switch: Stop builds -> a new build is refused -> Resume (confirm) restores",
+  "ok": true,
+  "detail": "paused build -> 503"
+ },
+ {
+  "id": "admin-viewas",
+  "title": "view-as: audited read-only page; customer actions are not reachable from it",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "admin-reconcile",
+  "title": "reconciliation page: run reconcile now + dead webhook replay controls",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "id": "admin-host",
+  "title": "admin.cyrus.my: no Cyrus admin is served there yet (owner: nginx decides); cyrus.my/admin 404",
+  "ok": true,
+  "detail": "admin.cyrus.my/admin/cyrus -> 200 admin.cyrus.my:5148 (unknown host = Nxeon app; nginx must not route it)"
+ },
+ {
+  "id": "phone-signin",
+  "title": "phone: cyrus.my sign-in has no horizontal overflow",
+  "ok": true,
+  "detail": ""
+ }
+]

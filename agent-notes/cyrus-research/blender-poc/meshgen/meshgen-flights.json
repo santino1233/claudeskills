@@ -1,0 +1,1425 @@
+{
+  "date": "2026-10-10T17:55:29.665Z",
+  "host": "nxeon-fsn1",
+  "blender": {
+    "dir": "/tank/nxeon-build/tmp/blender-poc/blender-5.2.2-linux-x64",
+    "tarballSha256": "84098912789dc450e95697c4184fb8a90acbe5111c2ba4aede3fecb57806a168",
+    "matchesPublished": true
+  },
+  "runner": "node2-systemd-sandbox(local)",
+  "selftest": {
+    "status": "ok",
+    "wallMs": 2427,
+    "lockWaitMs": 3,
+    "result": {
+      "v": 1,
+      "harness": 1,
+      "ok": true,
+      "blender": "5.2.2 LTS",
+      "timings": {
+        "total_s": 0.22
+      },
+      "name": "selftest",
+      "rung": "selftest",
+      "selftest": {
+        "cases": [
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 0,
+            "ok": true,
+            "objects": 8,
+            "tris": 1620,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 40,
+            "bbox_m": [
+              1.0832,
+              0.0854,
+              0.3213
+            ],
+            "names": [
+              "receiver",
+              "grip",
+              "magazine",
+              "stock",
+              "handguard",
+              "barrel",
+              "sights",
+              "trim"
+            ],
+            "ms": 14
+          },
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 1,
+            "ok": true,
+            "objects": 8,
+            "tris": 2084,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 92,
+            "bbox_m": [
+              1.045,
+              0.071,
+              0.3595
+            ],
+            "names": [
+              "receiver",
+              "grip",
+              "magazine",
+              "stock",
+              "handguard",
+              "barrel",
+              "sights",
+              "trim"
+            ],
+            "ms": 21
+          },
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 2,
+            "ok": true,
+            "objects": 7,
+            "tris": 1796,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 35,
+            "bbox_m": [
+              0.888,
+              0.093,
+              0.313
+            ],
+            "names": [
+              "receiver",
+              "grip",
+              "magazine",
+              "stock",
+              "handguard",
+              "barrel",
+              "sights"
+            ],
+            "ms": 13
+          },
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 3,
+            "ok": true,
+            "objects": 8,
+            "tris": 960,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 47,
+            "bbox_m": [
+              0.977,
+              0.0628,
+              0.4307
+            ],
+            "names": [
+              "receiver",
+              "grip",
+              "magazine",
+              "stock",
+              "handguard",
+              "barrel",
+              "sights",
+              "trim"
+            ],
+            "ms": 11
+          },
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 4,
+            "ok": true,
+            "objects": 5,
+            "tris": 988,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 21,
+            "bbox_m": [
+              0.869,
+              0.099,
+              0.3103
+            ],
+            "names": [
+              "receiver",
+              "magazine",
+              "stock",
+              "barrel",
+              "sights"
+            ],
+            "ms": 7
+          },
+          {
+            "rung": "template",
+            "module": "rifle",
+            "case": 5,
+            "ok": true,
+            "objects": 7,
+            "tris": 1252,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 25,
+            "bbox_m": [
+              0.874,
+              0.084,
+              0.3213
+            ],
+            "names": [
+              "receiver",
+              "grip",
+              "magazine",
+              "stock",
+              "handguard",
+              "barrel",
+              "sights"
+            ],
+            "ms": 10
+          },
+          {
+            "rung": "template",
+            "module": "crate",
+            "case": 0,
+            "ok": true,
+            "objects": 6,
+            "tris": 2568,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 62,
+            "bbox_m": [
+              1.084,
+              0.6576,
+              0.6366
+            ],
+            "names": [
+              "body",
+              "frame",
+              "panels",
+              "lid",
+              "hardware",
+              "trim"
+            ],
+            "ms": 23
+          },
+          {
+            "rung": "template",
+            "module": "crate",
+            "case": 1,
+            "ok": true,
+            "objects": 6,
+            "tris": 1024,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 24,
+            "bbox_m": [
+              0.5156,
+              0.3288,
+              0.3105
+            ],
+            "names": [
+              "body",
+              "frame",
+              "panels",
+              "lid",
+              "hardware",
+              "trim"
+            ],
+            "ms": 10
+          },
+          {
+            "rung": "template",
+            "module": "crate",
+            "case": 2,
+            "ok": true,
+            "objects": 4,
+            "tris": 1936,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 44,
+            "bbox_m": [
+              0.921,
+              0.721,
+              0.7315
+            ],
+            "names": [
+              "body",
+              "frame",
+              "panels",
+              "lid"
+            ],
+            "ms": 17
+          },
+          {
+            "rung": "template",
+            "module": "crate",
+            "case": 3,
+            "ok": true,
+            "objects": 4,
+            "tris": 1300,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 31,
+            "bbox_m": [
+              2.14,
+              1.096,
+              1.2
+            ],
+            "names": [
+              "body",
+              "frame",
+              "hardware",
+              "trim"
+            ],
+            "ms": 12
+          },
+          {
+            "rung": "template",
+            "module": "sword",
+            "case": 0,
+            "ok": true,
+            "objects": 5,
+            "tris": 1330,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 15,
+            "bbox_m": [
+              0.234,
+              0.056,
+              1.0716
+            ],
+            "names": [
+              "blade",
+              "guard",
+              "grip",
+              "pommel",
+              "trim"
+            ],
+            "ms": 11
+          },
+          {
+            "rung": "template",
+            "module": "sword",
+            "case": 1,
+            "ok": true,
+            "objects": 5,
+            "tris": 1322,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 20,
+            "bbox_m": [
+              0.2266,
+              0.0479,
+              0.88
+            ],
+            "names": [
+              "blade",
+              "guard",
+              "grip",
+              "pommel",
+              "trim"
+            ],
+            "ms": 12
+          },
+          {
+            "rung": "template",
+            "module": "sword",
+            "case": 2,
+            "ok": true,
+            "objects": 4,
+            "tris": 618,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 4,
+            "bbox_m": [
+              0.1139,
+              0.085,
+              1.0436
+            ],
+            "names": [
+              "blade",
+              "guard",
+              "grip",
+              "pommel"
+            ],
+            "ms": 4
+          },
+          {
+            "rung": "template",
+            "module": "sword",
+            "case": 3,
+            "ok": true,
+            "objects": 2,
+            "tris": 636,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 9,
+            "bbox_m": [
+              0.192,
+              0.0342,
+              0.6
+            ],
+            "names": [
+              "blade",
+              "grip"
+            ],
+            "ms": 3
+          },
+          {
+            "rung": "template",
+            "module": "sword",
+            "case": 4,
+            "ok": true,
+            "objects": 3,
+            "tris": 930,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 12,
+            "bbox_m": [
+              0.1049,
+              0.085,
+              0.984
+            ],
+            "names": [
+              "blade",
+              "guard",
+              "grip"
+            ],
+            "ms": 5
+          },
+          {
+            "rung": "kit",
+            "module": "hardsurface",
+            "case": 0,
+            "ok": true,
+            "objects": 3,
+            "tris": 1064,
+            "nonmanifold_edges": 0,
+            "degenerate_faces": 0,
+            "shells": 24,
+            "bbox_m": [
+              0.48,
+              0.54,
+              0.786
+            ],
+            "names": [
+              "base",
+              "body",
+              "top"
+            ],
+            "ms": 12
+          }
+        ],
+        "negative": [
+          {
+            "module": "tpl_rifle",
+            "raised": true,
+            "message": "magazine.style='belt' not in ['curved', 'drum', 'straight_box']"
+          },
+          {
+            "module": "tpl_crate",
+            "raised": true,
+            "message": "lid='dome' not in ['flat', 'inset', 'ribbed', 'none']"
+          },
+          {
+            "module": "tpl_sword",
+            "raised": true,
+            "message": "blade.style='whip' not in ['straight', 'leaf', 'curved', 'cleaver', 'katana']"
+          },
+          {
+            "module": "mg_kit",
+            "raised": true,
+            "message": "parts[0].shape must be one of ['box', 'cylinder', 'tube', 'sphere', 'rod', 'prism', 'wedge', 'ribbed_panel', 'handle', 'strip']"
+          }
+        ]
+      }
+    }
+  },
+  "flights": [
+    {
+      "id": "rifle_ak",
+      "prompt": "AK-style assault rifle, wood furniture, curved magazine",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "rifle",
+        "reason": "template rifle (keywords: rifle, assault, ak)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "30 closed shells in 7 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 7,
+        "tris": 1452,
+        "materials": 5,
+        "shells": 30,
+        "nonmanifold": 0,
+        "bbox_m": [
+          1.0832,
+          0.084,
+          0.3213
+        ],
+        "perObject": [
+          [
+            "receiver",
+            288,
+            0,
+            6
+          ],
+          [
+            "grip",
+            132,
+            0,
+            3
+          ],
+          [
+            "magazine",
+            84,
+            0,
+            1
+          ],
+          [
+            "stock",
+            60,
+            0,
+            2
+          ],
+          [
+            "handguard",
+            288,
+            0,
+            6
+          ],
+          [
+            "barrel",
+            400,
+            0,
+            6
+          ],
+          [
+            "sights",
+            200,
+            0,
+            6
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 26435,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 26362,
+        "blenderSeconds": 24.2,
+        "harness": {
+          "build_s": 0.03,
+          "uv_s": 0.01,
+          "export_s": 0.54,
+          "render_s": 23.53,
+          "reimport_s": 0.09,
+          "total_s": 24.2
+        }
+      },
+      "glbBytes": 99108,
+      "gltfValidator": "rifle_ak.glb errors 0 warnings 0 infos 12 gen Khronos glTF Blender I/O v5.2.40 tris 1452 mats 5 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "rifle_drum_lmg",
+      "prompt": "modern carbine with a rail handguard, drum magazine and red dot",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "rifle",
+        "reason": "template rifle (keywords: carbine)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "90 closed shells in 8 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 8,
+        "tris": 2128,
+        "materials": 7,
+        "shells": 90,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.915,
+          0.078,
+          0.3595
+        ],
+        "perObject": [
+          [
+            "receiver",
+            416,
+            0,
+            20
+          ],
+          [
+            "grip",
+            124,
+            0,
+            3
+          ],
+          [
+            "magazine",
+            428,
+            0,
+            5
+          ],
+          [
+            "stock",
+            204,
+            0,
+            5
+          ],
+          [
+            "handguard",
+            588,
+            0,
+            45
+          ],
+          [
+            "barrel",
+            128,
+            0,
+            4
+          ],
+          [
+            "sights",
+            168,
+            0,
+            6
+          ],
+          [
+            "trim",
+            72,
+            0,
+            2
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 25856,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 25792,
+        "blenderSeconds": 23.64,
+        "harness": {
+          "build_s": 0.03,
+          "uv_s": 0.01,
+          "export_s": 0.56,
+          "render_s": 22.95,
+          "reimport_s": 0.08,
+          "total_s": 23.64
+        }
+      },
+      "glbBytes": 144700,
+      "gltfValidator": "rifle_drum_lmg.glb errors 0 warnings 0 infos 18 gen Khronos glTF Blender I/O v5.2.40 tris 2128 mats 7 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "crate_scifi",
+      "prompt": "sci-fi supply crate with glowing strips",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "crate",
+        "reason": "template crate (keywords: crate, supply)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "60 closed shells in 6 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 6,
+        "tris": 2544,
+        "materials": 5,
+        "shells": 60,
+        "nonmanifold": 0,
+        "bbox_m": [
+          1.084,
+          0.6576,
+          0.6366
+        ],
+        "perObject": [
+          [
+            "body",
+            44,
+            0,
+            1
+          ],
+          [
+            "frame",
+            748,
+            0,
+            17
+          ],
+          [
+            "panels",
+            792,
+            0,
+            18
+          ],
+          [
+            "lid",
+            220,
+            0,
+            5
+          ],
+          [
+            "hardware",
+            616,
+            0,
+            14
+          ],
+          [
+            "trim",
+            124,
+            0,
+            5
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 27516,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 27442,
+        "blenderSeconds": 25.31,
+        "harness": {
+          "build_s": 0.03,
+          "uv_s": 0.01,
+          "export_s": 0.53,
+          "render_s": 24.63,
+          "reimport_s": 0.1,
+          "total_s": 25.31
+        }
+      },
+      "glbBytes": 200232,
+      "gltfValidator": "crate_scifi.glb errors 0 warnings 0 infos 10 gen Khronos glTF Blender I/O v5.2.40 tris 2544 mats 5 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "crate_wooden",
+      "prompt": "old wooden loot chest with iron bands",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "crate",
+        "reason": "template crate (keywords: chest, loot)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "54 closed shells in 5 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 5,
+        "tris": 2376,
+        "materials": 4,
+        "shells": 54,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.97,
+          0.598,
+          0.5235
+        ],
+        "perObject": [
+          [
+            "body",
+            44,
+            0,
+            1
+          ],
+          [
+            "frame",
+            220,
+            0,
+            5
+          ],
+          [
+            "panels",
+            1584,
+            0,
+            36
+          ],
+          [
+            "lid",
+            88,
+            0,
+            2
+          ],
+          [
+            "hardware",
+            440,
+            0,
+            10
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 29311,
+        "lockWaitMs": 4,
+        "sandboxWallMs": 29233,
+        "blenderSeconds": 26.97,
+        "harness": {
+          "build_s": 0.03,
+          "uv_s": 0.01,
+          "export_s": 0.54,
+          "render_s": 26.26,
+          "reimport_s": 0.11,
+          "total_s": 26.97
+        }
+      },
+      "glbBytes": 185860,
+      "gltfValidator": "crate_wooden.glb errors 0 warnings 0 infos 7 gen Khronos glTF Blender I/O v5.2.40 tris 2376 mats 4 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "sword_knight",
+      "prompt": "knight's longsword with a cross guard and round pommel",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "sword",
+        "reason": "template sword (keywords: longsword)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "15 closed shells in 5 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 5,
+        "tris": 1330,
+        "materials": 7,
+        "shells": 15,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.244,
+          0.06,
+          1.095
+        ],
+        "perObject": [
+          [
+            "blade",
+            222,
+            0,
+            1
+          ],
+          [
+            "guard",
+            380,
+            0,
+            3
+          ],
+          [
+            "grip",
+            416,
+            0,
+            8
+          ],
+          [
+            "pommel",
+            288,
+            0,
+            1
+          ],
+          [
+            "trim",
+            24,
+            0,
+            2
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 19641,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 19565,
+        "blenderSeconds": 17.29,
+        "harness": {
+          "build_s": 0.02,
+          "uv_s": 0,
+          "export_s": 0.55,
+          "render_s": 16.63,
+          "reimport_s": 0.08,
+          "total_s": 17.29
+        }
+      },
+      "glbBytes": 57796,
+      "gltfValidator": "sword_knight.glb errors 0 warnings 0 infos 7 gen Khronos glTF Blender I/O v5.2.40 tris 1330 mats 7 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "sword_katana_glow",
+      "prompt": "sci-fi katana with a glowing edge",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "sword",
+        "reason": "template sword (keywords: katana)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "12 closed shells in 3 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 3,
+        "tris": 930,
+        "materials": 5,
+        "shells": 12,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.0943,
+          0.08,
+          1.004
+        ],
+        "perObject": [
+          [
+            "blade",
+            222,
+            0,
+            1
+          ],
+          [
+            "guard",
+            188,
+            0,
+            1
+          ],
+          [
+            "grip",
+            520,
+            0,
+            10
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 19039,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 18988,
+        "blenderSeconds": 16.73,
+        "harness": {
+          "build_s": 0.01,
+          "uv_s": 0,
+          "export_s": 0.5,
+          "render_s": 16.14,
+          "reimport_s": 0.07,
+          "total_s": 16.73
+        }
+      },
+      "glbBytes": 44228,
+      "gltfValidator": "sword_katana_glow.glb errors 0 warnings 0 infos 5 gen Khronos glTF Blender I/O v5.2.40 tris 930 mats 5 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "kit_terminal",
+      "prompt": "a small sci-fi computer terminal on a pedestal",
+      "rung": "kit",
+      "expect": "accepted",
+      "route": {
+        "rung": "kit",
+        "templateId": null,
+        "reason": "hard-surface parts kit",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 11550,
+        "worstCaseTokens": 15400,
+        "basis": "assumed",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "25 closed shells in 3 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 3,
+        "tris": 524,
+        "materials": 6,
+        "shells": 25,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.54,
+          0.56,
+          0.894
+        ],
+        "perObject": [
+          [
+            "base",
+            244,
+            0,
+            4
+          ],
+          [
+            "head",
+            200,
+            0,
+            14
+          ],
+          [
+            "keys",
+            80,
+            0,
+            7
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 24080,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 23999,
+        "blenderSeconds": 21.88,
+        "harness": {
+          "build_s": 0.01,
+          "uv_s": 0,
+          "export_s": 0.52,
+          "render_s": 21.24,
+          "reimport_s": 0.1,
+          "total_s": 21.88
+        }
+      },
+      "glbBytes": 41308,
+      "gltfValidator": "kit_terminal.glb errors 0 warnings 0 infos 10 gen Khronos glTF Blender I/O v5.2.40 tris 524 mats 6 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "crate_decimate",
+      "prompt": "sci-fi supply crate (tight 1,200-triangle budget: decimation test)",
+      "rung": "template",
+      "expect": "accepted",
+      "route": {
+        "rung": "template",
+        "templateId": "crate",
+        "reason": "template crate (keywords: crate, supply)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 5700,
+        "worstCaseTokens": 8550,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "decimated",
+          "severity": "info",
+          "path": "mesh",
+          "message": "decimated from 2520 to 1158 triangles (ratio 0.4619)"
+        },
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "58 closed shells in 6 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 6,
+        "tris": 1158,
+        "materials": 5,
+        "shells": 58,
+        "nonmanifold": 0,
+        "bbox_m": [
+          1.0863,
+          0.6561,
+          0.6303
+        ],
+        "perObject": [
+          [
+            "body",
+            20,
+            0,
+            1
+          ],
+          [
+            "frame",
+            344,
+            0,
+            17
+          ],
+          [
+            "panels",
+            364,
+            0,
+            18
+          ],
+          [
+            "lid",
+            100,
+            0,
+            5
+          ],
+          [
+            "hardware",
+            284,
+            0,
+            14
+          ],
+          [
+            "trim",
+            46,
+            0,
+            3
+          ]
+        ]
+      },
+      "decimated": {
+        "from": 2520,
+        "to": 1158,
+        "ratio": 0.4619
+      },
+      "timings": {
+        "endToEndMs": 31799,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 31724,
+        "blenderSeconds": 29.25,
+        "harness": {
+          "build_s": 0.03,
+          "uv_s": 0.01,
+          "export_s": 0.62,
+          "render_s": 28.48,
+          "reimport_s": 0.07,
+          "total_s": 29.25
+        }
+      },
+      "glbBytes": 86372,
+      "gltfValidator": "crate_decimate.glb errors 0 warnings 0 infos 10 gen Khronos glTF Blender I/O v5.2.40 tris 1158 mats 5 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "scratch_lantern",
+      "prompt": "a camping lantern",
+      "rung": "scratch",
+      "expect": "accepted",
+      "route": {
+        "rung": "scratch",
+        "templateId": null,
+        "reason": "from-scratch script (premium)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 19200,
+        "worstCaseTokens": 19200,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "job": "job_1"
+      },
+      "verdict": "accepted",
+      "issues": [
+        {
+          "code": "not_unioned",
+          "severity": "info",
+          "path": "mesh",
+          "message": "13 closed shells in 2 objects: parts overlap and are not boolean-unioned (interior faces cost triangles)"
+        }
+      ],
+      "stats": {
+        "objects": 2,
+        "tris": 1368,
+        "materials": 3,
+        "shells": 13,
+        "nonmanifold": 0,
+        "bbox_m": [
+          0.15,
+          0.15,
+          0.315
+        ],
+        "perObject": [
+          [
+            "frame",
+            1292,
+            0,
+            12
+          ],
+          [
+            "glass",
+            76,
+            0,
+            1
+          ]
+        ]
+      },
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 27177,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 27098,
+        "blenderSeconds": 24.93,
+        "harness": {
+          "build_s": 0.01,
+          "uv_s": 0,
+          "export_s": 0.51,
+          "render_s": 24.33,
+          "reimport_s": 0.08,
+          "total_s": 24.93
+        }
+      },
+      "glbBytes": 60988,
+      "gltfValidator": "scratch_lantern.glb errors 0 warnings 0 infos 3 gen Khronos glTF Blender I/O v5.2.40 tris 1368 mats 3 msgs [\"UNUSED_OBJECT\",\"UNUSED_OBJECT\",\"UNUSED_OBJECT\"]",
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    },
+    {
+      "id": "scratch_escape",
+      "prompt": "hostile script: sandbox guard check",
+      "rung": "scratch",
+      "expect": "rejected",
+      "route": {
+        "rung": "scratch",
+        "templateId": null,
+        "reason": "from-scratch script (premium)",
+        "warnings": []
+      },
+      "estimate": {
+        "expectedTokens": 19200,
+        "worstCaseTokens": 19200,
+        "basis": "measured",
+        "dollars": null
+      },
+      "submitted": {
+        "bypassed": true,
+        "job": "job_1"
+      },
+      "verdict": "rejected",
+      "issues": [
+        {
+          "code": "script_rejected",
+          "severity": "error",
+          "path": "script",
+          "message": "8 static rule violation(s), first: import os is not allowed (allowed: ['bmesh', 'bpy', 'math', 'mathutils', 'random'])"
+        },
+        {
+          "code": "guard_import_denied",
+          "severity": "error",
+          "path": "script:2",
+          "message": "import os is not allowed (allowed: ['bmesh', 'bpy', 'math', 'mathutils', 'random'])"
+        },
+        {
+          "code": "guard_attr_denied",
+          "severity": "error",
+          "path": "script:7",
+          "message": ".system is not allowed"
+        },
+        {
+          "code": "guard_attr_denied",
+          "severity": "error",
+          "path": "script:8",
+          "message": ".url_open is not allowed"
+        },
+        {
+          "code": "guard_name_denied",
+          "severity": "error",
+          "path": "script:9",
+          "message": "getattr is not allowed"
+        },
+        {
+          "code": "guard_dunder_string",
+          "severity": "error",
+          "path": "script:9",
+          "message": "strings containing \"__\" are not allowed"
+        },
+        {
+          "code": "guard_name_denied",
+          "severity": "error",
+          "path": "script:7",
+          "message": "os is not allowed"
+        },
+        {
+          "code": "guard_name_denied",
+          "severity": "error",
+          "path": "script:6",
+          "message": "open is not allowed"
+        },
+        {
+          "code": "guard_bpy_ops",
+          "severity": "error",
+          "path": "script:8",
+          "message": "bpy.ops is not allowed; use bmesh and bpy.data"
+        }
+      ],
+      "stats": null,
+      "decimated": null,
+      "timings": {
+        "endToEndMs": 2705,
+        "lockWaitMs": 2,
+        "sandboxWallMs": 2656,
+        "blenderSeconds": 0.01,
+        "harness": {
+          "total_s": 0.01
+        }
+      },
+      "glbBytes": null,
+      "gltfValidator": null,
+      "engine": {
+        "blender": "5.2.2 LTS",
+        "harness": 1,
+        "filesSha256": "d9fd768cf47b3185c22c8acdd4ebb04087888b569274582843e2c0027a3f3cd3",
+        "runner": "node2-systemd-sandbox(local)"
+      }
+    }
+  ],
+  "honesty": "Specs and scripts are hand-written fixtures standing in for model replies; no model was called, so token numbers are estimates, not usage. Quality judgements are not part of this file."
+}

@@ -1,0 +1,48 @@
+[
+ {
+  "step": "join (daily reward)",
+  "chat": [
+   "[title] {\"color\":{\"type\":\"string\",\"value\":\"yellow\"},\"text\":{\"type\":\"string\",\"value\":\"We're glad you're here. (1 online)\"}}",
+   "[title] {\"color\":{\"type\":\"string\",\"value\":\"gold\"},\"text\":{\"type\":\"string\",\"value\":\"Welcome, Tester3!\"}}",
+   "[title] {\"color\":{\"type\":\"string\",\"value\":\"yellow\"},\"extra\":{\"type\":\"list\",\"value\":{\"type\":\"compound\",\"value\":[{\"color\":{\"type\":\"string\",\"value\":\"wh",
+   "[title] {\"bold\":{\"type\":\"byte\",\"value\":1},\"color\":{\"type\":\"string\",\"value\":\"light_purple\"},\"text\":{\"type\":\"string\",\"value\":\"Welcome Back!\"}}",
+   "Daily reward claimed! You received 5x Bread for a 1-day streak.",
+   "Tester3 has joined the server for the first time! Welcome! (1 online)"
+  ],
+  "bread": 5
+ },
+ {
+  "cmd": "/streak",
+  "chat": [
+   "[Rcon: Made Tester3 a server operator]",
+   "Your current login streak is 1 day(s)."
+  ]
+ },
+ {
+  "cmd": "/summonboss",
+  "chat": [
+   "[bossbar] {\"json\":{\"color\":\"red\",\"text\":\"Grave Lord\"},\"text\":\"Grave Lord\",\"color\":\"red\"} health=1",
+   "Grave Lord has awakened!",
+   "You have summoned Grave Lord!"
+  ]
+ },
+ {
+  "step": "entities",
+  "witherSkeletons": [
+   {
+    "name": "wither_skeleton",
+    "custom": "{\"type\":\"compound\",\"value\":{\"color\":{\"type\":\"string\",\"value\":\"red\"},\"text\":{\"type\":\"string\",\"value\":\"Grave Lord\"}}}"
+   }
+  ]
+ },
+ {
+  "step": "after kill",
+  "chat": [
+   "Grave Lord has fallen!",
+   "No damage was recorded for this fight.",
+   "[Rcon: Killed Grave Lord]",
+   "Tester3 has made the advancement [Diamonds!]",
+   "Tester3 has made the advancement [Spooky Scary Skeleton]"
+  ]
+ }
+]

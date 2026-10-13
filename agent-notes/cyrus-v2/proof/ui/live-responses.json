@@ -1,0 +1,605 @@
+{
+ "id": "mbe20231227d9bb0157249",
+ "liveLog": [
+  {
+   "t": 1791364301730,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364303437,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364305553,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364307203,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364308979,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364310788,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364312838,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364314695,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364317025,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364318943,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364321279,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364323181,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364325000,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364326975,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364329075,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364330860,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364332844,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364334758,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364336649,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364338528,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364340255,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364342070,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364343937,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364345919,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364347781,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364349545,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364351482,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364353487,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364355308,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364357305,
+   "status": "planning",
+   "files": 0,
+   "draft": null
+  },
+  {
+   "t": 1791364359276,
+   "status": "planning",
+   "files": 0,
+   "draft": {
+    "path": "src/main/resources/plugin.yml",
+    "from": 0,
+    "got": 175,
+    "total": 175,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364360395,
+   "status": "planning",
+   "files": 0,
+   "draft": {
+    "path": "src/main/resources/plugin.yml",
+    "from": 0,
+    "got": 573,
+    "total": 573,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364366410,
+   "status": "coding",
+   "files": 2,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/CoinManager.java",
+    "from": 0,
+    "got": 25,
+    "total": 25,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364375525,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 851,
+    "total": 851,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364377490,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 1694,
+    "total": 1694,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364378974,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 2271,
+    "total": 2271,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364380896,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 2897,
+    "total": 2897,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364382000,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 3592,
+    "total": 3592,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364383492,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 4125,
+    "total": 4125,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364384662,
+   "status": "coding",
+   "files": 3,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 4665,
+    "total": 4665,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364386123,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopMenu.java",
+    "from": 0,
+    "got": 4923,
+    "total": 4923,
+    "done": true
+   }
+  },
+  {
+   "t": 1791364388893,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 818,
+    "total": 818,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364390483,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 1547,
+    "total": 1547,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364391761,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 2049,
+    "total": 2049,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364393329,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 2640,
+    "total": 2640,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364394642,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 3101,
+    "total": 3101,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364395803,
+   "status": "coding",
+   "files": 4,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 3580,
+    "total": 3580,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364397333,
+   "status": "coding",
+   "files": 5,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopListener.java",
+    "from": 0,
+    "got": 3703,
+    "total": 3703,
+    "done": true
+   }
+  },
+  {
+   "t": 1791364399794,
+   "status": "coding",
+   "files": 5,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 465,
+    "total": 465,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364400998,
+   "status": "coding",
+   "files": 5,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 942,
+    "total": 942,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364402262,
+   "status": "coding",
+   "files": 5,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 1513,
+    "total": 1513,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364403817,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 1652,
+    "total": 1652,
+    "done": true
+   }
+  },
+  {
+   "t": 1791364406372,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 0,
+    "total": 0,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364407478,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 0,
+    "total": 0,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364408977,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/ShopCommand.java",
+    "from": 0,
+    "got": 369,
+    "total": 369,
+    "done": true
+   }
+  },
+  {
+   "t": 1791364411178,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/CoinsCommand.java",
+    "from": 0,
+    "got": 342,
+    "total": 342,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364412198,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/CoinsCommand.java",
+    "from": 0,
+    "got": 768,
+    "total": 768,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364413451,
+   "status": "coding",
+   "files": 6,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/CoinsCommand.java",
+    "from": 0,
+    "got": 1312,
+    "total": 1312,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364414601,
+   "status": "coding",
+   "files": 7,
+   "draft": null
+  },
+  {
+   "t": 1791364417064,
+   "status": "coding",
+   "files": 7,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/LumenBazaarPlugin.java",
+    "from": 0,
+    "got": 718,
+    "total": 718,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364418366,
+   "status": "coding",
+   "files": 7,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/LumenBazaarPlugin.java",
+    "from": 0,
+    "got": 1216,
+    "total": 1216,
+    "done": false
+   }
+  },
+  {
+   "t": 1791364419569,
+   "status": "coding",
+   "files": 8,
+   "draft": {
+    "path": "src/main/java/dev/nxeon/plugins/lumenbazaar/LumenBazaarPlugin.java",
+    "from": 0,
+    "got": 1301,
+    "total": 1301,
+    "done": true
+   }
+  },
+  {
+   "t": 1791364421871,
+   "status": "coding",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364423836,
+   "status": "coding",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364425416,
+   "status": "coding",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364427371,
+   "status": "coding",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364429102,
+   "status": "coding",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364430840,
+   "status": "compiling",
+   "files": 8,
+   "draft": null
+  },
+  {
+   "t": 1791364435360,
+   "status": "succeeded",
+   "files": 0,
+   "draft": null
+  }
+ ]
+}

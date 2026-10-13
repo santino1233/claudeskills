@@ -1,0 +1,3 @@
+[{"file":"texture.html","q":"ctl=0","w":1440,"h":900,"out":"texture-dark.png"},
+ {"file":"texture.html","q":"theme=light&ctl=0","w":1440,"h":900,"out":"texture-light.png"},
+ {"file":"texture.html","q":"ctl=0","w":390,"h":844,"full":true,"out":"texture-narrow.png"}]

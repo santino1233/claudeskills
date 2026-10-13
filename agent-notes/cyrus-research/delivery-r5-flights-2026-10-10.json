@@ -1,0 +1,573 @@
+{
+ "what": "Cyrus R5 delivery orchestrator, real Paper boots via Test Flight on node-2",
+ "date": "2026-10-10T12:34:20.325Z",
+ "version": "1.21.11",
+ "scenarios": {
+  "A": {
+   "outcome": "delivered",
+   "ok": true,
+   "failedStep": null,
+   "error": null,
+   "apply": {
+    "mode": "restart",
+    "reasons": [
+     "a plugin jar changed (plugins load at server start)",
+     "an Nxeon-managed plugin was installed, upgraded or removed",
+     "a data pack adds registry content (loads only at server start)"
+    ],
+    "restarted": true,
+    "reloaded": false
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (inventory + conflicts checked)",
+    "managed:ok (nxeon-pack-loader installed)",
+    "host_pack:ok (hosted at https://packs.example.invalid/p/bbbd0095d3b1241c3cab3e3b0eba945326065caf.zip)",
+    "pack_config:ok (added)",
+    "place:ok (jar placed; 1 data pack(s); 0 model(s))",
+    "record:ok (/root/.nxeon-cyrus/deliveries/cp_r12real01.json)",
+    "apply:ok (restart: a plugin jar changed (plugins load at server start); an Nxeon-managed plugin was installed, upgraded or removed; a data pack adds registry content (loa)",
+    "health:ok (healthy)",
+    "commit:ok"
+   ],
+   "notes": [],
+   "conflicts": {
+    "blocking": 0,
+    "warnings": []
+   },
+   "keptWorldFolders": [],
+   "treeBefore": "6d67fae2f64c9c1a5af06fa98bf5b83a55a7cb092b5efa7108d45c64e2536cbe",
+   "treeAfter": "4512cc1384da3419a68fd610085e6c232977467b690295c106f47eda85cc8252",
+   "refs": [
+    [
+     "nxeon-pack-loader",
+     [
+      "project:cp_r12real01"
+     ]
+    ]
+   ],
+   "files": [
+    "NxeonPackLoader",
+    "NxeonPackLoader-0.1.0.jar",
+    "TfItemModel-1.0.0.jar",
+    "nxeon-nx_dpstud10-showcase.zip"
+   ]
+  },
+  "B": {
+   "outcome": "rolled_back",
+   "ok": false,
+   "failedStep": "health",
+   "error": "the server did not come up after the restart (world generation stops a server that cannot load it); plugin NxeonPackLoader is not enabled; plugin TfItemModel is not enabled; new error lines in the server log: L53 [level-error] [12:34:55 ERROR]: Registry loading errors: | L56 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/nxeon-nx_dpstud10-brokenwg.zip | L73 [exception-header] Caused by: java.lang.IllegalStateEx",
+   "apply": {
+    "mode": "restart",
+    "reasons": [
+     "world generation changed (loads only at server start)"
+    ],
+    "restarted": true,
+    "reloaded": false
+   },
+   "health": null,
+   "rollback": {
+    "ok": true,
+    "restored": 1,
+    "removed": 1,
+    "mismatches": [],
+    "refs": "restored",
+    "restarted": true,
+    "health": {
+     "ok": true,
+     "problems": []
+    }
+   },
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (inventory + conflicts checked)",
+    "managed:ok (nxeon-pack-loader already)",
+    "host_pack:ok (hosted at https://packs.example.invalid/p/bbbd0095d3b1241c3cab3e3b0eba945326065caf.zip)",
+    "pack_config:ok (unchanged; other entries kept: 1)",
+    "place:ok (jar unchanged; 2 data pack(s); 0 model(s))",
+    "record:ok (/root/.nxeon-cyrus/deliveries/cp_r12real01.json)",
+    "apply:ok (restart: world generation changed (loads only at server start))",
+    "health:failed (the server did not come up after the restart (world generation stops a server that cannot load it); plugin NxeonPackLoader is not enabled; plugin TfItemModel is)",
+    "rollback:ok (1 restored, 1 removed; refs restored)",
+    "rollback_restart:ok (restarted on the previous state)",
+    "rollback_health:ok (the server came up on the previous state)"
+   ],
+   "notes": [],
+   "conflicts": {
+    "blocking": 0,
+    "warnings": []
+   },
+   "keptWorldFolders": [],
+   "treeBeforeUpdate": "4512cc1384da3419a68fd610085e6c232977467b690295c106f47eda85cc8252",
+   "treeAfterRollback": "4512cc1384da3419a68fd610085e6c232977467b690295c106f47eda85cc8252",
+   "exactRestore": true,
+   "journalLeft": []
+  },
+  "C": {
+   "outcome": "updated",
+   "ok": true,
+   "failedStep": null,
+   "error": null,
+   "apply": {
+    "mode": "restart",
+    "reasons": [
+     "world generation changed (loads only at server start)"
+    ],
+    "restarted": true,
+    "reloaded": false
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (inventory + conflicts checked)",
+    "managed:ok (nxeon-pack-loader already)",
+    "host_pack:ok (hosted at https://packs.example.invalid/p/bbbd0095d3b1241c3cab3e3b0eba945326065caf.zip)",
+    "pack_config:ok (unchanged; other entries kept: 1)",
+    "place:ok (jar unchanged; 2 data pack(s); 0 model(s))",
+    "record:ok (/root/.nxeon-cyrus/deliveries/cp_r12real01.json)",
+    "apply:ok (restart: world generation changed (loads only at server start))",
+    "health:ok (healthy)",
+    "commit:ok"
+   ],
+   "notes": [],
+   "conflicts": {
+    "blocking": 0,
+    "warnings": []
+   },
+   "keptWorldFolders": [],
+   "dimensions": [
+    "nx_worldg01:crystal",
+    "nx_worldg01:flatland"
+   ]
+  },
+  "D": {
+   "outcome": "uninstalled",
+   "ok": true,
+   "failedStep": null,
+   "error": null,
+   "apply": {
+    "mode": "restart",
+    "reasons": [
+     "a plugin jar changed (plugins load at server start)",
+     "an Nxeon-managed plugin was installed, upgraded or removed",
+     "world generation changed (loads only at server start)",
+     "a data pack adds registry content (loads only at server start)"
+    ],
+    "restarted": true,
+    "reloaded": false
+   },
+   "health": {
+    "ok": true,
+    "problems": []
+   },
+   "rollback": null,
+   "steps": [
+    "open:ok",
+    "recover_check:ok (none)",
+    "preflight:ok (delivery record found)",
+    "pack_config:ok (removed)",
+    "place:ok (removed jar yes, 2 data pack(s), 0 model(s))",
+    "managed:ok (nxeon-pack-loader removed)",
+    "record:ok (record removed)",
+    "apply:ok (restart: a plugin jar changed (plugins load at server start); an Nxeon-managed plugin was installed, upgraded or removed; world generation changed (loads only a)",
+    "health:ok (healthy)",
+    "commit:ok"
+   ],
+   "notes": [],
+   "conflicts": null,
+   "keptWorldFolders": [],
+   "refs": [
+    [
+     "nxeon-pack-loader",
+     []
+    ]
+   ],
+   "pluginsLeft": [
+    "NxeonPackLoader"
+   ],
+   "datapacksLeft": []
+  }
+ },
+ "flights": [
+  {
+   "at": "2026-10-10T12:34:41.676Z",
+   "plugins": [
+    "NxeonPackLoader",
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_dpstud10-showcase"
+   ],
+   "packConfig": true,
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L101: [12:34:39 INFO]: Done (17.580s)! For help, type \"help\"",
+      "wall 18868 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L93: [12:34:39 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L92: [12:34:39 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 874 MB, 251 ms]: ok (optional) -> There are 0 of a max of 1 players online: ",
+      "packs 'nxpacks status' [rss 875 MB, 254 ms]: ok (optional) -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T12:34:39.013442896Z geyser=false floodgate=false clientAnswers=0 | ",
+      "datapacks-enabled 'datapack list enabled' [rss 875 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_dpstud10-showcase.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 562 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3663511 gone; 0 marked processes; listening none of 47196,47174",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2dm35x-de7356; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 18868,
+   "peakRssKb": 895864,
+   "wallMs": 21255,
+   "runId": "tf-1-21-11-mv2dm35x-de7356",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T12:34:56.532Z",
+   "plugins": [
+    "NxeonPackLoader",
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_dpstud10-brokenwg",
+    "nxeon-nx_dpstud10-showcase"
+   ],
+   "packConfig": true,
+   "overall": "failed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "fail",
+     "evidence": [
+      "server exited before Done (code 0, signal null)",
+      "\tat net.minecraft.server.Main.lambda$main$1(Main.java:259) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\tat net.minecraft.util.Util.blockUntilDone(Util.java:1057) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\tat net.minecraft.util.Util.blockUntilDone(Util.java:1052) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\tat net.minecraft.server.Main.main(Main.java:258) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]",
+      "\t... 4 more"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": [
+      "server never reached Done; plugin state not checked"
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "fail",
+     "evidence": [
+      "127 startup lines scanned with 5 matchers, 2 ignores: 9 hits, 3 ignored (no-net-yggdrasil)",
+      "L53 [level-error] [12:34:55 ERROR]: Registry loading errors:",
+      "L56 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/configured_feature/gone.json from pack file/nxeon-nx_dpstud10-brokenwg.zip",
+      "L73 [exception-header] Caused by: java.lang.IllegalStateException: Unknown registry key in ResourceKey[minecraft:root / minecraft:worldgen/feature]: minecraft:random_patchh",
+      "L81 [exception-header] java.lang.IllegalStateException: Failed to parse nx_broken02:worldgen/structure_set/bad_spacing.json from pack file/nxeon-nx_dpstud10-brokenwg.zip",
+      "L98 [exception-header] Caused by: java.lang.IllegalStateException: Spacing has to be larger than separation"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "not_run",
+     "evidence": [
+      "server not up; no RCON commands sent"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "not_run",
+     "evidence": [
+      "server had already exited (code 0, signal null) before stop"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3663934 gone; 0 marked processes; listening none of 47156,47144",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2dmjl5-170951; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": null,
+   "peakRssKb": 756044,
+   "wallMs": 14828,
+   "runId": "tf-1-21-11-mv2dmjl5-170951",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T12:35:17.240Z",
+   "plugins": [
+    "NxeonPackLoader",
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_dpstud10-showcase"
+   ],
+   "packConfig": true,
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L101: [12:35:14 INFO]: Done (16.714s)! For help, type \"help\"",
+      "wall 18064 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L92: [12:35:14 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L95: [12:35:14 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 859 MB, 273 ms]: ok (optional) -> There are 0 of a max of 1 players online: ",
+      "packs 'nxpacks status' [rss 859 MB, 252 ms]: ok (optional) -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T12:35:14.672158052Z geyser=false floodgate=false clientAnswers=0 | ",
+      "datapacks-enabled 'datapack list enabled' [rss 859 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_dpstud10-showcase.zip (world)], [paper (built-in)]"
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 583 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3664156 gone; 0 marked processes; listening none of 47104,47172",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2dmv16-b0215e; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 18064,
+   "peakRssKb": 880240,
+   "wallMs": 20702,
+   "runId": "tf-1-21-11-mv2dmv16-b0215e",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T12:35:39.515Z",
+   "plugins": [
+    "NxeonPackLoader",
+    "TfItemModel"
+   ],
+   "datapacks": [
+    "nxeon-nx_dpstud10-crystal_realm",
+    "nxeon-nx_dpstud10-showcase"
+   ],
+   "packConfig": true,
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L110: [12:35:37 INFO]: Done (18.545s)! For help, type \"help\"",
+      "wall 19879 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L102: [12:35:37 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+      "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L101: [12:35:37 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+      "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "110 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 892 MB, 252 ms]: ok (optional) -> There are 0 of a max of 1 players online: ",
+      "packs 'nxpacks status' [rss 902 MB, 269 ms]: ok (optional) -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T12:35:37.174306593Z geyser=false floodgate=false clientAnswers=0 | ",
+      "datapacks-enabled 'datapack list enabled' [rss 902 MB, 258 ms]: ok -> There are 5 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/nxeon-nx_dpstud10-crystal_realm.zip (world)], [file/nxeon-nx_dpstud10-showcase.zip (world)], [paper..."
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 590 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3664453 gone; 0 marked processes; listening none of 47108,47135",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2dnb0v-7c423e; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 19879,
+   "peakRssKb": 924212,
+   "wallMs": 22252,
+   "runId": "tf-1-21-11-mv2dnb0v-7c423e",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  },
+  {
+   "at": "2026-10-10T12:35:55.329Z",
+   "plugins": [],
+   "datapacks": [],
+   "packConfig": true,
+   "overall": "passed",
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L88: [12:35:53 INFO]: Done (12.539s)! For help, type \"help\"",
+      "wall 13852 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "evidence": []
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "88 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "answers 'list' [rss 1127 MB, 268 ms]: ok (optional) -> There are 0 of a max of 1 players online: "
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 633 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3664878 gone; 0 marked processes; listening none of 47160,47170",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2dns7i-bda8a8; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "bootMs": 13852,
+   "peakRssKb": 1154820,
+   "wallMs": 15795,
+   "runId": "tf-1-21-11-mv2dns7i-bda8a8",
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "jdk": "21.0.12.1"
+  }
+ ]
+}

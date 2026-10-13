@@ -1,0 +1,27 @@
+FAIL queue hint shows real job counts - Right now: 7 provision jobs queued or running (4 waiting), oldest waiting 18 min . Suggestions are off
+PASS five notices switched on from the UI
+PASS admin page no runtime errors (1440)
+PASS admin page no runtime errors (390)
+PASS dashboard banner shows dashboard + both notices only (1440) - Servers are taking a little longer to set up | Payments may take longer to show | High deployment volume right now | Scheduled maintenance
+PASS non-dismissible deployment warning has NO dismiss button; others do
+PASS edited wording is what customers see
+PASS dismissing a dismissible notice persists
+PASS pay-step notices (1440) - Servers are taking a little longer to set up | Payments may take longer to show | Singapore is at capacity | High deployment volume right now | Scheduled maintenance
+PASS deploy top notice shows once Payment is not the active step (1440)
+PASS Singapore notice hidden when Canada is selected (1440)
+PASS setup screen shows the calm sentence (1440) - Your server is being set up. Deployments are taking longer than usual right now, this is expected. | Payments may take longer to show | Your server is being set up. Deployments are taking longer than usual right now, this is expected. | Scheduled maintenance
+PASS public /status lists active notices without dismiss (1440) - 5
+FAIL customer pages: no errors from status-notice components (1440) - TypeError: Failed to fetch | Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A serve | Error: Hydration failed because the server rendered text didn't matc
+PASS dashboard banner shows dashboard + both notices only (390) - Servers are taking a little longer to set up | Payments may take longer to show | High deployment volume right now | Scheduled maintenance
+PASS non-dismissible deployment warning has NO dismiss button; others do
+PASS edited wording is what customers see
+PASS pay-step notices (390) - Servers are taking a little longer to set up | Payments may take longer to show | Singapore is at capacity | High deployment volume right now | Scheduled maintenance
+PASS deploy top notice shows once Payment is not the active step (390)
+PASS Singapore notice hidden when Canada is selected (390)
+PASS setup screen shows the calm sentence (390) - Your server is being set up. Deployments are taking longer than usual right now, this is expected. | Payments may take longer to show | Your server is being set up. Deployments are taking longer than usual right now, this is expected. | Scheduled maintenance
+PASS public /status lists active notices without dismiss (390) - 5
+PASS customer pages: no errors from status-notice components (390) - Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A serve | Error: Hydration failed because the server rendered text didn't match the client. As a result thi

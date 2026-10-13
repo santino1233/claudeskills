@@ -1,0 +1,1434 @@
+{
+ "date": "2026-10-10",
+ "branch": "feature/cyrus-r2",
+ "script": "test/cyrus-composition-real.ts all --local (scripts/devhost run on node-2)",
+ "note": "run1 used the earlier engine message/evidence wording; flights and checks are identical in kind",
+ "runs": [
+  {
+   "run": 1,
+   "scenarios": [
+    {
+     "scenario": "clean",
+     "versions": [
+      "1.21.11",
+      "26.2"
+     ],
+     "static": {
+      "counts": {
+       "blocking": 0,
+       "warn": 0,
+       "info": 0
+      },
+      "findings": []
+     },
+     "plan": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "pair-a",
+        "pair-b"
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "pair-a",
+        "pair-b"
+       ]
+      }
+     ],
+     "flights": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 17659,
+       "peakRssKb": 870740,
+       "runId": "tf-1-21-11-mv222h8p-eba426",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L100: [07:11:27 INFO]: Done (16.416s)! For help, type \"help\"",
+          "wall 17659 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfPairA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L93: [07:11:27 INFO]: [TfPairA] Enabling TfPairA v1.0.0",
+          "TfPairB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L91: [07:11:27 INFO]: [TfPairB] Enabling TfPairB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | ",
+          "help-tfpaira 'help tfpaira': ok (optional) -> --------- Help: TfPairA ------------------------------- | Below is a list of all TfPairA commands: | /tfpaira: TfPairA command | ",
+          "help-tfpairb 'help tfpairb': ok (optional) -> --------- Help: TfPairB ------------------------------- | Below is a list of all TfPairB commands: | /tfpairb: TfPairB command | ",
+          "run-tfpaira 'tfpaira': ok -> TfPairA handled /tfpaira | ",
+          "run-tfpairb 'tfpairb': ok -> TfPairB handled /tfpairb | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 572 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3361127 gone; 0 marked processes; listening none of 47139,47147",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv222h8p-eba426; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10429,
+       "peakRssKb": 795496,
+       "runId": "tf-26-2-mv222x68-85f110",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L103: [07:11:41 INFO]: Done (9.075s)! For help, type \"help\"",
+          "wall 10429 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfPairA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L87: [07:11:40 INFO]: [TfPairA] Enabling TfPairA v1.0.0",
+          "TfPairB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L89: [07:11:40 INFO]: [TfPairB] Enabling TfPairB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "103 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | ",
+          "help-tfpaira 'help tfpaira': ok (optional) -> --------- Help: TfPairA ------------------------------- | Below is a list of all TfPairA commands: | /tfpaira: TfPairA command | ",
+          "help-tfpairb 'help tfpairb': ok (optional) -> --------- Help: TfPairB ------------------------------- | Below is a list of all TfPairB commands: | /tfpairb: TfPairB command | ",
+          "run-tfpaira 'tfpaira': ok -> TfPairA handled /tfpaira | ",
+          "run-tfpairb 'tfpairb': ok -> TfPairB handled /tfpairb | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 426 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3361964 gone; 0 marked processes; listening none of 47130,47171",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv222x68-85f110; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      }
+     ],
+     "dynamic": {
+      "versions": [
+       {
+        "mcVersion": "1.21.11",
+        "overall": "passed",
+        "evidence": [
+         "1.21.11: combined boot passed (6 checks passed)"
+        ]
+       },
+       {
+        "mcVersion": "26.2",
+        "overall": "passed",
+        "evidence": [
+         "26.2: combined boot passed (6 checks passed)"
+        ]
+       }
+      ],
+      "findings": [],
+      "dynamicOnly": []
+     },
+     "compatibility": [
+      {
+       "mcVersion": "1.21.11",
+       "static": "clean",
+       "dynamic": "passed",
+       "evidence": [
+        "1.21.11: combined boot passed (6 checks passed)"
+       ]
+      },
+      {
+       "mcVersion": "26.2",
+       "static": "clean",
+       "dynamic": "passed",
+       "evidence": [
+        "26.2: combined boot passed (6 checks passed)"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "clash",
+     "versions": [
+      "1.21.11",
+      "26.2"
+     ],
+     "static": {
+      "counts": {
+       "blocking": 0,
+       "warn": 5,
+       "info": 0
+      },
+      "findings": [
+       {
+        "id": "a8df7ca056d4",
+        "class": "command.label_collision",
+        "severity": "warn",
+        "subject": "/nxclash",
+        "resolution": "user_decision",
+        "items": [
+         "command /nxclash (plugin.yml)",
+         "command /nxclash (plugin.yml)"
+        ]
+       },
+       {
+        "id": "23f72e2a59c2",
+        "class": "event.overlap",
+        "severity": "warn",
+        "subject": "org.bukkit.event.player.PlayerJoinEvent@HIGH",
+        "resolution": "load_order",
+        "items": [
+         "dev.nxeon.tf.tfclasha.Main#onJoin changes PlayerJoinEvent at HIGH",
+         "dev.nxeon.tf.tfclashb.Main#onJoin changes PlayerJoinEvent at HIGH"
+        ]
+       },
+       {
+        "id": "11132134627a",
+        "class": "permission.default_mismatch",
+        "severity": "warn",
+        "subject": "nxclash.use",
+        "resolution": "user_decision",
+        "items": [
+         "default: true",
+         "default: op"
+        ]
+       },
+       {
+        "id": "91c2021ad071",
+        "class": "permission.duplicate",
+        "severity": "warn",
+        "subject": "nxclash.use",
+        "resolution": "user_decision",
+        "items": [
+         "defines nxclash.use (default true)",
+         "defines nxclash.use (default op)"
+        ]
+       },
+       {
+        "id": "4d6dffbff24c",
+        "class": "resource.single_owner",
+        "severity": "warn",
+        "subject": "join_quit_messages",
+        "resolution": "user_decision",
+        "items": [
+         "PlayerJoinEvent.setJoinMessage (dev.nxeon.tf.tfclasha.Main#onJoin)",
+         "PlayerJoinEvent.setJoinMessage (dev.nxeon.tf.tfclashb.Main#onJoin)"
+        ]
+       }
+      ]
+     },
+     "plan": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "clash-a",
+        "clash-b"
+       ]
+      },
+      {
+       "key": "1.21.11:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "members": [
+        "clash-a"
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "clash-a",
+        "clash-b"
+       ]
+      },
+      {
+       "key": "26.2:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "members": [
+        "clash-a"
+       ]
+      }
+     ],
+     "flights": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 17261,
+       "peakRssKb": 887112,
+       "runId": "tf-1-21-11-mv2237j0-fd5c52",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L101: [07:12:01 INFO]: Done (16.063s)! For help, type \"help\"",
+          "wall 17261 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L94: [07:12:01 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "TfClashB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L91: [07:12:01 INFO]: [TfClashB] Enabling TfClashB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashB command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashB handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': ok (optional) -> TfClashB handled /tfclashb:nxclash | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 530 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3362148 gone; 0 marked processes; listening none of 47167,47102",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2237j0-fd5c52; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "1.21.11:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 18468,
+       "peakRssKb": 920900,
+       "runId": "tf-1-21-11-mv223n1v-5cd27e",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L95: [07:12:22 INFO]: Done (17.105s)! For help, type \"help\"",
+          "wall 18468 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L88: [07:12:22 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashA command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashA handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': FAILED missing [\"TfClashB handled\"] (optional) -> Unknown or incomplete command. See below for error | tfclashb:nxclash<--[HERE]"
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 582 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3362908 gone; 0 marked processes; listening none of 47156,47182",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv223n1v-5cd27e; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10237,
+       "peakRssKb": 810716,
+       "runId": "tf-26-2-mv2243qo-7e906e",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L104: [07:12:36 INFO]: Done (8.948s)! For help, type \"help\"",
+          "wall 10237 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L90: [07:12:35 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "TfClashB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L87: [07:12:35 INFO]: [TfClashB] Enabling TfClashB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "104 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashB command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashB handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': ok (optional) -> TfClashB handled /tfclashb:nxclash | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 433 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3363253 gone; 0 marked processes; listening none of 47133,47143",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2243qo-7e906e; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10438,
+       "peakRssKb": 814168,
+       "runId": "tf-26-2-mv224dz0-63db56",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L100: [07:12:49 INFO]: Done (9.196s)! For help, type \"help\"",
+          "wall 10438 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L86: [07:12:49 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashA command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashA handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': FAILED missing [\"TfClashB handled\"] (optional) -> Unknown or incomplete command. See below for error | tfclashb:nxclash<--[HERE]"
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 467 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3363447 gone; 0 marked processes; listening none of 47167,47123",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv224dz0-63db56; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      }
+     ],
+     "dynamic": {
+      "versions": [
+       {
+        "mcVersion": "1.21.11",
+        "overall": "passed",
+        "evidence": [
+         "1.21.11: combined boot passed (6 checks passed)",
+         "1.21.11: differential boot without clash-b: passed"
+        ]
+       },
+       {
+        "mcVersion": "26.2",
+        "overall": "passed",
+        "evidence": [
+         "26.2: combined boot passed (6 checks passed)",
+         "26.2: differential boot without clash-b: passed"
+        ]
+       }
+      ],
+      "findings": [
+       {
+        "findingId": "a8df7ca056d4",
+        "class": "command.label_collision",
+        "subject": "/nxclash",
+        "dynamic": "confirmed",
+        "evidence": [
+         "1.21.11: /nxclash is answered by clash-b only; clash-a reachable only as /<plugin>:nxclash",
+         "26.2: /nxclash is answered by clash-b only; clash-a reachable only as /<plugin>:nxclash"
+        ]
+       },
+       {
+        "findingId": "23f72e2a59c2",
+        "class": "event.overlap",
+        "subject": "org.bukkit.event.player.PlayerJoinEvent@HIGH",
+        "dynamic": "not_observable",
+        "evidence": [
+         "a server boot without players cannot show this class"
+        ]
+       },
+       {
+        "findingId": "11132134627a",
+        "class": "permission.default_mismatch",
+        "subject": "nxclash.use",
+        "dynamic": "not_observed",
+        "evidence": [
+         "the boots ran but showed nothing for this finding"
+        ]
+       },
+       {
+        "findingId": "91c2021ad071",
+        "class": "permission.duplicate",
+        "subject": "nxclash.use",
+        "dynamic": "not_observed",
+        "evidence": [
+         "the boots ran but showed nothing for this finding"
+        ]
+       },
+       {
+        "findingId": "4d6dffbff24c",
+        "class": "resource.single_owner",
+        "subject": "join_quit_messages",
+        "dynamic": "not_observable",
+        "evidence": [
+         "a server boot without players cannot show this class"
+        ]
+       }
+      ],
+      "dynamicOnly": [
+       {
+        "kind": "command_owner_changed",
+        "mcVersion": "1.21.11",
+        "member": "clash-b",
+        "evidence": "/nxclash is answered by clash-b with clash-b installed, by clash-a without it"
+       },
+       {
+        "kind": "command_owner_changed",
+        "mcVersion": "26.2",
+        "member": "clash-b",
+        "evidence": "/nxclash is answered by clash-b with clash-b installed, by clash-a without it"
+       }
+      ]
+     },
+     "compatibility": [
+      {
+       "mcVersion": "1.21.11",
+       "static": "warnings",
+       "dynamic": "passed",
+       "evidence": [
+        "1.21.11: combined boot passed (6 checks passed)",
+        "1.21.11: differential boot without clash-b: passed"
+       ]
+      },
+      {
+       "mcVersion": "26.2",
+       "static": "warnings",
+       "dynamic": "passed",
+       "evidence": [
+        "26.2: combined boot passed (6 checks passed)",
+        "26.2: differential boot without clash-b: passed"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "run": 2,
+   "scenarios": [
+    {
+     "scenario": "clean",
+     "versions": [
+      "1.21.11",
+      "26.2"
+     ],
+     "static": {
+      "counts": {
+       "blocking": 0,
+       "warn": 0,
+       "info": 0
+      },
+      "findings": []
+     },
+     "plan": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "pair-a",
+        "pair-b"
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "pair-a",
+        "pair-b"
+       ]
+      }
+     ],
+     "flights": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 17063,
+       "peakRssKb": 870776,
+       "runId": "tf-1-21-11-mv226q8n-27f262",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L100: [07:14:45 INFO]: Done (15.856s)! For help, type \"help\"",
+          "wall 17063 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfPairA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L93: [07:14:45 INFO]: [TfPairA] Enabling TfPairA v1.0.0",
+          "TfPairB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L91: [07:14:45 INFO]: [TfPairB] Enabling TfPairB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | ",
+          "help-tfpaira 'help tfpaira': ok (optional) -> --------- Help: TfPairA ------------------------------- | Below is a list of all TfPairA commands: | /tfpaira: TfPairA command | ",
+          "help-tfpairb 'help tfpairb': ok (optional) -> --------- Help: TfPairB ------------------------------- | Below is a list of all TfPairB commands: | /tfpairb: TfPairB command | ",
+          "run-tfpaira 'tfpaira': ok -> TfPairA handled /tfpaira | ",
+          "run-tfpairb 'tfpairb': ok -> TfPairB handled /tfpairb | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 570 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3364635 gone; 0 marked processes; listening none of 47137,47130",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv226q8n-27f262; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10635,
+       "peakRssKb": 840892,
+       "runId": "tf-26-2-mv2275vy-4046e6",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L103: [07:14:59 INFO]: Done (9.177s)! For help, type \"help\"",
+          "wall 10635 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfPairA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L87: [07:14:58 INFO]: [TfPairA] Enabling TfPairA v1.0.0",
+          "TfPairB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L89: [07:14:58 INFO]: [TfPairB] Enabling TfPairB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "103 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfPairA, TfPairB | ",
+          "help-tfpaira 'help tfpaira': ok (optional) -> --------- Help: TfPairA ------------------------------- | Below is a list of all TfPairA commands: | /tfpaira: TfPairA command | ",
+          "help-tfpairb 'help tfpairb': ok (optional) -> --------- Help: TfPairB ------------------------------- | Below is a list of all TfPairB commands: | /tfpairb: TfPairB command | ",
+          "run-tfpaira 'tfpaira': ok -> TfPairA handled /tfpaira | ",
+          "run-tfpairb 'tfpairb': ok -> TfPairB handled /tfpairb | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 463 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3364898 gone; 0 marked processes; listening none of 47173,47115",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2275vy-4046e6; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      }
+     ],
+     "dynamic": {
+      "versions": [
+       {
+        "mcVersion": "1.21.11",
+        "overall": "passed",
+        "evidence": [
+         "1.21.11: combined boot passed (6 checks passed)"
+        ]
+       },
+       {
+        "mcVersion": "26.2",
+        "overall": "passed",
+        "evidence": [
+         "26.2: combined boot passed (6 checks passed)"
+        ]
+       }
+      ],
+      "findings": [],
+      "dynamicOnly": []
+     },
+     "compatibility": [
+      {
+       "mcVersion": "1.21.11",
+       "static": "clean",
+       "dynamic": "passed",
+       "evidence": [
+        "1.21.11: combined boot passed (6 checks passed)"
+       ]
+      },
+      {
+       "mcVersion": "26.2",
+       "static": "clean",
+       "dynamic": "passed",
+       "evidence": [
+        "26.2: combined boot passed (6 checks passed)"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "clash",
+     "versions": [
+      "1.21.11",
+      "26.2"
+     ],
+     "static": {
+      "counts": {
+       "blocking": 0,
+       "warn": 5,
+       "info": 0
+      },
+      "findings": [
+       {
+        "id": "a8df7ca056d4",
+        "class": "command.label_collision",
+        "severity": "warn",
+        "subject": "/nxclash",
+        "resolution": "user_decision",
+        "items": [
+         "command /nxclash (plugin.yml)",
+         "command /nxclash (plugin.yml)"
+        ]
+       },
+       {
+        "id": "23f72e2a59c2",
+        "class": "event.overlap",
+        "severity": "warn",
+        "subject": "org.bukkit.event.player.PlayerJoinEvent@HIGH",
+        "resolution": "load_order",
+        "items": [
+         "dev.nxeon.tf.tfclasha.Main#onJoin changes PlayerJoinEvent at HIGH",
+         "dev.nxeon.tf.tfclashb.Main#onJoin changes PlayerJoinEvent at HIGH"
+        ]
+       },
+       {
+        "id": "11132134627a",
+        "class": "permission.default_mismatch",
+        "severity": "warn",
+        "subject": "nxclash.use",
+        "resolution": "user_decision",
+        "items": [
+         "default: true",
+         "default: op"
+        ]
+       },
+       {
+        "id": "91c2021ad071",
+        "class": "permission.duplicate",
+        "severity": "warn",
+        "subject": "nxclash.use",
+        "resolution": "user_decision",
+        "items": [
+         "defines nxclash.use (default true)",
+         "defines nxclash.use (default op)"
+        ]
+       },
+       {
+        "id": "4d6dffbff24c",
+        "class": "resource.single_owner",
+        "severity": "warn",
+        "subject": "join_quit_messages",
+        "resolution": "user_decision",
+        "items": [
+         "PlayerJoinEvent.setJoinMessage (dev.nxeon.tf.tfclasha.Main#onJoin)",
+         "PlayerJoinEvent.setJoinMessage (dev.nxeon.tf.tfclashb.Main#onJoin)"
+        ]
+       }
+      ]
+     },
+     "plan": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "clash-a",
+        "clash-b"
+       ]
+      },
+      {
+       "key": "1.21.11:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "members": [
+        "clash-a"
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "members": [
+        "clash-a",
+        "clash-b"
+       ]
+      },
+      {
+       "key": "26.2:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "members": [
+        "clash-a"
+       ]
+      }
+     ],
+     "flights": [
+      {
+       "key": "1.21.11:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 17662,
+       "peakRssKb": 869188,
+       "runId": "tf-1-21-11-mv227gfe-c45b4e",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L101: [07:15:20 INFO]: Done (16.399s)! For help, type \"help\"",
+          "wall 17662 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L91: [07:15:19 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "TfClashB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L94: [07:15:19 INFO]: [TfClashB] Enabling TfClashB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "101 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashA command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashA handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': ok (optional) -> TfClashB handled /tfclashb:nxclash | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 526 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3365108 gone; 0 marked processes; listening none of 47196,47114",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv227gfe-c45b4e; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "1.21.11:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 18670,
+       "peakRssKb": 845500,
+       "runId": "tf-1-21-11-mv227wgz-0b39fd",
+       "paper": {
+        "version": "1.21.11",
+        "build": 132,
+        "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "channel": "STABLE"
+       },
+       "jdk": "21.0.12.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L95: [07:15:41 INFO]: Done (17.395s)! For help, type \"help\"",
+          "wall 18670 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L88: [07:15:41 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashA command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashA handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': FAILED missing [\"TfClashB handled\"] (optional) -> Unknown or incomplete command. See below for error | tfclashb:nxclash<--[HERE]"
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 568 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3365373 gone; 0 marked processes; listening none of 47171,47139",
+          "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv227wgz-0b39fd; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:combined",
+       "role": "combined",
+       "without": null,
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10435,
+       "peakRssKb": 798128,
+       "runId": "tf-26-2-mv228d8s-25de52",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L104: [07:15:55 INFO]: Done (9.050s)! For help, type \"help\"",
+          "wall 10435 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L90: [07:15:55 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "TfClashB: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L87: [07:15:55 INFO]: [TfClashB] Enabling TfClashB v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "104 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (2): | Bukkit Plugins: |  - TfClashA, TfClashB | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashB command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashB handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': ok (optional) -> TfClashB handled /tfclashb:nxclash | "
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 448 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3365693 gone; 0 marked processes; listening none of 47121,47148",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv228d8s-25de52; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      },
+      {
+       "key": "26.2:without:clash-b",
+       "role": "differential",
+       "without": "clash-b",
+       "status": "completed",
+       "overall": "passed",
+       "bootMs": 10839,
+       "peakRssKb": 843888,
+       "runId": "tf-26-2-mv228nk3-65fc4a",
+       "paper": {
+        "version": "26.2",
+        "build": 133,
+        "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+        "channel": "STABLE"
+       },
+       "jdk": "25.0.4.1",
+       "checks": [
+        {
+         "id": "boot_done",
+         "status": "pass",
+         "evidence": [
+          "L100: [07:16:09 INFO]: Done (9.454s)! For help, type \"help\"",
+          "wall 10839 ms from spawn"
+         ]
+        },
+        {
+         "id": "plugins_enabled",
+         "status": "pass",
+         "evidence": [
+          "TfClashA: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+          "L86: [07:16:08 INFO]: [TfClashA] Enabling TfClashA v1.0.0",
+          "rcon plugins -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | "
+         ]
+        },
+        {
+         "id": "startup_log_clean",
+         "status": "pass",
+         "evidence": [
+          "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+         ]
+        },
+        {
+         "id": "rcon_checks",
+         "status": "pass",
+         "evidence": [
+          "plugins 'plugins': ok -> \u2139 Server Plugins (1): | Bukkit Plugins: |  - TfClashA | ",
+          "help-nxclash 'help nxclash': ok (optional) -> --------- Help: /nxclash ------------------------------ | Description: TfClashA command | Usage: /nxclash | ",
+          "run-nxclash 'nxclash': ok (optional) -> TfClashA handled /nxclash | ",
+          "run-tfclasha-prefixed 'tfclasha:nxclash': ok -> TfClashA handled /tfclasha:nxclash | ",
+          "run-tfclashb-prefixed 'tfclashb:nxclash': FAILED missing [\"TfClashB handled\"] (optional) -> Unknown or incomplete command. See below for error | tfclashb:nxclash<--[HERE]"
+         ]
+        },
+        {
+         "id": "clean_stop",
+         "status": "pass",
+         "evidence": [
+          "stop via rcon; exit code 0 signal null after 429 ms; 0 shutdown log hits"
+         ]
+        },
+        {
+         "id": "no_leaks",
+         "status": "pass",
+         "evidence": [
+          "netns: java pid 3365888 gone; 0 marked processes; listening none of 47143,47113",
+          "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv228nk3-65fc4a; no listening port in 47100-47199"
+         ]
+        }
+       ]
+      }
+     ],
+     "dynamic": {
+      "versions": [
+       {
+        "mcVersion": "1.21.11",
+        "overall": "passed",
+        "evidence": [
+         "1.21.11: combined boot passed (6 checks passed)",
+         "1.21.11: differential boot without clash-b: passed",
+         "1.21.11: confirmed command.label_collision /nxclash"
+        ]
+       },
+       {
+        "mcVersion": "26.2",
+        "overall": "passed",
+        "evidence": [
+         "26.2: combined boot passed (6 checks passed)",
+         "26.2: differential boot without clash-b: passed",
+         "26.2: confirmed command.label_collision /nxclash",
+         "26.2: command_owner_changed: /nxclash is answered by clash-b with clash-b installed, by clash-a without it"
+        ]
+       }
+      ],
+      "findings": [
+       {
+        "findingId": "a8df7ca056d4",
+        "class": "command.label_collision",
+        "subject": "/nxclash",
+        "dynamic": "confirmed",
+        "evidence": [
+         "1.21.11: /nxclash is answered by clash-a only; clash-b reachable only as /<plugin>:nxclash",
+         "26.2: /nxclash is answered by clash-b only; clash-a reachable only as /<plugin>:nxclash"
+        ]
+       },
+       {
+        "findingId": "23f72e2a59c2",
+        "class": "event.overlap",
+        "subject": "org.bukkit.event.player.PlayerJoinEvent@HIGH",
+        "dynamic": "not_observable",
+        "evidence": [
+         "a server boot without players cannot show this class"
+        ]
+       },
+       {
+        "findingId": "11132134627a",
+        "class": "permission.default_mismatch",
+        "subject": "nxclash.use",
+        "dynamic": "not_observed",
+        "evidence": [
+         "the boots ran but showed nothing for this finding"
+        ]
+       },
+       {
+        "findingId": "91c2021ad071",
+        "class": "permission.duplicate",
+        "subject": "nxclash.use",
+        "dynamic": "not_observed",
+        "evidence": [
+         "the boots ran but showed nothing for this finding"
+        ]
+       },
+       {
+        "findingId": "4d6dffbff24c",
+        "class": "resource.single_owner",
+        "subject": "join_quit_messages",
+        "dynamic": "not_observable",
+        "evidence": [
+         "a server boot without players cannot show this class"
+        ]
+       }
+      ],
+      "dynamicOnly": [
+       {
+        "kind": "command_owner_changed",
+        "mcVersion": "26.2",
+        "member": "clash-b",
+        "evidence": "/nxclash is answered by clash-b with clash-b installed, by clash-a without it"
+       }
+      ]
+     },
+     "compatibility": [
+      {
+       "mcVersion": "1.21.11",
+       "static": "warnings",
+       "dynamic": "passed",
+       "evidence": [
+        "1.21.11: combined boot passed (6 checks passed)",
+        "1.21.11: differential boot without clash-b: passed",
+        "1.21.11: confirmed command.label_collision /nxclash"
+       ]
+      },
+      {
+       "mcVersion": "26.2",
+       "static": "warnings",
+       "dynamic": "passed",
+       "evidence": [
+        "26.2: combined boot passed (6 checks passed)",
+        "26.2: differential boot without clash-b: passed",
+        "26.2: confirmed command.label_collision /nxclash",
+        "26.2: command_owner_changed: /nxclash is answered by clash-b with clash-b installed, by clash-a without it"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

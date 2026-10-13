@@ -1,0 +1,252 @@
+{
+ "at": "2026-10-12T07:24:42.891Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (fixture designs)",
+ "switch": "techniques: true (CYRUS_MC_TECHNIQUES)",
+ "lanes": [
+  {
+   "version": "1.21.1",
+   "jdk": "21",
+   "files": 31,
+   "hash": "427a58d23a0f9864be7611c80980e3f41c5699d4caaef98902ac5b5820c690f4",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xflzf/1.21.1/NxTools-1.21.1.jar",
+   "jarSha256": "3b88e4010dea7e5c72f83440e8fc9f49a0d1be039fe37dcd8a33a0771b629528",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.4",
+   "jdk": "21",
+   "files": 31,
+   "hash": "1e9f1784e7527b59d57fe147b3ffd34b209430d9241c679d602f972ca91180c6",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xflzf/1.21.4/NxTools-1.21.4.jar",
+   "jarSha256": "758e3bab80cb3426ec0826e6b705482ed532b5610580759d3b9a5714173e82a0",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.8",
+   "jdk": "21",
+   "files": 31,
+   "hash": "a2b8bc97bf6391cd21097128bc6022ab9eebabf6ab94c20257cd29cbbb673744",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xflzf/1.21.8/NxTools-1.21.8.jar",
+   "jarSha256": "178beb37ec4cf60a59f1d7b0551fb9a6cc3276342f83088e0c0d0520f34999b2",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "files": 31,
+   "hash": "afe2a893572692a4e849c84ed340e6a3f3c279d48691abb125174090714d25d5",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xflzf/1.21.11/NxTools-1.21.11.jar",
+   "jarSha256": "4f9992d1fcfe22e0f71d9655010a9775815e9860a1fefa8828017a2bb827fe5e",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "files": 31,
+   "hash": "126e45e9f3acdc186c1e66c80888a8c4bb2d984d0e24612396a6ede807f41fb3",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xflzf/26.2/NxTools-26.2.jar",
+   "jarSha256": "1d1630b8188110baa1b1daab7dcc7184eb8d053716c401009f792e6a9f482c61",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "mutant": {
+  "name": "dupe (token check removed)",
+  "expect": "T-3 fails: the copy releases a second pig",
+  "flight": {
+   "overall": "failed",
+   "line": "Test Flight failed on Paper 1.21.11: playtest failed: bot NxPlaytest joined Paper 1.21.11 in 2048 ms (mineflayer 4.39.0, minecraft-protocol 1.68.0, op false)",
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "fail",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "plugins 'plugins' [rss 857 MB, 252 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxTools | "
+   ],
+   "log": [
+    "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "scenarios": [
+    {
+     "id": "T-3",
+     "status": "fail",
+     "steps": [
+      {
+       "kind": "join",
+       "status": "pass",
+       "evidence": [
+        "joined as NxPlaytest after 2048 ms at {\"x\":6.5,\"y\":-60,\"z\":-5.5}; checking messages since the join (1 so far)"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'kill @e[type=!player,type=!item]' -> No entity was found"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'nxtools give mob_net NxPlaytest' -> Gave 1 x mob_net to NxPlaytest. | "
+       ]
+      },
+      {
+       "kind": "hold",
+       "status": "pass",
+       "evidence": [
+        "held item: stick"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'summon minecraft:pig 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxdup\"]}' -> Summoned new Pig"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 600 ms"
+       ]
+      },
+      {
+       "kind": "use_on_entity",
+       "status": "pass",
+       "evidence": [
+        "right-clicked the pig 2.00 blocks away with stick"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 700 ms"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'item replace entity NxPlaytest hotbar.8 from entity NxPlaytest weapon.mainhand' -> Replaced a slot on NxPlaytest with [Mob Net]"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tp NxPlaytest 2.5 -60 13.5 0 55' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 300 ms"
+       ]
+      },
+      {
+       "kind": "use_item",
+       "status": "pass",
+       "evidence": [
+        "right-clicked with stick"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 700 ms"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'execute if entity @e[type=pig,tag=nxdup]' -> Test passed. Count: 1"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'item replace entity NxPlaytest weapon.mainhand from entity NxPlaytest hotbar.8' -> Replaced a slot on NxPlaytest with [Mob Net]"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 700 ms"
+       ]
+      },
+      {
+       "kind": "use_item",
+       "status": "pass",
+       "evidence": [
+        "right-clicked with stick"
+       ]
+      },
+      {
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 700 ms"
+       ]
+      },
+      {
+       "kind": "server",
+       "status": "fail",
+       "evidence": [
+        "console 'execute if entity @e[type=pig,tag=nxdup]' -> Test passed. Count: 2 missing [\"Test passed. Count: 1\"]"
+       ]
+      }
+     ]
+    }
+   ],
+   "runId": "tf-1-21-11-mv4xfwqv-e95d8d",
+   "engine": {
+    "runner": "tf-lite-6",
+    "paper": 132
+   }
+  }
+ }
+}

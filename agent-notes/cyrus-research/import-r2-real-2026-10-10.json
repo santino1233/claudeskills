@@ -1,0 +1,337 @@
+{
+ "at": "2026-10-10T08:08:21.174Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (the import path makes no model call)",
+ "depsVerify": [
+  "ok vault-api VaultAPI-1.7.jar 12926 sha256 47f6a400a8ab22012e6a320f7bfc63621ce4a246e1c60502ff7fc91d532d2601",
+  "ok luckperms-api luckperms-api-5.5.jar 149331 sha256 cd910f936adc4dee7705fb51cc29401fde4f29aba6ee73a6475a3a0515f6294f",
+  "ok placeholderapi placeholderapi-2.11.6.jar 933017 sha256 b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+  "ok protocollib ProtocolLib-5.3.0.jar 1004075 sha256 1e10c4998d591c31c31f6889e0de01e49b1367e0d3e6c82829e51c0e1fb478b9"
+ ],
+ "health": {
+  "kinds": [
+   "source",
+   "jar"
+  ],
+  "scanProfiles": [
+   "strict",
+   "attested"
+  ],
+  "deps": {
+   "version": "cyrus-import-deps-2026-10-10.1",
+   "installed": [
+    "vault-api",
+    "luckperms-api",
+    "placeholderapi",
+    "protocollib"
+   ]
+  }
+ },
+ "ingest": {
+  "uploadSha256": "5893895d41263b25abfb7c4541f42c1c808a396998e77d737465a28e37398dd3",
+  "size": 7982,
+  "kept": [
+   "src/main/java/me/demo/importdemo/DemoCommand.java",
+   "src/main/java/me/demo/importdemo/ImportDemo.java",
+   "src/main/java/me/demo/importdemo/JoinListener.java",
+   "src/main/java/me/demo/importdemo/hooks/PapiHook.java",
+   "src/main/java/me/demo/importdemo/hooks/VaultHook.java",
+   "src/main/java/me/demo/importdemo/metrics/Metrics.java",
+   "src/main/java/me/demo/importdemo/metrics/UpdateChecker.java",
+   "src/main/resources/config.yml",
+   "src/main/resources/plugin.yml"
+  ],
+  "ignored": [
+   "build.gradle",
+   "gradle/wrapper/gradle-wrapper.properties",
+   "gradlew",
+   "settings.gradle"
+  ],
+  "deps": {
+   "allowed": [
+    "placeholderapi",
+    "vault-api"
+   ],
+   "provided": [
+    "io.papermc.paper:paper-api"
+   ],
+   "unsupported": [],
+   "runtimeOnly": []
+  },
+  "detection": {
+   "buildSystem": "gradle",
+   "main": "me.demo.importdemo.ImportDemo",
+   "apiVersion": "1.21",
+   "sourcesComplete": true
+  },
+  "notes": [
+   "Your Gradle build files were not used and never run: Cyrus compiles src/main/java with its own pinned toolchain."
+  ]
+ },
+ "imports": [
+  {
+   "mcVersion": "1.21.11",
+   "http": 202,
+   "status": "succeeded",
+   "error": null,
+   "errorDetail": null,
+   "durationMs": 1719,
+   "stages": {
+    "compile": {
+     "n": 1,
+     "ms": 1275
+    },
+    "scan": {
+     "n": 1,
+     "ms": 396
+    }
+   },
+   "safety": {
+    "verdict": "warn",
+    "profile": "attested",
+    "summary": "Checked with the attested profile: 5 warnings",
+    "findings": [
+     "warn:reflection-lookup(from reflection)@me.demo.importdemo.metrics.Metrics",
+     "warn:network-http(from network)@me.demo.importdemo.metrics.Metrics",
+     "warn:network-http(from network)@me.demo.importdemo.metrics.UpdateChecker",
+     "warn:network-endpoint@me.demo.importdemo.metrics.Metrics",
+     "warn:network-endpoint@me.demo.importdemo.metrics.UpdateChecker"
+    ]
+   },
+   "warnings": [
+    "Checked with the attested profile: 5 warnings. This is imported code: Nxeon checked it but does not guarantee that it is safe.",
+    "Compiler: [deprecation] URL(String) in URL has been deprecated",
+    "Compiler: [deprecation] URL(String) in URL has been deprecated",
+    "This plugin uses reflection to find classes, fields or methods (often a version or Folia check) (me.demo.importdemo.metrics.Metrics)."
+   ],
+   "events": [
+    "Waiting for a free builder to build your imported source",
+    "Checking the imported files",
+    "Compiling your source against Paper 1.21.11 with 2 allowlisted dependencies",
+    "Compiled successfully",
+    "Checking it with the attested profile",
+    "Checked with the attested profile: 5 warnings",
+    "Ready: ImportDemo-1.4.2.jar"
+   ],
+   "jar": {
+    "sha256": "c6c76b0e8da6ddd8a0b18a15c8b28d409c1785f4a120f7bd3dbb3153691807c3",
+    "size": 10250,
+    "serviceSha256": "c6c76b0e8da6ddd8a0b18a15c8b28d409c1785f4a120f7bd3dbb3153691807c3",
+    "entries": 11,
+    "shadedDeps": 0,
+    "hasBuildFiles": false,
+    "classMajor": 65,
+    "pluginYmlHead": [
+     "# ImportDemo plugin descriptor (hand-written by the author; keep the comments)",
+     "name: ImportDemo",
+     "version: 1.4.2",
+     "main: me.demo.importdemo.ImportDemo"
+    ]
+   },
+   "reproducible": true
+  },
+  {
+   "mcVersion": "26.2",
+   "http": 202,
+   "status": "succeeded",
+   "error": null,
+   "errorDetail": null,
+   "durationMs": 1635,
+   "stages": {
+    "compile": {
+     "n": 1,
+     "ms": 1260
+    },
+    "scan": {
+     "n": 1,
+     "ms": 346
+    }
+   },
+   "safety": {
+    "verdict": "warn",
+    "profile": "attested",
+    "summary": "Checked with the attested profile: 5 warnings",
+    "findings": [
+     "warn:reflection-lookup(from reflection)@me.demo.importdemo.metrics.Metrics",
+     "warn:network-http(from network)@me.demo.importdemo.metrics.Metrics",
+     "warn:network-http(from network)@me.demo.importdemo.metrics.UpdateChecker",
+     "warn:network-endpoint@me.demo.importdemo.metrics.Metrics",
+     "warn:network-endpoint@me.demo.importdemo.metrics.UpdateChecker"
+    ]
+   },
+   "warnings": [
+    "Checked with the attested profile: 5 warnings. This is imported code: Nxeon checked it but does not guarantee that it is safe.",
+    "Compiler: [deprecation] URL(String) in URL has been deprecated",
+    "Compiler: [deprecation] URL(String) in URL has been deprecated",
+    "This plugin uses reflection to find classes, fields or methods (often a version or Folia check) (me.demo.importdemo.metrics.Metrics)."
+   ],
+   "events": [
+    "Waiting for a free builder to build your imported source",
+    "Checking the imported files",
+    "Compiling your source against Paper 26.2 with 2 allowlisted dependencies",
+    "Compiled successfully",
+    "Checking it with the attested profile",
+    "Checked with the attested profile: 5 warnings",
+    "Ready: ImportDemo-1.4.2.jar"
+   ],
+   "jar": {
+    "sha256": "0a0aeb868ce1bf01c29dd3ebed0807568f1787a5120ceb2868510f9b14e2fff6",
+    "size": 10244,
+    "serviceSha256": "0a0aeb868ce1bf01c29dd3ebed0807568f1787a5120ceb2868510f9b14e2fff6",
+    "entries": 11,
+    "shadedDeps": 0,
+    "hasBuildFiles": false,
+    "classMajor": 69,
+    "pluginYmlHead": [
+     "# ImportDemo plugin descriptor (hand-written by the author; keep the comments)",
+     "name: ImportDemo",
+     "version: 1.4.2",
+     "main: me.demo.importdemo.ImportDemo"
+    ]
+   },
+   "reproducible": true
+  }
+ ],
+ "hardBlock": {
+  "status": "failed",
+  "errorCode": "safety",
+  "error": "Cyrus can't build this import: it runs other programs on the server machine (me.demo.evil.EvilImport). That stays blocked even for code you own.",
+  "findings": [
+   "block:exec@me.demo.evil.EvilImport"
+  ]
+ },
+ "flights": [
+  {
+   "version": "1.21.11",
+   "jar": "ImportDemo-1.21.11.jar",
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.1s, peak RSS 841 MB)",
+   "bootMs": 18066,
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L95: [08:10:33 INFO]: Done (16.751s)! For help, type \"help\"",
+      "wall 18066 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "ImportDemo: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L88: [08:10:33 INFO]: [ImportDemo] Enabling ImportDemo v1.4.2",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - ImportDemo | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "plugins-listed 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - ImportDemo | ",
+      "command-runs 'importdemo': ok -> ImportDemo is running. Balance: n/a | ",
+      "reload-sub 'importdemo reload': ok -> ImportDemo config reloaded. | "
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 543 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3399311 gone; 0 marked processes; listening none of 47157,47100",
+      "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv246grv-936f6a; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "notes": [
+    "ports: server 47157, rcon 47100 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "version": "26.2",
+   "jar": "ImportDemo-26.2.jar",
+   "status": "completed",
+   "overall": "passed",
+   "success": true,
+   "line": "Test Flight passed on Paper 26.2 (6 checks, boot 11.0s, peak RSS 810 MB)",
+   "bootMs": 11040,
+   "checks": [
+    {
+     "id": "boot_done",
+     "status": "pass",
+     "evidence": [
+      "L100: [08:10:46 INFO]: Done (9.628s)! For help, type \"help\"",
+      "wall 11040 ms from spawn"
+     ]
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "evidence": [
+      "ImportDemo: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+      "L86: [08:10:46 INFO]: [ImportDemo] Enabling ImportDemo v1.4.2",
+      "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - ImportDemo | "
+     ]
+    },
+    {
+     "id": "startup_log_clean",
+     "status": "pass",
+     "evidence": [
+      "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+     ]
+    },
+    {
+     "id": "rcon_checks",
+     "status": "pass",
+     "evidence": [
+      "plugins-listed 'plugins': ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - ImportDemo | ",
+      "command-runs 'importdemo': ok -> ImportDemo is running. Balance: n/a | ",
+      "reload-sub 'importdemo reload': ok -> ImportDemo config reloaded. | "
+     ]
+    },
+    {
+     "id": "clean_stop",
+     "status": "pass",
+     "evidence": [
+      "stop via rcon; exit code 0 signal null after 482 ms; 0 shutdown log hits"
+     ]
+    },
+    {
+     "id": "no_leaks",
+     "status": "pass",
+     "evidence": [
+      "netns: java pid 3399611 gone; 0 marked processes; listening none of 47180,47129",
+      "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv246wpc-2402fc; no listening port in 47100-47199"
+     ]
+    }
+   ],
+   "notes": [
+    "ports: server 47180, rcon 47129 (private netns, 127.0.0.1)"
+   ]
+  }
+ ],
+ "serviceLogTail": [
+  "{\"ts\":\"2026-10-10T08:08:23.168Z\",\"level\":\"info\",\"msg\":\"import finished\",\"id\":\"real-imp-12111-mv24414v\",\"kind\":\"source\",\"status\":\"succeeded\",\"durationMs\":1719}",
+  "{\"ts\":\"2026-10-10T08:08:24.847Z\",\"level\":\"info\",\"msg\":\"import finished\",\"id\":\"real-imp-12111-mv24414v-again\",\"kind\":\"source\",\"status\":\"succeeded\",\"durationMs\":1662}",
+  "{\"ts\":\"2026-10-10T08:08:26.491Z\",\"level\":\"info\",\"msg\":\"import finished\",\"id\":\"real-imp-262-mv2443rk\",\"kind\":\"source\",\"status\":\"succeeded\",\"durationMs\":1635}",
+  "{\"ts\":\"2026-10-10T08:08:28.172Z\",\"level\":\"info\",\"msg\":\"import finished\",\"id\":\"real-imp-262-mv2443rk-again\",\"kind\":\"source\",\"status\":\"succeeded\",\"durationMs\":1670}",
+  "{\"ts\":\"2026-10-10T08:08:29.555Z\",\"level\":\"info\",\"msg\":\"import finished\",\"id\":\"real-evil-mv2446c0\",\"kind\":\"source\",\"status\":\"failed\",\"durationMs\":1376}"
+ ]
+}

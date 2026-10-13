@@ -1,0 +1,654 @@
+[
+ {
+  "at": "2026-10-11T18:56:23.598Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.11",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "a3239e859b90ccd21d22e6d7c3397e0e78bcff732d6458c833cf785048d397c3",
+  "wallMs": 35656,
+  "summary": {
+   "version": "1.21.11",
+   "overall": "failed",
+   "success": false,
+   "passed": [
+    "boot_done",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks"
+   ],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [
+    "plugins_enabled failed: BetterModel: NOT enabled (log: enabling=false enableError=false loadError=false disabled=false; rcon plugins: absent)",
+    "startup_log_clean failed: 163 startup lines scanned with 5 matchers, 2 ignores: 8 hits, 3 ignored (no-net-yggdrasil)",
+    "rcon_checks failed: difficulty 'difficulty easy' [rss 908 MB, 253 ms]: ok -> The difficulty has been set to Easy"
+   ],
+   "bootMs": 20224,
+   "peakRssKb": 930776,
+   "runId": "tf-1-21-11-mv46ohyf-5b6de7"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 908 MB, 253 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 908 MB, 313 ms]: FAILED missing [\"models=1\",\"has=true\"] -> Unknown or incomplete command. See below for error | tfcreature models nx_r6cr34tr_banshee<--[HERE]",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 908 MB, 251 ms]: FAILED missing [\"spawned=1\",\"idle=1\",\"trackers=1\"] -> Unknown or incomplete command. See below for error | tfcreature spawn nx_r6cr34tr_banshee 1<--[HERE]",
+   "stats-1 'tfcreature stats' [rss 908 MB, 251 ms]: FAILED missing [\"trackersOpen=1\"] -> Unknown or incomplete command. See below for error | tfcreature stats<--[HERE]",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 908 MB, 251 ms]: FAILED missing [\"attack_started=1\"] -> Unknown or incomplete command. See below for error | tfcreature attack nx_r6cr34tr:banshee.attack<--[HERE]",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 908 MB, 251 ms]: FAILED missing [\"hurt_started=1\"] -> Unknown or incomplete command. See below for error | tfcreature hurt nx_r6cr34tr:banshee.hurt<--[HERE]",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 908 MB, 251 ms]: FAILED missing [\"death_started=1\"] -> Unknown or incomplete command. See below for error | tfcreature death nx_r6cr34tr:banshee.death<--[HERE]",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 908 MB, 251 ms]: FAILED missing [\"spawned=10\"] -> Unknown or incomplete command. See below for error | tfcreature spawn nx_r6cr34tr_banshee 10<--[HERE]",
+   "stats-11 'tfcreature stats' [rss 908 MB, 251 ms]: FAILED missing [\"trackersOpen=11\"] -> Unknown or incomplete command. See below for error | tfcreature stats<--[HERE]",
+   "despawn 'tfcreature despawn' [rss 908 MB, 251 ms]: FAILED missing [\"zombies=0\"] -> Unknown or incomplete command. See below for error | tfcreature despawn<--[HERE]",
+   "stats-end 'tfcreature stats' [rss 908 MB, 251 ms]: FAILED missing [\"trackersOpen=0\"] -> Unknown or incomplete command. See below for error | tfcreature stats<--[HERE]",
+   "bm-reload 'bettermodel reload' [rss 908 MB, 251 ms]: ok (optional) -> Unknown or incomplete command. See below for error | bettermodel reload<--[HERE]",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 908 MB, 251 ms]: FAILED missing [\"has=true\"] -> Unknown or incomplete command. See below for error | tfcreature models nx_r6cr34tr_banshee<--[HERE]"
+  ],
+  "plugins": [
+   "BetterModel: NOT enabled (log: enabling=false enableError=false loadError=false disabled=false; rcon plugins: absent)",
+   "TfCreature: NOT enabled (log: enabling=false enableError=false loadError=true disabled=false; rcon plugins: false)",
+   "L128: [18:56:14 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/.paper-remapped/TfCreature-1.21.11.jar' in 'plugins/.paper-remapped'",
+   "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - TfCreature | "
+  ],
+  "log": [
+   "163 startup lines scanned with 5 matchers, 2 ignores: 8 hits, 3 ignored (no-net-yggdrasil)",
+   "L12 [level-error] [18:56:06 ERROR]: [DirectoryProviderSource] Error loading plugin: Error resolving libraries",
+   "L13 [exception-header] io.papermc.paper.plugin.loader.library.LibraryLoadingException: Error resolving libraries",
+   "L30 [exception-header] Caused by: org.eclipse.aether.resolution.DependencyResolutionException: The following artifacts could not be resolved: org.jspecify:jspecify:jar:1.0.0 (absent): Could not transfer artifact org.jspecify:jspecify:jar:1.0.0 from/to  (https://m",
+   "L34 [exception-header] Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: The following artifacts could not be resolved: org.jspecify:jspecify:jar:1.0.0 (absent): Could not transfer artifact org.jspecify:jspecify:jar:1.0.0 from/to  (https://mav",
+   "L39 [exception-header] Caused by: org.eclipse.aether.transfer.ArtifactTransferException: Could not transfer artifact org.jspecify:jspecify:jar:1.0.0 from/to  (https://maven-central.storage-download.googleapis.com/maven2): maven-central.storage-download.googleapis",
+   "L46 [exception-header] Caused by: java.net.UnknownHostException: maven-central.storage-download.googleapis.com: Temporary failure in name resolution",
+   "L128 [level-error] [18:56:14 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/.paper-remapped/TfCreature-1.21.11.jar' in 'plugins/.paper-remapped'",
+   "L129 [exception-header] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [BetterModel]. Please download and install these plugins to run 'TfCreature'."
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 26644,
+    "sha256": "a566be5d6c3bccc83c6cd4493b3919cf0bb0b9d045a863907185a9f3a726f8a4",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-11-mv46ohyf-5b6de7/1-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "at": "2026-10-11T18:58:14.976Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.11",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "a3239e859b90ccd21d22e6d7c3397e0e78bcff732d6458c833cf785048d397c3",
+  "wallMs": 38703,
+  "summary": {
+   "version": "1.21.11",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 25026,
+   "peakRssKb": 1013408,
+   "runId": "tf-1-21-11-mv46qtjm-1f9365"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 956 MB, 256 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 956 MB, 255 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | ",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 972 MB, 1252 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "stats-1 'tfcreature stats' [rss 981 MB, 252 ms]: ok -> mspt=43.43 tps=12.86 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=393 | ",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 986 MB, 254 ms]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 986 MB, 251 ms]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 986 MB, 251 ms]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 987 MB, 266 ms]: ok -> spawned=10 idle=10 trackers=11 silent=true invisible=true zombies=11 difficulty=EASY | ",
+   "stats-11 'tfcreature stats' [rss 987 MB, 251 ms]: ok -> mspt=24.13 tps=15.53 zombies=11 entities=11 trackersOpen=11 scheduled=0 viewers=0 mobsAlive=11 finished=0 heapUsedMb=397 | ",
+   "despawn 'tfcreature despawn' [rss 988 MB, 262 ms]: ok -> closed=11 removed=11 zombies=0 | ",
+   "stats-end 'tfcreature stats' [rss 988 MB, 562 ms]: ok -> mspt=20.48 tps=15.10 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=250 | ",
+   "bm-reload 'bettermodel reload' [rss 989 MB, 271 ms]: ok (optional) -> ",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 989 MB, 251 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L91: [18:58:04 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L92: [18:58:05 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+  ],
+  "log": [
+   "105 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 18554,
+    "sha256": "531fa67f9d73e719e0fb62fa4eefb1ca763aad3f3e04a9b7bb7bbc51ff36b79b",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-11-mv46qtjm-1f9365/1-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "at": "2026-10-11T18:59:39.735Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.8",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "fa1eb77845c1ae832951486ee399a2338b65c71e44acf22871412c8200e3ff05",
+  "wallMs": 59745,
+  "summary": {
+   "version": "1.21.8",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 43501,
+   "peakRssKb": 972896,
+   "runId": "tf-1-21-8-mv46s6pm-a13ce4"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 904 MB, 280 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 905 MB, 257 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | ",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 909 MB, 565 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "stats-1 'tfcreature stats' [rss 910 MB, 256 ms]: ok -> mspt=5.67 tps=20.02 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=422 | ",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 910 MB, 258 ms]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 910 MB, 252 ms]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 910 MB, 252 ms]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 910 MB, 297 ms]: ok -> spawned=10 idle=10 trackers=11 silent=true invisible=true zombies=11 difficulty=EASY | ",
+   "stats-11 'tfcreature stats' [rss 911 MB, 252 ms]: ok -> mspt=6.75 tps=20.02 zombies=11 entities=11 trackersOpen=11 scheduled=0 viewers=0 mobsAlive=11 finished=0 heapUsedMb=424 | ",
+   "despawn 'tfcreature despawn' [rss 911 MB, 272 ms]: ok -> closed=11 removed=11 zombies=0 | ",
+   "stats-end 'tfcreature stats' [rss 911 MB, 253 ms]: ok -> mspt=7.03 tps=20.02 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=424 | ",
+   "bm-reload 'bettermodel reload' [rss 912 MB, 283 ms]: ok (optional) -> ",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 912 MB, 250 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L99: [18:59:25 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L100: [18:59:26 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+  ],
+  "log": [
+   "114 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 13665,
+    "sha256": "3f7146c6dd74669ffebfae0aebce19e02bcb1fad1f5691f433036b666ea0d536",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-8-mv46s6pm-a13ce4/1-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.8",
+    "build": 60,
+    "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "at": "2026-10-11T19:00:21.144Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.4",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "bffb0b8bec62d00042328407c5c8d464dc34961c754dddd8d8b20e2e4a3294c6",
+  "wallMs": 36272,
+  "summary": {
+   "version": "1.21.4",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 22430,
+   "peakRssKb": 958644,
+   "runId": "tf-1-21-4-mv46tkru-26d1e7"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 912 MB, 259 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 912 MB, 252 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | ",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 915 MB, 378 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "stats-1 'tfcreature stats' [rss 915 MB, 252 ms]: ok -> mspt=2.92 tps=20.02 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=439 | ",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 915 MB, 254 ms]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 915 MB, 251 ms]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 915 MB, 251 ms]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 916 MB, 266 ms]: ok -> spawned=10 idle=10 trackers=11 silent=true invisible=true zombies=11 difficulty=EASY | ",
+   "stats-11 'tfcreature stats' [rss 916 MB, 251 ms]: ok -> mspt=3.60 tps=20.02 zombies=11 entities=11 trackersOpen=11 scheduled=0 viewers=0 mobsAlive=11 finished=0 heapUsedMb=441 | ",
+   "despawn 'tfcreature despawn' [rss 916 MB, 260 ms]: ok -> closed=11 removed=11 zombies=0 | ",
+   "stats-end 'tfcreature stats' [rss 916 MB, 251 ms]: ok -> mspt=3.78 tps=20.02 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=443 | ",
+   "bm-reload 'bettermodel reload' [rss 918 MB, 271 ms]: ok (optional) -> ",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 918 MB, 251 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L93: [19:00:10 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L94: [19:00:11 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+  ],
+  "log": [
+   "108 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 13197,
+    "sha256": "45579e75bb159116ed6f957b285b7c9b5829644dd2747dff4d7812d4d11fc953",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-4-mv46tkru-26d1e7/1-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.4",
+    "build": 232,
+    "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "at": "2026-10-11T19:01:00.639Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.1",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "897c4448c332c79814546dbb4635fb0915ab3d2923216b415f3f46f6e79199a1",
+  "wallMs": 35613,
+  "summary": {
+   "version": "1.21.1",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 22229,
+   "peakRssKb": 904628,
+   "runId": "tf-1-21-1-mv46ufr7-832f3a"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 862 MB, 259 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 862 MB, 252 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | ",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 867 MB, 532 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "stats-1 'tfcreature stats' [rss 867 MB, 252 ms]: ok -> mspt=1.01 tps=19.96 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=452 | ",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 867 MB, 253 ms]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 867 MB, 251 ms]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 867 MB, 251 ms]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 867 MB, 278 ms]: ok -> spawned=10 idle=10 trackers=11 silent=true invisible=true zombies=11 difficulty=EASY | ",
+   "stats-11 'tfcreature stats' [rss 867 MB, 251 ms]: ok -> mspt=1.65 tps=20.02 zombies=11 entities=11 trackersOpen=11 scheduled=0 viewers=0 mobsAlive=11 finished=0 heapUsedMb=456 | ",
+   "despawn 'tfcreature despawn' [rss 867 MB, 260 ms]: ok -> closed=11 removed=11 zombies=0 | ",
+   "stats-end 'tfcreature stats' [rss 867 MB, 250 ms]: ok -> mspt=1.86 tps=20.02 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=456 | ",
+   "bm-reload 'bettermodel reload' [rss 868 MB, 269 ms]: ok (optional) -> ",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 868 MB, 251 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L83: [19:00:51 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L84: [19:00:51 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> Server Plugins (2): | Paper Plugins: |  - BetterModel | Bukkit Plugins: |  - TfCreature | "
+  ],
+  "log": [
+   "94 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 11256,
+    "sha256": "066cbd87e39275ce5ff1c4d918a97c9e42db359226209d1c1a28e055bd08fc53",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-1-mv46ufr7-832f3a/1-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.1",
+    "build": 133,
+    "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ },
+ {
+  "at": "2026-10-11T19:17:27.396Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.11",
+  "bettermodel": "2.2.0 (BetterModel-2.2.0-paper.jar)",
+  "creature": {
+   "key": "nx_r6cr34tr_banshee",
+   "bbmodelSha256": "3956704f3d98a82593e7f5533e2cb3e88a98744a274f8e62211cbc5726ea6e2a",
+   "bytes": 60629
+  },
+  "fixtureSha256": "a3239e859b90ccd21d22e6d7c3397e0e78bcff732d6458c833cf785048d397c3",
+  "wallMs": 45836,
+  "summary": {
+   "version": "1.21.11",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 24033,
+   "peakRssKb": 1021336,
+   "runId": "tf-1-21-11-mv47fd96-f7de68"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 966 MB, 257 ms]: ok -> The difficulty has been set to Easy",
+   "models 'tfcreature models nx_r6cr34tr_banshee' [rss 966 MB, 254 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | ",
+   "spawn 'tfcreature spawn nx_r6cr34tr_banshee 1' [rss 985 MB, 1327 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "stats-1 'tfcreature stats' [rss 985 MB, 253 ms]: ok -> mspt=46.80 tps=12.62 zombies=1 entities=1 trackersOpen=1 scheduled=0 viewers=0 mobsAlive=1 finished=0 heapUsedMb=355 | ",
+   "attack 'tfcreature attack nx_r6cr34tr:banshee.attack' [rss 986 MB, 256 ms]: ok -> attack_started=1 of=1 sound=nx_r6cr34tr:banshee.attack | ",
+   "hurt 'tfcreature hurt nx_r6cr34tr:banshee.hurt' [rss 986 MB, 251 ms]: ok -> hurt_started=1 of=1 sound=nx_r6cr34tr:banshee.hurt | ",
+   "death 'tfcreature death nx_r6cr34tr:banshee.death' [rss 986 MB, 251 ms]: ok -> death_started=1 of=1 sound=nx_r6cr34tr:banshee.death | ",
+   "spawn-10 'tfcreature spawn nx_r6cr34tr_banshee 10' [rss 987 MB, 268 ms]: ok -> spawned=10 idle=10 trackers=11 silent=true invisible=true zombies=11 difficulty=EASY | ",
+   "stats-11 'tfcreature stats' [rss 987 MB, 251 ms]: ok -> mspt=25.78 tps=15.34 zombies=11 entities=11 trackersOpen=11 scheduled=0 viewers=0 mobsAlive=11 finished=0 heapUsedMb=357 | ",
+   "despawn 'tfcreature despawn' [rss 987 MB, 270 ms]: ok -> closed=11 removed=11 zombies=0 | ",
+   "stats-end 'tfcreature stats' [rss 987 MB, 251 ms]: ok -> mspt=22.37 tps=15.92 zombies=0 entities=0 trackersOpen=0 scheduled=0 viewers=0 mobsAlive=0 finished=0 heapUsedMb=359 | ",
+   "bm-reload 'bettermodel reload' [rss 988 MB, 276 ms]: ok (optional) -> ",
+   "pack-wait 'tfcreature models' [rss 992 MB, 250 ms]: ok (optional) -> models=1 has=- keys=nx_r6cr34tr_banshee | ",
+   "models-after-reload 'tfcreature models nx_r6cr34tr_banshee' [rss 992 MB, 251 ms]: ok -> models=1 has=true keys=nx_r6cr34tr_banshee | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L91: [19:17:08 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L92: [19:17:09 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - TfCreature | "
+  ],
+  "log": [
+   "105 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "collected": [
+   {
+    "path": "plugins/BetterModel/config.yml",
+    "kind": "file",
+    "bytes": 3903,
+    "sha256": "c3b30e4a48144c28b07ea245aff93bb4216af98cbb15ba6b147831b4c9e880f0",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-11-mv47fd96-f7de68/0-config.yml"
+   },
+   {
+    "path": "plugins/BetterModel/",
+    "kind": "listing",
+    "entries": 25,
+    "listing": [
+     ".cache/zip-hash.txt 36",
+     ".libs/gg/moonflower/molang-compiler/3.1.1.19/molang-compiler-3.1.1.19.jar 108463",
+     ".libs/me/lucko/jar-relocator/1.7/jar-relocator-1.7.jar 19126",
+     ".libs/org/bstats/bstats-base/3.2.1/bstats-base-3.2.1-relocated.jar 24284",
+     ".libs/org/bstats/bstats-base/3.2.1/bstats-base-3.2.1.jar 22388",
+     ".libs/org/bstats/bstats-bukkit/3.2.1/bstats-bukkit-3.2.1-relocated.jar 5130",
+     ".libs/org/bstats/bstats-bukkit/3.2.1/bstats-bukkit-3.2.1.jar 4318",
+     ".libs/org/incendo/cloud-brigadier/2.0.0-beta.14/cloud-brigadier-2.0.0-beta.14-relocated.jar 71434",
+     ".libs/org/incendo/cloud-brigadier/2.0.0-beta.14/cloud-brigadier-2.0.0-beta.14.jar 65722",
+     ".libs/org/incendo/cloud-bukkit/2.0.0-beta.14/cloud-bukkit-2.0.0-beta.14-relocated.jar 187446",
+     ".libs/org/incendo/cloud-bukkit/2.0.0-beta.14/cloud-bukkit-2.0.0-beta.14.jar 176482",
+     ".libs/org/incendo/cloud-core/2.0.0/cloud-core-2.0.0-relocated.jar 512814",
+     ".libs/org/incendo/cloud-core/2.0.0/cloud-core-2.0.0.jar 479799",
+     ".libs/org/incendo/cloud-paper/2.0.0-beta.14/cloud-paper-2.0.0-beta.14-relocated.jar 62822",
+     ".libs/org/incendo/cloud-paper/2.0.0-beta.14/cloud-paper-2.0.0-beta.14.jar 58214",
+     ".libs/org/incendo/cloud-services/2.0.0/cloud-services-2.0.0-relocated.jar 30689",
+     ".libs/org/incendo/cloud-services/2.0.0/cloud-services-2.0.0.jar 27833",
+     ".libs/org/jetbrains/kotlin/kotlin-stdlib/2.3.10/kotlin-stdlib-2.3.10-relocated.jar 1916407",
+     ".libs/org/jetbrains/kotlin/kotlin-stdlib/2.3.10/kotlin-stdlib-2.3.10.jar 1797000",
+     ".libs/org/ow2/asm/asm/9.7/asm-9.7.jar 125428",
+     ".libs/org/ow2/asm/asm-commons/9.7/asm-commons-9.7.jar 73426",
+     "build.zip 1623064",
+     "config.yml 3903",
+     "models/nx_r6cr34tr_banshee.bbmodel 60629",
+     "players/steve.bbmodel 47044"
+    ]
+   },
+   {
+    "path": "plugins/BetterModel/build/",
+    "error": "missing"
+   },
+   {
+    "path": "logs/latest.log",
+    "kind": "file",
+    "bytes": 18555,
+    "sha256": "30b3dffe75fdddc4d5bdf4842e9ae3cba54d1d4d82bab73b5902d7e643b33621",
+    "dest": "/tank/nxeon-build/tmp/testflight/collect/tf-1-21-11-mv47fd96-f7de68/3-latest.log"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-4",
+   "runnerSha256": "038ebc4775b3f1d2726a8ffabd56eed6292a7cdd195f161c8e9fa87130fd0d9e",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ }
+]

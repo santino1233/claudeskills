@@ -1,0 +1,140 @@
+[
+{
+"file": "texture-studio.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "texture-dark.png"
+},
+{
+"file": "texture-studio.html",
+"q": "theme=light&ctl=0",
+"w": 1440,
+"h": 900,
+"out": "texture-light.png"
+},
+{
+"file": "texture-studio.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "texture-narrow.png"
+},
+{
+"file": "sound-studio.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "sound-dark.png",
+"wait": 1500
+},
+{
+"file": "sound-studio.html",
+"q": "theme=light&ctl=0",
+"w": 1440,
+"h": 900,
+"out": "sound-light.png",
+"wait": 1500
+},
+{
+"file": "sound-studio.html",
+"q": "ctl=0&ev=banshee.hurt&cand=1",
+"w": 1440,
+"h": 900,
+"out": "sound-candidate-dark.png",
+"wait": 1500
+},
+{
+"file": "sound-studio.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "sound-narrow.png",
+"wait": 1500
+},
+{
+"file": "mod-assets.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "assets-dark.png",
+"wait": 1200
+},
+{
+"file": "mod-assets.html",
+"q": "theme=light&ctl=0",
+"w": 1440,
+"h": 900,
+"out": "assets-light.png",
+"wait": 1200
+},
+{
+"file": "mod-assets.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "assets-dark-sounds.png",
+"wait": 1200,
+"eval": "document.getElementById('body').scrollTop=520"
+},
+{
+"file": "mod-assets.html",
+"q": "ctl=0&plan=saka&pack=off",
+"w": 1440,
+"h": 900,
+"out": "assets-saka-deliveryoff-dark.png",
+"wait": 1200
+},
+{
+"file": "mod-assets.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "assets-narrow.png",
+"wait": 1200
+},
+{
+"file": "locked-states.html",
+"q": "plan=saka",
+"w": 1440,
+"h": 900,
+"out": "locked-saka-texture-dark.png",
+"wait": 1200
+},
+{
+"file": "locked-states.html",
+"q": "plan=katara&studio=sound&theme=light",
+"w": 1440,
+"h": 900,
+"out": "locked-katara-sound-light.png",
+"wait": 1200
+},
+{
+"file": "locked-states.html",
+"q": "plan=all",
+"w": 1440,
+"h": 900,
+"out": "locked-all-dark.png",
+"wait": 1200
+},
+{
+"file": "locked-states.html",
+"q": "plan=unknown",
+"w": 1440,
+"h": 900,
+"out": "locked-unknown-dark.png",
+"wait": 1200
+},
+{
+"file": "locked-states.html",
+"q": "plan=free",
+"w": 390,
+"h": 844,
+"full": true,
+"out": "locked-free-narrow.png",
+"wait": 1200
+}
+]

@@ -1,0 +1,13 @@
+{
+ "created": 9,
+ "pos": 5,
+ "updates": 25,
+ "rows": [
+  "§3",
+  "§4",
+  "§0",
+  "§2",
+  "§1"
+ ],
+ "title": "{\"type\":\"compound\",\"value\":{\"bold\":{\"type\":\"byte\",\"value\":1},\"color\":{\"type\":\"string\",\"value\":\"gold\"},\"text\":{\"type\":\"string\",\"value\":\"My Server\"}}}"
+}

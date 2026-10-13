@@ -1,0 +1,1745 @@
+diff --git a/app/admin/layout.tsx b/app/admin/layout.tsx
+index b02ff18dc5..7150662c36 100644
+--- a/app/admin/layout.tsx
++++ b/app/admin/layout.tsx
+@@ -1,5 +1,5 @@
+ import { redirect, notFound } from "next/navigation";
+-import { headers } from "next/headers";
++import { headers, cookies } from "next/headers";
+ 
+ /**
+  * Host gate: the admin portal is only reachable from the dedicated admin
+@@ -15,11 +15,14 @@ async function adminHostBlocked(): Promise<boolean> {
+   return !allow.includes(host);
+ }
+ import { realUser, impersonating } from "@/lib/auth";
+-import { isStaff, canAccessHref } from "@/lib/rbac";
++import { isStaff, canAccess, areaForHref } from "@/lib/rbac";
+ import { db } from "@/lib/db";
+ import { getSetting, getSettingBool } from "@/lib/settings";
+-import { Shell, type NavSection } from "@/components/portal/Shell";
+-import { ADMIN_NAV } from "@/lib/admin-groups";
++import { AdminShell } from "@/components/admin/shell/AdminShell";
++import { ADMIN_NAV_GROUPS, entryLive, flatAdminRoutes, type AdminNavChild } from "@/lib/admin-nav";
++import { loadShellAlerts } from "@/lib/admin/shell-alerts";
++import { ADM_UI_COOKIE, parseUiCookie, type ShellNavGroup, type ShellNavItem, type ShellRoute } from "@/components/admin/shell/types";
++import "./admin-shell.css";
+ import { AdminSubTabs } from "@/components/admin/SubTabs";
+ import AdminChatNotifier from "@/components/admin/AdminChatNotifier";
+ 
+@@ -109,41 +112,17 @@ export default async function AdminLayout({ children }: { children: React.ReactN
+     redirect("/dashboard/settings?require2fa=1");
+   }
+ 
+-  // Feature-gated sidebar sections. The Agency (Sitewave) and Ads (Adloop)
+-  // consoles are internal/experimental — their nav sections are hidden by default
+-  // and only surface when the operator flips the flag. The pages/routes are never
+-  // removed; this only drops the nav entry, its sub-tabs and its ⌘K entries.
++  // Feature-gated nav entries. The Agency (Sitewave) and Ads (Adloop)
++  // consoles are internal/experimental — hidden by default and only surfaced
++  // when the operator flips the flag. The pages/routes are never removed;
++  // this only drops the nav entry, its sub-tabs and its ⌘K entries.
+   const [showAgency, showAds] = await Promise.all([
+     getSettingBool("feature_admin_agency", false),
+     getSettingBool("feature_admin_ads", false),
+   ]);
+-  const HIDDEN_SECTION_FLAGS: Record<string, boolean> = {
+-    agency: showAgency,
+-    ads: showAds,
+-  };
+-  const navSections = ADMIN_NAV.filter(
+-    (section) => HIDDEN_SECTION_FLAGS[section.key] !== false,
+-  );
+-
+-  // Filter every entry's members down to what this role can access, drop entries
+-  // that end up empty, then drop sections that end up empty. An entry always
+-  // links to (and its sub-tab bar always starts at) its first *accessible*
+-  // member, so no role is ever handed a link that just bounces it to /admin.
+-  const visibleSections = navSections.map((section) => ({
+-    ...section,
+-    entries: section.entries
+-      .map((entry) => ({
+-        ...entry,
+-        tabs: entry.tabs.filter((tab) => canAccessHref(user.role, tab.href)),
+-      }))
+-      .filter((entry) => entry.tabs.length > 0),
+-  })).filter((section) => section.entries.length > 0);
+-
+-  // Flat list of every href this role may reach — handed to <AdminSubTabs /> so
+-  // the in-page tab bars hide the same members the sidebar does.
+-  const allowedHrefs = visibleSections.flatMap((s) =>
+-    s.entries.flatMap((e) => e.tabs.map((t) => t.href))
+-  );
++  const flags = { agency: showAgency, ads: showAds };
++  const allowedEntry = (e: AdminNavChild, inheritedArea?: AdminNavChild["area"]) =>
++    entryLive(e, flags) && canAccess(user.role, e.area ?? inheritedArea ?? areaForHref(e.href));
+ 
+   const notifications = await db.notification.findMany({
+     where: { userId: user.id },
+@@ -154,15 +133,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
+   // Attention-count badges for the sidebar. Each count fails soft (→ 0) so a
+   // missing model/table can never break the admin layout.
+   const soft = (p: Promise<number>) => p.catch(() => 0);
+-  const [chatUnread, ticketsAwaiting, dmsAwaiting, abuseOpen, feedbackNew, improvementsProposed, coldEmailUnread] = await Promise.all([
++  const [chatUnread, ticketsAwaiting, dmsAwaiting, abuseOpen, feedbackNew, improvementsProposed, coldEmailUnread, jobsFailed24h] = await Promise.all([
+     // Live chat: conversations flagged unread for agents (same "needs a reply"
+     // signal the chat inbox sorts/counts by — ChatConversation.unreadForAgent).
+     soft(db.chatConversation.count({ where: { unreadForAgent: true } })),
+     // Support desk: tickets awaiting a staff reply (open + customer replies),
+     // matching the "Awaiting staff" stat on /admin/support.
+     soft(db.ticket.count({ where: { status: { in: ["OPEN", "CUSTOMER_REPLY"] } } })),
+-    // Direct messages: DM threads with a customer reply staff hasn't seen yet
+-    // (StaffDm.unreadForStaff) — same "needs a reply" signal as live chat.
++    // Direct messages: DM threads with a customer reply staff hasn't seen yet.
+     soft(db.staffDm.count({ where: { unreadForStaff: true } })),
+     // Abuse queue: alerts still OPEN.
+     soft(db.abuseAlert.count({ where: { status: "OPEN" } })),
+@@ -170,12 +148,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
+     soft(db.feedback.count({ where: { status: "NEW" } })),
+     // Improvements board: proposals awaiting the owner's approve/decline.
+     soft(db.improvement.count({ where: { status: "PROPOSED" } })),
+-    // Cold email: unread replies in the reply inbox (Conversation.unread), same
+-    // "needs a reply" signal as live chat above.
++    // Cold email: unread replies in the reply inbox.
+     soft(db.conversation.count({ where: { unread: true } })),
++    // Jobs: failures in the last 24h (same window as the command center card).
++    soft(db.job.count({ where: { status: "FAILED", updatedAt: { gte: new Date(Date.now() - 24 * 3600_000) } } })),
+   ]);
+ 
+-  // Per-route attention counts, unchanged in meaning from the flat sidebar.
++  // Per-route attention counts. An item's badge is the SUM of its own and its
++  // children's counts, and <AdminSubTabs /> repeats each child's own count.
+   const badges: Record<string, number> = {
+     "/admin/chat": chatUnread,
+     "/admin/support": ticketsAwaiting,
+@@ -184,54 +164,81 @@ export default async function AdminLayout({ children }: { children: React.ReactN
+     "/admin/feedback": feedbackNew,
+     "/admin/improvements": improvementsProposed,
+     "/admin/coldemail/inbox": coldEmailUnread,
++    "/admin/jobs": jobsFailed24h,
+   };
+-  // Build the sidebar: one icon'd row per top-level ENTRY, grouped into labelled
+-  // sections. Secondary members ride along as `children` — the sidebar never
+-  // expands them (they're the page's sub-tabs), but they keep the parent row
+-  // highlighted while you're on one and keep ⌘K able to reach every route.
+-  // Attention counts ROLL UP: an entry shows the sum of its members' badges, and
+-  // <AdminSubTabs /> repeats each member's own count on its tab.
+-  const nav: NavSection[] = visibleSections.map((section) => ({
+-    key: section.key,
+-    label: section.label,
+-    items: section.entries.map((entry) => {
+-      const rollup = entry.tabs.reduce((sum, tab) => sum + (badges[tab.href] ?? 0), 0);
+-      return {
+-        label: entry.label,
+-        href: entry.tabs[0].href,
+-        icon: entry.icon,
+-        badge: rollup > 0 ? rollup : undefined,
+-        children: entry.tabs.map((tab) => ({
+-          label: tab.label,
+-          href: tab.href,
+-          badge: badges[tab.href] > 0 ? badges[tab.href] : undefined,
+-        })),
+-      };
++
++  // RBAC-filter the registry (lib/admin-nav.ts) into what the shell renders.
++  // An item links to its first ACCESSIBLE child so no role is ever handed a
++  // link that just bounces it to /admin.
++  const nav: ShellNavGroup[] = ADMIN_NAV_GROUPS.map((g) => ({
++    key: g.key,
++    label: g.label,
++    items: g.items.flatMap((it): ShellNavItem[] => {
++      if (!entryLive(it, flags)) return [];
++      const kids = (it.children ?? []).filter((c) => allowedEntry(c, it.area));
++      if (it.children?.length ? kids.length === 0 : !allowedEntry(it)) return [];
++      const members = kids.length ? kids : [it];
++      const sum = members.reduce((n, c) => n + (badges[c.href] ?? 0), 0);
++      return [{
++        key: it.key,
++        label: it.label,
++        href: members[0].href,
++        icon: it.icon,
++        more: it.more,
++        badge: sum > 0 ? sum : undefined,
++        children: kids.length
++          ? kids.map((c) => ({ label: c.label, href: c.href, badge: badges[c.href] > 0 ? badges[c.href] : undefined }))
++          : undefined,
++      }];
+     }),
+-  }));
++  })).filter((g) => g.items.length > 0);
++
++  const allowedHrefs = nav.flatMap((g) => g.items.flatMap((i) => (i.children ?? [{ href: i.href }]).map((c) => c.href)));
++  const allowedSet = new Set(allowedHrefs);
++  const routes: ShellRoute[] = flatAdminRoutes()
++    .filter((r) => allowedSet.has(r.href))
++    .map((r) => ({ label: r.label, href: r.href, group: r.group, parent: r.parent, keywords: r.keywords }));
++
++  const alerts = await loadShellAlerts(user.role);
++  const ui = parseUiCookie((await cookies()).get(ADM_UI_COOKIE)?.value);
+ 
+   return (
+-    <Shell
+-      nav={nav}
+-      tag="ops"
+-      user={{ name: user.name, email: user.email, role: user.role, balanceCents: user.balanceCents }}
+-      notifications={notifications.map((n) => ({
+-        id: n.id,
+-        title: n.title,
+-        body: n.body,
+-        href: n.href,
+-        readAt: n.readAt ? n.readAt.toISOString() : null,
+-        createdAt: n.createdAt.toISOString(),
+-      }))}
+-    >
+-      {/* Sub-navigation for the consolidated entries, mounted once here so every
+-          grouped page gets its tab bar without per-page wiring. Renders nothing
+-          for single-member entries. */}
+-      <AdminSubTabs badges={badges} allowed={allowedHrefs} />
+-      {/* Browser sound + Web Notification when a new live-chat message arrives
+-          while an admin tab is open. Self-contained + defensive; renders null. */}
+-      <AdminChatNotifier />
+-      {children}
+-    </Shell>
++    <>
++      {/* Before first paint: scope class + the admin's own theme/density
++          preference, so there is no flash of the wrong theme. See
++          app/admin/admin-shell.css for why these are NOT the customer
++          portal's `data-theme`. */}
++      <script
++        dangerouslySetInnerHTML={{
++          __html:
++            "try{var d=document.documentElement;d.classList.add('adm-portal');d.removeAttribute('data-theme');" +
++            "var t=localStorage.getItem('nxeon.admin.theme');if(t==='light'||t==='dark')d.setAttribute('data-adm-theme',t);" +
++            "if(localStorage.getItem('nxeon.admin.density')==='compact')d.setAttribute('data-adm-density','compact')}catch(e){}",
++        }}
++      />
++      <AdminShell
++        nav={nav}
++        routes={routes}
++        user={{ name: user.name, email: user.email, role: user.role, avatarUrl: user.avatarUrl }}
++        alerts={alerts}
++        initialUi={ui}
++        notifications={notifications.map((n) => ({
++          id: n.id,
++          title: n.title,
++          body: n.body,
++          href: n.href,
++          readAt: n.readAt ? n.readAt.toISOString() : null,
++          createdAt: n.createdAt.toISOString(),
++        }))}
++      >
++        {/* Sub-navigation for items with children, mounted once here so every
++            grouped page gets its tab bar without per-page wiring. */}
++        <AdminSubTabs badges={badges} allowed={allowedHrefs} />
++        {/* Browser sound + Web Notification when a new live-chat message arrives
++            while an admin tab is open. Self-contained + defensive; renders null. */}
++        <AdminChatNotifier />
++        {children}
++      </AdminShell>
++    </>
+   );
+ }
+diff --git a/app/admin/page.tsx b/app/admin/page.tsx
+index 98d71f047b..24293776ff 100644
+--- a/app/admin/page.tsx
++++ b/app/admin/page.tsx
+@@ -1,434 +1,348 @@
+ import Link from "next/link";
++import { Suspense } from "react";
+ import { requireArea } from "@/lib/rbac";
++import { canAccess } from "@/lib/rbac";
+ import { db } from "@/lib/db";
+-import { nodeStatus, storageStatus, pveForNode } from "@/lib/proxmox";
+-import { PageHeader, StatCard, StatusDot, Badge, fmtBytes, fmtMoney, timeAgo } from "@/components/ui/primitives";
+-import { MeterBar } from "@/components/ui/charts";
++import { fmtMoney, timeAgo, StatusDot } from "@/components/ui/primitives";
+ import { AutoRefresh } from "@/components/AutoRefresh";
+ import { RevenueRangeChart } from "@/components/admin/RevenueRangeChart";
++import { actingAdminId, revenueSeriesForRange } from "@/lib/admin-metrics";
++import { allNodeUtil } from "@/lib/node-capacity";
++import { loadPulse, loadQueueAndDeploys, loadOpenNodeAlerts } from "@/lib/admin/command-center";
+ import {
+-  REVENUE_USER_WHERE,
+-  fleetMrrCents,
+-  actingAdminId,
+-  currentRenewalPrices,
+-  revenueSeriesForRange,
+-} from "@/lib/admin-metrics";
++  AdmPageHeader,
++  Delta,
++  EmptyRow,
++  Kpi,
++  Meter,
++  Panel,
++  PanelError,
++  PanelSkeleton,
++  Pill,
++} from "@/components/admin/shell/primitives";
+ 
+ export const dynamic = "force-dynamic";
+ 
+-export default async function AdminOverview() {
+-  await requireArea("overview");
++const fmtAge = (d: Date | null) => (d ? timeAgo(d).replace(" ago", "") : "—");
++const jobLabel = (t: string) => t.toLowerCase().replace(/_/g, " ");
+ 
+-  const since24h = new Date(Date.now() - 24 * 3600_000);
++/**
++ * COMMAND CENTER — the admin home (2026-10-01 redesign).
++ *
++ * Top: today's pulse (revenue, signups, orders, tickets, failed jobs, queue)
++ * against yesterday, every figure a real DB count/sum (lib/admin/command-center.ts).
++ * Middle: what needs a human now (alerts, failures, in-flight jobs) and the
++ * fleet's capacity. Bottom: revenue trend, recent deploys, activity.
++ *
++ * Slow sources (live Proxmox reads for capacity) stream in behind Suspense so
++ * an unreachable node never holds the whole page hostage.
++ */
++export default async function AdminCommandCenter() {
++  const user = await requireArea("overview");
++  const fleet = canAccess(user.role, "fleet");
++  const billing = canAccess(user.role, "billing");
++  const support = canAccess(user.role, "supportTickets");
++  const audit = canAccess(user.role, "platform");
+ 
+-  const [
+-    activeServers,
+-    serverOwners,
+-    runningCount,
+-    totalServers,
+-    openTickets,
+-    failedJobs24h,
+-    liabilities,
+-    revenue14d,
+-    activeJobs,
+-    recentAudit,
+-    migrationsStuck,
+-    renewalPrices,
+-  ] = await Promise.all([
+-    db.server.findMany({
+-      where: { isFree: false, status: { notIn: ["DELETING"] }, user: { excludeFromRevenue: false } },
+-      select: {
+-        status: true,
+-        isFree: true,
+-        termMonths: true,
+-        extraDiskGB: true,
+-        backupTier: true,
+-        annualDiscountPct: true,
+-        plan: { select: { name: true, priceCents: true } },
+-        // A game server is sold at the game plan's flat price, not the base VPS
+-        // plan's — see `serverMonthlyCents` and the incident in `renewNow`.
+-        gamePlan: { select: { name: true, priceCents: true, termMonths: true } },
+-        // Needed by renewalCharge (via serverMonthlyCents) to price add-ons.
+-        dedicatedIp: { select: { id: true } },
+-        // Gates the IP surcharge alongside `dedicatedIp` itself — see
+-        // renewal-charge.ts's `dedicatedIpBillable` for why both are required.
+-        wantsDedicatedIp: true,
+-        // Grandfather program: the frozen rate wins over the live plan/gamePlan
+-        // price above when set — see renewal-charge.ts's own doc comment.
+-        grandfatheredRenewalCents: true,
+-      },
+-    }),
+-    // Owners of a server that still EXISTS as far as the platform is concerned.
+-    // Unfiltered, this counted a customer whose only server is mid-teardown as an
+-    // "active customer" while the Servers card next to it had already excluded
+-    // that same machine.
+-    db.server.groupBy({ by: ["userId"], where: { status: { notIn: ["DELETING"] } } }),
+-    db.server.count({ where: { status: "RUNNING" } }),
+-    db.server.count({ where: { status: { notIn: ["DELETING"] } } }),
+-    db.ticket.count({ where: { status: { in: ["OPEN", "CUSTOMER_REPLY"] } } }),
+-    db.job.count({ where: { status: "FAILED", updatedAt: { gte: since24h } } }),
+-    // Exclude own/test accounts (excludeFromRevenue) so their wallet balances
+-    // don't inflate the platform's real customer liabilities figure.
+-    db.user.aggregate({ _sum: { balanceCents: true }, where: REVENUE_USER_WHERE }),
+-    // Revenue, not "any wallet debit": refunds and affiliate payouts are also
+-    // negative rows and used to push this chart UP — see REVENUE_WHERE inside
+-    // `revenueSeriesForRange`, the same helper the range-toggle API route uses,
+-    // so the server-rendered default and every client-picked range share one
+-    // definition of "revenue" and one query shape.
+-    revenueSeriesForRange("14d"),
+-    db.job.findMany({
+-      where: { status: { in: ["QUEUED", "RUNNING"] } },
+-      include: { server: { select: { hostname: true, id: true } } },
+-      orderBy: { createdAt: "asc" },
+-      take: 8,
+-    }),
+-    db.auditLog.findMany({
+-      include: { user: { select: { email: true } } },
+-      orderBy: { createdAt: "desc" },
+-      take: 10,
+-    }),
+-    db.migration.count({ where: { status: { in: ["COMPLETED_WITH_ISSUES", "FAILED"] } } }),
+-    currentRenewalPrices(),
++  const [pulse, queue, nodeAlerts, revenue14d] = await Promise.all([
++    loadPulse(),
++    fleet ? loadQueueAndDeploys() : Promise.resolve(null),
++    fleet ? loadOpenNodeAlerts() : Promise.resolve([]),
++    billing ? revenueSeriesForRange("14d") : Promise.resolve(null),
+   ]);
+ 
+-  // Resolve the real admin behind any row taken while impersonating, so the feed
+-  // never shows a customer as the actor for something an admin did as them.
+-  const actorIds = [...new Set(recentAudit.map((a) => actingAdminId(a.detail)).filter(Boolean))] as string[];
+-  const actorEmail = new Map(
+-    (actorIds.length > 0
+-      ? await db.user.findMany({ where: { id: { in: actorIds } }, select: { id: true, email: true } })
+-      : []
+-    ).map((u) => [u.id, u.email]),
+-  );
+-
+-  // Committed monthly revenue, priced the way the billing engine prices: game
+-  // plans at their flat rate, term prices divided down to a month, and nothing
+-  // counted for a suspended machine the renewal sweep will never charge.
+-  const mrrCents = fleetMrrCents(activeServers, renewalPrices);
+-  const billableServers = activeServers.filter((s) => s.status !== "SUSPENDED").length;
+-
+-  // Live hypervisor + storage, aggregated across every enabled node — this is
+-  // the fleet-wide command-center summary, so a second (Hetzner) node's
+-  // numbers must be folded in, not silently dropped. One unreachable node
+-  // doesn't blank the whole card; per-node detail lives on /admin/infrastructure.
+-  const liveNodes = await db.node.findMany({ where: { enabled: true }, orderBy: [{ isPrimary: "desc" }] });
+-  const nodeReads = await Promise.all(
+-    liveNodes.map(async (n) => {
+-      const client = pveForNode(n);
+-      let status: any = null;
+-      let vmdata: any = null;
+-      let backup: any = null;
+-      try {
+-        [status, vmdata, backup] = await Promise.all([
+-          nodeStatus(client),
+-          storageStatus(n.storageNvme, client),
+-          storageStatus("backup", client),
+-        ]);
+-      } catch {
+-        // this node's Proxmox API is unreachable — the others still count
+-      }
+-      return { n, status, vmdata, backup };
+-    })
+-  );
+-  const reachable = nodeReads.filter((r) => r.status);
+-  const node = reachable[0]?.status ?? null; // primary (or first reachable) — for uptime/load/kernel, which don't aggregate
+-  const anyReachable = reachable.length > 0;
+-
+-  const cpuThreadsTotal = reachable.reduce((n, r) => n + (r.status.cpuinfo?.cpus ?? 0), 0);
+-  const cpuUsedThreads = reachable.reduce((n, r) => n + (r.status.cpu ?? 0) * (r.status.cpuinfo?.cpus ?? 0), 0);
+-  const fleetCpuPct = cpuThreadsTotal > 0 ? (cpuUsedThreads / cpuThreadsTotal) * 100 : 0;
+-  const memUsedTotal = reachable.reduce((n, r) => n + (r.status.memory?.used ?? 0), 0);
+-  const memTotalTotal = reachable.reduce((n, r) => n + (r.status.memory?.total ?? 0), 0);
+-
+-  const vmdataUsed = nodeReads.reduce((n, r) => n + (r.vmdata?.used ?? 0), 0);
+-  const vmdataTotal = nodeReads.reduce((n, r) => n + (r.vmdata?.total ?? 0), 0);
+-  const backupUsed = nodeReads.reduce((n, r) => n + (r.backup?.used ?? 0), 0);
+-  const backupTotal = nodeReads.reduce((n, r) => n + (r.backup?.total ?? 0), 0);
+-  const vmdata = vmdataTotal > 0 ? { used: vmdataUsed, total: vmdataTotal } : null;
+-  const backup = backupTotal > 0 ? { used: backupUsed, total: backupTotal } : null;
+-
+-  const uptimeDays = node ? Math.floor(node.uptime / 86400) : 0;
+-  const uptimeHours = node ? Math.floor((node.uptime % 86400) / 3600) : 0;
++  const queueBusy = pulse.queued + pulse.running > 0;
++  const stamp = new Date().toISOString().slice(11, 16);
+ 
+   return (
+-    <div className="space-y-6">
+-      {activeJobs.length > 0 && <AutoRefresh />}
+-      <PageHeader title="Operations overview" sub="Live command center for the Nxeon platform.">
+-        <Link href="/admin/monitoring" className="btn-secondary">
+-          Monitoring
+-        </Link>
+-        <Link href="/admin/grant" className="btn-primary">
+-          Grant VPS
+-        </Link>
+-      </PageHeader>
++    <div className="space-y-5">
++      {queueBusy && <AutoRefresh intervalMs={15000} />}
++      <AdmPageHeader
++        eyebrow="Command center"
++        title={`Good ${greeting()}, ${user.name.split(" ")[0] || "there"}`}
++        sub={
++          <>
++            Live state of the platform · today is the current UTC day, compared with all of yesterday · as of {stamp} UTC
++          </>
++        }
++      >
++        {fleet && <Link href="/admin/monitoring" className="btn-secondary">Monitoring</Link>}
++        {fleet && <Link href="/admin/grant" className="btn-primary">Grant VPS</Link>}
++      </AdmPageHeader>
+ 
+-      {/* KPI row */}
+-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
+-        <StatCard
+-          label="MRR"
+-          value={fmtMoney(mrrCents)}
+-          delta={
+-            billableServers === activeServers.length
+-              ? `${billableServers} billable servers`
+-              : `${billableServers} billable · ${activeServers.length - billableServers} suspended`
+-          }
+-          href="/admin/subscriptions"
+-        />
+-        <StatCard label="Active customers" value={String(serverOwners.length)} delta="with ≥1 server" href="/admin/users" />
+-        <StatCard
+-          label="Servers"
+-          value={String(totalServers)}
+-          delta={`${runningCount} running`}
+-          deltaGood={runningCount > 0}
+-          href="/admin/servers"
+-        />
+-        <StatCard
+-          label="Open tickets"
+-          value={String(openTickets)}
+-          delta={openTickets > 0 ? "awaiting staff" : "queue clear"}
+-          deltaGood={openTickets === 0}
+-          href="/admin/support"
+-        />
+-        <StatCard
+-          label="Failed jobs (24h)"
+-          value={String(failedJobs24h)}
+-          delta={failedJobs24h > 0 ? "needs attention" : "all healthy"}
+-          deltaGood={failedJobs24h === 0}
+-          href="/admin/provisioning"
+-        />
+-        <StatCard
+-          label="Wallet liabilities"
+-          value={fmtMoney(liabilities._sum.balanceCents ?? 0)}
+-          delta="customer balances"
+-          href="/admin/billing"
+-        />
+-        <StatCard
+-          label="Migrations to finish"
+-          value={String(migrationsStuck)}
+-          delta={migrationsStuck > 0 ? "need attention" : "all clear"}
+-          deltaGood={migrationsStuck === 0}
+-          href="/admin/migrations"
+-        />
+-        <StatCard label="Project board" value="Open" delta="ideas · features · bugs" href="/admin/board" />
++      {/* ── Pulse ─────────────────────────────────────────────────────── */}
++      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
++        {billing && (
++          <Kpi label="Revenue today" value={fmtMoney(pulse.revenueToday)} href="/admin/billing"
++            sub={<Delta now={pulse.revenueToday} prev={pulse.revenueYesterday} format={(n) => fmtMoney(n)} />} />
++        )}
++        <Kpi label="New signups today" value={pulse.signupsToday} href="/admin/users"
++          sub={<Delta now={pulse.signupsToday} prev={pulse.signupsYesterday} />} />
++        {fleet && (
++          <Kpi label="Paid orders today" value={pulse.ordersToday} href="/admin/servers"
++            sub={<Delta now={pulse.ordersToday} prev={pulse.ordersYesterday} />} />
++        )}
++        {support && (
++          <Kpi label="Tickets awaiting reply" value={pulse.ticketsAwaiting} href="/admin/support"
++            tone={pulse.ticketsAwaiting > 0 ? "warn" : undefined}
++            sub={pulse.ticketsAwaiting > 0 ? `oldest waiting ${fmtAge(pulse.oldestAwaitingAt)} · ${pulse.ticketsOpenedToday} opened today` : `queue clear · ${pulse.ticketsOpenedToday} opened today`} />
++        )}
++        {fleet && (
++          <Kpi label="Failed jobs · 24h" value={pulse.failed24} href="/admin/jobs"
++            tone={pulse.failed24 > 0 ? "alert" : undefined}
++            sub={<Delta now={pulse.failed24} prev={pulse.failedPrev24} goodWhen="down" suffix="vs previous 24h" />} />
++        )}
++        {fleet && (
++          <Kpi label="Job queue" value={`${pulse.running} running`} href="/admin/provisioning"
++            tone={pulse.oldestQueuedAt && Date.now() - pulse.oldestQueuedAt.getTime() > 10 * 60_000 ? "warn" : undefined}
++            sub={pulse.queued > 0 ? `${pulse.queued} queued · oldest ${fmtAge(pulse.oldestQueuedAt)}` : "nothing queued"} />
++        )}
+       </div>
+ 
+-      {/* Health + revenue row */}
+-      <div className="grid gap-4 xl:grid-cols-3">
+-        <div className="card">
+-          <div className="mb-4 flex items-center justify-between">
+-            <h2 className="font-semibold">Hypervisor health</h2>
+-            <div className="flex items-center gap-2">
+-              {liveNodes.length > 1 && (
+-                <span className="text-xs text-slate-500">{reachable.length}/{liveNodes.length} nodes</span>
+-              )}
+-              {anyReachable ? <StatusDot status="online" label="online" /> : <StatusDot status="ERROR" label="unreachable" />}
+-            </div>
+-          </div>
+-          {anyReachable ? (
+-            <div className="space-y-4 text-sm">
+-              <div>
+-                <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+-                  <span>CPU{liveNodes.length > 1 ? " (fleet)" : ""}</span>
+-                  <span>
+-                    {fleetCpuPct.toFixed(1)}% of {cpuThreadsTotal || "?"} threads
+-                  </span>
+-                </div>
+-                <MeterBar value={fleetCpuPct} max={100} color="#8a70fb" />
+-              </div>
+-              <div>
+-                <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+-                  <span>Memory{liveNodes.length > 1 ? " (fleet)" : ""}</span>
+-                  <span>
+-                    {fmtBytes(memUsedTotal)} / {fmtBytes(memTotalTotal)}
+-                  </span>
+-                </div>
+-                <MeterBar value={memUsedTotal} max={memTotalTotal || 1} color="#3b82f6" />
+-              </div>
+-              <dl className="grid grid-cols-2 gap-x-4 gap-y-2 pt-1 text-xs">
+-                <div className="flex justify-between">
+-                  <dt className="text-slate-500">Uptime{liveNodes.length > 1 ? ` (${reachable[0]?.n.name})` : ""}</dt>
+-                  <dd>
+-                    {uptimeDays}d {uptimeHours}h
+-                  </dd>
+-                </div>
+-                <div className="flex justify-between">
+-                  <dt className="text-slate-500">Load</dt>
+-                  <dd className="font-mono">{Array.isArray(node?.loadavg) ? node.loadavg.join(" ") : "—"}</dd>
+-                </div>
+-                <div className="col-span-2 flex justify-between">
+-                  <dt className="text-slate-500">Kernel</dt>
+-                  <dd className="truncate pl-3 text-right">
+-                    {typeof node?.kversion === "string" ? node.kversion.split(" ").slice(0, 2).join(" ") : "—"}
+-                  </dd>
+-                </div>
+-              </dl>
+-              {liveNodes.length > 1 && (
+-                <p className="text-[11px] text-slate-500">
+-                  Uptime/load/kernel shown for {reachable[0]?.n.name} · CPU and memory are fleet-wide · full per-node
+-                  detail on{" "}
+-                  <Link href="/admin/infrastructure" className="text-brand-300 hover:underline">
+-                    Infrastructure
+-                  </Link>
+-                  .
+-                </p>
+-              )}
+-            </div>
+-          ) : (
+-            <p className="py-6 text-sm text-slate-500">
+-              Could not reach the Proxmox API. Node stats will reappear once the hypervisor responds.
+-            </p>
+-          )}
+-        </div>
+-
+-        <div className="card">
+-          <h2 className="mb-4 font-semibold">Storage pools</h2>
+-          {vmdata || backup ? (
+-            <div className="space-y-5 text-sm">
+-              {vmdata && (
+-                <div>
+-                  <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+-                    <span>vmdata · NVMe (VM disks)</span>
+-                    <span>
+-                      {fmtBytes(vmdata.used)} / {fmtBytes(vmdata.total)}
+-                    </span>
+-                  </div>
+-                  <MeterBar
+-                    value={vmdata.used}
+-                    max={vmdata.total}
+-                    color={vmdata.used / vmdata.total > 0.8 ? "#f59e0b" : "#8a70fb"}
+-                  />
+-                </div>
+-              )}
+-              {backup && (
+-                <div>
+-                  <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+-                    <span>backup · HDD (backups, snippets)</span>
+-                    <span>
+-                      {fmtBytes(backup.used)} / {fmtBytes(backup.total)}
+-                    </span>
+-                  </div>
+-                  <MeterBar
+-                    value={backup.used}
+-                    max={backup.total}
+-                    color={backup.used / backup.total > 0.8 ? "#f59e0b" : "#34d399"}
+-                  />
+-                </div>
+-              )}
+-              <p className="text-xs text-slate-500">
+-                Full pool detail on the{" "}
+-                <Link href="/admin/infrastructure" className="text-brand-300 hover:underline">
+-                  infrastructure page
+-                </Link>
+-                .
+-              </p>
+-            </div>
+-          ) : (
+-            <p className="py-6 text-sm text-slate-500">Storage stats unavailable — Proxmox API unreachable.</p>
+-          )}
+-        </div>
+-
+-        <RevenueRangeChart
+-          initialRange="14d"
+-          initialSeries={revenue14d.series}
+-          initialXLabels={revenue14d.xLabels}
+-          initialTotal={revenue14d.total}
+-        />
++      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
++        {billing && (
++          <Kpi label="MRR (committed)" value={fmtMoney(pulse.mrrCents)} href="/admin/subscriptions"
++            sub={`${pulse.billableServers} billable servers`} />
++        )}
++        {fleet && (
++          <Kpi label="Servers" value={pulse.totalServers} href="/admin/servers"
++            sub={`${pulse.runningServers} running`} />
++        )}
++        {billing && (
++          <Kpi label="Wallet liabilities" value={fmtMoney(pulse.liabilitiesCents)} href="/admin/billing"
++            sub="customer balances held" />
++        )}
++        {fleet && (
++          <Kpi label="Node alerts open" value={nodeAlerts.length} href="/admin/nodes"
++            tone={nodeAlerts.some((a) => a.severity === "CRITICAL") ? "alert" : nodeAlerts.length ? "warn" : undefined}
++            sub={nodeAlerts.length ? nodeAlerts.map((a) => `${a.nodeName} ${a.dimension.toLowerCase()}`).slice(0, 2).join(" · ") : "all nodes within thresholds"} />
++        )}
+       </div>
+ 
+-      {/* Queue + activity + quick actions */}
+-      <div className="grid gap-4 xl:grid-cols-3">
+-        <div className="card p-0">
+-          <div className="flex items-center justify-between px-5 pt-5">
+-            <h2 className="font-semibold">Provisioning queue</h2>
+-            <Link href="/admin/provisioning" className="text-xs text-brand-300 hover:underline">
+-              View all →
+-            </Link>
++      {/* ── Needs attention + capacity ────────────────────────────────── */}
++      {fleet && queue && (
++        <div className="grid gap-4 xl:grid-cols-5">
++          <Panel title="Needs attention" action={{ href: "/admin/jobs", label: "All jobs" }} className="xl:col-span-3">
++            {queue.failures.length === 0 && nodeAlerts.length === 0 && queue.inFlight.length === 0 ? (
++              <EmptyRow>Nothing is failing or in flight. </EmptyRow>
++            ) : (
++              <ul className="adm-list">
++                {nodeAlerts.map((a) => (
++                  <li key={a.id} className="flex items-start gap-3 px-5 py-3 text-[13px]">
++                    <Pill tone={a.severity === "CRITICAL" ? "red" : "amber"}>{a.severity.toLowerCase()}</Pill>
++                    <div className="min-w-0 flex-1">
++                      <Link href="/admin/nodes" className="font-semibold hover:underline" style={{ color: "var(--adm-ink)" }}>
++                        {a.nodeName} · {a.dimension} {a.pct}%
++                      </Link>
++                      <p className="truncate text-[12px]" style={{ color: "var(--adm-muted)" }}>{a.detail}</p>
++                    </div>
++                    <span className="shrink-0 text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{timeAgo(a.updatedAt)}</span>
++                  </li>
++                ))}
++                {queue.failures.map((j) => (
++                  <li key={j.id} className="flex items-start gap-3 px-5 py-3 text-[13px]">
++                    <Pill tone="red">failed</Pill>
++                    <div className="min-w-0 flex-1">
++                      {j.server ? (
++                        <Link href={`/admin/servers/${j.server.id}`} className="font-semibold hover:underline" style={{ color: "var(--adm-ink)" }}>
++                          {jobLabel(j.type)} · {j.server.hostname}
++                        </Link>
++                      ) : (
++                        <span className="font-semibold" style={{ color: "var(--adm-ink)" }}>{jobLabel(j.type)}</span>
++                      )}
++                      {j.error && <p className="truncate font-mono text-[11.5px]" style={{ color: "var(--adm-muted)" }}>{j.error}</p>}
++                    </div>
++                    <span className="shrink-0 text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{timeAgo(j.updatedAt)}</span>
++                  </li>
++                ))}
++                {queue.inFlight.map((j) => (
++                  <li key={j.id} className="flex items-center gap-3 px-5 py-3 text-[13px]">
++                    <Pill tone={j.status === "RUNNING" ? "blue" : undefined}>{j.status.toLowerCase()}</Pill>
++                    <div className="min-w-0 flex-1">
++                      {j.server ? (
++                        <Link href={`/admin/servers/${j.server.id}`} className="font-medium hover:underline" style={{ color: "var(--adm-ink)" }}>
++                          {jobLabel(j.type)} · {j.server.hostname}
++                        </Link>
++                      ) : (
++                        <span>{jobLabel(j.type)}</span>
++                      )}
++                      {j.status === "RUNNING" && (
++                        <div className="mt-1.5 flex items-center gap-2">
++                          <div className="w-40"><Meter pct={j.progress} warnAt={101} alertAt={101} label="progress" /></div>
++                          <span className="text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{j.step ?? `${j.progress}%`}</span>
++                        </div>
++                      )}
++                    </div>
++                    <span className="shrink-0 text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{timeAgo(j.createdAt)}</span>
++                  </li>
++                ))}
++              </ul>
++            )}
++          </Panel>
++
++          <div className="xl:col-span-2">
++            <Suspense fallback={<PanelSkeleton title="Node capacity" rows={5} />}>
++              <CapacityPanel />
++            </Suspense>
+           </div>
+-          {activeJobs.length === 0 ? (
+-            <p className="px-5 py-8 text-sm text-slate-500">Queue is empty — no jobs in flight.</p>
+-          ) : (
+-            <div className="overflow-x-auto p-2 pt-3">
+-              <table className="table-shell">
+-                <tbody>
+-                  {activeJobs.map((j) => (
+-                    <tr key={j.id}>
+-                      <td>
+-                        {j.server ? (
+-                          <Link href={`/admin/servers/${j.server.id}`} className="font-medium hover:text-brand-300">
+-                            {j.server.hostname}
+-                          </Link>
+-                        ) : (
+-                          <span className="text-slate-500">—</span>
+-                        )}
+-                      </td>
+-                      <td className="text-xs text-slate-400">{j.type.toLowerCase().replace(/_/g, " ")}</td>
+-                      <td className="text-right">
+-                        <StatusDot status={j.status} />
+-                      </td>
+-                    </tr>
+-                  ))}
+-                </tbody>
+-              </table>
+-            </div>
+-          )}
+         </div>
++      )}
+ 
+-        <div className="card p-0">
+-          <div className="flex items-center justify-between px-5 pt-5">
+-            <h2 className="font-semibold">Live activity</h2>
+-            <Link href="/admin/audit" className="text-xs text-brand-300 hover:underline">
+-              Audit log →
+-            </Link>
+-          </div>
+-          <ul className="divide-y divide-white/[0.05] px-5 py-2">
+-            {recentAudit.length === 0 && <li className="py-6 text-sm text-slate-500">No activity yet.</li>}
+-            {recentAudit.map((a) => {
+-              const asAdmin = actingAdminId(a.detail);
+-              return (
+-                <li key={a.id} className="flex items-baseline justify-between gap-3 py-2.5 text-sm">
+-                  <div className="min-w-0">
+-                    <span className="font-medium">{a.action}</span>
+-                    <span className="ml-2 truncate text-xs text-slate-500">
+-                      {asAdmin ? (actorEmail.get(asAdmin) ?? asAdmin) : (a.user?.email ?? "system")}
+-                    </span>
+-                    {asAdmin && (
+-                      <span className="ml-2">
+-                        <Badge tone="amber">as {a.user?.email ?? "customer"}</Badge>
++      {/* ── Trend + deploys + activity ────────────────────────────────── */}
++      <div className="grid gap-4 xl:grid-cols-3">
++        {billing && revenue14d && (
++          <RevenueRangeChart
++            initialRange="14d"
++            initialSeries={revenue14d.series}
++            initialXLabels={revenue14d.xLabels}
++            initialTotal={revenue14d.total}
++          />
++        )}
++        {fleet && queue && (
++          <Panel title="Recent deploys" action={{ href: "/admin/provisioning", label: "Provisioning" }}>
++            {queue.deploys.length === 0 ? (
++              <EmptyRow>No provisions yet.</EmptyRow>
++            ) : (
++              <ul className="adm-list">
++                {queue.deploys.map((d) => (
++                  <li key={d.id} className="flex items-center gap-3 px-5 py-2.5 text-[13px]">
++                    <StatusDot status={d.status} label={d.status === "DONE" ? "live" : undefined} />
++                    <div className="min-w-0 flex-1">
++                      {d.server ? (
++                        <Link href={`/admin/servers/${d.server.id}`} className="block truncate font-medium hover:underline" style={{ color: "var(--adm-ink)" }}>
++                          {d.server.label || d.server.hostname}
++                        </Link>
++                      ) : (
++                        <span className="block truncate">deleted server</span>
++                      )}
++                      <span className="block truncate text-[11.5px]" style={{ color: "var(--adm-faint)" }}>
++                        {[d.server?.gameVariant ? "game" : "vps", d.server?.node?.name, d.server?.user.email].filter(Boolean).join(" · ")}
+                       </span>
+-                    )}
+-                  </div>
+-                  <span className="shrink-0 text-xs text-slate-500">{timeAgo(a.createdAt)}</span>
+-                </li>
+-              );
+-            })}
+-          </ul>
+-        </div>
++                    </div>
++                    <span className="shrink-0 text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{timeAgo(d.createdAt)}</span>
++                  </li>
++                ))}
++              </ul>
++            )}
++          </Panel>
++        )}
++        {audit && (
++          <Suspense fallback={<PanelSkeleton title="Activity" rows={6} />}>
++            <ActivityPanel />
++          </Suspense>
++        )}
++      </div>
+ 
+-        <div className="card">
+-          <h2 className="mb-4 font-semibold">Quick actions</h2>
+-          <div className="grid grid-cols-2 gap-3">
+-            <Link href="/admin/grant" className="card card-hover p-4 text-sm">
+-              <p className="font-medium">Grant VPS</p>
+-              <p className="mt-1 text-xs text-slate-500">Deploy a free server for a client</p>
+-            </Link>
+-            <Link href="/admin/users" className="card card-hover p-4 text-sm">
+-              <p className="font-medium">Add client credit</p>
+-              <p className="mt-1 text-xs text-slate-500">Top up a wallet from a client profile</p>
+-            </Link>
+-            <div className="card p-4 text-sm opacity-50">
+-              <div className="flex items-center gap-2">
+-                <p className="font-medium">New announcement</p>
+-                <Badge tone="amber">soon</Badge>
+-              </div>
+-              <p className="mt-1 text-xs text-slate-500">Broadcasts ship with email support</p>
+-            </div>
+-            <Link href="/admin/monitoring" className="card card-hover p-4 text-sm">
+-              <p className="font-medium">Open monitoring</p>
+-              <p className="mt-1 text-xs text-slate-500">Node + per-VM live metrics</p>
+-            </Link>
++      {fleet && queue && queue.statusCounts.length > 0 && (
++        <Panel title="Fleet by status" action={{ href: "/admin/servers", label: "Servers" }}>
++          <div className="flex flex-wrap gap-2 p-4">
++            {queue.statusCounts
++              .sort((a, b) => b._count._all - a._count._all)
++              .map((s) => (
++                <Link key={s.status} href={`/admin/servers?status=${s.status}`} className="adm-pill hover:border-[var(--adm-line-3)]">
++                  <StatusDot status={s.status} /> <span style={{ color: "var(--adm-ink)" }}>{s._count._all}</span>
++                </Link>
++              ))}
+           </div>
+-        </div>
+-      </div>
++        </Panel>
++      )}
+     </div>
+   );
+ }
++
++function greeting() {
++  const h = new Date().getUTCHours();
++  return h < 12 ? "morning" : h < 18 ? "afternoon" : "evening";
++}
++
++/** Streams in: allNodeUtil() makes live Proxmox reads that can be slow. */
++async function CapacityPanel() {
++  let data: Awaited<ReturnType<typeof allNodeUtil>> | null = null;
++  try {
++    data = await Promise.race([
++      allNodeUtil(),
++      new Promise<null>((r) => setTimeout(() => r(null), 8000)),
++    ]);
++  } catch {
++    data = null;
++  }
++  return (
++    <Panel title="Node capacity" action={{ href: "/admin/nodes", label: "Nodes" }} className="h-full">
++      {!data ? (
++        <PanelError>Capacity readings didn&apos;t arrive within 8s — node APIs may be unreachable. Full detail on Monitoring.</PanelError>
++      ) : data.nodes.filter((n) => n.enabled).length === 0 ? (
++        <EmptyRow>No enabled nodes.</EmptyRow>
++      ) : (
++        <ul className="adm-list">
++          {data.nodes
++            .filter((n) => n.enabled)
++            .map((n) => (
++              <li key={`${n.kind}:${n.id}`} className="px-5 py-3">
++                <div className="mb-2 flex items-center gap-2 text-[13px]">
++                  <span className="font-semibold" style={{ color: "var(--adm-ink)" }}>{n.name}</span>
++                  <span className="text-[11px]" style={{ color: "var(--adm-faint)" }}>{n.kind === "HOSTING" ? "web hosting" : "proxmox"}</span>
++                  <span className="ml-auto">
++                    {!n.reachable ? (
++                      <Pill tone="amber">unreachable</Pill>
++                    ) : n.severity === "OK" ? (
++                      <Pill tone="green">ok</Pill>
++                    ) : (
++                      <Pill tone={n.severity === "CRITICAL" ? "red" : "amber"}>{n.severity.toLowerCase()}</Pill>
++                    )}
++                  </span>
++                </div>
++                <div className="grid gap-1.5">
++                  {n.dims.map((d) => (
++                    <div key={d.dimension} className="grid grid-cols-[4.5rem_1fr_3rem] items-center gap-2 text-[11.5px]" title={d.detail}>
++                      <span style={{ color: "var(--adm-muted)" }}>{d.dimension.toLowerCase()}</span>
++                      <Meter pct={d.pct} warnAt={data!.thresholds.warnPct} alertAt={data!.thresholds.critPct} label={`${n.name} ${d.dimension}`} />
++                      <span className="text-right tabular-nums" style={{ color: "var(--adm-ink-2)" }}>{Math.round(d.pct)}%</span>
++                    </div>
++                  ))}
++                </div>
++              </li>
++            ))}
++        </ul>
++      )}
++    </Panel>
++  );
++}
++
++async function ActivityPanel() {
++  const recent = await db.auditLog
++    .findMany({ include: { user: { select: { email: true } } }, orderBy: { createdAt: "desc" }, take: 9 })
++    .catch(() => []);
++  // Resolve the real admin behind any row taken while impersonating, so the feed
++  // never shows a customer as the actor for something an admin did as them.
++  const actorIds = [...new Set(recent.map((a) => actingAdminId(a.detail)).filter(Boolean))] as string[];
++  const actorEmail = new Map(
++    (actorIds.length ? await db.user.findMany({ where: { id: { in: actorIds } }, select: { id: true, email: true } }) : []).map(
++      (u) => [u.id, u.email],
++    ),
++  );
++  return (
++    <Panel title="Activity" action={{ href: "/admin/audit", label: "Audit log" }}>
++      {recent.length === 0 ? (
++        <EmptyRow>No activity yet.</EmptyRow>
++      ) : (
++        <ul className="adm-list">
++          {recent.map((a) => {
++            const asAdmin = actingAdminId(a.detail);
++            return (
++              <li key={a.id} className="flex items-baseline gap-3 px-5 py-2.5 text-[13px]">
++                <div className="min-w-0 flex-1">
++                  <span className="font-medium" style={{ color: "var(--adm-ink)" }}>{a.action}</span>
++                  <span className="ml-2 truncate text-[11.5px]" style={{ color: "var(--adm-faint)" }}>
++                    {asAdmin ? (actorEmail.get(asAdmin) ?? asAdmin) : (a.user?.email ?? "system")}
++                  </span>
++                  {asAdmin && <span className="ml-2"><Pill tone="amber">as {a.user?.email ?? "customer"}</Pill></span>}
++                </div>
++                <span className="shrink-0 text-[11.5px]" style={{ color: "var(--adm-faint)" }}>{timeAgo(a.createdAt)}</span>
++              </li>
++            );
++          })}
++        </ul>
++      )}
++    </Panel>
++  );
++}
+diff --git a/components/admin/SubTabs.tsx b/components/admin/SubTabs.tsx
+index abc40c47cd..a7dd5070ad 100644
+--- a/components/admin/SubTabs.tsx
++++ b/components/admin/SubTabs.tsx
+@@ -2,12 +2,14 @@
+ 
+ import Link from "next/link";
+ import { usePathname } from "next/navigation";
+-import { entryForPath, hrefMatches, type SubTabItem } from "@/lib/admin-groups";
++import { hrefMatches, navItemForPath } from "@/lib/admin-nav";
++
++export type SubTabItem = { label: string; href: string };
+ 
+ /**
+- * Horizontal pill/tab bar for one admin entry's members. Highlights the active
+- * item via usePathname (detail routes light up their tab too). Renders nothing
+- * for a single-member entry — there is nothing to switch between.
++ * Horizontal tab bar for one admin nav item's children (lib/admin-nav.ts).
++ * Underline style, scrolls horizontally on narrow screens instead of
++ * wrapping. Renders nothing for a single-member item.
+  */
+ export function SubTabs({
+   items,
+@@ -17,34 +19,26 @@ export function SubTabs({
+   /** Per-route attention counts, keyed by href. Shown as a pill on the tab. */
+   badges?: Record<string, number>;
+ }) {
+-  const pathname = usePathname();
++  const pathname = usePathname() ?? "";
+   if (items.length < 2) return null;
++  // Longest match wins so /admin/coldemail doesn't light up on /admin/coldemail/inbox.
++  const activeHref = items
++    .filter((i) => hrefMatches(i.href, pathname))
++    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
+ 
+   return (
+-    <nav className="mb-6 flex flex-wrap items-center gap-1.5 border-b border-white/[0.06] pb-3">
++    <nav className="adm-subtabs" aria-label="Section">
+       {items.map((item) => {
+-        const active = hrefMatches(item.href, pathname);
+         const count = badges?.[item.href] ?? 0;
+         return (
+           <Link
+             key={item.href}
+             href={item.href}
+-            className={`flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors ${
+-              active
+-                ? "bg-brand-500/15 text-brand-200 ring-1 ring-inset ring-brand-500/40"
+-                : "text-slate-400 hover:bg-white/[0.05] hover:text-slate-200"
+-            }`}
++            className="adm-subtab"
++            aria-current={item.href === activeHref ? "page" : undefined}
+           >
+             {item.label}
+-            {count > 0 && (
+-              <span
+-                className={`flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1.5 text-[10px] font-semibold text-white ${
+-                  active ? "bg-brand-500" : "bg-brand-500/80"
+-                }`}
+-              >
+-                {count > 99 ? "99+" : count}
+-              </span>
+-            )}
++            {count > 0 && <span className="adm-count" style={{ marginLeft: 0 }}>{count > 99 ? "99+" : count}</span>}
+           </Link>
+         );
+       })}
+@@ -53,27 +47,23 @@ export function SubTabs({
+ }
+ 
+ /**
+- * Auto-resolving sub-tab bar. Reads the current path, finds the top-level admin
+- * entry that owns it and renders that entry's <SubTabs />. Dropped once into the
+- * admin layout so every consolidated page gets its sub-navigation without
+- * per-page wiring. Renders nothing for paths outside the IA.
++ * Auto-resolving tab bar, mounted once by app/admin/layout.tsx: finds the nav
++ * item owning the current path and renders its children. `allowed` (from the
++ * layout's RBAC filter) hides tabs the role can't open.
+  */
+ export function AdminSubTabs({
+   badges,
+   allowed,
+ }: {
+-  /** Per-route attention counts, keyed by href (same map the sidebar uses). */
+   badges?: Record<string, number>;
+-  /**
+-   * Hrefs this role may reach, as computed by the layout with canAccessHref().
+-   * Omitted = no filtering. Keeps a SUPPORT/BILLING user from seeing tabs that
+-   * would only bounce them back to /admin.
+-   */
+   allowed?: string[];
+ }) {
+-  const pathname = usePathname();
+-  const entry = entryForPath(pathname);
+-  if (!entry) return null;
+-  const items = allowed ? entry.tabs.filter((t) => allowed.includes(t.href)) : entry.tabs;
++  const pathname = usePathname() ?? "";
++  const hit = navItemForPath(pathname);
++  if (!hit?.item.children) return null;
++  const items = hit.item.children
++    .filter((c) => !c.pending)
++    .filter((c) => !allowed || allowed.includes(c.href))
++    .map((c) => ({ label: c.label, href: c.href }));
+   return <SubTabs items={items} badges={badges} />;
+ }
+diff --git a/docs/DOCUMENTATION.md b/docs/DOCUMENTATION.md
+index e44d7f824e..827ceb0ed8 100644
+--- a/docs/DOCUMENTATION.md
++++ b/docs/DOCUMENTATION.md
+@@ -3837,17 +3837,45 @@ disk-usage-over-time chart.
+ 
+ ## Admin surfaces
+ 
+-40+ sections, grouped by `lib/admin-groups.ts:44-211` into five nav sections with sub-tabs
+-(`components/admin/SubTabs.tsx:61`). Every legacy `/admin/*` route remains reachable.
++**Redesigned 2026-10-01** (branch `feature/admin-redesign-shell`). ~110 routes, grouped by the single
++nav registry **`lib/admin-nav.ts`** into 8 task groups. Every legacy `/admin/*` URL still resolves —
++no route moved or was deleted; low-use pages are demoted behind each group's collapsed "More".
++Full before/after matrix with usage evidence: **`docs/ADMIN-IA-INVENTORY.md`**.
+ 
+-| Group | Sections |
++| Group | Items (children in brackets) |
+ |---|---|
+-| Overview | `/admin` dashboard, `/admin/analytics`, `/admin/visitors` |
+-| Clients | `/admin/users`, `/admin/users/[id]`, `/admin/orgs`, `/admin/grant` |
+-| Support | `/admin/support`, `/admin/chat`, `/admin/feedback` |
+-| Fleet | `/admin/servers`, `/admin/nodes`, `/admin/ips`, `/admin/provisioning`, `/admin/jobs`, `/admin/monitoring`, `/admin/abuse`, `/admin/infrastructure` |
+-| Billing | `/admin/billing`, `/admin/invoices`, `/admin/subscriptions`, `/admin/plans`, `/admin/products`, `/admin/coupons`, `/admin/gift-codes`, `/admin/game-plans`, `/admin/email-plans`, `/admin/affiliate` |
+-| Platform | `/admin/settings`, `/admin/staff`, `/admin/audit`, `/admin/logs`, `/admin/automation`, `/admin/improvements`, `/admin/email-templates`, `/admin/mail`, `/admin/domains`, `/admin/games`, `/admin/blog`, `/admin/newsletter`, `/admin/testimonials`, `/admin/docs` |
++| Command center | `/admin` command center, `/admin/board` |
++| Customers | Clients [`/admin/users`, `/admin/orgs`], Tickets [`/admin/support`, `/admin/dms`, `/admin/feedback`, `/admin/canned-replies`], `/admin/chat` |
++| Fleet | Servers [`/admin/servers`, `/admin/games`, `/admin/free-minecraft`, `/admin/grant`], Nodes & network [`/admin/nodes`, `/admin/ips`, `/admin/infrastructure`], Jobs & provisioning [`/admin/provisioning`, `/admin/jobs`, `/admin/migrations`], Health [`/admin/monitoring`, `/admin/monitor`, `/admin/backups`, `/admin/abuse`], Web hosting [`/admin/hosting`, `/admin/nxcloud`], `/admin/domains` |
++| Billing | Revenue & invoices [`/admin/billing`, `/admin/invoices`, `/admin/subscriptions`], Catalog & pricing [plans, game plans, mods, email plans, products], Promotions [promotions, coupons, gift codes, affiliate], Accounting |
++| Growth | Traffic & analytics [`/admin/visitors`, analytics, audience, retention, deploy funnel, popularity], Partners, Cold email (15 tabs), Marketing, SEO, Reddit templates, More: Sitewave/Adloop (feature-flagged) |
++| Communication | Inbox, Deliverability, Mailboxes, Email templates, Announcements, More: Broadcast, Newsletter |
++| Content | Blog, More: Testimonials |
++| System | Settings [settings, automation], Staff & access, Logs & audit [logs, audit], Improvements, Docs, More: Staff tasks |
++
++Pre-registered (hidden until their branches merge — delete the entry's `pending` field):
++`/admin/ops`, `/admin/insights`, `/admin/partners/outreach`, `/admin/nxlabs`, `/admin/seo/audit`.
++
++**Shell** (`components/admin/shell/*`, replaces `components/portal/Shell.tsx` for /admin only — the
++/staff portal still uses the old shell): collapsible groups + per-group "More" + icon-only rail,
++state persisted in the `nx_adm_ui` cookie (read server-side, so no flash); mobile drawer; ⌘K / Ctrl+K /
++`/` command palette with **global search** (`GET /api/admin/search` — clients, servers by
++hostname/name/label/subdomain/NAT or dedicated IP/previous hostname/vmid, free MC, web hosting,
++tickets, invoices by number, sent emails; RBAC-filtered per entity); breadcrumbs; alerts tray
++(`GET /api/admin/alerts` — failed jobs 24h, open `NodeAlert`s, tickets awaiting, unread chats, open
++abuse, migrations needing attention, plus the account's Notifications); light/dark theme and
++comfortable/compact density (`localStorage` `nxeon.admin.theme` / `nxeon.admin.density`, applied as
++`data-adm-theme` / `data-adm-density` on `<html>` by an inline script before paint); toasts
++(`useAdminToast()` / `adminToast()`).
++
++**Styling scope.** `app/admin/admin-shell.css`, everything under `:root.adm-portal` (class on
++`<html>`, added only by the admin shell) — the same technique as the customer portal's
++`:root.nx-portal`. It retints the Tailwind palette slots (brand/navy/accent/slate) to the
++marketing/Nexion language and reskins the shared classes (`.card`, `.btn-*`, `.input`,
++`.table-shell`, `.page-title`, …) inside `@layer components`, so every existing admin page inherits
++the new look with no per-page edits while page-level utilities still win. Marketing, `/login`,
++`/register`, the customer portal and `/staff` never carry the class and are byte-for-byte unaffected.
++The admin theme attribute is deliberately NOT the customer portal's `data-theme`.
+ 
+ **The four you will use most when something is wrong:**
+ 
+@@ -3860,7 +3888,7 @@ disk-usage-over-time chart.
+ 
+ **Impersonation.** `impersonateUser()` sets a signed cookie; `currentUser()` returns the target and
+ `realUser()` the actual admin. A banner and exit control are handled in
+-`components/portal/Shell.tsx`. Admin pages call `realUser`/`requireArea` and **refuse to render while
++`components/portal/Shell.tsx` / `components/nx/Banners.tsx`. Admin pages call `realUser`/`requireArea` and **refuse to render while
+ impersonating**. Every money-spending action is blocked while impersonating —
+ `lib/actions.ts:235`, `:382`, `:491`, `:591`, `lib/actions-disk.ts:41`,
+ `lib/actions-domains-transfer.ts:133`, `lib/actions-2fa.ts:78`.
+@@ -5959,6 +5987,7 @@ render without an icon) fall back to their first initial when collapsed so the r
+ 
+ ## Admin sidebar — grouped sections
+ 
++*(Superseded 2026-10-01 by the admin redesign — see "Admin surfaces" and `lib/admin-nav.ts`.)*
+ `app/admin/layout.tsx` renders one visible `NavSection` per admin group (Insights / Customers / Fleet /
+ Revenue / Platform / System) with all items listed beneath their header — filling the sidebar height
+ instead of collapsing to lone group rows. Role filtering (`canAccessHref`), empty-group dropping, and
+@@ -14893,6 +14922,41 @@ against a server the customer insisted had a working, reachable management key.
+ **Files:** `prisma/schema.prisma`, `lib/sftp.ts`, `lib/actions-files.ts`,
+ `app/admin/servers/[id]/page.tsx`, `test/sftp-connection-target.test.ts`.
+ 
++
++### 2026-10-01 — Admin portal redesign: new IA, new shell, command center, global search, and the real cause of the broken admin images
++
++- **IA**: one registry, `lib/admin-nav.ts` (`lib/admin-groups.ts` is now a derived legacy shim).
++  13 old sections → 8 task groups; nothing deleted, no URL moved; Broadcast/Newsletter/Testimonials/
++  Staff tasks/Sitewave/Adloop demoted to "More"; Board, Live chat and Visitors promoted; Mail split into
++  four rows; Migrations, Tracking & pixels, Quick replies and Staff tasks added to the nav (they were
++  URL-only). Evidence + full matrix in `docs/ADMIN-IA-INVENTORY.md` (Visit table 2026-07-23 → 10-01,
++  nginx forensic log, AuditLog, owner requests).
++- **RBAC**: nav visibility now uses the page's real gate where `lib/rbac.ts`'s href map disagrees
++  (`/admin/users` is `requireAdmin()` — SUPPORT was shown a link that threw FORBIDDEN;
++  `/admin/canned-replies` is support-grantable). `lib/rbac.ts` unchanged.
++- **Shell**: `components/admin/shell/*` (AdminShell, Sidebar, CommandPalette, AlertsTray, Toaster,
++  Brand, icons, primitives). Keeps the three shell-level providers (terminal dock, composer, Matrix),
++  VisitTracker, AdminIndicators and AdminChatNotifier the old shell mounted. 4rem top bar preserved
++  because inbox/board/reddit/ticket pages size themselves against it.
++- **New APIs** (read-only, staff-only, `no-store`): `GET /api/admin/search`, `GET /api/admin/alerts`.
++- **Command center** (`app/admin/page.tsx`, data in `lib/admin/command-center.ts`): revenue/signups/
++  paid orders today vs yesterday (UTC), tickets awaiting + oldest wait, failed jobs 24h vs previous 24h,
++  queue depth + oldest queued, MRR, liabilities, open node alerts, a "needs attention" list, node
++  capacity (streamed behind Suspense with an 8 s cap — live Proxmox reads), recent deploys (PROVISION
++  jobs), activity feed. Every number is a DB count/sum. Removed from the home: the hypervisor
++  uptime/kernel card and storage-pool card (still on Monitoring/Hardware), the "Project board: Open"
++  pseudo-stat and the "New announcement — soon" placeholder tile.
++- **Broken images (root cause)**: `output: "standalone"` doesn't copy `public/`; `promote-production.sh`
++  did, the `postbuild` hook didn't, so after any non-promote restart every `public/` asset returned 400
++  until the next promote (nginx forensic log, 2026-10-01 02:54–03:10 UTC: 149/149 on the admin host).
++  `scripts/postbuild-copy-geoip-data.sh` now copies `public/` too; the admin logo/avatars degrade to a
++  gradient tile / initials on error.
++- **Files**: `lib/admin-nav.ts`, `lib/admin-groups.ts`, `lib/admin/shell-alerts.ts`,
++  `lib/admin/command-center.ts`, `components/admin/shell/*`, `components/admin/SubTabs.tsx`,
++  `app/admin/layout.tsx`, `app/admin/page.tsx`, `app/admin/admin-shell.css`,
++  `app/api/admin/search/route.ts`, `app/api/admin/alerts/route.ts`,
++  `scripts/postbuild-copy-geoip-data.sh`, `test/company-mailbox.test.ts`, `docs/ADMIN-IA-INVENTORY.md`.
++
+ ---
+ 
+ *Companion docs: `CLAUDE.md` (agent/ops conventions), `ROADMAP.md` (backlog), `docs/MIGRATION.md`
+diff --git a/lib/admin-groups.ts b/lib/admin-groups.ts
+index bee3aca13e..1f1e959fa9 100644
+--- a/lib/admin-groups.ts
++++ b/lib/admin-groups.ts
+@@ -1,442 +1,39 @@
+ /**
+- * Information architecture for the admin ops portal.
+- *
+- * The sidebar shows one TOP-LEVEL ENTRY per destination cluster (26 of them,
+- * across 10 sections as of the 2026-08-26 Accounting addition — Content moved
+- * into Marketing, Mail split out into its own top-level section, System
+- * renamed to Settings). Every entry
+- * carries an icon and links to `tabs[0]`; its remaining members are reached
+- * from a horizontal sub-tab bar rendered once by the admin layout via
+- * <AdminSubTabs /> (see components/admin/SubTabs.tsx).
+- *
+- * That keeps all ~85 admin routes exactly two clicks away while the sidebar
+- * stays short enough to fit a 1080p laptop with no scrolling — the previous
+- * shapes (6 collapsed group headers, then 41 flat rows) failed at one end or
+- * the other. No route was moved or removed: every URL that worked before still
+- * resolves, it is simply reached through its parent entry's tab bar now.
+- *
+- * This module is intentionally free of any server-only imports so it can be
+- * consumed by both the server admin layout (for role filtering + badge
+- * roll-up) and the client sub-tab bar.
++ * LEGACY SHIM — the admin IA now lives in `lib/admin-nav.ts` (2026-10-01
++ * redesign). This module re-derives the old `ADMIN_NAV` shape
++ * (section → entry → tabs) from that registry so any older import keeps
++ * working; do not add entries here. Pending (not-yet-merged) entries are
++ * omitted.
+  */
++import { ADMIN_NAV_GROUPS, hrefMatches, entryLive } from "./admin-nav";
+ 
+-export type SubTabItem = { label: string; href: string };
+-
+-export type AdminEntry = {
+-  /** Stable key for the entry. */
+-  key: string;
+-  /** Sidebar label. */
+-  label: string;
+-  /** Shell icon name (see the `icons` map in components/portal/Shell.tsx). */
+-  icon: string;
+-  /**
+-   * Members, in display order. `tabs[0]` is the entry's landing page and the
+-   * href the sidebar links to. A single-member entry renders no tab bar.
+-   */
+-  tabs: SubTabItem[];
+-};
++export { hrefMatches };
+ 
+-export type AdminGroup = {
+-  /** Stable key for the section. */
+-  key: string;
+-  /** Section header. Omitted for the lead-in section (mirrors the customer portal). */
+-  label?: string;
+-  entries: AdminEntry[];
+-};
++export type SubTabItem = { label: string; href: string };
++export type AdminEntry = { key: string; label: string; icon: string; tabs: SubTabItem[] };
++export type AdminGroup = { key: string; label?: string; entries: AdminEntry[] };
+ 
+-export const ADMIN_NAV: AdminGroup[] = [
+-  {
+-    key: "start",
+-    entries: [
+-      {
+-        key: "overview",
+-        label: "Overview",
+-        icon: "home",
+-        tabs: [
+-          { label: "Overview", href: "/admin" },
+-          { label: "Analytics", href: "/admin/analytics" },
+-          { label: "Visitors", href: "/admin/visitors" },
+-          { label: "Audience", href: "/admin/audience" },
+-          { label: "Retention", href: "/admin/retention" },
+-          { label: "Deploy funnel", href: "/admin/deploy-funnel" },
+-          { label: "Popularity", href: "/admin/popularity" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "customers",
+-    label: "Customers",
+-    entries: [
+-      {
+-        key: "clients",
+-        label: "Clients",
+-        icon: "users",
+-        tabs: [
+-          { label: "Clients", href: "/admin/users" },
+-          { label: "Organizations", href: "/admin/orgs" },
+-        ],
+-      },
+-      {
+-        key: "support",
+-        label: "Support",
+-        icon: "lifebuoy",
+-        tabs: [
+-          { label: "Tickets", href: "/admin/support" },
+-          { label: "Direct messages", href: "/admin/dms" },
+-          { label: "Live chat", href: "/admin/chat" },
+-          { label: "Feedback", href: "/admin/feedback" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "fleet",
+-    label: "Fleet",
+-    entries: [
+-      {
+-        key: "servers",
+-        label: "Servers",
+-        icon: "server",
+-        tabs: [
+-          { label: "Servers", href: "/admin/servers" },
+-          { label: "Grant VPS", href: "/admin/grant" },
+-          { label: "Game servers", href: "/admin/games" },
+-          { label: "Free Minecraft", href: "/admin/free-minecraft" },
+-        ],
+-      },
+-      {
+-        key: "infrastructure",
+-        label: "Infrastructure",
+-        icon: "cpu",
+-        tabs: [
+-          { label: "Nodes", href: "/admin/nodes" },
+-          { label: "IP pool", href: "/admin/ips" },
+-          { label: "Hardware", href: "/admin/infrastructure" },
+-          { label: "Web Hosting", href: "/admin/hosting" },
+-          { label: "NxCloud", href: "/admin/nxcloud" },
+-        ],
+-      },
+-      {
+-        key: "operations",
+-        label: "Operations",
+-        icon: "wrench",
+-        tabs: [
+-          { label: "Provisioning", href: "/admin/provisioning" },
+-          { label: "Jobs", href: "/admin/jobs" },
+-          { label: "Live Ops", href: "/admin/monitor" },
+-          { label: "Monitoring", href: "/admin/monitoring" },
+-          { label: "Backups", href: "/admin/backups" },
+-          { label: "Abuse queue", href: "/admin/abuse" },
+-        ],
+-      },
+-      {
+-        key: "domains",
+-        label: "Domains",
+-        icon: "globe",
+-        tabs: [{ label: "Domains", href: "/admin/domains" }],
+-      },
+-    ],
+-  },
+-  {
+-    key: "revenue",
+-    label: "Revenue",
+-    entries: [
+-      {
+-        key: "billing",
+-        label: "Billing",
+-        icon: "dollar",
+-        tabs: [
+-          { label: "Billing", href: "/admin/billing" },
+-          { label: "Invoices", href: "/admin/invoices" },
+-          { label: "Subscriptions", href: "/admin/subscriptions" },
+-        ],
+-      },
+-      {
+-        key: "catalog",
+-        label: "Catalog",
+-        icon: "tag",
+-        tabs: [
+-          { label: "VPS plans", href: "/admin/plans" },
+-          { label: "Game plans", href: "/admin/game-plans" },
+-          { label: "Mods", href: "/admin/game-mods" },
+-          { label: "Email plans", href: "/admin/email-plans" },
+-          { label: "Add-on products", href: "/admin/products" },
+-        ],
+-      },
+-      {
+-        key: "promotions",
+-        label: "Promotions",
+-        icon: "gift",
+-        tabs: [
+-          { label: "First month free", href: "/admin/promotions" },
+-          { label: "Coupons", href: "/admin/coupons" },
+-          { label: "Gift codes", href: "/admin/gift-codes" },
+-          { label: "Affiliate", href: "/admin/affiliate" },
+-        ],
+-      },
+-      {
+-        key: "partners",
+-        label: "Partners",
+-        icon: "rocket",
+-        tabs: [{ label: "Partners", href: "/admin/partners" }],
+-      },
+-    ],
+-  },
+-  /*
+-   * Real business accounting (2026-08-26): expense tracking + revenue/cost/net
+-   * reporting, distinct from "Revenue" above (which is customer-facing billing —
+-   * invoices, subscriptions, the catalog, promotions). Given its own top-level
+-   * group rather than folded into Revenue since it's a genuinely separate
+-   * business function (what the platform SPENDS, not what it charges customers).
+-   */
+-  {
+-    key: "accounting",
+-    label: "Accounting",
+-    entries: [
+-      {
+-        key: "accounting",
+-        label: "Accounting",
+-        icon: "dollar",
+-        tabs: [
+-          { label: "Overview", href: "/admin/accounting" },
+-          { label: "Expenses", href: "/admin/accounting/expenses" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "marketing",
+-    label: "Marketing",
+-    entries: [
+-      {
+-        key: "marketing",
+-        label: "Marketing",
+-        icon: "sparkle",
+-        tabs: [
+-          { label: "Overview", href: "/admin/marketing-hub" },
+-          { label: "Discovery", href: "/admin/marketing" },
+-          { label: "Reviews", href: "/admin/reviews" },
+-        ],
+-      },
+-      {
+-        key: "studio",
+-        label: "Studio",
+-        icon: "content",
+-        tabs: [
+-          { label: "Studio", href: "/admin/marketing/studio" },
+-          { label: "Assets", href: "/admin/marketing/assets" },
+-          { label: "Calendar", href: "/admin/marketing/calendar" },
+-        ],
+-      },
+-      {
+-        key: "content",
+-        label: "Content",
+-        icon: "content",
+-        tabs: [
+-          { label: "Blog", href: "/admin/blog" },
+-          { label: "Testimonials", href: "/admin/testimonials" },
+-          { label: "Newsletter", href: "/admin/newsletter" },
+-          { label: "Broadcast", href: "/admin/broadcast" },
+-          { label: "Announcements", href: "/admin/announcements" },
+-        ],
+-      },
+-      {
+-        key: "seo",
+-        label: "SEO",
+-        icon: "chart",
+-        tabs: [
+-          { label: "Opportunities", href: "/admin/seo" },
+-          { label: "Settings", href: "/admin/seo/settings" },
+-        ],
+-      },
+-      {
+-        key: "reddit",
+-        label: "Reddit",
+-        icon: "chat",
+-        tabs: [{ label: "Post templates", href: "/admin/reddit" }],
+-      },
+-    ],
+-  },
+-  /*
+-   * Cold Email used to be a single entry with 14 flat tabs, then six entries
+-   * folded into Marketing (2026-08-25/26). Split back out into its own
+-   * top-level group (2026-08-26) — it's a genuinely separate operating
+-   * surface from content/social marketing, same reasoning as Mail below.
+-   * Every href is unchanged from before — nothing moved on disk, only how
+-   * it's grouped in the sidebar. The six entries themselves still split the
+-   * funnel the same way: check status, build the lead base, write the
+-   * campaign, configure who it sends as, watch deliverability, manage the
+-   * suppression ledger.
+-   */
+-  {
+-    key: "coldemail",
+-    label: "Cold Email",
+-    entries: [
+-      {
+-        key: "coldemail",
+-        label: "Cold Email",
+-        icon: "mail",
+-        tabs: [
+-          { label: "Overview", href: "/admin/coldemail" },
+-          { label: "Inbox", href: "/admin/coldemail/inbox" },
+-        ],
+-      },
+-      {
+-        key: "coldemail-leads",
+-        label: "Leads",
+-        icon: "users",
+-        tabs: [
+-          { label: "Businesses", href: "/admin/coldemail/businesses" },
+-          { label: "Lists", href: "/admin/coldemail/lists" },
+-          { label: "Import", href: "/admin/coldemail/import" },
+-        ],
+-      },
+-      {
+-        key: "coldemail-campaigns",
+-        label: "Campaigns",
+-        icon: "rocket",
+-        tabs: [
+-          { label: "Campaigns", href: "/admin/coldemail/campaigns" },
+-          { label: "Templates", href: "/admin/coldemail/templates" },
+-          { label: "Sent", href: "/admin/coldemail/sent" },
+-        ],
+-      },
+-      {
+-        key: "coldemail-identity",
+-        label: "Sending identity",
+-        icon: "globe",
+-        tabs: [
+-          { label: "Brands", href: "/admin/coldemail/brands" },
+-          { label: "Domains & inboxes", href: "/admin/coldemail/domains" },
+-          { label: "Settings", href: "/admin/coldemail/settings" },
+-        ],
+-      },
+-      {
+-        key: "coldemail-deliverability",
+-        label: "Deliverability",
+-        icon: "chart",
+-        tabs: [
+-          { label: "Warming", href: "/admin/coldemail/warming" },
+-          { label: "Analytics", href: "/admin/coldemail/analytics" },
+-          { label: "Webhooks", href: "/admin/coldemail/webhooks" },
+-        ],
+-      },
+-      {
+-        key: "coldemail-suppression",
+-        label: "Suppression",
+-        icon: "shield",
+-        tabs: [{ label: "Suppression", href: "/admin/coldemail/suppression" }],
+-      },
+-    ],
+-  },
+-  {
+-    key: "agency",
+-    label: "Agency",
+-    entries: [
+-      {
+-        key: "agency",
+-        label: "Sitewave",
+-        icon: "globe",
+-        tabs: [
+-          { label: "Overview", href: "/admin/agency" },
+-          { label: "Pipeline", href: "/admin/agency/pipeline" },
+-          { label: "Verticals", href: "/admin/agency/verticals" },
+-          { label: "Prospects", href: "/admin/agency/prospects" },
+-          { label: "Demos", href: "/admin/agency/demos" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "ads",
+-    label: "Ads",
+-    entries: [
+-      {
+-        key: "ads",
+-        label: "Adloop",
+-        icon: "chart",
+-        tabs: [
+-          { label: "Overview", href: "/admin/ads" },
+-          { label: "Accounts", href: "/admin/ads/accounts" },
+-          { label: "Campaigns", href: "/admin/ads/campaigns" },
+-          { label: "Rules", href: "/admin/ads/rules" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "mail",
+-    label: "Mail",
+-    entries: [
+-      {
+-        key: "mail",
+-        label: "Mail",
+-        icon: "mail",
+-        tabs: [
+-          { label: "Inbox", href: "/admin/inbox" },
+-          { label: "Deliverability", href: "/admin/mail" },
+-          { label: "Mailboxes", href: "/admin/mailboxes" },
+-          { label: "Email templates", href: "/admin/email-templates" },
+-        ],
+-      },
+-    ],
+-  },
+-  {
+-    key: "platform",
+-    label: "Platform",
+-    entries: [
+-      {
+-        key: "system",
+-        label: "Settings",
+-        icon: "cog",
+-        tabs: [
+-          { label: "Settings", href: "/admin/settings" },
+-          { label: "Automation", href: "/admin/automation" },
+-          { label: "Staff", href: "/admin/staff" },
+-          { label: "Logs", href: "/admin/logs" },
+-          { label: "Audit", href: "/admin/audit" },
+-        ],
+-      },
+-      {
+-        key: "improvements",
+-        label: "Improvements",
+-        icon: "sparkle",
+-        tabs: [
+-          { label: "Improvements", href: "/admin/improvements" },
+-          { label: "Docs", href: "/admin/docs" },
+-        ],
+-      },
+-      {
+-        key: "board",
+-        label: "Boards",
+-        icon: "card",
+-        tabs: [{ label: "Boards", href: "/admin/board" }],
+-      },
+-    ],
+-  },
+-];
++export const ADMIN_NAV: AdminGroup[] = ADMIN_NAV_GROUPS.map((g) => ({
++  key: g.key,
++  label: g.label,
++  entries: g.items
++    .filter((it) => entryLive(it, { agency: true, ads: true }))
++    .map((it) => ({
++      key: it.key,
++      label: it.label,
++      icon: it.icon,
++      tabs: (it.children?.length ? it.children : [it])
++        .filter((c) => !c.pending)
++        .map((c) => ({ label: c.label, href: c.href })),
++    })),
++}));
+ 
+ /** Every entry across every section, in sidebar order. */
+ export function adminEntries(): AdminEntry[] {
+   return ADMIN_NAV.flatMap((g) => g.entries);
+ }
+ 
+-/**
+- * Does `pathname` belong to `href`? Exact match, or a detail route beneath it
+- * (`/admin/users/123`). The bare "/admin" only ever matches exactly so it can
+- * never swallow every deeper route.
+- */
+-export function hrefMatches(href: string, pathname: string): boolean {
+-  if (pathname === href) return true;
+-  if (href === "/admin") return false;
+-  return pathname.startsWith(href + "/");
+-}
+-
+-/**
+- * Resolve which top-level entry owns a given admin pathname, by longest
+- * matching member href. Returns null for admin paths outside the IA.
+- */
++/** Resolve which top-level entry owns a given admin pathname (longest match). */
+ export function entryForPath(pathname: string): AdminEntry | null {
+   let best: { entry: AdminEntry; len: number } | null = null;
+   for (const entry of adminEntries()) {
+diff --git a/scripts/postbuild-copy-geoip-data.sh b/scripts/postbuild-copy-geoip-data.sh
+index 5d3e86048f..660fc4809d 100755
+--- a/scripts/postbuild-copy-geoip-data.sh
++++ b/scripts/postbuild-copy-geoip-data.sh
+@@ -1,5 +1,5 @@
+ #!/bin/bash
+-# Two things `next build` with output:"standalone" never does on its own —
++# Three things (see 3. at the bottom) `next build` with output:"standalone" never does on its own —
+ # both confirmed live 2026-10-01 to take the whole site down when missed:
+ #
+ # 1. geoip-lite loads its .dat files off its own on-disk path at runtime
+@@ -25,3 +25,19 @@ if [ -d ".next/static" ] && [ -d ".next/standalone/.next" ]; then
+   cp -r ".next/static" ".next/standalone/.next/static"
+   echo "[postbuild] copied .next/static into standalone output"
+ fi
++
++# 3. `public/` (logo, favicon, flags, game art, brand assets) is ALSO not
++#    copied into the standalone output (same documented Next.js behaviour).
++#    scripts/promote-production.sh copies it, but any other build path
++#    (a hand-run `npm run build && systemctl restart`) did not — and from that
++#    restart until the next promote, EVERY public asset answered HTTP 400 on
++#    every host. Confirmed in the nginx forensic log for 2026-10-01
++#    02:54–03:10 UTC: 149/149 uncached image requests on the admin host and
++#    all on the main host 400'd, then went back to 200 at the 03:10 promote.
++#    This is the "none of the admin portal's images populate" report — the
++#    admin is simply where the owner was looking during those windows.
++if [ -d "public" ] && [ -d ".next/standalone" ]; then
++  rm -rf ".next/standalone/public"
++  cp -r "public" ".next/standalone/public"
++  echo "[postbuild] copied public/ into standalone output"
++fi
+diff --git a/test/company-mailbox.test.ts b/test/company-mailbox.test.ts
+index 469bc133cc..17fd15d6c4 100644
+--- a/test/company-mailbox.test.ts
++++ b/test/company-mailbox.test.ts
+@@ -90,13 +90,13 @@ test("staff read company mailboxes only in the admin inbox — isolated from cus
+     "the admin inbox page must render the shared CompanyInboxView"
+   );
+   assert.ok(
+-    /"\/admin\/inbox"/.test(withCopy("lib/admin-groups.ts")),
++    /"\/admin\/inbox"/.test(withCopy("lib/admin-nav.ts")),
+     "the admin nav must expose the in-admin Inbox"
+   );
+ });
+ 
+ test("the admin nav + RBAC expose /admin/mailboxes under its own companyMailboxes area", () => {
+-  const nav = withCopy("lib/admin-groups.ts");
++  const nav = withCopy("lib/admin-nav.ts");
+   assert.ok(nav.includes("/admin/mailboxes"), "admin nav must include the Mailboxes tab href");
+   assert.ok(/label:\s*["']Mailboxes["']/.test(nav), "the tab must be labelled Mailboxes");
+   const rbac = withCopy("lib/rbac.ts");

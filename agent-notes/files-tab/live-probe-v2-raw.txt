@@ -1,0 +1,122 @@
+=== minecraft [paper] 1nu6xb
+yes /opt/mc
+yes /opt/mc/plugins
+NO  /opt/mc/mods
+yes /opt/mc/world
+yes /opt/mc/config
+yes /opt/mc/logs
+yes /var/backups/nxeon-game
+
+=== minecraft [vanilla] 8triev
+yes /opt/mc
+NO  /opt/mc/plugins
+NO  /opt/mc/mods
+yes /opt/mc/world
+NO  /opt/mc/config
+yes /opt/mc/logs
+NO  /var/backups/nxeon-game
+
+=== minecraft [fabric] k4moel
+yes /opt/mc
+NO  /opt/mc/plugins
+yes /opt/mc/mods
+yes /opt/mc/world
+NO  /opt/mc/config
+yes /opt/mc/logs
+NO  /var/backups/nxeon-game
+
+=== valheim [vanilla] iay5tf
+yes /opt/valheim/config
+yes /opt/valheim/config/worlds_local
+NO  /opt/valheim/config/bepinex/plugins
+yes /opt/valheim/data
+yes /opt/valheim/config/backups
+NO  /var/backups/nxeon-game
+
+=== valheim [bepinex] fdu8jo
+yes /opt/valheim/config
+yes /opt/valheim/config/worlds_local
+yes /opt/valheim/config/bepinex/plugins
+yes /opt/valheim/data
+yes /opt/valheim/config/backups
+NO  /var/backups/nxeon-game
+
+=== palworld [vanilla] muydci
+yes /opt/palworld
+yes /opt/palworld/Pal/Saved/Config/LinuxServer
+yes /opt/palworld/Pal/Saved/SaveGames
+yes /opt/palworld/backups
+NO  /opt/palworld/Pal/Binaries/Linux/ue4ss
+NO  /opt/palworld/Pal/Content/Paks/~mods
+yes /opt/palworld/Pal/Content/Paks
+yes /var/backups/nxeon-game
+
+=== projectzomboid [b42] 5xxiil
+yes /opt/projectzomboid/config
+yes /opt/projectzomboid/config/Server
+yes /opt/projectzomboid/config/mods
+yes /opt/projectzomboid/config/Saves/Multiplayer
+yes /opt/projectzomboid/server
+yes /opt/projectzomboid/config/Logs
+NO  /var/backups/nxeon-game
+
+=== rust [vanilla] 6vmcan
+yes /opt/rust
+yes /opt/rust/server
+NO  /opt/rust/oxide/plugins
+NO  /opt/rust/oxide/config
+NO  /opt/rust/carbon/plugins
+NO  /var/backups/nxeon-game
+
+=== terraria [default] kzpr1i
+yes /opt/terraria
+yes /opt/terraria-plugins
+NO  /opt/terraria/ServerPlugins
+yes /var/backups/nxeon-game
+
+=== terraria [-] 73lyto
+yes /opt/terraria
+NO  /opt/terraria-plugins
+NO  /opt/terraria/ServerPlugins
+NO  /var/backups/nxeon-game
+
+=== cs2 [metamod] dhli0r
+yes /opt/cs2
+yes /opt/cs2/game/csgo
+yes /opt/cs2/game/csgo/cfg
+NO  /opt/cs2/game/csgo/addons
+NO  /var/backups/nxeon-game
+
+=== ark [theisland] om0ax8
+yes /opt/ark
+yes /opt/ark/server
+yes /opt/ark/server/ShooterGame/Saved
+yes /opt/ark/server/ShooterGame/Saved/SavedArks
+yes /opt/ark/server/ShooterGame/Saved/Config/LinuxServer
+yes /opt/ark/server/ShooterGame/Content/Mods
+NO  /var/backups/nxeon-game
+
+=== l4d2 [coop] hehre0
+yes /opt/l4d2
+yes /opt/l4d2/cfg
+yes /opt/l4d2/addons
+yes /opt/l4d2/addons/sourcemod
+yes /var/backups/nxeon-game
+
+=== corekeeper [default] lzgesn
+yes /opt/corekeeper
+yes /opt/corekeeper/data
+yes /opt/corekeeper/files
+yes /opt/corekeeper/files/CoreKeeperServer_Data/StreamingAssets/Mods
+NO  /opt/corekeeper/files/BepInEx/plugins
+NO  /opt/corekeeper/data/worlds
+yes /var/backups/nxeon-game
+
+=== bedrock [latest] a89r6f
+yes /opt/bedrock
+yes /opt/bedrock/worlds
+yes /opt/bedrock/behavior_packs
+yes /opt/bedrock/resource_packs
+yes /opt/bedrock/config
+NO  /var/backups/nxeon-game
+

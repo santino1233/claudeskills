@@ -1,0 +1,44 @@
+NXEON SPONSORED SEGMENT · code TEST42
+============================================
+
+Your files
+  - nxeon-promo_TEST42_es_16x9.mp4
+  - nxeon-promo_TEST42_es_16x9_endframe.png
+
+What it is
+  A 50-second sponsored segment showing the real Nxeon game-server flow:
+  pick a game, region, your code at checkout, deploy, then the control panel
+  (settings, 1-click mods, resources, upgrades). It has no audio, so you can
+  talk over it and use your own music. Each screen animates in fast and then
+  holds, which leaves room to narrate.
+
+How to use it
+  1. Drop the MP4 into your edit wherever the sponsor read goes (mid-roll works best).
+  2. Tick YouTube's "Includes paid promotion" box (Details > Paid promotion).
+     The small "SPONSORED" tag in the corner is extra and doesn't replace it.
+  3. Say your code out loud on the end card: it holds still for the last ~3.5 s.
+  4. Put the link and code in your description (text below).
+  5. If you picked a language other than English, have a native speaker check
+     the on-screen text before you publish.
+
+Suggested narration (timings match the video, so make it your own)
+  0:00  This video is sponsored by Nxeon.
+  0:02  If you want your own game server, Nxeon gets you there in seconds. Pick your game,
+  0:06  choose a region close to your players,
+  0:10  and at checkout use my code TEST42: that's 50% off your first server,
+        and 10% off everything after that, for life.
+  0:16  One click to deploy,
+  0:18  and your server builds itself and goes live.
+  0:23  Everything is in one control panel:
+  0:28  tweak any setting,
+  0:31  install mods in one click,
+  0:36  keep an eye on your resources,
+  0:39  and upgrade instantly when your world grows.
+  0:43  Go to 127.0.0.1:4363/partner/TEST42, or use code TEST42 for 50% off your first server.
+        The link is in the description.
+
+Description text
+  This video is sponsored by Nxeon. Get 50% off your first game server
+  (then 10% off for life) with code TEST42: https://127.0.0.1:4363/partner/TEST42
+
+Questions: open a ticket from Support in your Nxeon dashboard.

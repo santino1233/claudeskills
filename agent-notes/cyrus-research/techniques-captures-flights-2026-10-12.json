@@ -1,0 +1,602 @@
+{
+ "at": "2026-10-12T07:22:55.862Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (fixture designs)",
+ "switch": "techniques: true (CYRUS_MC_TECHNIQUES)",
+ "lanes": [
+  {
+   "version": "1.21.1",
+   "jdk": "21",
+   "files": 31,
+   "hash": "427a58d23a0f9864be7611c80980e3f41c5699d4caaef98902ac5b5820c690f4",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xdbee/1.21.1/NxTools-1.21.1.jar",
+   "jarSha256": "82107eefff532a139c565a86ff29fd0f832191c18f2eb65cae7c0e2875174d48",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.4",
+   "jdk": "21",
+   "files": 31,
+   "hash": "1e9f1784e7527b59d57fe147b3ffd34b209430d9241c679d602f972ca91180c6",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xdbee/1.21.4/NxTools-1.21.4.jar",
+   "jarSha256": "f0539bfc0d3e1cab6ae4523f2d86e56f98f33f7988288404125b014175d49099",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.8",
+   "jdk": "21",
+   "files": 31,
+   "hash": "a2b8bc97bf6391cd21097128bc6022ab9eebabf6ab94c20257cd29cbbb673744",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xdbee/1.21.8/NxTools-1.21.8.jar",
+   "jarSha256": "6c5b0fa0a6767f6b02029ec4b7f840b06b4587a35c7881ad508a45ac29d906b8",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "files": 31,
+   "hash": "afe2a893572692a4e849c84ed340e6a3f3c279d48691abb125174090714d25d5",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xdbee/1.21.11/NxTools-1.21.11.jar",
+   "jarSha256": "6c91cf148f247d1bfa187ed1538ef7ff5dddcf4fbbf546af8e436f7aabf83c4a",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "files": 31,
+   "hash": "126e45e9f3acdc186c1e66c80888a8c4bb2d984d0e24612396a6ede807f41fb3",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4xdbee/26.2/NxTools-26.2.jar",
+   "jarSha256": "8623aa713aaf60f9b6a0116f422533f1399b29176d24d938bb318e92ea283951",
+   "sources": 29,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "captures": {
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 20.1s, peak RSS 957 MB)",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "pass",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "rcon": [
+   "plugins 'plugins' [rss 848 MB, 252 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - NxTools | ",
+   "list 'nxtools list' [rss 869 MB, 351 ms]: ok -> mob_net: identity=ok material=stick abilities=1 recipe=none | sneak_drill: identity=ok material=diamond_pickaxe abilities=1 recipe=none | timber_axe: identity=ok material=iron_axe abilities=1 recipe=none | vein_pickaxe: identity=ok material"
+  ],
+  "log": [
+   "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 2449 ms at {\"x\":6.5,\"y\":-60,\"z\":-8.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player,type=!item]' -> No entity was found"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give mob_net NxPlaytest' -> Gave 1 x mob_net to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: stick"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxcap\"],CustomName:\"Bacon\"}' -> Summoned new Bacon"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_on_entity",
+      "status": "pass",
+      "evidence": [
+       "right-clicked the pig 2.00 blocks away with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxcap]' -> Test failed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 55' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxcap,name=Bacon]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player,type=!item]' -> Killed Bacon"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give mob_net NxPlaytest' -> Gave 1 x mob_net to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: stick"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:villager 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxvil\"],VillagerData:{profession:\"minecraft:librarian\",level:2,ty' -> Summoned new Librarian"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=villager,tag=nxvil,nbt={VillagerData:{profession:\"minecraft:librarian\"}}]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "use_on_entity",
+      "status": "pass",
+      "evidence": [
+       "right-clicked the villager 2.00 blocks away with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=villager,tag=nxvil]' -> Test failed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 55' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=villager,tag=nxvil,nbt={VillagerData:{profession:\"minecraft:librarian\"}}]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player,type=!item]' -> Killed Librarian"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give mob_net NxPlaytest' -> Gave 1 x mob_net to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: stick"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxdup\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_on_entity",
+      "status": "pass",
+      "evidence": [
+       "right-clicked the pig 2.00 blocks away with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'item replace entity NxPlaytest hotbar.8 from entity NxPlaytest weapon.mainhand' -> Replaced a slot on NxPlaytest with [Mob Net]"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 55' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxdup]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'item replace entity NxPlaytest weapon.mainhand from entity NxPlaytest hotbar.8' -> Replaced a slot on NxPlaytest with [Mob Net]"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxdup]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-4",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player,type=!item]' -> Killed Pig"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give mob_net NxPlaytest' -> Gave 1 x mob_net to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: stick"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxrid\"],Passengers:[{id:\"minecraft:chicken\",NoAI:1b}]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_on_entity",
+      "status": "pass",
+      "evidence": [
+       "right-clicked the pig 2.00 blocks away with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxrid]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-5",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player,type=!item]' -> Killed 2 entities"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'give NxPlaytest minecraft:stick' -> Gave 1 [Stick] to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: stick"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 13.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 13.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 2.5 -60 15.5 {NoAI:1b,Tags:[\"nxctl\"]}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "use_on_entity",
+      "status": "pass",
+      "evidence": [
+       "right-clicked the pig 2.00 blocks away with stick"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 700 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=nxctl]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mv4xdn26-5d9a6b",
+  "engine": {
+   "runner": "tf-lite-6",
+   "paper": 132
+  }
+ }
+}

@@ -1,0 +1,3210 @@
+{
+ "timeline": {
+  "spec": {
+   "id": "gun_reload",
+   "title": "Gun fire, reload and cock",
+   "nodes": [
+    {
+     "name": "body",
+     "parent": null,
+     "kind": "part",
+     "hinge": null
+    },
+    {
+     "name": "grip",
+     "parent": "body",
+     "kind": "part",
+     "hinge": null
+    },
+    {
+     "name": "slide",
+     "parent": "body",
+     "kind": "part",
+     "hinge": null
+    },
+    {
+     "name": "hammer",
+     "parent": "body",
+     "kind": "hinge",
+     "hinge": {
+      "axis": "x",
+      "min": -50,
+      "max": 0
+     }
+    },
+    {
+     "name": "trigger",
+     "parent": "body",
+     "kind": "hinge",
+     "hinge": {
+      "axis": "x",
+      "min": 0,
+      "max": 25
+     }
+    },
+    {
+     "name": "mag",
+     "parent": "body",
+     "kind": "part",
+     "hinge": null
+    },
+    {
+     "name": "muzzle",
+     "parent": "slide",
+     "kind": "emitter",
+     "hinge": null
+    },
+    {
+     "name": "ejector",
+     "parent": "slide",
+     "kind": "emitter",
+     "hinge": null
+    }
+   ],
+   "machine": {
+    "name": "gun",
+    "initial": "idle",
+    "vars": [
+     {
+      "name": "ammo",
+      "init": 3,
+      "min": 0,
+      "max": 3
+     },
+     {
+      "name": "chambered",
+      "init": 1,
+      "min": 0,
+      "max": 1
+     }
+    ],
+    "states": [
+     {
+      "name": "idle",
+      "clip": "idle",
+      "onEnter": [
+       {
+        "do": "emit",
+        "event": "auto_cock"
+       }
+      ]
+     },
+     {
+      "name": "fire",
+      "clip": "fire",
+      "onEnter": [
+       {
+        "do": "add",
+        "var": "ammo",
+        "by": -1
+       }
+      ],
+      "after": {
+       "to": "idle"
+      }
+     },
+     {
+      "name": "fire_last",
+      "clip": "fire_last",
+      "onEnter": [
+       {
+        "do": "add",
+        "var": "ammo",
+        "by": -1
+       },
+       {
+        "do": "set",
+        "var": "chambered",
+        "value": 0
+       }
+      ],
+      "after": {
+       "to": "empty"
+      }
+     },
+     {
+      "name": "empty",
+      "clip": "empty"
+     },
+     {
+      "name": "dry",
+      "clip": "dry",
+      "after": {
+       "to": "empty"
+      }
+     },
+     {
+      "name": "reload",
+      "clip": "reload",
+      "onEnter": [
+       {
+        "do": "set",
+        "var": "ammo",
+        "value": 3
+       }
+      ],
+      "after": {
+       "to": "idle"
+      }
+     },
+     {
+      "name": "reload_empty",
+      "clip": "reload_empty",
+      "onEnter": [
+       {
+        "do": "set",
+        "var": "ammo",
+        "value": 3
+       }
+      ],
+      "after": {
+       "to": "idle"
+      }
+     },
+     {
+      "name": "cock",
+      "clip": "cock",
+      "onEnter": [
+       {
+        "do": "set",
+        "var": "chambered",
+        "value": 1
+       }
+      ],
+      "after": {
+       "to": "idle"
+      }
+     }
+    ],
+    "transitions": [
+     {
+      "from": "idle",
+      "on": "fire",
+      "to": "fire",
+      "guard": [
+       {
+        "var": "ammo",
+        "op": "gt",
+        "value": 1
+       }
+      ]
+     },
+     {
+      "from": "idle",
+      "on": "fire",
+      "to": "fire_last",
+      "guard": [
+       {
+        "var": "ammo",
+        "op": "eq",
+        "value": 1
+       },
+       {
+        "var": "chambered",
+        "op": "eq",
+        "value": 1
+       }
+      ]
+     },
+     {
+      "from": "empty",
+      "on": "fire",
+      "to": "dry"
+     },
+     {
+      "from": "idle",
+      "on": "reload",
+      "to": "reload",
+      "guard": [
+       {
+        "var": "ammo",
+        "op": "lt",
+        "value": 3
+       }
+      ]
+     },
+     {
+      "from": "empty",
+      "on": "reload",
+      "to": "reload_empty"
+     },
+     {
+      "from": "idle",
+      "on": "auto_cock",
+      "to": "cock",
+      "guard": [
+       {
+        "var": "chambered",
+        "op": "eq",
+        "value": 0
+       },
+       {
+        "var": "ammo",
+        "op": "gt",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "from": "idle",
+      "on": "cock",
+      "to": "cock",
+      "guard": [
+       {
+        "var": "chambered",
+        "op": "eq",
+        "value": 0
+       },
+       {
+        "var": "ammo",
+        "op": "gt",
+        "value": 0
+       }
+      ]
+     }
+    ]
+   },
+   "clips": [
+    {
+     "name": "idle",
+     "length": 1,
+     "loop": "hold",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "hammer",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          -45,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      }
+     ]
+    },
+    {
+     "name": "fire",
+     "length": 4,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "slide",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0.12
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "inout",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "body",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "out",
+         "v": [
+          6,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "inout",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "hammer",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          -45,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "in",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 2,
+         "ease": "out",
+         "v": [
+          -45,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "trigger",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          20,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "particle",
+       "node": "muzzle",
+       "at": 0,
+       "duration": 0,
+       "effect": "effect:muzzle_flash",
+       "emitters": 3
+      },
+      {
+       "kind": "material",
+       "node": "muzzle",
+       "channel": "brightness",
+       "keys": [
+        {
+         "t": 0,
+         "v": 15
+        },
+        {
+         "t": 2,
+         "v": 0
+        }
+       ]
+      },
+      {
+       "kind": "particle",
+       "node": "ejector",
+       "at": 1,
+       "duration": 0,
+       "effect": null,
+       "emitters": 1
+      },
+      {
+       "kind": "sound",
+       "at": 0,
+       "sound": "sound:gun_pistol_shot",
+       "gain": 1,
+       "pitch": 1
+      }
+     ]
+    },
+    {
+     "name": "fire_last",
+     "length": 4,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "slide",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0.12
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "body",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "out",
+         "v": [
+          6,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "inout",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "hammer",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          -45,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 1,
+         "ease": "in",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "trigger",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          20,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "particle",
+       "node": "muzzle",
+       "at": 0,
+       "duration": 0,
+       "effect": "effect:muzzle_flash",
+       "emitters": 3
+      },
+      {
+       "kind": "material",
+       "node": "muzzle",
+       "channel": "brightness",
+       "keys": [
+        {
+         "t": 0,
+         "v": 15
+        },
+        {
+         "t": 2,
+         "v": 0
+        }
+       ]
+      },
+      {
+       "kind": "particle",
+       "node": "ejector",
+       "at": 1,
+       "duration": 0,
+       "effect": null,
+       "emitters": 1
+      },
+      {
+       "kind": "sound",
+       "at": 0,
+       "sound": "sound:gun_pistol_shot",
+       "gain": 1,
+       "pitch": 1
+      }
+     ]
+    },
+    {
+     "name": "empty",
+     "length": 1,
+     "loop": "hold",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "slide",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0.12
+         ]
+        }
+       ],
+       "wave": false
+      }
+     ]
+    },
+    {
+     "name": "dry",
+     "length": 4,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "trigger",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          20,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "sound",
+       "at": 0,
+       "sound": "minecraft:block.lever.click",
+       "gain": 1,
+       "pitch": 1.6
+      }
+     ]
+    },
+    {
+     "name": "reload",
+     "length": 34,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "mag",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 6,
+         "ease": "in",
+         "v": [
+          0,
+          -0.45,
+          0.08
+         ]
+        },
+        {
+         "t": 14,
+         "ease": "step",
+         "v": [
+          0,
+          -0.45,
+          0.08
+         ]
+        },
+        {
+         "t": 20,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "body",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 5,
+         "ease": "inout",
+         "v": [
+          -8,
+          0,
+          18
+         ]
+        },
+        {
+         "t": 26,
+         "ease": "linear",
+         "v": [
+          -8,
+          0,
+          18
+         ]
+        },
+        {
+         "t": 34,
+         "ease": "inout",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "sound",
+       "at": 4,
+       "sound": "minecraft:block.iron_trapdoor.open",
+       "gain": 1,
+       "pitch": 1.4
+      },
+      {
+       "kind": "sound",
+       "at": 19,
+       "sound": "minecraft:block.iron_trapdoor.close",
+       "gain": 1,
+       "pitch": 1.5
+      },
+      {
+       "kind": "event",
+       "at": 20,
+       "name": "mag_in"
+      }
+     ]
+    },
+    {
+     "name": "reload_empty",
+     "length": 34,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "slide",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0.12
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "mag",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 6,
+         "ease": "in",
+         "v": [
+          0,
+          -0.45,
+          0.08
+         ]
+        },
+        {
+         "t": 14,
+         "ease": "step",
+         "v": [
+          0,
+          -0.45,
+          0.08
+         ]
+        },
+        {
+         "t": 20,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "body",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 5,
+         "ease": "inout",
+         "v": [
+          -8,
+          0,
+          18
+         ]
+        },
+        {
+         "t": 26,
+         "ease": "linear",
+         "v": [
+          -8,
+          0,
+          18
+         ]
+        },
+        {
+         "t": 34,
+         "ease": "inout",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "sound",
+       "at": 4,
+       "sound": "minecraft:block.iron_trapdoor.open",
+       "gain": 1,
+       "pitch": 1.4
+      },
+      {
+       "kind": "sound",
+       "at": 19,
+       "sound": "minecraft:block.iron_trapdoor.close",
+       "gain": 1,
+       "pitch": 1.5
+      },
+      {
+       "kind": "event",
+       "at": 20,
+       "name": "mag_in"
+      }
+     ]
+    },
+    {
+     "name": "cock",
+     "length": 10,
+     "loop": "once",
+     "tracks": [
+      {
+       "kind": "transform",
+       "node": "slide",
+       "channel": "pos",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0.12
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "out",
+         "v": [
+          0,
+          0,
+          0.138
+         ]
+        },
+        {
+         "t": 6,
+         "ease": "in",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "transform",
+       "node": "hammer",
+       "channel": "rot",
+       "keys": [
+        {
+         "t": 0,
+         "ease": "linear",
+         "v": [
+          0,
+          0,
+          0
+         ]
+        },
+        {
+         "t": 4,
+         "ease": "out",
+         "v": [
+          -45,
+          0,
+          0
+         ]
+        }
+       ],
+       "wave": false
+      },
+      {
+       "kind": "sound",
+       "at": 5,
+       "sound": "minecraft:block.piston.contract",
+       "gain": 1,
+       "pitch": 1.6
+      },
+      {
+       "kind": "event",
+       "at": 6,
+       "name": "chambered"
+      }
+     ]
+    }
+   ],
+   "params": {
+    "magSize": 3,
+    "fireTicks": 4,
+    "reloadTicks": 34,
+    "recoil": 6,
+    "slideTravel": 0.12,
+    "length": 0.75,
+    "shot": "sound:gun_pistol_shot",
+    "dry": "minecraft:block.lever.click",
+    "magOut": "minecraft:block.iron_trapdoor.open",
+    "magIn": "minecraft:block.iron_trapdoor.close",
+    "rack": "minecraft:block.piston.contract"
+   }
+  },
+  "inputs": [
+   {
+    "tick": 4,
+    "event": "fire"
+   },
+   {
+    "tick": 10,
+    "event": "fire"
+   },
+   {
+    "tick": 16,
+    "event": "fire"
+   },
+   {
+    "tick": 22,
+    "event": "fire"
+   },
+   {
+    "tick": 28,
+    "event": "reload"
+   }
+  ],
+  "ticks": 80,
+  "frames": [
+   {
+    "tick": 0,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 1,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 2,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 3,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 4,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": "effect:muzzle_flash",
+      "node": "muzzle"
+     },
+     {
+      "kind": "sound",
+      "sound": "sound:gun_pistol_shot"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 5,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": null,
+      "node": "ejector"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 6,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 10
+   },
+   {
+    "tick": 7,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 8
+   },
+   {
+    "tick": 8,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 9,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 2,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 10,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": "effect:muzzle_flash",
+      "node": "muzzle"
+     },
+     {
+      "kind": "sound",
+      "sound": "sound:gun_pistol_shot"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 11,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": null,
+      "node": "ejector"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 12,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 10
+   },
+   {
+    "tick": 13,
+    "state": "fire",
+    "clip": "fire",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 8
+   },
+   {
+    "tick": 14,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 15,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 1,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 16,
+    "state": "fire_last",
+    "clip": "fire_last",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": "effect:muzzle_flash",
+      "node": "muzzle"
+     },
+     {
+      "kind": "sound",
+      "sound": "sound:gun_pistol_shot"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 17,
+    "state": "fire_last",
+    "clip": "fire_last",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "particle",
+      "effect": null,
+      "node": "ejector"
+     }
+    ],
+    "particles": 13
+   },
+   {
+    "tick": 18,
+    "state": "fire_last",
+    "clip": "fire_last",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 10
+   },
+   {
+    "tick": 19,
+    "state": "fire_last",
+    "clip": "fire_last",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 8
+   },
+   {
+    "tick": 20,
+    "state": "empty",
+    "clip": "empty",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 21,
+    "state": "empty",
+    "clip": "empty",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 22,
+    "state": "dry",
+    "clip": "dry",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "sound",
+      "sound": "minecraft:block.lever.click"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 23,
+    "state": "dry",
+    "clip": "dry",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 24,
+    "state": "dry",
+    "clip": "dry",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 25,
+    "state": "dry",
+    "clip": "dry",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 26,
+    "state": "empty",
+    "clip": "empty",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 27,
+    "state": "empty",
+    "clip": "empty",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 0,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 28,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 29,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 30,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 31,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 32,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 4,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "sound",
+      "sound": "minecraft:block.iron_trapdoor.open"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 33,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 5,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 34,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 6,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 35,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 7,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 36,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 8,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 37,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 9,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 38,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 10,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 39,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 11,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 40,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 12,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 41,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 13,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 42,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 14,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 43,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 15,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 44,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 16,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 45,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 17,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 46,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 18,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 47,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 19,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "sound",
+      "sound": "minecraft:block.iron_trapdoor.close"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 48,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 20,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [
+     {
+      "kind": "event",
+      "name": "mag_in"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 49,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 21,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 50,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 22,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 51,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 23,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 52,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 24,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 53,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 25,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 54,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 26,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 55,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 27,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 56,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 28,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 57,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 29,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 58,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 30,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 59,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 31,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 60,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 32,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 61,
+    "state": "reload_empty",
+    "clip": "reload_empty",
+    "clipTick": 33,
+    "vars": {
+     "ammo": 3,
+     "chambered": 0
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 62,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 63,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 64,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 65,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 66,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 4,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 67,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 5,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "sound",
+      "sound": "minecraft:block.piston.contract"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 68,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 6,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [
+     {
+      "kind": "event",
+      "name": "chambered"
+     }
+    ],
+    "particles": 0
+   },
+   {
+    "tick": 69,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 7,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 70,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 8,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 71,
+    "state": "cock",
+    "clip": "cock",
+    "clipTick": 9,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 72,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 0,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 73,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 1,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 74,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 2,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 75,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 3,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 76,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 4,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 77,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 5,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 78,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 6,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   },
+   {
+    "tick": 79,
+    "state": "idle",
+    "clip": "idle",
+    "clipTick": 7,
+    "vars": {
+     "ammo": 3,
+     "chambered": 1
+    },
+    "cues": [],
+    "particles": 0
+   }
+  ],
+  "log": [
+   "t0 state idle clip idle ammo=3 chambered=1",
+   "t4 state fire clip fire ammo=2 chambered=1",
+   "t4 particle effect:muzzle_flash@muzzle",
+   "t4 sound sound:gun_pistol_shot",
+   "t5 particle emitter@ejector",
+   "t8 state idle clip idle ammo=2 chambered=1",
+   "t10 state fire clip fire ammo=1 chambered=1",
+   "t10 particle effect:muzzle_flash@muzzle",
+   "t10 sound sound:gun_pistol_shot",
+   "t11 particle emitter@ejector",
+   "t14 state idle clip idle ammo=1 chambered=1",
+   "t16 state fire_last clip fire_last ammo=0 chambered=0",
+   "t16 particle effect:muzzle_flash@muzzle",
+   "t16 sound sound:gun_pistol_shot",
+   "t17 particle emitter@ejector",
+   "t20 state empty clip empty ammo=0 chambered=0",
+   "t22 state dry clip dry ammo=0 chambered=0",
+   "t22 sound minecraft:block.lever.click",
+   "t26 state empty clip empty ammo=0 chambered=0",
+   "t28 state reload_empty clip reload_empty ammo=3 chambered=0",
+   "t32 sound minecraft:block.iron_trapdoor.open",
+   "t47 sound minecraft:block.iron_trapdoor.close",
+   "t48 event mag_in",
+   "t62 state cock clip cock ammo=3 chambered=1",
+   "t67 sound minecraft:block.piston.contract",
+   "t68 event chambered",
+   "t72 state idle clip idle ammo=3 chambered=1"
+  ],
+  "stats": {
+   "nodes": 8,
+   "depth": 2,
+   "clips": 8,
+   "maxTracks": 8,
+   "maxKeys": 4,
+   "keysTotal": 50,
+   "maxDuration": 34,
+   "particlesPerTick": 13,
+   "particlesPerClip": 14,
+   "maxSounds": 2,
+   "machines": 1,
+   "maxStates": 8,
+   "maxTransitions": 7,
+   "liveEntities": 6
+  },
+  "mcCaps": {
+   "nodes": 16,
+   "depth": 6,
+   "clips": 12,
+   "tracksPerClip": 32,
+   "keysPerTrack": 32,
+   "keysTotal": 512,
+   "durationTicks": 1200,
+   "particlesPerTick": 64,
+   "particlesPerClip": 512,
+   "soundsPerClip": 16,
+   "machines": 1,
+   "states": 12,
+   "transitions": 24,
+   "liveEntities": 13
+  },
+  "mcIssues": [],
+  "mc": {
+   "stats": {
+    "parts": 6,
+    "clips": 8,
+    "segments": 199,
+    "cues": 39,
+    "snaps": 0,
+    "numbers": 2739
+   },
+   "dropped": [
+    {
+     "path": "clips[1].tracks[5]",
+     "reason": "muzzle has no display part to light (Minecraft has no dynamic lights)"
+    },
+    {
+     "path": "clips[2].tracks[5]",
+     "reason": "muzzle has no display part to light (Minecraft has no dynamic lights)"
+    }
+   ],
+   "warnings": []
+  }
+ },
+ "presets": [
+  {
+   "id": "motion:gun_fire",
+   "kind": "motion",
+   "title": "Gun fire",
+   "summary": "Slide kick, recoil, hammer drop, muzzle flash, brass, shot sound and a light flash in one clip.",
+   "tags": [
+    "gun",
+    "weapon",
+    "fire",
+    "pistol"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "magSize",
+     "type": "number",
+     "min": 1,
+     "max": 60,
+     "default": 12,
+     "step": 1,
+     "label": "Magazine size"
+    },
+    {
+     "name": "fireTicks",
+     "type": "number",
+     "min": 2,
+     "max": 20,
+     "default": 4,
+     "step": 1,
+     "label": "Fire cycle",
+     "unit": "ticks"
+    },
+    {
+     "name": "reloadTicks",
+     "type": "number",
+     "min": 16,
+     "max": 80,
+     "default": 34,
+     "step": 1,
+     "label": "Reload",
+     "unit": "ticks"
+    },
+    {
+     "name": "recoil",
+     "type": "number",
+     "min": 0,
+     "max": 20,
+     "default": 6,
+     "step": 0.5,
+     "label": "Recoil kick",
+     "unit": "degrees"
+    },
+    {
+     "name": "slideTravel",
+     "type": "number",
+     "min": 0.02,
+     "max": 0.3,
+     "default": 0.12,
+     "step": 0.01,
+     "label": "Slide travel",
+     "unit": "blocks"
+    },
+    {
+     "name": "length",
+     "type": "number",
+     "min": 0.4,
+     "max": 1.6,
+     "default": 0.75,
+     "step": 0.05,
+     "label": "Gun length",
+     "unit": "blocks"
+    },
+    {
+     "name": "shot",
+     "type": "sound",
+     "default": "sound:gun_pistol_shot",
+     "label": "Shot sound"
+    },
+    {
+     "name": "dry",
+     "type": "sound",
+     "default": "minecraft:block.lever.click",
+     "label": "Dry click"
+    },
+    {
+     "name": "magOut",
+     "type": "sound",
+     "default": "minecraft:block.iron_trapdoor.open",
+     "label": "Magazine out"
+    },
+    {
+     "name": "magIn",
+     "type": "sound",
+     "default": "minecraft:block.iron_trapdoor.close",
+     "label": "Magazine in"
+    },
+    {
+     "name": "rack",
+     "type": "sound",
+     "default": "minecraft:block.piston.contract",
+     "label": "Slide rack"
+    }
+   ],
+   "stats": {
+    "nodes": 8,
+    "depth": 2,
+    "clips": 1,
+    "maxTracks": 8,
+    "maxKeys": 3,
+    "keysTotal": 13,
+    "maxDuration": 4,
+    "particlesPerTick": 13,
+    "particlesPerClip": 14,
+    "maxSounds": 1,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 6
+   },
+   "clips": [
+    {
+     "name": "fire",
+     "length": 4,
+     "loop": "once"
+    }
+   ],
+   "states": [],
+   "events": [
+    "fire"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [
+     "sound:gun_pistol_shot is not one of this mod's sounds (pick it from the Sound Library so it ships in the resource pack)",
+     "muzzle has no display part to light (Minecraft has no dynamic lights)"
+    ],
+    "errors": []
+   }
+  },
+  {
+   "id": "motion:gun_reload",
+   "kind": "motion",
+   "title": "Gun fire, reload and cock",
+   "summary": "A state machine with ammo: fire, last shot locks the slide, dry click, magazine reload and slide release.",
+   "tags": [
+    "gun",
+    "weapon",
+    "reload",
+    "cock",
+    "state"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "magSize",
+     "type": "number",
+     "min": 1,
+     "max": 60,
+     "default": 12,
+     "step": 1,
+     "label": "Magazine size"
+    },
+    {
+     "name": "fireTicks",
+     "type": "number",
+     "min": 2,
+     "max": 20,
+     "default": 4,
+     "step": 1,
+     "label": "Fire cycle",
+     "unit": "ticks"
+    },
+    {
+     "name": "reloadTicks",
+     "type": "number",
+     "min": 16,
+     "max": 80,
+     "default": 34,
+     "step": 1,
+     "label": "Reload",
+     "unit": "ticks"
+    },
+    {
+     "name": "recoil",
+     "type": "number",
+     "min": 0,
+     "max": 20,
+     "default": 6,
+     "step": 0.5,
+     "label": "Recoil kick",
+     "unit": "degrees"
+    },
+    {
+     "name": "slideTravel",
+     "type": "number",
+     "min": 0.02,
+     "max": 0.3,
+     "default": 0.12,
+     "step": 0.01,
+     "label": "Slide travel",
+     "unit": "blocks"
+    },
+    {
+     "name": "length",
+     "type": "number",
+     "min": 0.4,
+     "max": 1.6,
+     "default": 0.75,
+     "step": 0.05,
+     "label": "Gun length",
+     "unit": "blocks"
+    },
+    {
+     "name": "shot",
+     "type": "sound",
+     "default": "sound:gun_pistol_shot",
+     "label": "Shot sound"
+    },
+    {
+     "name": "dry",
+     "type": "sound",
+     "default": "minecraft:block.lever.click",
+     "label": "Dry click"
+    },
+    {
+     "name": "magOut",
+     "type": "sound",
+     "default": "minecraft:block.iron_trapdoor.open",
+     "label": "Magazine out"
+    },
+    {
+     "name": "magIn",
+     "type": "sound",
+     "default": "minecraft:block.iron_trapdoor.close",
+     "label": "Magazine in"
+    },
+    {
+     "name": "rack",
+     "type": "sound",
+     "default": "minecraft:block.piston.contract",
+     "label": "Slide rack"
+    }
+   ],
+   "stats": {
+    "nodes": 8,
+    "depth": 2,
+    "clips": 8,
+    "maxTracks": 8,
+    "maxKeys": 4,
+    "keysTotal": 50,
+    "maxDuration": 34,
+    "particlesPerTick": 13,
+    "particlesPerClip": 14,
+    "maxSounds": 2,
+    "machines": 1,
+    "maxStates": 8,
+    "maxTransitions": 7,
+    "liveEntities": 6
+   },
+   "clips": [
+    {
+     "name": "idle",
+     "length": 1,
+     "loop": "hold"
+    },
+    {
+     "name": "fire",
+     "length": 4,
+     "loop": "once"
+    },
+    {
+     "name": "fire_last",
+     "length": 4,
+     "loop": "once"
+    },
+    {
+     "name": "empty",
+     "length": 1,
+     "loop": "hold"
+    },
+    {
+     "name": "dry",
+     "length": 4,
+     "loop": "once"
+    },
+    {
+     "name": "reload",
+     "length": 34,
+     "loop": "once"
+    },
+    {
+     "name": "reload_empty",
+     "length": 34,
+     "loop": "once"
+    },
+    {
+     "name": "cock",
+     "length": 10,
+     "loop": "once"
+    }
+   ],
+   "states": [
+    "idle",
+    "fire",
+    "fire_last",
+    "empty",
+    "dry",
+    "reload",
+    "reload_empty",
+    "cock"
+   ],
+   "events": [
+    "fire",
+    "reload",
+    "auto_cock",
+    "cock"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [
+     "sound:gun_pistol_shot is not one of this mod's sounds (pick it from the Sound Library so it ships in the resource pack)",
+     "muzzle has no display part to light (Minecraft has no dynamic lights)",
+     "sound:gun_pistol_shot is not one of this mod's sounds (pick it from the Sound Library so it ships in the resource pack)",
+     "muzzle has no display part to light (Minecraft has no dynamic lights)"
+    ],
+    "errors": []
+   }
+  },
+  {
+   "id": "motion:door_hinge",
+   "kind": "motion",
+   "title": "Hinged door",
+   "summary": "A door on a hinge with limits: open with overshoot, close, toggle with anti-spam, sounds.",
+   "tags": [
+    "door",
+    "hinge",
+    "gate",
+    "prop"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "width",
+     "type": "number",
+     "min": 0.5,
+     "max": 3,
+     "default": 1,
+     "step": 0.0625,
+     "label": "Width",
+     "unit": "blocks"
+    },
+    {
+     "name": "height",
+     "type": "number",
+     "min": 0.5,
+     "max": 4,
+     "default": 2,
+     "step": 0.0625,
+     "label": "Height",
+     "unit": "blocks"
+    },
+    {
+     "name": "thickness",
+     "type": "number",
+     "min": 0.0625,
+     "max": 0.5,
+     "default": 0.1875,
+     "step": 0.0625,
+     "label": "Thickness",
+     "unit": "blocks"
+    },
+    {
+     "name": "angle",
+     "type": "number",
+     "min": 20,
+     "max": 120,
+     "default": 90,
+     "step": 1,
+     "label": "Open angle",
+     "unit": "degrees"
+    },
+    {
+     "name": "openTicks",
+     "type": "number",
+     "min": 2,
+     "max": 60,
+     "default": 10,
+     "step": 1,
+     "label": "Open time",
+     "unit": "ticks"
+    },
+    {
+     "name": "closeTicks",
+     "type": "number",
+     "min": 2,
+     "max": 60,
+     "default": 8,
+     "step": 1,
+     "label": "Close time",
+     "unit": "ticks"
+    },
+    {
+     "name": "bounce",
+     "type": "number",
+     "min": 0,
+     "max": 10,
+     "default": 3,
+     "step": 0.5,
+     "label": "Overshoot",
+     "unit": "degrees"
+    },
+    {
+     "name": "swing",
+     "type": "enum",
+     "options": [
+      "left",
+      "right"
+     ],
+     "default": "left",
+     "label": "Hinge side"
+    },
+    {
+     "name": "ease",
+     "type": "enum",
+     "options": [
+      "linear",
+      "out",
+      "inout",
+      "smooth"
+     ],
+     "default": "out",
+     "label": "Ease"
+    },
+    {
+     "name": "openSound",
+     "type": "sound",
+     "default": "minecraft:block.wooden_door.open",
+     "label": "Open sound"
+    },
+    {
+     "name": "closeSound",
+     "type": "sound",
+     "default": "minecraft:block.wooden_door.close",
+     "label": "Close sound"
+    }
+   ],
+   "stats": {
+    "nodes": 3,
+    "depth": 2,
+    "clips": 4,
+    "maxTracks": 4,
+    "maxKeys": 3,
+    "keysTotal": 9,
+    "maxDuration": 13,
+    "particlesPerTick": 0,
+    "particlesPerClip": 0,
+    "maxSounds": 1,
+    "machines": 1,
+    "maxStates": 4,
+    "maxTransitions": 4,
+    "liveEntities": 3
+   },
+   "clips": [
+    {
+     "name": "shut",
+     "length": 1,
+     "loop": "hold"
+    },
+    {
+     "name": "open",
+     "length": 13,
+     "loop": "once"
+    },
+    {
+     "name": "ajar",
+     "length": 1,
+     "loop": "hold"
+    },
+    {
+     "name": "close",
+     "length": 8,
+     "loop": "once"
+    }
+   ],
+   "states": [
+    "closed",
+    "opening",
+    "open",
+    "closing"
+   ],
+   "events": [
+    "toggle",
+    "open",
+    "close"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [],
+    "errors": []
+   }
+  },
+  {
+   "id": "gen:gait",
+   "kind": "motion",
+   "title": "Creature gait",
+   "summary": "Idle, walk and attack for humanoid, quadruped or floating-ghost bodies from a few knobs.",
+   "tags": [
+    "creature",
+    "gait",
+    "walk",
+    "attack"
+   ],
+   "generator": true,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "archetype",
+     "type": "enum",
+     "options": [
+      "humanoid",
+      "quadruped",
+      "floating_ghost"
+     ],
+     "default": "humanoid",
+     "label": "Body type"
+    },
+    {
+     "name": "cadence",
+     "type": "number",
+     "min": 0.5,
+     "max": 4,
+     "default": 1.6,
+     "step": 0.05,
+     "label": "Steps per second"
+    },
+    {
+     "name": "stride",
+     "type": "number",
+     "min": 5,
+     "max": 60,
+     "default": 32,
+     "step": 1,
+     "label": "Leg swing",
+     "unit": "degrees"
+    },
+    {
+     "name": "armSwing",
+     "type": "number",
+     "min": 0,
+     "max": 60,
+     "default": 24,
+     "step": 1,
+     "label": "Arm swing",
+     "unit": "degrees"
+    },
+    {
+     "name": "bob",
+     "type": "number",
+     "min": 0,
+     "max": 0.2,
+     "default": 0.04,
+     "step": 0.005,
+     "label": "Body bob",
+     "unit": "blocks"
+    },
+    {
+     "name": "sway",
+     "type": "number",
+     "min": 0,
+     "max": 15,
+     "default": 3,
+     "step": 0.5,
+     "label": "Body sway",
+     "unit": "degrees"
+    },
+    {
+     "name": "attackTicks",
+     "type": "number",
+     "min": 6,
+     "max": 40,
+     "default": 14,
+     "step": 1,
+     "label": "Attack length",
+     "unit": "ticks"
+    },
+    {
+     "name": "reach",
+     "type": "number",
+     "min": 20,
+     "max": 140,
+     "default": 90,
+     "step": 1,
+     "label": "Attack reach",
+     "unit": "degrees"
+    },
+    {
+     "name": "scale",
+     "type": "number",
+     "min": 0.4,
+     "max": 3,
+     "default": 1,
+     "step": 0.05,
+     "label": "Size"
+    },
+    {
+     "name": "attackSound",
+     "type": "sound",
+     "default": "minecraft:entity.zombie.attack_wooden_door",
+     "label": "Attack sound"
+    }
+   ],
+   "stats": {
+    "nodes": 7,
+    "depth": 2,
+    "clips": 3,
+    "maxTracks": 7,
+    "maxKeys": 4,
+    "keysTotal": 8,
+    "maxDuration": 40,
+    "particlesPerTick": 0,
+    "particlesPerClip": 0,
+    "maxSounds": 1,
+    "machines": 1,
+    "maxStates": 3,
+    "maxTransitions": 4,
+    "liveEntities": 6
+   },
+   "clips": [
+    {
+     "name": "idle",
+     "length": 40,
+     "loop": "loop"
+    },
+    {
+     "name": "walk",
+     "length": 25,
+     "loop": "loop"
+    },
+    {
+     "name": "attack",
+     "length": 14,
+     "loop": "once"
+    }
+   ],
+   "states": [
+    "idle",
+    "walk",
+    "attack"
+   ],
+   "events": [
+    "move",
+    "stop",
+    "attack"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [],
+    "errors": []
+   }
+  },
+  {
+   "id": "effect:muzzle_flash",
+   "kind": "effect",
+   "title": "Muzzle flash",
+   "summary": "A bright cone flash with sparks and a puff of smoke, plus a 2-tick light flash.",
+   "tags": [
+    "gun",
+    "weapon",
+    "flash",
+    "fire"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "size",
+     "type": "number",
+     "min": 0.5,
+     "max": 2,
+     "default": 1,
+     "step": 0.05,
+     "label": "Size"
+    },
+    {
+     "name": "sparks",
+     "type": "number",
+     "min": 0,
+     "max": 16,
+     "default": 6,
+     "step": 1,
+     "label": "Sparks"
+    },
+    {
+     "name": "tint",
+     "type": "enum",
+     "options": [
+      "warm",
+      "blue",
+      "green"
+     ],
+     "default": "warm",
+     "label": "Colour"
+    }
+   ],
+   "stats": {
+    "nodes": 1,
+    "depth": 0,
+    "clips": 1,
+    "maxTracks": 2,
+    "maxKeys": 2,
+    "keysTotal": 2,
+    "maxDuration": 16,
+    "particlesPerTick": 13,
+    "particlesPerClip": 13,
+    "maxSounds": 0,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 0
+   },
+   "clips": [
+    {
+     "name": "play",
+     "length": 16,
+     "loop": "once"
+    }
+   ],
+   "states": [],
+   "events": [
+    "play"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [
+     "fx has no display part to light (Minecraft has no dynamic lights)"
+    ],
+    "errors": []
+   }
+  },
+  {
+   "id": "effect:explosion",
+   "kind": "effect",
+   "title": "Explosion",
+   "summary": "Flash, fireball, rising smoke and falling debris with a boom.",
+   "tags": [
+    "explosion",
+    "blast",
+    "bomb",
+    "fire",
+    "smoke"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "power",
+     "type": "number",
+     "min": 0.5,
+     "max": 3,
+     "default": 1,
+     "step": 0.05,
+     "label": "Power"
+    },
+    {
+     "name": "sound",
+     "type": "sound",
+     "default": "minecraft:entity.generic.explode",
+     "label": "Sound"
+    }
+   ],
+   "stats": {
+    "nodes": 1,
+    "depth": 0,
+    "clips": 1,
+    "maxTracks": 3,
+    "maxKeys": 2,
+    "keysTotal": 2,
+    "maxDuration": 60,
+    "particlesPerTick": 53,
+    "particlesPerClip": 53,
+    "maxSounds": 1,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 0
+   },
+   "clips": [
+    {
+     "name": "play",
+     "length": 60,
+     "loop": "once"
+    }
+   ],
+   "states": [],
+   "events": [
+    "play"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [
+     "fx has no display part to light (Minecraft has no dynamic lights)"
+    ],
+    "errors": []
+   }
+  },
+  {
+   "id": "effect:fire",
+   "kind": "effect",
+   "title": "Fire",
+   "summary": "A looping flame with smoke wisps, embers and a flickering light.",
+   "tags": [
+    "fire",
+    "flame",
+    "campfire",
+    "torch",
+    "burning"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "intensity",
+     "type": "number",
+     "min": 0.25,
+     "max": 3,
+     "default": 1,
+     "step": 0.05,
+     "label": "Intensity"
+    },
+    {
+     "name": "radius",
+     "type": "number",
+     "min": 0,
+     "max": 2,
+     "default": 0.3,
+     "step": 0.05,
+     "label": "Radius",
+     "unit": "blocks"
+    },
+    {
+     "name": "sound",
+     "type": "sound",
+     "default": "minecraft:block.fire.ambient",
+     "label": "Sound"
+    }
+   ],
+   "stats": {
+    "nodes": 1,
+    "depth": 0,
+    "clips": 1,
+    "maxTracks": 3,
+    "maxKeys": 8,
+    "keysTotal": 8,
+    "maxDuration": 40,
+    "particlesPerTick": 5,
+    "particlesPerClip": 156,
+    "maxSounds": 1,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 0
+   },
+   "clips": [
+    {
+     "name": "play",
+     "length": 40,
+     "loop": "loop"
+    }
+   ],
+   "states": [],
+   "events": [
+    "play"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [
+     "fx has no display part to light (Minecraft has no dynamic lights)"
+    ],
+    "errors": []
+   }
+  },
+  {
+   "id": "effect:smoke",
+   "kind": "effect",
+   "title": "Smoke",
+   "summary": "A looping column of soft grey smoke.",
+   "tags": [
+    "smoke",
+    "chimney",
+    "steam",
+    "fog"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "density",
+     "type": "number",
+     "min": 0.25,
+     "max": 4,
+     "default": 1,
+     "step": 0.05,
+     "label": "Density"
+    },
+    {
+     "name": "rise",
+     "type": "number",
+     "min": 0.2,
+     "max": 3,
+     "default": 1,
+     "step": 0.05,
+     "label": "Rise speed"
+    }
+   ],
+   "stats": {
+    "nodes": 1,
+    "depth": 0,
+    "clips": 1,
+    "maxTracks": 1,
+    "maxKeys": 0,
+    "keysTotal": 0,
+    "maxDuration": 40,
+    "particlesPerTick": 2,
+    "particlesPerClip": 60,
+    "maxSounds": 0,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 0
+   },
+   "clips": [
+    {
+     "name": "play",
+     "length": 40,
+     "loop": "loop"
+    }
+   ],
+   "states": [],
+   "events": [
+    "play"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [],
+    "errors": []
+   }
+  },
+  {
+   "id": "effect:water_splash",
+   "kind": "effect",
+   "title": "Water splash",
+   "summary": "Droplets thrown up and falling back, a foam ring and bubbles.",
+   "tags": [
+    "water",
+    "splash",
+    "liquid",
+    "fountain"
+   ],
+   "generator": false,
+   "provenance": "cyrus-authored",
+   "licence": "nxeon-original",
+   "params": [
+    {
+     "name": "size",
+     "type": "number",
+     "min": 0.5,
+     "max": 2,
+     "default": 1,
+     "step": 0.05,
+     "label": "Size"
+    },
+    {
+     "name": "sound",
+     "type": "sound",
+     "default": "minecraft:entity.generic.splash",
+     "label": "Sound"
+    }
+   ],
+   "stats": {
+    "nodes": 1,
+    "depth": 0,
+    "clips": 1,
+    "maxTracks": 2,
+    "maxKeys": 0,
+    "keysTotal": 0,
+    "maxDuration": 30,
+    "particlesPerTick": 54,
+    "particlesPerClip": 54,
+    "maxSounds": 1,
+    "machines": 0,
+    "maxStates": 0,
+    "maxTransitions": 0,
+    "liveEntities": 0
+   },
+   "clips": [
+    {
+     "name": "play",
+     "length": 30,
+     "loop": "once"
+    }
+   ],
+   "states": [],
+   "events": [
+    "play"
+   ],
+   "minecraft": {
+    "ok": true,
+    "warnings": [],
+    "dropped": [],
+    "errors": []
+   }
+  }
+ ]
+}

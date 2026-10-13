@@ -1,0 +1,44 @@
+B4: signing up and browsing are NOT gated — only buying is
+B4: the schema carries the field and the token, additively
+HAZARD: every export of a "use server" module is authenticated, or explicitly anonymous
+a game server renews at its FLAT game-plan price, not the base VPS plan's
+a malformed stamped price is refused outright rather than half-believed
+a partial discount composes in ONE order only — on the term total, not the monthly
+a sold price round-trips through Stripe metadata unchanged
+a stacked expiry round-trips to zero — the $362.88 cap asymmetry
+all four resize call sites price against the persisted rate, not the calendar
+every fulfilment failure that captured money notifies the customer
+every page that shows MRR derives it from serverMonthlyCents / fleetMrrCents
+every page that shows revenue derives it from REVENUE_WHERE
+every path that sells, renews or gifts a term records the rate it was sold at
+every route that rate-limits sources its IP from the trusted helper
+fpm pool: hardened limits, open_basedir scoped to home, no /tmp
+lib/proration.ts may never read the clock or the promo calendar for a price
+move bridge: engine absent on main, run gated by env even once present
+no NEW call site keys anything on the caller-supplied first hop
+no registrar identity leaks into customer-facing dashboard/components code
+opening the session is passed the hold token, and a failed open RELEASES the hold
+payAndDeploy RESERVES the credit before opening the Checkout session
+payAndDeploy hands its own quote to checkout instead of letting it re-quote
+promo-window arbitrage: upgrading at 45% and downgrading at 10% is not a business
+ptr resolver: timeout, failure, concurrency cap and lookup budget
+re-pricing a paid order at a different basis moves real money
+renewing early blends the rate instead of repricing the discounted months
+serverAction returns errors for the customer instead of throwing them away
+surcharges are billed for the whole term, exactly as the action charges them
+the empty games page offers a support link, not a dead 'contact support'
+the money a game downgrade WOULD credit exceeds what was collected
+the order path stamps the price before the card is charged and settles it after
+the promo bar reads its headline price from the catalogue, never a literal
+the recurring figure on a term card is the renewal price, never the promo price
+the renewal quote charges the term it advertises, not a month
+the server charge path still composes promoPriceCents(vpsTermPriceCents(...))
+the server danger-zone copy names the volumes a delete purges
+the settled total does not move when the promo rotates under it
+the sold-rate basis and catalogue this file is pinned to have not moved
+the worker sweeps expired holds as a backstop for a missed webhook
+upgrading on day one costs exactly the difference between the two fresh orders
+vpsEffectiveMonthly reflects the discounted per-month price
+vpsTerm returns the matching term by months
+vpsTermPriceCents applies commitment discounts
+vpsTermPriceCents rounds to whole cents

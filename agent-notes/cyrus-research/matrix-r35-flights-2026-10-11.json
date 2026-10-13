@@ -1,0 +1,254 @@
+{
+ "design": {
+  "name": "MatrixRuby",
+  "namespace": "nx_r35matrx",
+  "items": [
+   {
+    "texture": "ruby_sword",
+    "carrier": "diamond_sword"
+   },
+   {
+    "texture": "health_potion",
+    "carrier": "paper"
+   }
+  ]
+ },
+ "designSha256": "ab1ed5090f4c3e46a6a37421c76bd2059ad4240483f1cc77d28eedc591bafd37",
+ "record": {
+  "schema": 1,
+  "matrixId": "mx-ab1ed5090f4c-mv3c6bnu",
+  "specSha256": "ab1ed5090f4c3e46a6a37421c76bd2059ad4240483f1cc77d28eedc591bafd37",
+  "createdAt": "2026-10-11T04:41:51.498Z",
+  "rows": [
+   {
+    "version": "1.21.1",
+    "status": "built",
+    "plan": {
+     "version": "1.21.1",
+     "status": "planned",
+     "javaRelease": 21,
+     "paperCoordinate": "1.21.1-R0.1-SNAPSHOT",
+     "paperBuild": 133,
+     "packFormat": 34,
+     "emitter": "legacy-custom-model-data",
+     "limits": [
+      {
+       "feature": "textures",
+       "supported": true,
+       "message": "On 1.21.1 custom items use the older custom-model-data method: each look rides on a vanilla carrier item (for example a diamond sword or paper) with a number set by the plugin."
+      },
+      {
+       "feature": "carrier_conflict",
+       "supported": true,
+       "message": "The pack rewrites the carrier item's vanilla model, so another resource pack that also changes that same vanilla item (for example diamond_sword) can hide these looks or be hidden by them."
+      },
+      {
+       "feature": "carriers",
+       "supported": true,
+       "message": "Only 52 plain vanilla items can carry a look on 1.21.1 (swords, tools, sticks, gems, ingots, some food); bows, crossbows, shields, tridents and armour cannot."
+      },
+      {
+       "feature": "state:using",
+       "supported": false,
+       "message": "Not on 1.21.1: a different look while the item is being used needs item model definitions (1.21.4+); on 1.21.1 only a bow or crossbow has that, and Cyrus does not rewrite those models."
+      },
+      {
+       "feature": "state:pull",
+       "supported": false,
+       "message": "Not on 1.21.1: bow / crossbow pull stages need item model definitions (1.21.4+) for a custom item."
+      },
+      {
+       "feature": "state:charged",
+       "supported": false,
+       "message": "Not on 1.21.1: a loaded-crossbow look needs item model definitions (1.21.4+) for a custom item."
+      },
+      {
+       "feature": "state:mode",
+       "supported": false,
+       "message": "Not on 1.21.1: plugin-set modes need custom_model_data strings (1.21.4+); on 1.21.1 give each look its own texture and number instead."
+      },
+      {
+       "feature": "state:flag",
+       "supported": false,
+       "message": "Not on 1.21.1: plugin-set flags need custom_model_data flags (1.21.4+); on 1.21.1 give each look its own texture and number instead."
+      },
+      {
+       "feature": "state:selected",
+       "supported": false,
+       "message": "Not on 1.21.1: a look for the selected hotbar slot needs item model definitions (1.21.4+)."
+      },
+      {
+       "feature": "state:context",
+       "supported": false,
+       "message": "Not on 1.21.1: a different look per display context (inventory vs hand vs item frame) needs item model definitions (1.21.4+); 1.21.1 only moves/scales the same look."
+      },
+      {
+       "feature": "state:broken",
+       "supported": false,
+       "message": "Not on 1.21.1: a one-use-from-breaking look needs item model definitions (1.21.4+)."
+      },
+      {
+       "feature": "state:damage",
+       "supported": true,
+       "message": "Worn-down looks (damage stages) work on 1.21.1."
+      },
+      {
+       "feature": "sounds",
+       "supported": true,
+       "message": "Custom sounds work on 1.21.1."
+      }
+     ],
+     "testFlight": true
+    },
+    "testFlight": {
+     "status": "passed",
+     "runId": "tf-1-21-1-mv3c6de7-5e9eb1",
+     "line": "Test Flight passed on Paper 1.21.1 (6 checks, boot 24.9s, peak RSS 850 MB)"
+    },
+    "buildId": "fixture:legacymodel@1.21.1",
+    "jarSha256": "9b070d2d93601e0771a6ec1da49ebd28d24c3d74f990fc6a17a493aaa619b19b",
+    "packSha1": "3fe567307a05a0822e873e15bf9cae7bb875837d"
+   },
+   {
+    "version": "1.21.4",
+    "status": "built",
+    "plan": {
+     "version": "1.21.4",
+     "status": "planned",
+     "javaRelease": 21,
+     "paperCoordinate": "1.21.4-R0.1-SNAPSHOT",
+     "paperBuild": 232,
+     "packFormat": 46,
+     "emitter": "item-model-definitions",
+     "limits": [],
+     "testFlight": true
+    },
+    "testFlight": {
+     "status": "passed",
+     "runId": "tf-1-21-4-mv3c70lz-56adab",
+     "line": "Test Flight passed on Paper 1.21.4 (6 checks, boot 25.7s, peak RSS 855 MB)"
+    },
+    "buildId": "fixture:itemmodel@1.21.4",
+    "jarSha256": "3930e6a7d7eaab5b71cbe9460a18f2cf2396829349376f23c99a9f3fb36085f8",
+    "packSha1": "ff1fd31b4a579204b7f6db1062fd864fb197639c"
+   },
+   {
+    "version": "1.21.8",
+    "status": "built",
+    "plan": {
+     "version": "1.21.8",
+     "status": "planned",
+     "javaRelease": 21,
+     "paperCoordinate": "1.21.8-R0.1-SNAPSHOT",
+     "paperBuild": 60,
+     "packFormat": 64,
+     "emitter": "item-model-definitions",
+     "limits": [],
+     "testFlight": true
+    },
+    "testFlight": {
+     "status": "passed",
+     "runId": "tf-1-21-8-mv3c7oox-233797",
+     "line": "Test Flight passed on Paper 1.21.8 (6 checks, boot 23.9s, peak RSS 884 MB)"
+    },
+    "buildId": "fixture:itemmodel@1.21.8",
+    "jarSha256": "3930e6a7d7eaab5b71cbe9460a18f2cf2396829349376f23c99a9f3fb36085f8",
+    "packSha1": "e39f94839ac1c3906579a53e2d7a7efe00c6ab65"
+   },
+   {
+    "version": "1.21.11",
+    "status": "built",
+    "plan": {
+     "version": "1.21.11",
+     "status": "planned",
+     "javaRelease": 21,
+     "paperCoordinate": "1.21.11-R0.1-SNAPSHOT",
+     "paperBuild": 132,
+     "packFormat": 75,
+     "emitter": "item-model-definitions",
+     "limits": [],
+     "testFlight": true
+    },
+    "testFlight": {
+     "status": "passed",
+     "runId": "tf-1-21-11-mv3c8b4t-01d31d",
+     "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 28.6s, peak RSS 914 MB)"
+    },
+    "buildId": "fixture:itemmodel@1.21.11",
+    "jarSha256": "3930e6a7d7eaab5b71cbe9460a18f2cf2396829349376f23c99a9f3fb36085f8",
+    "packSha1": "1371a1ead5cfbcefb64baf3be68e98223ef4b4bf"
+   },
+   {
+    "version": "26.2",
+    "status": "refused",
+    "reason": "Minecraft 26.2 is preview: Cyrus cannot build for it yet",
+    "testFlight": {
+     "status": "not_run"
+    }
+   }
+  ]
+ },
+ "summary": {
+  "built": [
+   "1.21.1",
+   "1.21.4",
+   "1.21.8",
+   "1.21.11"
+  ],
+  "failed": [],
+  "refused": [
+   "26.2"
+  ],
+  "flown": [
+   "1.21.1",
+   "1.21.4",
+   "1.21.8",
+   "1.21.11"
+  ],
+  "line": "Built for 4 of 5 versions (1.21.1, 1.21.4, 1.21.8, 1.21.11); Test Flight passed on 1.21.1, 1.21.4, 1.21.8, 1.21.11; 26.2 not built: Minecraft 26.2 is preview: Cyrus cannot build for it yet."
+ },
+ "picks": [
+  {
+   "server": "1.21.1",
+   "version": "1.21.1",
+   "level": "warn",
+   "exact": true,
+   "flight": "passed"
+  },
+  {
+   "server": "1.21.4",
+   "version": "1.21.4",
+   "level": "ok",
+   "exact": true,
+   "flight": "passed"
+  },
+  {
+   "server": "1.21.6",
+   "version": "1.21.4",
+   "level": "warn",
+   "exact": false,
+   "flight": "passed"
+  },
+  {
+   "server": "1.21.11",
+   "version": "1.21.11",
+   "level": "ok",
+   "exact": true,
+   "flight": "passed"
+  },
+  {
+   "server": "26.2",
+   "version": "1.21.11",
+   "level": "warn",
+   "exact": false,
+   "flight": "passed"
+  },
+  {
+   "server": null,
+   "version": "1.21.11",
+   "level": "warn",
+   "exact": false,
+   "flight": "passed"
+  }
+ ]
+}

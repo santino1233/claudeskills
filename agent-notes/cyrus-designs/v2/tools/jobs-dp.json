@@ -1,0 +1,10 @@
+[
+{"file":"datapack-studio.html","q":"ctl=0","w":1440,"h":900,"out":"dp-dark-biome.png","wait":900},
+{"file":"datapack-studio.html","q":"ctl=0&view=json&v=1.21.4","w":1440,"h":900,"out":"dp-dark-json-1214.png","wait":900},
+{"file":"datapack-studio.html","q":"ctl=0&r=structure_template:ruin&tab=cost","w":1440,"h":900,"out":"dp-dark-template.png","wait":1100},
+{"file":"datapack-studio.html","q":"ctl=0&r=function:tick&tab=fn&try=op%20@a","w":1440,"h":900,"out":"dp-dark-function.png","wait":900},
+{"file":"datapack-studio.html","q":"ctl=0&theme=light&r=structure_template:ruin","w":1440,"h":900,"out":"dp-light-template.png","wait":1100},
+{"file":"datapack-studio.html","q":"ctl=0","w":390,"h":844,"full":true,"out":"dp-narrow.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0","w":1440,"h":900,"out":"import-dark.png","wait":900},
+{"file":"import-mod.html","q":"ctl=0&state=jar","w":1440,"h":900,"out":"import-dark-jar.png","wait":900}
+]

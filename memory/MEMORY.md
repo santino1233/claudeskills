@@ -1,0 +1,121 @@
+# Memory index
+
+- [No ticket replies without approval](nxeon-no-ticket-replies-without-approval.md) — never send a support-ticket reply, directly or via a dispatched agent, without explicit sign-off first
+
+- [Nxeon platform](nxeon-platform.md) — the user's Hostinger-clone VPS hosting business at /opt/nxeon on this Proxmox server
+- [Nxeon customer support focus](nxeon-customer-support-focus.md) — this session tracks live customers + drafts ticket replies; ticket sign-off rule still applies
+- [Nxeon brand voice: no "provider"](nxeon-brand-voice-no-provider.md) — never imply a 3rd-party infra provider exists to customers; Nxeon speaks as the owner
+- [Nxeon live credential rotation policy](nxeon-live-credential-rotation-policy.md) — always ask before rotating any credential on live customer infra, even a verified non-destructive fix
+- [Nxeon improvement agent](nxeon-improve-agent.md) — recurring 4-hourly scheduled task that works through the Nxeon roadmap
+- [Nxeon promo + auto-promote](nxeon-promo-and-autopromote.md) — first-month-free is HOSTING-ONLY; an unidentified auto-promoter still ships unreviewed work to prod
+- [Nxeon security audit 2026-08-12](nxeon-security-audit-2026-08-12.md) — pentest found a CRITICAL DB Studio RCE; FIXED + gate cleared on live prod 2026-08-22 (verified via real smoke tests)
+- [Nxeon cryptominer incident 2026-09-06](nxeon-cryptominer-incident-2026-09-06.md) — RESOLVED 2026-09-08: root compromise via Next.js RSC CVE (framework bug, not ours); nexion-ui was the open door, now stopped; codebase confirmed clean; Proxmox token split is the #1 remaining fix
+- [Cryptominer incident 2026-09-06](nxeon-cryptominer-incident-2026-09-06.md) — root XMRig for 33h; persistence was a TROJANED /usr/bin/ls (running `ls` respawned it); cleaned, but credential rotation + root-worker still open
+- [Nxeon docs](nxeon-docs.md) — keep DOCUMENTATION.md current with every change; docs now live in admin at /admin/docs (public /docs retired)
+- [Log all fixes for future reference](nxeon-log-fixes-standing-instruction.md) — standing instruction (2026-09-04): Nxeon bugs go to spawn_task, operational/third-party knowledge goes to /admin/docs, not left to disappear
+- [Nxeon improvements workflow](nxeon-improvements-workflow.md) — the admin Improvements board is only for the nightly scanner; do direct chat requests immediately, don't board them
+- [Nxeon server control panel](nxeon-server-controlpanel.md) — planned cPanel-style VPS panel (all 4 features approved, must match Nxeon theme) + real-migration flag status
+- [Nxeon resume point](nxeon-resume-point.md) — exact branch/staging state + pending Geist-font+glow-box promote + next jobs (2026-08-12)
+- [Nxeon readiness audit 2026-08-12](nxeon-readiness-audit-2026-08-12.md) — 8-agent customer-readiness punch-list: owner-actions (off-site backups BLOCKER, DKIM, node, VAT decision) + code fixes + design consistency
+- [Nxeon hosting + game wizards](nxeon-hosting-wizard.md) — shared-hosting & game order flows need proper checkout wizards (money-path, next session) + game-logo drop-in convention
+- [Nxeon DKIM unsigned](nxeon-dkim-unsigned.md) — RESOLVED 2026-08-22 (SPF/DKIM/DMARC all verified healthy); kept for the incident lesson (mail is Mailcow's, never trust the local resolver)
+- [Nxeon full audit](nxeon-full-audit.md) — the 12-area every-line audit, what shipped and the hazards
+- [Nxeon feature batch resume](nxeon-feature-batch-resume.md) — website builder + observability (5 features) partial on branch wip-feature-batch-20260727, finish after 2pm-UTC limit reset
+- [Nxeon migration reliability](nxeon-migration-reliability.md) — making migrations self-complete (Layers 1–3 all shipped incl. portal remediation)
+- [Nxeon server topology](nxeon-server-topology.md) — .200 is the LIVE Soul Pilates box (don't experiment), .215 is the dev box (nexis/studionexis.com); split done 2026-08-04
+- [Nxeon shared hosting](nxeon-shared-hosting.md) — new entry-tier web-hosting product; cPanel-class, adversarial audit fixed + marketing expanded; provisioner inert until ENABLE_SHARED_HOSTING + security review
+- [Nxeon board](nxeon-board.md) — private admin-only kanban at /admin/board for tracking work (built, tables live but empty, needs deploy)
+- [Nxeon project board](nxeon-project-board.md) — private admin kanban at /admin/board; I read attachments off disk + move cards as I work
+- [Nxeon marketing design](nxeon-marketing-design.md) — the REAL brand theme (navy+violet+cyan, not charcoal/amber) + why 5 homepage attempts were rejected (off-theme + templated layout)
+- [Nxeon blog SEO batch](nxeon-blog-seo-batch.md) — 2026-08-04: 200 SEO posts LIVE in DB, blog search + post images + demo badges staged; ONE deploy block for the user to finish it
+- [Nxeon Soul Pilates franchise](nxeon-soulpilates-franchise.md) — multi-location/franchise framework planning stage on the SP board (company-owned; washout = existing page aggregated); no code yet
+- [Nxeon ventures hub](nxeon-ventures-hub.md) — Nxeon = central hub for all projects; 3 new products (Marketing Agency, Ads Autopilot, Cold Email Engine) in research stage + compliance guardrails
+- [Nxeon ad pack](nxeon-ad-pack.md) — reusable brand ad-creative generator (SVG→PNG via resvg) in scratchpad/adpack; 13-piece launch pack delivered 2026-08-10
+- [Nxeon build isolation](nxeon-build-isolation.md) — NEVER run npm run build / agent builds in the live prod tree /opt/nxeon; use worktrees or /opt/nxeon-staging (clobbering .next broke prod admin)
+- [Nxeon cold-email lead DB](nxeon-coldemail-leaddb.md) — CE lead DB populated in prod (1,709 cold-ready + 2,681 no-website web-design prospects) + the promote-production.sh npm-install outage lesson
+- [Nxeon chat agent](nxeon-chat-agent.md) — live-chat AI agent; 2026-08-15 flagship rework (tool loop for everyone, no blog-dump fallback, graceful degrade + admin failure banner); STILL blocked on a valid/funded Anthropic key
+- [Nxeon Meta Pixel](nxeon-meta-pixel.md) — Pixel/CAPI fix (PageView SPA re-fire, fbc-from-fbclid, server signup event) + owner actions (remove stray revsports.ca property)
+- [Nxeon mail hostname](nxeon-mail-hostname.md) — mail.nxeon.cloud dated web UI now 302s to homepage; API + CalDAV paths preserved (do NOT blanket-redirect)
+- [Nxeon Soul Pilates Ideas diag](nxeon-soulpilates-ideas-diag.md) — 4 SP board Ideas cards diagnosed 2026-08-16 (password DKIM, discount-at-collect, login-refresh, package legacy-data); fixes pending owner
+- [Kodely](nxeon-kodely.md) — AI website builder; Phase 1 core loop SHIPPED to prod 2026-08-17 (auth, credits, codegen, publish); nginx blocker open
+- [Kodely prod-deploy gating](kodely-prod-deploy-gating.md) — sudo/prod-db actions are gated per-invocation even after a blanket "auto-approve everything"
+- [Nxeon referral + currency](nxeon-referral-and-currency.md) — KOL/agency lifetime-commission partner program (design locked) + geo display-currency (geoip-lite MUST stay in serverExternalPackages)
+- [Nxeon deploy win-back](nxeon-deploy-winback.md) — LIVE automated deploy-abandonment email (50% off, COMEBACK50) + admin timer controls; built on same-day analytics attribution + deploy-funnel + wizard de-intimidation
+- [Nxeon node RAM tuning](nxeon-node-ram-tuning.md) — 2026-08-21 fixed primary node CRITICAL RAM: ZFS ARC capped 8G, ballooning armed w/ floors, 4 orphan VMs destroyed (~285G)
+- [Worktree node_modules hazard](nxeon-worktree-nodemodules-hazard.md) — NEVER `git add -A` in a symlinked worktree; it can replace prod's real node_modules with a self-referential symlink
+- [Nxeon riddle + Ads upload](nxeon-riddle-and-ads.md) — /riddle 4-gate $100 promo (LIVE) + server-side Google Ads offline conversion upload (built, inert until API creds)
+- [Nxeon visitor device analytics](nxeon-visitor-device-analytics.md) — admin visitor dashboard now tracks device/OS/browser (ua-parser-js), backfilled 4000+ visits, live 2026-08-23
+- [Nxeon retention + win-back + email tracking](nxeon-retention-winback-emailtrack.md) — /admin/retention view (only ~5% of signups return), dormant-account win-back sweep (gated off, disjoint from deploy win-back), email open/click tracking on every send + admin Email log, live 2026-08-24
+- [Nxeon pricing fix + mod catalogue](nxeon-pricing-fix-and-mod-catalogue.md) — pricing page's 3rd instance of the GAME_META capitalization bug fixed; new go-all-out /game-servers/mods page (honest: no mod installer exists, sells file/SFTP access instead), live 2026-08-24
+- [Nxeon free Minecraft tier](nxeon-free-minecraft-tier.md) — growth play: freemc-host VM + Docker + mc-router (subdomain routing, auto-sleep/wake) like Aternos; live 2026-08-24, DNS added, flag on
+- [Nxeon free Minecraft dashboard](nxeon-freemc-dashboard.md) — real management panel (power/console/players/settings/presets/rename/change-domain), reuses paid game-panel's settings schema, live 2026-08-24
+- [Kodely↔Nxeon partner](nxeon-kodely-partner.md) — SSO + Partner API foundation LIVE (one account/one wallet); Kodely sells Nxeon domains/hosting/VPS; hosting blocked on RCE/security review
+- [Nxeon game-servers batch](nxeon-game-servers-batch.md) — 2026-08-23: wizard auto-advance fix, 13/19 games had unlabeled slug names (fixed), 31 new hero/poster images, per-game hero backdrop, 10 "move from X" migration pages
+- [Nxeon VM firewall hairpin fix](nxeon-vm-hairpin-firewall-fix.md) — 2026-08-23: fixed VMs unable to reach nxeon.cloud at all (broke Kodely's live test); also fixed a bug in firewall-safe-apply.sh's --confirm check
+- [Nxeon game-servers mobile fixes](nxeon-game-servers-mobile-fixes.md) — 2026-08-23: mobile carousel was fully invisible (CSS blowout, root-caused via Playwright), desktop hero backdrop softened, mobile footer accordion added
+- [Nxeon free-MC feature batch](nxeon-freemc-feature-batch.md) — 2026-08-25: 12 live-verified game modes, mod menu, inventory editor, LuckPerms roles/permissions (RCON response bug found+worked around), public server directory — merged to main, prod deploy pending approval
+- [No baz spend](nxeon-no-baz-spend.md) — user correction: don't spend credits on baz/paid third-party tools for Nxeon work without explicit sign-off; handle it through Claude directly
+- [OVH IP zone check](nxeon-ovh-ip-zone-check.md) — always verify campus/region matches the server (SGP) before ordering an IP; a wrong-zone order is unusable and wastes money
+- [Redesign generic drift](nxeon-redesign-generic-drift.md) — mockup redesigns go generic unless working from the literal reference file + real iterative screenshot comparison
+- [Nxeon Figma design system](nxeon-figma-design-system.md) — building Nxeon's UI into Figma; hit Starter-plan page/rate limits, alternatives (Claude Design, Penpot, direct-codebase) under discussion
+- [Nxeon What's New scope](nxeon-whats-new-customer-only.md) — update announcements must only cover customer-facing changes, never internal admin/ops tooling
+- [Nxeon SEO growth strategy](nxeon-seo-growth-strategy.md) — ChatGPT is the #1 channel (52%), conversion is the real bottleneck (4.5%); the proven content template + games-to-add list
+- [Nxeon "47 seconds" tagline](nxeon-47-seconds-tagline.md) — intentional brand tagline, not a fabricated stat; never flag/fix it in marketing copy
+- [Nxeon portal redesign Phase 1](nxeon-portal-redesign-phase1.md) — audit + blueprint DONE 2026-09-03 (artifact published, reports in /root/nxeon-phase1-reports/); Phase 2 blocked on owner approval
+- [Nxeon portal live defects 2026-09](nxeon-portal-live-defects-2026-09.md) — customer-affecting bugs found by the Phase 1 audit; none fixed, game renew/cancel unreachable is the worst
+- [Nxeon design system Phase 2](nxeon-design-system-phase2.md) — built at /opt/nxeon-designsystem (isolated, port 3010); tokens, 60 icons, 4 surfaces, components, shell, showcase at /design
+- [Never pkill by pattern on this box](nxeon-pkill-nextstart-incident.md) — `pkill -f "next start"` restarted live prod; kill by port PID or systemd unit instead
+- [Nxeon brand gradient](nxeon-brand-gradient.md) — blue #3b6be8 -> violet #7b3fef from the logo, extended to a PLACEHOLDER magenta #e5197e; swap brand-c when the exact hex arrives
+- [Nxeon direction mockups](nxeon-direction-mockups.md) — 6 visual-direction artifacts of the 4 dashboard screens (2026-09-03); mockups only, owner picks before any rebuild
+- [Nxeon portal liquid-glass plan](nxeon-portal-liquidglass-plan.md) — candidate 3-step deploy wizard + neon navy/violet portal (2026-09-04); saved at /root/nxeon-portal-liquidglass-plan/, awaiting owner decision
+- [Nxeon grandfather pricing + fleet tags](nxeon-grandfather-pricing-fleet-tags.md) — LIVE 2026-09-25: admin-settable grandfathered renewal price, real add-on-aware fleet pricing/tags, fixed a live 26-server "Renew now" overcharge bug
+- [Nxeon impersonation bugs fixed](nxeon-impersonation-bugs-fixed.md) — LIVE 2026-09-25: fixed location-leak, ticket-reply misattribution, and exit-404 in the admin impersonation feature
+- [Nxeon admin Renew now](nxeon-admin-renew-now.md) — LIVE 2026-09-25: real wallet-then-card admin renewal button; real Stripe test-mode verified, only 1 card renewal ever succeeded in prod before this
+- [Nxeon Creator Partner Program](nxeon-creator-partner-program-live.md) — LIVE 2026-09-26: real /partner/<code> click tracking, 50%-first/10%-recurring sitewide discount, dedicated-IP commission exclusion, admin invites+partial payouts; also: a build agent's test seed accidentally overwrote /root/nxeon-credentials.txt with a throwaway login (prod DB untouched, but the real admin password reference is gone — needs a real reset if not saved elsewhere)
+
+- [Nexion design canvas](nexion-design-canvas.md) — the from-scratch Nexion visual system for the portal: artifact URL, build scripts, and the pre-publish rules
+
+- [Nexion UI sandbox](nexion-ui-sandbox.md) — isolated /opt/nexion-ui on port 3020; no backend, fresh portal rebuild in the Nexion language
+- [Checkout conversion research](nxeon-checkout-conversion-research.md) — what the evidence really says for the deploy wizard (defaults > page count) + the fabricated stats to never cite
+- [Nxeon v2 design fork](nxeon-v2-design-fork.md) — /opt/nxeon-v2 on port 3021: NOW LIVES ON NODE-2, carries its own CLAUDE.md + docs/NEXION-V2.md; never build on the primary
+- [Nxeon v2 sandbox mail server](nxeon-v2-sandbox-mailserver.md) — real Dovecot on node2 with seeded mailboxes so /dashboard/mail renders; the mail_inbox_path + blank-line traps
+- [Nxeon Discord ticket leak 2026-09-05](nxeon-discord-ticket-leak-2026-09-05.md) — original leak fixed same day; a narrower recurrence found 2026-09-06 is still UNRESOLVED
+- [Nxeon node-1 CPU + dev-app relocation](nxeon-node1-cpu-and-devapp-relocation.md) — CPU load + a HARD CRASH of the primary (2026-10-06) traced to parallel agent builds; cap agent builds or move them off the primary
+- [Nxeon game catalog verify sweep 2026-09-06](nxeon-game-catalog-verify-sweep-2026-09-06.md) — real provision/verify/teardown sweep, 10/47 families done, 8 bugs shipped (1 security, 1 cross-session regression), owner decisions pending, 32 families left
+- [Nxeon brand asset library](nxeon-brand-asset-library.md) — the owner's own premium PNG art is in board-uploads; find it by alpha scan, don't scrape stock
+- [Marketing v1 port](nxeon-marketing-v1-port.md) — new marketing site LIVE since 2026-09-27 via NXM_ROOT middleware switch (instant rollback: unset flags + restart); generators in tools/nxm
+- [Never reuse VM IDs](nxeon-never-reuse-vmids.md) — always allocate a brand-new VMID fleet-wide; `pvesh nextid` returns recycled IDs and is unsafe
+- [Marketing redesign 2026-09](nxeon-marketing-redesign-2026-09.md) — new marketing site overhaul: package + audit paths, portal untouched, no prod until 100%, identity-first plan
+- [Model split: Sonnet audits, Opus design](nxeon-model-split-preference.md) — run analysis on Sonnet 5 subagents; wait for owner before any design (Opus 5.5)
+- [Disk-full outage 2026-09-27](nxeon-disk-full-outage-2026-09-27.md) — root disk filled with build caches, Postgres crashed, prod 500 ~10 min; safe caches to clear + what never to touch
+- [Creator invite flow](nxeon-creator-invite-flow.md) — email list → match owner's creator CSV → DRAFT invites w/ name+channel prefill → owner previews → send; batch 1 (12) waiting on partner portal branch
+- [Deploy via promote script](nxeon-deploy-use-promote-script.md) — raw build+restart caused 2 outages 2026-10-01; use deploy-staging → promote-production; classifier blocks /opt/nxeon writes
+- [Agent fleet 2026-10-01](nxeon-agent-fleet-2026-10-01.md) — 20 parallel agents (branches, brief path, rules), PM+BILL agents still to launch, node capacity facts
+- [Minecraft jar mirror + lq4amk incident](nxeon-minecraft-jar-mirror-and-lq4amk.md) — PaperMC outage crash-looped a new server; mirror agent launched; fix script awaiting approval; owner can't reach node-5 servers
+- [Seamless deploys request](nxeon-seamless-deploys-request.md) — owner wants zero-disruption prod deploys; promote builds in live tree today
+- [Nxeon resume 2026-10-03](nxeon-resume-2026-10-03.md) — what is live vs built-but-unmerged branches vs owner decisions pending after the 10-01..03 marathon; safe resume order
+- [OVH game firewall node-4](nxeon-ovh-game-firewall-node4.md) — strict mode silently dropped all UDP except 20055 on node-4 until turned off 2026-10-04; first thing to check when a UDP game is unreachable but healthy locally
+- [AI mod builder](nxeon-ai-modbuilder.md) — flagship AI plugin/mod builder (Minecraft first), standalone service first then Nxeon-pluggable; research+plan started 2026-10-06
+- [Pending decision UI](nxeon-pending-decision-ui.md) — when all agents finish: build ONE clickable decision page + previews, then batched deploy (owner asked 2026-10-06)
+- [Cyrus design feedback](nxeon-cyrus-design-feedback.md) — v1/v2 "cheap, too blue/purple, vibe-coded"; v3 = polish v2 in place (keep UX), cyberpunk space restyle, one accent, real light mode, game selector
+- [DB REASSIGN OWNED incident](nxeon-db-reassign-owned-incident.md) — 2026-10-07 agent moved prod DB ownership cluster-wide; fixed; forbid role/ownership commands in agent briefs
+- [Portal batch 2026-10-07](nxeon-portal-batch-2026-10-07.md) — View status fix + in-place Add funds + tools overhaul + renewal analytics on fix/portal-batch-2026-10-07; verified, not merged/deployed
+- [Build host = node-2](nxeon-build-host-node2.md) — LIVE 2026-10-07: prod builds + agent dev work run on node-2 via scripts/devhost; rules in agent-notes/BUILD-HOST.md
+- [Kobbi invite](nxeon-kobbi-pending-invite.md) — KOBBI partner created + login invite sent 2026-10-08 (expires 10-11); creator media kits live at /opt/nxeon/partner-files/kits/
+- [playnxeon.com migration](nxeon-playnxeon-migration.md) — new servers -> <name>.playnxeon.com; branch built 2026-10-08 (96efee2c41), switch off, cutover steps pending owner
+- [Cyrus v6 programme](nxeon-cyrus-v6-programme.md) — 17-agent Cyrus + bare-metal programme 2026-10-08: branch/commit per agent, owner decisions, paused Palworld/Rust/library/bm-ops
+- [Go-live decisions 2026-10-08](nxeon-golive-decisions-2026-10-08.md) — owner's answers to the 66-question page + standing rules (Sonnet for everything, dark-only marketing, support all games after reset, auto-purchase approved)
+- [Cyrus release pass 2026-10-09](nxeon-cyrus-release-pass-2026-10-09.md) — integ/golive state: everything committed not deployed; what's open; deploy + flag order; /cyrus is generated
+- [VM move real runs 2026-10-09](nxeon-vm-move-real-runs-2026-10-09.md) — spyblox + terraria moved to node-7; mobilkit rolled back (OVH IP move >12 min), still on primary; recovery recipe
+- [Primary slowness 2026-10-09](nxeon-primary-slowness-2026-10-09.md) — Zomboid VM crash loop (balloon floor) + RAM oversubscription; fixes applied; Minecraft 2-vCPU chunk-thread finding
+- [Cyrus master plan 2026-10-10](nxeon-cyrus-master-plan-2026-10-10.md) — engine-framed plan (R0-R5), tier gating decisions, parked items; files in /root/agent-notes/cyrus-research/
+- [Model rule: Sonnet small, Opus big](nxeon-model-rule-sonnet-small-opus-big.md) — owner 2026-10-10: Sonnet for research/small items, Opus for big advanced features, few agents
+- [Cyrus separation mindset](nxeon-cyrus-separation-mindset.md) — stays in Nxeon for months, no separate logins; build behind a host seam so it can stand alone later
+- [Cyrus build progress 2026-10-10](nxeon-cyrus-build-progress-2026-10-10.md) — resume point: branch chain r0..r5, done/in-progress/queued, owner-action list location
+- [Cyrus Model Studio decisions 2026-10-10](nxeon-cyrus-model-studio-decisions-2026-10-10.md) — layered 3D build, foundation branch r13, AUTOMATIC community library, Blender PoC queued after agents finish
+- [Cyrus tracker](nxeon-cyrus-model-studio-decisions-2026-10-10.md) — read /root/agent-notes/cyrus-research/CYRUS-TRACKER.md first: open decisions, gaps, separation, assets; keep it current
+- [Cyrus resume 2026-10-11](nxeon-cyrus-model-studio-decisions-2026-10-11.md) — read CYRUS-TRACKER.md section 10: running bundle agent r31, next steps, owner-gated items
+- [Cyrus full plan 2026-10-11](nxeon-cyrus-model-studio-decisions-2026-10-11.md) — /root/agent-notes/cyrus-research/CYRUS-FULL-PLAN.md: separation + bridge + portals + infra + one-session ship workflow; awaiting owner's section-1 decisions
+- [Cyrus skills: universal-modder](nxeon-cyrus-skills-universal-modder.md) — MIT skills + 74-game field notes vendored/private 2026-10-12; Minecraft findings, hitscan components idea
+- [Cloudflare proxy parked](nxeon-cloudflare-proxy-parked.md) — nxeon.cloud prepared but unproxied by owner choice; why, tokens, cheap assets-host option for later
+- [Cyrus: warn, don't block](nxeon-cyrus-warn-dont-block.md) — no hard caps on user choices anywhere; soft ranges + warnings; only security/legal/money/crash limits stay hard

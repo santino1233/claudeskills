@@ -1,0 +1,47 @@
+--- a/index.html	2026-10-11 12:48:18.760289867 +0000
++++ b/index.html	2026-10-11 12:48:18.775173676 +0000
+@@ -372,6 +372,7 @@
+           <li><svg><use href="#i-check"/></svg>Plan, code, compile, install</li>
+           <li><svg><use href="#i-check"/></svg>Config sliders</li>
+           <li><svg><use href="#i-check"/></svg>Install to your Nxeon servers</li>
++          <li><svg><use href="#i-check"/></svg>Unused tokens roll over while subscribed</li>
+           <li class="dim"><svg><use href="#i-minus"/></svg>Studios not included</li>
+         </ul>
+         <a class="btn" href="#top" data-focus-prompt>Start with Katara</a>
+@@ -398,6 +399,7 @@
+         <ul>
+           <li><svg><use href="#i-check"/></svg>Everything in Katara</li>
+           <li><svg><use href="#i-check"/></svg>Sound Studio</li>
++          <li><svg><use href="#i-check"/></svg>Unused tokens roll over while subscribed</li>
+           <li class="dim"><svg><use href="#i-minus"/></svg>Texture and 3D studios in Yakko</li>
+         </ul>
+         <a class="btn" href="#top" data-focus-prompt>Start with Saka</a>
+@@ -429,10 +431,16 @@
+           <li><svg><use href="#i-check"/></svg>All models</li>
+           <li><svg><use href="#i-check"/></svg>Texture, Sound and 3D Model studios</li>
+           <li><svg><use href="#i-check"/></svg>Asset libraries</li>
++          <li><svg><use href="#i-check"/></svg>Unused tokens roll over while subscribed</li>
+         </ul>
+         <a class="btn btn-solid" href="#top" data-focus-prompt>Start with Yakko</a>
+       </article>
+     </div>
++    <div class="rules reveal">
++      <p>Unused tokens roll over every month for as long as your plan stays active.</p>
++      <p>Every paid Nxeon game server you deploy comes with free Cyrus tokens, plus more on each renewal.</p>
++      <small>Cancel and your plan tokens pause for a grace period: resubscribe in time and they&rsquo;re yours again.</small>
++    </div>
+     <div class="free reveal"><b>Free</b><span>Try Cyrus at no cost, with limits.</span><a class="btn btn-sm" href="#top" data-focus-prompt>Try it free</a></div>
+   </div>
+ </section>
+--- a/assets/css/site.css	2026-10-11 12:48:18.761518496 +0000
++++ b/assets/css/site.css	2026-10-11 12:48:18.775279796 +0000
+@@ -338,6 +338,9 @@
+ .free{margin-top:16px;border-radius:18px;border:1px dashed var(--line-2);padding:16px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;color:var(--ink-2);font-size:15px}
+ .free b{font:600 16px var(--display);color:#fff}
+ .free .btn{margin-left:auto}
++.rules{margin-top:16px;display:grid;gap:6px;color:var(--ink-2);font-size:15px;max-width:68ch}
++.rules p{margin:0}
++.rules small{color:var(--ink-3);font-size:13px}
+ 
+ /* plan icons */
+ .sig .w1{animation:wave 5s linear infinite}.sig .w2{animation:wave 3.4s linear infinite reverse}.sig .w3{animation:wave 7s linear infinite}

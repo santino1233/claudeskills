@@ -1,0 +1,229 @@
+[
+ {
+  "at": "2026-10-11T19:16:37.376Z",
+  "version": "1.21.11",
+  "namespace": "nx_mc1dpk01",
+  "packSha256": "0315e8e5d5d198afcbe13a08a49f5229b20655f87bffb25abe6e3e47f18d1926",
+  "files": [
+   "data/nx_mc1dpk01/damage_type/zap.json",
+   "data/nx_mc1dpk01/enchantment/swiftness.json",
+   "data/nx_mc1dpk01/enchantment/venom.json",
+   "data/nx_mc1dpk01/item_modifier/shiny.json",
+   "data/nx_mc1dpk01/jukebox_song/theme.json",
+   "data/nx_mc1dpk01/loot_table/venom_blade.json",
+   "data/nx_mc1dpk01/predicate/always.json",
+   "pack.mcmeta"
+  ],
+  "apply": "restart",
+  "summary": {
+   "version": "1.21.11",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "plugins_enabled",
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 15818,
+   "peakRssKb": 1156144,
+   "runId": "tf-1-21-11-mv47eqjs-44af43"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 1110 MB, 263 ms]: ok -> The difficulty has been set to Easy",
+   "forceload 'forceload add 0 0' [rss 1114 MB, 259 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+   "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1123 MB, 626 ms]: ok -> Dropped 1 [Iron Sword]",
+   "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1123 MB, 252 ms]: ok -> Test passed",
+   "chest 'setblock 0 100 0 minecraft:chest' [rss 1126 MB, 410 ms]: ok -> Changed the block at 0, 100, 0",
+   "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1126 MB, 255 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+   "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1126 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+   "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable=\"nx_mc1dpk01:theme\"]' [rss 1126 MB, 253 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+   "summon 'summon minecraft:zombie 0 101 2 {NoAI:1b,PersistenceRequired:1b}' [rss 1127 MB, 287 ms]: ok -> Summoned new Zombie",
+   "damage 'damage @e[type=minecraft:zombie,limit=1] 1 nx_mc1dpk01:zap' [rss 1127 MB, 272 ms]: ok -> Applied 1.0 damage to Zombie",
+   "datapacks-enabled 'datapack list enabled' [rss 1127 MB, 258 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+  ],
+  "log": [
+   "89 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "runId": "tf-1-21-11-mv47eqjs-44af43"
+ },
+ {
+  "at": "2026-10-11T19:31:41.396Z",
+  "version": "1.21.1",
+  "namespace": "nx_mc1dpk01",
+  "packSha256": "7762b0f4a11eda6757af79609a8813a4857880df9e071250eba3eaa727a8ffaf",
+  "files": [
+   "data/nx_mc1dpk01/damage_type/zap.json",
+   "data/nx_mc1dpk01/enchantment/swiftness.json",
+   "data/nx_mc1dpk01/enchantment/venom.json",
+   "data/nx_mc1dpk01/item_modifier/shiny.json",
+   "data/nx_mc1dpk01/jukebox_song/theme.json",
+   "data/nx_mc1dpk01/loot_table/venom_blade.json",
+   "data/nx_mc1dpk01/predicate/always.json",
+   "pack.mcmeta"
+  ],
+  "apply": "restart",
+  "summary": {
+   "version": "1.21.1",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "plugins_enabled",
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 17218,
+   "peakRssKb": 1078628,
+   "runId": "tf-1-21-1-mv47y0lp-d920b3"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 1050 MB, 260 ms]: ok -> The difficulty has been set to Easy",
+   "forceload 'forceload add 0 0' [rss 1050 MB, 253 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+   "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1050 MB, 269 ms]: ok -> Dropped 1 [Iron Sword]",
+   "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1050 MB, 251 ms]: ok -> Test passed",
+   "chest 'setblock 0 100 0 minecraft:chest' [rss 1051 MB, 259 ms]: ok -> Changed the block at 0, 100, 0",
+   "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1051 MB, 256 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+   "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1051 MB, 251 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+   "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable={song:\"nx_mc1dpk01:theme\"}]' [rss 1051 MB, 255 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+   "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1051 MB, 284 ms]: ok -> Summoned new Cow",
+   "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1051 MB, 259 ms]: ok (optional) -> Test passed, count: 1",
+   "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1052 MB, 266 ms]: ok -> Applied 1.0 damage to Cow",
+   "datapacks-enabled 'datapack list enabled' [rss 1052 MB, 256 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+  ],
+  "log": [
+   "82 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "runId": "tf-1-21-1-mv47y0lp-d920b3"
+ },
+ {
+  "at": "2026-10-11T19:32:08.896Z",
+  "version": "1.21.4",
+  "namespace": "nx_mc1dpk01",
+  "packSha256": "3950721b43c1157f98d8e992956caebc1d42f1e5e99c75978e35e8cc9920c757",
+  "files": [
+   "data/nx_mc1dpk01/damage_type/zap.json",
+   "data/nx_mc1dpk01/enchantment/swiftness.json",
+   "data/nx_mc1dpk01/enchantment/venom.json",
+   "data/nx_mc1dpk01/item_modifier/shiny.json",
+   "data/nx_mc1dpk01/jukebox_song/theme.json",
+   "data/nx_mc1dpk01/loot_table/venom_blade.json",
+   "data/nx_mc1dpk01/predicate/always.json",
+   "pack.mcmeta"
+  ],
+  "apply": "restart",
+  "summary": {
+   "version": "1.21.4",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "plugins_enabled",
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 17219,
+   "peakRssKb": 1144752,
+   "runId": "tf-1-21-4-mv47ynv5-863317"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 1112 MB, 322 ms]: ok -> The difficulty has been set to Easy",
+   "forceload 'forceload add 0 0' [rss 1112 MB, 253 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+   "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1113 MB, 259 ms]: ok -> Dropped 1 [Iron Sword]",
+   "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1113 MB, 252 ms]: ok -> Test passed",
+   "chest 'setblock 0 100 0 minecraft:chest' [rss 1113 MB, 258 ms]: ok -> Changed the block at 0, 100, 0",
+   "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1113 MB, 257 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+   "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1113 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+   "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable={song:\"nx_mc1dpk01:theme\"}]' [rss 1113 MB, 253 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+   "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1113 MB, 254 ms]: ok -> Summoned new Cow",
+   "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1114 MB, 258 ms]: ok (optional) -> Test passed, count: 1",
+   "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1114 MB, 267 ms]: ok -> Applied 1.0 damage to Cow",
+   "datapacks-enabled 'datapack list enabled' [rss 1114 MB, 259 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+  ],
+  "log": [
+   "92 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "runId": "tf-1-21-4-mv47ynv5-863317"
+ },
+ {
+  "at": "2026-10-11T19:25:22.097Z",
+  "version": "1.21.8",
+  "namespace": "nx_mc1dpk01",
+  "packSha256": "255db0d0d26dece6b9d40250f20f964602ea7d443e3220de01c3c338be5af564",
+  "files": [
+   "data/nx_mc1dpk01/damage_type/zap.json",
+   "data/nx_mc1dpk01/enchantment/swiftness.json",
+   "data/nx_mc1dpk01/enchantment/venom.json",
+   "data/nx_mc1dpk01/item_modifier/shiny.json",
+   "data/nx_mc1dpk01/jukebox_song/theme.json",
+   "data/nx_mc1dpk01/loot_table/venom_blade.json",
+   "data/nx_mc1dpk01/predicate/always.json",
+   "pack.mcmeta"
+  ],
+  "apply": "restart",
+  "summary": {
+   "version": "1.21.8",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "plugins_enabled",
+    "playtest"
+   ],
+   "reasons": [],
+   "bootMs": 17827,
+   "peakRssKb": 1121372,
+   "runId": "tf-1-21-8-mv47pv9w-0d4dd0"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 1085 MB, 260 ms]: ok -> The difficulty has been set to Easy",
+   "forceload 'forceload add 0 0' [rss 1085 MB, 254 ms]: ok -> Marked chunk [0, 0] in minecraft:overworld to be force loaded",
+   "loot-ench 'loot spawn 0 120 0 loot nx_mc1dpk01:venom_blade' [rss 1085 MB, 263 ms]: ok -> Dropped 1 [Iron Sword]",
+   "predicate 'execute if predicate nx_mc1dpk01:always' [rss 1085 MB, 251 ms]: ok -> Test passed",
+   "chest 'setblock 0 100 0 minecraft:chest' [rss 1085 MB, 263 ms]: ok -> Changed the block at 0, 100, 0",
+   "chest-item 'item replace block 0 100 0 container.0 with minecraft:iron_sword' [rss 1086 MB, 256 ms]: ok -> Replaced a slot at 0, 100, 0 with [Iron Sword]",
+   "item-modifier 'item modify block 0 100 0 container.0 nx_mc1dpk01:shiny' [rss 1086 MB, 251 ms]: ok -> Replaced a slot at 0, 100, 0 with [Shiny]",
+   "jukebox-disc 'item replace block 0 100 0 container.1 with minecraft:music_disc_13[minecraft:jukebox_playable=\"nx_mc1dpk01:theme\"]' [rss 1086 MB, 252 ms]: ok -> Replaced a slot at 0, 100, 0 with [Music Disc]",
+   "summon 'summon minecraft:cow 0 101 2 {NoAI:1b,PersistenceRequired:1b,Tags:[\"cyrus_target\"]}' [rss 1086 MB, 255 ms]: ok -> Summoned new Cow",
+   "target-exists 'execute if entity @e[tag=cyrus_target]' [rss 1086 MB, 257 ms]: ok (optional) -> Test passed, count: 1",
+   "damage 'damage @e[tag=cyrus_target,limit=1] 1 nx_mc1dpk01:zap' [rss 1086 MB, 266 ms]: ok -> Applied 1.0 damage to Cow",
+   "datapacks-enabled 'datapack list enabled' [rss 1087 MB, 257 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/coverage (world)], [paper (built-in)]"
+  ],
+  "log": [
+   "92 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "runId": "tf-1-21-8-mv47pv9w-0d4dd0"
+ }
+]

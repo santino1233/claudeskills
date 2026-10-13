@@ -1,0 +1,534 @@
+{
+ "at": "2026-10-12T07:03:42.114Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (fixture designs)",
+ "switch": "techniques: true (CYRUS_MC_TECHNIQUES)",
+ "lanes": [
+  {
+   "version": "1.21.1",
+   "jdk": "21",
+   "files": 28,
+   "hash": "a1786adcf20c3e1f4f74a86ad0cd2a5c550d64f2563c9e6aba4ee61f98420272",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4wol5u/1.21.1/NxTools-1.21.1.jar",
+   "jarSha256": "3a37cfbc5c78c49d623a5d131ddd8c4fad030977d430730365e6404884bf6efd",
+   "sources": 26,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.4",
+   "jdk": "21",
+   "files": 28,
+   "hash": "ebc9e507b0eb211642e85094d2e336dfc0e93c4148399322203aa6152ddbfa9f",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4wol5u/1.21.4/NxTools-1.21.4.jar",
+   "jarSha256": "b429cabca23440ff7ff13aad7e95d0a92a1089457b17df89be5a886d1ad7f45e",
+   "sources": 26,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.8",
+   "jdk": "21",
+   "files": 28,
+   "hash": "ad66b0371512d99a91a078ff8f83e49ab5ff42eee900475213e1e7211c695fdf",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4wol5u/1.21.8/NxTools-1.21.8.jar",
+   "jarSha256": "3b5aeaf631fe93eda3b432d6e8d00f408ed4e630b88963966fbf10f96698b674",
+   "sources": 26,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "files": 28,
+   "hash": "b233531746c3cb2d0f52830cfb96c8c9d202ba1cfe9065e11514986c428f7020",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4wol5u/1.21.11/NxTools-1.21.11.jar",
+   "jarSha256": "e8748643060295957c42595829f6dc9f67dca998b663d20bb8062da1a5b5d738",
+   "sources": 26,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "files": 28,
+   "hash": "77a851e58e7fcf31e0a743c9717f439a259381a6109f265ede541c5e3f025100",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-techniques/run-mv4wol5u/26.2/NxTools-26.2.jar",
+   "jarSha256": "6a1a63e5366d99a950e1f7e71ceb76b3b759ffcff19f5be5d670f4781c2ca975",
+   "sources": 26,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "flight": {
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 19.1s, peak RSS 960 MB)",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "pass",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "rcon": [
+   "plugins 'plugins' [rss 864 MB, 251 ms]: ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxProtect, NxTools | ",
+   "list 'nxtools list' [rss 872 MB, 332 ms]: ok -> sneak_drill: identity=ok material=diamond_pickaxe abilities=1 recipe=none | timber_axe: identity=ok material=iron_axe abilities=1 recipe=none | vein_pickaxe: identity=ok material=iron_pickaxe abilities=1 recipe=none | ",
+   "params 'nxtools params vein_pickaxe' [rss 873 MB, 252 ms]: ok -> items.vein_pickaxe.abilities.vein.a0.max_blocks=16 | items.vein_pickaxe.abilities.vein.a0.per_tick=4 | items.vein_pickaxe.abilities.vein.a0.radius=6.0 | items.vein_pickaxe.abilities.vein.a1.sound=minecraft:block.amethyst_block.chime | items"
+  ],
+  "log": [
+   "99 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-1",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 1885 ms at {\"x\":7.5,\"y\":-60,\"z\":9.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give vein_pickaxe NxPlaytest' -> Gave 1 x vein_pickaxe to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_pickaxe"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 0.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 2 -60 2 minecraft:iron_ore' -> Changed the block at 2, -60, 2"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 3 -60 2 minecraft:iron_ore' -> Changed the block at 3, -60, 2"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 4 -60 2 minecraft:iron_ore' -> Changed the block at 4, -60, 2"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 4 -59 2 minecraft:iron_ore' -> Changed the block at 4, -59, 2"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 5 -59 3 minecraft:deepslate_iron_ore' -> Changed the block at 5, -59, 3"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 3 -60 3 minecraft:coal_ore' -> Changed the block at 3, -60, 3"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=item]' -> No entity was found"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 500 ms"
+      ]
+     },
+     {
+      "kind": "dig",
+      "status": "pass",
+      "evidence": [
+       "dug iron_ore at 2 -60 2 with iron_pickaxe; now air"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 1500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 3 -60 2 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 4 -60 2 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 4 -59 2 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 5 -59 3 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 3 -60 3 minecraft:coal_ore' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if items entity NxPlaytest weapon.mainhand minecraft:iron_pickaxe[minecraft:damage=5]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=item]' -> Killed 3 entities"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give vein_pickaxe NxPlaytest' -> Gave 1 x vein_pickaxe to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_pickaxe"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 3.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 3.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'fill 2 -60 5 7 -60 5 minecraft:iron_ore' -> Successfully filled 6 block(s)"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxprotect 5 -60 5 5 -60 5' -> NxProtect box set | "
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "dig",
+      "status": "pass",
+      "evidence": [
+       "dug iron_ore at 2 -60 5 with iron_pickaxe; now air"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 1500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 3 -60 5 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 4 -60 5 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 5 -60 5 minecraft:iron_ore' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 6 -60 5 minecraft:iron_ore' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 7 -60 5 minecraft:iron_ore' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxprotect' -> NxProtect cancelled 1 | "
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if items entity NxPlaytest weapon.mainhand minecraft:iron_pickaxe[minecraft:damage=3]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxprotect off' -> NxProtect off | "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxtools give timber_axe NxPlaytest' -> Gave 1 x timber_axe to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_axe"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 7.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 7.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'fill 2 -60 9 2 -53 9 minecraft:oak_log' -> Successfully filled 8 block(s)"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "dig",
+      "status": "pass",
+      "evidence": [
+       "dug oak_log at 2 -60 9 with iron_axe; now air"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 2000 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 2 -59 9 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 2 -56 9 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 2 -53 9 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if items entity NxPlaytest weapon.mainhand minecraft:iron_axe[minecraft:damage=8]' -> Test passed. Count: 1"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-4",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'give NxPlaytest minecraft:iron_pickaxe' -> Gave 1 [Iron Pickaxe] to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_pickaxe"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 2.5 -60 9.5 0 0' -> Teleported NxPlaytest to 2.500000, -60.000000, 9.500000"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 2 -60 11 minecraft:iron_ore' -> Changed the block at 2, -60, 11"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'setblock 3 -60 11 minecraft:iron_ore' -> Changed the block at 3, -60, 11"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 300 ms"
+      ]
+     },
+     {
+      "kind": "dig",
+      "status": "pass",
+      "evidence": [
+       "dug iron_ore at 2 -60 11 with iron_pickaxe; now air"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 1000 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 2 -60 11 minecraft:air' -> Test passed"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if block 3 -60 11 minecraft:iron_ore' -> Test passed"
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mv4wovl4-7ba70d",
+  "engine": {
+   "runner": "tf-lite-6",
+   "paper": 132
+  }
+ }
+}

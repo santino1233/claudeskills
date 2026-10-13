@@ -1,0 +1,1916 @@
+{
+ "at": "2026-10-11T19:42:28.372Z",
+ "host": "node-2",
+ "realClient": false,
+ "flights": [
+  {
+   "name": "unbounded-1.21.11",
+   "fixture": "chunkmirror-unbounded",
+   "version": "1.21.11",
+   "watchdog": false,
+   "injected": {
+    "injected": false,
+    "reason": "negative control without the watchdog"
+   },
+   "expect": "fail",
+   "jarSha256": "e302cd8725ba1302166c8cd79406a588d85987f28422868c49a9389a442cfbf2",
+   "wallMs": 418426,
+   "overall": "failed",
+   "reasons": [
+    "stress failed: stress FAIL: entities ran away: 9038 (limit 2500)"
+   ],
+   "stressCheck": {
+    "status": "fail",
+    "evidence": [
+     "stress FAIL: entities ran away: 9038 (limit 2500)",
+     "load: 50 minecraft:pig summoned, 100 chunks force-loaded, 1 mod command(s), bot placed 23 / broke 23 / teleported 4",
+     "numbers: baseline 19.93 TPS, load median 19.93 min 14.05, under 15 for 2.92 s, stall 0 s, MSPT max 58.2, entities max 9038, RSS peak 1086 MB (+223)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3017,
+      "dtMs": 2764,
+      "tps": 19.9,
+      "mspt": 5.9,
+      "entities": 0,
+      "rssKb": 884100
+     },
+     {
+      "phase": "baseline",
+      "t": 5773,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 884140
+     },
+     {
+      "phase": "load",
+      "t": 8541,
+      "dtMs": 2768,
+      "tps": 18.06,
+      "mspt": 14.9,
+      "entities": 85,
+      "rssKb": 923664
+     },
+     {
+      "phase": "load",
+      "t": 11315,
+      "dtMs": 2774,
+      "tps": 19.47,
+      "mspt": 28.2,
+      "entities": 428,
+      "rssKb": 930176
+     },
+     {
+      "phase": "load",
+      "t": 14070,
+      "dtMs": 2755,
+      "tps": 19.24,
+      "mspt": 16.1,
+      "entities": 791,
+      "rssKb": 933352
+     },
+     {
+      "phase": "load",
+      "t": 16823,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 8.4,
+      "entities": 1166,
+      "rssKb": 934832
+     },
+     {
+      "phase": "load",
+      "t": 19577,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 9.5,
+      "entities": 1772,
+      "rssKb": 948288
+     },
+     {
+      "phase": "load",
+      "t": 22332,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 11.4,
+      "entities": 2424,
+      "rssKb": 951348
+     },
+     {
+      "phase": "load",
+      "t": 25156,
+      "dtMs": 2824,
+      "tps": 16.64,
+      "mspt": 14.8,
+      "entities": 2750,
+      "rssKb": 952520
+     },
+     {
+      "phase": "load",
+      "t": 27929,
+      "dtMs": 2773,
+      "tps": 20,
+      "mspt": 22.3,
+      "entities": 3474,
+      "rssKb": 957376
+     },
+     {
+      "phase": "load",
+      "t": 30688,
+      "dtMs": 2759,
+      "tps": 19.93,
+      "mspt": 23.3,
+      "entities": 4350,
+      "rssKb": 961660
+     },
+     {
+      "phase": "load",
+      "t": 33447,
+      "dtMs": 2759,
+      "tps": 19.93,
+      "mspt": 31.8,
+      "entities": 5190,
+      "rssKb": 970768
+     },
+     {
+      "phase": "load",
+      "t": 36316,
+      "dtMs": 2869,
+      "tps": 19.87,
+      "mspt": 37.9,
+      "entities": 5807,
+      "rssKb": 983788
+     },
+     {
+      "phase": "load",
+      "t": 39084,
+      "dtMs": 2768,
+      "tps": 20,
+      "mspt": 32.9,
+      "entities": 6571,
+      "rssKb": 1006392
+     },
+     {
+      "phase": "load",
+      "t": 41841,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 34.9,
+      "entities": 7603,
+      "rssKb": 1015656
+     },
+     {
+      "phase": "load",
+      "t": 44759,
+      "dtMs": 2918,
+      "tps": 14.05,
+      "mspt": 53.2,
+      "entities": 8416,
+      "rssKb": 1044856
+     },
+     {
+      "phase": "load",
+      "t": 47590,
+      "dtMs": 2831,
+      "tps": 18.72,
+      "mspt": 58.2,
+      "entities": 9038,
+      "rssKb": 1112140
+     }
+    ],
+    "load": {
+     "summoned": 50,
+     "chunks": 100,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=22 queued=0 mirroredBlocks=3586 mirroredMobs=1755 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 23,
+      "broken": 23,
+      "failed": 19,
+      "teleports": 4,
+      "notes": [
+       "action: Server refused to place stone at (5, -60, -2): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (40, -60, 26): the block is still air",
+       "action: Server refused to place stone at (38, -60, 24): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (40, -60, 26): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (-50, -60, 40): the block is still air"
+      ],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "fail",
+    "reasons": [
+     "entities ran away: 9038 (limit 2500)"
+    ],
+    "numbers": {
+     "baselineTps": 19.93,
+     "tpsMin": 14.05,
+     "tpsMedian": 19.93,
+     "lowSec": 2.92,
+     "warnSec": 2.92,
+     "stallSec": 0,
+     "msptMax": 58.2,
+     "entitiesMax": 9038,
+     "rssPeakMb": 1086,
+     "rssGrowthMb": 223,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 1209188,
+   "runId": "tf-1-21-11-mv48660w-979091",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47149, rcon 47184 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "bounded-1.21.11",
+   "fixture": "chunkmirror-bounded",
+   "version": "1.21.11",
+   "watchdog": true,
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "expect": "pass",
+   "jarSha256": "e3228d86583564e4946582044cb23378506bb54378b1519e7c540c257f0f4e1c",
+   "wallMs": 71812,
+   "overall": "passed",
+   "reasons": [],
+   "stressCheck": {
+    "status": "pass",
+    "evidence": [
+     "stress PASS: TPS held (median 19.96, lowest 18.35) under load",
+     "load: 54 minecraft:pig summoned, 104 chunks force-loaded, 1 mod command(s), bot placed 46 / broke 46 / teleported 4",
+     "numbers: baseline 19.93 TPS, load median 19.96 min 18.35, under 15 for 0 s, stall 0 s, MSPT max 18.8, entities max 53, RSS peak 909 MB (+50)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3017,
+      "dtMs": 2764,
+      "tps": 19.9,
+      "mspt": 6.6,
+      "entities": 0,
+      "rssKb": 879332
+     },
+     {
+      "phase": "baseline",
+      "t": 5773,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 879432
+     },
+     {
+      "phase": "load",
+      "t": 8552,
+      "dtMs": 2779,
+      "tps": 18.35,
+      "mspt": 14.4,
+      "entities": 4,
+      "rssKb": 919280
+     },
+     {
+      "phase": "load",
+      "t": 11308,
+      "dtMs": 2756,
+      "tps": 19.59,
+      "mspt": 18.8,
+      "entities": 7,
+      "rssKb": 922648
+     },
+     {
+      "phase": "load",
+      "t": 14064,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 5.3,
+      "entities": 11,
+      "rssKb": 924264
+     },
+     {
+      "phase": "load",
+      "t": 16820,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 2.4,
+      "entities": 15,
+      "rssKb": 925744
+     },
+     {
+      "phase": "load",
+      "t": 19576,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 2.1,
+      "entities": 17,
+      "rssKb": 927136
+     },
+     {
+      "phase": "load",
+      "t": 22332,
+      "dtMs": 2756,
+      "tps": 19.59,
+      "mspt": 2,
+      "entities": 21,
+      "rssKb": 928228
+     },
+     {
+      "phase": "load",
+      "t": 25089,
+      "dtMs": 2757,
+      "tps": 20,
+      "mspt": 1.7,
+      "entities": 25,
+      "rssKb": 928124
+     },
+     {
+      "phase": "load",
+      "t": 27846,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 1.8,
+      "entities": 29,
+      "rssKb": 928404
+     },
+     {
+      "phase": "load",
+      "t": 30600,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.7,
+      "entities": 32,
+      "rssKb": 928652
+     },
+     {
+      "phase": "load",
+      "t": 33354,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.3,
+      "entities": 35,
+      "rssKb": 928868
+     },
+     {
+      "phase": "load",
+      "t": 36109,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 1.4,
+      "entities": 39,
+      "rssKb": 929204
+     },
+     {
+      "phase": "load",
+      "t": 38864,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 1.4,
+      "entities": 43,
+      "rssKb": 929348
+     },
+     {
+      "phase": "load",
+      "t": 41620,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 1.1,
+      "entities": 47,
+      "rssKb": 929512
+     },
+     {
+      "phase": "load",
+      "t": 44373,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 1.3,
+      "entities": 51,
+      "rssKb": 930016
+     },
+     {
+      "phase": "load",
+      "t": 47127,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.6,
+      "entities": 53,
+      "rssKb": 930348
+     }
+    ],
+    "load": {
+     "summoned": 54,
+     "chunks": 104,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=650 queued=0 mirroredBlocks=624 mirroredMobs=0 skippedMobs=0 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 46,
+      "broken": 46,
+      "failed": 0,
+      "teleports": 4,
+      "notes": [],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "pass",
+    "reasons": [
+     "TPS held (median 19.96, lowest 18.35) under load"
+    ],
+    "numbers": {
+     "baselineTps": 19.93,
+     "tpsMin": 18.35,
+     "tpsMedian": 19.96,
+     "lowSec": 0,
+     "warnSec": 0,
+     "stallSec": 0,
+     "msptMax": 18.8,
+     "entitiesMax": 53,
+     "rssPeakMb": 909,
+     "rssGrowthMb": 50,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 940620,
+   "runId": "tf-1-21-11-mv487r9k-63543f",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47102, rcon 47100 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "unbounded+watchdog-1.21.11",
+   "fixture": "chunkmirror-unbounded",
+   "version": "1.21.11",
+   "watchdog": true,
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "expect": "observe",
+   "jarSha256": "7c9cc4beaecad46ad0df09e62a4e014c935530be3bb2728dab08cf97758989b3",
+   "wallMs": 73113,
+   "overall": "failed",
+   "reasons": [
+    "stress failed: stress FAIL: entities ran away: 9559 (limit 2500)"
+   ],
+   "stressCheck": {
+    "status": "fail",
+    "evidence": [
+     "stress FAIL: entities ran away: 9559 (limit 2500)",
+     "load: 52 minecraft:pig summoned, 101 chunks force-loaded, 1 mod command(s), bot placed 20 / broke 20 / teleported 4",
+     "numbers: baseline 19.94 TPS, load median 19.77 min 14.82, under 15 for 2.9 s, stall 0 s, MSPT max 57.1, entities max 9559, RSS peak 1073 MB (+221)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3014,
+      "dtMs": 2761,
+      "tps": 19.92,
+      "mspt": 2.4,
+      "entities": 0,
+      "rssKb": 872888
+     },
+     {
+      "phase": "baseline",
+      "t": 5770,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 872992
+     },
+     {
+      "phase": "load",
+      "t": 8533,
+      "dtMs": 2763,
+      "tps": 19.91,
+      "mspt": 10.9,
+      "entities": 163,
+      "rssKb": 922548
+     },
+     {
+      "phase": "load",
+      "t": 11518,
+      "dtMs": 2985,
+      "tps": 19.77,
+      "mspt": 18.1,
+      "entities": 405,
+      "rssKb": 929452
+     },
+     {
+      "phase": "load",
+      "t": 14272,
+      "dtMs": 2754,
+      "tps": 19.61,
+      "mspt": 11.5,
+      "entities": 889,
+      "rssKb": 930276
+     },
+     {
+      "phase": "load",
+      "t": 17028,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 8.1,
+      "entities": 1373,
+      "rssKb": 931068
+     },
+     {
+      "phase": "load",
+      "t": 19782,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 8,
+      "entities": 1981,
+      "rssKb": 931580
+     },
+     {
+      "phase": "load",
+      "t": 22538,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 9,
+      "entities": 2285,
+      "rssKb": 936184
+     },
+     {
+      "phase": "load",
+      "t": 25292,
+      "dtMs": 2754,
+      "tps": 18.88,
+      "mspt": 14.9,
+      "entities": 2927,
+      "rssKb": 936552
+     },
+     {
+      "phase": "load",
+      "t": 28062,
+      "dtMs": 2770,
+      "tps": 20,
+      "mspt": 21.2,
+      "entities": 3751,
+      "rssKb": 941564
+     },
+     {
+      "phase": "load",
+      "t": 30852,
+      "dtMs": 2790,
+      "tps": 18.64,
+      "mspt": 34.3,
+      "entities": 4380,
+      "rssKb": 947264
+     },
+     {
+      "phase": "load",
+      "t": 33754,
+      "dtMs": 2902,
+      "tps": 14.82,
+      "mspt": 57.1,
+      "entities": 5013,
+      "rssKb": 964844
+     },
+     {
+      "phase": "load",
+      "t": 36635,
+      "dtMs": 2881,
+      "tps": 20,
+      "mspt": 42.4,
+      "entities": 5908,
+      "rssKb": 986276
+     },
+     {
+      "phase": "load",
+      "t": 39446,
+      "dtMs": 2811,
+      "tps": 18.85,
+      "mspt": 37.7,
+      "entities": 6682,
+      "rssKb": 1017000
+     },
+     {
+      "phase": "load",
+      "t": 42688,
+      "dtMs": 3242,
+      "tps": 18.82,
+      "mspt": 41.3,
+      "entities": 7456,
+      "rssKb": 1058476
+     },
+     {
+      "phase": "load",
+      "t": 45533,
+      "dtMs": 2845,
+      "tps": 17.93,
+      "mspt": 44.3,
+      "entities": 8368,
+      "rssKb": 1073716
+     },
+     {
+      "phase": "load",
+      "t": 48337,
+      "dtMs": 2804,
+      "tps": 19.97,
+      "mspt": 45.8,
+      "entities": 9559,
+      "rssKb": 1098956
+     }
+    ],
+    "load": {
+     "summoned": 52,
+     "chunks": 101,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=20 queued=0 mirroredBlocks=3040 mirroredMobs=1962 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 20,
+      "broken": 20,
+      "failed": 22,
+      "teleports": 4,
+      "notes": [
+       "action: Server refused to place stone at (9, -60, 8): the block is still air",
+       "action: Server refused to place stone at (9, -60, 8): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (42, -60, 24): the block is still air",
+       "action: Server refused to place stone at (38, -60, 24): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (42, -60, 24): the block is still air",
+       "action: Server refused to place stone at (38, -60, 24): the block is still air"
+      ],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "fail",
+    "reasons": [
+     "entities ran away: 9559 (limit 2500)"
+    ],
+    "numbers": {
+     "baselineTps": 19.94,
+     "tpsMin": 14.82,
+     "tpsMedian": 19.77,
+     "lowSec": 2.9,
+     "warnSec": 2.9,
+     "stallSec": 0,
+     "msptMax": 57.1,
+     "entitiesMax": 9559,
+     "rssPeakMb": 1073,
+     "rssGrowthMb": 221,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 1185136,
+   "runId": "tf-1-21-11-mv489bsr-c447a3",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47130, rcon 47174 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "bounded-1.21.4",
+   "fixture": "chunkmirror-bounded",
+   "version": "1.21.4",
+   "watchdog": true,
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "expect": "pass",
+   "jarSha256": "e4f902bc33058e46dc3ba66695b155cb7d26c39736ad5f8e16adb9c76fd9ef54",
+   "wallMs": 73695,
+   "overall": "passed",
+   "reasons": [],
+   "stressCheck": {
+    "status": "pass",
+    "evidence": [
+     "stress PASS: TPS held (median 19.97, lowest 19.96) under load",
+     "load: 56 minecraft:pig summoned, 108 chunks force-loaded, 1 mod command(s), bot off",
+     "numbers: baseline 19.93 TPS, load median 19.97 min 19.96, under 15 for 0 s, stall 0 s, MSPT max 1.5, entities max 65, RSS peak 837 MB (+6)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": false,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3023,
+      "dtMs": 2763,
+      "tps": 19.91,
+      "mspt": 0.6,
+      "entities": 10,
+      "rssKb": 851288
+     },
+     {
+      "phase": "baseline",
+      "t": 5780,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 0.4,
+      "entities": 10,
+      "rssKb": 851332
+     },
+     {
+      "phase": "load",
+      "t": 8535,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.7,
+      "entities": 14,
+      "rssKb": 852160
+     },
+     {
+      "phase": "load",
+      "t": 11290,
+      "dtMs": 2755,
+      "tps": 20,
+      "mspt": 1.3,
+      "entities": 18,
+      "rssKb": 852512
+     },
+     {
+      "phase": "load",
+      "t": 14045,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 1.5,
+      "entities": 22,
+      "rssKb": 853204
+     },
+     {
+      "phase": "load",
+      "t": 16800,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 1.1,
+      "entities": 25,
+      "rssKb": 853880
+     },
+     {
+      "phase": "load",
+      "t": 19554,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.9,
+      "entities": 28,
+      "rssKb": 854344
+     },
+     {
+      "phase": "load",
+      "t": 22310,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 0.7,
+      "entities": 32,
+      "rssKb": 854516
+     },
+     {
+      "phase": "load",
+      "t": 25065,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.7,
+      "entities": 36,
+      "rssKb": 854848
+     },
+     {
+      "phase": "load",
+      "t": 27820,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.6,
+      "entities": 40,
+      "rssKb": 855328
+     },
+     {
+      "phase": "load",
+      "t": 30575,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.6,
+      "entities": 43,
+      "rssKb": 855716
+     },
+     {
+      "phase": "load",
+      "t": 33329,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.6,
+      "entities": 46,
+      "rssKb": 855888
+     },
+     {
+      "phase": "load",
+      "t": 36083,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.5,
+      "entities": 50,
+      "rssKb": 856236
+     },
+     {
+      "phase": "load",
+      "t": 38837,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.4,
+      "entities": 54,
+      "rssKb": 856468
+     },
+     {
+      "phase": "load",
+      "t": 41591,
+      "dtMs": 2754,
+      "tps": 20,
+      "mspt": 0.4,
+      "entities": 58,
+      "rssKb": 856692
+     },
+     {
+      "phase": "load",
+      "t": 44345,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.4,
+      "entities": 62,
+      "rssKb": 856796
+     },
+     {
+      "phase": "load",
+      "t": 47099,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 0.4,
+      "entities": 65,
+      "rssKb": 856924
+     }
+    ],
+    "load": {
+     "summoned": 56,
+     "chunks": 108,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=0 queued=0 mirroredBlocks=0 mirroredMobs=0 skippedMobs=0 | "
+      }
+     ],
+     "bot": null,
+     "botRan": false
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "pass",
+    "reasons": [
+     "TPS held (median 19.97, lowest 19.96) under load"
+    ],
+    "numbers": {
+     "baselineTps": 19.93,
+     "tpsMin": 19.96,
+     "tpsMedian": 19.97,
+     "lowSec": 0,
+     "warnSec": 0,
+     "stallSec": 0,
+     "msptMax": 1.5,
+     "entitiesMax": 65,
+     "rssPeakMb": 837,
+     "rssGrowthMb": 6,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 879188,
+   "runId": "tf-1-21-4-mv48axx1-54d7e5",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 232
+   },
+   "notes": [
+    "ports: server 47180, rcon 47123 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "unbounded+watchdog-1.21.11 (v2: watchdog spawn guard)",
+   "fixture": "chunkmirror-unbounded",
+   "version": "1.21.11",
+   "watchdog": true,
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "expect": "observe",
+   "jarSha256": "a474f34cd00765563658590831922b231bf039b90ce59a7a75932cfd2e440474",
+   "wallMs": 71780,
+   "overall": "passed",
+   "reasons": [],
+   "stressCheck": {
+    "status": "pass",
+    "evidence": [
+     "stress PASS: TPS held (median 19.95, lowest 18.73) under load",
+     "load: 54 minecraft:pig summoned, 104 chunks force-loaded, 1 mod command(s), bot placed 40 / broke 40 / teleported 4",
+     "numbers: baseline 19.93 TPS, load median 19.95 min 18.73, under 15 for 0 s, stall 0 s, MSPT max 19.6, entities max 553, RSS peak 895 MB (+49)",
+     "log while loaded: 0 \"Can't keep up\" line(s), watchdog: [19:45:06 WARN]: [ChunkMirror] [NxPerf] PAUSED plugin=ChunkMirror reason=entities tps=20.00 own_ms=0.28 listeners=ChunkMirror/CreatureSpawnEvent timers=0 detail=this plugin tried to spawn more than 50 entities per second for 3 s (last second: 151)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3016,
+      "dtMs": 2764,
+      "tps": 19.9,
+      "mspt": 6.1,
+      "entities": 0,
+      "rssKb": 866340
+     },
+     {
+      "phase": "baseline",
+      "t": 5771,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 866424
+     },
+     {
+      "phase": "load",
+      "t": 8547,
+      "dtMs": 2776,
+      "tps": 18.73,
+      "mspt": 13.5,
+      "entities": 54,
+      "rssKb": 895000
+     },
+     {
+      "phase": "load",
+      "t": 11303,
+      "dtMs": 2756,
+      "tps": 19.59,
+      "mspt": 19.6,
+      "entities": 107,
+      "rssKb": 901176
+     },
+     {
+      "phase": "load",
+      "t": 14060,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 7.7,
+      "entities": 211,
+      "rssKb": 904224
+     },
+     {
+      "phase": "load",
+      "t": 16902,
+      "dtMs": 2842,
+      "tps": 19.7,
+      "mspt": 7.6,
+      "entities": 315,
+      "rssKb": 904920
+     },
+     {
+      "phase": "load",
+      "t": 19660,
+      "dtMs": 2758,
+      "tps": 19.94,
+      "mspt": 4,
+      "entities": 367,
+      "rssKb": 906196
+     },
+     {
+      "phase": "load",
+      "t": 22414,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 4.1,
+      "entities": 521,
+      "rssKb": 907316
+     },
+     {
+      "phase": "load",
+      "t": 25168,
+      "dtMs": 2754,
+      "tps": 19.24,
+      "mspt": 8.2,
+      "entities": 525,
+      "rssKb": 912188
+     },
+     {
+      "phase": "load",
+      "t": 27922,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 8.2,
+      "entities": 529,
+      "rssKb": 912344
+     },
+     {
+      "phase": "load",
+      "t": 30676,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 4,
+      "entities": 533,
+      "rssKb": 912448
+     },
+     {
+      "phase": "load",
+      "t": 33442,
+      "dtMs": 2766,
+      "tps": 20,
+      "mspt": 3.9,
+      "entities": 535,
+      "rssKb": 912504
+     },
+     {
+      "phase": "load",
+      "t": 36199,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 4.3,
+      "entities": 531,
+      "rssKb": 912664
+     },
+     {
+      "phase": "load",
+      "t": 38956,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 3.6,
+      "entities": 535,
+      "rssKb": 912692
+     },
+     {
+      "phase": "load",
+      "t": 41714,
+      "dtMs": 2758,
+      "tps": 19.94,
+      "mspt": 2.7,
+      "entities": 539,
+      "rssKb": 912716
+     },
+     {
+      "phase": "load",
+      "t": 44471,
+      "dtMs": 2757,
+      "tps": 19.95,
+      "mspt": 3.4,
+      "entities": 551,
+      "rssKb": 916232
+     },
+     {
+      "phase": "load",
+      "t": 47227,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 3.6,
+      "entities": 553,
+      "rssKb": 916516
+     }
+    ],
+    "load": {
+     "summoned": 54,
+     "chunks": 104,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=26 queued=0 mirroredBlocks=3952 mirroredMobs=1683 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 40,
+      "broken": 40,
+      "failed": 5,
+      "teleports": 4,
+      "notes": [
+       "action: Server refused to place stone at (72, -60, -38): the block is still air",
+       "action: Server refused to place stone at (70, -60, -40): the block is still air",
+       "action: Server refused to place stone at (72, -60, -38): the block is still air",
+       "action: Server refused to place stone at (70, -60, -40): the block is still air",
+       "action: Server refused to place stone at (72, -60, -38): the block is still air"
+      ],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": {
+      "atSec": null,
+      "line": "[19:45:06 WARN]: [ChunkMirror] [NxPerf] PAUSED plugin=ChunkMirror reason=entities tps=20.00 own_ms=0.28 listeners=ChunkMirror/CreatureSpawnEvent timers=0 detail=this plugin tried to spawn more than 50 entities per second for 3 s (last second: 151)"
+     },
+     "errors": []
+    },
+    "verdict": "pass",
+    "reasons": [
+     "TPS held (median 19.95, lowest 18.73) under load"
+    ],
+    "numbers": {
+     "baselineTps": 19.93,
+     "tpsMin": 18.73,
+     "tpsMedian": 19.95,
+     "lowSec": 0,
+     "warnSec": 0,
+     "stallSec": 0,
+     "msptMax": 19.6,
+     "entitiesMax": 553,
+     "rssPeakMb": 895,
+     "rssGrowthMb": 49,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 919248,
+   "runId": "tf-1-21-11-mv48eyhy-19dbae",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47177, rcon 47158 (private netns, 127.0.0.1)"
+   ],
+   "note": "rerun after adding the spawn guard (perf.max-spawns-per-second 50); the first unbounded+watchdog flight above ran the watchdog WITHOUT the spawn guard and failed with 9559 entities"
+  },
+  {
+   "name": "unbounded-1.21.11 (after merging release/cyrus-rc2 605f31e9b2)",
+   "fixture": "chunkmirror-unbounded",
+   "version": "1.21.11",
+   "watchdog": false,
+   "injected": {
+    "injected": false,
+    "reason": "negative control without the watchdog"
+   },
+   "expect": "fail",
+   "jarSha256": "e302cd8725ba1302166c8cd79406a588d85987f28422868c49a9389a442cfbf2",
+   "wallMs": 72148,
+   "overall": "failed",
+   "reasons": [
+    "stress failed: stress FAIL: entities ran away: 9366 (limit 2500)"
+   ],
+   "stressCheck": {
+    "status": "fail",
+    "evidence": [
+     "stress FAIL: entities ran away: 9366 (limit 2500)",
+     "load: 52 minecraft:pig summoned, 103 chunks force-loaded, 1 mod command(s), bot placed 22 / broke 22 / teleported 4",
+     "numbers: baseline 19.95 TPS, load median 19.92 min 17.59, under 15 for 0 s, stall 0 s, MSPT max 43.8, entities max 9366, RSS peak 1076 MB (+211)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3014,
+      "dtMs": 2762,
+      "tps": 19.91,
+      "mspt": 2,
+      "entities": 0,
+      "rssKb": 885852
+     },
+     {
+      "phase": "baseline",
+      "t": 5767,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 885880
+     },
+     {
+      "phase": "load",
+      "t": 8538,
+      "dtMs": 2771,
+      "tps": 19.13,
+      "mspt": 12.8,
+      "entities": 82,
+      "rssKb": 924220
+     },
+     {
+      "phase": "load",
+      "t": 11305,
+      "dtMs": 2767,
+      "tps": 19.52,
+      "mspt": 23.4,
+      "entities": 424,
+      "rssKb": 930736
+     },
+     {
+      "phase": "load",
+      "t": 14061,
+      "dtMs": 2756,
+      "tps": 19.59,
+      "mspt": 16.6,
+      "entities": 908,
+      "rssKb": 933204
+     },
+     {
+      "phase": "load",
+      "t": 16816,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 10.2,
+      "entities": 1271,
+      "rssKb": 933520
+     },
+     {
+      "phase": "load",
+      "t": 19569,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 7.7,
+      "entities": 1696,
+      "rssKb": 944588
+     },
+     {
+      "phase": "load",
+      "t": 22325,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 10,
+      "entities": 2304,
+      "rssKb": 947580
+     },
+     {
+      "phase": "load",
+      "t": 25080,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 11.2,
+      "entities": 2946,
+      "rssKb": 954196
+     },
+     {
+      "phase": "load",
+      "t": 27853,
+      "dtMs": 2773,
+      "tps": 18.75,
+      "mspt": 14.3,
+      "entities": 3506,
+      "rssKb": 958372
+     },
+     {
+      "phase": "load",
+      "t": 30652,
+      "dtMs": 2799,
+      "tps": 20,
+      "mspt": 21.1,
+      "entities": 4131,
+      "rssKb": 961956
+     },
+     {
+      "phase": "load",
+      "t": 33412,
+      "dtMs": 2760,
+      "tps": 19.93,
+      "mspt": 27.6,
+      "entities": 4970,
+      "rssKb": 968012
+     },
+     {
+      "phase": "load",
+      "t": 36190,
+      "dtMs": 2778,
+      "tps": 19.8,
+      "mspt": 32.7,
+      "entities": 5792,
+      "rssKb": 985244
+     },
+     {
+      "phase": "load",
+      "t": 38969,
+      "dtMs": 2779,
+      "tps": 20,
+      "mspt": 36.5,
+      "entities": 6821,
+      "rssKb": 1017016
+     },
+     {
+      "phase": "load",
+      "t": 42214,
+      "dtMs": 3245,
+      "tps": 18.8,
+      "mspt": 34.8,
+      "entities": 7337,
+      "rssKb": 1060344
+     },
+     {
+      "phase": "load",
+      "t": 45056,
+      "dtMs": 2842,
+      "tps": 17.59,
+      "mspt": 40.5,
+      "entities": 8482,
+      "rssKb": 1077620
+     },
+     {
+      "phase": "load",
+      "t": 47967,
+      "dtMs": 2911,
+      "tps": 19.92,
+      "mspt": 43.8,
+      "entities": 9366,
+      "rssKb": 1101556
+     }
+    ],
+    "load": {
+     "summoned": 52,
+     "chunks": 103,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=22 queued=0 mirroredBlocks=3344 mirroredMobs=1679 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 22,
+      "broken": 22,
+      "failed": 20,
+      "teleports": 4,
+      "notes": [
+       "action: Server refused to place stone at (10, -60, -2): the block is still air",
+       "action: Server refused to place stone at (42, -60, 24): the block is still air",
+       "action: Server refused to place stone at (38, -60, 24): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (42, -60, 24): the block is still air",
+       "action: Server refused to place stone at (38, -60, 24): the block is still air",
+       "action: Server refused to place stone at (40, -60, 22): the block is still air",
+       "action: Server refused to place stone at (42, -60, 24): the block is still air"
+      ],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "fail",
+    "reasons": [
+     "entities ran away: 9366 (limit 2500)"
+    ],
+    "numbers": {
+     "baselineTps": 19.95,
+     "tpsMin": 17.59,
+     "tpsMedian": 19.92,
+     "lowSec": 0,
+     "warnSec": 2.84,
+     "stallSec": 0,
+     "msptMax": 43.8,
+     "entitiesMax": 9366,
+     "rssPeakMb": 1076,
+     "rssGrowthMb": 211,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 1187156,
+   "runId": "tf-1-21-11-mv49gatu-e19ed2",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47127, rcon 47193 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "name": "bounded-1.21.11 (after merging release/cyrus-rc2 605f31e9b2)",
+   "fixture": "chunkmirror-bounded",
+   "version": "1.21.11",
+   "watchdog": true,
+   "injected": {
+    "injected": true,
+    "version": "nxperf-1",
+    "pkg": "dev.nxeon.tf.chunkmirror.nxperf",
+    "mainPatched": true,
+    "configSection": true
+   },
+   "expect": "pass",
+   "jarSha256": "73daaa3224d3476abbe91d377622be5cf11658d88a7085f76b459d3cc1437641",
+   "wallMs": 70459,
+   "overall": "passed",
+   "reasons": [],
+   "stressCheck": {
+    "status": "pass",
+    "evidence": [
+     "stress PASS: TPS held (median 19.97, lowest 18.83) under load",
+     "load: 54 minecraft:pig summoned, 104 chunks force-loaded, 1 mod command(s), bot placed 46 / broke 46 / teleported 4",
+     "numbers: baseline 19.94 TPS, load median 19.97 min 18.83, under 15 for 0 s, stall 0 s, MSPT max 18, entities max 53, RSS peak 894 MB (+41)",
+     "log while loaded: 0 \"Can't keep up\" line(s)"
+    ]
+   },
+   "stress": {
+    "schema": 1,
+    "plan": {
+     "seconds": 40,
+     "baselineSec": 6,
+     "sampleMs": 2000,
+     "summon": {
+      "entity": "minecraft:pig",
+      "perSecond": 2,
+      "max": 80
+     },
+     "chunks": {
+      "perSecond": 4,
+      "max": 160
+     },
+     "bot": true,
+     "commands": [
+      "chunkmirror"
+     ]
+    },
+    "samples": [
+     {
+      "phase": "baseline",
+      "t": 3016,
+      "dtMs": 2763,
+      "tps": 19.91,
+      "mspt": 2,
+      "entities": 0,
+      "rssKb": 873944
+     },
+     {
+      "phase": "baseline",
+      "t": 5771,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 0.5,
+      "entities": 0,
+      "rssKb": 873980
+     },
+     {
+      "phase": "load",
+      "t": 8532,
+      "dtMs": 2761,
+      "tps": 18.83,
+      "mspt": 13.9,
+      "entities": 4,
+      "rssKb": 904192
+     },
+     {
+      "phase": "load",
+      "t": 11287,
+      "dtMs": 2755,
+      "tps": 19.6,
+      "mspt": 18,
+      "entities": 7,
+      "rssKb": 907904
+     },
+     {
+      "phase": "load",
+      "t": 14042,
+      "dtMs": 2755,
+      "tps": 19.96,
+      "mspt": 4.9,
+      "entities": 11,
+      "rssKb": 909132
+     },
+     {
+      "phase": "load",
+      "t": 16795,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 2.2,
+      "entities": 15,
+      "rssKb": 911116
+     },
+     {
+      "phase": "load",
+      "t": 19551,
+      "dtMs": 2756,
+      "tps": 19.96,
+      "mspt": 2.1,
+      "entities": 19,
+      "rssKb": 912476
+     },
+     {
+      "phase": "load",
+      "t": 22306,
+      "dtMs": 2755,
+      "tps": 19.24,
+      "mspt": 2,
+      "entities": 21,
+      "rssKb": 913060
+     },
+     {
+      "phase": "load",
+      "t": 25060,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.6,
+      "entities": 25,
+      "rssKb": 912964
+     },
+     {
+      "phase": "load",
+      "t": 27813,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 1.7,
+      "entities": 29,
+      "rssKb": 913224
+     },
+     {
+      "phase": "load",
+      "t": 30567,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.6,
+      "entities": 33,
+      "rssKb": 913340
+     },
+     {
+      "phase": "load",
+      "t": 33321,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.4,
+      "entities": 36,
+      "rssKb": 913436
+     },
+     {
+      "phase": "load",
+      "t": 36074,
+      "dtMs": 2753,
+      "tps": 20,
+      "mspt": 1.5,
+      "entities": 39,
+      "rssKb": 913748
+     },
+     {
+      "phase": "load",
+      "t": 38826,
+      "dtMs": 2752,
+      "tps": 19.99,
+      "mspt": 1.4,
+      "entities": 43,
+      "rssKb": 913772
+     },
+     {
+      "phase": "load",
+      "t": 41580,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.1,
+      "entities": 47,
+      "rssKb": 913828
+     },
+     {
+      "phase": "load",
+      "t": 44334,
+      "dtMs": 2754,
+      "tps": 19.97,
+      "mspt": 1.3,
+      "entities": 51,
+      "rssKb": 913964
+     },
+     {
+      "phase": "load",
+      "t": 47087,
+      "dtMs": 2753,
+      "tps": 19.98,
+      "mspt": 1.6,
+      "entities": 53,
+      "rssKb": 915604
+     }
+    ],
+    "load": {
+     "summoned": 54,
+     "chunks": 104,
+     "commands": [
+      {
+       "command": "chunkmirror",
+       "reply": "ChunkMirror on=true remembered=750 queued=0 mirroredBlocks=720 mirroredMobs=0 skippedMobs=0 | "
+      }
+     ],
+     "bot": {
+      "ran": true,
+      "schema": 1,
+      "username": "NxStress",
+      "joined": true,
+      "placed": 46,
+      "broken": 46,
+      "failed": 0,
+      "teleports": 4,
+      "notes": [],
+      "bot": {
+       "mineflayer": "4.39.0"
+      }
+     },
+     "botRan": true
+    },
+    "log": {
+     "cantKeepUp": 0,
+     "watchdogPaused": null,
+     "errors": []
+    },
+    "verdict": "pass",
+    "reasons": [
+     "TPS held (median 19.97, lowest 18.83) under load"
+    ],
+    "numbers": {
+     "baselineTps": 19.94,
+     "tpsMin": 18.83,
+     "tpsMedian": 19.97,
+     "lowSec": 0,
+     "warnSec": 0,
+     "stallSec": 0,
+     "msptMax": 18,
+     "entitiesMax": 53,
+     "rssPeakMb": 894,
+     "rssGrowthMb": 41,
+     "loadSamples": 15
+    },
+    "thresholds": {
+     "tpsFail": 15,
+     "tpsWarn": 18,
+     "sustainSec": 10,
+     "msptWarn": 50,
+     "entityMax": 2500,
+     "stallSec": 10,
+     "rssGrowthWarnMb": 400
+    }
+   },
+   "peakRssKb": 927608,
+   "runId": "tf-1-21-11-mv49hwix-06b43c",
+   "engine": {
+    "runner": "tf-lite-5",
+    "paper": 132
+   },
+   "notes": [
+    "ports: server 47182, rcon 47102 (private netns, 127.0.0.1)"
+   ]
+  }
+ ],
+ "summary": {
+  "unbounded (no watchdog)": "FAIL: entities ran away 9038 (TPS median 19.93 on node-2)",
+  "bounded + watchdog 1.21.11": "PASS: TPS 19.96 median, 53 entities",
+  "unbounded + watchdog v1 (no spawn guard)": "FAIL: 9559 entities (watchdog did not trip: TPS stayed high)",
+  "unbounded + watchdog v2 (spawn guard)": "PASS: 553 entities max",
+  "bounded 1.21.4 (no verified bot)": "PASS (block events not exercised: bot off)",
+  "honest gaps": "node-2 TPS never collapsed under this 40 s load (fast CPU, flat world); the incident server lost TPS over minutes of play; no real client",
+  "after rc2 merge": "unbounded FAIL (9366 entities), bounded PASS (TPS 19.97, 53 entities); golden corpus: 259/259 compile + scan unchanged with the watchdog (mc-ranks perm-attach warning is baseline)"
+ }
+}

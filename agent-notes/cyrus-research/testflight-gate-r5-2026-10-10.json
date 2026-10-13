@@ -1,0 +1,182 @@
+{
+ "what": "Cyrus R5 Test Flight gate, real flights through flyOne() on node-2",
+ "date": "2026-10-10T12:39:04.555Z",
+ "runs": [
+  {
+   "build": "gate-tfhello",
+   "version": "1.21.11",
+   "result": "ran",
+   "wallMs": 20804,
+   "state": "done",
+   "verdict": "passed",
+   "label": "boot-tested on Paper 1.21.11",
+   "checks": [
+    {
+     "id": "compile",
+     "status": "pass",
+     "detail": "compiled by the build service"
+    },
+    {
+     "id": "scan",
+     "status": "pass",
+     "detail": "clean"
+    },
+    {
+     "id": "boot",
+     "status": "pass",
+     "detail": "L95: [12:38:49 INFO]: Done (17.075s)! For help, type \"help\" | wall 18463 ms from spawn"
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "pass",
+     "detail": "TfHello: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true) | L88: [12:38:49 INFO]: [TfHello] Enabling TfHello v1.0.0"
+    },
+    {
+     "id": "commands_registered",
+     "status": "pass",
+     "detail": "cmd-tfhello 'help tfhello' [rss 848 MB, 253 ms]: ok (optional) -> --------- Help"
+    },
+    {
+     "id": "datapack_loaded",
+     "status": "not_run",
+     "detail": "no data pack in this build"
+    }
+   ],
+   "reason": null,
+   "bootMs": 18463,
+   "peakRssKb": 868168,
+   "engine": {
+    "runner": "tf-lite-3@e0b2f104eaab",
+    "paperBuild": 132,
+    "jdk": "21.0.12.1"
+   },
+   "lines": [
+    "Boot-tested on Paper 1.21.11 (a real server started with this version; this does not test gameplay).",
+    "Compiles: passed",
+    "Safety scan: passed",
+    "Server boots: passed",
+    "Plugin enables: passed",
+    "Commands register: passed",
+    "Data pack loads: not run"
+   ],
+   "blocksWithFlag": false,
+   "blocksWithoutFlag": false
+  },
+  {
+   "build": "gate-tfbroken",
+   "version": "26.2",
+   "result": "ran",
+   "wallMs": 12983,
+   "state": "done",
+   "verdict": "failed",
+   "label": null,
+   "checks": [
+    {
+     "id": "compile",
+     "status": "pass",
+     "detail": "compiled by the build service"
+    },
+    {
+     "id": "scan",
+     "status": "pass",
+     "detail": "clean"
+    },
+    {
+     "id": "boot",
+     "status": "pass",
+     "detail": "L115: [12:39:02 INFO]: Done (9.531s)! For help, type \"help\" | wall 11038 ms from spawn"
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "fail",
+     "detail": "TfBroken: NOT enabled (log: enabling=true enableError=true loadError=false disabled=true; rcon plugins: false) | L86: [12:39:02 INFO]: [TfBroken] Enabling TfBroken v1.0.0"
+    },
+    {
+     "id": "commands_registered",
+     "status": "not_run",
+     "detail": "the build lists no commands"
+    },
+    {
+     "id": "datapack_loaded",
+     "status": "not_run",
+     "detail": "no data pack in this build"
+    }
+   ],
+   "reason": null,
+   "bootMs": 11038,
+   "peakRssKb": 788024,
+   "engine": {
+    "runner": "tf-lite-3@e0b2f104eaab",
+    "paperBuild": 133,
+    "jdk": "25.0.4.1"
+   },
+   "lines": [
+    "Failed its boot test on Paper 26.2.",
+    "Compiles: passed",
+    "Safety scan: passed",
+    "Server boots: passed",
+    "Plugin enables: FAILED",
+    "Commands register: not run",
+    "Data pack loads: not run"
+   ],
+   "blocksWithFlag": true,
+   "blocksWithoutFlag": false
+  },
+  {
+   "build": "gate-263",
+   "version": "26.3",
+   "result": "not_run",
+   "wallMs": 1,
+   "state": "not_run",
+   "verdict": "not_run",
+   "label": null,
+   "checks": [
+    {
+     "id": "compile",
+     "status": "pass",
+     "detail": "compiled by the build service"
+    },
+    {
+     "id": "scan",
+     "status": "pass",
+     "detail": "clean"
+    },
+    {
+     "id": "boot",
+     "status": "not_run",
+     "detail": "not run: no test server for 26.3 (no pinned Paper server build)"
+    },
+    {
+     "id": "plugins_enabled",
+     "status": "not_run",
+     "detail": "not run: no test server for 26.3 (no pinned Paper server build)"
+    },
+    {
+     "id": "commands_registered",
+     "status": "not_run",
+     "detail": "not run: no test server for 26.3 (no pinned Paper server build)"
+    },
+    {
+     "id": "datapack_loaded",
+     "status": "not_run",
+     "detail": "no data pack in this build"
+    }
+   ],
+   "reason": "not run: no test server for 26.3 (no pinned Paper server build)",
+   "bootMs": null,
+   "peakRssKb": null,
+   "engine": null,
+   "lines": [
+    "Not boot-tested: no test server for 26.3 (no pinned Paper server build).",
+    "Compiles: passed",
+    "Safety scan: passed",
+    "Server boots: not run",
+    "Plugin enables: not run",
+    "Commands register: not run",
+    "Data pack loads: not run"
+   ],
+   "blocksWithFlag": false,
+   "blocksWithoutFlag": false
+  }
+ ]
+}

@@ -1,0 +1,4521 @@
+[
+ {
+  "id": "plg-safe-teleport-async",
+  "name": "Safe teleport: async chunk load, re-validate on main thread, teleportAsync",
+  "sources": [
+   "MJP:paper-safe-teleport",
+   "universal-modder:neoforge-custom-dimension #6 (MF-4)",
+   "corpus:Entity.teleportAsync 24/173 plugins, World.getChunkAtAsync 22/173"
+  ],
+  "label": "V",
+  "paperApi": [
+   "World#getChunkAtAsync",
+   "Entity#teleportAsync",
+   "World#getHighestBlockYAt",
+   "HeightMap.MOTION_BLOCKING_NO_LEAVES",
+   "World#hasCeiling",
+   "WorldBorder#isInside"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/golden/plugins/mc-rtp (async chunk load + safety checks); lib/cyrus/designer/components/java.ts Effects 'safe-location search'; no Nether-ceiling or void-height rule in sheets",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "height query on an unloaded chunk returns the world minimum (V-s, universal-modder): load the chunk first, then assert air at feet+head",
+   "Nether: highest block is the bedrock roof, scan down from logicalHeight-8",
+   "completion callbacks run on the main thread but must re-check player online/combat/world",
+   "cap search attempts, never loop forever"
+  ],
+  "testIdea": "Test Flight: RCON /rtp x20 in Overworld, Nether and a void-island dimension; assert feet/head air and floor solid; a mutant that skips chunk load must fail",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-teleport-warmup-cooldown",
+  "name": "Teleport warmup (stand still) + cooldown keyed by UUID timestamps",
+  "sources": [
+   "MJP:paper-safe-teleport",
+   "corpus:simple-rtp,wildrtp,just-tpa,huskhomes"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerMoveEvent#hasChangedBlock"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "config",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json archetype \"Spawn, /tpa requests, warmup and cooldown\" (golden mc-tpa)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "cancel warmup on block change not look rotation",
+   "store cooldown as timestamp, never a repeating task"
+  ],
+  "testIdea": "eval prompt: /home with 5 s warmup; bot moves; expect cancel message",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-combat-tag",
+  "name": "Combat tag: attribute who hit whom (projectile/potion/TNT/crystal), block escape commands/teleports/logout",
+  "sources": [
+   "MJP:paper-combat-tag",
+   "corpus:simple-combatlog,duels-optimised"
+  ],
+  "label": "V",
+  "paperApi": [
+   "EntityDamageByEntityEvent",
+   "DamageSource",
+   "PlayerKickEvent.Cause",
+   "PotionEffectTypeCategory",
+   "ServicesManager"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'combat.?tag|DamageSource' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2); sheets list EntityDamageByEntityEvent but not DamageSource attribution",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "damage often comes from a Projectile/AreaEffectCloud: resolve shooter",
+   "logout inside tag must count as death and drop inventory exactly once",
+   "keep core logic Bukkit-free so JUnit can test it"
+  ],
+  "testIdea": "Test Flight: bot A shoots bot B with a bow then B quits; assert B's items dropped once and tag cleared on rejoin",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-chest-gui-antidupe",
+  "name": "Chest menu hardening: cancel top clicks/drags, bottom-inventory shift/number/double/offhand, revalidate state each click, close menus onDisable",
+  "sources": [
+   "MJP:paper-chest-gui",
+   "corpus:InventoryClickEvent 64/173 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "InventoryHolder",
+   "InventoryClickEvent",
+   "InventoryDragEvent",
+   "ClickType",
+   "InventoryCloseEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designMenu",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/designer/gameplay/simulate.ts:95 ClickType incl number_key,double_click,swap_offhand; services/modbuilder/sheets/1.21.11.md Menus section",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "never identify menus by title",
+   "async result must confirm the menu is still open",
+   "ghost items if menus stay open during plugin disable"
+  ],
+  "testIdea": "designer simulator + RCON click-storm bot",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-dialog-api",
+  "name": "Paper Dialog API: notice/confirmation/multi-action/forms with inputs",
+  "sources": [
+   "MJP:paper-dialog-ui",
+   "BB#12",
+   "corpus:Player.showDialog 6/173 plugins (smartspawner, executableitems, bentobox, mythicmobs...)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "io.papermc.paper.dialog.Dialog",
+   "Audience#showDialog",
+   "DialogAction.customClick",
+   "ClickCallback.Options",
+   "DialogResponseView"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designMenu",
+  "cyrusCoverage": "partial",
+  "evidence": "sheets/1.21.8.md:108 (exists), sheets/1.21.4.md:108 (absent); lib/cyrus/adapters/minecraft-coverage.json archetype dialog_forms=partial, registry capability dialogApi on 1.21.8+; no designer kind emits a Dialog",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "callbacks are NOT guaranteed on the main thread: hop back and re-check player/plugin enabled (V-s MJP)",
+   "confirm button is always on the right: use a 2-column multi-action for cancel/confirm",
+   "ClickCallback.Options uses/lifetime: build a fresh Dialog per open",
+   "vanilla dialogs arrived in 1.21.6, MJP says Paper API from 1.21.7, Cyrus javap says 1.21.4 absent and 1.21.8 present: do not claim 1.21.6/7 without a jar check"
+  ],
+  "testIdea": "Test Flight: Mineflayer cannot render dialogs; assert via PlayerCustomClickEvent injection or Paper test hook; eval case on 1.21.4 must fall back to chest menu",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-dialog-pause-screen",
+  "name": "Register a static Dialog from a bootstrap and add to pause_screen_additions / quick_actions tags",
+  "sources": [
+   "MJP:paper-dialog-ui",
+   "corpus:guns_plus_plus datapack (dialog + both tags)",
+   "BA datapack dialog 5.7%"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PluginBootstrap",
+   "LifecycleEvents",
+   "RegistryEvents.DIALOG",
+   "tag dialog/pause_screen_additions"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'pause_screen_additions|quick_actions' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (only a vanilla registry listing)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "needs paper-plugin.yml bootstrap, which Cyrus forbids (plugin.yml only); datapack route avoids it but Cyrus has no dialog resource kind",
+   "never throw from bootstrap"
+  ],
+  "testIdea": "pack validator: dialog JSON schema per version + tag file present",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-dialog-datapack-registry",
+  "name": "Datapack dialog registry entries (data/<ns>/dialog/*.json) shown with /dialog or function",
+  "sources": [
+   "corpus:guns_plus_plus,8/141 datapacks ship /dialog/",
+   "BB#12"
+  ],
+  "label": "V",
+  "paperApi": [
+   "/dialog show",
+   "registry dialog"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/datapack/functions.ts:37 allows the 'dialog' command in functions, but datapack spec resource kinds (recipe, loot_table, advancement, tag, function, enchantment, damage_type, jukebox_song, predicate, item_modifier) have no dialog",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "dialog schema differs per version; format 94.1 on 1.21.11",
+   "inputs return via custom click payload, plugin must read PlayerCustomClickEvent (two package names seen in corpus: org.bukkit.event.player and io.papermc.paper.event.player)"
+  ],
+  "testIdea": "datapack validation via mcdoc subset; real server /dialog show with RCON",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-brigadier-commands",
+  "name": "Brigadier command registration via LifecycleEvents.COMMANDS with typed args and custom argument parsers",
+  "sources": [
+   "MJP:paper-brigadier-command",
+   "corpus:24% of plugins use Brigadier/Lifecycle"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Commands",
+   "ArgumentTypes",
+   "CustomArgumentType",
+   "LifecycleEvents.COMMANDS",
+   "CommandSourceStack"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/rules/failure-rules.json brigadier-commands forbids it; services/modbuilder/sheets/1.21.11.md 'Do not use Brigadier'",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "CommandSourceStack#getPlayerOrThrow exists only on 26.2 not 1.21.11 (V-s MJP)",
+   "never declare the same command both in plugin.yml and Brigadier",
+   "needs paper-plugin.yml for some registration paths"
+  ],
+  "testIdea": "deliberate exclusion: eval refusal case keeps passing",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-paper-plugin-yml",
+  "name": "paper-plugin.yml descriptor with bootstrapper/loader and classloader isolation",
+  "sources": [
+   "Jahrome907:plugin-dev",
+   "MJP",
+   "corpus:10% of plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PluginBootstrap",
+   "PluginLoader"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/prompts.js:147 rule r4 'plugin.yml (Bukkit style, not paper-plugin.yml); never add libraries:'",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "paper-plugin.yml has no commands field",
+   "experimental; not needed for generated mods"
+  ],
+  "testIdea": "none: deliberate",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-folia-schedulers",
+  "name": "Folia region/entity/global/async schedulers",
+  "sources": [
+   "Jahrome907:plugin-dev references",
+   "corpus:Folia region schedulers in 42% of plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Entity#getScheduler",
+   "Bukkit#getRegionScheduler",
+   "GlobalRegionScheduler",
+   "AsyncScheduler"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/designer/components 'designer-tasks': 'no async, no threads, no Folia regions'",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "Nxeon runs Paper not Folia; adding Folia support doubles test matrix"
+  ],
+  "testIdea": "none: out of scope",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-config-snapshot-reload",
+  "name": "Immutable config snapshot: parse once, bad values fall back + warning list, atomic swap on reload",
+  "sources": [
+   "MJP:paper-config-lang",
+   "corpus:config.yml 47%, median 47 keys"
+  ],
+  "label": "V",
+  "paperApi": [
+   "JavaPlugin#saveDefaultConfig",
+   "YamlConfiguration"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "config",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/designer/components/index.ts:39 designer-config (defaults, validation, clamping, config_version migration); config-spec.js",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "new default keys never reach existing users unless a migration step adds them (also a Forge TOML trap in universal-modder)",
+   "handlers must not call getConfig() directly"
+  ],
+  "testIdea": "Test Flight: out-of-range value clamped after reload; v1 config migrated",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-lang-yml-minimessage",
+  "name": "lang.yml of MiniMessage templates; player text inserted unparsed; missing key shows visible fallback",
+  "sources": [
+   "MJP:paper-config-lang",
+   "corpus:minimessage in many plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "MiniMessage",
+   "Placeholder.unparsed",
+   "TagResolver"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "config",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/sheets/1.21.11.md (MiniMessage + Placeholder.unparsed taught); no lang.yml/message-file convention found: grep -rIiE 'lang\\.yml' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "player-controlled values parsed as MiniMessage allow tag injection",
+   "never ChatColor or section sign"
+  ],
+  "testIdea": "eval: prompt for 'all messages editable' expects messages in config/lang file + unparsed placeholders",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-service-api-linkage",
+  "name": "Cross-plugin API via ServicesManager with JDK-only interface; catch LinkageError for version skew",
+  "sources": [
+   "MJP:paper-service-api",
+   "corpus:ServicesManager.register 28/173"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ServicesManager#register",
+   "ServicesManager#load",
+   "NoSuchMethodError",
+   "AbstractMethodError"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-integration; services/modbuilder/sheets/1.21.11.md 'Offer an API to other plugins'",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "unregisterAll(this) in onDisable"
+  ],
+  "testIdea": "golden mc-integration",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-softdepend-bridge",
+  "name": "Optional third-party hook: Hook (no foreign types) / Bridge / Port split so NoClassDefFoundError cannot occur",
+  "sources": [
+   "MJP:paper-softdepend-hook",
+   "corpus:softdepend PlaceholderAPI 62, Vault 38, WorldGuard 27 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PluginManager#isPluginEnabled",
+   "LinkageError"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json plugin_integration=partial: 'third-party APIs (Vault, PlaceholderAPI, WorldGuard, LuckPerms) are not on the generated-mod classpath'",
+  "value": 4,
+  "effort": "L",
+  "gotchas": [
+   "needs compileOnly stubs in the build image and a rule relaxing 'no reflection'",
+   "PlaceholderAPI onRequest runs on any thread: read snapshots only"
+  ],
+  "testIdea": "Test Flight with and without the third-party plugin installed",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-sqlite-write-behind",
+  "name": "SQLite persistence: one connection + WAL + busy_timeout, PRAGMA user_version migrations, memory-authoritative write-behind, sync flush onDisable",
+  "sources": [
+   "MJP:paper-sqlite-repository",
+   "corpus:JDBC 37% of plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "java.sql.Connection",
+   "BukkitScheduler"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/sheets/1.21.11.md teaches YAML + per-UUID Gson JSON only; grep -rIiE 'sqlite|user_version' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "only append migration steps",
+   "scheduler refuses tasks during disable: flush synchronously",
+   "verify sqlite-jdbc is on the Paper classpath for each version (U)"
+  ],
+  "testIdea": "Test Flight: kill -9 server mid-write, restart, assert data consistent",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-economy-ledger",
+  "name": "Economy core: long minor units, explicit result codes, append-only transaction log, escrow with refund in finally",
+  "sources": [
+   "MJP:paper-economy-ledger",
+   "corpus:quickshop-hikari,crazyauctions,nexusauctionhouse"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BigDecimal",
+   "Math#addExact"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/golden/plugins/mc-economy (BigDecimal); lib/cyrus/adapters/minecraft-coverage.json economy=partial, auction_house=gap, player_shops=partial",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "double only at Vault boundary and via BigDecimal rounding",
+   "reject NaN, negatives, scientific notation in 1.2k/3m parsing"
+  ],
+  "testIdea": "eval: auction house with expiry; fault-inject exception during delivery; assert refund",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-embedded-http",
+  "name": "Read-only embedded HTTP/JSON endpoint from a main-thread snapshot",
+  "sources": [
+   "MJP:paper-embedded-http"
+  ],
+  "label": "V",
+  "paperApi": [
+   "com.sun.net.httpserver"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/rules/failure-rules.json networking-alternative; prompts.js hard rule 5 (no sockets)",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "listens on localhost only by default",
+   "503 until first snapshot"
+  ],
+  "testIdea": "none: policy-blocked",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-discord-bridge",
+  "name": "Discord webhook/gateway chat bridge using JDK HttpClient only",
+  "sources": [
+   "MJP:paper-discord-bridge"
+  ],
+  "label": "V",
+  "paperApi": [
+   "java.net.http"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json discord_webhook=impossible (networking capability default OFF)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "allowed_mentions.parse=[] and SUPPRESS_EMBEDS on every payload",
+   "429 Retry-After once"
+  ],
+  "testIdea": "none while capability OFF",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-packetevents-filter",
+  "name": "Per-viewer packet rewrite (system chat, lore, sounds) via PacketEvents/ProtocolLib softdepend",
+  "sources": [
+   "MJP:paper-packetevents-filter",
+   "corpus:PacketEvents/ProtocolLib softdepend in 17%"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PacketEvents"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/rules/failure-rules.json no-server-internals; lib/cyrus/adapters/minecraft-coverage.json anti_cheat=gap",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "Netty thread: read immutable snapshot, never Bukkit",
+   "fail-open"
+  ],
+  "testIdea": "none: policy-blocked",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-per-player-fx",
+  "name": "Per-viewer effects with Paper API: virtual WorldBorder vignette, personal time/weather, hidePlayer/hideEntity; central desired-state reconcile() after world change/respawn/milk",
+  "sources": [
+   "MJP:paper-client-side-effects",
+   "corpus:setPlayerTime 5, setPlayerWeather 6, setWorldBorder 4, hideEntity 9, hidePlayer 9 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Server#createWorldBorder",
+   "Player#setWorldBorder",
+   "Player#setPlayerTime",
+   "Player#setPlayerWeather",
+   "Player#hidePlayer",
+   "Player#hideEntity",
+   "EntityPotionEffectEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'setWorldBorder|setPlayerTime|setPlayerWeather' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (hideEntity only in apiFacts line 715)",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "effect silently dropped on world change, respawn, milk, /effect clear: reconcile after each",
+   "setWorldBorder(null) to clear"
+  ],
+  "testIdea": "Test Flight: RCON change world then assert effect restored; sheet fact check by javap on 4 jars",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-hide-entity-per-viewer",
+  "name": "Show an entity to some players only (hideEntity/showEntity, setVisibleByDefault(false))",
+  "sources": [
+   "corpus:FancyHolograms,DecentHolograms,Player.hideEntity 9, showEntity 8, Entity.setVisibleByDefault 1"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#hideEntity",
+   "Player#showEntity",
+   "Entity#setVisibleByDefault"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json:715 apiFacts lists hideEntity; golden mc-holo is global",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "visibility resets on respawn or chunk reload in some builds (U)",
+   "pair with PlayerClientLoadedWorldEvent before showing"
+  ],
+  "testIdea": "bot A sees hologram, bot B does not",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-mockbukkit-stage",
+  "name": "MockBukkit unit-test stage before Test Flight",
+  "sources": [
+   "BD",
+   "Jahrome907:minecraft-testing"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "MockBukkit"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:testflight-unit",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'MockBukkit' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "MockBukkit lags the newest Paper (U)",
+   "business logic should be Bukkit-free to test without it"
+  ],
+  "testIdea": "CI stage; compile-time only",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-offline-lookup-rule",
+  "name": "Never Bukkit.getOfflinePlayer(String) on main thread; use getPlayerExact / getOfflinePlayerIfCached / UUID",
+  "sources": [
+   "BA",
+   "corpus:getOfflinePlayer 65/173 plugins, IfCached 4"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Bukkit#getOfflinePlayer",
+   "Bukkit#getOfflinePlayerIfCached"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json offline-player-by-name; golden/antipatterns/offline-by-name",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden antipattern fails precheck",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-asyncchat-renderer",
+  "name": "AsyncChatEvent + renderer, hop to main thread for world access",
+  "sources": [
+   "BA",
+   "corpus:AsyncChatEvent 12 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "io.papermc.paper.event.player.AsyncChatEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json async-player-chat-event; golden mc-chatformat",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-legacy-color-ban",
+  "name": "No ChatColor.translateAlternateColorCodes / spigot chat components",
+  "sources": [
+   "BA"
+  ],
+  "label": "V",
+  "paperApi": [
+   "LegacyComponentSerializer"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json legacy-color-codes, player-spigot",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "antipattern corpus",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-playermove-filter",
+  "name": "PlayerMoveEvent starts with hasChangedBlock",
+  "sources": [
+   "BA",
+   "corpus:PlayerMove in 50/173"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerMoveEvent#hasChangedBlock"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json playermove-unfiltered",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "antipattern",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-ondisable-sync-save",
+  "name": "Synchronous save in onDisable (scheduler refuses new tasks)",
+  "sources": [
+   "BA",
+   "MJP:paper-threading"
+  ],
+  "label": "V",
+  "paperApi": [
+   "IllegalPluginAccessException"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json ondisable-sync-save",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "Test Flight stop/start data check",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-registry-keys",
+  "name": "Look up registry content by NamespacedKey, never switch on registry interfaces",
+  "sources": [
+   "BA",
+   "corpus:Registry.get 50, RegistryAccess.getRegistry 19"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Registry#get",
+   "RegistryAccess#getRegistry"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/rules/failure-rules.json registry-lookup-by-name, registry-no-switch, attr-no-switch-new",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "1.21.1 Attribute/Sound are enums, 1.21.4+ interfaces"
+  ],
+  "testIdea": "javap each jar",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-jump-glide-riptide-input",
+  "name": "Movement-intent events: PlayerJumpEvent, EntityToggleGlideEvent, PlayerRiptideEvent, PlayerInputEvent",
+  "sources": [
+   "corpus:PlayerJump 6, ToggleGlide 9, Riptide 3, PlayerInput 3"
+  ],
+  "label": "V",
+  "paperApi": [
+   "com.destroystokyo.paper.event.player.PlayerJumpEvent",
+   "org.bukkit.event.entity.EntityToggleGlideEvent",
+   "org.bukkit.event.player.PlayerRiptideEvent",
+   "org.bukkit.event.player.PlayerInputEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "PlayerInputEvent is in sheets/1.21.4-11 line 107; sheets/1.21.11.md grep 'PlayerJumpEvent|EntityToggleGlideEvent|PlayerRiptideEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "PlayerInputEvent absent on 1.21.1 (Cyrus sheet)",
+   "jump event fires per client jump; debounce"
+  ],
+  "testIdea": "bot jumps; assert handler fired once",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-item-durability",
+  "name": "Item wear events: PlayerItemDamageEvent, PlayerItemBreakEvent, PlayerItemMendEvent",
+  "sources": [
+   "corpus:ItemDamage 7, ItemBreak 9, ItemMend 4"
+  ],
+  "label": "V",
+  "paperApi": [
+   "org.bukkit.event.player.PlayerItemDamageEvent",
+   "PlayerItemBreakEvent",
+   "PlayerItemMendEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'PlayerItemDamageEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "setDamage(0) to make unbreakable-like tools without the Unbreakable flag",
+   "mending fires a separate event"
+  ],
+  "testIdea": "bot uses pickaxe; assert damage hook",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-block-damage-abort",
+  "name": "Block-damage start/abort events for progressive mining and custom mining speed",
+  "sources": [
+   "corpus:BlockDamageEvent 12, BlockDamageAbortEvent 2, Player.sendBlockDamage 3 (multi-mine)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "org.bukkit.event.block.BlockDamageEvent",
+   "BlockDamageAbortEvent",
+   "Player#sendBlockDamage"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'BlockDamageEvent' = 0 hits; grep -rIiE 'sendBlockDamage' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "custom hardness needs mining-fatigue/haste packet trick (U)",
+   "state must clear on abort/quit"
+  ],
+  "testIdea": "bot digs custom block; assert crack animation + drop timing",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-craft-smith-enchant",
+  "name": "Craft/smith/enchant preview events: PrepareItemCraftEvent, PrepareSmithingEvent, PrepareItemEnchantEvent, EnchantItemEvent",
+  "sources": [
+   "corpus:PrepareItemCraft 9, PrepareSmithing 4, PrepareItemEnchant 5, EnchantItem 6"
+  ],
+  "label": "V",
+  "paperApi": [
+   "org.bukkit.event.inventory.PrepareItemCraftEvent",
+   "PrepareSmithingEvent",
+   "org.bukkit.event.enchantment.PrepareItemEnchantEvent",
+   "EnchantItemEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'PrepareItemCraftEvent|EnchantItemEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "PrepareAnvilEvent is listed, siblings not",
+   "ExactChoice vs MaterialChoice for PDC ingredients"
+  ],
+  "testIdea": "bot crafts custom recipe; assert result item has PDC",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-portals",
+  "name": "Portal events: PlayerPortalEvent, EntityPortalEvent, PortalCreateEvent",
+  "sources": [
+   "corpus:PlayerPortal 8, EntityPortal 5, PortalCreate 4"
+  ],
+  "label": "V",
+  "paperApi": [
+   "org.bukkit.event.player.PlayerPortalEvent",
+   "EntityPortalEvent",
+   "PortalCreateEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'PlayerPortalEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "PlayerTeleportEvent.getCause distinguishes NETHER_PORTAL"
+  ],
+  "testIdea": "bot enters portal; assert redirect",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-bucket-harvest-grow",
+  "name": "Farming/world mutation events: PlayerBucketEmptyEvent, PlayerHarvestBlockEvent, BlockGrowEvent, StructureGrowEvent",
+  "sources": [
+   "corpus:BucketEmpty 11, Harvest 3, BlockGrow 7, StructureGrow 10"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerBucketEmptyEvent",
+   "PlayerHarvestBlockEvent",
+   "BlockGrowEvent",
+   "StructureGrowEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json custom_crops partial mentions BlockGrowEvent; sheets/1.21.11.md grep 'PlayerBucketEmptyEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "buckets do not fire BlockPlaceEvent (Forge note V-s; verify for Paper)"
+  ],
+  "testIdea": "bot empties bucket in protected claim",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-knockback-attack",
+  "name": "Combat-feel events: EntityKnockbackByEntityEvent, PrePlayerAttackEntityEvent, PlayerShieldDisableEvent",
+  "sources": [
+   "corpus:KnockbackByEntity 4, PrePlayerAttack 1, ShieldDisable 1"
+  ],
+  "label": "V",
+  "paperApi": [
+   "EntityKnockbackByEntityEvent (two packages seen: com.destroystokyo.paper.event.entity and org.bukkit.event.entity)",
+   "io.papermc.paper.event.player.PrePlayerAttackEntityEvent",
+   "PlayerShieldDisableEvent"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'EntityKnockbackByEntityEvent' = 0 hits",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "package moved between Paper versions: check each jar"
+  ],
+  "testIdea": "javap",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-clientloaded-track-pack",
+  "name": "Visibility timing events: PlayerClientLoadedWorldEvent, PlayerTrackEntityEvent, PlayerResourcePackStatusEvent",
+  "sources": [
+   "corpus:FancyHolograms, FancyNpcs, Emotecraft, lunar-apollo"
+  ],
+  "label": "V",
+  "paperApi": [
+   "io.papermc.paper.event.player.PlayerClientLoadedWorldEvent",
+   "io.papermc.paper.event.player.PlayerTrackEntityEvent",
+   "PlayerResourcePackStatusEvent"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/tools/packloader/src/cloud/nxeon/packloader/NxeonPackLoader.java uses PlayerResourcePackStatusEvent (Nxeon-side); generated mods have none: sheets/1.21.11.md grep 'PlayerResourcePackStatusEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "earliest Paper version of the first two is U (not in Cyrus sheets: javap 1.21.1/4/8/11)",
+   "do not spawn glyph HUD before pack status SUCCESSFULLY_LOADED"
+  ],
+  "testIdea": "bot joins with and without pack; assert HUD only after load",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-tick-start-game-event",
+  "name": "Per-tick hook and vibration events: ServerTickStartEvent, GenericGameEvent, PlayerPickupExperienceEvent",
+  "sources": [
+   "corpus:ServerTickStart 3, GenericGame 4, PickupExperience 2"
+  ],
+  "label": "V",
+  "paperApi": [
+   "com.destroystokyo.paper.event.server.ServerTickStartEvent",
+   "org.bukkit.event.world.GenericGameEvent",
+   "com.destroystokyo.paper.event.player.PlayerPickupExperienceEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'ServerTickStartEvent' = 0 hits",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "ServerTickStart is a hot path: budget work (NxPerf)"
+  ],
+  "testIdea": "TPS under load",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-commandsend-motd",
+  "name": "Command list and server-list events: PlayerCommandSendEvent, ServerListPingEvent/PaperServerListPingEvent (MiniMessage MOTD)",
+  "sources": [
+   "corpus:CommandSend 7, ServerListPing 2, minimotd 268k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerCommandSendEvent",
+   "PaperServerListPingEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "sheets/1.21.11.md grep 'PlayerCommandSendEvent' = 0 hits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "MOTD component length/icon limits U"
+  ],
+  "testIdea": "ping bot reads MOTD",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "evt-armor-equip",
+  "name": "Armor change without polling: PlayerArmorChangeEvent / EntityEquipmentChangedEvent",
+  "sources": [
+   "Cyrus sheets",
+   "corpus:ArmorChange 2, EquipmentChanged 1"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerArmorChangeEvent",
+   "EntityEquipmentChangedEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "sheets/1.21.1.md:109 and 1.21.4+:107; golden mc-armorset",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "EntityEquipmentChangedEvent absent on 1.21.1"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-chunk-world-pdc",
+  "name": "PersistentDataContainer on Chunk and World (custom block ownership, regions) beyond item/entity tags",
+  "sources": [
+   "corpus:Chunk.getPersistentDataContainer 9, World PDC 3 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Chunk#getPersistentDataContainer",
+   "World#getPersistentDataContainer"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'Chunk.*PersistentDataContainer' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "data is lost if chunk is never loaded again; cap size",
+   "better than a global YAML map for per-chunk custom blocks"
+  ],
+  "testIdea": "restart server; custom block record survives",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-itemstack-bytes",
+  "name": "Serialize ItemStacks to bytes (ItemStack.serializeAsBytes/deserializeBytes) for backpacks, rollbacks, mail",
+  "sources": [
+   "corpus:serializeAsBytes 6, deserializeBytes 6, serialize 11"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemStack#serializeAsBytes",
+   "ItemStack#deserializeBytes"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'serializeAsBytes' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "YAML ItemStack serialization breaks across versions with component changes; bytes are versioned by DataVersion (U)"
+  ],
+  "testIdea": "round-trip item with custom model + PDC across restart",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-entity-snapshot-pickup",
+  "name": "Pick up a mob/villager into an item and re-place it (EntitySnapshot keeps NBT, trades, profession)",
+  "sources": [
+   "corpus:clickvillagers 680k, villager-in-a-bucket 500k, clickmobs 263k; EntitySnapshot referenced by 7 plugins, Entity.createSnapshot 3"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Entity#createSnapshot",
+   "EntitySnapshot#createEntity",
+   "PlayerInteractEntityEvent",
+   "PersistentDataType"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'EntitySnapshot|createSnapshot' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 5,
+  "effort": "M",
+  "gotchas": [
+   "store snapshot string in item PDC; cap size",
+   "block pickup of bosses, tamed pets owned by others, named mobs per config",
+   "creative-mode dupe path"
+  ],
+  "testIdea": "bot picks up villager with trades, places, trades unchanged",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-vein-miner-tree-capitator",
+  "name": "Vein miner / tree capitator: flood-fill with caps, tool durability, fortune, sneak toggle",
+  "sources": [
+   "corpus:veinminer 93M downloads, veinminer-enchantment, all-in-one-veinminer, autotreechop, timberreplant, tree-vein-miner datapack, stm timber enchantment"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BlockBreakEvent",
+   "Block#breakNaturally",
+   "ItemStack",
+   "PlayerItemDamageEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'vein|timber|capitat' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (only texture taxonomy words)",
+  "value": 5,
+  "effort": "M",
+  "gotchas": [
+   "re-entrancy: own breakNaturally fires BlockBreakEvent again (NxPerf.enter)",
+   "cap blocks per activation and per tick; spread over ticks",
+   "respect claims by firing/checking cancellable event",
+   "sapling replant on leaf-decay timing"
+  ],
+  "testIdea": "bot breaks 40-log tree; assert bounded count, durability charged once per cap rule, TPS stable",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-multi-mine-progress",
+  "name": "Progressive mining: break progress kept across interruptions",
+  "sources": [
+   "corpus:multi-mine"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#sendBlockDamage",
+   "BlockDamageEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'sendBlockDamage' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "per-player per-block state, cleanup on quit"
+  ],
+  "testIdea": "bot digs, stops, resumes",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-lifesteal-hearts",
+  "name": "Lifesteal SMP: max-health attribute modifiers on kill, heart item, revive, ban at zero",
+  "sources": [
+   "corpus:lifestealz 427k, lifewars, ranked-smp"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Attribute.MAX_HEALTH",
+   "AttributeModifier",
+   "PlayerDeathEvent",
+   "ProfileBanList"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/sheets/1.21.11.md Attributes + golden mc-moderation ban list; no archetype row in lib/cyrus/adapters/minecraft-coverage.json",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "use keyed modifier not base value so it survives death/respawn",
+   "min/max hearts caps"
+  ],
+  "testIdea": "bot A kills B; assert A max health +2, B -2",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-crates-keys",
+  "name": "Crates: keys, weighted loot, opening animation with item displays, preview menu",
+  "sources": [
+   "corpus:crazycrates 327k, excellentcrates 132k, donatecase 57k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemDisplay",
+   "Transformation",
+   "Inventory",
+   "FireworkMeta"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'crate' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (library vocab only)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "weights must sum-check and be shown honestly (probability disclosure; real-money gambling is refused by rule 7)",
+   "claim animation must not duplicate reward on lag/quit"
+  ],
+  "testIdea": "bot opens 1000 crates; reward distribution within tolerance; no duplicates",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-map-image-frames",
+  "name": "Images on maps/walls: custom MapRenderer + MapCanvas, item frames, async image fetch avoided",
+  "sources": [
+   "corpus:imageframe 262k, lagfixer MapRenderer use"
+  ],
+  "label": "V",
+  "paperApi": [
+   "MapView",
+   "MapRenderer",
+   "MapCanvas",
+   "MapPalette#imageToBytes",
+   "ItemFrame"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'MapRenderer|MapCanvas' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "images must ship in the pack/plugin (no URL fetch under no-network rule)",
+   "128x128 palette limit"
+  ],
+  "testIdea": "bot views frame; map renders expected pixel",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-sit-lay-seats",
+  "name": "Sit on stairs/ground: invisible seat entity (Interaction/display) + dismount handling",
+  "sources": [
+   "corpus:gsit 144k, stairsit 235k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Interaction",
+   "Entity#addPassenger",
+   "EntityDismountEvent",
+   "Player#getCurrentInput"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/sheets/1.21.11.md line 103 Interaction \"a player can ride it as a seat\"; golden mc-mounts",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "orphan seat entities after crash: tag + sweep on chunk load",
+   "PlayerInputEvent steering absent on 1.21.1"
+  ],
+  "testIdea": "bot sits, quits; no orphan seat",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-void-chunk-generator",
+  "name": "Custom ChunkGenerator (void / flat island worlds) via getDefaultWorldGenerator",
+  "sources": [
+   "corpus:voidgen 80k, terraformgenerator 74k, terra 524k, bentobox"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ChunkGenerator",
+   "ChunkGenerator.ChunkData",
+   "BiomeProvider",
+   "WorldCreator#generator"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/categories.ts:288 lists ChunkGenerator in a regex only; grep -rIiE 'getDefaultWorldGenerator' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "generator must be set per world creation",
+   "datapack void dimension is the safer Cyrus route (worldgen lane)"
+  ],
+  "testIdea": "create world, assert no terrain",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-skyblock-oneblock",
+  "name": "Skyblock / OneBlock: island templates via StructureManager, per-player island data, phase-regenerating block",
+  "sources": [
+   "corpus:oneblock_bukkit 249k, bentobox 50k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "StructureManager",
+   "WorldCreator",
+   "BlockBreakEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'skyblock|oneblock' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "L",
+  "gotchas": [
+   "needs void world + island allocation grid + reset",
+   "cap islands"
+  ],
+  "testIdea": "create 3 islands; reset one; others intact",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-manhunt-compass",
+  "name": "Manhunt compass tracking (lodestone CompassMeta, cross-dimension last-portal)",
+  "sources": [
+   "corpus:manhunt+ 24k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "CompassMeta#setLodestone",
+   "PlayerPortalEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'CompassMeta|lodestone|manhunt' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "compass points to last known portal in other dimension"
+  ],
+  "testIdea": "bot tracks runner",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-xp-orb-merge",
+  "name": "Merge nearby XP orbs / instant absorb",
+  "sources": [
+   "corpus:clumps-plugin 89k, ly-clumps datapack 874k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ExperienceOrb",
+   "PlayerPickupExperienceEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json lag_tools covered (golden mc-lagtools) but grep -rIiE 'ExperienceOrb' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "merge only same-world within radius, preserve total value"
+  ],
+  "testIdea": "spawn 500 orbs; assert count drops, XP total equal",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-inventory-rollback",
+  "name": "Inventory backup/rollback snapshots on death/quit/world change",
+  "sources": [
+   "corpus:inventoryrollbackplus 152k, multiverse-inventories 281k, invsee++ 366k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemStack#serializeAsBytes",
+   "PlayerDeathEvent",
+   "PlayerChangedWorldEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "golden mc-graves; mc-arena inventory save/restore; no rollback archetype",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "cap snapshots per player",
+   "restore must merge not overwrite online inventory"
+  ],
+  "testIdea": "bot dies, admin restores",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-invsee",
+  "name": "Open another player's inventory/enderchest (online + offline)",
+  "sources": [
+   "corpus:invsee++ 366k, quickec"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#openInventory",
+   "Player#getEnderChest"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'invsee|getEnderChest' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "offline editing needs NMS/NBT file edit: refuse"
+  ],
+  "testIdea": "none",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-world-border-expansion",
+  "name": "World border API: staged shrink/expand, per-world",
+  "sources": [
+   "corpus:chunkyborder 380k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "WorldBorder#setSize",
+   "WorldBorder#setCenter",
+   "WorldBorder#setDamageAmount"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "grep -rIiE 'WorldBorder' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) in sheets; world_events archetype covers gamerules/time only",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "setSize with seconds animates; read back asynchronously"
+  ],
+  "testIdea": "RCON worldborder get",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-custom-portals",
+  "name": "Portal regions/gateways to other worlds",
+  "sources": [
+   "corpus:advanced-portals 118k, multiverse-portals 154k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerMoveEvent",
+   "PlayerTeleportEvent",
+   "WorldCreator"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "no portals archetype in lib/cyrus/adapters/minecraft-coverage.json",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "debounce re-entry after teleport"
+  ],
+  "testIdea": "bot walks into region",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-motd",
+  "name": "Server-list MOTD with MiniMessage and player count tricks",
+  "sources": [
+   "corpus:minimotd 268k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PaperServerListPingEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "config",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'ServerListPing' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "icon size 64x64"
+  ],
+  "testIdea": "ping",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-disposable-world",
+  "name": "Disposable arena worlds: copy template, load, play, unload (players out first), delete level.dat last; or in-place budgeted block restore",
+  "sources": [
+   "MJP:paper-disposable-world",
+   "corpus:bedwars1058,duels-optimised"
+  ],
+  "label": "V",
+  "paperApi": [
+   "WorldCreator",
+   "Server#unloadWorld",
+   "World#getPlayers"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json minigames_arena partial: \"arena reset is the weak spot\"",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "WorldCreator silently generates new terrain if the folder/level.dat is missing",
+   "world ops on main thread only; file IO async",
+   "delete level.dat last, write it last"
+  ],
+  "testIdea": "play 3 rounds; assert arena identical each round via block hash",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-nms-fake-player",
+  "name": "Client-less fake player (NMS ServerPlayer) for bots/dummies",
+  "sources": [
+   "MJP:nms-fake-player"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "net.minecraft.server.level.ServerPlayer"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/rules/failure-rules.json no-server-internals",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "signatures change within the same MC version"
+  ],
+  "testIdea": "none: policy-blocked",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-nms-custom-entity-goals",
+  "name": "NMS custom Mob with PathfinderGoal vs Paper Mob#getPathfinder / MobGoals API",
+  "sources": [
+   "MJP:nms-custom-entity",
+   "corpus:MobGoals 2, Pathfinder 3 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Mob#getPathfinder",
+   "Pathfinder#moveTo",
+   "Bukkit#getMobGoals"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json mob_ai partial (Paper MobGoals compile on 4 versions); golden mc-pets",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "move-towards-target goals are unreliable: use pathfinder moveTo (V-s MF-6)",
+   "flee goal: gate the target goal itself else target returns",
+   "hurt-by-target only after tick 5 on fresh entity (test must wait)",
+   "creative/spectator players are ignored by mob targeting (MF-1)"
+  ],
+  "testIdea": "survival-mode Mineflayer bot vs custom mob; assert target and flee",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-villager-trades",
+  "name": "Villager trade control: infinite restock, trade events, custom MerchantRecipe",
+  "sources": [
+   "corpus:infinite-villager-trading 373k, instarestock 114k, VillagerAcquireTradeEvent 6"
+  ],
+  "label": "V",
+  "paperApi": [
+   "MerchantRecipe#setMaxUses",
+   "VillagerAcquireTradeEvent",
+   "MenuType.MERCHANT"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-trades; services/modbuilder/rules/failure-rules.json merchant-menu-type",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "getRecipes() is a copy"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-bundle-backpack",
+  "name": "Backpack item using BundleMeta (no GUI)",
+  "sources": [
+   "corpus:backpack-plus 81k, quickshop BundleContents"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BundleMeta",
+   "DataComponentTypes.BUNDLE_CONTENTS"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "golden mc-backpack is menu-based; grep -rIiE 'BundleMeta' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "bundle API absent on 1.21.1 (U)"
+  ],
+  "testIdea": "bot stores items",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-skin-profile",
+  "name": "Player skin/profile change (PlayerProfile textures) for disguises/NPCs",
+  "sources": [
+   "corpus:skinsrestorer 1.7M, nbtapi, feathermorph"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#setPlayerProfile",
+   "PlayerProfile#setProperty"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "no skin lane; skins need Mojang session lookups (network)",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "needs signed texture value: cannot be forged offline"
+  ],
+  "testIdea": "none",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-mannequin-npc",
+  "name": "Player-shaped NPC with Mannequin entity (no packets)",
+  "sources": [
+   "corpus:feathermorph (Mannequin), Cyrus sheet"
+  ],
+  "label": "V",
+  "paperApi": [
+   "org.bukkit.entity.Mannequin"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/sheets/1.21.11.md:109 'Mannequin (1.21.11)'; coverage npcs partial",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "introduced after 1.21.8 (Cyrus 1.21.8 sheet omits it): version-gate",
+   "ownership/skin profile fields"
+  ],
+  "testIdea": "spawn mannequin; interact click",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-enchant-registry-bootstrap",
+  "name": "Register enchantments at bootstrap via Paper registry events (alternative to datapack)",
+  "sources": [
+   "corpus:excellentenchants 60k (EnchantmentRegistryEntry), crazyenchantments 205k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "RegistryEvents.ENCHANTMENT",
+   "EnchantmentRegistryEntry.Builder",
+   "EnchantmentTagKeys"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "partial",
+  "evidence": "datapack enchantment kind covers it (covered); the bootstrap route needs paper-plugin.yml (forbidden)",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "datapack route is safer and reload-free"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-spawner-virtual-loot",
+  "name": "Custom spawner: stacked spawners, virtual storage GUI, XP/item generation",
+  "sources": [
+   "corpus:smartspawner 224k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "CreatureSpawner",
+   "SpawnerSpawnEvent",
+   "BlockDisplay"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/golden/plugins/mc-spawners",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "cap stack size and tick work"
+  ],
+  "testIdea": "bot places stacked spawner",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-rpg-skills",
+  "name": "RPG skills and mastery tree",
+  "sources": [
+   "corpus:auraskills 223k, valhallammo, universal-modder Ruby Rush note"
+  ],
+  "label": "V",
+  "paperApi": [
+   "AttributeModifier",
+   "PlayerStatisticIncrementEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-skills; archetype jobs_skills covered",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "220-node talent GUI is a UI-size trap"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-ability-gems",
+  "name": "Power gems/abilities with cooldowns and charges",
+  "sources": [
+   "corpus:powergems 119k, bliss-smp 86k, infusesmp 151k, bending 136k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "RayTraceResult",
+   "AttributeModifier",
+   "TextDisplay"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/designer/spec.ts DESIGN_LIMITS (10 triggers, 21 actions); bending-style combo inputs absent",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "combo inputs (sneak/click sequences) not expressible"
+  ],
+  "testIdea": "designer Test Flight",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-hologram-text-display",
+  "name": "Holograms with TextDisplay: billboard, brightness, alignment, per-viewer",
+  "sources": [
+   "corpus:fancyholograms 329k, decentholograms 288k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "TextDisplay",
+   "Display.Billboard",
+   "Display.Brightness"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-holo; services/modbuilder/sheets/1.21.11.md line 103",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "no always-loaded spawn chunks: entities unload (chunk ticket)"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "plg-npc-packet",
+  "name": "Packet-based NPCs (FancyNpcs/ZNPCs)",
+  "sources": [
+   "corpus:fancynpcs 469k, znpcsplus 64k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PacketEvents"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json npcs partial: 'player-skinned NPCs need packets'",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "Mannequin (1.21.11) is the packet-free path"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-hitscan",
+  "name": "Hitscan weapon component: ray per shot/pellet, stops at first block, damage summed per target",
+  "sources": [
+   "universal-modder HL1/L4D notes (MF-5)",
+   "corpus:World.rayTrace* 12, LivingEntity.setNoDamageTicks 10"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "World#rayTraceEntities",
+   "World#rayTraceBlocks",
+   "LivingEntity#setNoDamageTicks",
+   "LivingEntity#damage"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'hitscan' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2); designer actions: damage, launch_projectile, pull_to...; Targets uses ray trace 1..32 (designer/components/java.ts:527) but no hitscan action",
+  "value": 5,
+  "effort": "M",
+  "gotchas": [
+   "sum shotgun pellets per target and reset hurt-invulnerability (setNoDamageTicks(0)) or vanilla ignores most pellets",
+   "full-auto needs client packets (vanilla repeats right-click every 4 ticks): Paper cannot do it",
+   "cap range, budget per activation"
+  ],
+  "testIdea": "designer simulator + bot: 8-pellet shot kills 20 HP zombie at point blank, not at 40 blocks",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-beam",
+  "name": "Beam component: piercing line with particles, optional charge",
+  "sources": [
+   "universal-modder gauss/egon notes",
+   "BD:WeaponMechanics"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "World#rayTraceEntities",
+   "Particle.DUST"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'beam' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) in designer",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "pierce all entities along ray; shove shooter back on charged shot",
+   "particle budget 512 per activation"
+  ],
+  "testIdea": "simulator budget test + bot",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-area-blast",
+  "name": "Area blast component: radius damage with linear falloff, no block damage, scaled for players",
+  "sources": [
+   "universal-modder rocket note (MF-5)",
+   "corpus:orbitalstrike-plugin 105k, osc-dp 734k"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "World#getNearbyEntities",
+   "World#createExplosion(..., false)"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'area_blast' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "createExplosion(setFire false, breakBlocks false)",
+   "cap radius 12 like queryNearbyRadius"
+  ],
+  "testIdea": "bot at 1/2 radius takes ~half damage",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-tooltip-display",
+  "name": "Hide/show tooltip parts with the TooltipDisplay data component (1.21.5+)",
+  "sources": [
+   "corpus:bending (TooltipDisplay)",
+   "BA setHideTooltip"
+  ],
+  "label": "V",
+  "paperApi": [
+   "DataComponentTypes.TOOLTIP_DISPLAY",
+   "TooltipDisplay"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'TooltipDisplay' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2); sheets 1.21.8/11 mention setHideTooltip nowhere",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "introduced 1.21.5 (U): sheet for 1.21.4 must keep setHideTooltip",
+   "ItemFlag.HIDE_* deprecated path"
+  ],
+  "testIdea": "javap: class exists in 1.21.8/11 jars, absent in 1.21.4",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-use-cooldown",
+  "name": "Vanilla item cooldown overlay (Player#setCooldown, use_cooldown component)",
+  "sources": [
+   "corpus:Player.setCooldown 9"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#setCooldown",
+   "ItemMeta#setUseCooldown"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "partial",
+  "evidence": "designer-cooldowns is server-tick based (components/index.ts:36); no client overlay: grep -rIiE 'Player\\.setCooldown' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "Player#setCooldown(Material) in 1.21.1, ItemStack variants later (U)"
+  ],
+  "testIdea": "bot sees cooldown bar (screenshot)",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-combo-inputs",
+  "name": "Ability combos from input sequences (bending style)",
+  "sources": [
+   "corpus:bending 136k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerToggleSneakEvent",
+   "PlayerInputEvent"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designItem",
+  "cyrusCoverage": "missing",
+  "evidence": "spec.ts TRIGGER_TYPES has no sequence trigger",
+  "value": 3,
+  "effort": "L",
+  "gotchas": [
+   "input timing on lag"
+  ],
+  "testIdea": "bot sequence",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dsg-boss-datapack-overhaul",
+  "name": "Vanilla boss overhaul through datapack functions (Ender Dragon phases)",
+  "sources": [
+   "corpus:edf-remastered 3M, true-ending 6.5M (102/171 functions)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack function"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designBoss",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json bosses=covered via plugin designBoss; no datapack-only variant",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "vanilla dragon fight state cannot be reset from a datapack on an existing world"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-item-model-cmd",
+  "name": "Custom item looks: item_model (1.21.4+) and legacy custom_model_data overrides",
+  "sources": [
+   "BB#7",
+   "Jahrome907:resource-pack",
+   "corpus:ItemMeta.setItemModel 16, setCustomModelData 32"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemMeta#setItemModel",
+   "ItemMeta#setCustomModelData"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/itemmodel/*; versions registry capabilities itemModelDefinitions / legacyCustomModelData",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "CMD in 1.21.4+ selectors reads STRINGS list; numeric values are invalid for select (V-s Jahrome); numeric floats go to range_dispatch",
+   "setCustomModelData(Integer) deprecated on newer jars but compiles",
+   "legacy and current format must never be mixed"
+  ],
+  "testIdea": "pack validator + Test Flight pack load",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-item-states",
+  "name": "Per-state item looks: pull, charged, using, selected, display context, broken, damage",
+  "sources": [
+   "Cyrus itemmodel/spec.ts"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemMeta#setCustomModelDataComponent"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "itemStates",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/itemmodel/spec.ts:41-58",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "pack check",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-equippable-armor",
+  "name": "Custom worn armor with equippable component + assets/<ns>/equipment/*.json layers",
+  "sources": [
+   "BB#6",
+   "Cyrus lib/cyrus/equipment/armor.ts",
+   "corpus:Equippable 4 plugins, EquippableComponent in itemedit, elitemobs"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemMeta#setEquippable",
+   "EquippableComponent#setModel",
+   "EquippableComponent#setSlot"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/equipment/armor.ts:1-10; COV armor_sets=partial 'not wired into AI builds yet'",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "1.21.1: dyed leather fallback",
+   "resource pack required on client",
+   "equipment folder renamed between 1.21.2 models/equipment and 1.21.4 assets/<ns>/equipment (V-s BB)"
+  ],
+  "testIdea": "real-client screenshot of player and mob wearing set",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-armor-trims",
+  "name": "Armor trims as cosmetic tier: ArmorMeta#setTrim, TrimPattern/TrimMaterial, custom trim_pattern datapack + textures/trims palettes",
+  "sources": [
+   "corpus:playerkits-2, itemedit, duels-optimised, crazyenchantments, bliss-smp; trim_pattern in tool-trims datapack; textures/trims in 4/43 packs"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ArmorTrim",
+   "TrimPattern",
+   "TrimMaterial",
+   "ArmorMeta#setTrim",
+   "datapack trim_pattern"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'trim_pattern|TrimMaterial|ArmorTrim' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (only a registries listing)",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "custom patterns need atlas armor_trims entries in the pack and a datapack registry entry",
+   "1.21.1 trim data format differs (U)"
+  ],
+  "testIdea": "bot wears trimmed armor; screenshot",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-tool-trims-enchant",
+  "name": "Trim patterns that grant tool effects via linked enchantments + bulk-generated smithing recipes",
+  "sources": [
+   "corpus:tool-trims 1.9M (2030 recipes, 5 trim_pattern/enchantment templates)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack recipe smithing_trim",
+   "datapack enchantment",
+   "trim_pattern"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "datapack kinds lack trim_pattern; smithing_transform exists (lib/cyrus/datapack/import.ts:97)",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "recipe count explodes combinatorially: cap"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-bulk-recipes",
+  "name": "Bulk-generated recipe families (stonecutter cross-conversions)",
+  "sources": [
+   "corpus:mastercutter 1.3M (743 stonecutter recipes)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack recipe stonecutting"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "datapack spec kind stonecutting; lib/cyrus/datapack/emit/recipe.ts",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "per-pack recipe limit in Cyrus (U)"
+  ],
+  "testIdea": "datapack validate",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-datapack-enchantments",
+  "name": "Data-driven enchantments with effects, exclusive sets, tag membership (in_enchanting_table/tradeable/on_random_loot)",
+  "sources": [
+   "BB#8",
+   "corpus:tree-vein-miner stm:timber, tool-trims, stellarity; enchantment dir in 9/141 datapacks"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack enchantment",
+   "tags/enchantment"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json custom_enchantments=covered; prompts.js:184 tag registry includes enchantment",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "no arbitrary code: effects limited to vanilla effect components",
+   "singular folder names in 1.21 (V-s universal-modder)"
+  ],
+  "testIdea": "datapack validation + RCON enchant",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-custom-damage-types",
+  "name": "Custom damage_type and tags (bypasses_armor, bypasses_cooldown) for armor-piercing/true damage",
+  "sources": [
+   "corpus:stellarity (8 damage types), guns_plus_plus, true-ending; damage_type in 11/141"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack damage_type",
+   "tags/damage_type"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "prompts.js:187 damage_type kind; datapack/versions.ts:88 tag/damage_type",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "scaling and effects enums per version"
+  ],
+  "testIdea": "datapack validate",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-jukebox-songs",
+  "name": "Custom music discs: jukebox_song + jukebox_playable + sounds.json",
+  "sources": [
+   "BB#16",
+   "corpus:stellarity 4, from-the-fog 4 songs"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack jukebox_song",
+   "ItemMeta#setJukeboxPlayable"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "sound",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json custom_music=covered; spec.ts kind jukebox_song",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "song length in seconds must match audio",
+   "1.21.1 needs component path"
+  ],
+  "testIdea": "Test Flight plays disc",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-painting-variant",
+  "name": "Custom paintings (painting_variant registry + textures)",
+  "sources": [
+   "corpus:from-the-fog (14 variants)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack painting_variant"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "datapack spec kinds lack painting_variant",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "texture in textures/painting atlas; size in blocks"
+  ],
+  "testIdea": "datapack validate",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-mob-variants",
+  "name": "Wolf/cat/frog/chicken variants as data (wolf_variant + has_wolf_variant biome tags)",
+  "sources": [
+   "corpus:terralith (10 wolf variants)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack wolf_variant"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "no wolf_variant kind",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [
+   "format and registry exist only from 1.21.5 (U)"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-instruments-banners",
+  "name": "Custom goat horn instruments and banner patterns (data-driven)",
+  "sources": [
+   "corpus:1 pack instrument/, banner_pattern atlases"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "datapack instrument",
+   "banner_pattern"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "no kind",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "itm-smithing-stonecutter",
+  "name": "Smithing transform / stonecutting recipes",
+  "sources": [
+   "corpus"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack recipe"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/datapack/spec.ts recipe kinds shaped, shapeless, stonecutting, smithing_transform",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "datapack",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-load-tick-tags",
+  "name": "minecraft:load and minecraft:tick function tags (must be in the minecraft namespace)",
+  "sources": [
+   "Jahrome907:datapack",
+   "corpus:load 63/141, tick 49/141"
+  ],
+  "label": "V",
+  "paperApi": [
+   "tags/function/load.json",
+   "tick.json"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "datapack spec function kind with runOn tick; functions.ts perf checks (tick_summon_unbounded)",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "a load.json in a custom namespace has no automatic behaviour (V-s Jahrome)",
+   "tick body must stay short"
+  ],
+  "testIdea": "datapack validate",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-macros",
+  "name": "Function macros ($(arg), function ... with)",
+  "sources": [
+   "Jahrome907:datapack"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "function with storage"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/datapack/functions.ts:151,258 refuses macro calls and $ lines by design",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [
+   "CONFLICT: Jahrome teaches macros; Cyrus refuses them because commands cannot be checked statically"
+  ],
+  "testIdea": "refusal eval case",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-settings-menu-functions",
+  "name": "Datapack settings UI: clickable tellraw menus calling function-tag 'settings', toggles, install/uninstall/reset cleanup",
+  "sources": [
+   "corpus:dynamic-lights, spawn-animations (function/settings/*), vanilla-refresh"
+  ],
+  "label": "V",
+  "paperApi": [
+   "tellraw click_event run_command",
+   "scoreboard",
+   "function tag settings"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "partial",
+  "evidence": "functions.ts allows tellraw/scoreboard; no settings-menu template or uninstall-cleanup rule: grep -rIiE 'uninstall' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "uninstall must remove objectives/bossbars/teams it created",
+   "click_event field names changed in 1.21.5 (U)"
+  ],
+  "testIdea": "RCON run install, uninstall; list objectives empty",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-pack-overlays",
+  "name": "pack.mcmeta overlays (directory switched by pack-format range) for multi-version datapacks and packs",
+  "sources": [
+   "corpus:datapack overlays 24/141, resourcepack overlays 5/43",
+   "Jahrome907:datapack"
+  ],
+  "label": "V",
+  "paperApi": [
+   "pack.mcmeta overlays.entries"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/datapack/versions.ts:61 emits one exact pack_format or min/max per version; grep -rIiE '\"overlays\"' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "from format 82 (1.21.9) min_format/max_format arrays are required and a legacy range must keep pack_format + supported_formats (V-s Jahrome)",
+   "overlay dirs like overlay_pre_62 appear in real packs",
+   "different overlay field name 'formats' vs min_inclusive/max_inclusive across versions"
+  ],
+  "testIdea": "validator: pack loads on 1.21.1 and 1.21.11 jars",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-dual-function-dirs",
+  "name": "Singular vs plural registry folder names (function/functions, advancement/advancements, loot_table/loot_tables) renamed in 1.21",
+  "sources": [
+   "corpus:13/141 packs ship both",
+   "universal-modder #1"
+  ],
+  "label": "V",
+  "paperApi": [
+   "data/<ns>/function"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder prompts + datapack emitters use singular; MINECRAFT-FINDINGS §1",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "pre-1.21 uses plural; 1.21.1 already singular"
+  ],
+  "testIdea": "mcdoc validator",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-pack-format-table",
+  "name": "Exact pack_format table (DP 48/61/81/94.1, RP 34/46/64/75.0) and min_format arrays from 1.21.9",
+  "sources": [
+   "Jahrome907:datapack,resource-pack",
+   "BB#PF",
+   "lib/cyrus/versions/registry.json"
+  ],
+  "label": "V",
+  "paperApi": [
+   "pack.mcmeta"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/versions/registry.json (1.21.1 34/48, 1.21.4 46/61, 1.21.8 64/81, 1.21.11 75/94.1) agrees with Jahrome table",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "do not write 94.1 as a decimal JSON number: use [94,1]",
+   "registry says resourcePackClientVerified=false everywhere"
+  ],
+  "testIdea": "real client load per band",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-dynamic-lights",
+  "name": "Dynamic lights: per-tick light blocks placed at held/worn emissive items and removed behind",
+  "sources": [
+   "corpus:dynamic-lights 7.8M, dynamic-torches 795k; plugin alternative Player.sendBlockChange 14 plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#sendBlockChange(Material.LIGHT)",
+   "BlockData light[level]",
+   "datapack setblock light"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:dynamic-lights",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'dynamic light' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "waterlogged blocks need a waterlogged light block",
+   "cleanup when player leaves/dies/unloads",
+   "plugin route with sendBlockChange is client-only and leaves no world litter"
+  ],
+  "testIdea": "bot holds torch at night; light level read via block data; leaves no light blocks after logout",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-spawn-animations",
+  "name": "Mob spawn animations (rise from ground, poof) via tags and function chains",
+  "sources": [
+   "corpus:spawn-animations 7.2M"
+  ],
+  "label": "V",
+  "paperApi": [
+   "entity tags",
+   "execute as @e[tag=!seen]"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "missing",
+  "evidence": "functions.ts flags unfiltered @e iteration (tick_all_entities warn)",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "tick cost of scanning new entities"
+  ],
+  "testIdea": "perf check",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-day-counter",
+  "name": "Day counter: title/actionbar at dawn from world time",
+  "sources": [
+   "corpus:daycounter 2.6M, typewriter-daycounter 873k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "World#getFullTime",
+   "/time query day"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json world_events covers scheduled events; grep -rIiE 'daycounter|day counter' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "use /time query day, not a counter that drifts with /time set"
+  ],
+  "testIdea": "RCON time set; assert title",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-entity-defaults",
+  "name": "Alter defaults of newly spawned entities (armor stands with arms, mob captains with gear)",
+  "sources": [
+   "corpus:armor-stand-arms 2.1M, mob-captains 899k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "CreatureSpawnEvent",
+   "ArmorStand#setArms",
+   "EntitySpawnEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "golden mc-mobs/mc-spawners; no 'default alter' template",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "apply once (PDC marker) to avoid re-applying on chunk reload"
+  ],
+  "testIdea": "spawn stand; arms true",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-trial-spawner",
+  "name": "Custom trial spawner configs (normal/ominous) inside structures",
+  "sources": [
+   "corpus:dungeons-and-taverns (368 files), 3/141 packs"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack trial_spawner"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "missing",
+  "evidence": "worldgen spec has no trial_spawner kind (lib/cyrus/datapack/worldgen/spec.ts)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "registry added 1.21; format differs per version"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-jigsaw-structures",
+  "name": "Jigsaw structures: template_pool + processor_list + structure + structure_set",
+  "sources": [
+   "corpus:template_pool 32/141, processor_list 19/141, structure 35/141 (dungeons-and-taverns, towns-and-towers, structory, incendium)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack worldgen/template_pool",
+   "processor_list",
+   "structure type jigsaw"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/datapack/worldgen/check.ts:21 DENIED_BLOCKS includes jigsaw; worldgen kinds: dimension_type, dimension, biome, configured_feature, placed_feature, structure_template, structure, structure_set",
+  "value": 4,
+  "effort": "L",
+  "gotchas": [
+   "jigsaw pool references must resolve; depth limit",
+   "pair with Blockbench/structure NBT import"
+  ],
+  "testIdea": "locate structure via RCON /locate; chunk generation cost estimate (cost.ts)",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-noise-density",
+  "name": "Custom density functions / noise router / carvers",
+  "sources": [
+   "corpus:tectonic (333 worldgen files), density_function 6/141, carver 5/141"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack worldgen/density_function",
+   "noise_settings"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/datapack/worldgen/spec.ts:5-9 'no custom noise router or density function' by design",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "terrain overhauls conflict with each other; edit-vanilla is refused"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-own-dimension",
+  "name": "Own dimension: dimension_type + dimension + biomes + features + structures, sky via environment attributes on 1.21.11",
+  "sources": [
+   "universal-modder:neoforge custom dimension",
+   "corpus:dimension in 6/141",
+   "BB#18,21"
+  ],
+  "label": "V",
+  "paperApi": [
+   "datapack dimension",
+   "dimension_type",
+   "environment attributes"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/datapack/worldgen/versions.ts:21-31 (attributes on >=1.21.11); golden worldgen passed 1.21.1-26.2",
+  "value": 5,
+  "effort": "M",
+  "gotchas": [
+   "has_skylight true + fixed_time keeps End sky but lit terrain (V-s)",
+   "ore count/size must match island density (V-s)",
+   "datapack dimensions only load after restart and not in GameTest-style servers",
+   "new chunks only"
+  ],
+  "testIdea": "RCON execute in <dim> fill ... replace count (see test-ore-count)",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "dp-biome-structure-injection",
+  "name": "Inject structures/features into VANILLA biomes (has_structure tags, biome modifiers)",
+  "sources": [
+   "corpus:repurposed-structures tweaks, hopo-*, improved-pillager-outpost",
+   "universal-modder: NeoForge biome modifiers (loader-only)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "tags/worldgen/biome/has_structure"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "missing",
+  "evidence": "worldgen/spec.ts confines to own namespace ('Vanilla biomes ... never edited')",
+  "value": 3,
+  "effort": "L",
+  "gotchas": [
+   "tag-merge conflicts across packs",
+   "must not 'replace: true'"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-gui-sprites-bossbar",
+  "name": "Skin vanilla UI via textures/gui/sprites (boss bars, hotbar, hearts, tooltips) with .mcmeta nine-slice",
+  "sources": [
+   "corpus:enhanced-boss-bars 5.2M, gui sprites in 10/43 packs",
+   "Jahrome907:resource-pack (1.20.2+ sprites)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "assets/minecraft/textures/gui/sprites"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/designer/route.ts:38 HUD_EXCLUDE refuses 'custom gui textures'; texture-library nine-slice panel template exists (templates-misc.ts:10) but no sprite override emitter",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "overrides vanilla: clashes with other packs (conflict engine rp.* handles files)",
+   "sprite name set changes per version"
+  ],
+  "testIdea": "pack validator + real-client screenshot",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-tooltip-style",
+  "name": "Item tooltip background/frame via tooltip_style component + tooltip/<name>_background sprites",
+  "sources": [
+   "Cyrus apiFacts setTooltipStyle (1.21.4+)"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "ItemMeta#setTooltipStyle"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json:674 lists setTooltipStyle only as API fact",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "introduced with 1.21.2 vanilla (U)"
+  ],
+  "testIdea": "real client",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-lang-glyph-icons",
+  "name": "Lang overrides carrying font glyphs (enchant icons, coloured names)",
+  "sources": [
+   "corpus:enchant-icons-countxd 5.7M, enhanced-boss-bars (93 lang files), lang in 8/43"
+  ],
+  "label": "V",
+  "paperApi": [
+   "assets/minecraft/lang/*.json",
+   "font"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'en_us\\.json' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (conflict merge only)",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "en_us fallback required",
+   "lang overrides collide across packs (merge by key)"
+  ],
+  "testIdea": "pack validator",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-animated-textures",
+  "name": "Animated textures via .png.mcmeta (frametime, frames, interpolate)",
+  "sources": [
+   "Jahrome907:resource-pack",
+   "corpus:13/43 packs"
+  ],
+  "label": "V",
+  "paperApi": [
+   "texture.png.mcmeta"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'frametime' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "height must be N x width",
+   "mcmeta next to the texture with exact name"
+  ],
+  "testIdea": "pack validator frame math",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-gui-container-bg",
+  "name": "Custom menu backgrounds: glyph in container title with negative-space font, or container texture override",
+  "sources": [
+   "BB#11",
+   "corpus:textures/gui/container 8/43",
+   "Cyrus designHud font.ts"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Inventory title Component",
+   "font space provider"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designMenu",
+  "cyrusCoverage": "partial",
+  "evidence": "hud/font.ts implements glyph + space providers for HUD; designMenu spec has no background glyph option (grep 'menu.*background' only unrelated)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "GUI scale widths",
+   "text shadow darkens glyph",
+   "Bedrock shows raw glyphs"
+  ],
+  "testIdea": "screenshot at GUI scale 1-4",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-chat-emoji-font",
+  "name": "Chat emoji: PUA codepoints mapped to bitmap font, :name: replacement",
+  "sources": [
+   "BB#25"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "font bitmap provider",
+   "AsyncChatEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designHud",
+  "cyrusCoverage": "partial",
+  "evidence": "glyph allocation exists for HUD (engine-core identifiers isGlyphCodepoint); no chat-emoji template",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "signed chat restrictions (U)",
+   "Bedrock raw codepoints"
+  ],
+  "testIdea": "bot chat shows glyph",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-core-shaders",
+  "name": "Core shader overrides (rendertype_*, lightmap) for fullbright, glint, UI tint",
+  "sources": [
+   "corpus:glowing-glints 7M, cobblemon-interface, default-dark-mode, fullbright-ub; core shaders 4/43",
+   "BB#14"
+  ],
+  "label": "V",
+  "paperApi": [
+   "assets/minecraft/shaders/core"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": false
+  },
+  "lane": "NEW:client-shaders",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/designer/route.ts:38 excludes shaders",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "format breaks at 1.21.2, 1.21.5, 1.21.6 and 26.x (V-s BB)",
+   "CONFLICT: BB says core shaders unsupported-but-working, Jahrome says vanilla gives no supported way",
+   "Iris/OptiFine ignore or break",
+   "only one pack's rendertype_text wins"
+  ],
+  "testIdea": "per-band real client load",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-optifine-formats",
+  "name": "OptiFine/EMF/ETF/CTM/CIT/Polytone formats (cem, ctm, emissive, lightmap, sky)",
+  "sources": [
+   "corpus:optifine in 30% of packs (cem 3, ctm 6, emissive 8, sky 1, polytone 1)",
+   "Jahrome907:resource-pack"
+  ],
+  "label": "V",
+  "paperApi": [
+   "assets/minecraft/optifine"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": false
+  },
+  "lane": "NEW:client-mod-packs",
+  "cyrusCoverage": "missing",
+  "evidence": "no emitter; conflicts/resourcepack.ts classifies files only",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "not portable: ignored by vanilla and Iris (V-s)",
+   "never promise these on a vanilla-client mod"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-sky-environment",
+  "name": "Custom skies: biome sky/fog colours + RP sky; 1.21.11 environment attributes",
+  "sources": [
+   "BB#21",
+   "corpus:textures/environment 6/43, dramatic-skys"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "dimension_type effects",
+   "environment attributes"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "partial",
+  "evidence": "worldgen/versions.ts:21-31 handles attributes for own dimension; no sky texture authoring",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "sun/moon textures need RP",
+   "split code path at 1.21.11"
+  ],
+  "testIdea": "screenshot",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-block-model-tweaks",
+  "name": "Vanilla block model/blockstate tweaks (round trees, better leaves, grass tops)",
+  "sources": [
+   "corpus:round-trees 4M, better-leaves 21M, fast-better-grass 13.6M"
+  ],
+  "label": "V",
+  "paperApi": [
+   "blockstates variants/multipart",
+   "models/block"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json retexture_vanilla=partial (discouraged: whole-file overrides clash)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "thousands of files; random rotation variants"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-sounds-json",
+  "name": "sounds.json events, aliases (type event), replace flag, mono OGG, subtitles",
+  "sources": [
+   "Jahrome907:resource-pack",
+   "universal-modder #1 mono"
+  ],
+  "label": "V",
+  "paperApi": [
+   "sounds.json",
+   "SoundCategory"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "sound",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/conflicts/engine.ts:272 rp.sounds_json; sound lane renders mono Ogg (prompts.js:102)",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "event namespace = namespace of the sounds.json file; sound name namespace = file namespace",
+   "'ui' sound source from 1.21.6 (V-s)"
+  ],
+  "testIdea": "Test Flight plays event, subtitle on",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-pack-size-hosting",
+  "name": "Pack hosting: 250 MiB server cap, sha1, prompt, required flag, status events",
+  "sources": [
+   "BB#SP",
+   "Jahrome907:resource-pack"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "server.properties resource-pack*"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/packhost/loader-config.ts:158; inventory/scan.ts:19",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "declined packs",
+   "id/uuid key for multiple packs"
+  ],
+  "testIdea": "join bot declines pack",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-26-force-translucent",
+  "name": "26.1 block-model texture object with sprite + force_translucent",
+  "sources": [
+   "Jahrome907:resource-pack"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "26.1 model JSON"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": false
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "26.x not buildable",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [
+   "26.x only"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "rp-particle-textures",
+  "name": "Particle texture overrides (assets/minecraft/particles + textures/particle)",
+  "sources": [
+   "corpus:particles 2/43, textures/particle 18.6%"
+  ],
+  "label": "V",
+  "paperApi": [
+   "assets/minecraft/particles"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "no particle pack kind",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [
+   "cannot add new particle types (V-s BB, fabric docs)"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "blk-noteblock-carrier",
+  "name": "Custom blocks in reserved note_block states (mob-head instruments x 25 notes x powered), Paper noteblock-update flag",
+  "sources": [
+   "BB#1",
+   "Cyrus blocks/noteblock.ts",
+   "corpus:ItemsAdder/Oraxen softdepend 5 in adventure plugins"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BlockData NoteBlock",
+   "paper-global block-updates.disable-noteblock-updates"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "model3d",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/blocks/noteblock.ts:1-40; golden mc-noteblocks; COV custom_blocks partial 'not wired into AI builds yet'",
+  "value": 5,
+  "effort": "M",
+  "gotchas": [
+   "Cyrus uses 7 mob-head instruments = 350 states, BB counts 16 x 25 x 2 = 800; Cyrus data generator lists 23 instruments on 1.21.x and 27 on 26.2",
+   "flag is global and needs restart",
+   "mining speed/break sounds need override",
+   "pistons, water"
+  ],
+  "testIdea": "Test Flight: place/break/drop/piston; real client look",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "blk-tripwire-carrier",
+  "name": "Custom blocks/crops in tripwire states (128) with string-dupers style physics events",
+  "sources": [
+   "BB#1",
+   "corpus:string-dupers-return (Tripwire, BlockFromToEvent)"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "BlockData Tripwire",
+   "BlockFromToEvent",
+   "paper-global disable-tripwire-updates"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "model3d",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json:2955 mentions tripwire as technique only",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "tripwire needs string item semantics",
+   "Paper flag name U"
+  ],
+  "testIdea": "place/break test",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "blk-chorus-mushroom-carrier",
+  "name": "Carriers in chorus plant (64) and mushroom blocks (64 each)",
+  "sources": [
+   "BB#1"
+  ],
+  "label": "U",
+  "paperApi": [
+   "BlockData MultipleFacing"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "model3d",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'chorus' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "M",
+  "gotchas": [
+   "natural mushroom worlds collide"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "blk-display-blocks",
+  "name": "Display-based custom blocks/furniture: item_display + barrier/light block + Interaction hitbox",
+  "sources": [
+   "BB#2,3",
+   "corpus:Display 5+ plugins, clickvillagers BlockDisplay",
+   "Cyrus motion lane"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemDisplay",
+   "BlockDisplay",
+   "Interaction",
+   "Transformation"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "motion",
+  "cyrusCoverage": "partial",
+  "evidence": "golden mc-furniture; coverage motion=limited 'not saved with the world'",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "display persistence: tag + chunk PDC registry",
+   "budget per player view",
+   "no collision shape"
+  ],
+  "testIdea": "restart; props restored",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "blk-custom-crops",
+  "name": "Custom crops with growth stages",
+  "sources": [
+   "Cyrus coverage custom_crops"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BlockGrowEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json custom_crops partial",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "needs carrier states"
+  ],
+  "testIdea": "growth tick test",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "mob-bettermodel-creatures",
+  "name": "Animated creatures: BetterModel display-bone rigs on an invisible vanilla mob",
+  "sources": [
+   "BB#4",
+   "BD",
+   "Cyrus creature lane",
+   "corpus:lagfixer/feathermorph softdepend BetterModel, ModelEngine"
+  ],
+  "label": "V",
+  "paperApi": [
+   "ItemDisplay",
+   "Mob"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "creature",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/adapters/minecraft-capabilities.ts creature; COV animated_creatures=partial 'no real client has seen one'",
+  "value": 5,
+  "effort": "L",
+  "gotchas": [
+   "packets scale with bones x viewers",
+   "hitbox from base mob",
+   "real-client check pending"
+  ],
+  "testIdea": "Test Flight on 4 versions + real client",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "mob-pet-companion",
+  "name": "Pets / companions following with pathfinder moveTo + catch-up teleport",
+  "sources": [
+   "Cyrus golden",
+   "universal-modder Kindred note"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Pathfinder#moveTo"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-pets",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "teleport when >N blocks"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "mob-ai-llm-npc",
+  "name": "LLM-driven bounded NPC companion (reflexes, memory, navigation)",
+  "sources": [
+   "universal-modder:Kindred"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "Pathfinder"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:llm-npc",
+  "cyrusCoverage": "missing",
+  "evidence": "Fabric+Ollama in source; network-bound",
+  "value": 2,
+  "effort": "L",
+  "gotchas": [
+   "network forbidden for generated mods"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "mob-vehicle-seat-input",
+  "name": "Rideable vehicles steered by PlayerInputEvent / getCurrentInput",
+  "sources": [
+   "BB#5",
+   "corpus:PlayerInputEvent 3"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerInputEvent",
+   "Player#getCurrentInput",
+   "Input"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "sheets/1.21.4-11:107; golden mc-mounts",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "absent on 1.21.1",
+   "anti-cheat flags (U)"
+  ],
+  "testIdea": "bot rides",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "mob-cutscene-camera",
+  "name": "Cutscenes: spectate a moving display/entity, titles, restore state",
+  "sources": [
+   "BB#20",
+   "universal-modder showcase (connection.teleport per tick)"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "Player#setSpectatorTarget",
+   "Entity#setTeleportDuration"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "motion",
+  "cyrusCoverage": "partial",
+  "evidence": "golden mc-cutscene; COV cutscenes partial",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "client can sneak out: cancel via event",
+   "restore gamemode/inventory"
+  ],
+  "testIdea": "bot restores state",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-survival-bot",
+  "name": "Playtest bots must run in survival: creative/spectator players are ignored by mob targeting",
+  "sources": [
+   "universal-modder:gametests-for-mob-ai (MF-1)",
+   "BD:mineflayer+pathfinder"
+  ],
+  "label": "V",
+  "paperApi": [
+   "GameMode.SURVIVAL"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:testflight-survival-bot",
+  "cyrusCoverage": "missing",
+  "evidence": "services/modbuilder/tools/testflight/stress-bot.js:80 runs `gamemode creative` for the bot (verified); mob-targeting claim itself is V-s; grep -rIiE 'survival.*bot' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 5,
+  "effort": "S",
+  "gotchas": [
+   "false green on boss/mob checks otherwise"
+  ],
+  "testIdea": "boss fight eval: bot in survival must take damage",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-rcon-ore-count",
+  "name": "Cheap worldgen density check over RCON: execute in <dim> run fill <16x128x16> air replace <ore> -> 'Successfully filled N'",
+  "sources": [
+   "universal-modder (MF-2)"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "/fill ... replace"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "worldgen",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'Successfully filled' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [
+   "forceload the area first",
+   "state density range, not only 'loads'"
+  ],
+  "testIdea": "worldgen Test Flight",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-mutant-self-check",
+  "name": "Prove the test can fail: one-defect mutant builds must be rejected with a cause",
+  "sources": [
+   "universal-modder:prove-your-replay-bench-can-fail (MF-3)"
+  ],
+  "label": "V-s",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:testflight-selfcheck",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'mutant' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2) (only unrelated 'mutation' hits)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "message must name the cause not 'empty log'"
+  ],
+  "testIdea": "self-check suite",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-tick-freeze-step",
+  "name": "Deterministic animation/timing checks with /tick freeze and /tick step N",
+  "sources": [
+   "universal-modder:left-4-dead note"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "/tick freeze",
+   "/tick step"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:testflight-timing",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'tick freeze|tick step' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "command exists from 1.20.3 (U)"
+  ],
+  "testIdea": "creature clip check",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-advancement-grant-only",
+  "name": "Showcase capture: grant only the root advancement (through spams toasts); drive camera by teleport each tick",
+  "sources": [
+   "universal-modder custom dimension note (MF-7)"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "/advancement grant only"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:showcase-capture",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'grant @s only' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [
+   "pauseOnLostFocus false"
+  ],
+  "testIdea": "marketing clip",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-spyglass-lint",
+  "name": "Lint datapack/resource JSON with mcdoc schemas (Spyglass)",
+  "sources": [
+   "BD:Spyglass",
+   "Cyrus lib/cyrus/datapack/mcdoc.ts"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "datapack",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/datapack/mcdoc.ts (subset from vanilla-mcdoc, MIT) already validates emitted fields; resource-pack JSON not covered",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "mcdoc since/until per version"
+  ],
+  "testIdea": "validator run",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-packsquash",
+  "name": "Resource-pack optimiser as external binary",
+  "sources": [
+   "BD:PackSquash AGPL"
+  ],
+  "label": "V-s",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'PackSquash' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 1,
+  "effort": "S",
+  "gotchas": [
+   "AGPL: external binary only if legal agrees"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-spark-tps",
+  "name": "TPS/MSPT profiling reports in Test Flight",
+  "sources": [
+   "BD:spark GPL",
+   "Jahrome907:server-admin"
+  ],
+  "label": "V-s",
+  "paperApi": [
+   "Bukkit#getTPS",
+   "Bukkit#getAverageTickTime"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:testflight-perf",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/perf + NxPerf.java exist; corpus Bukkit.getTPS 4 plugins",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "spark is GPL: run jar only if legal OK"
+  ],
+  "testIdea": "TPS floor",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-geyser-bedrock",
+  "name": "Bedrock (Geyser/Floodgate) parity warnings: custom items/blocks/glyphs need separate mappings",
+  "sources": [
+   "BB",
+   "corpus:geyser-extras, floodgate softdepend 14%"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Floodgate"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/inventory/scan.ts:97,200 detects Geyser/Floodgate presence",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "Java packs are not auto-converted",
+   "custom blocks 'not very stable'"
+  ],
+  "testIdea": "scan test",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "tst-gametest-quirks",
+  "name": "Fabric/NeoForge GameTest harness traps (mock player creative, y-offset, tick-0 hurt, template prefix)",
+  "sources": [
+   "universal-modder:gametests-for-mob-ai"
+  ],
+  "label": "V-s",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": false
+  },
+  "lane": "NEW:client-mod-lane",
+  "cyrusCoverage": "missing",
+  "evidence": "client-mod lane absent",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "only relevant if Cyrus ships Fabric/NeoForge builds"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "lane-client-mod-mrpack",
+  "name": "Client-mod lane: Fabric mod + .mrpack delivery for features Paper cannot do (keybinds, HUD widgets)",
+  "sources": [
+   "BB#2.",
+   "BD",
+   "Jahrome907:multiloader",
+   "OGM:mcmodding-mcp"
+  ],
+  "label": "V-s",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:client-mod-lane",
+  "cyrusCoverage": "missing",
+  "evidence": "grep -rIiE 'mrpack' lib/cyrus services/modbuilder docs/cyrus -> 0 hits (2026-10-12, cyrus-rc2)",
+  "value": 3,
+  "effort": "L",
+  "gotchas": [
+   "server cannot push mods",
+   "Forge/NeoForge TOML truncation, FOV via MOVEMENT_SPEED, protocol version (V-s universal-modder)"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-voice-chat",
+  "name": "Proximity voice chat",
+  "sources": [
+   "corpus:simple-voice-chat 73M, plasmo-voice"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:client-mod-lane",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json voice_chat=impossible",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "client mod + UDP"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-anticheat-xray",
+  "name": "Anti-cheat and anti-xray (packet level)",
+  "sources": [
+   "corpus:grimac 751k, orebfuscator 220k, antyxray"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PacketEvents"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "missing",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json anti_cheat=gap",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "prediction engines need packet access"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-claims-protection",
+  "name": "Claims/regions with explosion, piston, fluid protections",
+  "sources": [
+   "corpus:griefprevention 217k, worldguard 931k, farmprotect"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BlockPistonExtendEvent",
+   "BlockFromToEvent",
+   "EntityExplodeEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-claims, mc-regions; BlockPistonExtend in 26/173 plugins",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [
+   "piston events missed by most hand-written claims"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-logging-rollback",
+  "name": "Block-change log with inspect and rollback",
+  "sources": [
+   "corpus:coreprotect 558k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "BlockBreakEvent",
+   "GenericGameEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json anti_grief_log=gap",
+  "value": 3,
+  "effort": "L",
+  "gotchas": [
+   "database + async batching"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-pregen-chunks",
+  "name": "Chunk pre-generation",
+  "sources": [
+   "corpus:chunky 19M, chunksmith"
+  ],
+  "label": "V",
+  "paperApi": [
+   "World#getChunkAtAsync"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "NEW:ops",
+  "cyrusCoverage": "missing",
+  "evidence": "ops tool, not a mod lane",
+  "value": 1,
+  "effort": "M",
+  "gotchas": [
+   "thread/IO throttling"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-login-auth",
+  "name": "Offline-mode login/auth plugins",
+  "sources": [
+   "corpus:authmereloaded 279k, simple-login"
+  ],
+  "label": "V",
+  "paperApi": [
+   "AsyncPlayerPreLoginEvent"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "config",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-logingate",
+  "value": 2,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-chat-tab-nametag",
+  "name": "Tab list/nametag/prefix systems",
+  "sources": [
+   "corpus:tab-was-taken 1.3M, tabtps"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#playerListName",
+   "Team#prefix"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designHud",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json tablist=partial",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [
+   "text_display name tags need view_range"
+  ],
+  "testIdea": "golden mc-tablist",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-economy-chestshop",
+  "name": "Chest/sign shops",
+  "sources": [
+   "corpus:quickshop-hikari 256k, crazyauctions"
+  ],
+  "label": "V",
+  "paperApi": [
+   "SignChangeEvent",
+   "Container"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json player_shops=partial",
+  "value": 3,
+  "effort": "M",
+  "gotchas": [
+   "hopper and explosion protection of shop chests"
+  ],
+  "testIdea": "golden mc-signshop",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-kits-gui",
+  "name": "Kits with cooldown and preview GUI",
+  "sources": [
+   "corpus:playerkits-2 326k"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-kits",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-rtp-home-spawn",
+  "name": "Homes, spawn, RTP, TPA",
+  "sources": [
+   "corpus:sethome, huskhomes, simple-rtp, wildrtp, just-tpa"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/adapters/minecraft-coverage.json back_rtp, homes, tpa_spawn, warps covered",
+  "value": 4,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-graves",
+  "name": "Death chests",
+  "sources": [
+   "corpus:axgraves 207k, gravesx"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-graves",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-vanish",
+  "name": "Vanish",
+  "sources": [
+   "corpus:provanish 192k"
+  ],
+  "label": "V",
+  "paperApi": [
+   "Player#hidePlayer",
+   "Player#unlistPlayer"
+  ],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-vanish",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-quests",
+  "name": "Quest systems",
+  "sources": [
+   "corpus:typewriter 152k, quests.classic 125k"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "designQuest",
+  "cyrusCoverage": "covered",
+  "evidence": "lib/cyrus/designer/gameplay (7 objective kinds)",
+  "value": 4,
+  "effort": "M",
+  "gotchas": [],
+  "testIdea": "designer Test Flight",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-minigame-lobby",
+  "name": "Lobby/queue/party minigame frameworks",
+  "sources": [
+   "corpus:bedwars1058, duels-optimised, bentobox"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": true,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "plugin",
+  "cyrusCoverage": "partial",
+  "evidence": "services/modbuilder/golden/plugins/mc-arena",
+  "value": 4,
+  "effort": "L",
+  "gotchas": [
+   "arena reset"
+  ],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-emotes-animations",
+  "name": "Emotes and player animations",
+  "sources": [
+   "corpus:emotecraft 7.7M, fresh-animations 49M (CEM), detailed-animations (EMF)"
+  ],
+  "label": "V",
+  "paperApi": [
+   "PlayerTrackEntityEvent"
+  ],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": false,
+   "1.21.8": false,
+   "1.21.11": false
+  },
+  "lane": "NEW:client-mod-lane",
+  "cyrusCoverage": "missing",
+  "evidence": "client-side render",
+  "value": 1,
+  "effort": "L",
+  "gotchas": [
+   "needs client mod or Optifine-class tools"
+  ],
+  "testIdea": "n/a",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ },
+ {
+  "id": "misc-image-skin-cosmetics",
+  "name": "Hats/cosmetics by item model",
+  "sources": [
+   "corpus"
+  ],
+  "label": "V",
+  "paperApi": [],
+  "versions": {
+   "1.21.1": false,
+   "1.21.4": true,
+   "1.21.8": true,
+   "1.21.11": true
+  },
+  "lane": "texture",
+  "cyrusCoverage": "covered",
+  "evidence": "services/modbuilder/golden/plugins/mc-trails; coverage cosmetics covered",
+  "value": 3,
+  "effort": "S",
+  "gotchas": [],
+  "testIdea": "golden",
+  "licenceNote": "Original description of a vanilla/Paper mechanism; no third-party code copied."
+ }
+]

@@ -1,0 +1,12 @@
+# whitelist: only small text knowledge is shared; binaries, data, transcripts and secrets stay local
+*
+!*/
+!.gitignore
+!*.md
+!*.txt
+!*.json
+!*.sh
+!*.py
+!*.patch
+!*.yml
+!secrets.tar.enc

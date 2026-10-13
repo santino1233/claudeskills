@@ -1,0 +1,62 @@
+=== minecraft [vanilla] 8triev ERR connect ECONNREFUSED 51.79.162.96:20038
+=== minecraft [paper] jry1k3 ERR connect ECONNREFUSED 51.79.162.96:20104
+=== minecraft [fabric] k4moel ERR connect ECONNREFUSED 51.79.162.96:20039
+=== minecraft [paper] kjuair
+yes /opt/mc
+yes /opt/mc/plugins
+NO  /opt/mc/mods
+yes /opt/mc/world
+yes /opt/mc/config
+yes /opt/mc/logs
+
+=== minecraft [vanilla] 2pd9tn ERR connect ECONNREFUSED 51.79.162.96:20012
+=== minecraft [vanilla] klyn9u ERR connect ECONNREFUSED 51.79.162.96:20074
+=== minecraft [fabric] ifh1rw ERR connect ECONNREFUSED 51.79.162.96:20016
+=== minecraft [vanilla] ye92tf ERR connect ECONNREFUSED 51.79.162.96:20087
+=== valheim [bepinex] fdu8jo
+yes /opt/valheim/config
+yes /opt/valheim/config/worlds_local
+yes /opt/valheim/config/bepinex/plugins
+yes /opt/valheim/data
+yes /opt/valheim/config/backups
+yes /opt/valheim/nxeon-mods
+
+=== valheim [vanilla] iay5tf ERR connect ECONNREFUSED 51.79.162.96:20043
+=== valheim [vanilla] 1ycsnb ERR connect ECONNREFUSED 51.79.162.96:20042
+=== valheim [vanilla] ic2i7p
+yes /opt/valheim/config
+yes /opt/valheim/config/worlds_local
+yes /opt/valheim/config/bepinex/plugins
+yes /opt/valheim/data
+yes /opt/valheim/config/backups
+yes /opt/valheim/nxeon-mods
+
+=== palworld [vanilla] muydci
+yes /opt/palworld
+yes /opt/palworld/Pal/Saved/Config/LinuxServer
+yes /opt/palworld/Pal/Saved/SaveGames
+yes /opt/palworld/Pal/Saved/SaveGames/0
+yes /opt/palworld/backups
+
+=== projectzomboid [b42] 5xxiil ERR connect ECONNREFUSED 51.79.162.96:20079
+=== projectzomboid [b42] 4apcz9
+yes /opt/projectzomboid
+yes /opt/projectzomboid/config
+yes /opt/projectzomboid/config/Saves/Multiplayer
+yes /opt/projectzomboid/config/mods
+yes /opt/projectzomboid/server
+yes /opt/projectzomboid/server/steamapps
+yes /opt/projectzomboid/config/Server
+
+=== rust [vanilla] 6vmcan ERR connect ECONNREFUSED 51.79.162.96:20008
+=== rust [vanilla] wvomlt ERR connect ECONNREFUSED 51.79.162.96:20011
+=== terraria [default] kzpr1i ERR connect ECONNREFUSED 51.79.162.96:20092
+=== terraria [-] 73lyto ERR connect ECONNREFUSED 51.79.162.96:20007
+=== terraria [-] ch9fcx ERR Server is not reachable yet — connection details a
+=== cs2 [metamod] dhli0r ERR connect ECONNREFUSED 51.79.162.96:20047
+=== ark [theisland] om0ax8 ERR connect ECONNREFUSED 51.79.162.96:20019
+=== l4d2 [coop] hehre0 ERR connect ECONNREFUSED 51.79.162.96:20103
+=== corekeeper [default] lzgesn ERR connect ECONNREFUSED 51.79.162.96:20099
+=== corekeeper [default] n37uvq ERR connect ECONNREFUSED 51.79.162.96:20056
+=== bedrock [latest] a89r6f ERR connect ECONNREFUSED 51.79.162.96:20015
+=== bedrock [latest] f14z1j ERR connect ECONNREFUSED 51.79.162.96:20018

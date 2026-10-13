@@ -1,0 +1,254 @@
+[
+{
+"file": "item-designer.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "item-dark.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "item-designer.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"out": "item-light.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "item-designer.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"out": "item-narrow.png",
+"full": true,
+"wait": 1100
+},
+{
+"file": "item-designer.html",
+"q": "ctl=0&tab=sim&demo=edit",
+"w": 1440,
+"h": 900,
+"out": "item-dark-sim.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "item-designer.html",
+"q": "ctl=0&demo=over",
+"w": 1440,
+"h": 900,
+"out": "item-dark-over.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "menu-dark.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"out": "menu-light.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"out": "menu-narrow.png",
+"full": true,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0&mode=try",
+"w": 1440,
+"h": 900,
+"out": "menu-dark-try.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0&tab=quests",
+"w": 1440,
+"h": 900,
+"out": "menu-dark-quests.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "menu-quest.html",
+"q": "ctl=0&tab=quests&theme=light",
+"w": 1440,
+"h": 900,
+"out": "menu-light-quests.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "mod-packs.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "packs-dark.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "mod-packs.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"out": "packs-light.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "mod-packs.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"out": "packs-narrow.png",
+"full": true,
+"wait": 1100
+},
+{
+"file": "mod-packs.html",
+"q": "ctl=0&state=flown",
+"w": 1440,
+"h": 900,
+"out": "packs-dark-flown.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "import-dark.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"out": "import-light.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"out": "import-narrow.png",
+"full": true,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0&state=jar",
+"w": 1440,
+"h": 900,
+"out": "import-dark-jar.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0&state=unsupported",
+"w": 1440,
+"h": 900,
+"out": "import-dark-unsupported.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "import-mod.html",
+"q": "ctl=0&own=open",
+"w": 1440,
+"h": 900,
+"out": "import-dark-ownership.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0",
+"w": 1440,
+"h": 900,
+"out": "datapack-dark.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0&theme=light",
+"w": 1440,
+"h": 900,
+"out": "datapack-light.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0",
+"w": 390,
+"h": 844,
+"out": "datapack-narrow.png",
+"full": true,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0&view=json&v=1.21.4",
+"w": 1440,
+"h": 900,
+"out": "datapack-dark-json-1.21.4.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0&r=structure_template:ruin&tab=cost",
+"w": 1440,
+"h": 900,
+"out": "datapack-dark-template.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0&r=function:tick&tab=fn&try=op%20@a",
+"w": 1440,
+"h": 900,
+"out": "datapack-dark-function.png",
+"full": false,
+"wait": 1100
+},
+{
+"file": "datapack-studio.html",
+"q": "ctl=0&r=structure_template:ruin&theme=light",
+"w": 1440,
+"h": 900,
+"out": "datapack-light-template.png",
+"full": false,
+"wait": 1100
+}
+]

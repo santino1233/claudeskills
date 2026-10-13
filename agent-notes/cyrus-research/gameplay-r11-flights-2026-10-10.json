@@ -1,0 +1,544 @@
+{
+ "at": "2026-10-10T11:55:21.696Z",
+ "host": "node-2",
+ "realClient": false,
+ "bot": false,
+ "aiModel": "none (designs are fixtures; no model call)",
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "compile": {
+    "ok": true,
+    "hash": "588dc71e25611801df416c711715ce7534004ace9c669344ab877e1db1c54e4e",
+    "files": 44,
+    "params": 85,
+    "configVersion": 1,
+    "deps": [
+     "vault-api"
+    ],
+    "counts": {
+     "items": 2,
+     "menus": 2,
+     "quests": 4
+    },
+    "warnings": [
+     "plain_item",
+     "vanilla_sound_unchecked",
+     "economy_needs_vault"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 42,
+    "classFiles": 63,
+    "ms": 1761,
+    "warnings": 0,
+    "output": "",
+    "classpathExtra": [
+     "vault-api"
+    ]
+   },
+   "jar": {
+    "sha256": "0012bad340e571198c7cb24df9fb88fdbec4a10f8ae9faa198176d52a4b89d63",
+    "bytes": 151758,
+    "reproducible": true
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 19.3s, peak RSS 924 MB)",
+    "bootMs": 19265,
+    "peakRssMb": 924,
+    "paper": {
+     "version": "1.21.11",
+     "build": 132,
+     "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "21.0.12.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L95: [11:55:44 INFO]: Done (18.101s)! For help, type \"help\"",
+       "wall 19265 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "GuildQuests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L88: [11:55:43 INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 883 MB, 254 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | ",
+       "help-command 'help guildquests' [rss 896 MB, 257 ms]: ok -> --------- Help: GuildQuests --------------------------- | Below is a list of all GuildQuests commands: | /guildquests: GuildQuests: menus, quests and items | ",
+       "summary 'guildquests' [rss 922 MB, 275 ms]: ok -> GuildQuests: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two. Use /guildquests menu <id>, /guildquests quests, /guildquests params, /guildquests reload | ",
+       "menu-list 'guildquests menu list' [rss 922 MB, 252 ms]: ok -> elder: dialogue choices=4 opens=command,npc:nx_r11guild.npc.elder permission=- | shop: chest rows=6 buttons=8 list=28 slots entries=30 (config lists.shop) pages=2 opens=command,item:guild_badge permission=- | ",
+       "menu-costs 'guildquests menu costs shop' [rss 922 MB, 253 ms]: ok -> slot 46: 5 levels | slot 47: 5 x emerald (needs nx_r11guild.vip) | slot 51: 25.00 money (needs Vault and an economy plugin: not set up on this server, so it is refused) | slot 52: 2 x emerald | entry 0: 1 x emerald | entry 1: 1 x emerald | ",
+       "menu-console-usage 'guildquests menu shop' [rss 922 MB, 251 ms]: ok -> Usage from the console: /guildquests menu <id> <player> | ",
+       "menu-offline-player 'guildquests menu shop Nobody' [rss 922 MB, 251 ms]: ok -> Player Nobody is not online. | ",
+       "menu-unknown 'guildquests menu vault_of_doom' [rss 922 MB, 250 ms]: ok -> Unknown menu vault_of_doom. | ",
+       "quests-list 'guildquests quests' [rss 922 MB, 254 ms]: ok -> daily_bread: steps=1 branches=0 objectives=craft repeat=daily/86400s start=command requires=- title=Daily Bread | trial_one: steps=2 branches=0 objectives=kill,collect repeat=once start=menu requires=- title=The First Trial | trial_three: s",
+       "quests-console 'guildquests quests start trial_two' [rss 922 MB, 250 ms]: ok -> Only players can do quests. Console: /guildquests quests list | check | reset <player> | ",
+       "quests-check 'guildquests quests check' [rss 922 MB, 253 ms]: ok -> quest index: kill=2 collect=1 craft=1 visit=1 break=1 talk=1 survive=1 handlers=9 (one listener, one handler per event kind) timer=1 max_active=3 | size daily_bread: 49 | size trial_one: 47 | size trial_three: 51 | size trial_two: 56 | stor",
+       "params-defaults 'guildquests params shop' [rss 923 MB, 252 ms]: ok -> menus.shop.title=Guild Shop | menus.shop.b4.name=Guild Shop | menus.shop.b4.lore0=Click an item to buy it | menus.shop.b4.lore1=Prices are in emeralds | menus.shop.b45.name=Back | menus.shop.b46.name=Trade 5 levels for a diamond | menus.sho",
+       "params-quest 'guildquests params trial_one' [rss 923 MB, 251 ms]: ok -> quests.trial_one.title=The First Trial | quests.trial_one.description=Prove yourself to the guild. | quests.trial_one.icon.name=The First Trial | quests.trial_one.steps.s1.text=Slay 5 zombies | quests.trial_one.steps.s1.o0.count=5 | quests.",
+       "give-item-console 'guildquests give guild_badge' [rss 923 MB, 250 ms]: ok -> Usage from the console: /guildquests give <item> <player> [count] | ",
+       "list-items 'guildquests list' [rss 923 MB, 255 ms]: ok -> guild_badge: identity=ok material=paper abilities=0 recipe=none | guild_charm: identity=ok material=amethyst_shard abilities=1 recipe=none | ",
+       "config-clamped-on-reload: wrote plugins/GuildQuests/config.yml (10889 bytes) before the command",
+       "config-clamped-on-reload 'guildquests reload' [rss 923 MB, 295 ms]: ok -> GuildQuests config reloaded (6 notes) | - clamped menus.shop.b47.cost.count 99999.0 -> 2304.0 | - clamped general.max_active_quests 99.0 -> 5.0 | - clamped quests.trial_one.steps.s1.o0.count -3.0 -> 1.0 | - lists.shop[30]: minecraft:command",
+       "params-after-clamp 'guildquests params shop' [rss 923 MB, 251 ms]: ok -> menus.shop.title=Guild Shop | menus.shop.b4.name=Guild Shop | menus.shop.b4.lore0=Click an item to buy it | menus.shop.b4.lore1=Prices are in emeralds | menus.shop.b45.name=Back | menus.shop.b46.name=Trade 5 levels for a diamond | menus.sho",
+       "menu-list-after-clamp 'guildquests menu list' [rss 923 MB, 250 ms]: ok -> elder: dialogue choices=4 opens=command,npc:nx_r11guild.npc.elder permission=- | shop: chest rows=6 buttons=8 list=28 slots entries=31 (config lists.shop) pages=2 opens=command,item:guild_badge permission=- | ",
+       "config-migrated-on-reload: wrote plugins/GuildQuests/config.yml (10684 bytes) before the command"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 591 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3630451 gone; 0 marked processes; listening none of 47143,47170",
+       "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2c8111-9e410b; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "configOnDisk": true,
+     "configVersionOnDisk": 1,
+     "listsOnDisk": true,
+     "backups": [
+      "config.yml.bak-v0"
+     ],
+     "pluginLog": [
+      "[11:55:34] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/GuildQuests-1.21.11-base.jar'...",
+      "[11:55:34] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/GuildQuests-1.21.11-base.jar' in 117ms.",
+      " - GuildQuests (1.0.0)",
+      "[11:55:41] [Server thread/INFO]: [GuildQuests] Loading server plugin GuildQuests v1.0.0",
+      "[11:55:43] [Server thread/INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+      "[11:55:44] [Server thread/INFO]: [GuildQuests] Designer ready: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: clamped menus.shop.b47.cost.count 99999.0 -> 2304.0",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: clamped general.max_active_quests 99.0 -> 5.0",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: clamped quests.trial_one.steps.s1.o0.count -3.0 -> 1.0",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: lists.shop[30]: minecraft:command_block cannot be sold, skipped",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: clamped lists.shop[31].price 99999.0 -> 2304.0",
+      "[11:55:48] [Server thread/WARN]: [GuildQuests] config: lists.shop[32]: a list cannot sell its own currency, skipped",
+      "[11:55:49] [Server thread/INFO]: [GuildQuests] config.yml migrated from version 0 to 1 (8 designer values updated, backup config.yml.bak-v0)",
+      "[11:55:49] [Server thread/INFO]: [GuildQuests] config.yml: 77 menu and quest values updated to version 1",
+      "[11:55:50] [Server thread/INFO]: [GuildQuests] Disabling GuildQuests v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "edit": {
+    "ok": true,
+    "applied": [
+     {
+      "path": "menus.shop.b47.cost.count",
+      "label": "slot 47 price (emerald)",
+      "from": 5,
+      "to": 7
+     },
+     {
+      "path": "quests.trial_one.steps.s1.o0.count",
+      "label": "step s1: kills needed",
+      "from": 5,
+      "to": 8
+     },
+     {
+      "path": "quests.daily_bread.repeat.cooldown_seconds",
+      "label": "daily cooldown (seconds)",
+      "from": 86400,
+      "to": 43200
+     }
+    ],
+    "sourceDiff": [
+     "src/main/resources/config.yml"
+    ],
+    "javaChanged": [],
+    "readmeChanged": true,
+    "configVersion": 2,
+    "jarEntriesThatDiffer": [
+     "config.yml"
+    ],
+    "classFilesIdentical": true,
+    "classFiles": 63,
+    "jarSha256": "240378446f4c2dd355027fa9e0b668e3cd92b2577b6e5a3d2156812e4f944557",
+    "flight": {
+     "status": "completed",
+     "overall": "passed",
+     "success": true,
+     "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.9s, peak RSS 869 MB)",
+     "checks": [
+      {
+       "id": "boot_done",
+       "status": "pass",
+       "evidence": [
+        "L97: [11:56:12 INFO]: Done (17.670s)! For help, type \"help\"",
+        "wall 18874 ms from spawn"
+       ]
+      },
+      {
+       "id": "plugins_enabled",
+       "status": "pass",
+       "evidence": [
+        "GuildQuests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+        "L88: [11:56:11 INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+        "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | "
+       ]
+      },
+      {
+       "id": "startup_log_clean",
+       "status": "pass",
+       "evidence": [
+        "97 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+       ]
+      },
+      {
+       "id": "rcon_checks",
+       "status": "pass",
+       "evidence": [
+        "plugins 'plugins' [rss 857 MB, 252 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | ",
+        "params-after-update 'guildquests params' [rss 868 MB, 268 ms]: ok -> items.guild_charm.abilities.bless.cooldown_ticks=600 | items.guild_charm.abilities.bless.trigger.period_ticks=600 | items.guild_charm.abilities.bless.a0.duration_ticks=100 | items.guild_charm.abilities.bless.a0.amplifier=0 | items.guild_cha",
+        "quests-after-update 'guildquests quests list' [rss 869 MB, 254 ms]: ok -> daily_bread: steps=1 branches=0 objectives=craft repeat=daily/43200s start=command requires=- title=Daily Bread | trial_one: steps=2 branches=0 objectives=kill,collect repeat=once start=menu requires=- title=The First Trial | trial_three: s",
+        "costs-after-update 'guildquests menu costs shop' [rss 869 MB, 252 ms]: ok -> slot 46: 5 levels | slot 47: 7 x emerald (needs nx_r11guild.vip) | slot 51: 25.00 money (needs Vault and an economy plugin: not set up on this server, so it is refused) | slot 52: 2 x emerald | entry 0: 1 x emerald | entry 1: 1 x emerald | "
+       ]
+      },
+      {
+       "id": "clean_stop",
+       "status": "pass",
+       "evidence": [
+        "stop via rcon; exit code 0 signal null after 542 ms; 0 shutdown log hits"
+       ]
+      },
+      {
+       "id": "no_leaks",
+       "status": "pass",
+       "evidence": [
+        "netns: java pid 3631066 gone; 0 marked processes; listening none of 47193,47101",
+        "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2c8mt5-b57aef; no listening port in 47100-47199"
+       ]
+      }
+     ],
+     "disk": {
+      "configOnDisk": true,
+      "configVersionOnDisk": 2,
+      "listsOnDisk": true,
+      "backups": [
+       "config.yml.bak-v1"
+      ],
+      "pluginLog": [
+       "[11:56:02] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/GuildQuests-1.21.11-edit.jar'...",
+       "[11:56:02] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/GuildQuests-1.21.11-edit.jar' in 127ms.",
+       " - GuildQuests (1.0.0)",
+       "[11:56:09] [Server thread/INFO]: [GuildQuests] Loading server plugin GuildQuests v1.0.0",
+       "[11:56:11] [Server thread/INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+       "[11:56:11] [Server thread/INFO]: [GuildQuests] config.yml migrated from version 1 to 2 (8 designer values updated, backup config.yml.bak-v1)",
+       "[11:56:11] [Server thread/INFO]: [GuildQuests] config.yml: 77 menu and quest values updated to version 2",
+       "[11:56:11] [Server thread/INFO]: [GuildQuests] Designer ready: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two",
+       "[11:56:13] [Server thread/INFO]: [GuildQuests] Disabling GuildQuests v1.0.0"
+      ],
+      "pluginErrorLines": [],
+      "sandboxNoiseLines": 4
+     }
+    }
+   }
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "compile": {
+    "ok": true,
+    "hash": "d10a5b8ef5fb0672e5314f6223a0199e95afde960416744f1ec5d2afb4d20072",
+    "files": 44,
+    "params": 85,
+    "configVersion": 1,
+    "deps": [
+     "vault-api"
+    ],
+    "counts": {
+     "items": 2,
+     "menus": 2,
+     "quests": 4
+    },
+    "warnings": [
+     "plain_item",
+     "vanilla_sound_unchecked",
+     "economy_needs_vault"
+    ]
+   },
+   "javac": {
+    "ok": true,
+    "sources": 42,
+    "classFiles": 63,
+    "ms": 1776,
+    "warnings": 0,
+    "output": "",
+    "classpathExtra": [
+     "vault-api"
+    ]
+   },
+   "jar": {
+    "sha256": "5f366a3623e6343efe6dfb95d2f9a2a43492e861b7966780ff07b2e8d63f66de",
+    "bytes": 151706,
+    "reproducible": true
+   },
+   "scan": {
+    "profile": "strict",
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "flight": {
+    "status": "completed",
+    "overall": "passed",
+    "success": true,
+    "line": "Test Flight passed on Paper 26.2 (6 checks, boot 11.0s, peak RSS 766 MB)",
+    "bootMs": 11041,
+    "peakRssMb": 766,
+    "paper": {
+     "version": "26.2",
+     "build": 133,
+     "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+     "channel": "STABLE"
+    },
+    "jdkVersion": "25.0.4.1",
+    "checks": [
+     {
+      "id": "boot_done",
+      "status": "pass",
+      "evidence": [
+       "L100: [11:56:29 INFO]: Done (9.694s)! For help, type \"help\"",
+       "wall 11041 ms from spawn"
+      ]
+     },
+     {
+      "id": "plugins_enabled",
+      "status": "pass",
+      "evidence": [
+       "GuildQuests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+       "L86: [11:56:28 INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+       "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | "
+      ]
+     },
+     {
+      "id": "startup_log_clean",
+      "status": "pass",
+      "evidence": [
+       "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+      ]
+     },
+     {
+      "id": "rcon_checks",
+      "status": "pass",
+      "evidence": [
+       "plugins 'plugins' [rss 765 MB, 251 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | ",
+       "help-command 'help guildquests' [rss 765 MB, 267 ms]: ok -> --------- Help: GuildQuests --------------------------- | Below is a list of all GuildQuests commands: | /guildquests: GuildQuests: menus, quests and items | ",
+       "summary 'guildquests' [rss 765 MB, 251 ms]: ok -> GuildQuests: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two. Use /guildquests menu <id>, /guildquests quests, /guildquests params, /guildquests reload | ",
+       "menu-list 'guildquests menu list' [rss 765 MB, 252 ms]: ok -> elder: dialogue choices=4 opens=command,npc:nx_r11guild.npc.elder permission=- | shop: chest rows=6 buttons=8 list=28 slots entries=30 (config lists.shop) pages=2 opens=command,item:guild_badge permission=- | ",
+       "menu-costs 'guildquests menu costs shop' [rss 765 MB, 251 ms]: ok -> slot 46: 5 levels | slot 47: 5 x emerald (needs nx_r11guild.vip) | slot 51: 25.00 money (needs Vault and an economy plugin: not set up on this server, so it is refused) | slot 52: 2 x emerald | entry 0: 1 x emerald | entry 1: 1 x emerald | ",
+       "menu-console-usage 'guildquests menu shop' [rss 765 MB, 252 ms]: ok -> Usage from the console: /guildquests menu <id> <player> | ",
+       "menu-offline-player 'guildquests menu shop Nobody' [rss 765 MB, 252 ms]: ok -> Player Nobody is not online. | ",
+       "menu-unknown 'guildquests menu vault_of_doom' [rss 765 MB, 252 ms]: ok -> Unknown menu vault_of_doom. | ",
+       "quests-list 'guildquests quests' [rss 766 MB, 252 ms]: ok -> daily_bread: steps=1 branches=0 objectives=craft repeat=daily/86400s start=command requires=- title=Daily Bread | trial_one: steps=2 branches=0 objectives=kill,collect repeat=once start=menu requires=- title=The First Trial | trial_three: s",
+       "quests-console 'guildquests quests start trial_two' [rss 766 MB, 251 ms]: ok -> Only players can do quests. Console: /guildquests quests list | check | reset <player> | ",
+       "quests-check 'guildquests quests check' [rss 766 MB, 251 ms]: ok -> quest index: kill=2 collect=1 craft=1 visit=1 break=1 talk=1 survive=1 handlers=9 (one listener, one handler per event kind) timer=1 max_active=3 | size daily_bread: 49 | size trial_one: 47 | size trial_three: 51 | size trial_two: 56 | stor",
+       "params-defaults 'guildquests params shop' [rss 766 MB, 251 ms]: ok -> menus.shop.title=Guild Shop | menus.shop.b4.name=Guild Shop | menus.shop.b4.lore0=Click an item to buy it | menus.shop.b4.lore1=Prices are in emeralds | menus.shop.b45.name=Back | menus.shop.b46.name=Trade 5 levels for a diamond | menus.sho",
+       "params-quest 'guildquests params trial_one' [rss 766 MB, 251 ms]: ok -> quests.trial_one.title=The First Trial | quests.trial_one.description=Prove yourself to the guild. | quests.trial_one.icon.name=The First Trial | quests.trial_one.steps.s1.text=Slay 5 zombies | quests.trial_one.steps.s1.o0.count=5 | quests.",
+       "give-item-console 'guildquests give guild_badge' [rss 766 MB, 251 ms]: ok -> Usage from the console: /guildquests give <item> <player> [count] | ",
+       "list-items 'guildquests list' [rss 766 MB, 253 ms]: ok -> guild_badge: identity=ok material=paper abilities=0 recipe=none | guild_charm: identity=ok material=amethyst_shard abilities=1 recipe=none | ",
+       "config-clamped-on-reload: wrote plugins/GuildQuests/config.yml (10889 bytes) before the command",
+       "config-clamped-on-reload 'guildquests reload' [rss 766 MB, 279 ms]: ok -> GuildQuests config reloaded (6 notes) | - clamped menus.shop.b47.cost.count 99999.0 -> 2304.0 | - clamped general.max_active_quests 99.0 -> 5.0 | - clamped quests.trial_one.steps.s1.o0.count -3.0 -> 1.0 | - lists.shop[30]: minecraft:command",
+       "params-after-clamp 'guildquests params shop' [rss 766 MB, 252 ms]: ok -> menus.shop.title=Guild Shop | menus.shop.b4.name=Guild Shop | menus.shop.b4.lore0=Click an item to buy it | menus.shop.b4.lore1=Prices are in emeralds | menus.shop.b45.name=Back | menus.shop.b46.name=Trade 5 levels for a diamond | menus.sho",
+       "menu-list-after-clamp 'guildquests menu list' [rss 766 MB, 252 ms]: ok -> elder: dialogue choices=4 opens=command,npc:nx_r11guild.npc.elder permission=- | shop: chest rows=6 buttons=8 list=28 slots entries=31 (config lists.shop) pages=2 opens=command,item:guild_badge permission=- | ",
+       "config-migrated-on-reload: wrote plugins/GuildQuests/config.yml (10684 bytes) before the command"
+      ]
+     },
+     {
+      "id": "clean_stop",
+      "status": "pass",
+      "evidence": [
+       "stop via rcon; exit code 0 signal null after 404 ms; 0 shutdown log hits"
+      ]
+     },
+     {
+      "id": "no_leaks",
+      "status": "pass",
+      "evidence": [
+       "netns: java pid 3631626 gone; 0 marked processes; listening none of 47175,47140",
+       "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2c95ts-b3cf29; no listening port in 47100-47199"
+      ]
+     }
+    ],
+    "disk": {
+     "configOnDisk": true,
+     "configVersionOnDisk": 1,
+     "listsOnDisk": true,
+     "backups": [
+      "config.yml.bak-v0"
+     ],
+     "pluginLog": [
+      " - GuildQuests (1.0.0)",
+      "[11:56:26] [Server thread/INFO]: [GuildQuests] Loading server plugin GuildQuests v1.0.0",
+      "[11:56:28] [Server thread/INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+      "[11:56:28] [Server thread/INFO]: [GuildQuests] Designer ready: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: clamped menus.shop.b47.cost.count 99999.0 -> 2304.0",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: clamped general.max_active_quests 99.0 -> 5.0",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: clamped quests.trial_one.steps.s1.o0.count -3.0 -> 1.0",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: lists.shop[30]: minecraft:command_block cannot be sold, skipped",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: clamped lists.shop[31].price 99999.0 -> 2304.0",
+      "[11:56:33] [Server thread/WARN]: [GuildQuests] config: lists.shop[32]: a list cannot sell its own currency, skipped",
+      "[11:56:34] [Server thread/INFO]: [GuildQuests] config.yml migrated from version 0 to 1 (8 designer values updated, backup config.yml.bak-v0)",
+      "[11:56:34] [Server thread/INFO]: [GuildQuests] config.yml: 77 menu and quest values updated to version 1",
+      "[11:56:34] [Server thread/INFO]: [GuildQuests] Disabling GuildQuests v1.0.0"
+     ],
+     "pluginErrorLines": [],
+     "sandboxNoiseLines": 4
+    }
+   },
+   "edit": {
+    "ok": true,
+    "applied": [
+     {
+      "path": "menus.shop.b47.cost.count",
+      "label": "slot 47 price (emerald)",
+      "from": 5,
+      "to": 7
+     },
+     {
+      "path": "quests.trial_one.steps.s1.o0.count",
+      "label": "step s1: kills needed",
+      "from": 5,
+      "to": 8
+     },
+     {
+      "path": "quests.daily_bread.repeat.cooldown_seconds",
+      "label": "daily cooldown (seconds)",
+      "from": 86400,
+      "to": 43200
+     }
+    ],
+    "sourceDiff": [
+     "src/main/resources/config.yml"
+    ],
+    "javaChanged": [],
+    "readmeChanged": true,
+    "configVersion": 2,
+    "jarEntriesThatDiffer": [
+     "config.yml"
+    ],
+    "classFilesIdentical": true,
+    "classFiles": 63,
+    "jarSha256": "792b18e832d63d5daf29da5f58d24355b63d8fffa383694b5270e8d891626b4c",
+    "flight": {
+     "status": "completed",
+     "overall": "passed",
+     "success": true,
+     "line": "Test Flight passed on Paper 26.2 (6 checks, boot 11.2s, peak RSS 775 MB)",
+     "checks": [
+      {
+       "id": "boot_done",
+       "status": "pass",
+       "evidence": [
+        "L102: [11:56:48 INFO]: Done (9.981s)! For help, type \"help\"",
+        "wall 11237 ms from spawn"
+       ]
+      },
+      {
+       "id": "plugins_enabled",
+       "status": "pass",
+       "evidence": [
+        "GuildQuests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+        "L86: [11:56:48 INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+        "rcon plugins -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | "
+       ]
+      },
+      {
+       "id": "startup_log_clean",
+       "status": "pass",
+       "evidence": [
+        "102 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+       ]
+      },
+      {
+       "id": "rcon_checks",
+       "status": "pass",
+       "evidence": [
+        "plugins 'plugins' [rss 775 MB, 251 ms]: ok -> ℹ Server Plugins (1): | Bukkit Plugins: |  - GuildQuests | ",
+        "params-after-update 'guildquests params' [rss 775 MB, 255 ms]: ok -> items.guild_charm.abilities.bless.cooldown_ticks=600 | items.guild_charm.abilities.bless.trigger.period_ticks=600 | items.guild_charm.abilities.bless.a0.duration_ticks=100 | items.guild_charm.abilities.bless.a0.amplifier=0 | items.guild_cha",
+        "quests-after-update 'guildquests quests list' [rss 775 MB, 252 ms]: ok -> daily_bread: steps=1 branches=0 objectives=craft repeat=daily/43200s start=command requires=- title=Daily Bread | trial_one: steps=2 branches=0 objectives=kill,collect repeat=once start=menu requires=- title=The First Trial | trial_three: s",
+        "costs-after-update 'guildquests menu costs shop' [rss 775 MB, 251 ms]: ok -> slot 46: 5 levels | slot 47: 7 x emerald (needs nx_r11guild.vip) | slot 51: 25.00 money (needs Vault and an economy plugin: not set up on this server, so it is refused) | slot 52: 2 x emerald | entry 0: 1 x emerald | entry 1: 1 x emerald | "
+       ]
+      },
+      {
+       "id": "clean_stop",
+       "status": "pass",
+       "evidence": [
+        "stop via rcon; exit code 0 signal null after 418 ms; 0 shutdown log hits"
+       ]
+      },
+      {
+       "id": "no_leaks",
+       "status": "pass",
+       "evidence": [
+        "netns: java pid 3631978 gone; 0 marked processes; listening none of 47182,47149",
+        "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv2c9kvg-0347ae; no listening port in 47100-47199"
+       ]
+      }
+     ],
+     "disk": {
+      "configOnDisk": true,
+      "configVersionOnDisk": 2,
+      "listsOnDisk": true,
+      "backups": [
+       "config.yml.bak-v1"
+      ],
+      "pluginLog": [
+       " - GuildQuests (1.0.0)",
+       "[11:56:46] [Server thread/INFO]: [GuildQuests] Loading server plugin GuildQuests v1.0.0",
+       "[11:56:48] [Server thread/INFO]: [GuildQuests] Enabling GuildQuests v1.0.0",
+       "[11:56:48] [Server thread/INFO]: [GuildQuests] config.yml migrated from version 1 to 2 (8 designer values updated, backup config.yml.bak-v1)",
+       "[11:56:48] [Server thread/INFO]: [GuildQuests] config.yml: 77 menu and quest values updated to version 2",
+       "[11:56:48] [Server thread/INFO]: [GuildQuests] Designer ready: items guild_badge, guild_charm; menus elder, shop; quests daily_bread, trial_one, trial_three, trial_two",
+       "[11:56:50] [Server thread/INFO]: [GuildQuests] Disabling GuildQuests v1.0.0"
+      ],
+      "pluginErrorLines": [],
+      "sandboxNoiseLines": 4
+     }
+    }
+   }
+  }
+ ],
+ "leftovers": {
+  "runsDir": 0
+ }
+}

@@ -1,0 +1,85 @@
+GET /dashboard/cyrus light-1440 200
+chip light-1440 {"intent":"create","game":"minecraft","category":"creatures","project":"","text":"New mod · Creating a new Minecraft mod in Creatures & NPCs"}
+shot light-1440-1-route-create-from-core
+chip light-1440 {"intent":"fix","game":"minecraft","category":"weapons","project":"","text":"Which frost axe? Frost Axe or Frost Axe v2? Frost Axe Minecraft Frost Axe v2 Minecraft"}
+shot light-1440-2-route-clarify
+chip light-1440 {"intent":"unknown","game":"","category":"creatures","project":"","text":"Cyrus doesn't build Skyrim mods yet Cyrus builds for Minecraft, Palworld, Rust, Valheim, Project Zomboid and Terraria. Pick one to continue: Minecraft Builds for real Palworld Template preview Rust Te"}
+shot light-1440-3-route-unsupported
+selection after refine jump light-1440 panel open
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot light-1440-4-refine-jump
+stopped forge light-1440
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+chip light-1440 {"intent":"explain","game":"minecraft","category":"utility","project":"nx-mbseedshop01","text":"Explain · Explaining Coin Shop"}
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot light-1440-5-explain-jump
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot light-1440-6-listing-dialog
+dialog side-scroll ok light-1440 true
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE light-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+page side-scroll ok light-1440 true
+GET /dashboard/cyrus dark-1440 200
+chip dark-1440 {"intent":"create","game":"minecraft","category":"creatures","project":"","text":"New mod · Creating a new Minecraft mod in Creatures & NPCs"}
+shot dark-1440-1-route-create-from-core
+chip dark-1440 {"intent":"fix","game":"minecraft","category":"weapons","project":"","text":"Which frost axe? Frost Axe or Frost Axe v2? Frost Axe Minecraft Frost Axe v2 Minecraft"}
+shot dark-1440-2-route-clarify
+chip dark-1440 {"intent":"unknown","game":"","category":"creatures","project":"","text":"Cyrus doesn't build Skyrim mods yet Cyrus builds for Minecraft, Palworld, Rust, Valheim, Project Zomboid and Terraria. Pick one to continue: Minecraft Builds for real Palworld Template preview Rust Te"}
+shot dark-1440-3-route-unsupported
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+selection after refine jump dark-1440 panel open
+shot dark-1440-4-refine-jump
+stopped forge dark-1440
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+chip dark-1440 {"intent":"explain","game":"minecraft","category":"utility","project":"nx-mbseedshop01","text":"Explain · Explaining Coin Shop"}
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot dark-1440-5-explain-jump
+shot dark-1440-6-listing-dialog
+dialog side-scroll ok dark-1440 true
+shot dark-1440-7-listing-override
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot dark-1440-8-after-save
+page side-scroll ok dark-1440 true
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+CONSOLE dark-1440 Failed to load resource: the server responded with a status of 404 (Not Found)
+shot dark-1440-9-forging
+fresh dialog opened true
+shot dark-1440-10-listing-fresh

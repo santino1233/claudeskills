@@ -1,0 +1,107 @@
+=== rust [vanilla] wvomlt
+yes /opt/rust/server
+dir /opt/rust/server/docker/
+
+=== l4d2 [coop] hehre0
+yes /opt/l4d2/addons/sourcemod/plugins
+yes /opt/l4d2/addons/sourcemod/configs
+yes /opt/l4d2/addons/metamod
+NO  /opt/l4d2/left4dead2
+yes /opt/l4d2/cfg
+
+=== cs2 [metamod] dhli0r
+dir /opt/cs2/game/csgo/bin/
+dir /opt/cs2/game/csgo/cfg/
+dir /opt/cs2/game/csgo/maps/
+dir /opt/cs2/game/csgo/panorama/
+dir /opt/cs2/game/csgo/resource/
+dir /opt/cs2/game/csgo/rpt/
+dir /opt/cs2/game/csgo/save/
+NO  /opt/cs2/game/csgo/addons/metamod
+NO  /opt/cs2/game/csgo/addons/counterstrikesharp/plugins
+
+=== corekeeper [default] lzgesn
+dir /opt/corekeeper/data/modloader/
+dir /opt/corekeeper/data/mods/
+
+=== terraria [default] kzpr1i
+dir /opt/terraria/backups/
+dir /opt/terraria/logs/
+
+=== terraria [-] 73lyto
+dir /opt/terraria/backups/
+dir /opt/terraria/logs/
+
+=== ark [theisland] om0ax8
+dir /opt/ark/server/ShooterGame/Saved/Config/
+dir /opt/ark/server/ShooterGame/Saved/Logs/
+dir /opt/ark/server/ShooterGame/Saved/SavedArks/
+
+=== bedrock [latest] a89r6f
+dir /opt/bedrock/backup-pre-1.26.51.1/
+dir /opt/bedrock/behavior_packs/
+dir /opt/bedrock/config/
+dir /opt/bedrock/data/
+dir /opt/bedrock/definitions/
+dir /opt/bedrock/development_behavior_packs/
+dir /opt/bedrock/development_resource_packs/
+dir /opt/bedrock/development_skin_packs/
+dir /opt/bedrock/minecraftpe/
+dir /opt/bedrock/premium_cache/
+dir /opt/bedrock/resource_packs/
+dir /opt/bedrock/treatments/
+dir /opt/bedrock/world_templates/
+dir /opt/bedrock/worlds/
+
+=== palworld [vanilla] muydci
+dir /opt/palworld/Pal/Saved/Config/
+dir /opt/palworld/Pal/Saved/ImGui/
+dir /opt/palworld/Pal/Saved/SaveGames.fresh-1791116249725/
+dir /opt/palworld/Pal/Saved/SaveGames/
+dir /opt/palworld/Pal/Saved/SaveGames/0/810650F3A4E64878B3EB48F53C701C9F/
+
+=== projectzomboid [b42] 5xxiil
+dir /opt/projectzomboid/config/Crafting/
+dir /opt/projectzomboid/config/Logs/
+dir /opt/projectzomboid/config/Recording/
+dir /opt/projectzomboid/config/Saves/
+dir /opt/projectzomboid/config/Server/
+dir /opt/projectzomboid/config/Workshop/
+dir /opt/projectzomboid/config/backups/
+dir /opt/projectzomboid/config/db/
+dir /opt/projectzomboid/config/messaging/
+dir /opt/projectzomboid/config/mods/
+
+=== minecraft [paper] 1nu6xb
+dir /opt/mc/cache/
+dir /opt/mc/config/
+dir /opt/mc/libraries/
+dir /opt/mc/logs/
+dir /opt/mc/plugins/
+dir /opt/mc/versions/
+dir /opt/mc/world/
+
+=== minecraft [vanilla] 8triev
+dir /opt/mc/libraries/
+dir /opt/mc/logs/
+dir /opt/mc/versions/
+dir /opt/mc/world/
+
+=== minecraft [fabric] k4moel
+dir /opt/mc/libraries/
+dir /opt/mc/logs/
+dir /opt/mc/mods/
+dir /opt/mc/versions/
+dir /opt/mc/world/
+
+=== valheim [vanilla] iay5tf
+dir /opt/valheim/config/backups/
+dir /opt/valheim/config/cache/
+dir /opt/valheim/config/worlds_local/
+
+=== valheim [bepinex] p9wyv3
+dir /opt/valheim/config/backups/
+dir /opt/valheim/config/bepinex/
+dir /opt/valheim/config/uploaded-mod-zips/
+dir /opt/valheim/config/worlds_local/
+

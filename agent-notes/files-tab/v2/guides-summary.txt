@@ -1,0 +1,54 @@
+minecraft|verified-live|saves:live, plugins[paper/purpur]:live, mods[fabric/forge]:live, config:live, logs:live, backups:live
+valheim|verified-live|saves:live, mods[bepinex]:live, backups:live, install:live
+rust|verified-live|saves:live, plugins[oxide]:absent, plugins[carbon]:absent, backups:script
+palworld|verified-live|saves:live, config:live, backups:live, backups:live
+cs2|verified-live|config:live, plugins[metamod]:absent, install:live, backups:script
+terraria|verified-live|saves:live, plugins:live, backups:live, logs:live, backups:live
+ark|verified-live|saves:live, config:live, logs:live, install:live, backups:script
+satisfactory|from-setup-script|saves:script, mods:script, install:script, backups:script
+projectzomboid|verified-live|saves:live, config:live, mods:live, backups:live, logs:live, install:live, backups:script
+sdtd|from-setup-script|saves:script, config:script, mods:script, logs:script, backups:script
+vrising|from-setup-script|saves:script, config:script, install:script, backups:script
+enshrouded|from-setup-script|other:script, backups:script
+factorio|from-setup-script|saves:script, config:script, mods:script, backups:script
+gmod|from-setup-script|config:script, other:script, backups:script
+conan|from-setup-script|config:script, install:script, backups:script
+unturned|from-setup-script|other:script, backups:script
+theforest|from-setup-script|config:script, other:script, backups:script
+sonsoftheforest|from-setup-script|saves:script, backups:script
+bedrock|verified-live|saves:live, addons:live, addons:live, config:script, backups:script
+schedule1|from-setup-script|saves:script, backups:script
+dragonwilds|from-setup-script|saves:script, backups:script
+sunkenland|from-setup-script|saves:script, install:script, backups:script
+abioticfactor|from-setup-script|saves:script, install:script, backups:script
+corekeeper|verified-live|saves:live, mods:live, install:live, backups:live
+icarus|from-setup-script|saves:script, config:script, install:script, backups:script
+arkasa|from-setup-script|saves:script, backups:script
+soulmask|from-setup-script|other:script, backups:script
+dst|from-setup-script|saves:script, backups:script
+vintagestory|from-setup-script|saves:script, mods:script, backups:script
+necesse|from-setup-script|saves:script, mods:script, backups:script
+tf2|from-setup-script|config:script, addons:script, backups:script
+l4d2|verified-live|config:live, plugins:live, addons:live, backups:live
+nightingale|from-setup-script|config:script, saves:script, backups:script
+squad|from-setup-script|other:script, backups:script
+spaceengineers|from-setup-script|saves:script, config:script, backups:script
+kf2|from-setup-script|config:script, other:script, backups:script
+barotrauma|from-setup-script|config:script, other:script, backups:script
+sandstorm|from-setup-script|mods:script, config:script, backups:script
+mordhau|from-setup-script|other:script, backups:script
+theisle|from-setup-script|config:script, other:script, backups:script
+stationeers|from-setup-script|other:script, backups:script
+eco|from-setup-script|config:script, other:script, backups:script
+empyrion|from-setup-script|other:script, backups:script
+plutoniumt4|from-setup-script|other:script, backups:script
+plutoniumt5|from-setup-script|other:script, backups:script
+plutoniumt6|from-setup-script|other:script, backups:script
+plutoniumiw5|from-setup-script|other:script, backups:script
+armareforger|from-setup-script|other:script, backups:script
+arma3|from-setup-script|other:script, backups:script
+cs16|from-setup-script|config:script, plugins:script, backups:script
+ets2|from-setup-script|other:script, backups:script
+ats|from-setup-script|other:script, backups:script
+dayz|from-setup-script|config:script, other:script, backups:script
+fivem|from-setup-script|mods:script, config:script, backups:script

@@ -1,0 +1,32 @@
+--- signed out
+PASS  signed-out file -> 401 26 application/json |  | 
+PASS  signed-out zip -> 401 26 application/json |  | 
+PASS  signed-out generic -> 401 26 application/json |  | 
+--- own files
+PASS  ZEROSTER own video -> 200 11775336 video/mp4 |  | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+PASS  ZEROSTER own endframe -> 200 726073 image/png |  | inline; filename="nxeon-promo_ZEROSTER_en_16x9_endframe.png"
+PASS  ZEROSTER guide download -> 200 1937 text/plain; charset=utf-8 |  | attachment; filename="HOW-TO-USE.txt"
+PASS  ZEROSTER generic -> 200 11915785 video/mp4 |  | inline; filename="nxeon-promo_GENERIC_en_16x9.mp4"
+PASS  ZEROSTER own zip -> 200 12503968 application/zip |  | attachment; filename="nxeon-sponsored-segment-ZEROSTER.zip"
+--- range
+PASS  range 0-1023 -> 206 1024 video/mp4 | bytes 0-1023/11775336 | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+PASS  range open-ended 1000000- -> 206 10775336 video/mp4 | bytes 1000000-11775335/11775336 | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+PASS  range suffix -500 -> 206 500 video/mp4 | bytes 11774836-11775335/11775336 | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+PASS  range past end -> 416 0 video/mp4 | bytes */11775336 | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+PASS  HEAD -> 200 0 video/mp4 |  | inline; filename="nxeon-promo_ZEROSTER_en_16x9.mp4"
+--- other partners' files
+PASS  ZEROSTER -> AIXLL50 video -> 404 21 application/json |  | 
+PASS  ZEROSTER -> AIXLL50 zip -> 404 21 application/json |  | 
+PASS  NOKIT9 -> ZEROSTER video -> 404 21 application/json |  | 
+PASS  NOKIT9 generic -> 200 2070 text/plain; charset=utf-8 |  | inline; filename="HOW-TO-USE.txt"
+PASS  NOKIT9 own (none) zip -> 404 21 application/json |  | 
+PASS  customer (no partner) -> 404 21 application/json |  | 
+--- traversal / validation
+PASS  lowercase code -> 404 21 application/json |  | 
+PASS  dotdot encoded -> 404 21 application/json |  | 
+PASS  dotdot code -> 404 21 application/json |  | 
+PASS  unlisted file -> 404 21 application/json |  | 
+PASS  admin as staff -> AIXLL50 -> 200 741908 image/png |  | inline; filename="nxeon-promo_AIXLL50_tr_16x9_endframe.png"
+--- zip integrity
+zip entries: [('nxeon-sponsored-segment-ZEROSTER/HOW-TO-USE.txt', 1937), ('nxeon-sponsored-segment-ZEROSTER/nxeon-promo_ZEROSTER_en_16x9.mp4', 11775336), ('nxeon-sponsored-segment-ZEROSTER/nxeon-promo_ZEROSTER_en_16x9_endframe.png', 726073)]
+testzip (CRC check): OK

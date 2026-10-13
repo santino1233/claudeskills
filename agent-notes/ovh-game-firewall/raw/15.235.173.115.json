@@ -1,0 +1,55 @@
+{
+  "ip": "15.235.173.115",
+  "ip_info": {
+    "ok": true,
+    "body": {
+      "campus": "SGP",
+      "ip": "15.235.173.115/32",
+      "rir": "ARIN",
+      "regions": [
+        "ap-southeast-sgp"
+      ],
+      "country": "sg",
+      "isAdditionalIp": true,
+      "version": 4,
+      "description": null,
+      "type": "failover",
+      "organisationId": null,
+      "routedTo": {
+        "serviceName": "ns5013314.ip-15-235-145.net"
+      },
+      "bringYourOwnIp": false,
+      "canBeTerminated": true,
+      "iam": {
+        "id": "9ab1433d-a4bb-4571-8e0e-17ac944a1fdd",
+        "state": "OK",
+        "tags": {
+          "ovh:campus": "SGP",
+          "ovh:isAdditionalIp": "true",
+          "ovh:routedTo": "ns5013314.ip-15-235-145.net",
+          "ovh:type": "failover",
+          "ovh:version": "4"
+        },
+        "urn": "urn:v1:ca:resource:ip:15.235.173.115%2F32"
+      }
+    }
+  },
+  "game": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.173.115/game/15.235.173.115 -> 404: The requested object (ipOnGame = 15.235.173.115) does not exist"
+  },
+  "gameList": {
+    "ok": true,
+    "body": []
+  },
+  "rules": {
+    "ok": false,
+    "err": "OVH GET /ip/15.235.173.115/game/15.235.173.115/rule -> 404: The requested object (ipOnGame = 15.235.173.115) does not exist"
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": true,
+    "body": []
+  },
+  "firewallDetail": []
+}

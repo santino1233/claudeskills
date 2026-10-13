@@ -1,0 +1,12 @@
+/dashboard/dedicated run2 200 1.408141 1.491449 586268
+/dashboard/dedicated run3 200 1.166922 1.215318 586263
+/dashboard/dedicated run4 200 0.752261 0.790475 586056
+/dashboard/dedicated?build=cmuww935l006bhlm0khaei2sf run2 200 0.955157 1.003049 658829
+/dashboard/dedicated?build=cmuww935l006bhlm0khaei2sf run3 200 1.182131 1.219674 658609
+/dashboard/dedicated?build=cmuww935l006bhlm0khaei2sf run4 200 0.939667 0.986361 658820
+/dashboard/dedicated/cmuwwblpk0004hl8ibg87ndmy run2 200 0.894206 0.930676 180677
+/dashboard/dedicated/cmuwwblpk0004hl8ibg87ndmy run3 200 0.703808 0.751687 180676
+/dashboard/dedicated/cmuwwblpk0004hl8ibg87ndmy run4 200 0.614274 0.646054 180672
+/dedicated-servers run2 200 0.497157 0.554571 799189
+/dedicated-servers run3 200 0.576252 0.644993 799185
+/dedicated-servers run4 200 0.468457 0.519230 799185

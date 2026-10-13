@@ -1,0 +1,12 @@
+GET /dashboard 200
+shot before_dashboard-dark-1440
+GET /dashboard/services 200
+shot before_dashboard_services-dark-1440
+GET /dashboard 200
+shot before_dashboard-light-1440
+GET /dashboard/services 200
+shot before_dashboard_services-light-1440
+GET /dashboard 200
+shot before_dashboard-dark-390
+GET /dashboard/services 200
+shot before_dashboard_services-dark-390

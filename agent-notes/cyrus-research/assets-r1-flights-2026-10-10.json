@@ -1,0 +1,268 @@
+[
+ {
+  "name": "v12111",
+  "version": "1.21.11",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 18423,
+  "peakRssKb": 895744,
+  "timings": {
+   "toolchainMs": 230,
+   "innerMs": 21229,
+   "rconConnectMs": 289,
+   "serverWallMs": 20868,
+   "totalMs": 21497
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L100: [06:15:12 INFO]: Done (17.123s)! For help, type \"help\"",
+     "wall 18423 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L91: [06:15:12 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L94: [06:15:12 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+     "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "100 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "pack-listed 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - 220b3510-d701-5182-9509-94c264656c26 required=false sha1=fe5115dc5a2a2c848868a1e1e40d7a0e730e4a4e url=https://packs.example.invalid/p/fe5115dc5a2a2c848868a1e1e40d7a0e730e4a4e.zip | ",
+     "loader-status 'nxpacks status': ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T06:15:12.616551611Z geyser=false floodgate=false clientAnswers=0 | ",
+     "item-model-ruby 'tfitem nx_r1fl1ght ruby_sword': ok -> itemModel=nx_r1fl1ght:ruby_sword material=IRON_SWORD | ",
+     "item-model-potion 'tfitem nx_r1fl1ght health_potion': ok -> itemModel=nx_r1fl1ght:health_potion material=IRON_SWORD | ",
+     "plugins-listed 'plugins': ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 572 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3301321 gone; 0 marked processes; listening none of 47138,47187",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv2021an-d5c123; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.4s, peak RSS 875 MB)",
+  "notes": [
+   "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+   "ports: server 47138, rcon 47187 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   },
+   {
+    "kind": "plugin",
+    "file": "TfItemModel-1.0.0.jar",
+    "sha256": "3930e6a7d7eaab5b71cbe9460a18f2cf2396829349376f23c99a9f3fb36085f8",
+    "pluginName": "TfItemModel",
+    "apiVersion": "1.21.4",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  },
+  "pack": {
+   "path": "syncBuildAssets (production path)",
+   "sha1": "fe5115dc5a2a2c848868a1e1e40d7a0e730e4a4e",
+   "url": "https://packs.example.invalid/p/fe5115dc5a2a2c848868a1e1e40d7a0e730e4a4e.zip",
+   "format": 75,
+   "bytes": 2082,
+   "prompt": "TfItemModel uses custom item textures. Accept the pack to see them.",
+   "required": false,
+   "quality": [
+    "ruby_sword:pass",
+    "health_potion:pass"
+   ]
+  },
+  "loaderId": "220b3510-d701-5182-9509-94c264656c26",
+  "namespace": "nx_r1fl1ght",
+  "client": "none (server-side only)"
+ },
+ {
+  "name": "v262",
+  "version": "26.2",
+  "status": "completed",
+  "overall": "passed",
+  "success": true,
+  "bootMs": 10415,
+  "peakRssKb": 828400,
+  "timings": {
+   "toolchainMs": 263,
+   "innerMs": 12817,
+   "rconConnectMs": 6,
+   "serverWallMs": 12466,
+   "totalMs": 13119
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L103: [06:15:31 INFO]: Done (9.155s)! For help, type \"help\"",
+     "wall 10415 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "NxeonPackLoader: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L88: [06:15:30 INFO]: [NxeonPackLoader] Enabling NxeonPackLoader v0.1.0",
+     "TfItemModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L87: [06:15:30 INFO]: [TfItemModel] Enabling TfItemModel v1.0.0",
+     "rcon plugins -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "103 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "pack-listed 'nxpacks list': ok -> [NxeonPackLoader] 1 pack(s) |  - 220b3510-d701-5182-9509-94c264656c26 required=false sha1=d89a9caf04808538974b7bdd57c122a8d2e85680 url=https://packs.example.invalid/p/d89a9caf04808538974b7bdd57c122a8d2e85680.zip | ",
+     "loader-status 'nxpacks status': ok -> [NxeonPackLoader] packs=1 config=ok loadedAt=2026-10-10T06:15:30.799604357Z geyser=false floodgate=false clientAnswers=0 | ",
+     "item-model-ruby 'tfitem nx_r1fl1ght ruby_sword': ok -> itemModel=nx_r1fl1ght:ruby_sword material=IRON_SWORD | ",
+     "item-model-potion 'tfitem nx_r1fl1ght health_potion': ok -> itemModel=nx_r1fl1ght:health_potion material=IRON_SWORD | ",
+     "plugins-listed 'plugins': ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - NxeonPackLoader, TfItemModel | "
+    ]
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 420 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 3301684 gone; 0 marked processes; listening none of 47186,47170",
+     "host: no process carries -Dnxeon.testflight.run=tf-26-2-mv202ldj-78cc33; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "line": "Test Flight passed on Paper 26.2 (6 checks, boot 10.4s, peak RSS 809 MB)",
+  "notes": [
+   "placed 1 server file(s): plugins/NxeonPackLoader/packs.json",
+   "ports: server 47186, rcon 47170 (private netns, 127.0.0.1)"
+  ],
+  "artifacts": [
+   {
+    "kind": "plugin",
+    "file": "NxeonPackLoader-0.1.0.jar",
+    "sha256": "0ff1078ef79eda8e08c9af496ac482b23803b53093e2ee963475ea8c61ba0580",
+    "pluginName": "NxeonPackLoader",
+    "apiVersion": "1.21",
+    "descriptor": "plugin.yml"
+   },
+   {
+    "kind": "plugin",
+    "file": "TfItemModel-1.0.0.jar",
+    "sha256": "3930e6a7d7eaab5b71cbe9460a18f2cf2396829349376f23c99a9f3fb36085f8",
+    "pluginName": "TfItemModel",
+    "apiVersion": "1.21.4",
+    "descriptor": "plugin.yml"
+   }
+  ],
+  "engine": {
+   "runner": "tf-lite-1",
+   "runnerSha256": "cf023ef994488a84dfdaabab651bfb67fd6c9c9962ec449bd1486e8b4eb26303",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 25,
+    "version": "25.0.4.1",
+    "dist": "jdk-25.0.4.1+1",
+    "sha256": "dbb698396d478e7fa2b1e50f4103324b2a99b90569ee27c33f2261f9215cf41e"
+   },
+   "paper": {
+    "version": "26.2",
+    "build": 133,
+    "sha256": "bf1dcf627364f8a631ab15250d240eb5a8e89faaac523b391e1c61367fce9ff1",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  },
+  "pack": {
+   "path": "buildPack(allowPreview, test only)",
+   "sha1": "d89a9caf04808538974b7bdd57c122a8d2e85680",
+   "url": "https://packs.example.invalid/p/d89a9caf04808538974b7bdd57c122a8d2e85680.zip",
+   "format": 88,
+   "bytes": 2081,
+   "prompt": "TfItemModel uses custom item textures. Accept the pack to see them.",
+   "required": false
+  },
+  "loaderId": "220b3510-d701-5182-9509-94c264656c26",
+  "namespace": "nx_r1fl1ght",
+  "client": "none (server-side only)"
+ }
+]

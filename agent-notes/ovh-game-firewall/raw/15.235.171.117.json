@@ -1,0 +1,96 @@
+{
+  "ip": "15.235.171.117",
+  "ip_info": {
+    "ok": true,
+    "body": {
+      "type": "failover",
+      "rir": "ARIN",
+      "canBeTerminated": true,
+      "country": "sg",
+      "description": null,
+      "isAdditionalIp": true,
+      "ip": "15.235.171.117/32",
+      "campus": "SGP",
+      "routedTo": {
+        "serviceName": "ns564103.ip-139-99-125.net"
+      },
+      "organisationId": null,
+      "bringYourOwnIp": false,
+      "version": 4,
+      "regions": [
+        "ap-southeast-sgp"
+      ],
+      "iam": {
+        "id": "9aba88da-c2ff-4ac0-b77f-d09961c54053",
+        "state": "OK",
+        "tags": {
+          "ovh:campus": "SGP",
+          "ovh:isAdditionalIp": "true",
+          "ovh:routedTo": "ns564103.ip-139-99-125.net",
+          "ovh:type": "failover",
+          "ovh:version": "4"
+        },
+        "urn": "urn:v1:ca:resource:ip:15.235.171.117%2F32"
+      }
+    }
+  },
+  "game": {
+    "ok": true,
+    "body": {
+      "firewallModeEnabled": false,
+      "supportedProtocols": [
+        "arkSurvivalEvolved",
+        "arma",
+        "gtaMultiTheftAutoSanAndreas",
+        "gtaSanAndreasMultiplayerMod",
+        "hl2Source",
+        "minecraftJava",
+        "minecraftPocketEdition",
+        "minecraftQuery",
+        "mumble",
+        "other",
+        "rust",
+        "teamspeak2",
+        "teamspeak3",
+        "trackmaniaShootmania"
+      ],
+      "ipOnGame": "15.235.171.117",
+      "state": "ok",
+      "maxRules": 30
+    }
+  },
+  "gameList": {
+    "ok": true,
+    "body": [
+      "15.235.171.117"
+    ]
+  },
+  "rules": {
+    "ok": true,
+    "body": []
+  },
+  "ruleDetail": [],
+  "firewall": {
+    "ok": true,
+    "body": [
+      "15.235.171.117"
+    ]
+  },
+  "firewallDetail": [
+    {
+      "ipOnFirewall": "15.235.171.117",
+      "info": {
+        "ok": true,
+        "body": {
+          "ipOnFirewall": "15.235.171.117",
+          "state": "ok",
+          "enabled": false
+        }
+      },
+      "rules": {
+        "ok": true,
+        "body": []
+      }
+    }
+  ]
+}

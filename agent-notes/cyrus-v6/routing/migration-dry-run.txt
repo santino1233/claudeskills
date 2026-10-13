@@ -1,0 +1,9 @@
+would set mbseedhome01  "Homes Plus"                       -> utility  conf 0.97
+would set mbseedlag01  "Lag Sweeper"                      -> performance  conf 0.83
+would set mbseedquest01  "Quest Board"                      -> quests (+interface)  conf 0.72
+would set mbseedshop01  "Coin Shop"                        -> economy  conf 0.92
+would set mbseedfrost02  "Frost Axe v2"                     -> weapons (+visuals)  conf 0.77
+would set mbseedfrost01  "Frost Axe"                        -> weapons  conf 0.95
+
+6 projects · 0 already had a category · 6 would be updated (dry run)
+weapons: 2 · utility: 1 · performance: 1 · quests: 1 · economy: 1

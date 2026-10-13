@@ -1,0 +1,498 @@
+diff --git a/app/dashboard/layout.tsx b/app/dashboard/layout.tsx
+index c066ec6521..33957c3aac 100644
+--- a/app/dashboard/layout.tsx
++++ b/app/dashboard/layout.tsx
+@@ -103,6 +103,10 @@ const nav: NavSection[] = [
+   },
+ ];
+ 
++/* viewport-fit=cover lets the portal's bottom tab bar and drawer pad themselves
++   with env(safe-area-inset-*) on notched phones; only this subtree uses env(). */
++export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" } as const;
++
+ export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+   const user = await currentUser();
+   if (!user) {
+diff --git a/app/globals.css b/app/globals.css
+index 0f5e01b39a..466c15f168 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -3396,3 +3396,51 @@ html.nx-portal[data-theme="light"] body {
+ @media (max-width: 640px) {
+   input, select, textarea { font-size: 16px; }
+ }
++
++/* ── Customer portal responsive hardening (Nexion scope only) ───────────────
++ * Everything here is scoped to `:root:has(.nx-shell-root)` so marketing, login
++ * and admin are untouched (see CLAUDE.md "Portals & design system").
++ *
++ * 1. Grid items default to `min-width:auto`, so on phones one wide child (a
++ *    table with min-w-[560px], a long hostname) forces its grid track — and the
++ *    whole column — wider than the screen; <main> then clips the overflow
++ *    (`[overflow-x:clip]`) and cards look cut off at the right edge. Zeroing the
++ *    automatic minimum lets tracks shrink to the viewport and lets the child's
++ *    own overflow-x-auto / truncate take over. Written inside @layer base with
++ *    :where() (zero specificity) so any utility class (`min-w-*`) still wins.
++ *    Below lg only, so desktop layout is byte-for-byte the same as before. */
++@layer base {
++  @media (max-width: 1023px) {
++    :where(:root:has(.nx-shell-root)) :where(main .grid) > *,
++    :where(:root:has(.nx-shell-root)) :where(main .flex) > :where(.grow, .flex-1) {
++      min-width: 0;
++    }
++  }
++}
++
++@media (max-width: 767px) {
++  /* 2. Touch targets: compact button sizes grow to 44px on phones. */
++  :root:has(.nx-shell-root) .btn-sm,
++  :root:has(.nx-shell-root) .btn-xs { height: 44px; }
++  :root:has(.nx-shell-root) .chip { height: 38px; }
++  /* 3. Long unbroken strings (hostnames, emails, IDs) wrap instead of widening the page. */
++  :root:has(.nx-shell-root) main { overflow-wrap: anywhere; }
++  :root:has(.nx-shell-root) main :is(pre, code, kbd, .mono, table) { overflow-wrap: normal; }
++}
++
++@media (max-width: 767px) {
++  /* 4. Centered modals whose panel is taller than a phone screen used to have their top and bottom
++        cut off and unreachable (`items-center` on a non-scrolling overlay). `safe center` centers
++        when it fits and falls back to top-aligned + scrollable when it doesn't. Bottom sheets
++        (`items-end`) are left alone. */
++  :root:has(.nx-shell-root) .fixed.inset-0.flex[class*="items-center"]:not([class*="items-end"]) {
++    align-items: safe center;
++    overflow-y: auto;
++    overscroll-behavior: contain;
++  }
++  :root:has(.nx-shell-root) .fixed.inset-0.grid[class*="place-items-center"] {
++    place-items: safe center;
++    overflow-y: auto;
++    overscroll-behavior: contain;
++  }
++}
+diff --git a/components/customer/AnnouncementPopup.tsx b/components/customer/AnnouncementPopup.tsx
+index 30a42fcd52..b2f459b445 100644
+--- a/components/customer/AnnouncementPopup.tsx
++++ b/components/customer/AnnouncementPopup.tsx
+@@ -124,7 +124,7 @@ export function AnnouncementPopup() {
+         </div>
+ 
+         {/* Body */}
+-        <div className="max-h-[60vh] overflow-y-auto px-6 py-5">
++        <div className="max-h-[60dvh] overflow-y-auto px-6 py-5">
+           {current.gameFamilies.length > 0 && (
+             <div className="mb-4">
+               <p className="mb-2 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+diff --git a/components/customer/TicketForms.tsx b/components/customer/TicketForms.tsx
+index 145914f7c6..ce315860bf 100644
+--- a/components/customer/TicketForms.tsx
++++ b/components/customer/TicketForms.tsx
+@@ -64,7 +64,7 @@ export function NewTicketForm({
+               scrollport, which is what was reading as a stray line down the
+               edge. This element only ever needs `overflow: hidden` (its own
+               rounded corners), which `.card-glass` already sets. */}
+-          <div className="card card-glass relative flex w-full max-w-[560px] max-h-[90vh] flex-col p-0"
++          <div className="card card-glass relative flex w-full max-w-[560px] max-h-[90dvh] flex-col p-0"
+                style={{ "--tone": "#a05cf0" } as React.CSSProperties}>
+             <div className="flex flex-none items-center justify-between px-6 pb-4 pt-6">
+               <h2 className="text-[18px] font-extrabold text-white">New support ticket</h2>
+diff --git a/components/customer/VersionPickerModal.tsx b/components/customer/VersionPickerModal.tsx
+index c84453770c..90b04fa80a 100644
+--- a/components/customer/VersionPickerModal.tsx
++++ b/components/customer/VersionPickerModal.tsx
+@@ -49,7 +49,7 @@ export function VersionPickerModal({
+   return (
+     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Choose ${group.name} version`}>
+       <div className="absolute inset-0 bg-navy-950/80 backdrop-blur-sm" onClick={onClose} />
+-      <div className="card relative z-10 w-full max-w-md !p-5 max-h-[80vh] overflow-y-auto">
++      <div className="card relative z-10 w-full max-w-md !p-5 max-h-[80dvh] overflow-y-auto">
+         <div className="mb-4 flex items-center gap-3">
+           <AppLogo family={group.logo || group.family} name={group.name} size={40} />
+           <div className="min-w-0">
+diff --git a/components/customer/calendar/EventModal.tsx b/components/customer/calendar/EventModal.tsx
+index 5d69824024..b3aa0be883 100644
+--- a/components/customer/calendar/EventModal.tsx
++++ b/components/customer/calendar/EventModal.tsx
+@@ -127,7 +127,7 @@ export function EventModal({
+       onClick={onClose}
+     >
+       <div
+-        className="glass flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden shadow-2xl animate-fade-up"
++        className="glass flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden shadow-2xl animate-fade-up"
+         onClick={(e) => e.stopPropagation()}
+       >
+         {/* Header */}
+diff --git a/components/customer/files/FileBrowser.tsx b/components/customer/files/FileBrowser.tsx
+index 44adefec2d..14d5cba266 100644
+--- a/components/customer/files/FileBrowser.tsx
++++ b/components/customer/files/FileBrowser.tsx
+@@ -303,7 +303,7 @@ export function FileBrowser({ api, initialPath = "/" }: { api: FileApi; initialP
+           className={"flex min-w-0 flex-col overflow-hidden rounded-[14px] border bg-[rgba(6,14,36,.72)] transition " +
+             (dragOver ? "border-brand-400 bg-[rgba(72,148,255,.08)]" : "border-rim-hi")}
+         >
+-          <div className="grid grid-cols-[28px_minmax(0,1fr)_90px_150px_36px] items-center gap-2 border-b border-rim-soft px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-tx-faint">
++          <div className="grid grid-cols-[28px_minmax(0,1fr)_44px] sm:grid-cols-[28px_minmax(0,1fr)_90px_150px_36px] items-center gap-2 border-b border-rim-soft px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-tx-faint">
+             <span>
+               <input
+                 type="checkbox"
+@@ -314,8 +314,8 @@ export function FileBrowser({ api, initialPath = "/" }: { api: FileApi; initialP
+               />
+             </span>
+             <button type="button" onClick={() => setSort("name")} className="text-left transition hover:text-white">Name</button>
+-            <button type="button" onClick={() => setSort("size")} className="text-left transition hover:text-white">Size</button>
+-            <button type="button" onClick={() => setSort("modified")} className="text-left transition hover:text-white">Modified</button>
++            <button type="button" onClick={() => setSort("size")} className="hidden text-left transition hover:text-white sm:block">Size</button>
++            <button type="button" onClick={() => setSort("modified")} className="hidden text-left transition hover:text-white sm:block">Modified</button>
+             <span />
+           </div>
+ 
+@@ -343,7 +343,7 @@ export function FileBrowser({ api, initialPath = "/" }: { api: FileApi; initialP
+                   const canEdit = isEditable(e);
+                   return (
+                     <div key={e.name}
+-                         className={"group grid grid-cols-[28px_minmax(0,1fr)_90px_150px_36px] items-center gap-2 border-b border-rim-soft/50 px-3.5 py-2 transition last:border-0 " +
++                         className={"group grid grid-cols-[28px_minmax(0,1fr)_44px] sm:grid-cols-[28px_minmax(0,1fr)_90px_150px_36px] items-center gap-2 border-b border-rim-soft/50 px-3.5 py-2 transition last:border-0 " +
+                            (open ? "bg-[#7b3fef]/15" : "hover:bg-white/[0.04]")}>
+                       <input
+                         type="checkbox"
+@@ -359,9 +359,10 @@ export function FileBrowser({ api, initialPath = "/" }: { api: FileApi; initialP
+                         <span className={"truncate text-[12.5px] " + (e.isDirectory ? "font-semibold text-white" : canEdit ? "text-white" : "text-tx-dim")}>
+                           {e.name}
+                         </span>
++                        {!e.isDirectory && <span className="ml-auto flex-none pl-1 text-[10.5px] text-tx-faint sm:hidden">{fmtBytes(e.size)}</span>}
+                       </button>
+-                      <span className="text-[11.5px] text-tx-faint">{e.isDirectory ? "—" : fmtBytes(e.size)}</span>
+-                      <span className="truncate text-[11.5px] text-tx-faint">{when(e.modifiedMs)}</span>
++                      <span className="hidden text-[11.5px] text-tx-faint sm:block">{e.isDirectory ? "—" : fmtBytes(e.size)}</span>
++                      <span className="hidden truncate text-[11.5px] text-tx-faint sm:block">{when(e.modifiedMs)}</span>
+                       <RowMenu
+                         onRename={() => {
+                           const name = window.prompt("Rename to:", e.name);
+diff --git a/components/customer/freemc/FreeMcDashboard.tsx b/components/customer/freemc/FreeMcDashboard.tsx
+index 62274ae127..abaabd594d 100644
+--- a/components/customer/freemc/FreeMcDashboard.tsx
++++ b/components/customer/freemc/FreeMcDashboard.tsx
+@@ -110,7 +110,7 @@ export function FreeMcDashboard({
+       {/* Hero and rail travel together and stay pinned, so the address, the
+           player count and the power controls are reachable from every tab —
+           the paid panel's arrangement, for the same reason. */}
+-      <div className="sticky top-0 z-20 -mx-1 flex flex-col gap-2 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
++      <div className="z-20 -mx-1 flex flex-col gap-2 lg:sticky lg:top-0 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
+         <FreeMcHero
+           data={{
+             name: server.name ?? "",
+diff --git a/components/customer/freemc/InventoryEditor.tsx b/components/customer/freemc/InventoryEditor.tsx
+index 5612a681db..88480741a8 100644
+--- a/components/customer/freemc/InventoryEditor.tsx
++++ b/components/customer/freemc/InventoryEditor.tsx
+@@ -295,7 +295,7 @@ function ItemPickerModal({
+   return (
+     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Choose item for ${slotDef.label}`}>
+       <div className="absolute inset-0 bg-navy-950/70 backdrop-blur-sm" onClick={onClose} />
+-      <div className="relative flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-navy-900/95 shadow-[0_24px_80px_-24px_rgb(0_0_0_/_0.8)] backdrop-blur-xl">
++      <div className="relative flex max-h-[85dvh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-navy-900/95 shadow-[0_24px_80px_-24px_rgb(0_0_0_/_0.8)] backdrop-blur-xl">
+         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
+           <div>
+             <p className="text-xs uppercase tracking-wide text-slate-500">Set slot</p>
+diff --git a/components/customer/gamepanel/v2/GamePanelShell.tsx b/components/customer/gamepanel/v2/GamePanelShell.tsx
+index 1e27d6176b..6059e7d35a 100644
+--- a/components/customer/gamepanel/v2/GamePanelShell.tsx
++++ b/components/customer/gamepanel/v2/GamePanelShell.tsx
+@@ -137,7 +137,7 @@ export function GamePanelShell({
+     <div className="flex flex-col gap-4">
+       {/* Hero and rail travel together, so identity, vitals and power controls
+           are reachable from every tab without scrolling back up. */}
+-      <div className="sticky top-0 z-20 -mx-1 flex flex-col gap-2 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
++      <div className="z-20 -mx-1 flex flex-col gap-2 lg:sticky lg:top-0 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
+         <GameHero serverId={serverId} gameFamily={gameFamily} data={header} />
+ 
+         <nav className="flex gap-1 overflow-x-auto rounded-[14px] border border-rim-hi bg-[rgba(6,14,36,.82)] p-1.5">
+diff --git a/components/customer/hosting/v2/HostingPanelShell.tsx b/components/customer/hosting/v2/HostingPanelShell.tsx
+index 4c281258c5..208b7a2772 100644
+--- a/components/customer/hosting/v2/HostingPanelShell.tsx
++++ b/components/customer/hosting/v2/HostingPanelShell.tsx
+@@ -143,7 +143,7 @@ export function HostingPanelShell({
+     <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-4">
+       <HostingStateBanner data={data} />
+ 
+-      <div className="sticky top-0 z-20 -mx-1 flex flex-col gap-2 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
++      <div className="z-20 -mx-1 flex flex-col gap-2 lg:sticky lg:top-0 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
+         <HostingHero
+           data={data}
+           onUpgrade={() => go("settings", { section: "plan" })}
+diff --git a/components/customer/mail/Composer.tsx b/components/customer/mail/Composer.tsx
+index b6ed0c3f61..0fa5369bcd 100644
+--- a/components/customer/mail/Composer.tsx
++++ b/components/customer/mail/Composer.tsx
+@@ -442,7 +442,7 @@ export function Composer({
+           }
+         `}</style>
+         <div
+-          className="nx-compose-panel glass pointer-events-auto relative flex h-[85vh] max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden shadow-2xl animate-fade-up sm:h-auto"
++          className="nx-compose-panel glass pointer-events-auto relative flex h-[85dvh] max-h-[85dvh] w-full max-w-2xl flex-col overflow-hidden shadow-2xl animate-fade-up sm:h-auto"
+           onClick={(e) => e.stopPropagation()}
+           onDragEnter={(e) => {
+             if (!e.dataTransfer?.types?.includes("Files")) return;
+diff --git a/components/customer/mail/MailSettings.tsx b/components/customer/mail/MailSettings.tsx
+index 83544b759b..e29a84e61b 100644
+--- a/components/customer/mail/MailSettings.tsx
++++ b/components/customer/mail/MailSettings.tsx
+@@ -104,7 +104,7 @@ export function MailSettings({
+       onClick={onClose}
+     >
+       <div
+-        className="card card-glass relative flex h-[92vh] w-full max-w-4xl flex-col overflow-hidden p-0 shadow-2xl motion-safe:animate-fade-up sm:h-[86vh]"
++        className="card card-glass relative flex h-[92dvh] w-full max-w-4xl flex-col overflow-hidden p-0 shadow-2xl motion-safe:animate-fade-up sm:h-[86dvh]"
+         style={{ "--tone": "#5fd0ff" } as React.CSSProperties}
+         onClick={(e) => e.stopPropagation()}
+       >
+diff --git a/components/customer/site-builder/SiteEditor.tsx b/components/customer/site-builder/SiteEditor.tsx
+index 39a5f5df32..5ece38e333 100644
+--- a/components/customer/site-builder/SiteEditor.tsx
++++ b/components/customer/site-builder/SiteEditor.tsx
+@@ -144,7 +144,7 @@ export function SiteEditor({
+   const domain = `${site.slug}.${baseDomain}`;
+ 
+   return (
+-    <div className="flex h-[calc(100vh-4rem)] flex-col">
++    <div className="flex h-[calc(100dvh-4rem)] flex-col">
+       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+         <div className="min-w-0">
+           <div className="truncate text-sm font-semibold">{site.name}</div>
+diff --git a/components/customer/terminal/TerminalDock.tsx b/components/customer/terminal/TerminalDock.tsx
+index 59890080ea..0be774c52e 100644
+--- a/components/customer/terminal/TerminalDock.tsx
++++ b/components/customer/terminal/TerminalDock.tsx
+@@ -498,7 +498,7 @@ function TerminalDock({
+     // never knew, so collapsing the sidebar left a ~10rem dead gutter down the
+     // left of the terminal. Shell publishes the rail's live width on the document
+     // element; 15rem is the uncollapsed default for any page that doesn't.
+-    : "fixed inset-x-0 bottom-0 z-[70] flex h-[70vh] max-h-[82vh] flex-col overflow-hidden border-t border-white/10 bg-navy-900 shadow-2xl shadow-black/50 lg:left-[var(--nx-rail-w,15rem)] lg:rounded-t-2xl lg:border-l";
++    : "fixed inset-x-0 bottom-0 z-[70] flex h-[70dvh] max-h-[82dvh] flex-col overflow-hidden border-t border-white/10 bg-navy-900 shadow-2xl shadow-black/50 lg:left-[var(--nx-rail-w,15rem)] lg:rounded-t-2xl lg:border-l";
+ 
+   return (
+     <div className={outerClass} role="dialog" aria-label="Terminal dock">
+diff --git a/components/customer/vpspanel/v2/VpsPanelShell.tsx b/components/customer/vpspanel/v2/VpsPanelShell.tsx
+index e835b50b81..30996c28e7 100644
+--- a/components/customer/vpspanel/v2/VpsPanelShell.tsx
++++ b/components/customer/vpspanel/v2/VpsPanelShell.tsx
+@@ -119,7 +119,7 @@ export function VpsPanelShell({
+     <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-4">
+       <VpsStateBanner data={data} suspendReason={suspendReason} provisionError={provisionError} />
+ 
+-      <div className="sticky top-0 z-20 -mx-1 flex flex-col gap-2 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
++      <div className="z-20 -mx-1 flex flex-col gap-2 lg:sticky lg:top-0 bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-1 pb-2 pt-1 backdrop-blur-xl">
+         <VpsHero data={data} busy={busy} />
+ 
+         <nav className="flex gap-1 overflow-x-auto rounded-[14px] border border-rim-hi bg-surface p-1.5">
+diff --git a/components/customer/vpspanel/v2/VpsUpgradeCart.tsx b/components/customer/vpspanel/v2/VpsUpgradeCart.tsx
+index 6001a00157..73d22b3b43 100644
+--- a/components/customer/vpspanel/v2/VpsUpgradeCart.tsx
++++ b/components/customer/vpspanel/v2/VpsUpgradeCart.tsx
+@@ -108,7 +108,7 @@ export function VpsUpgradeCart({
+     <>
+       <div
+         className={
+-          "fixed inset-x-0 bottom-[68px] z-[70] px-3.5 transition-[transform,opacity] duration-300 ease-out sm:px-5 lg:bottom-4 lg:left-[76px] lg:pl-6 lg:pr-[92px] xl:left-[248px] " +
++          "fixed inset-x-0 bottom-[calc(68px+env(safe-area-inset-bottom))] z-[70] px-3.5 transition-[transform,opacity] duration-300 ease-out sm:px-5 lg:bottom-4 lg:left-[76px] lg:pl-6 lg:pr-[92px] xl:left-[248px] " +
+           (shown ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-[140%] opacity-0")
+         }
+         aria-hidden={!shown}
+@@ -282,7 +282,7 @@ function CheckoutSheet({
+     <div className="fixed inset-0 z-[95] grid place-items-center p-4">
+       <div className="nxp-backdrop absolute inset-0 bg-black/70" onClick={() => !busy && !checkout && onClose()} />
+ 
+-      <div className="card card-glass nxp-modal relative z-[96] flex max-h-[88vh] w-full max-w-[540px] flex-col overflow-hidden p-0" style={{ ["--tone" as string]: "#8b5cff" }}>
++      <div className="card card-glass nxp-modal relative z-[96] flex max-h-[88dvh] w-full max-w-[540px] flex-col overflow-hidden p-0" style={{ ["--tone" as string]: "#8b5cff" }}>
+         <div className="relative z-[1] flex flex-none items-center gap-2.5 border-b border-rim-soft px-4 py-3">
+           <Icon name="cart" size={16} tone="inherit" className="nxp-ico flex-none text-[#b08bff]" />
+           <h3 className="text-[14px] font-extrabold text-tx">Checkout</h3>
+diff --git a/components/nx/Banners.tsx b/components/nx/Banners.tsx
+index cbc2f61010..9e00a5ad7c 100644
+--- a/components/nx/Banners.tsx
++++ b/components/nx/Banners.tsx
+@@ -167,10 +167,10 @@ export function ImpersonationBanner({ adminName, targetEmail }: { adminName: str
+         style={{ background: "#d623e1", color: "#d623e1" }}
+       />
+       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+-        <span className="text-[13px] font-bold text-white">
++        <span className="break-all text-[13px] font-bold text-white sm:break-normal">
+           You are viewing Nxeon as <span className="text-magenta">{targetEmail}</span>
+         </span>
+-        <span className="trunc text-[11.5px] text-tx-mute">
++        <span className="text-[11.5px] text-tx-mute sm:truncate">
+           Signed in as {adminName}. Every action you take here is recorded against this customer&apos;s account.
+         </span>
+       </div>
+@@ -197,7 +197,7 @@ export function ImpersonationBanner({ adminName, targetEmail }: { adminName: str
+           JS), same property the old comment on the `<form>` called out. */}
+       <button
+         type="button"
+-        className="btn-ghost h-[32px] flex-none px-3.5 text-[12.5px]"
++        className="btn-ghost h-11 flex-none px-3.5 text-[12.5px] sm:h-[32px]"
+         disabled={leaving}
+         onClick={() => {
+           startLeave(async () => {
+@@ -279,7 +279,7 @@ export function NotificationsPanel({
+       <div
+         role="dialog"
+         aria-label="Notifications"
+-        className="absolute right-0 top-[52px] z-50 flex w-[340px] flex-col overflow-hidden rounded-[12px] border backdrop-blur-xl"
++        className="fixed inset-x-3 top-[68px] z-50 flex flex-col overflow-hidden rounded-[12px] border backdrop-blur-xl sm:absolute sm:inset-x-auto sm:right-0 sm:top-[52px] sm:w-[340px]"
+         style={{
+           /* NOT `.glass`. That recipe is for panels sitting on the page ground,
+              where you want to see through to it. This floats OVER content — the
+@@ -316,7 +316,7 @@ export function NotificationsPanel({
+             <span className="text-[11px] text-tx-faint">Deploys, invoices and ticket replies land here.</span>
+           </div>
+         ) : (
+-          <ul className="noscroll max-h-[380px] min-h-0 overflow-y-auto">
++          <ul className="noscroll max-h-[min(380px,60dvh)] min-h-0 overflow-y-auto">
+             {notes.map((n) => {
+               /* Branch on the element rather than picking a component into a
+                  variable: a `Link` needs a definite href, and the variable form
+diff --git a/components/nx/DeployView.tsx b/components/nx/DeployView.tsx
+index 40fb1bd76f..24cca1e99c 100644
+--- a/components/nx/DeployView.tsx
++++ b/components/nx/DeployView.tsx
+@@ -410,7 +410,7 @@ function BottomBar({ i, go, onNext, hint, last }: {
+     /* The right inset clears the live-chat bubble, which is `fixed bottom-4
+        right-4 z-[60]` — without it the bubble sits on top of Next, the one
+        control that moves the wizard forward. */
+-    <div className="fixed inset-x-0 bottom-[68px] z-30 flex flex-col gap-1.5 px-3.5 sm:px-5 lg:bottom-4 lg:left-[76px] lg:pl-6 lg:pr-[92px] xl:left-[248px]">
++    <div className="fixed inset-x-0 bottom-[calc(68px+env(safe-area-inset-bottom))] z-30 flex flex-col gap-1.5 px-3.5 sm:px-5 lg:bottom-4 lg:left-[76px] lg:pl-6 lg:pr-[92px] xl:left-[248px]">
+       {/* Why Next did nothing, surfaced on mobile too — previously this reason
+           only ever rendered at `sm:` and up (see the inline copy further
+           down), so a phone customer who pressed a blocked Next just watched
+diff --git a/components/nx/NetworkStatusModal.tsx b/components/nx/NetworkStatusModal.tsx
+index 7765b1026c..c2c4c5f409 100644
+--- a/components/nx/NetworkStatusModal.tsx
++++ b/components/nx/NetworkStatusModal.tsx
+@@ -82,7 +82,7 @@ export function NetworkStatusModal({ onClose }: { onClose: () => void }) {
+         role="dialog"
+         aria-modal="true"
+         aria-label="Nxeon system status"
+-        className="max-h-[85vh] w-full max-w-[540px] overflow-hidden rounded-[18px] border border-rim-hi bg-surface shadow-2xl"
++        className="max-h-[85dvh] w-full max-w-[540px] overflow-hidden rounded-[18px] border border-rim-hi bg-surface shadow-2xl"
+       >
+         <div className="flex items-center gap-3 border-b border-rim-soft px-5 py-4">
+           <span className="flex min-w-0 flex-col">
+diff --git a/components/nx/Shell.tsx b/components/nx/Shell.tsx
+index 20be53faa6..a38838c9f3 100644
+--- a/components/nx/Shell.tsx
++++ b/components/nx/Shell.tsx
+@@ -71,7 +71,7 @@ function NavLink({ href, icon, label, badge, active, compact }: {
+       title={compact ? label : undefined}
+       className={
+         "nx-navlink group relative flex items-center rounded-[10px] transition-colors " +
+-        (compact ? "h-10 w-10 justify-center" : "h-[38px] gap-3 px-3") + " " +
++        (compact ? "h-10 w-10 justify-center" : "h-11 gap-3 px-3 lg:h-[38px]") + " " +
+         (active ? "nx-navlink-on" : "text-tx-dim hover:text-white")
+       }
+     >
+@@ -205,6 +205,15 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+      inline script sets the class before first paint; this keeps it right on
+      client-side entry to and exit from the dashboard. A layout effect, so it
+      lands before the browser paints the shell. */
++  /* Lock page scroll behind the open phone drawer, and close it on Escape. */
++  useEffect(() => {
++    if (!open) return;
++    const prev = document.body.style.overflow;
++    document.body.style.overflow = "hidden";
++    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
++    window.addEventListener("keydown", onKey);
++    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
++  }, [open]);
+   useLayoutEffect(() => {
+     const root = document.documentElement;
+     root.classList.add("nx-portal");
+@@ -284,22 +293,30 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+         <div className="fixed inset-0 z-50 lg:hidden">
+           <button aria-label="Close menu" onClick={() => setOpen(false)}
+                   className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+-          <aside className="nx-dark-island absolute inset-y-0 left-0 flex w-[272px] flex-col border-r border-rim-soft bg-side">
++          <aside className="nx-dark-island absolute inset-y-0 left-0 flex w-[272px] max-w-[86vw] flex-col overflow-hidden border-r border-rim-soft bg-side pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+             <div className="flex h-[64px] items-center justify-between px-4">
+               <Wordmark size={34} />
+-              <button onClick={() => setOpen(false)} className="p-2 text-tx-dim" aria-label="Close">
++              <button onClick={() => setOpen(false)} className="grid h-11 w-11 place-items-center text-tx-dim" aria-label="Close">
+                 <Icon name="xcircle" size={20} />
+               </button>
+             </div>
+             <div className="min-h-0 flex-1"><Rail compact={false} onNavigate={() => setOpen(false)} badges={badges} /></div>
+             <Balance user={user} />
++            {/* Phones hide the header's Sign out + Refer controls to give the search bar room; they live here instead. */}
++            <div className="mx-3 mb-3 flex gap-2 sm:hidden">
++              <Link href="/dashboard/refer" onClick={() => setOpen(false)}
++                    className="btn-ghost h-11 flex-1 px-3 text-[12.5px]">Refer &amp; earn</Link>
++              <form action={logout} className="flex-1">
++                <button type="submit" className="btn-ghost h-11 w-full px-3 text-[12.5px]">Sign out</button>
++              </form>
++            </div>
+           </aside>
+         </div>
+       )}
+ 
+       <div className="relative z-10 flex min-w-0 flex-1 flex-col">
+         {/* topbar */}
+-        <header className="nx-dark-island sticky top-0 z-30 flex h-[64px] items-center gap-3 border-b border-rim-soft bg-bg/70 px-4 backdrop-blur sm:px-6 lg:h-[72px]">
++        <header className="nx-dark-island sticky top-0 z-30 flex h-[64px] items-center gap-2 border-b border-rim-soft bg-bg/70 px-3 backdrop-blur sm:gap-3 sm:px-6 lg:h-[72px]">
+           <button onClick={() => setOpen(true)} aria-label="Open menu"
+                   className="grid h-10 w-10 place-items-center rounded-[10px] border border-rim-hi lg:hidden">
+             <Icon name="grid" size={18} />
+@@ -316,7 +333,7 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+               ⌘K
+             </kbd>
+           </button>
+-          <div className="ml-auto flex items-center gap-2 sm:gap-3">
++          <div className="ml-auto flex flex-none items-center gap-0.5 sm:gap-3">
+             {/* The display-currency switcher, with its country flags. The portal
+                 has had geo currency for a while and `CurrencyProvider` is
+                 mounted in app/dashboard/layout.tsx, but this rebuilt shell
+@@ -325,7 +342,7 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+                 where the header has no room for it. */}
+             <span className="hidden sm:block"><CurrencySwitcher /></span>
+             <ThemeToggle />
+-            <BugReportButton />
++            <span className="hidden sm:block"><BugReportButton /></span>
+             <div className="relative">
+               <button onClick={() => setNotesOpen((v) => !v)}
+                       aria-label="Notifications" aria-expanded={notesOpen}
+@@ -372,7 +389,7 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+             {/* A real POST to the server action, not a link: signing out mutates
+                 session state, and a GET that destroys a session is one prefetch
+                 away from logging people out on hover. */}
+-            <form action={logout}>
++            <form action={logout} className="hidden sm:block">
+               <button type="submit" aria-label="Sign out" title="Sign out"
+                       className="grid h-10 w-10 place-items-center rounded-[10px] text-tx-dim transition hover:bg-[rgba(255,90,90,0.1)] hover:text-red-300">
+                 <Icon name="logout" size={18} tone="inherit" />
+@@ -393,7 +410,7 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+               // `height` .nx-appframe sets — the element silently keeps growing to
+               // its content and the page scrolls anyway.
+               ? "nx-appframe min-w-0 flex-none overflow-hidden"
+-              : "min-w-0 flex-1 px-3.5 pb-24 pt-4 [overflow-x:clip] sm:px-5 lg:px-6 lg:pb-8"
++              : "min-w-0 flex-1 px-3.5 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-4 [overflow-x:clip] sm:px-5 lg:px-6 lg:pb-8"
+           }
+         >
+           {children}
+@@ -410,7 +427,7 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+       </div>
+ 
+       {/* mobile bottom tabs */}
+-      <nav className="fixed inset-x-0 bottom-0 z-40 flex h-[68px] items-stretch border-t border-rim-soft bg-side/95 backdrop-blur lg:hidden">
++      <nav className="fixed inset-x-0 bottom-0 z-40 flex h-[calc(68px+env(safe-area-inset-bottom))] items-stretch border-t border-rim-soft bg-side/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
+         {NAV.filter((n) => MOBILE_TABS.includes(n.href)).map((n) => {
+           const active = n.href === activeHref;
+           return (
+@@ -423,6 +440,11 @@ function ShellInner({ children, user, badges, notifications, matrixPanel }: {
+             </Link>
+           );
+         })}
++        <button type="button" onClick={() => setOpen(true)} aria-label="Open full menu"
++                className="flex flex-1 flex-col items-center justify-center gap-1 text-[10.5px] font-semibold text-tx-faint">
++          <Icon name="grid" size={20} style={{ opacity: 0.75 }} />
++          Menu
++        </button>
+       </nav>
+     </div>
+   );

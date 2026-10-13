@@ -1,0 +1,52 @@
+{
+ "gun-fire": {
+  "bytes": 39639,
+  "sha256": "e07ed7d1af13e5f7e2bf4a24f7b29a45cc50904f8d98bc6e16e3bbd93b0b1db1",
+  "title": "GUN FIRE (MOTION:GUN_RELOAD, MAG 3)"
+ },
+ "gun-last-shot-reload-cock": {
+  "bytes": 44314,
+  "sha256": "eedefac1b13ce43b740baf1ccb05297e2e9abc4df02989998ff8171ef91ec315",
+  "title": "GUN: LAST SHOT, DRY CLICK, RELOAD FROM EMPTY, SLIDE RELEASE"
+ },
+ "door-open-close": {
+  "bytes": 32943,
+  "sha256": "0f01af22a57ee3b479956e98ae9f3c0ebf49015871b9ad89d94226b252c85847",
+  "title": "DOOR HINGE (MOTION:DOOR_HINGE)"
+ },
+ "effects-explosion": {
+  "bytes": 70597,
+  "sha256": "050cdab22c4b538afaa43d38f468b74788c05421e6958b787758d67608152fbc",
+  "title": "EFFECT:EXPLOSION"
+ },
+ "effects-fire-smoke-splash": {
+  "bytes": 64267,
+  "sha256": "be7bca3542bf3178e88e549580dc6175a138e9a87c9061792edff540fba3d25f",
+  "title": "EFFECT:FIRE (LOOPING)"
+ },
+ "effects-water-splash": {
+  "bytes": 29500,
+  "sha256": "3b15708515d0ff8a11e722c4b23bafcba0aa2283fbd1e62642b766611e533881",
+  "title": "EFFECT:WATER_SPLASH"
+ },
+ "effects-muzzle-smoke": {
+  "bytes": 24315,
+  "sha256": "d583b758d6691a6557ac021d7aced4b5b74801cd888cd69b77c22fa392720f5f",
+  "title": "EFFECT:MUZZLE_FLASH AND EFFECT:SMOKE"
+ },
+ "gait-humanoid-walk": {
+  "bytes": 29333,
+  "sha256": "ca22d6aee2d227b97924abd75378087efda03b48a9d2bedf180d5b98183bca1a",
+  "title": "GEN:GAIT HUMANOID: IDLE, WALK, ATTACK"
+ },
+ "gait-quadruped-walk": {
+  "bytes": 16712,
+  "sha256": "3156859de83412ba93ef1a8fa3c9bfb056b35c0f0f1d44039e6569d9f1d612f6",
+  "title": "GEN:GAIT QUADRUPED WALK"
+ },
+ "gun-fire-light": {
+  "bytes": 37485,
+  "sha256": "c472bce855eaec98d43e86752b060300b2155d7b63c9406a4927d906c5b1efb5",
+  "title": "GUN FIRE (LIGHT THEME)"
+ }
+}
