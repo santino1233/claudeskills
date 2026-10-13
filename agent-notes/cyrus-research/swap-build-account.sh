@@ -27,7 +27,7 @@ swap)
   idle
   R 'set -e; test -s /root/.new-oauth-token || { echo "no staged token: run settoken"; exit 1; }
      IMG=$(docker inspect -f "{{.Config.Image}}" modbuilder)
-     grep -v "^CLAUDE_CODE_OAUTH_TOKEN=" /root/claudebox.env > /root/.claudebox.env.new
+     { grep -v "^CLAUDE_CODE_OAUTH_TOKEN=" /root/claudebox.env || true; } > /root/.claudebox.env.new
      printf "CLAUDE_CODE_OAUTH_TOKEN=%s\n" "$(cat /root/.new-oauth-token)" >> /root/.claudebox.env.new
      chmod 600 /root/.claudebox.env.new && mv /root/.claudebox.env.new /root/claudebox.env
      shred -u /root/.new-oauth-token 2>/dev/null || rm -f /root/.new-oauth-token
