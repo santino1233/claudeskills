@@ -10,3 +10,4 @@
 !*.patch
 !*.yml
 !secrets.tar.enc
+!*.jsonl
