@@ -407,3 +407,9 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Merged in order: skills, mc-testing-weapons, mc-techniques, config-delivery, prompt-coach, learning-loop, warn-dont-block. Conflicts: generated docs (regenerated), `server.js` (lane step + compile-repair budget combined), `compile.ts`/`prompts.js`/`ConfigStudio.tsx` (merged by hand), Dockerfile (coach.js added), bundles regenerated on node-2. failure-rules version `rules-2026-10-12.4`.
 - Seam failures (10): weapons/techniques tests assume old hard caps, config-delivery soft check duplicates limits module, 5 new archetypes lack coach templates. Sonnet agent af0f12c748e704261 fixing on the same branch.
 - Still needed before promote (owner approval): apply `prisma/manual-migrations/2026-10-12-cyrus-coach-events.sql`, `devhost build`, promote, image `modbuilder:0.10` (coach.js, rules .4, NxPerf changes), then flags one at a time (CYRUS_PROMPT_COACH, CYRUS_LEARNING, technique flags).
+
+## 93. rc3 VERIFIED except next build (2026-10-13 ~15:30 UTC), `release/cyrus-rc3` head 5ada5624f9
+- Seam fixes by Sonnet agent af0f12c748e704261 (5e16cdb6d3 config delivery on shared limits model, 2f0a6f3b46 weapon/vein recommended ranges + new HARD_CAPS, 48cb999487 coach templates for 5 technique archetypes, eab5dc2e35 docs), then 5ada5624f9 flight wording. Verified by me: tsc 0, cyrus+modbuilder suite 3342/3342.
+- Real flights on node-2 all pass: designer, designer-weapons, designer-techniques, config-delivery (19/19), mc-goldens-techniques, perf (NxPerfCoreTest 33/33), perf-golden (67/67).
+- OWNER DECISION: new hard ceilings (hitscan range 256, pellets 64, blast radius 32, vein 256 blocks / 64 per tick / radius 32) are engineering choices.
+- NOT DONE: `devhost db push` + `devhost build` were blocked by the auto-mode classifier ([Production Deploy]); not retried. Owner: approve or run them, then apply coach-events SQL, promote, image 0.10, flags.
