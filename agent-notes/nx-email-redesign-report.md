@@ -16,7 +16,7 @@ Differences, on purpose or still open:
 - The hero background is the deployed game's real key art (owner asked for game images). The mockup has abstract blue light beams there. Beams and glows are drawn over the art; the default hero (VPS) is beams only.
 - Extra real content the mockup lacks: hostname subline ("Minecraft server"), the join-address note in the card, the SSH/SFTP root-password note under the help card, and a faint legal line (dashboard/help/support/status links, address) in the footer. These keep existing copy and tracked links.
 - Tile subtitles are honest: "Mods & plugins", not the mockup's "70,000+ mods". There is no real count.
-- The wordmark is the existing nxeon-wordmark.png re-spaced and tinted. It is close to the mockup but not identical.
+- Logo: the real public/logo.png (NX mark + NXEON), resized to 2x, unmodified (commit after 8618f6ef; the invented wordmark was removed per owner).
 - Outlook desktop: no background images, rounded corners or gradients. It gets solid navy and violet. Inter only loads where clients allow @import; others fall back to system sans.
 
 ## Assets (public/email/, 2.7 MB, PNG/JPG only, scripts/email-assets.py)
