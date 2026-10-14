@@ -1,6 +1,6 @@
 # BP: asset lane quality, 2026-10-14 (branch feature/cyrus-asset-quality, worktree /tank/dev-worktrees/cyrus-quality, from release/cyrus-rc8 916eb4fb20)
 
-Scope: sound and texture lanes (and handgun-class items that use both). No paid calls, no deploys. Data: journals first1 (image 0.11, 65 builds), second1 (image 0.13, 38 builds), third1 (image 0.15; only plain rows had finished when this was written, 0 asset rows) and the per-build records on VM 88001 (254 ev-* builds, build.json + live-assets.json read over ssh).
+Scope: sound and texture lanes (and handgun-class items that use both). No paid calls, no deploys. Data: journals first1 (image 0.11, 65 builds), second1 (image 0.13, 38 builds), third1 (image 0.15; 7 asset rows finished at 04:05 UTC) and the per-build records on VM 88001 (254 ev-* builds, build.json + live-assets.json read over ssh).
 
 ## 0. What the data says (read this first)
 
@@ -48,7 +48,7 @@ ESTIMATE: removes the Read turn (1 of 3-4 turns, about 70-75k cached input token
 | texture | n16 p50 0.42, p80 0.66, p90 0.76 | n27 p50 0.46, p80 0.685, p90 0.735 | first1+second1 succeeded builds |
 | sound | n7 p50 0.57, p80 0.61, p90 0.62 | n6 p50 0.39, p80 0.52, p90 0.61 | second1 only (repair-dominated first1 no longer representative) |
 
-third1 had no finished asset rows at writing time; re-run `scripts/cyrus/eval-journal-stats.ts` when it has (the constants carry the instruction). Designer left at first1 numbers (second1 downgraded most designer builds to plain plugins; strict design mode has no journal yet).
+third1 (image 0.15) had 7 finished sound/texture rows at 04:05 UTC (5 first-try, 2 repaired, cost $0.31-0.66, mean $0.46; ruby-sword $0.57, void-shard $0.39 first try, banshee-sounds $0.47, handgun-sounds $0.42 first try): consistent with the figures above, too few to move them. Re-run `scripts/cyrus/eval-journal-stats.ts` when it has (the constants carry the instruction). Designer left at first1 numbers (second1 downgraded most designer builds to plain plugins; strict design mode has no journal yet).
 
 ## 5. Eval set
 
@@ -56,4 +56,4 @@ third1 had no finished asset rows at writing time; re-run `scripts/cyrus/eval-jo
 
 ## 6. Unverified
 
-No paid eval of any of this; the normalisers are replayed on stored first attempts only (2 textures, 1 sound had a real defect; the rest were already clean). Needs a modbuilder image redeploy (prompts.js, server.js, sounds.js, textures.js) and a web release for the rubric/render/estimate (measure.ts, render.ts, runner.bundle.cjs, estimate.ts, score.ts).
+The coordinate/extent clamp first tried in the texture normaliser was removed (it changed drawings and masked the pipeline tests' bad-line case). No paid eval of any of this; the normalisers are replayed on stored first attempts only (2 textures, 1 sound had a real defect; the rest were already clean). Needs a modbuilder image redeploy (prompts.js, server.js, sounds.js, textures.js) and a web release for the rubric/render/estimate (measure.ts, render.ts, runner.bundle.cjs, estimate.ts, score.ts).
