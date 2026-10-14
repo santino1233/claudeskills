@@ -504,3 +504,9 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Root cause: legacy offsite timer disabled since 09-15; Cyrus backups were never installed. Fixed: cyrus-backup.timer installed (gpg copy to node-2 + restic repo on Dropbox `cyrus/restic`: library catalogs, packs, knowledge, SFX 51 GB, VM 88001 data), launch-check backup-fresh PASS, backup-offbox marker written.
 - Platform: scripts/backup/nxeon-dropbox-sync.sh + timers (branch feature/backups-dropbox, ff-merged to main, not promoted). Restore drill verified (throwaway DB).
 - Owner: move private keys off the box, rotate Dropbox token, set Discord webhook. See agent-notes/BACKUP-DROPBOX-OWNER-STEPS.md and BACKUP-REPORT-2026-10-14.md.
+
+## 107. rc10 quality round (2026-10-14 ~09:05 UTC), release/cyrus-rc10 head 1ba8aefe15, verified, NOT promoted; report BS-rc10-quality-2026-10-14.md
+- Eval fourth1 (0.16) snapshot 41/90: pass@1 80.5%, final 100%, boot 100%, repair share 31%; texture pass@1 only 45%. Still running (slow asset lanes, ~3 h left).
+- Root cause of the top repair class: fixPerf (rc5 leftover-drop guard) never ran in round 1, rec.perf is set by PERF.inject inside compile() after autofix. Fixed (perfPackageOf), plus autofixes for weaker-access onCommand and Collection->List. Needs image 0.17 (idle service).
+- cyrus.my nginx explicit file list prepared (deploy/cyrus/nginx-cyrus-my.conf + .patch + scripts/cyrus/nginx-cyrus-my-check.sh, matrix 40/40 on a throwaway nginx), NOT applied. Live vhost serves MANIFEST.sha256 and index.html and proxies every unknown path to the app.
+- launch-check reads eval journals (eval-run rows); baseline acceptance steps in docs/cyrus/07-operations.md. tsc 0; suite 7616/7666 (50 pre-existing non-Cyrus failures on main; storage return redirect bug fixed).
