@@ -1,8 +1,11 @@
 # BT: Cyrus rc11 first-try round (2026-10-14)
 
-Branch `release/cyrus-rc11` (worktree /tank/dev-worktrees/cyrus-rc11, from release/cyrus-rc10 1ba8aefe), NOT promoted, NOT deployed.
+Branch `release/cyrus-rc11` (worktree /tank/dev-worktrees/cyrus-rc11, from release/cyrus-rc10 1ba8aefe), head 8b339489f4, 1 commit, NOT promoted, NOT deployed.
 Image impact: services/modbuilder only (autofix.js, textures.js, sounds.js, server.js) -> modbuilder:0.18 (0.17 = rc10, not yet deployed).
 Evidence: eval fourth1 on image 0.16, read-only (journal + GET /builds/<id> records, no build started). 70 of 90 builds were done when I read it.
+
+## Verification (devhost, node-2)
+tsc exit 0. test/modbuilder*.test.ts + test/cyrus*.test.ts: 3737 tests, 3735 pass; the 2 failures were the generated docs/cyrus/reference/tests.md counts (new test file), regenerated and re-run green (cyrus-docs-coverage + cyrus-admin-economy 24/24). New: 15/15 in modbuilder-rc11-first-try; updated pipeline test passes in the full run.
 
 ## 1. What the 17 first-try misses were (fourth1, 70 done: pass@1 75.7%; plain 19/20, sound 12/14, texture 11/21, designer 11/15)
 | class | n | builds | rc10 | rc11 |
