@@ -559,3 +559,6 @@ Report `CC-library-prod-2026-10-14.md` (+ `CC-library-prod-evidence/`). Branch `
 - Deterministic expectations per build (plugin.yml, config.yml, designer / data pack / rig specs; no model) flown in the same Test Flight (optional RCON nxo-* + bot scenarios T-901.., cap 45 s + 15 s join), stored as `testFlight.functional`, never changes the boot verdict. New bot steps (window click/check, particles, sounds, boss bar, sidebar, melee, aim). Portal card "What we verified"; eval stage `behaviour` (eval-run --oracle). No image bump, no schema change.
 - Real node-2 flights: 12 owner builds + 4 goldens 88 pass / 0 fail / 11 not testable; goblin without BetterModel fails 3 (the owner's class); 5/5 mutants caught (4 of them pass the boot test). First runs found 8 bugs in the oracle itself (all fixed + pinned). Honest: no behaviour defect found in the owner builds beyond the goblin enable failure. Records oracle-flights-2026-10-14.json.
 
+
+## 113. rc15 integration (2026-10-14)
+Merge conflicts of structure/preflight/oracle/library-prod resolved on release/cyrus-rc15 (cyrus-int2); real pass honours behaviour fail; MB_PREFLIGHT default advise; tests green except known liveassets timing. Image modbuilder:0.21. See CG-rc15-integration-2026-10-14.md.
