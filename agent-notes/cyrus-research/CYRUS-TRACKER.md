@@ -492,3 +492,10 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - NOT DEPLOYED (classifier): portal promote and image 0.16. One line: `cd /opt/nxeon && git merge --ff-only release/cyrus-rc9 && bash scripts/promote-production.sh --skip-staging-check && cd /tank/dev-worktrees/cyrus-rc9 && TAG=modbuilder:0.16 bash scripts/cyrus/deploy-modbuilder.sh`
 - Eval third1 PAUSED at 28/90 (resume: same command with --tag third1; interim: 28/28 built, pass@1 92%, plain 20/20) so the image deploy can take the service idle.
 - Owner/infra after deploy: tighten nginx @cyrus_app fallback to an explicit list of public files (app-level fix ships in rc9), firewall 7340 to the tunnel, set cost caps and planner/coach ceilings, install the cyrus-alerts timer and webhook, run backup-nightly once and set an off-box restic target.
+
+## 106. rc9 + image 0.16 LIVE (2026-10-14 ~06:50 UTC)
+- Owner ran the one-line paste: 24 switches on, portal rc9 promoted (release 20261014T063144Z-15ddbdea), modbuilder:0.16 running (auth still subscription). Launch pair still OFF.
+- launch-check beta: NO-GO on 3 FAILs -> cyrus-alerts.timer installed (done, /etc/cyrus/alerts.env has DATABASE_URL, no webhook yet); disk / 91% -> 83% (git gc on /opt/nxeon, staging, claudeskills; npm cache, journal); backup-fresh still FAIL (needs owner's /etc/cyrus/backup-pubkey.asc + off-box target).
+- Alert rule fixes (f12841d264 on main): stale reservation rule counted settled rows; webhook rule errored without CyrusWebhookOutbox table; DB URL now redacted in alert errors (old journal lines contain the DB password; local root only).
+- Eval fourth1 started on 0.16 (third1 plan no longer matched after rc9): `/root/eval-fourth1.log`, journal /root/cyrus-eval/fourth1, budget $30, in-flight 1.
+- Owner-only still: Anthropic API key, backup pubkey + off-box target, Discord webhook, beta tester allow-list, legal footer links (I can do the footer link change), price decisions, real-client test.
