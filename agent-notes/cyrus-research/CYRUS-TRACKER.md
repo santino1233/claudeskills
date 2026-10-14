@@ -518,3 +518,7 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 
 ## 109. rc12 creature depend + honest Test Flight (2026-10-14), release/cyrus-rc12 head 664076ac (from main bf93b4bd), verified, NOT promoted; report BU-rc12-creature-depend-2026-10-14.md
 - Goblin mod shipped "succeeded" without depend: [BetterModel] and failed to enable. Fixes: deterministic plugin.yml depend/softdepend autofix (BetterModel hard depend, PAPI/Vault/LuckPerms/ProtocolLib softdepend), unfixable case now a clear build failure; portal banner + Refine on failed Test Flight, failed flights never featured. Billing unchanged (options in report). Image TAG=modbuilder:0.19.
+
+## 110. Test Flight provides BetterModel (2026-10-14), branch fix/cyrus-testflight-bettermodel d5379429 (from main f347f27a), verified, NOT promoted; report BW-tf-bettermodel-2026-10-14.md
+- False "did not load" on every creature mod: the flight never installed BetterModel. Gate now provisions the pinned managed jar (+ seeded libs, config, models <=64 KB) when plugin.yml depends on it, creatures exist, or classes reference kr/toxicity/model; missing jar = not_run; engine failing to enable = "engine plugin failed", not a mod failure.
+- Real flights on node-2 1.21.11: fox and goblin v1 both plugins_enabled pass (goblin without BetterModel still fails NoClassDefFound, as before). Portal-only, no image change; one pre-existing liveassets e2e timing failure on main.
