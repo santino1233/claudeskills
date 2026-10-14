@@ -9,3 +9,4 @@ Rules: one account per branch/worktree at a time; heavy builds only via scripts/
 
 Last handoff notes:
 -
+- 2026-10-14 behaviour oracle agent: feature/cyrus-behaviour-oracle 52fc2f60 in /tank/dev-worktrees/cyrus-oracle, verified, NOT merged; stopped after report CD-behaviour-oracle-2026-10-14.md (tracker 112). Next: owner merges after fix/cyrus-testflight-bettermodel, promote, CYRUS_TESTFLIGHT_ORACLE=1.
