@@ -15,8 +15,11 @@ Branch `feature/cyrus-site-live` (worktree /tank/dev-worktrees/cyrus-live-site, 
 - Browser (Playwright on node-2, desktop 1440 + mobile 390, landing + sign-in + legal through a local nginx stand-in): prompt typed -> /sign-in?prompt=..., sign-up and start links carry /new?prompt=..., legal terms render on cyrus.my with no nxeon.cloud links, launch API 200 (closed, tokensLive false). Screenshots in scratchpad `.../shots/` (not committed).
 - Note: in `next dev` the middleware rewrite to /cyrus-host/* 404s (needed a temp local patch to screenshot); production behaviour was not changed (middleware.ts untouched).
 
+## Gameplay gallery (added, second commit on the branch)
+New section `#gameplay` after "In game": 7 webp (1600x900, 160-230 KB each, originals not in git) in apps/cyrus-site/src/assets/gameplay/, scroll-snap carousel with arrows/keys, lazy images, captions only describe what is visible (weapons, floating islands, shrinking-world countdown, quest log, performance panel, new biome, server admin tools). publish.sh check ok (4.98 MB, cap 40 MB). Desktop + mobile screenshots verified.
+
 ## NOT done
-- Gameplay screenshots gallery (second task): the board card "Cyrus game play mod screens" and /opt/nxeon/board-uploads could not be read (the sandbox classifier denied production DB / prod path reads). Needs the owner to copy the 7 PNGs + card text to e.g. /root/claudeskills/agent-notes/cyrus-research/gameplay-shots/ and re-run that task. Plan: resize to 1600px webp q80 under src/assets/gallery/, lazy-loaded scroll-snap section after "In game", captions from the card only; check cap is 40 MB (MAX_BYTES), so size is fine.
+- (superseded, gallery is done) Gameplay screenshots gallery (second task): the board card "Cyrus game play mod screens" and /opt/nxeon/board-uploads could not be read (the sandbox classifier denied production DB / prod path reads). Needs the owner to copy the 7 PNGs + card text to e.g. /root/claudeskills/agent-notes/cyrus-research/gameplay-shots/ and re-run that task. Plan: resize to 1600px webp q80 under src/assets/gallery/, lazy-loaded scroll-snap section after "In game", captions from the card only; check cap is 40 MB (MAX_BYTES), so size is fine.
 - Left alone: nxeon.cloud/cyrus page's "Demo · scripted sample" (components/cyrus/marketing/CyrusDemo.tsx) is on the Nxeon site, not cyrus.my.
 - Game list "Soon" tiles (Hytale, FiveM, ...) are roadmap claims; kept, owner may want them cut.
 
