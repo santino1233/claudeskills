@@ -5,7 +5,7 @@ Rules: one account per branch/worktree at a time; heavy builds only via scripts/
 |---|---|---|---|
 | owner (claude-me) | | | |
 | friend (claude-friend) | | | |
-| claude session 2026-10-13 (haxkodi@gmail.com, desktop app) | rc3 + portals LIVE on main 89eb2ce426; image 0.10; account swapped. Next: flag flips, eval baseline, cyrus.my host, Gloam | none open (worktrees cyrus-rc3, cyrus-portals idle) | see tracker section 95 |
+| claude session 2026-10-13/14 (haxkodi@gmail.com, desktop app) | Overnight bundles merged + live (rc6, rc7, image 0.14); polish round 2 agent running | feature/cyrus-polish-round2 in /tank/dev-worktrees/cyrus-polish2 (do not edit while it runs) | see HANDOFF-FULL.md section 5b and tracker 98-103 |
 
 Last handoff notes:
 -
