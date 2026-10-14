@@ -1,0 +1,20 @@
+{
+ "total": 62777,
+ "file:model": 10244,
+ "dir:texture-set": 2946,
+ "dir:hdri": 1430,
+ "dir:decal": 127,
+ "dir:model": 34,
+ "file:texture": 801,
+ "file:sprite": 38464,
+ "file:sound": 5961,
+ "file:music": 137,
+ "dir:flipbook": 37,
+ "file:flipbook": 1028,
+ "file:animated-model": 130,
+ "file:particle-texture": 361,
+ "missing:animation-clip": 741,
+ "missing:flipbook": 336
+}
+[('eb593849fe29', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#0'), ('3c57fea931d5', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#1'), ('5287276b0bf3', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#2'), ('589ef2df259f', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#3'), ('6bc4fa7ada93', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#4'), ('1463d2645d77', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#5'), ('5e1c0728884c', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#6'), ('94deed6ef1cc', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#7'), ('333a09d1d551', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#8'), ('b2a8ecbb7b60', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#9'), ('2603d1f3131c', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#10'), ('2b0243148d9e', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#11'), ('c872fcab996e', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#12'), ('6792c067ed08', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#13'), ('a19488ef8889', 'animation-clip', 'motion/kaykit/kaykit-character-animations/KayKit_Character_Animations_1.1/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb#14')]
+{'model': 11.88, 'texture-set': 59.14, 'hdri': 10.16, 'decal': 1.2, 'texture': 0.02, 'sprite': 0.18, 'sound': 55.22, 'music': 2.05, 'flipbook': 0.72, 'animated-model': 0.05, 'particle-texture': 0.04} 140.66 GB

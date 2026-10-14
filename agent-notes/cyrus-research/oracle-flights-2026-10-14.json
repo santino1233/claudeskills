@@ -1,0 +1,2511 @@
+{
+ "date": "2026-10-14",
+ "oracle": "oracle-1",
+ "branch": "feature/cyrus-behaviour-oracle",
+ "paper": "1.21.11",
+ "host": "node-2",
+ "note": "final numbers with the fixed oracle; fire-sword re-flown after the charge-order fix; mutant fire-sword:sound flown before that fix (its Flame Dash fail there is the oracle ordering bug, not the mutation)",
+ "flights": [
+  {
+   "set": "owner-batch",
+   "key": "shop-gui",
+   "buildId": "mb4f15e98f28682e18f216",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8kvx2z-9d067f",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 48,
+   "bootMs": 18624,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 32100,
+    "rconChecks": 2,
+    "scenarios": 10
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 12 of the 12 things this mod should do on a real Paper 1.21.11 server: 12 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Shop starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Shop: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /shop command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'shop': ok (optional) -> Shop: items -; menus shop_blocks, shop_food, shop_main, shop_tools; quests -. Use /shop menu <id>, /shop quests, /shop params, /shop reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_blocks opens \"Shop - Blocks\" with 10 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "window \"Shop - Blocks\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Blocks\"]"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Stone\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 10 of \"Shop - Blocks\" (1x stone \"Buy Stone\")",
+      "has 16x stone (matching 16, same id 16)"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Oak Planks\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 12 of \"Shop - Blocks\" (1x oak_planks \"Buy Oak Planks\")",
+      "has 16x oak_planks (matching 16, same id 16)"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_food opens \"Shop - Food\" with 10 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_food'",
+      "window \"Shop - Food\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Food\"]"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Bread\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 10 of \"Shop - Food\" (1x bread \"Buy Bread\")",
+      "has 8x bread (matching 8, same id 8)"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Cooked Beef\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 12 of \"Shop - Food\" (1x cooked_beef \"Buy Cooked Beef\")",
+      "has 4x cooked_beef (matching 4, same id 4)"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_main opens \"Shop\" with 4 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part (want >= 4); want title [\"Shop\"]"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Blocks\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 11 of \"Shop #03f790\" (1x grass_block \"Blocks\")"
+     ]
+    },
+    {
+     "id": "E11",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Food\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 13 of \"Shop #03f790\" (1x bread \"Food\")"
+     ]
+    },
+    {
+     "id": "E12",
+     "kind": "config_reload",
+     "title": "Changing menus.shop_main.title in config.yml and running /shop reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e12-1 'shop reload': ok (optional) -> Shop config reloaded |",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part; want title [\"#03f790\"]"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "fire-sword",
+   "buildId": "mb40f9b72699ef38d0d30c",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8listi-aa47c6",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:fail",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 44,
+   "bootMs": 17420,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 19450,
+    "rconChecks": 3,
+    "scenarios": 6
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 0.8,
+   "counts": {
+    "total": 10,
+    "passed": 8,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 2
+   },
+   "label": "We tried 8 of the 10 things this mod should do on a real Paper 1.21.11 server: 8 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "FireSword starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "FireSword: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /firesword command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'firesword': ok (optional) -> FireSword items: fire_sword. Use /firesword give <item> [player] [count], /firesword list, /firesword params, /firesword reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/firesword give fire_sword gives the Fire Sword",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'firesword list': ok (optional) -> fire_sword: identity=ok material=netherite_sword abilities=4 recipe=registered |",
+      "console 'firesword give fire_sword NxPlaytest' -> Gave 1 x fire_sword to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Flame Dash\" works (charge release)",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sneak off",
+      "saw flame particles; seen since the action: flame"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Fireball\" works (right click)",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "saw flame particles; seen since the action: flame",
+      "heard nx_9q18yxw3:fire_sword.fireball_launch; heard since the action: nx_9q18yxw3:fire_sword.fireball_launch"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Fireball Impact\" works (projectile hit)",
+     "status": "not_testable",
+     "reason": "it fires when a projectile hits something (its launch is tested on its own ability)",
+     "evidence": []
+    },
+    {
+     "id": "E7",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Flame Ring\" works (sneak right click)",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "saw flame particles; seen since the action: flame, large_smoke",
+      "heard nx_9q18yxw3:fire_sword.flame_ring; heard since the action: nx_9q18yxw3:fire_sword.flame_ring"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "recipe_registered",
+     "title": "The Fire Sword has a crafting recipe the game knows",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_9q18yxw3:fire_sword' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "hud_visible",
+     "title": "The HUD \"fire_sword_hud\" shows its action bar while holding the Fire Sword",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "saw [\"%\"]"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "config_reload",
+     "title": "A config.yml change reaches the game after /firesword reload",
+     "status": "not_testable",
+     "reason": "no setting of this mod has an effect the test player can see",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "daily-quests",
+   "buildId": "mbeca427b3f102cec0be13",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8kxxqd-30da3d",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:pass"
+    ]
+   },
+   "wallSec": 47,
+   "bootMs": 19821,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 24600,
+    "rconChecks": 3,
+    "scenarios": 8
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 0.8,
+   "counts": {
+    "total": 15,
+    "passed": 12,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 3
+   },
+   "label": "We tried 12 of the 15 things this mod should do on a real Paper 1.21.11 server: 12 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Quests starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Quests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /quests command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'quests': ok (optional) -> Quests: items crate_key; menus crate, daily_board; quests daily_login, harvest_run, night_watch, stone_breaker, zombie_cull. Use /quests menu <id>, /quests quests, /quests params, /quests reload "
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/quests give crate_key gives the Crate Key",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'quests list': ok (optional) -> crate_key: identity=ok material=tripwire_hook abilities=0 recipe=none |",
+      "console 'quests give crate_key NxPlaytest' -> Gave 1 x crate_key to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "menu_opens",
+     "title": "/quests menu crate opens \"Crate\" with 4 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "window \"Crate\" open with 27 item(s) in its top part (want >= 4); want title [\"Crate\"]"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "menu_click",
+     "title": "In \"Crate\", clicking \"Coin Pouch\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "clicked slot 11 of \"Crate\" (1x emerald \"Coin Pouch\")"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "menu_click",
+     "title": "In \"Crate\", clicking \"Gem Cache\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "clicked slot 13 of \"Crate\" (1x diamond \"Gem Cache\")"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "menu_opens",
+     "title": "/quests menu daily_board opens \"Daily Quests\" with 7 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "window \"Daily Quests #9c2d33\" open with 36 item(s) in its top part (want >= 7); want title [\"Daily Quests\"]"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "menu_click",
+     "title": "In \"Daily Quests\", clicking \"Crate\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "clicked slot 34 of \"Daily Quests #9c2d33\" (1x chest \"Crate\")"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "menu_click",
+     "title": "In \"Daily Quests\", clicking \"Stone Breaker\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "clicked slot 10 of \"Daily Quests #9c2d33\" (1x stone \"Stone Breaker\")"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "quest_progress",
+     "title": "The \"Daily Login Reward\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E11",
+     "kind": "quest_progress",
+     "title": "The \"Harvest Run\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E12",
+     "kind": "quest_progress",
+     "title": "The \"Night Watch\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E13",
+     "kind": "config_reload",
+     "title": "Changing menus.daily_board.title in config.yml and running /quests reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e13-1 'quests reload': ok (optional) -> Quests config reloaded |",
+      "window \"Daily Quests #9c2d33\" open with 36 item(s) in its top part; want title [\"#9c2d33\"]"
+     ]
+    },
+    {
+     "id": "E14",
+     "kind": "loot_gives",
+     "title": "The loot table chests/daily_crate_bonus gives items",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'execute if data entity NxPlaytest Inventory[0]' -> Test passed. Count: 1"
+     ]
+    },
+    {
+     "id": "E15",
+     "kind": "advancement_reward",
+     "title": "The advancement \"Daily Devotion\" can be granted",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'advancement grant NxPlaytest only nx_4xk78r2l:daily/first_login' -> Granted the advancement [Daily Devotion] to NxPlaytest"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "boss-minions",
+   "buildId": "mb6d31dce76454b984b83e",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8kyxv1-d30c43",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 42,
+   "bootMs": 21627,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 7600,
+    "rconChecks": 5,
+    "scenarios": 4
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 6 of the 6 things this mod should do on a real Paper 1.21.11 server: 6 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "HollowKingFight starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "HollowKingFight: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /hollowkingfight command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'hollowkingfight': ok (optional) -> HollowKingFight items: hollow_crown, hollow_scepter. Use /hollowkingfight give <item> [player] [count], /hollowkingfight list, /hollowkingfight params, /hollowkingfight reload | HollowKi"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/hollowkingfight give hollow_crown gives the Hollow Crown",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'hollowkingfight list': ok (optional) -> hollow_crown: identity=ok material=netherite_helmet abilities=0 recipe=none | hollow_scepter: identity=ok material=netherite_sword abilities=0 recipe=none |",
+      "console 'hollowkingfight give hollow_crown NxPlaytest' -> Gave 1 x hollow_crown to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "item_given",
+     "title": "/hollowkingfight give hollow_scepter gives the Hollow Scepter",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'hollowkingfight list': ok (optional) -> hollow_crown: identity=ok material=netherite_helmet abilities=0 recipe=none | hollow_scepter: identity=ok material=netherite_sword abilities=0 recipe=none |",
+      "console 'hollowkingfight give hollow_scepter NxPlaytest' -> Gave 1 x hollow_scepter to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "boss_spawns",
+     "title": "/hollowkingfight boss spawn hollow_king summons The Hollow King with its boss bar",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'hollowkingfight boss spawn hollow_king spawn' -> Spawned hollow_king#1 (wither_skeleton) at world 0 -60 0: health 300.00, phase awakening, arena 24.00 blocks |",
+      "console 'execute if entity @e[tag=nx_sm973gzd.boss.hollow_king]' -> Test passed. Count: 1"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "config_reload",
+     "title": "Changing bosses.hollow_king.name in config.yml and running /hollowkingfight reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e6-1 'hollowkingfight reload': ok (optional) -> HollowKingFight config reloaded | HollowKingFight bosses and encounters reloaded |",
+      "boss bar showed [\"#728102\"]"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "fox-companion",
+   "buildId": "mb0d8ad449dbcaf7a9addc",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8kzu6v-f54e96",
+   "engine": "BetterModel",
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 35,
+   "bootMs": 19426,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 1950,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 0.5,
+   "counts": {
+    "total": 6,
+    "passed": 3,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 3
+   },
+   "label": "We tried 3 of the 6 things this mod should do on a real Paper 1.21.11 server: 3 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "FoxCompanion starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "FoxCompanion: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /foxcompanion command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'foxcompanion': ok (optional) -> FoxCompanion items: fox_treat. Use /foxcompanion give <item> [player] [count], /foxcompanion list, /foxcompanion params, /foxcompanion reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/foxcompanion give fox_treat gives the Fox Treat",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'foxcompanion list': ok (optional) -> fox_treat: identity=ok material=sweet_berries abilities=1 recipe=none |",
+      "console 'foxcompanion give fox_treat NxPlaytest' -> Gave 1 x fox_treat to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "ability_effect",
+     "title": "Fox Treat: \"Befriend Fox\" works (right click)",
+     "status": "not_testable",
+     "reason": "what it does only happens by chance (35%)",
+     "evidence": []
+    },
+    {
+     "id": "E5",
+     "kind": "config_reload",
+     "title": "A config.yml change reaches the game after /foxcompanion reload",
+     "status": "not_testable",
+     "reason": "no setting of this mod has an effect the test player can see",
+     "evidence": []
+    },
+    {
+     "id": "E6",
+     "kind": "creature_spawns",
+     "title": "The creature \"fox_companion\" appears with its model",
+     "status": "not_testable",
+     "reason": "how the creature appears is written by the AI; there is no spawn command to drive",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "armor-set-bonus",
+   "buildId": "mb1b6e3ab5355b9807c27d",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l0ll6-11bcca",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:pass"
+    ]
+   },
+   "wallSec": 37,
+   "bootMs": 18218,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 4400,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 6 of the 6 things this mod should do on a real Paper 1.21.11 server: 6 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Stormcaller starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Stormcaller: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /stormcaller command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'stormcaller': ok (optional) -> Usage: /stormcaller give <helmet|chestplate|leggings|boots|all> [player] | /stormcaller reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/stormcaller give helmet gives the player an item",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/stormcaller give helmet'",
+      "none of [\"An internal error occurred\",\"Usage:\"] in 1 message(s)"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "reload_command",
+     "title": "/stormcaller reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'stormcaller reload': ok (optional) -> Stormcaller configuration reloaded. |"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "recipe_registered",
+     "title": "The recipe storm sigil (makes nether star) is in the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_yapn08c6:storm_sigil' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "advancement_reward",
+     "title": "The advancement \"Heart of the Storm\" can be granted and gives 50 XP",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'advancement grant NxPlaytest only nx_yapn08c6:storm_sigil_forged' -> Granted the advancement [Heart of the Storm] to NxPlaytest",
+      "console 'xp query NxPlaytest levels' -> NxPlaytest has 4 experience levels"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "custom-recipes",
+   "buildId": "mbe79464c59f207952b74c",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l1dt5-71175e",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:pass"
+    ]
+   },
+   "wallSec": 88,
+   "bootMs": 18621,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 2100,
+    "rconChecks": 6,
+    "scenarios": 1
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 10 of the 10 things this mod should do on a real Paper 1.21.11 server: 10 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "CustomRecipes starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "CustomRecipes: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /customrecipes command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'customrecipes': ok (optional) -> [Server] Usage: /customrecipes reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "command_responds",
+     "title": "The /home command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'home': ok (optional) -> Only players can use this command. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "command_responds",
+     "title": "The /sethome command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'sethome': ok (optional) -> Only players can use this command. |"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "command_responds",
+     "title": "The /delhome command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e5-1 'delhome': ok (optional) -> Only players can use this command. |"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "command_responds",
+     "title": "The /homes command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e6-1 'homes': ok (optional) -> Only players can use this command. |"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "reload_command",
+     "title": "/customrecipes reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e7-1 'customrecipes reload': ok (optional) -> [Server] Configuration reloaded. |"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "recipe_registered",
+     "title": "The recipe saddle from leather (makes saddle) is in the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_f032zkm1:saddle_from_leather' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "recipe_registered",
+     "title": "The recipe diamonds from coal (makes diamond) is in the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_f032zkm1:diamonds_from_coal' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "recipe_registered",
+     "title": "The recipe name tag from paper (makes name tag) is in the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_f032zkm1:name_tag_from_paper' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "food-potions",
+   "buildId": "mb871ce79b62a7530d0b14",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l39ot-6668c3",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 33,
+   "bootMs": 18022,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 2300,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 4 of the 4 things this mod should do on a real Paper 1.21.11 server: 4 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "GoldenFeast starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "GoldenFeast: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /goldenfeast command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'goldenfeast': ok (optional) -> Usage: /goldenfeast <give <stew|potion> [player]|reload> |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/goldenfeast give stew gives the player an item",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/goldenfeast give stew'",
+      "none of [\"An internal error occurred\",\"Usage:\"] in 1 message(s)"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "reload_command",
+     "title": "/goldenfeast reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'goldenfeast reload': ok (optional) -> Golden Feast configuration reloaded. |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "magic-wand",
+   "buildId": "mb49b19722510dc38e0ec0",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l3zck-4cb693",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 36,
+   "bootMs": 20629,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 2300,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 4 of the 4 things this mod should do on a real Paper 1.21.11 server: 4 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "ArcaneWand starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "ArcaneWand: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /arcanewand command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'arcanewand': ok (optional) -> Usage: /arcanewand <give|reload> |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/arcanewand give gives the player an item",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/arcanewand give'",
+      "none of [\"An internal error occurred\",\"Usage:\"] in 3 message(s)"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "reload_command",
+     "title": "/arcanewand reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'arcanewand reload': ok (optional) -> Arcane Wand configuration reloaded. |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "economy-config",
+   "buildId": "mb42f9d592d845ded8bc92",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l4r6q-cd972d",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 27,
+   "bootMs": 17221,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 0,
+    "rconChecks": 6,
+    "scenarios": 0
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 7 of the 7 things this mod should do on a real Paper 1.21.11 server: 7 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "EconomyTweak starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "EconomyTweak: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /balance command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'balance': ok (optional) -> Console has no balance. Use /balance <player>. |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "command_responds",
+     "title": "The /pay command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'pay': ok (optional) -> Only players can pay other players. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "command_responds",
+     "title": "The /sell command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'sell': ok (optional) -> Only players can sell items. |"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "command_responds",
+     "title": "The /baltop command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e5-1 'baltop': ok (optional) -> --- Balance Leaderboard (page 1/1) --- | No balances recorded yet. |"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "command_responds",
+     "title": "The /economy command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e6-1 'economy': ok (optional) -> Usage: /economy <reload|set|add|remove> [player] [amount] |"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "reload_command",
+     "title": "/economy reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e7-1 'economy reload': ok (optional) -> Economy config reloaded. |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "owner-batch",
+   "key": "biome-datapack",
+   "buildId": "mb8710c52c0fa83832910a",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l5bzk-9e55a4",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:pass"
+    ]
+   },
+   "wallSec": 32,
+   "bootMs": 17621,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 1400,
+    "rconChecks": 2,
+    "scenarios": 1
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 0.8,
+   "counts": {
+    "total": 5,
+    "passed": 4,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 1
+   },
+   "label": "We tried 4 of the 5 things this mod should do on a real Paper 1.21.11 server: 4 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "MushroomMeadow starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "MushroomMeadow: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /meadow command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'meadow': ok (optional) -> Usage: /meadow <give|tp|locate|reload> [item] [player] |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/meadow give gives the player an item",
+     "status": "not_testable",
+     "reason": "the usage does not list the item names",
+     "evidence": []
+    },
+    {
+     "id": "E4",
+     "kind": "reload_command",
+     "title": "/meadow reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e4-1 'meadow reload': ok (optional) -> Mushroom Meadow configuration reloaded. |"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "loot_gives",
+     "title": "The loot table chests/meadow_cache gives items",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'execute if data entity NxPlaytest Inventory[0]' -> Test passed. Count: 1"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "goblin-with-engine",
+   "key": "goblins",
+   "buildId": "mb7714738f123ea861d24a",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l6134-734a31",
+   "engine": "BetterModel",
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 34,
+   "bootMs": 18223,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 1950,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 0.6,
+   "counts": {
+    "total": 5,
+    "passed": 3,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 2
+   },
+   "label": "We tried 3 of the 5 things this mod should do on a real Paper 1.21.11 server: 3 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Goblins starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Goblins: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /goblins command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'goblins': ok (optional) -> Goblins items: goblin_tooth. Use /goblins give <item> [player] [count], /goblins list, /goblins params, /goblins reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/goblins give goblin_tooth gives the Goblin Tooth",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'goblins list': ok (optional) -> goblin_tooth: identity=ok material=bone abilities=0 recipe=none |",
+      "console 'goblins give goblin_tooth NxPlaytest' -> Gave 1 x goblin_tooth to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "config_reload",
+     "title": "A config.yml change reaches the game after /goblins reload",
+     "status": "not_testable",
+     "reason": "no setting of this mod has an effect the test player can see",
+     "evidence": []
+    },
+    {
+     "id": "E5",
+     "kind": "creature_spawns",
+     "title": "The creature \"goblin\" appears with its model",
+     "status": "not_testable",
+     "reason": "how the creature appears is written by the AI; there is no spawn command to drive",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "set": "goblin-without-engine (today main gate)",
+   "key": "goblins",
+   "buildId": "mb7714738f123ea861d24a",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8lh6to-4a1c42",
+   "engine": null,
+   "boot": {
+    "verdict": "failed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:fail",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 35,
+   "bootMs": 18221,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 1950,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "failed",
+   "score": 0,
+   "coverage": 0.6,
+   "counts": {
+    "total": 5,
+    "passed": 0,
+    "failed": 3,
+    "notRun": 0,
+    "notTestable": 2
+   },
+   "label": "We tried 3 of the 5 things this mod should do on a real Paper 1.21.11 server: 0 worked, 3 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Goblins starts on the server",
+     "status": "fail",
+     "reason": "the mod did not start (Paper did not enable it)",
+     "evidence": [
+      "Goblins: NOT enabled (log: enabling=true enableError=true loadError=false disabled=true; rcon plugins: false)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /goblins command answers without an error",
+     "status": "fail",
+     "reason": "the reply says \"An unexpected error occurred\"",
+     "evidence": [
+      "nxo-e2-1 'goblins' [rss 877 MB, 251 ms]: ok (optional) -> An unexpected error occurred trying to execute that command"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/goblins give goblin_tooth gives the Goblin Tooth",
+     "status": "fail",
+     "reason": "the reply lacks [\"goblin_tooth: identity=ok\"]",
+     "evidence": [
+      "nxo-e3-1 'goblins list' [rss 877 MB, 251 ms]: ok (optional) -> An unexpected error occurred trying to execute that command"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "config_reload",
+     "title": "A config.yml change reaches the game after /goblins reload",
+     "status": "not_testable",
+     "reason": "no setting of this mod has an effect the test player can see",
+     "evidence": []
+    },
+    {
+     "id": "E5",
+     "kind": "creature_spawns",
+     "title": "The creature \"goblin\" appears with its model",
+     "status": "not_testable",
+     "reason": "the creature engine (BetterModel) is not part of this flight",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "set": "golden",
+   "key": "mc-kits",
+   "buildId": "golden-mc-kits",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l7k48-faa742",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 25,
+   "bootMs": 18226,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 0,
+    "rconChecks": 1,
+    "scenarios": 0
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 2 of the 2 things this mod should do on a real Paper 1.21.11 server: 2 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "GoldenKits starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "GoldenKits: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /kit command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'kit': ok (optional) -> Kits: starter(3) warrior(2) |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "golden",
+   "key": "mc-shop",
+   "buildId": "golden-mc-shop",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l852r-5391b9",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 24,
+   "bootMs": 16824,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 0,
+    "rconChecks": 2,
+    "scenarios": 0
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 3 of the 3 things this mod should do on a real Paper 1.21.11 server: 3 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "GoldenShop starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "GoldenShop: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /shop command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'shop': ok (optional) -> Players only. |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "reload_command",
+     "title": "/shop reload reloads the settings without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'shop reload': ok (optional) -> GoldenShop: 3 offers, currency emerald. |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "golden",
+   "key": "mc-weapon",
+   "buildId": "golden-mc-weapon",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8l8p75-8bed5d",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 73,
+   "bootMs": 17419,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 0,
+    "rconChecks": 1,
+    "scenarios": 0
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 2 of the 2 things this mod should do on a real Paper 1.21.11 server: 2 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "GoldenWeapon starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "GoldenWeapon: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /stormblade command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'stormblade': ok (optional) -> Storm Blade ready: true. Usage: /stormblade <player> |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "golden",
+   "key": "mc-quest",
+   "buildId": "golden-mc-quest",
+   "mutant": null,
+   "mutation": null,
+   "runId": "tf-1-21-11-mv8lab4p-2403a6",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 24,
+   "bootMs": 17623,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 0,
+    "rconChecks": 1,
+    "scenarios": 0
+   },
+   "verdict": "passed",
+   "score": 1,
+   "coverage": 1,
+   "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 2 of the 2 things this mod should do on a real Paper 1.21.11 server: 2 worked.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "GoldenQuests starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "GoldenQuests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /quest command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'quest': ok (optional) -> GoldenQuests: 2 quests. |"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "mutant",
+   "key": "shop-gui",
+   "buildId": "mb4f15e98f28682e18f216",
+   "mutant": "count",
+   "mutation": "menus.shop_blocks.b10.a0.count -> 1",
+   "runId": "tf-1-21-11-mv8laub1-5829ea",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 48,
+   "bootMs": 17223,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 32100,
+    "rconChecks": 2,
+    "scenarios": 10
+   },
+   "verdict": "failed",
+   "score": 0.917,
+   "coverage": 1,
+   "counts": {
+    "total": 12,
+    "passed": 11,
+    "failed": 1,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 12 of the 12 things this mod should do on a real Paper 1.21.11 server: 11 worked, 1 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Shop starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Shop: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /shop command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'shop': ok (optional) -> Shop: items -; menus shop_blocks, shop_food, shop_main, shop_tools; quests -. Use /shop menu <id>, /shop quests, /shop params, /shop reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_blocks opens \"Shop - Blocks\" with 10 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "window \"Shop - Blocks\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Blocks\"]"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Stone\" works",
+     "status": "fail",
+     "reason": "LACKS 16x stone (matching 1, same id 1); inventory: 1x stone",
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "clicked slot 10 of \"Shop - Blocks\" (1x stone \"Buy Stone\")"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Oak Planks\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 12 of \"Shop - Blocks\" (1x oak_planks \"Buy Oak Planks\")",
+      "has 16x oak_planks (matching 16, same id 16)"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_food opens \"Shop - Food\" with 10 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_food'",
+      "window \"Shop - Food\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Food\"]"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Bread\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 10 of \"Shop - Food\" (1x bread \"Buy Bread\")",
+      "has 8x bread (matching 8, same id 8)"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Cooked Beef\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 12 of \"Shop - Food\" (1x cooked_beef \"Buy Cooked Beef\")",
+      "has 4x cooked_beef (matching 4, same id 4)"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_main opens \"Shop\" with 4 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part (want >= 4); want title [\"Shop\"]"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Blocks\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 11 of \"Shop #03f790\" (1x grass_block \"Blocks\")"
+     ]
+    },
+    {
+     "id": "E11",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Food\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 13 of \"Shop #03f790\" (1x bread \"Food\")"
+     ]
+    },
+    {
+     "id": "E12",
+     "kind": "config_reload",
+     "title": "Changing menus.shop_main.title in config.yml and running /shop reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e12-1 'shop reload': ok (optional) -> Shop config reloaded |",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part; want title [\"#03f790\"]"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "mutant",
+   "key": "shop-gui",
+   "buildId": "mb4f15e98f28682e18f216",
+   "mutant": "title",
+   "mutation": "menus.shop_blocks.title -> \"Something Else\"",
+   "runId": "tf-1-21-11-mv8lbv6q-44a36f",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 57,
+   "bootMs": 17818,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 32100,
+    "rconChecks": 2,
+    "scenarios": 10
+   },
+   "verdict": "failed",
+   "score": 0.8,
+   "coverage": 0.833,
+   "counts": {
+    "total": 12,
+    "passed": 8,
+    "failed": 2,
+    "notRun": 2,
+    "notTestable": 0
+   },
+   "label": "We tried 10 of the 12 things this mod should do on a real Paper 1.21.11 server: 8 worked, 2 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Shop starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Shop: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /shop command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'shop': ok (optional) -> Shop: items -; menus shop_blocks, shop_food, shop_main, shop_tools; quests -. Use /shop menu <id>, /shop quests, /shop params, /shop reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_blocks opens \"Shop - Blocks\" with 10 buttons",
+     "status": "fail",
+     "reason": "window \"Something Else\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Blocks\"]; items: 10:stone \"Buy Stone\", 12:oak_planks \"Buy Oak Planks\", 14:glass \"Buy Glass\", 16:iron_block \"Buy Iron Block\",",
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "window \"Something Else\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Blocks\"]"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Stone\" works",
+     "status": "not_run",
+     "reason": "the test could not be set up: window \"Something Else\" open with 36 item(s) in its top part; want title [\"Shop - Blocks\"]; items: 10:stone \"Buy Stone\", 12:oak_planks \"Buy Oak Planks\", 14:glass \"Buy Glass\", 16:iron_block \"Buy Iron Block\", 19:stone \"Sel",
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "window \"Something Else\" open with 36 item(s) in its top part; want title [\"Shop - Blocks\"]"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "menu_click",
+     "title": "In \"Shop - Blocks\", clicking \"Buy Oak Planks\" works",
+     "status": "not_run",
+     "reason": "the test could not be set up: window \"Something Else\" open with 36 item(s) in its top part; want title [\"Shop - Blocks\"]; items: 10:stone \"Buy Stone\", 12:oak_planks \"Buy Oak Planks\", 14:glass \"Buy Glass\", 16:iron_block \"Buy Iron Block\", 19:stone \"Sel",
+     "evidence": [
+      "sent command '/shop menu shop_blocks'",
+      "window \"Something Else\" open with 36 item(s) in its top part; want title [\"Shop - Blocks\"]"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_food opens \"Shop - Food\" with 10 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_food'",
+      "window \"Shop - Food\" open with 36 item(s) in its top part (want >= 10); want title [\"Shop - Food\"]"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Bread\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 10 of \"Shop - Food\" (1x bread \"Buy Bread\")",
+      "has 8x bread (matching 8, same id 8)"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "menu_click",
+     "title": "In \"Shop - Food\", clicking \"Buy Cooked Beef\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "clicked slot 12 of \"Shop - Food\" (1x cooked_beef \"Buy Cooked Beef\")",
+      "has 4x cooked_beef (matching 4, same id 4)"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "menu_opens",
+     "title": "/shop menu shop_main opens \"Shop\" with 4 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part (want >= 4); want title [\"Shop\"]"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Blocks\" works",
+     "status": "fail",
+     "reason": "window \"Something Else\" open with 36 item(s) in its top part; want title [\"Shop - Blocks\"]; items: 10:stone \"Buy Stone\", 12:oak_planks \"Buy Oak Planks\", 14:glass \"Buy Glass\", 16:iron_block \"Buy Iron Block\", 19:stone \"Sel",
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 11 of \"Shop #03f790\" (1x grass_block \"Blocks\")"
+     ]
+    },
+    {
+     "id": "E11",
+     "kind": "menu_click",
+     "title": "In \"Shop\", clicking \"Food\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/shop menu shop_main'",
+      "clicked slot 13 of \"Shop #03f790\" (1x bread \"Food\")"
+     ]
+    },
+    {
+     "id": "E12",
+     "kind": "config_reload",
+     "title": "Changing menus.shop_main.title in config.yml and running /shop reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e12-1 'shop reload': ok (optional) -> Shop config reloaded |",
+      "window \"Shop #03f790\" open with 27 item(s) in its top part; want title [\"#03f790\"]"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "mutant",
+   "key": "fire-sword",
+   "buildId": "mb40f9b72699ef38d0d30c",
+   "mutant": "sound",
+   "mutation": "first sound key nx_9q18yxw3:fire_sword.fireball_launch -> minecraft:block.note_block.pling",
+   "runId": "tf-1-21-11-mv8ld2wo-e1f683",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:fail",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 47,
+   "bootMs": 17219,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 19200,
+    "rconChecks": 3,
+    "scenarios": 6
+   },
+   "verdict": "failed",
+   "score": 0.75,
+   "coverage": 0.8,
+   "counts": {
+    "total": 10,
+    "passed": 6,
+    "failed": 2,
+    "notRun": 0,
+    "notTestable": 2
+   },
+   "label": "We tried 8 of the 10 things this mod should do on a real Paper 1.21.11 server: 6 worked, 2 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "FireSword starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "FireSword: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /firesword command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'firesword': ok (optional) -> FireSword items: fire_sword. Use /firesword give <item> [player] [count], /firesword list, /firesword params, /firesword reload |"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/firesword give fire_sword gives the Fire Sword",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'firesword list': ok (optional) -> fire_sword: identity=ok material=netherite_sword abilities=4 recipe=registered |",
+      "console 'firesword give fire_sword NxPlaytest' -> Gave 1 x fire_sword to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Fireball\" works (right click)",
+     "status": "fail",
+     "reason": "did NOT hear nx_9q18yxw3:fire_sword.fireball_launch; heard since the action: minecraft:block.note_block.pling",
+     "evidence": [
+      "right-clicked with netherite_sword",
+      "saw flame particles; seen since the action: flame"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Fireball Impact\" works (projectile hit)",
+     "status": "not_testable",
+     "reason": "it fires when a projectile hits something (its launch is tested on its own ability)",
+     "evidence": []
+    },
+    {
+     "id": "E6",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Flame Ring\" works (sneak right click)",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "saw flame particles; seen since the action: flame, large_smoke",
+      "heard nx_9q18yxw3:fire_sword.flame_ring; heard since the action: nx_9q18yxw3:fire_sword.flame_ring"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "ability_effect",
+     "title": "Fire Sword: \"Flame Dash\" works (charge release)",
+     "status": "fail",
+     "reason": "NO flame particles; seen since the action: none",
+     "evidence": [
+      "waited 550 ms",
+      "sneak off"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "recipe_registered",
+     "title": "The Fire Sword has a crafting recipe the game knows",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'recipe give NxPlaytest nx_9q18yxw3:fire_sword' -> Unlocked 1 recipe(s) for NxPlaytest"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "hud_visible",
+     "title": "The HUD \"fire_sword_hud\" shows its action bar while holding the Fire Sword",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "saw [\"%\"]"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "config_reload",
+     "title": "A config.yml change reaches the game after /firesword reload",
+     "status": "not_testable",
+     "reason": "no setting of this mod has an effect the test player can see",
+     "evidence": []
+    }
+   ]
+  },
+  {
+   "set": "mutant",
+   "key": "magic-wand",
+   "buildId": "mb49b19722510dc38e0ec0",
+   "mutant": "main",
+   "mutation": "plugin.yml main class broken",
+   "runId": "tf-1-21-11-mv8le36s-f79caf",
+   "engine": null,
+   "boot": {
+    "verdict": "failed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:fail",
+     "commands_registered:fail",
+     "datapack_loaded:not_run"
+    ]
+   },
+   "wallSec": 33,
+   "bootMs": 17020,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 2300,
+    "rconChecks": 2,
+    "scenarios": 2
+   },
+   "verdict": "failed",
+   "score": 0,
+   "coverage": 1,
+   "counts": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "notRun": 0,
+    "notTestable": 0
+   },
+   "label": "We tried 4 of the 4 things this mod should do on a real Paper 1.21.11 server: 0 worked, 4 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "ArcaneWand starts on the server",
+     "status": "fail",
+     "reason": "the mod did not start (Paper did not enable it)",
+     "evidence": [
+      "ArcaneWand: NOT enabled (log: enabling=false enableError=false loadError=true disabled=false; rcon plugins: false)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /arcanewand command answers without an error",
+     "status": "fail",
+     "reason": "the reply says \"Unknown or incomplete command\"",
+     "evidence": [
+      "nxo-e2-1 'arcanewand' [rss 858 MB, 290 ms]: ok (optional) -> Unknown or incomplete command. See below for error | arcanewand<--[HERE]"
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/arcanewand give gives the player an item",
+     "status": "fail",
+     "reason": "the reply lacks [\"Test passed\"]: console 'execute if data entity NxPlaytest Inventory[0]' -> Test failed",
+     "evidence": [
+      "sent command '/arcanewand give'",
+      "none of [\"An internal error occurred\",\"Usage:\"] in 1 message(s)"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "reload_command",
+     "title": "/arcanewand reload reloads the settings without an error",
+     "status": "fail",
+     "reason": "the reply says \"Unknown or incomplete command\"",
+     "evidence": [
+      "nxo-e4-1 'arcanewand reload' [rss 858 MB, 252 ms]: ok (optional) -> Unknown or incomplete command. See below for error | arcanewand reload<--[HERE]"
+     ]
+    }
+   ]
+  },
+  {
+   "set": "mutant",
+   "key": "daily-quests",
+   "buildId": "mbeca427b3f102cec0be13",
+   "mutant": "count",
+   "mutation": "menus.crate.b11.a0.count -> 1",
+   "runId": "tf-1-21-11-mv8lesgc-2b0270",
+   "engine": null,
+   "boot": {
+    "verdict": "passed",
+    "checks": [
+     "compile:pass",
+     "scan:pass",
+     "boot:pass",
+     "plugins_enabled:pass",
+     "commands_registered:pass",
+     "datapack_loaded:pass"
+    ]
+   },
+   "wallSec": 47,
+   "bootMs": 18218,
+   "oracleTiming": {
+    "budgetSec": 45,
+    "plannedMs": 24600,
+    "rconChecks": 3,
+    "scenarios": 8
+   },
+   "verdict": "failed",
+   "score": 0.917,
+   "coverage": 0.8,
+   "counts": {
+    "total": 15,
+    "passed": 11,
+    "failed": 1,
+    "notRun": 0,
+    "notTestable": 3
+   },
+   "label": "We tried 12 of the 15 things this mod should do on a real Paper 1.21.11 server: 11 worked, 1 did not.",
+   "expectations": [
+    {
+     "id": "E1",
+     "kind": "mod_enables",
+     "title": "Quests starts on the server",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "Quests: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)"
+     ]
+    },
+    {
+     "id": "E2",
+     "kind": "command_responds",
+     "title": "The /quests command answers without an error",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e2-1 'quests': ok (optional) -> Quests: items crate_key; menus crate, daily_board; quests daily_login, harvest_run, night_watch, stone_breaker, zombie_cull. Use /quests menu <id>, /quests quests, /quests params, /quests reload "
+     ]
+    },
+    {
+     "id": "E3",
+     "kind": "item_given",
+     "title": "/quests give crate_key gives the Crate Key",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e3-1 'quests list': ok (optional) -> crate_key: identity=ok material=tripwire_hook abilities=0 recipe=none |",
+      "console 'quests give crate_key NxPlaytest' -> Gave 1 x crate_key to NxPlaytest. |"
+     ]
+    },
+    {
+     "id": "E4",
+     "kind": "menu_opens",
+     "title": "/quests menu crate opens \"Crate\" with 4 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "window \"Crate\" open with 27 item(s) in its top part (want >= 4); want title [\"Crate\"]"
+     ]
+    },
+    {
+     "id": "E5",
+     "kind": "menu_click",
+     "title": "In \"Crate\", clicking \"Coin Pouch\" works",
+     "status": "fail",
+     "reason": "LACKS 10x emerald (matching 1, same id 1); inventory: 1x emerald",
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "clicked slot 11 of \"Crate\" (1x emerald \"Coin Pouch\")"
+     ]
+    },
+    {
+     "id": "E6",
+     "kind": "menu_click",
+     "title": "In \"Crate\", clicking \"Gem Cache\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu crate'",
+      "clicked slot 13 of \"Crate\" (1x diamond \"Gem Cache\")"
+     ]
+    },
+    {
+     "id": "E7",
+     "kind": "menu_opens",
+     "title": "/quests menu daily_board opens \"Daily Quests\" with 7 buttons",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "window \"Daily Quests #9c2d33\" open with 36 item(s) in its top part (want >= 7); want title [\"Daily Quests\"]"
+     ]
+    },
+    {
+     "id": "E8",
+     "kind": "menu_click",
+     "title": "In \"Daily Quests\", clicking \"Crate\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "clicked slot 34 of \"Daily Quests #9c2d33\" (1x chest \"Crate\")"
+     ]
+    },
+    {
+     "id": "E9",
+     "kind": "menu_click",
+     "title": "In \"Daily Quests\", clicking \"Stone Breaker\" works",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "sent command '/quests menu daily_board'",
+      "clicked slot 10 of \"Daily Quests #9c2d33\" (1x stone \"Stone Breaker\")"
+     ]
+    },
+    {
+     "id": "E10",
+     "kind": "quest_progress",
+     "title": "The \"Daily Login Reward\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E11",
+     "kind": "quest_progress",
+     "title": "The \"Harvest Run\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E12",
+     "kind": "quest_progress",
+     "title": "The \"Night Watch\" quest can be done",
+     "status": "not_testable",
+     "reason": "it starts from a menu button only (not driven yet)",
+     "evidence": []
+    },
+    {
+     "id": "E13",
+     "kind": "config_reload",
+     "title": "Changing menus.daily_board.title in config.yml and running /quests reload changes the game",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console: nxo-e13-1 'quests reload': ok (optional) -> Quests config reloaded |",
+      "window \"Daily Quests #9c2d33\" open with 36 item(s) in its top part; want title [\"#9c2d33\"]"
+     ]
+    },
+    {
+     "id": "E14",
+     "kind": "loot_gives",
+     "title": "The loot table chests/daily_crate_bonus gives items",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'execute if data entity NxPlaytest Inventory[0]' -> Test passed. Count: 1"
+     ]
+    },
+    {
+     "id": "E15",
+     "kind": "advancement_reward",
+     "title": "The advancement \"Daily Devotion\" can be granted",
+     "status": "pass",
+     "reason": null,
+     "evidence": [
+      "console 'advancement grant NxPlaytest only nx_4xk78r2l:daily/first_login' -> Granted the advancement [Daily Devotion] to NxPlaytest"
+     ]
+    }
+   ]
+  }
+ ]
+}

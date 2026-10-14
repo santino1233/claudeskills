@@ -1,0 +1,493 @@
+{
+ "at": "2026-10-14T20:30:43.486Z",
+ "perKind": 6,
+ "search": [
+  {
+   "plan": "all",
+   "q": "wooden door",
+   "ms": 4918,
+   "n": 1407,
+   "kinds": [
+    "sound"
+   ],
+   "top": "Patio door wood glass int hinge creak open close 08"
+  },
+  {
+   "plan": "all",
+   "q": "sci-fi crate prop",
+   "ms": 2261,
+   "n": 259,
+   "kinds": [
+    "music",
+    "sound",
+    "sprite"
+   ],
+   "top": "Dsgn synth scifi loop ship reactor synth layer layered saw buzz esm sga 3"
+  },
+  {
+   "plan": "all",
+   "q": "stone wall floor texture",
+   "ms": 2320,
+   "n": 12,
+   "kinds": [
+    "texture"
+   ],
+   "top": "Floor stone sand random depth"
+  },
+  {
+   "plan": "saka",
+   "q": "explosion sound",
+   "ms": 2434,
+   "n": 119,
+   "kinds": [
+    "sound"
+   ],
+   "top": "Explosion 6"
+  },
+  {
+   "plan": "saka",
+   "q": "wooden door",
+   "ms": 2313,
+   "n": 980,
+   "kinds": [
+    "sound"
+   ],
+   "top": "Patio door wood glass int hinge creak open close 08"
+  },
+  {
+   "plan": "free",
+   "q": "explosion sound",
+   "ms": 0,
+   "n": 0,
+   "kinds": [],
+   "error": "asset_locked: this plan cannot use library assets"
+  }
+ ],
+ "browse": [
+  {
+   "plan": "all",
+   "cleared": true,
+   "total": 3144,
+   "rows": 24,
+   "kinds": 8,
+   "tiers": [
+    "cc0",
+    "cc-by",
+    "user-contributed",
+    "proprietary-nxeon"
+   ],
+   "locked": [],
+   "notice": null
+  },
+  {
+   "plan": "all",
+   "cleared": false,
+   "total": 2687,
+   "rows": 24,
+   "kinds": 8,
+   "tiers": [
+    "cc0",
+    "cc-by",
+    "user-contributed"
+   ],
+   "locked": [],
+   "notice": null
+  },
+  {
+   "plan": "saka",
+   "cleared": true,
+   "total": 944,
+   "rows": 24,
+   "kinds": 2,
+   "tiers": [
+    "cc0",
+    "cc-by",
+    "user-contributed",
+    "proprietary-nxeon"
+   ],
+   "locked": [
+    "texture",
+    "sprite",
+    "flipbook",
+    "particle-texture",
+    "motion-preset",
+    "effect-preset"
+   ],
+   "notice": null
+  },
+  {
+   "plan": "saka",
+   "cleared": false,
+   "total": 487,
+   "rows": 24,
+   "kinds": 2,
+   "tiers": [
+    "cc0",
+    "cc-by",
+    "user-contributed"
+   ],
+   "locked": [
+    "texture",
+    "sprite",
+    "flipbook",
+    "particle-texture",
+    "motion-preset",
+    "effect-preset"
+   ],
+   "notice": null
+  },
+  {
+   "plan": "katara",
+   "cleared": true,
+   "total": 0,
+   "rows": 0,
+   "kinds": 0,
+   "tiers": [],
+   "locked": [
+    "texture",
+    "sprite",
+    "sound",
+    "music",
+    "flipbook",
+    "particle-texture",
+    "motion-preset",
+    "effect-preset"
+   ],
+   "notice": "Your plan cannot use library assets. Sounds need Saka or above; textures, models and motion need All models."
+  },
+  {
+   "plan": "katara",
+   "cleared": false,
+   "total": 0,
+   "rows": 0,
+   "kinds": 0,
+   "tiers": [],
+   "locked": [
+    "texture",
+    "sprite",
+    "sound",
+    "music",
+    "flipbook",
+    "particle-texture",
+    "motion-preset",
+    "effect-preset"
+   ],
+   "notice": "Your plan cannot use library assets. Sounds need Saka or above; textures, models and motion need All models."
+  }
+ ],
+ "served": {
+  "hdri/cc0:original": {
+   "tried": 6,
+   "ok": 0,
+   "fail": {
+    "400:use_bundle": 6
+   },
+   "sampleMs": [],
+   "failSamples": [
+    "b49ce4243019 polyhaven/hdris/altanka",
+    "8b310153ed79 ambientcg/HDRI/NightEnvironmentHDRI001"
+   ]
+  },
+  "hdri/cc0:thumb@1": {
+   "tried": 6,
+   "ok": 6,
+   "fail": {},
+   "sampleMs": [
+    1251,
+    872,
+    876,
+    663,
+    898,
+    904
+   ],
+   "failSamples": []
+  },
+  "hdri/cc0:bundle@1": {
+   "tried": 6,
+   "ok": 6,
+   "fail": {},
+   "sampleMs": [
+    1226,
+    1127,
+    989,
+    2592,
+    1193,
+    920
+   ],
+   "failSamples": []
+  }
+ },
+ "gates": {
+  "proprietary preview, cleared, plan all": {
+   "status": 200,
+   "code": "ok",
+   "bytes": 17078,
+   "ms": 1167
+  },
+  "proprietary preview, NOT cleared": {
+   "status": 403,
+   "code": "not_cleared"
+  },
+  "proprietary original (never)": {
+   "status": 403,
+   "code": "raw_audio"
+  },
+  "cc0 sound raw original (never)": {
+   "status": 403,
+   "code": "raw_audio"
+  },
+  "cc0 sound preview, saka": {
+   "status": 200,
+   "code": "ok",
+   "bytes": 3817,
+   "ms": 896
+  },
+  "cc0 sound preview, katara": {
+   "status": 403,
+   "code": "asset_locked"
+  },
+  "cc0 sound preview, unknown plan": {
+   "status": 403,
+   "code": "plan_unknown"
+  },
+  "visual thumb, saka (locked)": {
+   "status": 403,
+   "code": "asset_locked"
+  },
+  "removed entry": {
+   "status": 410,
+   "code": "removed"
+  },
+  "held entry": {
+   "status": 404,
+   "code": "not_found"
+  }
+ },
+ "admin": {
+  "total": 62777,
+  "byKind": {
+   "animated-model": 130,
+   "animation-clip": 741,
+   "decal": 127,
+   "flipbook": 1401,
+   "hdri": 1430,
+   "model": 10278,
+   "music": 137,
+   "particle-texture": 361,
+   "sound": 5961,
+   "sprite": 38464,
+   "texture": 801,
+   "texture-set": 2946
+  },
+  "byTier": {
+   "cc0": 59813,
+   "proprietary-nxeon": 2964
+  },
+  "byStatus": {
+   "published": 62444,
+   "held": 43,
+   "removed": 290
+  },
+  "matrix": [
+   {
+    "kind": "animated-model",
+    "tier": "cc0",
+    "status": "published",
+    "n": 130
+   },
+   {
+    "kind": "animation-clip",
+    "tier": "cc0",
+    "status": "held",
+    "n": 24
+   },
+   {
+    "kind": "animation-clip",
+    "tier": "cc0",
+    "status": "published",
+    "n": 717
+   },
+   {
+    "kind": "decal",
+    "tier": "cc0",
+    "status": "published",
+    "n": 127
+   },
+   {
+    "kind": "flipbook",
+    "tier": "cc0",
+    "status": "published",
+    "n": 1401
+   },
+   {
+    "kind": "hdri",
+    "tier": "cc0",
+    "status": "published",
+    "n": 1430
+   },
+   {
+    "kind": "model",
+    "tier": "cc0",
+    "status": "published",
+    "n": 10273
+   },
+   {
+    "kind": "model",
+    "tier": "cc0",
+    "status": "removed",
+    "n": 5
+   },
+   {
+    "kind": "music",
+    "tier": "cc0",
+    "status": "published",
+    "n": 90
+   },
+   {
+    "kind": "music",
+    "tier": "proprietary-nxeon",
+    "status": "published",
+    "n": 47
+   },
+   {
+    "kind": "particle-texture",
+    "tier": "cc0",
+    "status": "published",
+    "n": 361
+   },
+   {
+    "kind": "sound",
+    "tier": "cc0",
+    "status": "held",
+    "n": 11
+   },
+   {
+    "kind": "sound",
+    "tier": "cc0",
+    "status": "published",
+    "n": 3033
+   },
+   {
+    "kind": "sound",
+    "tier": "proprietary-nxeon",
+    "status": "held",
+    "n": 5
+   },
+   {
+    "kind": "sound",
+    "tier": "proprietary-nxeon",
+    "status": "published",
+    "n": 2912
+   },
+   {
+    "kind": "sprite",
+    "tier": "cc0",
+    "status": "published",
+    "n": 38194
+   },
+   {
+    "kind": "sprite",
+    "tier": "cc0",
+    "status": "removed",
+    "n": 270
+   },
+   {
+    "kind": "texture",
+    "tier": "cc0",
+    "status": "held",
+    "n": 3
+   },
+   {
+    "kind": "texture",
+    "tier": "cc0",
+    "status": "published",
+    "n": 783
+   },
+   {
+    "kind": "texture",
+    "tier": "cc0",
+    "status": "removed",
+    "n": 15
+   },
+   {
+    "kind": "texture-set",
+    "tier": "cc0",
+    "status": "published",
+    "n": 2946
+   }
+  ],
+  "holdQueue": [
+   {
+    "id": "0250181ee887f2da1afdf77939e205227b62e4d7c69efcff0655899f14b573fa",
+    "kind": "animation-clip",
+    "title": "Rig medium general death pose",
+    "tier": "cc0",
+    "reason": "quality hard fail (see quality checks)",
+    "flags": [],
+    "contributor": null,
+    "reports": 0
+   },
+   {
+    "id": "09d412e4c2b97b3068284586e2ed0acc317e5534fd27a23432ac32a50d55eac4",
+    "kind": "animation-clip",
+    "title": "Mudeater battle stance unarmed",
+    "tier": "cc0",
+    "reason": "quality hard fail (see quality checks)",
+    "flags": [],
+    "contributor": null,
+    "reports": 0
+   },
+   {
+    "id": "09e2c1b643b71b9aff9932b4e02d78db116446b9a14b00a5b2a9b28d2668fd8e",
+    "kind": "sound",
+    "title": "Click 004",
+    "tier": "cc0",
+    "reason": "quality hard fail (see quality checks)",
+    "flags": [],
+    "contributor": null,
+    "reports": 0
+   },
+   {
+    "id": "0c2263d7f7d77a9e8e499d58ab505e79ba4ce63b379927b2d487c7566330e79f",
+    "kind": "animation-clip",
+    "title": "Rig medium special skeletons inactive standing pose",
+    "tier": "cc0",
+    "reason": "quality hard fail (see quality checks)",
+    "flags": [],
+    "contributor": null,
+    "reports": 0
+   },
+   {
+    "id": "0e4c36e2aaf14971f69097530d917ba54aaf155efd2647dc548186d8739d63a0",
+    "kind": "animation-clip",
+    "title": "Rig movement basic t pose",
+    "tier": "cc0",
+    "reason": "quality hard fail (see quality checks)",
+    "flags": [],
+    "contributor": null,
+    "reports": 0
+   }
+  ],
+  "openReports": 0,
+  "takedownLog": [],
+  "derivatives": [
+   {
+    "recipe": "bundle@1",
+    "n": 12,
+    "bytes": 121077177
+   },
+   {
+    "recipe": "preview-ogg@1",
+    "n": 28,
+    "bytes": 3872478
+   },
+   {
+    "recipe": "thumb@1",
+    "n": 25,
+    "bytes": 936507
+   }
+  ],
+  "dependentsOfRemoved": 0
+ },
+ "adminFind": 19
+}

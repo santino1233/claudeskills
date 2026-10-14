@@ -1,0 +1,151 @@
+{
+ "at": "2026-10-14T20:13:07.027Z",
+ "database": "wt_cyrus_libprod",
+ "entries": "/tank/nxeon-build/libprod-data/entries3-staged-cc0.jsonl",
+ "ledgers": [
+  "/tank/nxeon-build/libprod-data/LICENCE-LEDGER.csv",
+  "/tank/nxeon-build/libprod-data/LICENCE-LEDGER-motion.csv",
+  "/tank/nxeon-build/libprod-data/LICENCE-LEDGER-motion-2.csv"
+ ],
+ "allowProprietary": true,
+ "dryRun": false,
+ "preflight": {
+  "missingTables": [],
+  "missingIndexes": [],
+  "entryHashColumn": true
+ },
+ "before": {
+  "entries": 0,
+  "terms": 0,
+  "entriesWithoutTerms": 0,
+  "byKind": {},
+  "byTier": {},
+  "byStatus": {}
+ },
+ "plan": {
+  "dryRun": true,
+  "lines": 62777,
+  "valid": 62777,
+  "invalid": 0,
+  "skippedCcBy": 0,
+  "duplicateIds": 0,
+  "byKind": {
+   "model": 10278,
+   "texture-set": 2946,
+   "hdri": 1430,
+   "decal": 127,
+   "texture": 801,
+   "sprite": 38464,
+   "sound": 5961,
+   "music": 137,
+   "flipbook": 1401,
+   "animated-model": 130,
+   "particle-texture": 361,
+   "animation-clip": 741
+  },
+  "byTier": {
+   "cc0": 59813,
+   "proprietary-nxeon": 2964
+  },
+  "byStatus": {
+   "published": 62444,
+   "removed": 290,
+   "held": 43
+  },
+  "inserted": 62777,
+  "updated": 0,
+  "unchanged": 0,
+  "terms": 0,
+  "errors": [],
+  "ms": 4100,
+  "gated": 0,
+  "gatedByReason": {},
+  "gatedSamples": [],
+  "passedVia": {
+   "ledger-pack": 58946,
+   "ledger-source": 375,
+   "owner-cleared": 2964,
+   "own-work": 492
+  }
+ },
+ "real": {
+  "dryRun": false,
+  "lines": 62777,
+  "valid": 62777,
+  "invalid": 0,
+  "skippedCcBy": 0,
+  "duplicateIds": 0,
+  "byKind": {
+   "model": 10278,
+   "texture-set": 2946,
+   "hdri": 1430,
+   "decal": 127,
+   "texture": 801,
+   "sprite": 38464,
+   "sound": 5961,
+   "music": 137,
+   "flipbook": 1401,
+   "animated-model": 130,
+   "particle-texture": 361,
+   "animation-clip": 741
+  },
+  "byTier": {
+   "cc0": 59813,
+   "proprietary-nxeon": 2964
+  },
+  "byStatus": {
+   "published": 62444,
+   "removed": 290,
+   "held": 43
+  },
+  "inserted": 62777,
+  "updated": 0,
+  "unchanged": 0,
+  "terms": 1145478,
+  "errors": [],
+  "ms": 56832,
+  "gated": 0,
+  "gatedByReason": {},
+  "gatedSamples": [],
+  "passedVia": {
+   "ledger-pack": 58946,
+   "ledger-source": 375,
+   "owner-cleared": 2964,
+   "own-work": 492
+  }
+ },
+ "after": {
+  "entries": 62777,
+  "terms": 1145478,
+  "entriesWithoutTerms": 0,
+  "byKind": {
+   "sprite": 38464,
+   "model": 10278,
+   "sound": 5961,
+   "texture-set": 2946,
+   "hdri": 1430,
+   "flipbook": 1401,
+   "texture": 801,
+   "animation-clip": 741,
+   "particle-texture": 361,
+   "music": 137,
+   "animated-model": 130,
+   "decal": 127
+  },
+  "byTier": {
+   "cc0": 59813,
+   "proprietary-nxeon": 2964
+  },
+  "byStatus": {
+   "published": 62444,
+   "removed": 290,
+   "held": 43
+  }
+ },
+ "verify": {
+  "entriesAfterEqBeforePlusInserted": true,
+  "entriesWithoutTerms": 0,
+  "expectedEntries": 62777,
+  "ok": true
+ }
+}
