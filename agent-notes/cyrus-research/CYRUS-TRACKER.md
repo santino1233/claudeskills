@@ -499,3 +499,8 @@ Coverage matrix: 85 archetypes (BA demand weights, BB techniques) in `lib/cyrus/
 - Alert rule fixes (f12841d264 on main): stale reservation rule counted settled rows; webhook rule errored without CyrusWebhookOutbox table; DB URL now redacted in alert errors (old journal lines contain the DB password; local root only).
 - Eval fourth1 started on 0.16 (third1 plan no longer matched after rc9): `/root/eval-fourth1.log`, journal /root/cyrus-eval/fourth1, budget $30, in-flight 1.
 - Owner-only still: Anthropic API key, backup pubkey + off-box target, Discord webhook, beta tester allow-list, legal footer links (I can do the footer link change), price decisions, real-client test.
+
+## 107. Dropbox offsite backups for Cyrus + platform (2026-10-14)
+- Root cause: legacy offsite timer disabled since 09-15; Cyrus backups were never installed. Fixed: cyrus-backup.timer installed (gpg copy to node-2 + restic repo on Dropbox `cyrus/restic`: library catalogs, packs, knowledge, SFX 51 GB, VM 88001 data), launch-check backup-fresh PASS, backup-offbox marker written.
+- Platform: scripts/backup/nxeon-dropbox-sync.sh + timers (branch feature/backups-dropbox, ff-merged to main, not promoted). Restore drill verified (throwaway DB).
+- Owner: move private keys off the box, rotate Dropbox token, set Discord webhook. See agent-notes/BACKUP-DROPBOX-OWNER-STEPS.md and BACKUP-REPORT-2026-10-14.md.
