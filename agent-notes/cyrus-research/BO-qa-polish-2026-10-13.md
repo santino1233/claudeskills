@@ -34,6 +34,7 @@ The earlier r49 journeys (25 steps) were not re-run in this pass.
 Count: 14 defect classes found, 14 fixed (each pinned in `test/cyrus-qa-polish.test.ts`).
 
 ## Remaining (ranked)
+UPDATE 2026-10-14 (feature/cyrus-polish-round2): items 1-7 below are FIXED in code and pinned by test/cyrus-qa-polish.test.ts (live canvas inline, persisted failure card, Nxeon cookie notice hidden on cyrus.my with CYRUS_CONSENT, /api/log routed, Cyrus-admin-scoped a11y, zero-count wording, h1 + light off labels + phone bubble lift). Not re-shot in a browser; needs a portal promote. Item 8 is unchanged (lab-only).
 1. Project page shows only a stage list while a build runs; the live canvas is only in the studio ("Open in studio"). `journey-build-running-project-desktop-dark.png`
 2. A failed build leaves no reason on the project page once the follower unmounts. `studio-build-failed-*`, project page of mbappboss
 3. Nxeon's global cookie banner covers the studio composer on cyrus.my until dismissed (`CYRUS_CONSENT` is the Cyrus one). `journey-name-your-mod` area
