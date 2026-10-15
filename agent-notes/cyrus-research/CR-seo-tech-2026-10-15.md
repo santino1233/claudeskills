@@ -27,7 +27,7 @@ Branch `feature/cyrus-seo-tech` (worktree /tank/dev-worktrees/cyrus-seo-tech). N
     GET /legal/terms (Cyrus host)         -> no X-Robots-Tag; <link rel=canonical href=https://cyrus.my/legal/terms>
     Nxeon hosts                           -> unchanged (test pins the Nxeon robots rules)
 
-Not curl-able from this box until the owner ships the app: the agent never deployed. The matrix script `scripts/cyrus/nginx-cyrus-my-check.sh --origin 127.0.0.1` now also asserts both files' content and prints MATRIX FAILED until then.
+Not curl-able from this box until the owner ships the app: the agent never deployed. The matrix script `scripts/cyrus/nginx-cyrus-my-check.sh --origin <origin-ip>` now also asserts both files' content and prints MATRIX FAILED until then.
 
 ## Bot policy (note)
 Mirrored, not invented: the AI search agents (OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User, DuckAssistBot, Applebot) allowed; training agents (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot) allowed unless `AI_TRAINING_CRAWLERS=0`. Extracted to `lib/seo-robots-policy.ts`, shared by both files. Owner can still choose a different policy for Cyrus (edit `cyrusRobots()`).
@@ -48,7 +48,7 @@ Changed: `app/robots.ts`, `app/sitemap.xml/route.ts`, `middleware.ts` (X-Robots-
     cd /opt/nxeon && scripts/deploy-staging.sh <ref> && scripts/promote-production.sh
     # purge Cloudflare cache for https://cyrus.my/robots.txt (it was served with max-age=14400)
     # nginx (only adds the google<hex>.html location)
-    cp /etc/nginx/sites-enabled/cyrus-my /root/cyrus-my.bak && cp deploy/cyrus/nginx-cyrus-my.conf /etc/nginx/sites-enabled/cyrus-my && nginx -t && systemctl reload nginx && bash scripts/cyrus/nginx-cyrus-my-check.sh --origin 127.0.0.1
+    cp /etc/nginx/sites-enabled/cyrus-my /root/cyrus-my.bak && cp deploy/cyrus/nginx-cyrus-my.conf /etc/nginx/sites-enabled/cyrus-my && nginx -t && systemctl reload nginx && bash scripts/cyrus/nginx-cyrus-my-check.sh --origin <origin-ip>
     # landing
     apps/cyrus-site/publish.sh check && apps/cyrus-site/publish.sh publish && apps/cyrus-site/publish.sh publish --go
     # later, with the owner's token: CYRUS_GSC_VERIFICATION=<token or google<hex>.html> apps/cyrus-site/publish.sh publish --go  (+ restart nxeon-web for app pages)
@@ -69,3 +69,4 @@ Changed: `app/robots.ts`, `app/sitemap.xml/route.ts`, `middleware.ts` (X-Robots-
 
 ## Not done / limits
 No live verification, no CWV measurement, `/help` and `/plans` not in the sitemap (app pages gated by `CYRUS_CUSTOMER_APP`), no `/sitemap-index.xml`, error boundary has no metadata (404s are not indexed). The old `nginx-cyrus-my.conf.patch` was against a stale live vhost; regenerated against the current live file (only the new location differs).
+Tests: cyrus-seo + site-links/landing/bridge-routing/admin-host/page-gate/docs-coverage/launch-check/admin-r40/sitemap-unsold-games all pass after the docs IP fix (107/108 before; the one failure was an IPv4 literal in docs). tsc --noEmit via devhost: clean (no output).
