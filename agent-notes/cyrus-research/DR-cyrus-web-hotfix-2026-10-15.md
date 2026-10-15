@@ -104,7 +104,15 @@ safely render from the session; the static landing must probe client-side.
 
 ## Verification
 
-See "Results" at the end (filled after the runs).
+All via `scripts/devhost` on node-2, one at a time, memory pressure checked first:
+- `tsc --noEmit` (NODE_OPTIONS=--max-old-space-size=8192; the default 5120 heap OOMed): clean.
+- Suites (18 files): cyrus-same-origin, cyrus-site-session, cyrus-nginx-vhost, cyrus-security-review (authz table), cyrus-site-landing,
+  cyrus-site-links, public-origin, cyrus-bridge-routing, cyrus-content, cyrus-seo, cyrus-launch-check, cyrus-help-r50, cyrus-host-seam,
+  cyrus-docs-coverage, cyrus-bridge-sso, cyrus-portals-routing, cyrus-customer-app, cyrus-page-gate: 258 pass; the one failure
+  (docs-coverage flag note for the `cyrus_authed` cookie name) fixed and re-run green (48 pass, 1 skipped = nginx -t test, no nginx on node-2;
+  run on the primary instead: SYNTAX OK).
+- `scripts/cyrus/docs-build.ts` regenerated docs/cyrus/reference (pulled back with `scripts/devhost pull`).
+- Note: the helper lives in `lib/cyrus-bridge/` (not `lib/cyrus/`) because the host-seam ratchet forbids new Nxeon imports under lib/cyrus.
 
 ## Owner steps (in order)
 
