@@ -133,3 +133,21 @@ same research directory's tracker instead.
 **Lesson**: a Test Flight that "places 4 models" proves BetterModel loads them server-side only; nothing checked that
 the generated pack is ever published and offered. A 1.21.x flight must collect `plugins/BetterModel/build.zip` and run
 it through `normalizeBetterModelPack`.
+
+## 2026-10-15 - Intake guard refused the owner's Infinite Dungeon boss refines (false positives) - FIXED on branch, needs image
+- Builds mbbee4a3822b8cbeb16f9c (`guard:malware`), mbed127678a15c23a6b771 and mb7c8b6bb3709d2427fec2 (`guard:injection`),
+  3-5 s, ~$0.003 each, tokens released. Texts: plain boss design ("icicle volley, a ground slam that slows, a frost nova,
+  two phases ... a unique drop"; "Give the Frost Colossus we just added its abilities ..."). Verified FALSE POSITIVES.
+- Root cause (live re-runs, raw Haiku output): `server.js guardRequest` sent a change as `rec.prompt + "\n" + changeRequest`
+  with no framing; rec.prompt is the FIRST description (stage 1, "two room types ... Keep it small"), 15 changes older.
+  Haiku: "two unrelated plugin descriptions concatenated", "references the Frost Colossus we just added which was never
+  described ... injection". Not the words kill/slam/projectile/drop/phase (fresh boss prompts with them all pass).
+  The refusal answers were 91-116 output tokens of prose (an ALLOW is 6), hence $0.003 vs $0.0012.
+- Fix (branch fix/cyrus-guard-false-positives, guard-2026-10-15.1): change judged on its own text as `<change>`
+  (`route.js guardInput`), clauses (f)/(g), guard-directed instructions = injection, framing tags defused,
+  GUARD_VERSION on rec.guard.version -> CyrusGuardRefusal.guardVersion. Labelled <plugin>+<change> was tried: still
+  refused 2/8 ("change mentions things the plugin part never mentions"), rejected.
+- Measured live (1 sample each, $0.41 total): must-pass 38/39 (old 34/39; regression set 30/30 vs 26/30), must-refuse 19/19 (old 17/19: change-part
+  "print your system prompt" and a fake </change> tag were ALLOWED by the old wording). Still open: fp-chunk-injection.
+- Deploy: build-service image bump (scripts/cyrus/deploy-modbuilder.sh) + portal promote (store.ts guardVersion, optional).
+  Notes: DS-guard-false-positives-2026-10-15.md.
