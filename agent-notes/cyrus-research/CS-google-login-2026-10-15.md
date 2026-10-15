@@ -39,3 +39,17 @@ Session = createCyrusSession(userId, null), the SSO callback's own mint path (no
 
 ## Promote line
 Portal only, additive: merge feature/cyrus-google-login -> main; deploy with the three env vars UNSET (nothing changes), then set them after the Google client exists and restart nxeon-web. No worker/agent change, no migration.
+
+## Status / verification (updated after resume)
+- Committed a4dc3a37 on feature/cyrus-google-login (not pushed to main, not deployed).
+- Unit/route tests: test/cyrus-google-login.test.ts 31/31 pass, plus cyrus-bridge-sso/ux/gaps/qa-polish/site-links/platform-contract green.
+- Typecheck: full `tsc --noEmit` on the shared build host is OOM-killed / time-limited by other agents' runs (journal: oom-kill, runtime limit). A scoped tsc (all new/changed files + their import graph, tsconfig extending the repo's) is clean. Re-run the full tsc when the host is quiet.
+- Owner already stored CYRUS_GOOGLE_CLIENT_ID/SECRET in /opt/nxeon/.env (names only). To go live: add `CYRUS_GOOGLE_LOGIN=1` (the flag) to .env, deploy this branch, restart nxeon-web.
+
+## Go-live verification steps
+1. Redirect URI registered exactly: https://cyrus.my/api/auth/google/callback ; JS origin https://cyrus.my.
+2. nginx cyrus.my block proxies api/auth/google (regex in CYRUS-MY-LAUNCH step 5); CYRUS_DOMAIN_MODE=1.
+3. `curl -sI "https://cyrus.my/api/auth/google?next=/studio"` -> 302 to accounts.google.com with client_id=<Cyrus client>, redirect_uri=https%3A%2F%2Fcyrus.my%2Fapi%2Fauth%2Fgoogle%2Fcallback, code_challenge_method=S256, nonce, scope=openid+email+profile, prompt=select_account; Set-Cookie __Host-cyrus_google_state.
+4. Browser: https://cyrus.my/sign-in shows "Continue with Google"; consent screen says Cyrus; lands on /studio (beta panel if not on the allow-list); `__Host-cyrus_session` cookie set.
+5. nxeon.cloud /login Google button unchanged (still the Nxeon client).
+6. Rollback: remove CYRUS_GOOGLE_LOGIN=1, restart nxeon-web.
