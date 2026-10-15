@@ -151,3 +151,24 @@ it through `normalizeBetterModelPack`.
   "print your system prompt" and a fake </change> tag were ALLOWED by the old wording). Still open: fp-chunk-injection.
 - Deploy: build-service image bump (scripts/cyrus/deploy-modbuilder.sh) + portal promote (store.ts guardVersion, optional).
   Notes: DS-guard-false-positives-2026-10-15.md.
+
+## 2026-10-15 - Refines silently regress what the previous version had (Test Flight passes) - FIXED on branch, needs image
+- Evidence (Infinite Dungeon chain, /root/cyrus-eval/dungeon-2026-10-15, CK-infinite-dungeon-2026-10-15.md "Round 4 + CORRECTION"):
+  v1.8.1 mbdeca41d1bf0cbebd4d83 .. v1.26.0 mbe94b7e5992e0a1c0df8d shipped config.yml `max-floors: 100` / `floor-interval: 10`
+  (plus the final boss health 2.5 / scale 1.3 / "all 100 floors" message) again after v1.7.0 mb3fa7542c798d8a12679e had been
+  refined to 11 / 3; v1.27.0 mb375d7c58807fd4483998 and v1.27.1 mb51322a365e1e9476d7be lost `depend: [BetterModel]` and every
+  BetterModel.model attach (v1.26.0: 24 keys, BetterModel in MonsterManager + BossManager). Reading the real jars also shows
+  v1.7.0 had lost `depend: [BetterModel]` vs v1.6.0 mb3879f4526e730a7e96b1. Same class as MOD-SLATE "Refines can silently drop
+  creature wiring" and the 1.13.0 entry above.
+- Root cause: nothing compared a change build with its base; the ledger only tracks requirement keywords, the creature soft
+  check is one repair then a warning (and does not run when the creature lane is off), Test Flight cannot see defaults.
+- Fix (branch feature/cyrus-refine-regression-guard from release/cyrus-rc19, `services/modbuilder/preserve.js`, MB_PRESERVE,
+  pv-2026-10-15.1): BASE vs NEW invariants every round (plugin.yml depend/softdepend/commands/permissions/api-version; config.yml
+  keys, defaults that went back to an OLDER lineage value, list shrink; creature specs + attach; asset specs; listeners /
+  executors; soft: event types, getCommand wiring, enum constants). Mechanical restore where safe, else ONE targeted repair
+  round, else failed build `errorCode: regression` (no charge, settle reason failed_regression). Escape: the change request /
+  planner lines naming the key or the removal. Replayed offline on the real config.yml / plugin.yml of the chain: 1.7.0->1.8.1
+  5 reverts restored (11 / 3 back), 1.26.0->1.27.1 depend restored and the requested 11 / 3 permitted, 1.6.0->1.7.0 depend
+  restored; 1.26.0->1.27.0 attach loss goes to the repair round (code). Unchanged versions: zero findings.
+- Deploy: modbuilder image bump (preserve.js in the Dockerfile COPY, prompt mb-2026-10-15.1) + portal promote (types, store.ts
+  preservation, Explain tab, economy failed_regression, eval stats). Not deployed.
