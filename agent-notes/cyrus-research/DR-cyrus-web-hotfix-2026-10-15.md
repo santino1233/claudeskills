@@ -18,7 +18,7 @@ with `Host $host` and does not rewrite the request line. `UsernameGate.tsx` prin
 Same bug, same line, in `app/api/cyrus/studio-prefs` (layout saves silently fell back to localStorage), `notifications` (mark-read
 failed) and `report` (Report a problem refused).
 
-**Fix.** `lib/cyrus/same-origin.ts`:
+**Fix.** `lib/cyrus-bridge/same-origin.ts`:
 - no Origin -> allowed (existing semantics; cookies are SameSite=Lax);
 - Origin must equal the request's public origin (`requestOrigin()`, the repo's existing helper: X-Forwarded-Host / Host +
   X-Forwarded-Proto, internal bind addresses fall back to APP_URL) **or** a configured Cyrus origin: `APP_URL` (Nxeon portal, which
