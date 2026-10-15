@@ -591,3 +591,4 @@ Merge conflicts of structure/preflight/oracle/library-prod resolved on release/c
 - Open: creature-checker false positive "plugin never uses the model key" when key is built by concatenation; creature cap of 4 silently drops the 5th+ creature (hollowbanshee) with only a build warning.
 - Open: texture bug unproven (likely resource-pack not accepted); needs a real-client check.
 - Runner: qa-dungeon.ts picks last SUCCEEDED build as base and supports --base (uncommitted in /tank/dev-worktrees/cyrus-dungeon).
+- Dungeon round 2 continued (2026-10-15): split refines all passed, final mb05dabe83580f8491a546 v1.13.0 (6 themes + throne, boss arenas, vanilla Hollow Banshee). Budget failures resolved by splitting. Boss model creatures blocked on the 4-creature cap. Runner edit committed (1595997b on feature/cyrus-dungeon-run).

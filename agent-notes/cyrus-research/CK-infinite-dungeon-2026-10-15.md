@@ -48,3 +48,14 @@ Texture bug (floor 1 purple/black mob), evidence from build mb3879f4526e730a7e96
 - I did not download the actual resource pack zip or test with a real client, so this is not proven. Most likely cause: client did not accept/download the BetterModel/Nxeon resource pack (classic purple/black checkerboard). Other possibility not excluded: BetterModel 2.2.0 pack and Nxeon pack both pushed and the second replaced the first. Owner: rejoin and accept the pack (server resource-pack prompt), then check F3+T/refresh; if the checkerboard persists after accepting, send me a screenshot and the client log.
 
 Owner commands to try v1.8.1: portal Cyrus library -> Infinite Dungeon -> pick version 1.8.1 -> install / reinstall on the server, then restart the server (BetterModel needs a restart to hand out its pack); rejoin and accept the resource pack; in game `/dungeon start`, `/dungeon status`, `/dungeon admin setfloor 10` to reach the final boss quickly, `/dungeon leave`.
+
+### Redesign round 2, continuation (split refines, all on base mbdeca41d1bf0cbebd4d83)
+| Step | Build | Ver | Wall | USD | Tokens | Result |
+|---|---|---|---|---|---|---|
+| a castle + lava themes | mbceb7fd88b8b4862a7a3d | 1.9.0 | 166 s | 0.65 | 326 | passed |
+| b swamp theme | mb29c267872092cd14e432 | 1.10.0 | 198 s | 0.85 | 425 | passed |
+| c Hollow Banshee (vanilla code mob, ghost projectiles) | mb22e52929d18d770fafa7 | 1.11.0 | 526 s | 2.16 | 1,080 | passed, 2 repairs |
+| d1 ice + crypt + ruins themes | mb0c1c82809b1ee2aca000 | 1.12.0 | 209 s | 0.75 | 378 | passed |
+| d2 boss-floor arenas | mb05dabe83580f8491a546 | 1.13.0 | 353 s | 3.79 | 2,367 | passed, 1 repair |
+FINAL: mb05dabe83580f8491a546 v1.13.0. Splitting fixed the budget failures (no further failures). Verified in source: 6 themes (castle, lava, swamp, ice, crypt, ruins) + a "throne" theme for floor 11; ambient particles for swamp/ice/crypt; boss arenas floor 3 ice, 6 swamp, 9 lava, 11 throne; Hollow Banshee is a vanilla mob that shoots projectiles, boosted on swamp. NOT done: three animated BetterModel boss creatures (ice/swamp/lava) - not attempted, blocked by the 4-creature cap (dungeon already uses bonewarden, cinderhusk, direwolf, hexwitch; retiring 3 of 4 would not be coherent); wait for feature/cyrus-no-creature-cap image.
+Thumbnail cast vs shipped: banshee = vanilla mob with projectiles, no ghost model (partial); lich king NO; ice golem NO (ice arena only); swamp golem/treant NO (swamp arena only); lava golem NO (lava arena only); skeleton king NO (throne hall only, boss is whatever BossManager already has); giant cave spider NO.
