@@ -1,0 +1,363 @@
+{
+ "schema": 1,
+ "from": "1.21.11",
+ "to": "26.1.2",
+ "breaking": [
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent$SkipReason",
+   "simple": "TimeSkipEvent$SkipReason"
+  },
+  {
+   "kind": "field-removed",
+   "type": "com.destroystokyo.paper.entity.ai.VanillaGoal",
+   "simple": "VanillaGoal",
+   "member": "FOLLOW_BOAT"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.datacomponent.item.BlocksAttacks$Builder",
+   "simple": "BlocksAttacks$Builder",
+   "member": "bypassedBy(TagKey)",
+   "overloadOnly": true
+  },
+  {
+   "kind": "return-changed",
+   "type": "io.papermc.paper.datacomponent.item.BlocksAttacks",
+   "simple": "BlocksAttacks",
+   "member": "bypassedBy()",
+   "detail": "TagKey -> RegistryKeySet"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.datacomponent.item.DamageResistant",
+   "simple": "DamageResistant",
+   "member": "damageResistant(TagKey)",
+   "overloadOnly": true
+  },
+  {
+   "kind": "return-changed",
+   "type": "io.papermc.paper.datacomponent.item.DamageResistant",
+   "simple": "DamageResistant",
+   "member": "types()",
+   "detail": "TagKey -> RegistryKeySet"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.datacomponent.item.ItemComponentTypesBridge",
+   "simple": "ItemComponentTypesBridge",
+   "member": "damageResistant(TagKey)",
+   "overloadOnly": true
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "BAMBOO_PLANTABLE_ON"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "BIG_DRIPLEAF_PLACEABLE"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "DRY_VEGETATION_MAY_PLACE_ON"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "MUSHROOM_GROW_BLOCK"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "SMALL_DRIPLEAF_PLACEABLE"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "SNOW_LAYER_CAN_SURVIVE_ON"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "SNOW_LAYER_CANNOT_SURVIVE_ON"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_DESERT_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_JUNGLE_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_PLAINS_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_SAVANNA_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_SNOW_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_SWAMP_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.EnchantmentTagKeys",
+   "simple": "EnchantmentTagKeys",
+   "member": "TRADES_TAIGA_SPECIAL"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.ItemTypeTagKeys",
+   "simple": "ItemTypeTagKeys",
+   "member": "DYEABLE"
+  },
+  {
+   "kind": "constant-removed",
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "ITEMS_DYEABLE"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.Breedable",
+   "simple": "Breedable",
+   "member": "setAgeLock(boolean)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.Breedable",
+   "simple": "Breedable",
+   "member": "getAgeLock()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.player.PlayerInteractAtEntityEvent",
+   "simple": "PlayerInteractAtEntityEvent",
+   "member": "getHandlers()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.player.PlayerInteractAtEntityEvent",
+   "simple": "PlayerInteractAtEntityEvent",
+   "member": "getHandlerList()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent",
+   "simple": "TimeSkipEvent",
+   "member": "getSkipReason()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent",
+   "simple": "TimeSkipEvent",
+   "member": "getSkipAmount()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent",
+   "simple": "TimeSkipEvent",
+   "member": "setSkipAmount(long)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent",
+   "simple": "TimeSkipEvent",
+   "member": "isCancelled()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.event.world.TimeSkipEvent",
+   "simple": "TimeSkipEvent",
+   "member": "setCancelled(boolean)"
+  },
+  {
+   "kind": "field-removed",
+   "type": "org.bukkit.plugin.java.LibraryLoader",
+   "simple": "LibraryLoader",
+   "member": "REMAPPER"
+  }
+ ],
+ "newlyDeprecated": [
+  {
+   "type": "org.bukkit.Instrument",
+   "simple": "Instrument",
+   "member": "getType()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Instrument",
+   "simple": "Instrument",
+   "member": "getByType(byte)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Material",
+   "simple": "Material",
+   "member": "getCreativeCategory()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "SNOW_LAYER_CANNOT_SURVIVE_ON",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "SNOW_LAYER_CAN_SURVIVE_ON",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "MUSHROOM_GROW_BLOCK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "SMALL_DRIPLEAF_PLACEABLE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "BIG_DRIPLEAF_PLACEABLE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "BAMBOO_PLANTABLE_ON",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "DRY_VEGETATION_MAY_PLACE_ON",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "getGameRuleDefault(GameRule)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": null,
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": "ofNameAndKey(String,NamespacedKey)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.inventory.meta.ItemMeta",
+   "simple": "ItemMeta",
+   "member": "getDamageResistant()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.inventory.meta.ItemMeta",
+   "simple": "ItemMeta",
+   "member": "setDamageResistant(Tag)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.attribute.AttributeInstance",
+   "simple": "AttributeInstance",
+   "member": "getDefaultValue()",
+   "forRemoval": false
+  }
+ ],
+ "impact": [
+  {
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": null,
+   "forRemoval": false,
+   "kind": "deprecated",
+   "golden": [
+    "mc-worlds"
+   ],
+   "knowledge": [
+    "sheet:services/modbuilder/sheets/1.21.1.md",
+    "sheet:services/modbuilder/sheets/1.21.4.md",
+    "sheet:services/modbuilder/sheets/1.21.8.md",
+    "sheet:services/modbuilder/sheets/1.21.11.md",
+    "prompt:services/modbuilder/prompts.js"
+   ]
+  }
+ ],
+ "candidateRules": [],
+ "stats": {
+  "typesFrom": 2135,
+  "typesTo": 2153,
+  "removedTypes": 1,
+  "addedTypes": 19,
+  "changedTypes": 57,
+  "ms": 29234,
+  "jars": {
+   "from": "paper-api-1.21.11-R0.1-SNAPSHOT.jar",
+   "to": "paper-api-26.1.2.jar"
+  }
+ },
+ "removedTypes": [
+  "org.bukkit.event.world.TimeSkipEvent$SkipReason"
+ ],
+ "addedTypes": [
+  "io.papermc.paper.entity.poi.PoiSearchResult",
+  "io.papermc.paper.entity.poi.PoiType$Occupancy",
+  "io.papermc.paper.entity.poi.PoiType",
+  "io.papermc.paper.entity.poi.PoiTypes",
+  "io.papermc.paper.event.entity.EntityLungeEvent",
+  "io.papermc.paper.event.player.PlayerToggleEntityAgeLockEvent",
+  "io.papermc.paper.registry.keys.CatSoundVariantKeys",
+  "io.papermc.paper.registry.keys.ChickenSoundVariantKeys",
+  "io.papermc.paper.registry.keys.CowSoundVariantKeys",
+  "io.papermc.paper.registry.keys.PigSoundVariantKeys",
+  "io.papermc.paper.registry.keys.PoiTypeKeys",
+  "io.papermc.paper.registry.keys.tags.PoiTypeTagKeys",
+  "io.papermc.paper.registry.keys.tags.PotionTypeTagKeys",
+  "org.bukkit.entity.Cat$SoundVariant",
+  "org.bukkit.entity.Chicken$SoundVariant",
+  "org.bukkit.entity.Cow$SoundVariant",
+  "org.bukkit.entity.Pig$SoundVariant",
+  "org.bukkit.event.world.ClockTimeSkipEvent$SkipReason",
+  "org.bukkit.event.world.ClockTimeSkipEvent"
+ ]
+}
