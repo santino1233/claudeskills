@@ -8,5 +8,6 @@
     }
   },
   "autoUpdatesChannel": "latest",
-  "skipWorkflowUsageWarning": true
+  "skipWorkflowUsageWarning": true,
+  "enableWorkflows": false
 }
