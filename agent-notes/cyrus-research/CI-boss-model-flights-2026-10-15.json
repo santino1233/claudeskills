@@ -1,0 +1,611 @@
+{
+ "at": "2026-10-15T06:37:19.476Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (golden designs + rigs, no model call)",
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "compile": {
+    "hash": "a4861b5e75174af048abc2df968f92c48eb65c2b3f1b92c4b4d6209a7bdd7f27",
+    "files": 34,
+    "rigsApplied": [
+     "hollow_king",
+     "hollow_thrall"
+    ],
+    "deps": [
+     "bettermodel-api-2",
+     "bettermodel-bukkit-api-2"
+    ],
+    "warnings": []
+   },
+   "javac": {
+    "ok": true,
+    "sources": 32,
+    "classFiles": 45,
+    "ms": 1752,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "40cc8cc4b9cbe9c76fa9343afea1425d768c6bb55915561cb2249d001b10d046"
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "fallbackJavac": {
+    "ok": true,
+    "withoutBetterModelApi": true,
+    "sources": 31,
+    "warnings": 0,
+    "scanBlocks": 0
+   }
+  },
+  {
+   "version": "26.2",
+   "jdk": "25",
+   "compile": {
+    "hash": "0d67767c26c78ad3e85113345552856f60117541a6255421fa8a26ec71b0ca8c",
+    "files": 34,
+    "rigsApplied": [
+     "hollow_king",
+     "hollow_thrall"
+    ],
+    "deps": [
+     "bettermodel-api",
+     "bettermodel-bukkit-api"
+    ],
+    "warnings": []
+   },
+   "javac": {
+    "ok": true,
+    "sources": 32,
+    "classFiles": 45,
+    "ms": 1700,
+    "warnings": 0,
+    "output": ""
+   },
+   "jar": {
+    "sha256": "784f34ad18b24b9eb55d29afa664128d00ec9c7f34fb827550aa68e6f6e715a6"
+   },
+   "scan": {
+    "blocks": 0,
+    "warnings": 0,
+    "findings": []
+   },
+   "fallbackJavac": {
+    "ok": true,
+    "withoutBetterModelApi": true,
+    "sources": 31,
+    "warnings": 0,
+    "scanBlocks": 0
+   }
+  }
+ ],
+ "models": [
+  {
+   "key": "nx_b0ssm0de_hollow_king",
+   "bytes": 43347
+  },
+  {
+   "key": "nx_b0ssm0de_hollow_thrall",
+   "bytes": 61476
+  }
+ ],
+ "flightA": {
+  "wallMs": 109417,
+  "status": "completed",
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (7 checks, boot 19.5s, peak RSS 1000 MB)",
+  "bootMs": 19473,
+  "peakRssMb": 1000,
+  "paper": {
+   "version": "1.21.11",
+   "build": 132,
+   "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+   "channel": "STABLE"
+  },
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L102: [06:37:50 INFO]: Done (18.142s)! For help, type \"help\"",
+     "wall 19473 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L91: [06:37:49 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+     "HollowKing: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L92: [06:37:50 INFO]: [HollowKing] Enabling HollowKing v1.0.0",
+     "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - HollowKing | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "102 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "plugins 'plugins' [rss 900 MB, 251 ms]: ok -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - HollowKing | ",
+     "difficulty 'difficulty easy' [rss 900 MB, 252 ms]: ok -> The difficulty has been set to Easy",
+     "forceload 'forceload add ~-32 ~-32 ~32 ~32' [rss 935 MB, 955 ms]: ok -> Marked 25 chunks in minecraft:overworld from [-2, -2] to [2, 2] to be force loaded",
+     "models-wait 'hollowking boss list' [rss 937 MB, 252 ms]: ok -> hollow_king: entity=wither_skeleton health=260.00 phases=court@1.00>ruin@0.50 attacks=2 arena=24.00 bar=purple/notched_10 spawn=command max_alive=1 minions=6 model=nx_b0ssm0de_hollow_king | ",
+     "spawn 'hollowking boss spawn hollow_king spawn' [rss 963 MB, 773 ms]: ok -> Spawned hollow_king#1 (wither_skeleton) at world 0 -60 0: health 260.00, phase court, arena 24.00 blocks, model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true, silent true | ",
+     "model-tag 'execute if entity @e[tag=nx_b0ssm0de.boss.hollow_king,tag=nx_b0ssm0de.model]' [rss 976 MB, 255 ms]: ok -> Test passed. Count: 1",
+     "silent 'data get entity @e[tag=nx_b0ssm0de.boss.hollow_king,limit=1] Silent' [rss 977 MB, 266 ms]: ok -> The Hollow King has the following entity data: 1b",
+     "scale 'attribute @e[tag=nx_b0ssm0de.boss.hollow_king,limit=1] minecraft:scale base get' [rss 977 MB, 252 ms]: ok -> The base value of attribute Scale for entity The Hollow King is 1.21",
+     "status-attached 'hollowking boss status' [rss 977 MB, 429 ms]: ok -> hollow_king#1: phase 1/2 court health 260.00/260.00 participants 0 minions 0 bar \"The Hollow King - The Court\" 1.00 enraged false leashed 0 dist 0.00 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true,",
+     "cast-thralls 'hollowking boss cast hollow_king call_thralls' [rss 978 MB, 264 ms]: ok -> Cast call_thralls of hollow_king#1 on 0 targets (telegraph skipped) | ",
+     "minions-wear 'execute if entity @e[tag=nx_b0ssm0de.minion,tag=nx_b0ssm0de.model]' [rss 978 MB, 251 ms]: ok -> Test passed. Count: 2",
+     "hurt 'damage @e[tag=nx_b0ssm0de.boss.hollow_king,limit=1] 20 minecraft:generic' [rss 978 MB, 261 ms]: ok -> Applied 20.0 damage to The Hollow King",
+     "clips-after-hurt 'hollowking boss status' [rss 978 MB, 252 ms]: ok -> hollow_king#1: phase 1/2 court health 240.00/260.00 participants 0 minions 2 bar \"The Hollow King - The Court\" 0.92 enraged false leashed 0 dist 0.00 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 2 (missing 0), invisible true,",
+     "to-phase-2 'damage @e[tag=nx_b0ssm0de.boss.hollow_king,limit=1] 130 minecraft:generic' [rss 978 MB, 251 ms]: ok -> Applied 130.0 damage to The Hollow King",
+     "phase-2 'hollowking boss status' [rss 978 MB, 251 ms]: ok -> hollow_king#1: phase 2/2 ruin health 110.00/260.00 participants 0 minions 2 bar \"The Hollow King - Ruin\" 0.42 enraged false leashed 0 dist 5.36 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 4 (missing 0), invisible true, silen",
+     "minion-scale 'attribute @e[tag=nx_b0ssm0de.minion,limit=1] minecraft:scale base get' [rss 978 MB, 252 ms]: ok -> The base value of attribute Scale for entity Zombie is 0.82",
+     "despawn-minions 'kill @e[tag=nx_b0ssm0de.minion]' [rss 978 MB, 261 ms]: ok -> Killed 2 entities",
+     "tps-before-bot 'tps' [rss 978 MB, 251 ms]: ok -> TPS from last 1m, 5m, 15m: 19.1, 19.1, 19.1 | "
+    ]
+   },
+   {
+    "id": "worldgen",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "playtest",
+    "status": "pass",
+    "evidence": [
+     "bot NxPlaytest joined Paper 1.21.11 in 988 ms (mineflayer 4.39.0, minecraft-protocol 1.68.0, op false)",
+     "T-1 PASS (23/23 steps, 66536 ms)"
+    ]
+   },
+   {
+    "id": "stress",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 801 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 4034666 gone; 0 marked processes; listening none of 47197,47133",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv962gnd-a07c13; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "playtest": {
+   "schema": 1,
+   "username": "NxPlaytest",
+   "version": "1.21.11",
+   "joined": true,
+   "joinFailed": false,
+   "joinMs": 988,
+   "op": false,
+   "bot": {
+    "mineflayer": "4.39.0",
+    "minecraftProtocol": "1.68.0",
+    "lockSha256": "64599aa81ce3bc76f7e910d20c469dd52614bf68ffecdc787bc165e3880a7803"
+   },
+   "scenarios": [
+    {
+     "id": "T-1",
+     "title": "a survival player fights the Hollow King for 60 s+",
+     "covers": [],
+     "status": "pass",
+     "steps": [
+      {
+       "i": 0,
+       "kind": "join",
+       "status": "pass",
+       "evidence": [
+        "joined as NxPlaytest after 988 ms at {\"x\":0.5,\"y\":-60,\"z\":-5.5}; checking messages since the join (1 so far)"
+       ],
+       "ms": 0
+      },
+      {
+       "i": 1,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'gamemode survival NxPlaytest' -> (empty)"
+       ],
+       "ms": 401
+      },
+      {
+       "i": 2,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'effect give NxPlaytest minecraft:resistance 180 4 true' -> Applied effect Resistance to NxPlaytest"
+       ],
+       "ms": 402
+      },
+      {
+       "i": 3,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'effect give NxPlaytest minecraft:regeneration 180 2 true' -> Applied effect Regeneration to NxPlaytest"
+       ],
+       "ms": 401
+      },
+      {
+       "i": 4,
+       "kind": "expect_bossbar",
+       "status": "pass",
+       "evidence": [
+        "boss bar showed [\"The Hollow King\"]",
+        "boss bars: The Hollow King - Ruin"
+       ],
+       "ms": 0
+      },
+      {
+       "i": 5,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss status' -> hollow_king#1: phase 2/2 ruin health 110.00/260.00 participants 1 minions 0 bar \"The Hollow King - Ruin\" 0.42 enraged false leashed 0 dist 5.38 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, cl"
+       ],
+       "ms": 402
+      },
+      {
+       "i": 6,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10000
+      },
+      {
+       "i": 7,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tps' -> TPS from last 1m, 5m, 15m: 19.5, 19.5, 19.5 | "
+       ],
+       "ms": 401
+      },
+      {
+       "i": 8,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10001
+      },
+      {
+       "i": 9,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss status' -> hollow_king#1: phase 2/2 ruin health 110.00/260.00 participants 1 minions 2 bar \"The Hollow King - Ruin\" 0.42 enraged false leashed 0 dist 5.24 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, cl"
+       ],
+       "ms": 401
+      },
+      {
+       "i": 10,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10000
+      },
+      {
+       "i": 11,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tps' -> TPS from last 1m, 5m, 15m: 19.7, 19.7, 19.7 | "
+       ],
+       "ms": 402
+      },
+      {
+       "i": 12,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10000
+      },
+      {
+       "i": 13,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss status' -> hollow_king#1: phase 2/2 ruin health 110.00/260.00 participants 1 minions 6 bar \"The Hollow King - Ruin\" 0.42 enraged false leashed 0 dist 5.63 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, cl"
+       ],
+       "ms": 401
+      },
+      {
+       "i": 14,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10000
+      },
+      {
+       "i": 15,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tps' -> TPS from last 1m, 5m, 15m: 20.0, 19.8, 19.8 | "
+       ],
+       "ms": 401
+      },
+      {
+       "i": 16,
+       "kind": "wait",
+       "status": "pass",
+       "evidence": [
+        "waited 10000 ms"
+       ],
+       "ms": 10000
+      },
+      {
+       "i": 17,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss status' -> hollow_king#1: phase 2/2 ruin health 110.00/260.00 participants 1 minions 6 bar \"The Hollow King - Ruin\" 0.42 enraged false leashed 0 dist 4.76 model nx_b0ssm0de_hollow_king attached, hitbox x1.21, cl"
+       ],
+       "ms": 401
+      },
+      {
+       "i": 18,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'kill @e[tag=nx_b0ssm0de.boss.hollow_king]' -> Killed The Hollow King"
+       ],
+       "ms": 407
+      },
+      {
+       "i": 19,
+       "kind": "expect_chat",
+       "status": "pass",
+       "evidence": [
+        "saw [\"crumbles to dust\"]",
+        "messages: The Hollow King crumbles to dust."
+       ],
+       "ms": 0
+      },
+      {
+       "i": 20,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss status' -> No bosses alive. | last: boss hollow_king#1 spawned at world 0 -60 0: health 260.00 (1 player), model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true, silent true |"
+       ],
+       "ms": 402
+      },
+      {
+       "i": 21,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'hollowking boss spawn hollow_king spawn' -> Spawned hollow_king#2 (wither_skeleton) at world 0 -60 0: health 260.00, phase court, arena 24.00 blocks, model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true, sil"
+       ],
+       "ms": 404
+      },
+      {
+       "i": 22,
+       "kind": "server",
+       "status": "pass",
+       "evidence": [
+        "console 'tps' -> TPS from last 1m, 5m, 15m: 20.0, 19.8, 19.8 | "
+       ],
+       "ms": 403
+      }
+     ],
+     "ms": 66536
+    }
+   ],
+   "notes": [],
+   "disconnect": null,
+   "spawn": {
+    "x": 0.5,
+    "y": -60,
+    "z": -5.5
+   },
+   "messages": 21
+  },
+  "disk": {
+   "logLines": 207,
+   "pluginLog": [
+    "[06:37:39] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Remapping plugin 'plugins/HollowKing-1.21.11-model.jar'...",
+    "[06:37:39] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Done remapping plugin 'plugins/HollowKing-1.21.11-model.jar' in 110ms.",
+    " - BetterModel (2.2.0)",
+    " - HollowKing (1.0.0)",
+    "[06:37:47] [Server thread/INFO]: [BetterModel] Loading server plugin BetterModel v2.2.0",
+    "[06:37:47] [Server thread/INFO]: [HollowKing] Loading server plugin HollowKing v1.0.0",
+    "[06:37:49] [Server thread/INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+    "[06:37:50] [Server thread/INFO]: [HollowKing] Enabling HollowKing v1.0.0",
+    "[06:37:50] [Server thread/INFO]: [HollowKing] Designer ready: items -; menus -; quests -; bosses hollow_king; encounters hollow_siege",
+    "[06:37:50] [Server thread/INFO]: [BetterModel] Plugin is loaded. (228 ms)",
+    "[06:37:50] [Server thread/INFO]: [BetterModel] Minecraft version: 1.21.11, NMS version: V1_21_R7",
+    "[06:37:50] [Server thread/INFO]: [BetterModel] Platform: Paper",
+    "[06:38:03] [Server thread/INFO]: [HollowKing] boss hollow_king#1 spawned at world 0 -60 0: health 260.00 (1 player), model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true, silent true",
+    "[06:38:07] [Server thread/INFO]: [HollowKing] boss hollow_king#1 entered phase ruin at 42%",
+    "[06:39:16] [Server thread/INFO]: [HollowKing] boss hollow_king#1 defeated: 0 drop stacks to nobody (no participant did 10% of the damage), minions removed 6",
+    "[06:39:17] [Server thread/INFO]: [HollowKing] boss hollow_king#2 spawned at world 0 -60 0: health 260.00 (1 player), model nx_b0ssm0de_hollow_king attached, hitbox x1.21, clips 0 (missing 0), invisible true, silent true",
+    "[06:39:18] [Server thread/INFO]: [HollowKing] Disabling HollowKing v1.0.0",
+    "[06:39:18] [Server thread/INFO]: [HollowKing] cleanup: closed 1 creature models",
+    "[06:39:18] [Server thread/INFO]: [HollowKing] cleanup: removed 1 bosses, 0 minions and 0 encounter mobs",
+    "[06:39:18] [Server thread/INFO]: [BetterModel] Disabling BetterModel v2.2.0"
+   ],
+   "exceptionLines": [
+    "java.net.UnknownHostException: fill.papermc.io",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.fetchMinecraftVersionList(PaperVersionFetcher.java:149) ~[paper-1.21.11.jar:?]",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.getUpdateStatusStartupMessage(PaperVersionFetcher.java:74) ~[paper-1.21.11.jar:?]",
+    "java.net.UnknownHostException: fill.papermc.io",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.fetchDistanceFromSiteApi(PaperVersionFetcher.java:203) ~[paper-1.21.11.jar:?]",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.getUpdateStatusStartupMessage(PaperVersionFetcher.java:76) ~[paper-1.21.11.jar:?]"
+   ],
+   "sandboxNoiseExceptionLines": 73,
+   "pluginErrorLines": [],
+   "errorLines": [
+    "[06:37:44] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+    "[06:37:50] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version list",
+    "[06:37:50] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version",
+    "[06:37:50] [Paper Async Task Handler Thread - 1/ERROR]: *** Error obtaining version information! Cannot fetch version info ***"
+   ],
+   "modelWarnings": [],
+   "cleanupLines": [
+    "[06:39:18] [Server thread/INFO]: [HollowKing] cleanup: closed 1 creature models",
+    "[06:39:18] [Server thread/INFO]: [HollowKing] cleanup: removed 1 bosses, 0 minions and 0 encounter mobs"
+   ],
+   "cantKeepUp": 0
+  }
+ },
+ "flightB": {
+  "status": "completed",
+  "overall": "passed",
+  "line": "Test Flight passed on Paper 1.21.11 (6 checks, boot 20.3s, peak RSS 988 MB)",
+  "checks": [
+   {
+    "id": "boot_done",
+    "status": "pass",
+    "evidence": [
+     "L102: [06:39:40 INFO]: Done (18.977s)! For help, type \"help\"",
+     "wall 20276 ms from spawn"
+    ]
+   },
+   {
+    "id": "plugins_enabled",
+    "status": "pass",
+    "evidence": [
+     "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L91: [06:39:39 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+     "HollowKing: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+     "L92: [06:39:40 INFO]: [HollowKing] Enabling HollowKing v1.0.0",
+     "rcon plugins -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - HollowKing | "
+    ]
+   },
+   {
+    "id": "startup_log_clean",
+    "status": "pass",
+    "evidence": [
+     "102 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+    ]
+   },
+   {
+    "id": "rcon_checks",
+    "status": "pass",
+    "evidence": [
+     "plugins 'plugins' [rss 957 MB, 252 ms]: ok -> ℹ Server Plugins (2): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (1): |  - HollowKing | ",
+     "difficulty 'difficulty easy' [rss 958 MB, 252 ms]: ok -> The difficulty has been set to Easy",
+     "forceload 'forceload add ~-32 ~-32 ~32 ~32' [rss 976 MB, 844 ms]: ok -> Marked 25 chunks in minecraft:overworld from [-2, -2] to [2, 2] to be force loaded",
+     "spawn-fallback 'hollowking boss spawn hollow_king spawn' [rss 986 MB, 951 ms]: ok -> Spawned hollow_king#1 (wither_skeleton) at world 0 -60 0: health 260.00, phase court, arena 24.00 blocks, vanilla body (BetterModel has no model nx_b0ssm0de_hollow_king loaded) | ",
+     "no-model-tag 'execute if entity @e[tag=nx_b0ssm0de.boss.hollow_king,tag=nx_b0ssm0de.model]' [rss 986 MB, 255 ms]: ok -> Test failed",
+     "status-fallback 'hollowking boss status' [rss 986 MB, 255 ms]: ok -> hollow_king#1: phase 1/2 court health 260.00/260.00 participants 0 minions 0 bar \"The Hollow King - The Court\" 1.00 enraged false leashed 0 dist 0.00 vanilla body (BetterModel has no model nx_b0ssm0de_hollow_king loaded), invisible false, s",
+     "scale-vanilla 'attribute @e[tag=nx_b0ssm0de.boss.hollow_king,limit=1] minecraft:scale base get' [rss 986 MB, 253 ms]: ok -> The base value of attribute Scale for entity The Hollow King is 1.0",
+     "fight-still-works 'hollowking boss cast hollow_king call_thralls' [rss 986 MB, 264 ms]: ok -> Cast call_thralls of hollow_king#1 on 0 targets (telegraph skipped) | ",
+     "minions-vanilla 'execute if entity @e[tag=nx_b0ssm0de.minion]' [rss 986 MB, 250 ms]: ok -> Test passed. Count: 2"
+    ]
+   },
+   {
+    "id": "worldgen",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "playtest",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "stress",
+    "status": "not_run",
+    "evidence": []
+   },
+   {
+    "id": "clean_stop",
+    "status": "pass",
+    "evidence": [
+     "stop via rcon; exit code 0 signal null after 837 ms; 0 shutdown log hits"
+    ]
+   },
+   {
+    "id": "no_leaks",
+    "status": "pass",
+    "evidence": [
+     "netns: java pid 4035641 gone; 0 marked processes; listening none of 47189,47162",
+     "host: no process carries -Dnxeon.testflight.run=tf-1-21-11-mv964t2o-8c32dd; no listening port in 47100-47199"
+    ]
+   }
+  ],
+  "disk": {
+   "logLines": 197,
+   "pluginLog": [
+    "[06:39:29] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/HollowKing-1.21.11-model.jar'...",
+    "[06:39:29] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/HollowKing-1.21.11-model.jar' in 102ms.",
+    " - BetterModel (2.2.0)",
+    " - HollowKing (1.0.0)",
+    "[06:39:37] [Server thread/INFO]: [BetterModel] Loading server plugin BetterModel v2.2.0",
+    "[06:39:37] [Server thread/INFO]: [HollowKing] Loading server plugin HollowKing v1.0.0",
+    "[06:39:39] [Server thread/INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+    "[06:39:40] [Server thread/INFO]: [HollowKing] Enabling HollowKing v1.0.0",
+    "[06:39:40] [Server thread/INFO]: [HollowKing] Designer ready: items -; menus -; quests -; bosses hollow_king; encounters hollow_siege",
+    "[06:39:40] [Server thread/INFO]: [BetterModel] Plugin is loaded. (418 ms)",
+    "[06:39:40] [Server thread/INFO]: [BetterModel] Minecraft version: 1.21.11, NMS version: V1_21_R7",
+    "[06:39:40] [Server thread/INFO]: [BetterModel] Platform: Paper",
+    "[06:39:53] [Server thread/WARN]: [HollowKing] model nx_b0ssm0de_hollow_king not worn (BetterModel has no model nx_b0ssm0de_hollow_king loaded): the mob keeps its vanilla wither skeleton body. Is the creature delivered to plugins/BetterModel/models? (/bettermodel reload)",
+    "[06:39:53] [Server thread/INFO]: [HollowKing] boss hollow_king#1 spawned at world 0 -60 0: health 260.00 (1 player), vanilla body (BetterModel has no model nx_b0ssm0de_hollow_king loaded)",
+    "[06:39:54] [Server thread/WARN]: [HollowKing] model nx_b0ssm0de_hollow_thrall not worn (BetterModel has no model nx_b0ssm0de_hollow_thrall loaded): the mob keeps its vanilla zombie body. Is the creature delivered to plugins/BetterModel/models? (/bettermodel reload)",
+    "[06:39:55] [Server thread/INFO]: [HollowKing] Disabling HollowKing v1.0.0",
+    "[06:39:55] [Server thread/INFO]: [HollowKing] cleanup: removed 1 bosses, 2 minions and 0 encounter mobs",
+    "[06:39:55] [Server thread/INFO]: [BetterModel] Disabling BetterModel v2.2.0"
+   ],
+   "exceptionLines": [
+    "java.net.UnknownHostException: fill.papermc.io",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.fetchMinecraftVersionList(PaperVersionFetcher.java:149) ~[paper-1.21.11.jar:?]",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.getUpdateStatusStartupMessage(PaperVersionFetcher.java:74) ~[paper-1.21.11.jar:?]",
+    "java.net.UnknownHostException: fill.papermc.io",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.fetchDistanceFromSiteApi(PaperVersionFetcher.java:203) ~[paper-1.21.11.jar:?]",
+    "\tat com.destroystokyo.paper.PaperVersionFetcher.getUpdateStatusStartupMessage(PaperVersionFetcher.java:76) ~[paper-1.21.11.jar:?]"
+   ],
+   "sandboxNoiseExceptionLines": 73,
+   "pluginErrorLines": [],
+   "errorLines": [
+    "[06:39:34] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+    "[06:39:40] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version list",
+    "[06:39:40] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version",
+    "[06:39:40] [Paper Async Task Handler Thread - 1/ERROR]: *** Error obtaining version information! Cannot fetch version info ***"
+   ],
+   "modelWarnings": [
+    "[06:39:53] [Server thread/WARN]: [HollowKing] model nx_b0ssm0de_hollow_king not worn (BetterModel has no model nx_b0ssm0de_hollow_king loaded): the mob keeps its vanilla wither skeleton body. Is the creature delivered to plugins/BetterModel/models? (/bettermodel reload)",
+    "[06:39:54] [Server thread/WARN]: [HollowKing] model nx_b0ssm0de_hollow_thrall not worn (BetterModel has no model nx_b0ssm0de_hollow_thrall loaded): the mob keeps its vanilla zombie body. Is the creature delivered to plugins/BetterModel/models? (/bettermodel reload)"
+   ],
+   "cleanupLines": [
+    "[06:39:55] [Server thread/INFO]: [HollowKing] cleanup: removed 1 bosses, 2 minions and 0 encounter mobs"
+   ],
+   "cantKeepUp": 0
+  }
+ }
+}
