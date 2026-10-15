@@ -73,6 +73,22 @@ past that function's own rollback try/catch. See the dated session report
 `/root/claudeskills/agent-notes/cyrus-research/DG-delivery-ownership-fix-2026-10-15.md` for the full list and
 exact line references.
 
+**UPDATE 2026-10-15 (follow-up pass, commit 1e0ba792 on the same branch) - the "still open" list above is now
+CLOSED, and site 1 was the REAL cause, not the orchestrator.** Traced with file:line evidence
+(DH-delivery-ownership-fix-2-2026-10-15.md): the standard "install this build" action
+(`app/api/mod-builder/builds/[id]/install/route.ts` -> `lib/modbuilder/install.ts:160` `enqueueModOp`
+-> `lib/mods/queue.ts:42`, a plain GAME_MOD_SYNC payload with no `cyrusDelivery` key) is NOT routed to the
+orchestrator (`worker/game-mods.ts:85` only diverts payloads carrying that discriminator, which come from
+Designer Studio ship / Mod Packs / Config Studio send). It runs the ordinary engine loop and, for a Cyrus
+minecraft mod, `worker/game-mods.ts:173-185` -> `afterCyrusModChange` -> `deliverCreatures()`
+(`lib/cyrus/assets/deliver-worker.ts:32-36`), which wrote config.yml and the models with zero chown. The first
+pass fixed a real but rarely-used sibling; the live incident came through `deliverCreatures()`. Fixed now there,
+in Mod Pack placement (`modpack/install.ts` fsPlacer + packs.json, `engine-placer.ts` config files; the unit
+record stays root's), and `lib/mods/engine.ts` chownLike is now `.catch`-swallowed. Shared helper moved to
+`lib/cyrus/host/own-game.ts`. Residual: it is inferred from code, not log-proven, that InfiniteDungeon came
+via the standard install; the owner's ServerMod/Job rows for that server would confirm (payload without
+`cyrusDelivery`).
+
 **Lesson (one line)**: every guest-filesystem write in the delivery path must restore game-folder ownership; Test
 Flight does not catch this because it never exercises the real delivery write path.
 
