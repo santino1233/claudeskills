@@ -37,7 +37,20 @@ Order followed: 3, 5, 4, 1, 2, 6, then the new asks a, b, c.
 
 - `devhost test test/cyrus-studio-ux.test.ts test/cyrus-qa-polish.test.ts test/cyrus-bridge-routing.test.ts test/cyrus-admin-r40.test.ts test/cyrus-portals-routing.test.ts`: pass (two older assertions updated on purpose: the host bar moved to HostBar, and "one Back to Nxeon" became "none").
 - `devhost run --lock -- npx tsc --noEmit` (NODE_OPTIONS 6144): clean.
-- Shots: see below.
+- `devhost run --lock -- npx next build` OK; screenshots taken against `next start` behind the TLS front (`test/e2e/qa-tls-proxy.mjs`, `https://cyrus.my:5108`, `__Host-cyrus_session`) so the cyrus.my host runs as in production (next dev does not carry the host marker reliably; do not use it for cyrus.my shots).
+- Cut-off diagnosis (px of the last element hidden below what any ancestor lets the user see):
+  - before: nx home 1440 = 509 px clipped, 0 scrollers (`before/before-nx-home-d1440.png`); the other 8 app pages show the same clipping in their `before-nx-*-d1440.png`.
+  - after: nx home 1440 / 390, cy home 1440 / 390, cy projects 1440 = 0 px clipped, 1 user scroller; studio canvas 1440x900, 1280x720, 390 = 0 (never clipped).
+- After shots: `after-nx-studio-d1440/d1280`, `after-nx-home-d1440/m390`, `after-cy-landing-d1440/m390(-menu)`, `after-cy-studio-d1440/d1280/m390(-menu)`, `after-cy-home-d1440/m390(-menu)`, `after-cy-projects-d1440`.
+- Not captured (honest gaps): before shots for the cyrus.my host (node-2 was saturated, load 20, dev server OOM-killed twice; the cut-off is the same CSS on both hosts); light theme shots; the studio's Simple view and a dragged mod pill (logic covered by tests, interaction not screenshot); the skin ON (flag default off) was not screenshotted; the CyrusPreloader was not caught on screen (it is invisible for the first 180 ms by design; only covered by a source ratchet); after-nx-studio-d1440 was taken mid-bloom on a slow host (the cy shot, taken 8 s in, shows the settled map).
+- Nothing was exercised against a real DB migration: `CyrusStudioPref` exists only in the throwaway DB (`db push`); the API fails soft without it.
+
+## What remains / next
+
+- Owner review of the skin (`?skin=cyrus` on staging), then decide the flag.
+- Real-browser check of drag + Load more + profile round-trip on staging after the SQL is applied.
+- The Nxeon floating chat bubble still sits over the Cyrus studio on nxeon.cloud (not in scope; it is the portal's support widget).
+- Landing republish (owner step).
 
 ## Owner commands (nothing deployed)
 
