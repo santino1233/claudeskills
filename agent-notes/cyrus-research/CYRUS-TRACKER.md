@@ -584,3 +584,10 @@ Merge conflicts of structure/preflight/oracle/library-prod resolved on release/c
 - Welcome to Cyrus step (username + Terms accepted, one write, both hosts, API `onboarding_required`); entry-point dead ends fixed; starter tokens now work in the private beta; Stripe `product=cyrus` tags + CYRUS descriptors; storage-subscription-as-plan bug and top-up recovery fixed; beta ops pack (invites tab + CLI + email, Report a problem, daily report, guard refusal log + review queue + offline replay); launch-check fixes and new rows; decisions D-65..D-71.
 - Live state found: backup stopped at 05:07 (LAST_SUCCESS 29 h), alerts firing (backup-stale, ai-spend-24h, disk-primary-root), prod lacks username/terms columns, Google login live, 0 CyrusPlan rows, Stripe key live but no live Prices.
 - Owner: apply `prisma/manual-migrations/2026-10-15-cyrus-welcome-and-guard.sql` BEFORE promoting; LIVE-PAYMENT-TEST.md; BETA-OPERATIONS.md.
+
+## Infinite Dungeon redesign round 2 (2026-10-15)
+- Done: 11-floor shrink (mb3fa7542c798d8a12679e v1.7.0) and bigger rooms/hidden chests/loot scaling (mbdeca41d1bf0cbebd4d83 v1.8.1), both Test Flight passed. Details in CK-infinite-dungeon-2026-10-15.md "Redesign round 2".
+- Open: themed floors + swamp banshee FAILED twice on `budget` (spending cap on one change build, $2.5 and $4.1, tokens released not charged). Needs the work split into 3-4 small refines; decision for owner/Cyrus team: is the per-build cap too low for multi-floor world-building refines (change call alone ~$2)?
+- Open: creature-checker false positive "plugin never uses the model key" when key is built by concatenation; creature cap of 4 silently drops the 5th+ creature (hollowbanshee) with only a build warning.
+- Open: texture bug unproven (likely resource-pack not accepted); needs a real-client check.
+- Runner: qa-dungeon.ts picks last SUCCEEDED build as base and supports --base (uncommitted in /tank/dev-worktrees/cyrus-dungeon).
