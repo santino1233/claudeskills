@@ -44,3 +44,5 @@ Template rigs (3 archetypes x features x height/scale/palette variants), 20 enti
 ## 6. Image bump / owner commands
 - Image bump needed: YES (modbuilder service: creatures.js, creature-spec.js, prompts.js, server.js, textures.js; also tools/testflight/lib.js is pushed per flight). Bump `image` in services/modbuilder/server.js health (currently "0.5") with the usual Dockerfile/release steps; portal and service can deploy in either order (creatureCap is only sent below the cap).
 - Owner commands (nothing run): merge feature/cyrus-more-mobs into the next rc; rebuild/restart nxeon-modbuilder with the new image; then ask the dungeon build again ("8 new monsters") to see 6 models + 2 code mobs and the honest notice; optional `scripts/devhost run --lock -- npx tsx test/cyrus-creature-cost-real.ts` to re-measure; `npx tsx scripts/cyrus/golden-flight.ts results` to refresh the committed pass matrix.
+
+- tsc --noEmit (NODE_OPTIONS 10 GB): clean (exit 0). Final unit re-run after the last prompt edit (more-mobs, creature, creature-pipeline, pipeline, docs-coverage): 149/149 pass. Commits: e7dd862c and later on feature/cyrus-more-mobs.
