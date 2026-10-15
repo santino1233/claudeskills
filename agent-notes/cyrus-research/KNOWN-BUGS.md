@@ -98,3 +98,38 @@ model's generated `.java` source, mined from real build failures). This bug is a
 bug — it has nothing to do with what a model generates, and a precheck rule has no way to see or affect it. No
 entry was added there; forcing one in would misrepresent what that file is for. See the parallel note left in this
 same research directory's tracker instead.
+
+---
+
+## 2026-10-15 - Infinite Dungeon "mob with the black and purple checkered texture on floor 1" (bonewarden) - SETTLED with artifacts
+
+**Verdict: Cyrus delivery bug (two of them), not a client that declined the pack.** Evidence, all mechanical
+(full write-up: `DP-followups-2026-10-15.md`):
+
+- The owner's server ("My server", cmuzuj8wl00xshlv49mfv4a1p) runs Infinite Dungeon **1.6.0** (mb3879f4526e730a7e96b1,
+  ServerMod INSTALLED 12:55; managed BetterModel 2.2.0 + Pack Loader 0.1.0 installed). Installed through the standard
+  Mods-engine path (`worker/game-mods.ts` -> `afterCyrusModChange` -> `deliverCreatures`): models written, restart asked.
+- The 4 stored creatures re-compile to the recorded bbmodel sha256; each `.bbmodel` has one embedded, valid PNG
+  (crc ok; bonewarden 128x128 = its resolution), every face references texture 0, no UV outside the resolution. Not a
+  texture-path/namespace/UV defect. The mod pack (d302b19f / 6e4eab95) is pack_format 75 (= 1.21.11), only nx_oqyxirj4
+  sounds + item textures; BetterModel models are not supposed to be in it (BetterModel builds its own pack).
+- `/tank/cyrus-packs/p` (what cyrus.my/packs serves) has NEVER held a BetterModel pack (no `assets/bettermodel` in any
+  of the 14 zips). Bug 1: the only caller of `handoffBetterModelPack` is the delivery orchestrator, and only when it
+  restarts the server itself; the Mods-engine path never hands BetterModel's pack off. Clients get the mod pack only ->
+  BetterModel's display items (`bettermodel:bm_models`) render as the missing-model magenta/black cube.
+- Bug 2 (real Paper 1.21.11 boot via Test Flight, runs tf-1-21-11-mv9x17jr-d6e2ed with the 4 dungeon models and
+  tf-1-21-11-mv9x42x9-00f3aa with the banshee example): BetterModel 2.2.0 writes `build.zip` with pack.mcmeta OVERLAYS
+  `bettermodel_modern/` + `bettermodel_legacy/` (incl. `bettermodel_legacy/assets/minecraft/models/item/leather_horse_armor.json`).
+  `normalizeBetterModelPack` refused it: "unexpected file in BetterModel's pack: bettermodel_legacy/...". So no 1.21.x
+  server could ever get the pack, by any path. (The handoff was only ever verified with 3.5.0 / Paper 26.2.)
+- Fixed on `feature/cyrus-followups`: overlay allowlist + `lib/cyrus/creature/after-start.ts` hand-off after the
+  platform's GAME_POWER start/restart (tests in `test/cyrus-creature.test.ts`). Owner action after deploy: restart the
+  server from the panel once; players re-join and accept the "animated custom creatures" pack.
+- Separate, NOT the magenta cause: the latest build 1.13.0 (mb05dabe83580f8491a546) no longer uses BetterModel at all
+  (no `depend`, no `kr/toxicity/model` classes) while still recording 4 creatures - the change request (boss arenas)
+  regenerated MonsterManager without the model attach; on the designer route the creature cross-check only checks
+  boss-worn models, so it passed silently. Installing 1.13.0 would ship models + BetterModel that nothing attaches.
+
+**Lesson**: a Test Flight that "places 4 models" proves BetterModel loads them server-side only; nothing checked that
+the generated pack is ever published and offered. A 1.21.x flight must collect `plugins/BetterModel/build.zip` and run
+it through `normalizeBetterModelPack`.
