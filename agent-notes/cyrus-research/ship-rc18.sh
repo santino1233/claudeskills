@@ -48,8 +48,12 @@ git merge --ff-only "$REL"
 say "3/7 staging: SQL then deploy"
 STG_URL=$(dburl /opt/nxeon-staging/.env)
 [ -n "$STG_URL" ] || { echo "no staging DATABASE_URL"; exit 1; }
-bash scripts/deploy-staging.sh main   # its schema push creates the tables staging is missing; the SQL below then runs on top (idempotent)
-for f in "${SQL[@]}"; do echo "staging <- $f"; psql "$STG_URL" -v ON_ERROR_STOP=1 -1 -q -f "$APP/$f"; done
+if [ "${SKIP_STAGING_DEPLOY:-0}" = 1 ]; then
+  echo "SKIP_STAGING_DEPLOY=1: staging already runs this commit; not redeploying."
+else
+  bash scripts/deploy-staging.sh main   # its schema push creates the tables staging is missing; the SQL below then runs on top (idempotent)
+  for f in "${SQL[@]}"; do echo "staging <- $f"; psql "$STG_URL" -v ON_ERROR_STOP=1 -1 -q -f "$APP/$f"; done
+fi
 curl -fsS -o /dev/null -w "staging health: %{http_code}\n" https://staging.nxeon.cloud/ || { echo "staging not healthy; stop"; exit 1; }
 echo "Look at staging now: https://staging.nxeon.cloud (Welcome step, Admin > Cyrus > Beta invites, Report a problem, status page)."
 [ "${STOP_AFTER_STAGING:-0}" = 1 ] && { echo "stopping after staging as requested."; exit 0; }
