@@ -1,0 +1,86 @@
+# CM: mega-mod staging, honest holds, code core, how-it-works coach, instanced-world knowledge (2026-10-15)
+
+Branch `feature/cyrus-mega-staging`, worktree `/tank/dev-worktrees/cyrus-staging`, from main 98d82fe0 **plus a merge of `feature/cyrus-planner-recall` (cc7ba8b8, CH report)**: the CH branch is not on main yet and carries `planner-measure.ts`, the 80-prompt corpus labels and the policy layer that this round builds on. NOT merged to main, NOT deployed. No live build was run; nothing was built or edited in /opt/nxeon. The one node-2 action beyond javac/javap was a single Test Flight boot of the golden plugin on 1.21.11 (19 s, runner lock respected).
+
+Lessons from the Infinite Dungeon (owner): (1) one build call silent 10-25 min, killed twice by the 600 s wall clock; (2) planner chose designMenu+designHud+config(+worldgen) for a code-core mod; (3) spleef died on the per-call cap; (4) the owner was never told how a dungeon can live in an existing world; (5) holds of 350-600 tokens for $1+ builds.
+
+All new behaviour is behind flags, default OFF; with every flag off the plan response, holds and lanes are byte-identical to before (verified by test).
+
+## 1. Mega-prompt detection + auto-staging  (`CYRUS_MEGA_STAGING`)
+- `lib/cyrus/planner/mega.ts` (pure, client-safe): `megaScore` = 0.75 per distinct system (16 system word lists: world, run, procgen, minigame, monsters, bosses, items, economy, quests, progression, persistence, hud, menus, party, assets, admin; cap 12) + 1 per distinct large count ("100 floors", "10 bosses", "12 items"; +1 when n >= 50) + length (1 per 450 chars, cap 4) + 0.75 per built lane over 3 + commands. Levels: `large` >= 6.5, `mega` >= 10.
+- Calibration (measured, not guessed): dungeon request **20.3** (14 systems, 4 big counts); its six QA stage prompts 2.3-8.3 (core is the largest, `large`); the busiest of the 80 real-world / 345 eval-set / 40 golden / 20 owner prompts scores **5.5**. Threshold 10 leaves a margin of 4.5 above the corpus and 1.7 above the biggest single stage.
+- `planStages`: splits into sentences, classifies each (polish > meta > content by earliest subject: bosses / items / monsters > core), and emits an ordered, editable list: core, monsters, items, bosses, meta, polish (only non-empty; max 8). Every original sentence lands in exactly one stage in its own wording (`coverage()` proves it; unclassified sentences follow the previous one). Core text = the core sentences + "keep this stage small"; every later stage = "Keep everything already built working exactly as it is ... Add: <its sentences>" (<= 2,000 chars = the change-request limit). Each stage carries `lanes`, `modules` (MOD_SUITES kinds), `large`, and a price.
+- Dungeon result (reconstructed single prompt, 1,811 chars): 6 stages (core 743 chars; monsters, items, bosses, meta, polish 270-420 chars each), coverage ok.
+- Plan response: `mega` = `{staged, level, score, signals, stages[{title,text,lanes,modules,cost{usd,minutes,tokens,hold},large}], model, total{usd,minutes,tokens}, dailyCap}` only while the flag is on and only for a NEW build (not for a change).
+- Chain on the existing change-build path (no second pipeline): stage 1 = ordinary first build (`prompt` = core text) with `stageChain` in the body; stages 2..n = `POST /api/mod-builder/builds { baseBuildId, changeRequest, stageChain }`, i.e. the same refine the Forge sends, so holds, gates, ledger, Test Flight, daily cap all apply per stage. `createModBuild` stores the validated chain (`parseStageChain`: ids, <= 8 stages, markup stripped, bounded) in `cyrus.stages` of each build row (`lib/cyrus/meta.ts`), flag-gated. The ledger already keeps requirements across refines (`services/modbuilder/ledger.js promptBlock`), which is what makes "nothing dropped" hold at runtime; the partition check covers it at plan time.
+- UI: `components/cyrus/app/StageChain.tsx`. Plan card (`StagePlanCard`, mounted in `NewModFlow`): ordered editable list with minutes and tokens per stage, "still large" marker, "Skip for now" per stage, total and a daily-limit note, buttons "Build stage 1 now" / "Run all N stages". Project page (`StageChainPanel`, a "Staged build" card): where the chain is, "Build stage k" and "Run all remaining stages"; with run-all it continues when the previous stage SUCCEEDED and **stops at the first failed stage** with a plain line ("The stages after it were not started and nothing more was held"). The chain lives in the DB, so a reload or another device resumes with one click; automatic continuation needs the project page open (no server worker added on purpose).
+- MOD_SUITES mapping: a stage is a module-sized unit. `core -> code(+config)`, `monsters -> creatures`, `items -> items(+textures)`, `bosses -> bosses`, `meta -> menus(+config)`, `polish -> config` (`stage.modules`). It is metadata only: with `CYRUS_MOD_SUITES` on, a project can create its module list from the stage plan; with it off a stage is just a change request. I did not wire module creation (the suites flag stays its own review).
+- Limit noticed: the plan route and `createModBuild` both reject a first prompt over 4,000 characters, so a mega request longer than that cannot even reach the staging card. The dungeon prompt (<= 4,000) did get through; raising the limit while the flag is on is a one-line follow-up if needed.
+
+## 2. Hold / estimate honesty  (`CYRUS_HONEST_ESTIMATE`)
+- `lib/cyrus/planner/honest.ts`, used inside `planEstimate`, so the plan card, the Auto model and the hold (`lib/cyrus/tokens/builds.ts gateBuild -> holdRange`) follow with no second code path. `gateBuild` now also gets `scoreText` (the change request alone) so a small stage on a big mod is not held as the whole mod.
+- Measured table (portal-path builds incl. guard + repairs, Saka; source `test/fixtures/cyrus-planner/measured-costs.json` = owner batch records, 11 succeeded; a test re-derives n, range and minutes):
+
+| class | basis | n | usd | minutes |
+|---|---|---|---|---|
+| light | 0-1 non-config lanes | 3 | 0.36-0.55 | 2-5 |
+| mid | 2-3 lanes | 4 | 0.80-1.15 | 2-10 |
+| heavy | 4+ lanes | 4 | 0.75-1.30 | 4-9 |
+| large | mega score >= 6.5 | 0 (extrapolated: heavy x 1.5) | 1.10-1.95 | 8-14 |
+| mega | mega score >= 10 | 0 (extrapolated) | 1.50-2.50 (the call cap) | 10-20 |
+
+  The 497-row eval journals (first1..fifth1) rank the lane groups but are lower (plain 0.07-0.25, sound 0.29-0.5, texture 0.31-0.5 p50) because they skip the guard and plan-resolved asset passes; they are not used for the range. Mega/large have no finished build to measure (the dungeon core timed out 3x at 600 s), so they are labelled extrapolated on the card ("No build this large has finished yet, so this range is an estimate, not a measurement") and carry a warning that recommends stages.
+- Effect on the dungeon (saka, default token config, 500 tokens/usd): single build old 0.68-1.35 usd / 5-11 min / hold 340-810 -> **1.50-2.50 usd / 10-20 min / hold 750-1,500** + warning. Staged: core 125-348 -> 550-1,170, monsters and items 130-330 -> 400-690, bosses and meta 100-276 -> 180-330, polish 35-100 -> 180-330 (config-only builds measured 0.52). Fox companion (owner batch, real 0.98 usd): hold 160-414 -> 400-690. A shop GUI barely moves (125-348 -> 180-348).
+- Plan card: the Estimate row now also says "About N tokens are held while it runs; only what is used is charged, the rest returns", the class warning, and the extrapolation note.
+- Caveats: n = 3-4 per class from one batch of 20 prompts (spleef and the dungeon failed, so the cost of failures is not in the table); `CALL_CAP_USD = 2.5` mirrors the service default `MB_CALL_BUDGET_USD` (2.5, build budget 4). The owner saw spleef die on a $1 cap: **check `MB_CALL_BUDGET_USD` on the deployed service**; if it is 1, mega and large builds cannot finish whatever the hold says.
+
+## 3. Planner code core  (`CYRUS_CODE_CORE`)
+- `lib/cyrus/planner/policy.ts`: `CODE_CORE` archetypes. `instanced-world` (separate/void/private world per run, "without touching my world") and `roguelike` (roguelike, dungeon run, N floors, floor counter, run seed, procedural rooms) demote all designer lanes (item, menu, quest, boss, hud, motion) and worldgen (the plugin creates its own world; a data-pack dimension is the wrong tool); explicit toggles still win. `minigame` is informational. Applied in `ruleNeeds`, `mergeNeeds` (so a model that plans menu/HUD/worldgen is corrected the same way) and, with the mod's prompt as `context`, in `decidePlan` (a later "add bosses" change on a dungeon mod inherits the code core; the plan route and `createModBuild` pass the base).
+- Plan card: one `core` note ("The core of this mod ... is written as plugin code. Designer lanes compile a plugin from a typed spec and would leave that out"), plus the existing per-lane "built as plugin code" lines.
+- Planner model prompt (`services/modbuilder/planner.js`, +279 chars): a code-core mod is plain code, no worldgen for a world the plugin creates itself. **Needs the build-service image bump to take effect**; the portal policy covers it meanwhile.
+- Measured with `scripts/cyrus/planner-measure.ts` (rules selector), flag ON vs the pre-change baseline: real-world 80: recall 95.8% -> 95.8%, precision 94.5% -> 94.5%, exact 92.5% -> 92.5%; golden 40: 100 / 90.2 / 90.0 unchanged; owner batch 20: 100 / 87.5 / 90.0 unchanged; evalset 334 -> 335 (the new coverage prompt): recall 78.1 -> 78.1, precision 46.5 -> 46.5 (the new dungeon prompt is the only changed case: its `motion` false positive is removed; flag OFF it counts as one extra over-request, 33/158). Test: every lane of every corpus prompt is identical flag on vs off except prompts of those archetypes, where lanes only shrink.
+- Dungeon stage 1 before: designMenu, designHud, motion (+ config) -> after: no designer lane.
+
+## 4. Coach: how a dungeon works in an existing world  (`CYRUS_PROMPT_COACH`, existing flag)
+- Matrix archetype `dungeon_crawler` (+ coach template with fields floors/mobs/players, trigger options, STRONG phrases; golden `mc-instanced-dungeon-lite`; coverage eval prompt `cov-dungeon-crawler`; `docs/cyrus/minecraft-coverage.md` regenerated). Spleef still matches `minigames_arenas` (tested); coverage-eval top-1 >= 90% test still passes.
+- `lib/cyrus/coach/howto.ts`: when a request implies a run in a world that already exists AND a dungeon / arena / minigame (or says roguelike / N floors), the report gets `howItWorks`: the answer (an instanced void world per run; the player's own state saved to a file and restored on leave, death, quit and next join after a crash; the run world unloaded and deleted), what is touched ("Nothing in your existing world is read, changed or deleted"), limits (rooms built a few blocks per tick, runs cost server time, big requests are staged), and only the questions the text has not answered: per-player vs shared run, party size, what is remembered, starting items. Shown on the plan card (`data-testid="coach-how"`, each unanswered question has an "Add: ..." button like the other coach questions).
+
+## 5. Knowledge for the code core
+- Sheet group "Instanced run worlds" (one line per version, 8 facts, every member javap-verified on 1.21.1, 1.21.4, 1.21.8, 1.21.11 via `verify-api-facts.py` on node-2; `api-facts.json` apifacts-2026-10-15.1): void `ChunkGenerator` (override `getFixedSpawnLocation(World, Random)`), `WorldCreator` chain, `Bukkit.unloadWorld(w, false)` then delete `getWorldFolder()` off-thread with a name prefix, the player state to save (location, game mode, health, food, level/exp, `getContents()` incl. armor and offhand, effects; YAML stores Location/ItemStack/PotionEffect directly), death/respawn handling, BossBar/Title HUD with hide on every exit, one repeating task and <= 64 block changes per tick. Facts I did NOT add because javap could not verify them on all four versions or they were speculation: "WorldCreator deprecated on 26.x" is in the CJ diff (api-diff-1.21.11-to-26.1.2) and is flagged automatically by the generator ("class deprecated here") once 26.x joins the sheet versions; nothing about it is injected now (26.x is not buildable).
+- Rule `instanced-run-world-cleanup` (rules-2026-10-15.1, advice, no pre-check pattern): unload + delete the per-run world, sweep leftovers on enable, save the player's state before the run and restore on quit, death and next join.
+- Prompt growth (systemPrompt chars, before -> after): 1.21.1 55,554 -> 57,141 (+2.86%), 1.21.4 56,539 -> 58,126 (+2.81%), 1.21.8 56,776 -> 58,363 (+2.80%), 1.21.11 58,670 -> 60,257 (+2.70%); asserted < 3% by test. (Earlier tests had a cumulative +8% budget over the old base; raised to +10% in `modbuilder-distill-rules.test.ts`, and the rules-version regexes in two tests widened to 10-12..15.)
+- Golden `mc-instanced-dungeon-lite` (`services/modbuilder/golden/plugins/mc-instanced-dungeon-lite`, 1 Java file, ~330 lines): /dungeon start|leave|status|abandon; a void world per run (`WorldCreator` + `ChunkGenerator`), player state to `saved/<uuid>.yml` before anything changes and restored on leave/abandon/death/quit/next join, rooms queued and built at 64 blocks per tick by ONE repeating task, floor counter + best floor in the player's PDC, boss bar + title HUD, keep-inventory-on-death inside a run, unload + async delete of the run world with a name-prefix guard, leftover sweep on enable, natural spawns cancelled in run worlds. Harness (javac --release 21 -Xlint:deprecation,removal against each real Paper API classpath + strict bytecode/source scan + reproducible jar): **pass/pass on 1.21.1, 1.21.4, 1.21.8, 1.21.11**, zero warnings. Test Flight boot on 1.21.11: passed (boot 18.6 s, peak 864 MB, RCON `dungeon status` ok). Registered in `golden/results.json` (boot "-" on the other three versions: not flown).
+
+## Verification
+- `scripts/devhost tsc`: 0 errors (run before the last test-only edits; re-run noted below).
+- New `test/cyrus-mega-staging.test.ts`: 29 tests (score + corpus ceiling, partition/coverage/order, plan response flag on/off, chain parse/next/stop, honest table re-derivation + hold effect, code-core on/off + corpus no-regression + model path + context + toggle, coach how/archetype/spleef, knowledge: sheet line, verified facts, prompt growth, rule, golden registration).
+- Related suites (`test/cyrus-*.test.ts`, `test/modbuilder-*.test.ts`, 4,012 tests): all pass except `cyrus-liveassets-e2e` "mid-stream views per kind ... cubes appear as they arrive" (timing of a fake-CLI stream; fails the same way twice on node-2; touches nothing this round changed; not re-verified on main).
+- Docs: `scripts/cyrus/docs-build.ts` regenerated (flags-and-env 328 flags: +3), `mc-coverage.ts` regenerated, change-history bullet in `docs/DOCUMENTATION.md`.
+
+## Image bump needed?
+- Portal only (flags + code in `lib/`, `app/`, `components/`): no image. 
+- Build service image: **yes, for 3 of the changes** (`services/modbuilder/sheets/*.md` + `rules/failure-rules.json` = the knowledge; `planner.js` = the planner model's code-core sentence; golden corpus is dev-only). They are in the Dockerfile COPY already; bump `TAG` and `scripts/deploy-modbuilder.sh` as for rc builds. Not needed for staging, honest holds, code-core policy or the coach. Do not bump while the owner dungeon build is running.
+
+## Owner commands
+```
+# 1. review / merge (branch carries the recall branch too)
+cd /opt/nxeon && git log --oneline main..feature/cyrus-mega-staging
+# 2. portal env (staging first), all default OFF; each is independent
+CYRUS_MEGA_STAGING=1      # "Build this in stages" card + chain on the project page
+CYRUS_HONEST_ESTIMATE=1   # measured estimates, bigger hold + warning for large/mega
+CYRUS_CODE_CORE=1         # no designer/worldgen lanes for instanced-world / roguelike cores
+CYRUS_PROMPT_COACH=1      # (existing) shows "how it works" for dungeons in an existing world
+# 3. check the service per-call cap (spleef died on 1 usd)
+grep -E "MB_CALL_BUDGET_USD|MB_BUILD_BUDGET_USD" <modbuilder env>   # defaults 2.5 / 4
+# 4. offline checks from the worktree
+scripts/devhost test test/cyrus-mega-staging.test.ts
+NODE_PATH=/opt/nxeon/node_modules CYRUS_CODE_CORE=1 /opt/nxeon/node_modules/.bin/tsx scripts/cyrus/planner-measure.ts
+# 5. the dungeon, staged, once the cap/limits allow (6 stages, ~2,900 tokens high end vs the 5,000/day limit)
+```
+Suggested test on staging after enabling the flags: paste the dungeon prompt in the Forge, expect the stage card (6 stages, 750-1,500 token single hold warning), press "Run all 6 stages", watch the chain stop if a stage fails.
+
+## Not done / honest gaps
+- No paid planner call, no live build: the effect of the planner prompt sentence and the real cost of staged dungeon builds are unmeasured (mega/large figures are extrapolations, labelled as such on the card).
+- Auto-continuation is client-driven (project page open); a server-side chain runner would need a worker hook (deliberately not added).
+- The verbatim owner prompt is not in the notes; `test/fixtures/cyrus-planner/dungeon-mega.json` holds a reconstruction from the six QA stage prompts (the staging logic is exercised on both).
+- Stage classification is keyword-based (editable by the owner on the card); an unusual prompt may need its list edited.
