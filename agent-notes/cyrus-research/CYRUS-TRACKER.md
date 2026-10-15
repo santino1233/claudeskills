@@ -562,3 +562,7 @@ Report `CC-library-prod-2026-10-14.md` (+ `CC-library-prod-evidence/`). Branch `
 
 ## 113. rc15 integration (2026-10-14)
 Merge conflicts of structure/preflight/oracle/library-prod resolved on release/cyrus-rc15 (cyrus-int2); real pass honours behaviour fail; MB_PREFLIGHT default advise; tests green except known liveassets timing. Image modbuilder:0.21. See CG-rc15-integration-2026-10-14.md.
+
+## 114. Planner recall round (2026-10-15), feature/cyrus-planner-recall (from main 98d82fe0), verified (tsc 0, planner/coach/eval/docs suites), NOT merged/promoted; report CH-planner-recall-2026-10-15.md
+- The 30% "planner recall" was the eval selector, not the planner rules. Rules recall on the 80 real-world prompts 61.5% -> 81.3% raw (73.6 -> 97.2 adjusted for documented label disputes), precision 74.7 -> 85.1; evalset 76.0 -> 78.1; owner batch rules 85.7 -> 100. Recorded model plan on the owner batch: recall 100%, precision 58%; with the new policy (portal-only) 95% recall, 95% precision.
+- New policy layer (plain-by-evidence, corroboration of model-only designer/datapack lanes, "cannot be built" limits), creature-vs-designer decided up front with plan notes, plan screen "Not built as the request reads". Planner prompt +329 chars (needs image bump, optional).
