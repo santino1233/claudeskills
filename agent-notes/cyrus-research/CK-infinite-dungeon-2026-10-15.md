@@ -65,3 +65,22 @@ Thumbnail cast vs shipped: banshee = vanilla mob with projectiles, no ghost mode
 - Ice boss attempts: mbbee4a3822b8cbeb16f9c REFUSED by guard (3 s, $0.003); reworded -> mb6e5e2ece247cc07bf492 FAILED budget ($2.66); split -> mb6c1ca6ee26430b06081c SUCCEEDED v1.14.1, 317 s, $1.70, 849 tokens, 1 repair. Shipped: Frost Colossus creature (humanoid archetype rig, iron golem base) wired to a room via FROST_COLOSSUS_FLOOR with hurt/death/attack sounds; NO custom abilities/phases yet.
 - Abilities refine (mbed127678a15c23a6b771, mb7c8b6bb3709d2427fec2) REFUSED by the safety guard twice (4-5 s, $0.003 each). Stopped per rule. Not attempted: swamp boss, lava boss, lich king, skeleton king, cave spider, banshee model.
 - Caveat: the Frost Colossus is placed with `!bossFloor && floor == FROST_COLOSSUS_FLOOR`, i.e. a non-boss floor; I did not confirm it is on floor 3's ice arena. Verify in game.
+
+### Round 3: custom creatures only (after rc18/0.23; base mb6c1ca6ee26430b06081c v1.14.1)
+All succeeded, Test Flight passed, wiring re-read from source after the final build (BetterModel in plugin.yml depend, MODELED_IDS + literal MODEL_* constants whose values equal the delivered assets/creatures spec names, attach via BetterModel.model(modelKey(id))).
+| Step | Build | Ver | Wall | USD | tokens | creatures |
+|---|---|---|---|---|---|---|
+| castle: Castle Guard, Gargoyle | mbdc21e26b3aacd3254d87 | 1.15.0 | 350 | 1.64 | 818 | 7 |
+| lava: Ember Imp, Magma Brute | mb62235d2590ea789fcd6b | 1.16.0 | 170 | 1.36 | 682 | 9 |
+| swamp: Bog Lurker, Wisp Hag | mbd2963f9d6e0adfa3b612 | 1.17.0 | 221 | 1.01 | 505 | 11 |
+| ice: Frostbitten Wraith, Glacier Hound | mbcf8ec9902c2f973d461f | 1.18.0 | 207 | 1.42 | 709 | 13 |
+| crypt: Grave Shambler, Bone Archer | mb61f85d00492eaab67429 | 1.19.0 | 235 | 1.21 | 604 | 15 |
+| ruins: Thorn Stalker, Moss Sentinel | mb4263909dad89eae3d493 | 1.20.0 | 202 | 1.14 | 572 | 17 |
+| floor 6 Mire Treant | mb1644589ae9860fcbe1d3 | 1.21.0 | 283 | 2.44 | 1526 | 18 |
+| floor 9 Molten Colossus | mb6f995ada6d83a8f09b55 | 1.22.0 | 204 | 1.96 | 1222 | 19 |
+| floor 11 Lich King | mbd8b9d28373c3e4748e92 | 1.23.0 | 390 | 1.74 | 871 | 20 |
+| Skeleton King + Royal Skeleton Guards | mb55639aa1a39e91a3f5fd | 1.24.0 | 346 | 1.72 | 861 | 22 |
+| Giant Cave Spider | mb2c6536a4cdb226e21350 | 1.25.0 | 205 | 1.31 | 655 | 23 |
+| Hollow Banshee ghost model | mbe94b7e5992e0a1c0df8d | 1.26.0 | 186 | 1.12 | 561 | 24 |
+| Frost Colossus abilities | mbc97b0d7ad963f7ca7a8d | - | 3 | 0.003 | 0 | REFUSED by guard (fix not live) |
+FINAL v1.26.0 mbe94b7e5992e0a1c0df8d: 24 creature specs, 23 modeled monster ids. Still vanilla-type: the 10 rotating floor bosses in BossManager (gravelord, emberjaw, broodmother, hexarch, ironclad, frosthowl, dreadplate, banshee boss, moltenwarden, voidwraith) are vanilla EntityTypes with names (floors 3/6/9 boss arenas use these unless the new creature room replaces them: Frost Colossus has a dedicated room on a non-boss floor, Mire Treant/Molten Colossus were asked to replace floor 6/9 enemies - read DungeonManager to confirm). Frost Colossus and Gargoyle, Bone Archer have no abilities. Every BetterModel creature still sits on an invisible vanilla base entity (that is how BetterModel works); models need the pack hand-off fix shipping in rc19 to render.
