@@ -1,0 +1,5 @@
+# Staff ticket reply with image fails (2026-10-15)
+Evidence: browser error "An unexpected response was received from the server." (nxeon-web journal 18:27:29/18:27:35, /admin/support/cmv9...). nginx error.log same seconds: [crit] open() "/var/lib/nginx/body/0000022940" failed (13: Permission denied), server 4j3d7gkr2wcbi34.nxeon.cloud.
+Cause: /var/lib/nginx/body (recreated 18:11 UTC) and proxy/ etc. owned by nobody; workers run www-data (nginx.conf user www-data). Bodies > client_body_buffer_size are spooled to disk -> fails -> 500 HTML. Text replies unaffected. Also 13 such crits in error.log incl. proxy/ (large responses). Server action, validator, bodySizeLimit 30mb, attachment route all fine.
+Host fix (NOT done): chown -R www-data:root /var/lib/nginx/{body,proxy,fastcgi,uwsgi,scgi}; find what ran as nobody at 18:11.
+Repo fix: lib/ticket-reply-errors.ts, TicketControls.tsx catch, test/ticket-reply-errors.test.ts (3 pass via devhost). Branch fix/ticket-reply-image off main b447360d (not 84d5be2f). publish-docs.mjs not run (writes live /var/www).
