@@ -10,7 +10,12 @@
 set -euo pipefail
 REL=release/cyrus-rc18
 APP=/opt/nxeon
-TAG=${TAG:-modbuilder:0.20}
+# next free tag on the build VM (0.22 was running when this was written; a fixed 0.20 would be a downgrade)
+if [ -z "${TAG:-}" ]; then
+  MAXN=$(ssh -o BatchMode=yes -J root@178.63.94.114 root@10.20.1.253 "docker images --format '{{.Tag}}' modbuilder | grep -E '^0\.[0-9]+\$' | cut -d. -f2 | sort -n | tail -1")
+  [ -n "$MAXN" ] || { echo "cannot read the modbuilder tags from the build VM; set TAG=modbuilder:0.N yourself"; exit 1; }
+  TAG="modbuilder:0.$((MAXN + 1))"
+fi
 SQL=(
   prisma/manual-migrations/2026-10-15-cyrus-welcome-and-guard.sql
   prisma/manual-migrations/2026-10-15-cyrus-library-publication.sql
@@ -43,8 +48,8 @@ git merge --ff-only "$REL"
 say "3/7 staging: SQL then deploy"
 STG_URL=$(dburl /opt/nxeon-staging/.env)
 [ -n "$STG_URL" ] || { echo "no staging DATABASE_URL"; exit 1; }
+bash scripts/deploy-staging.sh main   # its schema push creates the tables staging is missing; the SQL below then runs on top (idempotent)
 for f in "${SQL[@]}"; do echo "staging <- $f"; psql "$STG_URL" -v ON_ERROR_STOP=1 -1 -q -f "$APP/$f"; done
-bash scripts/deploy-staging.sh main
 curl -fsS -o /dev/null -w "staging health: %{http_code}\n" https://staging.nxeon.cloud/ || { echo "staging not healthy; stop"; exit 1; }
 echo "Look at staging now: https://staging.nxeon.cloud (Welcome step, Admin > Cyrus > Beta invites, Report a problem, status page)."
 [ "${STOP_AFTER_STAGING:-0}" = 1 ] && { echo "stopping after staging as requested."; exit 0; }
