@@ -85,7 +85,8 @@ deploy/cyrus/nginx-cyrus-admin.conf (renamed from .template), deploy/cyrus/nginx
 deploy/cyrus/admin-host-apply.sh, deploy/cyrus/CYRUS-ADMIN-HOST.md; scripts/cyrus/nginx-cyrus-admin-check.sh;
 test/cyrus-admin-host.test.ts (+10 matrix tests); docs/cyrus/07-operations.md, CYRUS-MY-LAUNCH.md, _data/flag-notes.json,
 generated reference pages; docs/DOCUMENTATION.md change history.
-Verified: devhost tsc; cyrus-admin*, cyrus-bridge-*, cyrus-docs-coverage, cyrus-security-review (authz table),
+Commit b979326d on feature/cyrus-admin-host (not pushed; committed with hooks disabled so the auto-push hook did not run).
+Verified: devhost tsc clean (needs NODE_OPTIONS=--max-old-space-size=9216; devhost's default 5120 OOMs); 326/326 tests in cyrus-admin*, cyrus-bridge-*, cyrus-docs-coverage, cyrus-security-review (authz table),
 cyrus-host-*, page-gate, portals-routing, seo, nginx-vhost, launch-check, mods. Vhost passed `nginx -t` in a scratch
 prefix and the check script's admin-host rows all passed against it with a fake upstream (query string absent from logs).
 
