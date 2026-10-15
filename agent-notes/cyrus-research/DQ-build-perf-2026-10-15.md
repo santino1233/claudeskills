@@ -19,6 +19,14 @@ Static delta rc17..rc18 (587 files, +26k lines): 11 new cyrus-web pages + ~20 ad
 force-dynamic; no new generateStaticParams; tsconfig.next.json / next.config unchanged; static pages
 944 (rc18) vs 986 (Oct 7 build); compile 3.5 min in both logs. Nothing in the code delta explains it.
 
+### Natural experiment (owner's 45-min promote, 30 s samples)
+- 19:26:51-19:32:38 (agents slice ~9.7 G): prod slice 2.3-3.3 G, ~1 core falling to ~0.1 core,
+  memory PSI full 12% -> 54%, still at "Creating an optimized production build".
+- 19:33:08 agent memory dropped to ~0.1 G (agent jobs ended or were stopped): prod grew to 8.3 G in
+  90 s, PSI 0, and the build finished at 19:40:11: 16m45s CPU, 10.7 G peak, 89 MB swap.
+  That's about 7 min of wall time once it had memory. So the same rc18 commit builds normally when
+  it isn't starved.
+
 ## Mechanism
 - nxeon-build.slice (parent): live MemoryMax 13 G / MemoryHigh 12.5 G / swap 6 G (owner's
   `systemctl set-property` of 2026-10-11 in /etc/systemd/system.control — overrides the unit files,
