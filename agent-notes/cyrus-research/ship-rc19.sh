@@ -14,6 +14,8 @@
 #            modbuilder  TAG=modbuilder:0.23 bash scripts/cyrus/deploy-modbuilder.sh   (0.23 = live when this was written)
 #            nginx   the backup path printed in step 7 (restored automatically if nginx -t or the reload fails)
 #            landing apps/cyrus-site/publish.sh rollback --go
+# modbuilder image: the new tag carries guard-2026-10-15.1 (prompt-guard false-positive fix) AND the refine regression guard
+#   (services/modbuilder/preserve.js, MB_PRESERVE: preservation invariants BASE vs NEW on a refine).
 # Notes: DT-rc19-assembly-2026-10-15.md (this release), DR (web hotfix), DS (guard), DP (BetterModel hand-off), DK, DM, DQ, DN, DO.
 set -euo pipefail
 REL=release/cyrus-rc19
@@ -96,7 +98,9 @@ echo "  a ticket reply with an image, a Project Zomboid server's Server Password
 ask "Staging looks good. Continue to PRODUCTION?"
 
 # ---- 4. modbuilder image ----------------------------------------------------------
-say "4/9 modbuilder image $TAG (guard-2026-10-15.1: route.js/server.js; restarts the live build service)"
+# The image carries guard-2026-10-15.1 (route.js/server.js prompt-guard fix) and the refine regression guard
+# (preserve.js, MB_PRESERVE: refuses a refine that drops what the base mod had).
+say "4/9 modbuilder image $TAG (guard-2026-10-15.1 + refine regression guard MB_PRESERVE; restarts the live build service)"
 echo "Builds in flight right now (wait for 0 if you can):"
 ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "curl -fsS http://127.0.0.1:7340/health 2>/dev/null | head -c 400; echo" || echo "(health read failed; check by hand)"
 ask "Deploy $TAG now (rollback: TAG=$LIVE_IMG bash scripts/cyrus/deploy-modbuilder.sh)?"

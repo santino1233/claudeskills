@@ -74,3 +74,12 @@ rotate CYRUS_GOOGLE_CLIENT_SECRET (DK); node-2 `MemoryMin=9G MemoryLow=10G` / `M
 landing Mods/Blog links); mark the 3 guard refusals false_positive in Admin > Cyrus > Learning (DS); staging cleanup SQL
 `screens-mod-pages/cleanup-staging.sql` (DP); /var/lib/nginx temp dirs owned by nobody -> chown www-data (DN, host fix);
 decisions carried from rc18 (Free plan game slots, cyrus_cost_platform_daily_cap_usd, launch switches).
+
+## 8. rc19 final (2026-10-15)
+Merged feature/cyrus-refine-regression-guard (8779a067) --no-ff as 45ab0502 (no conflicts, 48 files; no hooks, nothing pushed).
+**Head: 45ab0502.** Adds services/modbuilder/preserve.js (MB_PRESERVE refine regression guard; the modbuilder image now carries it
+together with guard-2026-10-15.1) plus test/modbuilder-preserve*.test.ts, cyrus-preserve-portal.test.ts.
+- Generated refs: docs-build, mc-coverage, gen-openapi all `--check` exit 0 (branch already carried regenerated refs; nothing to pull).
+- `devhost tsc` (NODE_OPTIONS=--max-old-space-size=10240 via env): exit 0.
+- Suites (same list as section 4): **4913 tests, 4912 pass, 0 fail, 1 skipped** (nginx -t). No new failure.
+- ship-rc19.sh header + image step updated; `bash -n` OK. Same deploy facts as section 6 (modbuilder tag 0.24).
