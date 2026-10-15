@@ -1,0 +1,1018 @@
+{
+ "schema": 1,
+ "from": "1.21.8",
+ "to": "1.21.11",
+ "breaking": [
+  {
+   "kind": "type-removed",
+   "type": "io.papermc.paper.generated.GeneratedFrom",
+   "simple": "GeneratedFrom"
+  },
+  {
+   "kind": "type-removed",
+   "type": "io.papermc.paper.registry.event.RegistryFreezeEvent",
+   "simple": "RegistryFreezeEvent"
+  },
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.packs.DataPack$Compatibility",
+   "simple": "DataPack$Compatibility"
+  },
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.packs.DataPack$Source",
+   "simple": "DataPack$Source"
+  },
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.packs.DataPack",
+   "simple": "DataPack"
+  },
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.packs.DataPackManager",
+   "simple": "DataPackManager"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.event.entity.EntityPushedByEntityAttackEvent",
+   "simple": "EntityPushedByEntityAttackEvent",
+   "member": "isCancelled()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.event.entity.EntityPushedByEntityAttackEvent",
+   "simple": "EntityPushedByEntityAttackEvent",
+   "member": "setCancelled(boolean)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.registry.event.RegistryEventProvider",
+   "simple": "RegistryEventProvider",
+   "member": "freeze()"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.BlockTypeKeys",
+   "simple": "BlockTypeKeys",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.ItemTypeKeys",
+   "simple": "ItemTypeKeys",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BiomeTagKeys",
+   "simple": "BiomeTagKeys",
+   "member": "HAS_CLOSER_WATER_FOG"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BiomeTagKeys",
+   "simple": "BiomeTagKeys",
+   "member": "INCREASED_FIRE_BURNOUT"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BiomeTagKeys",
+   "simple": "BiomeTagKeys",
+   "member": "PLAYS_UNDERWATER_MUSIC"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BiomeTagKeys",
+   "simple": "BiomeTagKeys",
+   "member": "SNOW_GOLEM_MELTS"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BiomeTagKeys",
+   "simple": "BiomeTagKeys",
+   "member": "WITHOUT_PATROL_SPAWNS"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.ItemTypeTagKeys",
+   "simple": "ItemTypeTagKeys",
+   "member": "ENCHANTABLE_SWORD"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.Bukkit",
+   "simple": "Bukkit",
+   "member": "getDataPackManager()"
+  },
+  {
+   "kind": "constant-removed",
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SPAWN_CHUNK_RADIUS"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "equals(Object)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "toString()"
+  },
+  {
+   "kind": "constant-removed",
+   "type": "org.bukkit.Material",
+   "simple": "Material",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.Material",
+   "simple": "Material",
+   "member": "isEnabledByFeature(World)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.Server",
+   "simple": "Server",
+   "member": "getDataPackManager()"
+  },
+  {
+   "kind": "constant-removed",
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "ITEMS_ENCHANTABLE_SWORD"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": "keepSpawnInMemory(boolean)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": "keepSpawnInMemory()"
+  },
+  {
+   "kind": "field-removed",
+   "type": "org.bukkit.block.BlockType",
+   "simple": "BlockType",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "displayName(int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "translationKey()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "isTradeable()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "isDiscoverable()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getMinModifiedCost(int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getMaxModifiedCost(int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getRarity()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getDamageIncrease(int,EntityCategory)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getActiveSlots()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.EntityType",
+   "simple": "EntityType",
+   "member": "isEnabledByFeature(World)"
+  },
+  {
+   "kind": "field-removed",
+   "type": "org.bukkit.inventory.ItemType",
+   "simple": "ItemType",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "isInstant()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getColor()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getKey()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getEffectAttributes()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getAttributeModifierAmount(Attribute,int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getEffectCategory()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "translationKey()"
+  }
+ ],
+ "newlyDeprecated": [
+  {
+   "type": "com.destroystokyo.paper.MaterialTags",
+   "simple": "MaterialTags",
+   "member": "LANTERNS",
+   "forRemoval": false
+  },
+  {
+   "type": "com.destroystokyo.paper.event.profile.LookupProfileEvent",
+   "simple": "LookupProfileEvent",
+   "member": "getPlayerProfile()",
+   "forRemoval": false
+  },
+  {
+   "type": "io.papermc.paper.event.player.PlayerBedFailEnterEvent$FailReason",
+   "simple": "PlayerBedFailEnterEvent$FailReason",
+   "member": "valueOf(String)",
+   "forRemoval": false
+  },
+  {
+   "type": "io.papermc.paper.event.player.PlayerBedFailEnterEvent",
+   "simple": "PlayerBedFailEnterEvent",
+   "member": "getFailReason()",
+   "forRemoval": false
+  },
+  {
+   "type": "io.papermc.paper.event.world.border.WorldBorderBoundsChangeEvent",
+   "simple": "WorldBorderBoundsChangeEvent",
+   "member": "getDuration()",
+   "forRemoval": false
+  },
+  {
+   "type": "io.papermc.paper.event.world.border.WorldBorderBoundsChangeEvent",
+   "simple": "WorldBorderBoundsChangeEvent",
+   "member": "setDuration(long)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "ANNOUNCE_ADVANCEMENTS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "COMMAND_BLOCK_OUTPUT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DISABLE_PLAYER_MOVEMENT_CHECK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DISABLE_ELYTRA_MOVEMENT_CHECK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_DAYLIGHT_CYCLE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_ENTITY_DROPS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_FIRE_TICK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_LIMITED_CRAFTING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "PROJECTILES_CAN_BREAK_BLOCKS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_MOB_LOOT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_MOB_SPAWNING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_TILE_DROPS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_WEATHER_CYCLE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "KEEP_INVENTORY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "LOG_ADMIN_COMMANDS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MOB_GRIEFING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "NATURAL_REGENERATION",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "REDUCED_DEBUG_INFO",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SEND_COMMAND_FEEDBACK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SHOW_DEATH_MESSAGES",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SPECTATORS_GENERATE_CHUNKS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DISABLE_RAIDS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_INSOMNIA",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_IMMEDIATE_RESPAWN",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DROWNING_DAMAGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "FALL_DAMAGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "FIRE_DAMAGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "FREEZE_DAMAGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_PATROL_SPAWNING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_TRADER_SPAWNING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_WARDEN_SPAWNING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "FORGIVE_DEAD_PLAYERS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "UNIVERSAL_ANGER",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "BLOCK_EXPLOSION_DROP_DECAY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MOB_EXPLOSION_DROP_DECAY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "TNT_EXPLOSION_DROP_DECAY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "WATER_SOURCE_CONVERSION",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "LAVA_SOURCE_CONVERSION",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "GLOBAL_SOUND_EVENTS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_VINES_SPREAD",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "ENDER_PEARLS_VANISH_ON_DEATH",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "ALLOW_FIRE_TICKS_AWAY_FROM_PLAYER",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "TNT_EXPLODES",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "LOCATOR_BAR",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "PVP",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SPAWN_MONSTERS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "ALLOW_ENTERING_NETHER_USING_PORTALS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "COMMAND_BLOCKS_ENABLED",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SPAWNER_BLOCKS_ENABLED",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "RANDOM_TICK_SPEED",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SPAWN_RADIUS",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MAX_ENTITY_CRAMMING",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MAX_COMMAND_CHAIN_LENGTH",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MAX_COMMAND_FORK_COUNT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "COMMAND_MODIFICATION_BLOCK_LIMIT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "PLAYERS_SLEEPING_PERCENTAGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "SNOW_ACCUMULATION_HEIGHT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "PLAYERS_NETHER_PORTAL_DEFAULT_DELAY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "PLAYERS_NETHER_PORTAL_CREATIVE_DELAY",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "MINECART_MAX_SPEED",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "getName()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "getByName(String)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "values()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "deserializeItemHover(HoverEvent$ShowItem)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldBorder",
+   "simple": "WorldBorder",
+   "member": "setSize(double,long)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldBorder",
+   "simple": "WorldBorder",
+   "member": "setSize(double,TimeUnit,long)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldBorder",
+   "simple": "WorldBorder",
+   "member": "getWarningTime()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldBorder",
+   "simple": "WorldBorder",
+   "member": "setWarningTime(int)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": "keepSpawnLoaded()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.WorldCreator",
+   "simple": "WorldCreator",
+   "member": "keepSpawnLoaded(TriState)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.Skull",
+   "simple": "Skull",
+   "member": "hasOwner()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.Skull",
+   "simple": "Skull",
+   "member": "getOwningPlayer()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.Skull",
+   "simple": "Skull",
+   "member": "setOwningPlayer(OfflinePlayer)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.Skull",
+   "simple": "Skull",
+   "member": "setPlayerProfile(PlayerProfile)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.Skull",
+   "simple": "Skull",
+   "member": "getPlayerProfile()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.enchantments.EnchantmentWrapper",
+   "simple": "EnchantmentWrapper",
+   "member": "getEnchantment()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "setNextArrowRemoval(int)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "getNextArrowRemoval()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "setNextBeeStingerRemoval(int)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "getNextBeeStingerRemoval()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "getShieldBlockingDelay()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.LivingEntity",
+   "simple": "LivingEntity",
+   "member": "setShieldBlockingDelay(int)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.event.player.PlayerBedEnterEvent$BedEnterResult",
+   "simple": "PlayerBedEnterEvent$BedEnterResult",
+   "member": "valueOf(String)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.event.player.PlayerBedEnterEvent",
+   "simple": "PlayerBedEnterEvent",
+   "member": "getBedEnterResult()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.potion.PotionEffectTypeWrapper",
+   "simple": "PotionEffectTypeWrapper",
+   "member": "getType()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "getPVP()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "setPVP(boolean)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "isNatural()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "isBedWorks()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "isUltraWarm()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.inventory.meta.BookMeta",
+   "simple": "BookMeta",
+   "member": "toBuilder()",
+   "forRemoval": false
+  }
+ ],
+ "impact": [
+  {
+   "kind": "constant-removed",
+   "type": "org.bukkit.Material",
+   "simple": "Material",
+   "member": "CHAIN",
+   "rename": "COPPER_CHAIN",
+   "golden": [],
+   "knowledge": [
+    "sheet:services/modbuilder/sheets/1.21.1.md",
+    "sheet:services/modbuilder/sheets/1.21.4.md",
+    "sheet:services/modbuilder/sheets/1.21.8.md",
+    "rules:services/modbuilder/rules/failure-rules.json"
+   ]
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "KEEP_INVENTORY",
+   "forRemoval": false,
+   "kind": "deprecated",
+   "golden": [
+    "mc-events"
+   ],
+   "knowledge": [
+    "sheet:services/modbuilder/sheets/1.21.1.md",
+    "sheet:services/modbuilder/sheets/1.21.4.md",
+    "sheet:services/modbuilder/sheets/1.21.8.md"
+   ]
+  },
+  {
+   "type": "org.bukkit.GameRule",
+   "simple": "GameRule",
+   "member": "DO_INSOMNIA",
+   "forRemoval": false,
+   "kind": "deprecated",
+   "golden": [
+    "mc-events"
+   ],
+   "knowledge": []
+  }
+ ],
+ "candidateRules": [
+  {
+   "id": "api-diff-1-21-11-material-chain",
+   "candidate": true,
+   "source": "api-diff 1.21.8->1.21.11",
+   "versions": [
+    "1.21.11"
+   ],
+   "rule": "On 1.21.11 Material.CHAIN is gone; use Material.COPPER_CHAIN.",
+   "pattern": "\\bMaterial\\.CHAIN\\b",
+   "fix": "Material.COPPER_CHAIN",
+   "evidence": {
+    "golden": [],
+    "knowledge": [
+     "sheet:services/modbuilder/sheets/1.21.1.md",
+     "sheet:services/modbuilder/sheets/1.21.4.md",
+     "sheet:services/modbuilder/sheets/1.21.8.md",
+     "rules:services/modbuilder/rules/failure-rules.json"
+    ]
+   }
+  }
+ ],
+ "stats": {
+  "typesFrom": 2075,
+  "typesTo": 2135,
+  "removedTypes": 6,
+  "addedTypes": 66,
+  "changedTypes": 80,
+  "ms": 27914,
+  "jars": {
+   "from": "paper-api-1.21.8-R0.1-SNAPSHOT.jar",
+   "to": "paper-api-1.21.11-R0.1-SNAPSHOT.jar"
+  }
+ },
+ "removedTypes": [
+  "io.papermc.paper.generated.GeneratedFrom",
+  "io.papermc.paper.registry.event.RegistryFreezeEvent",
+  "org.bukkit.packs.DataPack$Compatibility",
+  "org.bukkit.packs.DataPack$Source",
+  "org.bukkit.packs.DataPack",
+  "org.bukkit.packs.DataPackManager"
+ ],
+ "addedTypes": [
+  "com.destroystokyo.paper.SkinParts$Mutable",
+  "io.papermc.paper.annotation.GeneratedClass",
+  "io.papermc.paper.block.bed.BedEnterAction",
+  "io.papermc.paper.block.bed.BedEnterActionBridge$1Holder",
+  "io.papermc.paper.block.bed.BedEnterActionBridge",
+  "io.papermc.paper.block.bed.BedEnterProblem",
+  "io.papermc.paper.block.bed.BedRuleResult",
+  "io.papermc.paper.block.bed.BedRuleResultImpl",
+  "io.papermc.paper.datacomponent.item.AttackRange$Builder",
+  "io.papermc.paper.datacomponent.item.AttackRange",
+  "io.papermc.paper.datacomponent.item.KineticWeapon$Builder",
+  "io.papermc.paper.datacomponent.item.KineticWeapon$Condition",
+  "io.papermc.paper.datacomponent.item.KineticWeapon",
+  "io.papermc.paper.datacomponent.item.PiercingWeapon$Builder",
+  "io.papermc.paper.datacomponent.item.PiercingWeapon",
+  "io.papermc.paper.datacomponent.item.ResolvableProfile$SkinPatch$1Holder",
+  "io.papermc.paper.datacomponent.item.ResolvableProfile$SkinPatch",
+  "io.papermc.paper.datacomponent.item.ResolvableProfile$SkinPatchBuilder",
+  "io.papermc.paper.datacomponent.item.SwingAnimation$Animation",
+  "io.papermc.paper.datacomponent.item.SwingAnimation$Builder",
+  "io.papermc.paper.datacomponent.item.SwingAnimation",
+  "io.papermc.paper.datacomponent.item.UseEffects$Builder",
+  "io.papermc.paper.datacomponent.item.UseEffects",
+  "io.papermc.paper.event.entity.ItemTransportingEntityValidateTargetEvent",
+  "io.papermc.paper.event.inventory.ItemCraftedEvent",
+  "io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent",
+  "io.papermc.paper.event.player.PlayerSwapWithEquipmentSlotEvent",
+  "io.papermc.paper.raytracing.BlockCollisionMode",
+  "io.papermc.paper.registry.data.ZombieNautilusVariantRegistryEntry$Builder",
+  "io.papermc.paper.registry.data.ZombieNautilusVariantRegistryEntry$Model",
+  "io.papermc.paper.registry.data.ZombieNautilusVariantRegistryEntry",
+  "io.papermc.paper.registry.keys.GameRuleKeys",
+  "io.papermc.paper.registry.keys.ZombieNautilusVariantKeys",
+  "io.papermc.paper.world.WeatheringCopperState",
+  "org.bukkit.GameRules",
+  "org.bukkit.Particle$Spell",
+  "org.bukkit.block.CopperGolemStatue",
+  "org.bukkit.block.DecoratedPot$WobbleStyle",
+  "org.bukkit.block.Shelf",
+  "org.bukkit.block.data.SideChaining$ChainPart",
+  "org.bukkit.block.data.SideChaining",
+  "org.bukkit.block.data.type.CopperGolemStatue$Pose",
+  "org.bukkit.block.data.type.CopperGolemStatue",
+  "org.bukkit.block.data.type.Shelf",
+  "org.bukkit.entity.AbstractNautilus",
+  "org.bukkit.entity.CamelHusk",
+  "org.bukkit.entity.CopperGolem$Oxidizing$AtTime",
+  "org.bukkit.entity.CopperGolem$Oxidizing$AtTimeImpl",
+  "org.bukkit.entity.CopperGolem$Oxidizing$Unset",
+  "org.bukkit.entity.CopperGolem$Oxidizing$Waxed",
+  "org.bukkit.entity.CopperGolem$Oxidizing",
+  "org.bukkit.entity.CopperGolem$State",
+  "org.bukkit.entity.CopperGolem",
+  "org.bukkit.entity.Mannequin",
+  "org.bukkit.entity.Nautilus",
+  "org.bukkit.entity.Parched",
+  "org.bukkit.entity.Player$1Holder",
+  "org.bukkit.entity.ZombieNautilus$Variant",
+  "org.bukkit.entity.ZombieNautilus",
+  "org.bukkit.inventory.ArmoredMountInventory",
+  "org.bukkit.inventory.ArmoredSaddledMountInventory",
+  "org.bukkit.inventory.ItemTypeRecipeChoiceImpl",
+  "org.bukkit.inventory.MountInventory",
+  "org.bukkit.inventory.RecipeChoice$ItemTypeChoice",
+  "org.bukkit.inventory.SaddledMountInventory",
+  "org.bukkit.inventory.ShelfInventory"
+ ]
+}

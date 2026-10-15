@@ -1,0 +1,590 @@
+{
+ "schema": 1,
+ "from": "26.1.2",
+ "to": "26.2",
+ "breaking": [
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone$Thickness",
+   "simple": "PointedDripstone$Thickness"
+  },
+  {
+   "kind": "type-removed",
+   "type": "org.bukkit.inventory.meta.BookMeta$BookMetaBuilder",
+   "simple": "BookMeta$BookMetaBuilder"
+  },
+  {
+   "kind": "field-removed",
+   "type": "com.destroystokyo.paper.entity.ai.VanillaGoal",
+   "simple": "VanillaGoal",
+   "member": "SLIME_ATTACK"
+  },
+  {
+   "kind": "field-removed",
+   "type": "com.destroystokyo.paper.entity.ai.VanillaGoal",
+   "simple": "VanillaGoal",
+   "member": "SLIME_FLOAT"
+  },
+  {
+   "kind": "field-removed",
+   "type": "com.destroystokyo.paper.entity.ai.VanillaGoal",
+   "simple": "VanillaGoal",
+   "member": "SLIME_KEEP_ON_JUMPING"
+  },
+  {
+   "kind": "field-removed",
+   "type": "com.destroystokyo.paper.entity.ai.VanillaGoal",
+   "simple": "VanillaGoal",
+   "member": "SLIME_RANDOM_DIRECTION"
+  },
+  {
+   "kind": "method-removed",
+   "type": "com.destroystokyo.paper.event.entity.CreeperIgniteEvent",
+   "simple": "CreeperIgniteEvent",
+   "member": "getHandlers()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "com.destroystokyo.paper.event.entity.CreeperIgniteEvent",
+   "simple": "CreeperIgniteEvent",
+   "member": "getHandlerList()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "com.destroystokyo.paper.event.server.AsyncTabCompleteEvent$Completion",
+   "simple": "AsyncTabCompleteEvent$Completion",
+   "member": "examinableProperties()"
+  },
+  {
+   "kind": "field-removed",
+   "type": "io.papermc.paper.registry.keys.tags.BlockTypeTagKeys",
+   "simple": "BlockTypeTagKeys",
+   "member": "CONCRETE_POWDER",
+   "rename": "CONCRETE_POWDERS"
+  },
+  {
+   "kind": "method-removed",
+   "type": "io.papermc.paper.text.PaperComponents",
+   "simple": "PaperComponents",
+   "member": "plainSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "componentFlattener()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "plainComponentSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "plainTextSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "gsonComponentSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "colorDownsamplingGsonComponentSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "legacyComponentSerializer()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "resolveWithContext(Component,CommandSender,Entity,boolean)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getDefaultAttributeModifiers(Material,EquipmentSlot)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getCreativeCategory(Material)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getBlockTranslationKey(Material)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getItemTranslationKey(Material)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getTranslationKey(EntityType)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getTranslationKey(ItemStack)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getTranslationKey(Attribute)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "createDamageSourceBuilder(DamageType)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getVersionFetcher()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "serializeItem(ItemStack)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "deserializeItem(byte[])"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "nextEntityId()",
+   "overloadOnly": true
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "isValidRepairItemStack(ItemStack,ItemStack)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "hasDefaultEntityAttributes(NamespacedKey)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getDefaultEntityAttributes(NamespacedKey)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getBiomeKey(RegionAccessor,int,int,int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "setBiomeKey(RegionAccessor,int,int,int,NamespacedKey)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getStatisticCriteriaKey(Statistic)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "getSpawnEggLayerColor(EntityType,int)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "createPluginLifecycleEventManager(JavaPlugin,BooleanSupplier)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "computeTooltipLines(ItemStack,TooltipContext,Player)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "createEmptyStack()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.UnsafeValues",
+   "simple": "UnsafeValues",
+   "member": "serializeStack(ItemStack)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": "getVerticalDirection()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": "setVerticalDirection(BlockFace)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": "getVerticalDirections()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": "getThickness()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": "setThickness(PointedDripstone$Thickness)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.command.CommandSender",
+   "simple": "CommandSender",
+   "member": "sendMessage(Identity,Component,MessageType)",
+   "overloadOnly": true
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.command.ProxiedCommandSender",
+   "simple": "ProxiedCommandSender",
+   "member": "sendMessage(Identity,Component,MessageType)",
+   "overloadOnly": true
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.Slime",
+   "simple": "Slime",
+   "member": "getSize()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.Slime",
+   "simple": "Slime",
+   "member": "canWander()"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.entity.Slime",
+   "simple": "Slime",
+   "member": "setWander(boolean)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.generator.LimitedRegion",
+   "simple": "LimitedRegion",
+   "member": "setBlockData(Vector,BlockData)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.generator.LimitedRegion",
+   "simple": "LimitedRegion",
+   "member": "getBlockState(Vector)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.generator.LimitedRegion",
+   "simple": "LimitedRegion",
+   "member": "getBlockData(Vector)"
+  },
+  {
+   "kind": "method-removed",
+   "type": "org.bukkit.inventory.meta.BookMeta",
+   "simple": "BookMeta",
+   "member": "toBuilder()"
+  },
+  {
+   "kind": "return-changed",
+   "type": "org.bukkit.inventory.meta.BookMeta",
+   "simple": "BookMeta",
+   "member": "title(Component)",
+   "detail": "Book -> BookMeta"
+  },
+  {
+   "kind": "return-changed",
+   "type": "org.bukkit.inventory.meta.BookMeta",
+   "simple": "BookMeta",
+   "member": "author(Component)",
+   "detail": "Book -> BookMeta"
+  }
+ ],
+ "newlyDeprecated": [
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "STEP_SOUND",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "CLICK2",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "CLICK1",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "BOW_FIRE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "SOUND_STOP_JUKEBOX_SONG",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "ENDERDRAGON_SHOOT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "ZOMBIE_CONVERTED_VILLAGER",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "SOUND_WITH_CHARGE_SHOT",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "DRAGON_BREATH",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "SMOKE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "SHOOT_WHITE_SMOKE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "ENDERDRAGON_GROWL",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "PARTICLES_SCULK_CHARGE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "PARTICLES_SCULK_SHRIEK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "PARTICLES_AND_SOUND_BRUSH_BLOCK_COMPLETE",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Effect",
+   "simple": "Effect",
+   "member": "PARTICLES_EGG_CRACK",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.Tag",
+   "simple": "Tag",
+   "member": "CONCRETE_POWDER",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "setSpawnFlags(boolean,boolean)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.World",
+   "simple": "World",
+   "member": "getAllowAnimals()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.block.data.type.PointedDripstone",
+   "simple": "PointedDripstone",
+   "member": null,
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.Vex",
+   "simple": "Vex",
+   "member": "getSummoner()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.Vex",
+   "simple": "Vex",
+   "member": "setSummoner(Mob)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.event.entity.PigZapEvent",
+   "simple": "PigZapEvent",
+   "member": "getLightning()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.event.entity.PigZapEvent",
+   "simple": "PigZapEvent",
+   "member": "getEntity()",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.event.player.PlayerKickEvent$Cause",
+   "simple": "PlayerKickEvent$Cause",
+   "member": "KICK_COMMAND",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.inventory.meta.TropicalFishBucketMeta",
+   "simple": "TropicalFishBucketMeta",
+   "member": "hasVariant()",
+   "forRemoval": false
+  },
+  {
+   "type": "io.papermc.paper.potion.PotionMix",
+   "simple": "PotionMix",
+   "member": "createPredicateChoice(Predicate)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.Mob",
+   "simple": "Mob",
+   "member": "setDespawnInPeacefulOverride(TriState)",
+   "forRemoval": false
+  },
+  {
+   "type": "org.bukkit.entity.Mob",
+   "simple": "Mob",
+   "member": "getDespawnInPeacefulOverride()",
+   "forRemoval": false
+  }
+ ],
+ "impact": [],
+ "candidateRules": [],
+ "stats": {
+  "typesFrom": 2153,
+  "typesTo": 2192,
+  "removedTypes": 2,
+  "addedTypes": 41,
+  "changedTypes": 68,
+  "ms": 26264,
+  "jars": {
+   "from": "paper-api-26.1.2.jar",
+   "to": "paper-api-26.2.jar"
+  }
+ },
+ "removedTypes": [
+  "org.bukkit.block.data.type.PointedDripstone$Thickness",
+  "org.bukkit.inventory.meta.BookMeta$BookMetaBuilder"
+ ],
+ "addedTypes": [
+  "io.papermc.paper.annotation.MinecraftVersionDependent",
+  "io.papermc.paper.datacomponent.item.SulfurCubeContent",
+  "io.papermc.paper.entity.RemovalReason",
+  "io.papermc.paper.event.connection.configuration.PlayerCodeOfConductSendEvent",
+  "io.papermc.paper.event.entity.EntityCollideWithEntityEvent",
+  "io.papermc.paper.event.entity.EntityConstructEvent",
+  "io.papermc.paper.event.entity.EntityIgniteEvent",
+  "io.papermc.paper.event.entity.SulfurCubeSwallowItemEvent",
+  "io.papermc.paper.event.server.AsyncServerDataFixerRemoveBlockEntityEvent",
+  "io.papermc.paper.math.Angle",
+  "io.papermc.paper.math.AngleImpl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$AttributeEntry$1Impl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$AttributeEntry",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$Builder",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$ContactDamage$1Impl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$ContactDamage",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$ExplosionSettings$1Impl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$ExplosionSettings",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$KnockbackModifiers$1Impl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$KnockbackModifiers",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$SoundSettings$1Impl",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry$SoundSettings",
+  "io.papermc.paper.registry.data.SulfurCubeArchetypeRegistryEntry",
+  "io.papermc.paper.registry.data.TrimMaterialRegistryEntry$Builder",
+  "io.papermc.paper.registry.data.TrimMaterialRegistryEntry",
+  "io.papermc.paper.registry.data.TrimPatternRegistryEntry$Builder",
+  "io.papermc.paper.registry.data.TrimPatternRegistryEntry",
+  "io.papermc.paper.registry.keys.SulfurCubeArchetypeKeys",
+  "org.bukkit.Particle$AbstractGeyser",
+  "org.bukkit.Particle$Geyser",
+  "org.bukkit.Particle$GeyserBase",
+  "org.bukkit.block.PotentSulfur",
+  "org.bukkit.block.data.type.PotentSulfur$State",
+  "org.bukkit.block.data.type.PotentSulfur",
+  "org.bukkit.block.data.type.Speleothem$Thickness",
+  "org.bukkit.block.data.type.Speleothem",
+  "org.bukkit.entity.AbstractCubeMob",
+  "org.bukkit.entity.SulfurCube$Archetype",
+  "org.bukkit.entity.SulfurCube",
+  "org.bukkit.inventory.PredicateRecipeChoiceImpl",
+  "org.bukkit.inventory.RecipeChoice$PredicateChoice"
+ ]
+}
