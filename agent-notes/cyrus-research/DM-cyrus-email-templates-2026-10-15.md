@@ -50,5 +50,5 @@ Mailcow steps:
 ## Verification
 - Email/notify/digest/invite suites: 354/354 pass (cyrus-email-templates, cyrus-admin-r40, cyrus-support-r50, cyrus-beta-ops, email-rollout, cyrus-analytics, email-templates-overhaul).
 - docs-build was regenerated and pulled back.
-- tsc: see the hand-back.
+- `tsc --noEmit` clean (devhost run with a 9 GB heap: the default 5 GB heap ran out of memory). `test/cyrus-docs-coverage.test.ts` passes 18/18.
 - Screenshots of 600px and 390px renders were reviewed visually (they are in the session scratchpad and not committed).
