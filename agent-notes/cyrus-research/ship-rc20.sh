@@ -1,0 +1,196 @@
+#!/bin/bash
+# Ship release/cyrus-rc20 end to end. OWNER RUNS THIS as root on the primary. Stops at the first failure.
+#   bash /root/claudeskills/agent-notes/cyrus-research/ship-rc20.sh            # asks before every production step
+#   YES=1 bash .../ship-rc20.sh                                                # no prompts
+#   STOP_AFTER_STAGING=1 bash .../ship-rc20.sh                                 # backup + main ff + staging only
+#   SKIP_STAGING_DEPLOY=1 ...                                                  # staging already runs rc20
+#   TAG=modbuilder:0.N ...                                                     # force the image tag (default: next free one)
+# Order: preconditions (main == rc19, clean) -> DB backup -> main fast-forward -> new SQL on staging -> staging deploy + smoke
+#        -> new SQL on production -> modbuilder image -> promote production (BUILD_MAX_MIN=45) -> post-checks.
+# rc20 = rc19 + fix/cyrus-creature-wiring-recovery (wiring.js: BetterModel classpath on refines, mechanical restore,
+#        block-only repair, early stop) + feature/cyrus-room-studio (incl. feature/cyrus-structures: room-template upload lane,
+#        NxRooms placer rooms.js, Room Studio roomstudio.js / roomspecs.js / room-studio.js). Portal flags default OFF.
+# Manual SQL: rc20 adds NO file under prisma/manual-migrations (schema.prisma changes one comment only; the room studio's
+#   settings live in code defaults). Step 3/5 still diff the directory against rc19 and apply whatever is new (additive only,
+#   one transaction per database), so the script stays correct if a file is added before you run it.
+# Rollbacks: portal      scripts/rollback-release.sh --production | --staging
+#            DB          the dump printed in step 1
+#            modbuilder  TAG=modbuilder:0.24 bash scripts/cyrus/deploy-modbuilder.sh   (0.24 = live when this was written)
+# Notes: DX-rc20-assembly-2026-10-16.md (this release), DT (rc19), DQ (node-2 memory), DW (BlockGPT / Room Studio research).
+set -euo pipefail
+REL=release/cyrus-rc20
+PREV=release/cyrus-rc19
+APP=/opt/nxeon
+NODE2=root@178.63.94.114
+BUILDVM=root@10.20.1.253
+WANT_PROMPT=mb-2026-10-16.2
+
+say() { printf '\n\033[1m== %s\033[0m\n' "$*"; }
+ask() { [ "${YES:-0}" = 1 ] && return 0; read -r -p "$1 [y/N] " a; [ "$a" = y ] || { echo "stopped."; exit 1; }; }
+dburl() { grep -m1 '^DATABASE_URL=' "$1" | cut -d= -f2- | tr -d '"' | sed 's/?.*$//'; }   # without Prisma's ?schema=
+node2_psi() { ssh -o BatchMode=yes -o ConnectTimeout=10 "$NODE2" 'head -1 /proc/pressure/memory' 2>/dev/null | sed -E 's/.*avg10=([0-9.]+).*/\1/'; }
+wait_node2() { # agents run tsc/tests on node-2; a promote starved of memory stalls (DQ). Wait until avg10 <= 30.
+  local p; for i in $(seq 1 30); do
+    p=$(node2_psi || echo "?"); echo "node-2 memory pressure avg10=$p"
+    [ "$p" != "?" ] && awk "BEGIN{exit !($p <= 30)}" && return 0
+    echo "  busy (other agents' devhost jobs?). Waiting 60 s ($i/30). See: ssh $NODE2 systemctl status nxeon-build-agents.slice"; sleep 60
+  done; echo "node-2 still under memory pressure after 30 min"; ask "Continue anyway?"
+}
+apply_sql() { # $1 = label, $2 = database URL; all new files in ONE transaction (-1), stop on the first error
+  [ ${#NEWSQL[@]} -gt 0 ] || { echo "$1: no new manual SQL"; return 0; }
+  local args=(); for f in "${NEWSQL[@]}"; do echo "$1 <- $f"; args+=(-f "$APP/$f"); done
+  psql "$2" -v ON_ERROR_STOP=1 -1 -q "${args[@]}"
+}
+
+# ---- 0. preconditions --------------------------------------------------------
+cd "$APP"
+[ "$(id -u)" = 0 ] || { echo "run as root"; exit 1; }
+[ "$(git branch --show-current)" = main ] || { echo "$APP is not on main"; exit 1; }
+git diff --quiet HEAD -- || { echo "tracked files in $APP are modified; commit or resolve first"; git status --short | head; exit 1; }
+for r in "$REL" "$PREV"; do git rev-parse -q --verify "$r^{commit}" >/dev/null || { echo "$r does not exist"; exit 1; }; done
+[ "$(git rev-parse main)" = "$(git rev-parse "$PREV")" ] || { echo "main ($(git rev-parse --short main)) is not $PREV ($(git rev-parse --short "$PREV")); something else shipped since. Stop and re-check."; exit 1; }
+git merge-base --is-ancestor main "$REL" || { echo "main is not an ancestor of $REL (diverged); stop"; exit 1; }
+echo "main $(git rev-parse --short main) (= $PREV, live) -> $REL $(git rev-parse --short "$REL")  ($(git rev-list --count main.."$REL") commits)"
+# NEW SQL vs rc19: added or changed manual migrations. Refuse anything that is not additive.
+mapfile -t NEWSQL < <(git diff --name-only --diff-filter=AM "$PREV" "$REL" -- prisma/manual-migrations 'prisma/manual-migration-*.sql' | sort)
+if [ ${#NEWSQL[@]} -gt 0 ]; then
+  echo "new manual SQL in $REL (applied on staging, then production, one transaction each):"; printf '  %s\n' "${NEWSQL[@]}"
+  for f in "${NEWSQL[@]}"; do
+    if git show "$REL:$f" | sed 's/--.*$//' | grep -inE '\b(drop|truncate|delete[[:space:]]+from|update[[:space:]]+[a-z"_]+[[:space:]]+set|alter[[:space:]]+column[^;]*type|rename)\b'; then
+      echo "$f contains a NON-additive statement (above). This script only applies additive, idempotent SQL; stop."; exit 1
+    fi
+    git show "$REL:$f" | grep -qiE 'if not exists|on conflict' || echo "  note: $f has no IF NOT EXISTS / ON CONFLICT; check it is idempotent before you continue"
+  done
+else
+  echo "no new manual SQL vs $PREV (expected for rc20)"
+fi
+git diff --quiet "$PREV" "$REL" -- prisma/schema.prisma || echo "note: prisma/schema.prisma differs (rc20: one comment on CyrusProjectAsset.kind); promote's additive schema push applies it"
+command -v psql >/dev/null || { echo "need psql on this box"; exit 1; }
+# next free modbuilder tag on the build VM (live is 0.24 when this was written; a fixed number could be a downgrade)
+if [ -z "${TAG:-}" ]; then
+  MAXN=$(ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "docker images --format '{{.Tag}}' modbuilder | grep -E '^0\.[0-9]+\$' | cut -d. -f2 | sort -n | tail -1")
+  [ -n "$MAXN" ] || { echo "cannot read the modbuilder tags from the build VM; set TAG=modbuilder:0.N yourself"; exit 1; }
+  TAG="modbuilder:0.$((MAXN + 1))"
+fi
+LIVE_IMG=$(ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "docker ps --format '{{.Image}}' | grep -m1 '^modbuilder:'" || echo "?")
+echo "modbuilder: live $LIVE_IMG -> new $TAG"
+git diff --quiet "$PREV" "$REL" -- deploy/ apps/cyrus-site/ || echo "note: deploy/ or apps/cyrus-site/ changed vs $PREV (not expected for rc20); this script does NOT apply nginx or the landing"
+
+# ---- 1. backup -----------------------------------------------------------------
+say "1/7 database backup (production + staging)"
+bash scripts/backup-db.sh
+LATEST=$(ls -t /tank/backup/db/nxeon-*.sql.gz | head -1)
+gzip -t "$LATEST" && [ "$(stat -c %s "$LATEST")" -gt 100000 ] || { echo "backup looks wrong: $LATEST"; exit 1; }
+echo "backup OK: $LATEST ($(du -h "$LATEST" | cut -f1))"
+
+# ---- 2. main ---------------------------------------------------------------------
+say "2/7 fast-forward main to $REL"
+git merge --ff-only "$REL"
+# never `git push` here by hand: the repo's post-commit hook pushes main on commits; a fast-forward makes no commit.
+
+# ---- 3. staging ------------------------------------------------------------------
+say "3/7 staging: deploy, new SQL, smoke"
+STG_URL=$(dburl /opt/nxeon-staging/.env)
+[ -n "$STG_URL" ] || { echo "no staging DATABASE_URL"; exit 1; }
+STG_HEAD=$(git -C /opt/nxeon-staging rev-parse --short HEAD 2>/dev/null || echo "?")
+echo "staging currently runs $STG_HEAD"
+if [ "${SKIP_STAGING_DEPLOY:-0}" = 1 ]; then
+  echo "SKIP_STAGING_DEPLOY=1: not redeploying staging."
+  apply_sql staging "$STG_URL"
+else
+  if ! flock -n /run/lock/nxeon-deploy-staging.lock true; then
+    echo "another staging deploy/rollback holds /run/lock/nxeon-deploy-staging.lock; waiting up to 30 min"
+    flock -w 1800 /run/lock/nxeon-deploy-staging.lock true || { echo "staging still locked; stop (or SKIP_STAGING_DEPLOY=1)"; exit 1; }
+  fi
+  [ "$STG_HEAD" != "?" ] && ! git merge-base --is-ancestor "$STG_HEAD" main 2>/dev/null && \
+    ask "staging runs $STG_HEAD, which is NOT in main (someone's branch build). Replace it with main?"
+  wait_node2
+  bash scripts/deploy-staging.sh main   # its schema push creates what staging is missing; new SQL then runs on top (idempotent)
+  apply_sql staging "$STG_URL"
+fi
+curl -fsS -o /dev/null -w "staging /: %{http_code}\n" https://staging.nxeon.cloud/ || { echo "staging not healthy; stop"; exit 1; }
+SS=$(curl -fsS https://staging.nxeon.cloud/api/cyrus/session || echo FAIL)
+echo "staging /api/cyrus/session: $SS"; case "$SS" in *'"signedIn":false'*) ;; *) echo "unexpected; stop"; exit 1;; esac
+echo "Look at staging now (https://staging.nxeon.cloud): a Cyrus mod's Assets tab (Rooms card: with no upload store it says"
+echo "  uploads are not on; that is expected), a refine of a creature mod if you have one, Studio pages open as before."
+echo "  CYRUS_ROOM_STUDIO is OFF unless you set it in /opt/nxeon-staging/.env: /dashboard/cyrus/<id>/studio/rooms is then a 404."
+[ "${STOP_AFTER_STAGING:-0}" = 1 ] && { echo "stopping after staging as requested."; exit 0; }
+ask "Staging looks good. Continue to PRODUCTION?"
+
+# ---- 4. production SQL -------------------------------------------------------------
+say "4/7 production: new manual SQL (backup from step 1 is the rollback)"
+PRD_URL=$(dburl "$APP/.env")
+[ -n "$PRD_URL" ] || { echo "no production DATABASE_URL"; exit 1; }
+if [ ${#NEWSQL[@]} -gt 0 ]; then ask "Apply ${#NEWSQL[@]} SQL file(s) to PRODUCTION in one transaction?"; fi
+apply_sql production "$PRD_URL"
+
+# ---- 5. modbuilder image ----------------------------------------------------------
+# Carries wiring.js (creature wiring recovery: BetterModel classpath on change builds, MB_WIRING_RESTORE default on,
+# MB_WIRING_REPAIR_MODEL / MB_WIRING_REPAIR_USD 0.35), rooms.js (MB_ROOMS default on: room templates + NxRooms placer),
+# roomstudio.js / roomspecs.js / room-studio.js (MB_ROOM_STUDIO default on in the SERVICE; the portal flag decides use),
+# prompts PROMPT_VERSION mb-2026-10-16.2, plus everything 0.24 had (guard-2026-10-15.1, MB_PRESERVE).
+say "5/7 modbuilder image $TAG (wiring recovery + rooms + Room Studio; restarts the live build service)"
+echo "Builds in flight right now (wait for 0 if you can):"
+ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "curl -fsS http://127.0.0.1:7340/health 2>/dev/null | head -c 400; echo" || echo "(health read failed; check by hand)"
+ask "Deploy $TAG now (rollback: TAG=$LIVE_IMG bash scripts/cyrus/deploy-modbuilder.sh)?"
+TAG="$TAG" bash scripts/cyrus/deploy-modbuilder.sh
+H=$(ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "curl -fsS http://127.0.0.1:7340/health" 2>/dev/null || echo "")
+case "$H" in *"\"promptVersion\":\"$WANT_PROMPT\""*) echo "service prompt $WANT_PROMPT: OK";; *) echo "WARN: /health does not report promptVersion $WANT_PROMPT (old image still running?)";; esac
+case "$H" in *'"roomStudio":{'*) echo "features.roomStudio: present";; *) echo "WARN: features.roomStudio missing (MB_ROOM_STUDIO=0 on the VM, or old image)";; esac
+case "$H" in *'"rooms":{'*) echo "features.rooms: present";; *) echo "WARN: features.rooms missing (MB_ROOMS=0, or old image)";; esac
+
+# ---- 6. promote ---------------------------------------------------------------------
+say "6/7 promote production (portal + worker; BUILD_MAX_MIN=45)"
+wait_node2
+ask "Promote $(git rev-parse --short HEAD) to production now?"
+BUILD_MAX_MIN=45 bash scripts/promote-production.sh
+curl -fsS -o /dev/null -w "nxeon.cloud: %{http_code}\n" https://nxeon.cloud/ || { echo "nxeon.cloud not 200 after promote; rollback: scripts/rollback-release.sh --production"; exit 1; }
+
+# ---- 7. post-checks -----------------------------------------------------------------------
+say "7/7 post-checks"
+curl -fsS -o /dev/null -w "nxeon.cloud:   %{http_code}\n" https://nxeon.cloud/
+curl -fsS -o /dev/null -w "cyrus.my:      %{http_code}\n" https://cyrus.my/
+SESS=$(curl -fsS https://cyrus.my/api/cyrus/session || echo FAIL)
+echo "/api/cyrus/session: $SESS"; case "$SESS" in *'"signedIn":false'*) ;; *) echo "WARN: expected {\"signedIn\":false} without a cookie";; esac
+r=$(curl -s -o /dev/null -w '%{http_code}' https://nxeon.cloud/api/cyrus/assets/v1/rooms/x || echo 000)
+echo "rooms API anonymous: $r (expect 404: viewer-only, and the flag is off)"
+ssh -o BatchMode=yes -J "$NODE2" "$BUILDVM" "docker ps --format '{{.Image}} {{.Status}}' | grep modbuilder" || true
+bash scripts/cyrus/launch-check.sh || echo "launch-check reported items; read them above (cyrus_tok_room_studio_hold is a PLACEHOLDER now)"
+systemctl is-active nxeon-web nxeon-worker
+
+cat <<'EOF'
+
+DONE. Watch: journalctl -u nxeon-worker -f ; on the build VM: docker logs -f <modbuilder container> (look for "wiring" lines on refines)
+The next refine of a BetterModel creature mod (e.g. the owner's Infinite Dungeon) should keep its creatures; it is the real test.
+
+OWNER-ONLY decisions / steps this script does NOT do:
+ 1. CYRUS_ROOM_STUDIO (portal env, /opt/nxeon/.env, default OFF; restart nxeon-web after a change). =1 turns on:
+      - the Room Studio page /dashboard/cyrus/<build>/studio/rooms (404 when off) and the Rooms card's link to it,
+      - its API /api/cyrus/assets/v1/rooms (start), /rooms/<jobId> (poll), /rooms/export, /rooms/save,
+      - the build lane assets.room (the model designs rooms inside a mod build; top plan only, not on the designer route),
+      - token HOLDs per generation (item 2). Needs the new image (features.roomStudio). No paid-model run has been made yet:
+        try it on staging first (set it in /opt/nxeon-staging/.env), one or two generations, look at the cost.
+    The stage-1 upload lane (Rooms card upload) has no flag of its own; it is gated by the upload store (item 3).
+ 2. Token price cyrus_tok_room_studio_hold (Setting, PLACEHOLDER 60 at Saka; Katara x0.45, Yakko x2.75; settles at the measured
+    AI cost like builds). Decide it in Admin > Cyrus settings before switching item 1 on; launch-check lists it as a placeholder.
+ 3. Production upload store (shared with PNG texture uploads). Today lib/cyrus/studios/deps.ts builds a store ONLY when
+    CYRUS_UPLOAD_STORE=local AND NODE_ENV != production (dir CYRUS_UPLOAD_DIR, default .data/cyrus-uploads, content-addressed
+    cyrus/uploads/<user>/<sha256>.png and cyrus/structures/<project>/<sha256>.nbt). So in production: PNG uploads, room
+    uploads (.nbt/.schem) and Room Studio "Use in my mod" (/rooms/save) answer 503 "uploads_off"; generation + export work.
+    Options:
+      a) keep it off (no change; Room Studio is generate/download only, uploads stay 503);
+      b) local disk on the primary: a code change to allow CYRUS_UPLOAD_STORE=local in production (drop the NODE_ENV guard
+         or add e.g. CYRUS_UPLOAD_STORE=local-prod), with CYRUS_UPLOAD_DIR on persistent, backed-up storage OUTSIDE the
+         release dirs (e.g. /tank/cyrus-uploads, owned by the nxeon-web user) and in the backup set;
+      c) an object store adapter (S3/R2/MinIO: put/get by the same keys) = new code + credentials.
+    Setting names involved: CYRUS_UPLOAD_STORE, CYRUS_UPLOAD_DIR (env). Staging can use CYRUS_UPLOAD_STORE=local today only
+    if staging runs with NODE_ENV != production.
+ 4. Keeping prompts for training: CYRUS_ROOM_STUDIO_KEEP_PROMPTS (default OFF = only a hash + length of the customer's room
+    prompt is stored, per D-60). =1 keeps the prompt text in the run record. Owner/privacy decision.
+ 5. Litematica load test: the .litematic export (Litematica Version 6, bit-packed) is untested in a real client. Export a room
+    from the studio (staging), load it in the newest Litematica (Fabric client), confirm blocks/orientation match the preview.
+ 6. Never set CYRUS_ROOM_STUDIO_BACKEND=fake in production (it is refused there anyway).
+ Carried from rc19 (still open unless you did them): cyrus.my mail DNS (DM), admin secret host (DK), rotate
+ CYRUS_GOOGLE_CLIENT_SECRET, node-2 slice memory (DQ), public switches cyrus_content_public_enabled / cyrus_mods_public_enabled,
+ guard false_positive marks (DS), staging mod-page fixture cleanup (DP), /var/lib/nginx temp dir ownership (DN).
+EOF
