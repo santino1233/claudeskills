@@ -1,0 +1,187 @@
+{
+ "at": "2026-10-16T06:11:08.027Z",
+ "host": "node-2",
+ "plugin": "mc-structure-rooms",
+ "versions": [
+  {
+   "version": "1.21.1",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.1 (6 checks, boot 19.7s, peak RSS 889 MB)",
+   "bootMs": 19675,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "rooms-0 'rooms list' [rss 810 MB, 253 ms]: ok -> Rooms: 1 template(s): sample_vault_01 (sample, room, 9x6x9, 6 markers) | ",
+    "rooms-1 'rooms paste sample_vault_01 0' [rss 845 MB, 6191 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 0 64 0 turns=0 | ",
+    "rooms-2 'rooms status' [rss 847 MB, 252 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 1 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=10.9 maxTickMs=8.18 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-3 'execute in minecraft:nxrooms_run if block 0 64 0 minecraft:stone_bricks' [rss 847 MB, 260 ms]: ok -> Test passed",
+    "rooms-4 'execute in minecraft:nxrooms_run if block 1 65 1 minecraft:stone_brick_stairs[facing=east]' [rss 847 MB, 251 ms]: ok -> Test passed",
+    "rooms-5 'execute in minecraft:nxrooms_run if block 4 68 4 minecraft:lantern[hanging=true]' [rss 847 MB, 252 ms]: ok -> Test passed",
+    "rooms-6 'execute in minecraft:nxrooms_run if block 6 65 6 minecraft:chest[facing=west]' [rss 847 MB, 251 ms]: ok -> Test passed",
+    "rooms-7 'execute in minecraft:nxrooms_run run data get block 6 65 6 LootTable' [rss 848 MB, 258 ms]: ok -> 6, 65, 6 has the following block data: \"minecraft:chests/buried_treasure\"",
+    "rooms-8 'execute in minecraft:nxrooms_run if block 4 65 7 minecraft:air' [rss 848 MB, 251 ms]: ok -> Test passed",
+    "rooms-9 'execute in minecraft:nxrooms_run if block 4 66 4 minecraft:air' [rss 848 MB, 252 ms]: ok -> Test passed",
+    "rooms-10 'execute in minecraft:nxrooms_run if block 4 65 4 minecraft:stone_pressure_plate' [rss 848 MB, 250 ms]: ok -> Test passed",
+    "rooms-11 'execute in minecraft:nxrooms_run if block 4 65 0 minecraft:iron_bars' [rss 848 MB, 251 ms]: ok -> Test passed",
+    "rooms-12 'execute in minecraft:nxrooms_run if entity @e[type=minecraft:zombie,x=0,y=64,z=0,dx=9,dy=6,dz=9]' [rss 848 MB, 258 ms]: ok -> Test passed, count: 2",
+    "rooms-13 'rooms paste sample_vault_01 1' [rss 848 MB, 252 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 128 64 0 turns=1 | ",
+    "rooms-14 'rooms status' [rss 848 MB, 250 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 2 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=444.0 maxTickMs=2.20 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-15 'execute in minecraft:nxrooms_run if block 135 65 1 minecraft:stone_brick_stairs[facing=south]' [rss 849 MB, 250 ms]: ok -> Test passed",
+    "rooms-16 'execute in minecraft:nxrooms_run if block 130 65 6 minecraft:chest[facing=north]' [rss 849 MB, 250 ms]: ok -> Test passed",
+    "rooms-17 'execute in minecraft:nxrooms_run if block 136 65 4 minecraft:iron_bars' [rss 849 MB, 251 ms]: ok -> Test passed",
+    "rooms-18 'rooms clear' [rss 849 MB, 252 ms]: ok -> CLEAR queued 2 | ",
+    "rooms-19 'rooms status' [rss 849 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 0 room(s), 0 job(s) queued, 2000 blocks/tick; last: cleared rooms=0 | "
+   ],
+   "log": [
+    "88 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47164, rcon 47168 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "version": "1.21.4",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.4 (6 checks, boot 20.3s, peak RSS 979 MB)",
+   "bootMs": 20273,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "rooms-0 'rooms list' [rss 822 MB, 252 ms]: ok -> Rooms: 1 template(s): sample_vault_01 (sample, room, 9x6x9, 6 markers) | ",
+    "rooms-1 'rooms paste sample_vault_01 0' [rss 901 MB, 7323 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 0 64 0 turns=0 | ",
+    "rooms-2 'rooms status' [rss 905 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 1 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=13.8 maxTickMs=10.12 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-3 'execute in minecraft:nxrooms_run if block 0 64 0 minecraft:stone_bricks' [rss 905 MB, 259 ms]: ok -> Test passed",
+    "rooms-4 'execute in minecraft:nxrooms_run if block 1 65 1 minecraft:stone_brick_stairs[facing=east]' [rss 905 MB, 251 ms]: ok -> Test passed",
+    "rooms-5 'execute in minecraft:nxrooms_run if block 4 68 4 minecraft:lantern[hanging=true]' [rss 905 MB, 252 ms]: ok -> Test passed",
+    "rooms-6 'execute in minecraft:nxrooms_run if block 6 65 6 minecraft:chest[facing=west]' [rss 905 MB, 251 ms]: ok -> Test passed",
+    "rooms-7 'execute in minecraft:nxrooms_run run data get block 6 65 6 LootTable' [rss 905 MB, 258 ms]: ok -> 6, 65, 6 has the following block data: \"minecraft:chests/buried_treasure\"",
+    "rooms-8 'execute in minecraft:nxrooms_run if block 4 65 7 minecraft:air' [rss 905 MB, 250 ms]: ok -> Test passed",
+    "rooms-9 'execute in minecraft:nxrooms_run if block 4 66 4 minecraft:air' [rss 906 MB, 251 ms]: ok -> Test passed",
+    "rooms-10 'execute in minecraft:nxrooms_run if block 4 65 4 minecraft:stone_pressure_plate' [rss 906 MB, 249 ms]: ok -> Test passed",
+    "rooms-11 'execute in minecraft:nxrooms_run if block 4 65 0 minecraft:iron_bars' [rss 906 MB, 251 ms]: ok -> Test passed",
+    "rooms-12 'execute in minecraft:nxrooms_run if entity @e[type=minecraft:zombie,x=0,y=64,z=0,dx=9,dy=6,dz=9]' [rss 906 MB, 255 ms]: ok -> Test passed, count: 2",
+    "rooms-13 'rooms paste sample_vault_01 1' [rss 906 MB, 252 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 128 64 0 turns=1 | ",
+    "rooms-14 'rooms status' [rss 907 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 2 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=552.7 maxTickMs=2.17 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-15 'execute in minecraft:nxrooms_run if block 135 65 1 minecraft:stone_brick_stairs[facing=south]' [rss 907 MB, 251 ms]: ok -> Test passed",
+    "rooms-16 'execute in minecraft:nxrooms_run if block 130 65 6 minecraft:chest[facing=north]' [rss 907 MB, 251 ms]: ok -> Test passed",
+    "rooms-17 'execute in minecraft:nxrooms_run if block 136 65 4 minecraft:iron_bars' [rss 907 MB, 252 ms]: ok -> Test passed",
+    "rooms-18 'rooms clear' [rss 908 MB, 251 ms]: ok -> CLEAR queued 2 | ",
+    "rooms-19 'rooms status' [rss 908 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 0 room(s), 0 job(s) queued, 2000 blocks/tick; last: cleared rooms=0 | "
+   ],
+   "log": [
+    "99 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47125, rcon 47136 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "version": "1.21.8",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.8 (6 checks, boot 21.1s, peak RSS 932 MB)",
+   "bootMs": 21073,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "rooms-0 'rooms list' [rss 846 MB, 253 ms]: ok -> Rooms: 1 template(s): sample_vault_01 (sample, room, 9x6x9, 6 markers) | ",
+    "rooms-1 'rooms paste sample_vault_01 0' [rss 910 MB, 7043 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 0 64 0 turns=0 | ",
+    "rooms-2 'rooms status' [rss 911 MB, 255 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 1 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=7.7 maxTickMs=5.76 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-3 'execute in minecraft:nxrooms_run if block 0 64 0 minecraft:stone_bricks' [rss 911 MB, 253 ms]: ok -> Test passed",
+    "rooms-4 'execute in minecraft:nxrooms_run if block 1 65 1 minecraft:stone_brick_stairs[facing=east]' [rss 911 MB, 252 ms]: ok -> Test passed",
+    "rooms-5 'execute in minecraft:nxrooms_run if block 4 68 4 minecraft:lantern[hanging=true]' [rss 911 MB, 251 ms]: ok -> Test passed",
+    "rooms-6 'execute in minecraft:nxrooms_run if block 6 65 6 minecraft:chest[facing=west]' [rss 911 MB, 250 ms]: ok -> Test passed",
+    "rooms-7 'execute in minecraft:nxrooms_run run data get block 6 65 6 LootTable' [rss 912 MB, 253 ms]: ok -> 6, 65, 6 has the following block data: \"minecraft:chests/buried_treasure\"",
+    "rooms-8 'execute in minecraft:nxrooms_run if block 4 65 7 minecraft:air' [rss 912 MB, 251 ms]: ok -> Test passed",
+    "rooms-9 'execute in minecraft:nxrooms_run if block 4 66 4 minecraft:air' [rss 912 MB, 251 ms]: ok -> Test passed",
+    "rooms-10 'execute in minecraft:nxrooms_run if block 4 65 4 minecraft:stone_pressure_plate' [rss 912 MB, 250 ms]: ok -> Test passed",
+    "rooms-11 'execute in minecraft:nxrooms_run if block 4 65 0 minecraft:iron_bars' [rss 912 MB, 251 ms]: ok -> Test passed",
+    "rooms-12 'execute in minecraft:nxrooms_run if entity @e[type=minecraft:zombie,x=0,y=64,z=0,dx=9,dy=6,dz=9]' [rss 912 MB, 255 ms]: ok -> Test passed, count: 2",
+    "rooms-13 'rooms paste sample_vault_01 1' [rss 912 MB, 253 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 128 64 0 turns=1 | ",
+    "rooms-14 'rooms status' [rss 914 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 2 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=524.3 maxTickMs=2.26 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-15 'execute in minecraft:nxrooms_run if block 135 65 1 minecraft:stone_brick_stairs[facing=south]' [rss 914 MB, 251 ms]: ok -> Test passed",
+    "rooms-16 'execute in minecraft:nxrooms_run if block 130 65 6 minecraft:chest[facing=north]' [rss 914 MB, 250 ms]: ok -> Test passed",
+    "rooms-17 'execute in minecraft:nxrooms_run if block 136 65 4 minecraft:iron_bars' [rss 914 MB, 252 ms]: ok -> Test passed",
+    "rooms-18 'rooms clear' [rss 914 MB, 251 ms]: ok -> CLEAR queued 2 | ",
+    "rooms-19 'rooms status' [rss 926 MB, 252 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 0 room(s), 0 job(s) queued, 2000 blocks/tick; last: cleared rooms=0 | "
+   ],
+   "log": [
+    "98 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47100, rcon 47126 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "version": "1.21.11",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.11 (6 checks, boot 18.1s, peak RSS 891 MB)",
+   "bootMs": 18067,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "rcon": [
+    "rooms-0 'rooms list' [rss 843 MB, 252 ms]: ok -> Rooms: 1 template(s): sample_vault_01 (sample, room, 9x6x9, 6 markers) | ",
+    "rooms-1 'rooms paste sample_vault_01 0' [rss 864 MB, 5310 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 0 64 0 turns=0 | ",
+    "rooms-2 'rooms status' [rss 869 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 1 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=10.8 maxTickMs=8.72 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-3 'execute in minecraft:nxrooms_run if block 0 64 0 minecraft:stone_bricks' [rss 869 MB, 252 ms]: ok -> Test passed",
+    "rooms-4 'execute in minecraft:nxrooms_run if block 1 65 1 minecraft:stone_brick_stairs[facing=east]' [rss 869 MB, 253 ms]: ok -> Test passed",
+    "rooms-5 'execute in minecraft:nxrooms_run if block 4 68 4 minecraft:lantern[hanging=true]' [rss 869 MB, 251 ms]: ok -> Test passed",
+    "rooms-6 'execute in minecraft:nxrooms_run if block 6 65 6 minecraft:chest[facing=west]' [rss 869 MB, 253 ms]: ok -> Test passed",
+    "rooms-7 'execute in minecraft:nxrooms_run run data get block 6 65 6 LootTable' [rss 869 MB, 254 ms]: ok -> 6, 65, 6 has the following block data: \"minecraft:chests/buried_treasure\"",
+    "rooms-8 'execute in minecraft:nxrooms_run if block 4 65 7 minecraft:air' [rss 869 MB, 251 ms]: ok -> Test passed",
+    "rooms-9 'execute in minecraft:nxrooms_run if block 4 66 4 minecraft:air' [rss 869 MB, 250 ms]: ok -> Test passed",
+    "rooms-10 'execute in minecraft:nxrooms_run if block 4 65 4 minecraft:stone_pressure_plate' [rss 869 MB, 251 ms]: ok -> Test passed",
+    "rooms-11 'execute in minecraft:nxrooms_run if block 4 65 0 minecraft:iron_bars' [rss 870 MB, 250 ms]: ok -> Test passed",
+    "rooms-12 'execute in minecraft:nxrooms_run if entity @e[type=minecraft:zombie,x=0,y=64,z=0,dx=9,dy=6,dz=9]' [rss 870 MB, 255 ms]: ok -> Test passed. Count: 2",
+    "rooms-13 'rooms paste sample_vault_01 1' [rss 889 MB, 252 ms]: ok -> PASTE queued id=sample_vault_01 at nxrooms_run 128 64 0 turns=1 | ",
+    "rooms-14 'rooms status' [rss 889 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 2 room(s), 0 job(s) queued, 2000 blocks/tick; last: PASTE ok id=sample_vault_01 state=READY blocks=286 ms=224.6 maxTickMs=5.07 markers=exit:1,mob:2,trap:1,chest:1,entry:1 leftover=0 tick=ok | ",
+    "rooms-15 'execute in minecraft:nxrooms_run if block 135 65 1 minecraft:stone_brick_stairs[facing=south]' [rss 890 MB, 251 ms]: ok -> Test passed",
+    "rooms-16 'execute in minecraft:nxrooms_run if block 130 65 6 minecraft:chest[facing=north]' [rss 890 MB, 252 ms]: ok -> Test passed",
+    "rooms-17 'execute in minecraft:nxrooms_run if block 136 65 4 minecraft:iron_bars' [rss 890 MB, 252 ms]: ok -> Test passed",
+    "rooms-18 'rooms clear' [rss 890 MB, 251 ms]: ok -> CLEAR queued 2 | ",
+    "rooms-19 'rooms status' [rss 890 MB, 251 ms]: ok -> Rooms: nxrooms-1: 1 template(s), 0 room(s), 0 job(s) queued, 2000 blocks/tick; last: cleared rooms=0 | "
+   ],
+   "log": [
+    "95 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47125, rcon 47191 (private netns, 127.0.0.1)"
+   ]
+  }
+ ]
+}
