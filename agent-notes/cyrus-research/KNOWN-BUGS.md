@@ -172,3 +172,27 @@ it through `normalizeBetterModelPack`.
   restored; 1.26.0->1.27.0 attach loss goes to the repair round (code). Unchanged versions: zero findings.
 - Deploy: modbuilder image bump (preserve.js in the Dockerfile COPY, prompt mb-2026-10-15.1) + portal promote (types, store.ts
   preservation, Explain tab, economy failed_regression, eval stats). Not deployed.
+
+## 2026-10-16 - Regression guard blocked creature-mod refines but could not recover them - FIXED on branch, needs image
+- Builds mb2e1ca55853f0c13cc1c5 ($3.61), mb9c7e45e78ba7584b7190 ($1.95), mb47fc77e9605bae104d5e ($2.38), base v1.27.0
+  mbaf46c4ce88096ffffaa8 (stage 34; the task note said v1.26.0 mbe94b7e5992e0a1c0df8d, the records say mbaf46...): all
+  `errorCode: regression`, tokens released. Evidence: build VM /var/lib/modbuilder/data/builds/<id>/{build.json,ws} (read only).
+- What was dropped: in MonsterManager every BetterModel line (4 imports, the MODELED_IDS set, 23 MODEL_* key constants,
+  modelKey(), the tracker map, attachModel(), the guarded attach call, every animate / damageTint / close, the reattach in
+  the chunk-load path); BossManager's lichking attach. Surgical deletions, NOT a rewrite from a summary: the refine flow
+  copies the full base workspace and the model edits with Read/Edit.
+- Root cause: the change round never touched creature code (edited only the main class, config.yml, plugin.yml). The planner
+  put a designBoss lane next to the request ("bosses on floors 3, 6, 9"), textures.js switched the creature lane off, and
+  server.js put the BetterModel API on the javac classpath only with the creature lane on. The UNCHANGED base failed to compile
+  ("package kr.toxicity.model.api does not exist", 35 errors: reproduced on node-2 with the VM's JDK 21 + Paper 1.21.11 jars,
+  compiles clean with bettermodel-api-2.2.0), apiHints said "Paper has no class EntityTracker. Do not use it; use a different
+  API", rule 1 says "only Paper and the JDK", so the compile repair ($1.1-1.8) deleted the wiring. The guard's repair
+  ($0.08-0.88, resumed session, same classpath) was asked to restore code that could not compile, and did not.
+- Fix (branch fix/cyrus-creature-wiring-recovery, 984615ac): creatureCp (base uses BetterModel = API on the classpath;
+  "unavailable" before any model call if not installed); services/modbuilder/wiring.js mechanical restore from the base
+  (javac-checked, reverted if it breaks the compile); block-only repair on the cheap model in a fresh session; early stop
+  when the creature class was rewritten; apiHints skip for plugin-API imports; prompt mb-2026-10-16.1 creature wiring
+  invariants + one creature registry class. Real fixtures: 3/3 restored, restored workspaces compile clean (real javac) and
+  pass the strict scan. Still open: a wiring hunk the model REPLACED with mixed code, or a renamed model key literal, needs the
+  repair round; the designBoss lane misfire on "bosses on floors ..." itself (planner) is not changed here.
+- Deploy: modbuilder image bump (wiring.js in the Dockerfile COPY, prompt mb-2026-10-16.1); portal types only (optional).
