@@ -595,3 +595,4 @@ Merge conflicts of structure/preflight/oracle/library-prod resolved on release/c
 - Dungeon post-rc18: cap lifted (5 creatures delivered). Frost Colossus shipped mb6c1ca6ee26430b06081c v1.14.1 without abilities; ability refine refused twice by the guard on plain game-design wording (guard false positives again); remaining bosses not attempted.
 - Dungeon round 3: 24 creatures, v1.26.0 mbe94b7e5992e0a1c0df8d; 10 rotating floor bosses still vanilla-type; ability refine still refused by guard; see CK file.
 - Dungeon round 4: SILENT REGRESSIONS: floors back to 100/interval 10 since v1.8.1; BetterModel wiring lost in v1.27.0/1.27.1. Last wired = v1.26.0 mbe94b7e5992e0a1c0df8d. See CK file correction.
+- Dungeon round 5: v1.33.0 mb17daa616b89bc1b6ac7e = chest/pit fixes + per-theme obstacles, wiring intact; config-merge/11 floors/room size (regression x3) and boss-floor replacement (budget x2) still undone.

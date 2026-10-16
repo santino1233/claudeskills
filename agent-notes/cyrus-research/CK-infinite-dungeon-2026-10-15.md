@@ -93,3 +93,18 @@ SILENT REGRESSIONS found by reading config.yml/plugin.yml of every build:
 Last build with creature wiring intact: v1.26.0 mbe94b7e5992e0a1c0df8d (but 100 floors, interval 10). No single build has both.
 Round 4 steps: boss-floor replacement mb4fe516c31d51ee5a23d6 REFUSED (guard); miniboss x4 mba78375a41253a370f9b4 FAILED budget; x2 mb69e86cbeb6d9c4275bb2 FAILED budget ($4.08); Siege Warden alone mb375d7c58807fd4483998 succeeded v1.27.0 $3.67 but lost wiring; corrective wiring refine mb843e6c9b5648f8753b69 REFUSED; config fix mb51322a365e1e9476d7be v1.27.1 $1.45 fixed floors but lost wiring again.
 Lesson: every refine needs a mechanical post-check of config.yml (max-floors, floor-interval) AND plugin.yml depend + BetterModel.model count; the build service passes regressions silently. Suggested fix for the owner of the portal: ledger/requirements check on config defaults and on creature attach.
+
+### Round 5 (2026-10-16, after guard fixes, modbuilder 0.24; base v1.26.0 mbe94b7e5992e0a1c0df8d)
+Regression guard now works: builds that drop BetterModel are FAILED errorCode `regression` (no jar, no charge) instead of passing silently.
+| Step | Build | Ver | USD | Result |
+|---|---|---|---|---|
+| A chest + pit bug fixes | mbaf46c4ce88096ffffaa8 | 1.27.0 | 1.45 | ok; chests use live getState(false), no update(); pit has wall/floor thickness config |
+| B config merge + 11 floors + room size (3 attempts: full, split, minimal) | mb2e1ca55853f0c13cc1c5, mb9c7e45e78ba7584b7190, mb47fc77e9605bae104d5e | - | 3.61/1.95/2.38 | all FAILED regression; stopped |
+| D boss floors (full, then floor-3-only) | mb7f195971fedcd501671d, mb10ba9bcb90b68684fd1a | - | 2.51/4.15 | both FAILED budget; stopped. Not refused by guard now |
+| C castle obstacles | mba93899648e05a021fd06 | 1.28.0 | 1.01 | ok |
+| C lava obstacles | mb71dc63c3578654163b72 | 1.29.0 | 0.88 | ok |
+| C swamp obstacles | mb07d1acd1fb5be43912e4 | 1.30.0 | 0.64 | ok |
+| C ice obstacles | mbb8a020b9aab66d39eea3 | 1.31.0 | 1.08 | ok |
+| C crypt obstacles | mbd34de25b010b7d02de3d | 1.32.0 | 1.03 | ok |
+| C ruins obstacles (full failed budget mba905927e5c88f8faa1d5 $4.95; minimal ok) | mb17daa616b89bc1b6ac7e | 1.33.0 | 0.88 | ok |
+FINAL v1.33.0 mb17daa616b89bc1b6ac7e: BetterModel wiring intact (24 specs, depend, attach); chest + pit fixes preserved; per-theme obstacles. STILL: max-floors 100, floor-interval 10, rooms 10x14 hard-coded, 10 vanilla-type legacy bosses, no config merge, Frost Colossus a regular spawn, no abilities. Owner: delete plugins/InfiniteDungeon/config.yml before restart and set max-floors 11 / floor-interval 3 by hand (or /dungeon admin) because merge-defaults and the 11-floor default did not ship.
