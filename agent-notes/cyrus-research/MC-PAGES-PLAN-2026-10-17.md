@@ -57,6 +57,63 @@ Note: `.my` is a ccTLD. Google may treat it as a Malaysia geo signal, and that c
 | Builders / map makers (new, BlockGPT audience) | structure generator + variants | free room, download .schem/.litematic | — |
 | Kids/teens + parents | arrive from any page | — | Terms 18+: an age gate at sign-up, a parent FAQ page, no data from under-13s |
 
+### 1.5 Keyword and competitor evidence (web, 2026-10-17)
+
+Method: WebSearch (US). One search per query. The results are a filtered link set, not Google's real order. Volumes are only those shown on Semrush free overview pages (US, Aug-Sep 2026), which list a domain's own top keywords. I did not run any of these lookups myself in a paid tool.
+
+**Verified volumes (related head terms only)**
+
+| Keyword | US monthly volume (Semrush) | Who ranks | Source |
+|---|---|---|---|
+| minecraft mods | 135,000 | creativemode.net #5 | https://cw.semrush.com/website/creativemode.net/overview |
+| blockbench | 33,100 | blockbench.net #1 | https://cw.semrush.com/website/blockbench.net/overview |
+| minecraft schematics | 12,100 | minecraft-schematics.com #5 | https://cw.semrush.com/website/minecraft-schematics.com/overview |
+| minecraft command generator | 2,400 | mcstacker.net #1 | https://cw.semrush.com/website/mcstacker.net/overview |
+| minecraft house schematics | 1,000 | minecraft-schematics.com #1 | as above |
+| schematic minecraft mod (UK) | 260 | bukkit.org | https://www.seomonitor.com/ai-visibility/uk/domain/bukkit.org |
+| **Every target query** (schematic generator, structure generator ai, plugin generator, datapack generator, custom mob maker, resource pack maker, image to schematic, paper vs spigot, server ideas) | **UNVERIFIED: no public figure found** | — | owner: Keyword Planner, or GSC after launch |
+
+Site traffic context (Semrush, estimates): Planet Minecraft about 12.1M visits/month; minecraft-schematics.com about 1.36M; Blockbench about 1.18M; CreativeMode about 333K (-29.5% month on month); MCStacker about 215K.
+
+**What ranks (prominent results seen)**
+
+| Query | Prominent results | Strength | Implication |
+|---|---|---|---|
+| minecraft schematic generator / structure generator ai / ai build generator | GitHub repos (BuilderGPT, mk-pmb/minecraft-buildergpt), in-game mods (AIbuilder on CurseForge, BuilderAI on BuiltByBit, Ultimate AI Builder), minecraftschematicgenerator.com (template, "not an AI model", free 1 build/day ≤20 blocks), Pixa, spam "9+ best AI" lists | **weak: no polished web-app leader** | flagship is winnable; keep it P0 |
+| image to minecraft schematic | flat pixel/map-art tools only (BlocksItems, Img2MC, CraftMC, EditThisPic 1 free/week), image-to-litematic repo, ObjToSchematic (3D model input) | **no 3D image-to-build leader** | image-to-room is a real differentiator; feature it in the H1 sub and give it a variant page `/minecraft-structure-generator/from-image` |
+| minecraft plugin generator | player.games (localized landing pages), MCreator Spigot generator page | medium | P1 as planned |
+| minecraft plugin ai / server plugin ai | mostly AI **chatbot/admin plugins** on Modrinth/Hangar | intent mismatch | don't target these as head terms; use "make a Minecraft plugin with AI" and "plugin generator" |
+| minecraft mod maker | MCreator dominant, Tynker | strong incumbent | target "AI mod maker" + honest MCreator comparison; never claim client mods |
+| minecraft datapack generator | libraries (Vianpyro, mcwpy), ModCrafter (AI, lovable.app), itch.io | weak | P1, only if datapack export is standalone |
+| minecraft custom mob maker | Bedrock mobile apps (Mobs Maker), spam how-tos, Custom Mobs Framework | **very weak** | move the mob maker up to P1-first |
+| minecraft resource pack maker | MCreator, minecraft.wiki list, resourcepackcreator.com, AI texture tools (Deep-Pixels, AI MC Texture) | medium | P1 as planned |
+| minecraft server ideas | hosting blogs (berrybyte, exphost, IONOS) | medium (hosts own it) | content play; Nxeon has hosting authority too |
+| minecraft plugin ideas | forums only (BuiltByBit, Planet Minecraft), plus a feedback.minecraft.net request for a visual plugin tool | **gap: no editorial list ranks** | move `/ideas/minecraft-plugin-ideas` up to P0.5 |
+| paper vs spigot / plugin vs datapack vs mod | host blogs (BisectHosting, Nitrado), Paper docs, datapack.wiki | medium | glossary P2 as planned |
+
+**Competitor table (new or corrected facts)**
+
+| Competitor | Generates | Pricing / free tier | Image input | Source |
+|---|---|---|---|---|
+| BlockGPT (blockgpt.ai) | text/image to static schematic | 5 previews/day, no download; $1 trial; $9/$19/$49 a month | yes (to 3D voxel) | DW, verified on 2026-10-16 from blockgpt.ai/pricing. The 10-17 search found only an Indonesian article and an unrelated "BlockGPT" chat plugin (name collision) |
+| **CreativeMode** (new) | text-to-mod (mobs, items, blocks, structures), Java + Bedrock | "300 free coins every week"; Pro needed to create mods (no $ stated) | not mentioned | https://creativemode.net/blog/creativemode-vs-mcreator-complete-minecraft-mod-maker-comparison-2026 |
+| player.games | plugins, Fabric/NeoForge mods, datapacks; JAR + source | credit packs "start at $8 for 500"; Discord-linked free credits | not mentioned | https://www.player.games/en-US/ai-minecraft-mod-maker |
+| MCreator | no-code mods, add-ons, resource packs, datapacks | free, Apache-2.0 | no | https://mcreator.net |
+| MinecraftSchematicGenerator.com | 13 template build types to .litematic/.schem | free 1/day; paid pricing **conflicting** ($2.99/build vs packs) | no | https://minecraftschematicgenerator.com |
+| BuilderGPT (CyniaAI) | open-source text to .schem; vision mode | free, BYO key; paused | yes (self-hosted) | https://github.com/CyniaAI/BuilderGPT |
+| In-game AI builders (AIbuilder, BuilderAI, AIConstructor, GenesisX, Ultimate AI Builder) | builds in-world via user's API key | BYO key / BuiltByBit | no | https://www.curseforge.com/minecraft/mc-mods/aibuilder, https://modrinth.com/plugin/genesisx |
+| Blockbench / Misode / MCStacker / ObjToSchematic / Arnis | non-AI editors and generators | free | no (ObjToSchematic: 3D model; Arnis: map area) | https://www.blockbench.net, https://mcstacker.net, https://github.com/LucasDower/ObjToSchematic, https://arnismc.com |
+| Not found | Text2Mc, MineAI, Build AI, ModGPT, Schematic AI, BuildGPT, Blockade, Pluginator | **unverified / no product page found** | — | — |
+
+**Priority changes from the evidence**
+
+1. Flagship structure generator: stays #1. The SERP is weak and nobody offers image-to-3D.
+2. New: `/minecraft-structure-generator/from-image` variant (image-to-schematic intent; the only results are pixel-art tools).
+3. `/ideas/minecraft-plugin-ideas` moves from P2 to P0.5. Only forums rank, and it is cheap (1 ad).
+4. The custom mob maker moves ahead of the plugin maker within P1 (very weak SERP). It is still gated on the BetterModel fix.
+5. The plugin maker targets "minecraft plugin generator" / "make a plugin with AI", not "minecraft plugin ai" (chatbot intent).
+6. Add `/compare/cyrus-vs-creativemode` to the comparisons. MCreator stays; the BlockGPT comparison keeps its DW-sourced facts dated 2026-10-16.
+
 ### 1.4 Funnel (each step is a real event already defined in DD)
 
 SEO landing → interact with an example (free, no account) → sign in (Google/Nxeon, verified email) → 1 free generation → download or "Use in my mod" → starter tokens (70, `cyrus_tok_starter`) → plan or top-up → mod installed on a Nxeon server (tokens are also granted on Minecraft server purchase: `grantForGameServerPurchase`, DC).
@@ -72,17 +129,17 @@ Effort is in agent-days (ad). Priority 1 is highest. "Live data" means real coun
 | 1 | `/minecraft-structure-generator` | ai minecraft structure generator; minecraft schematic generator; ai minecraft build generator; image to minecraft schematic | tool | tool page | Generate (1 free) | Room Studio prompt, image drop, worker preview (`room-worker.ts`), 8 real example renders, exports | 4 (page) + 3 (free-gen) + 1 (wire in the image branch + §6.1 safety) | rc20 live; `CYRUS_ROOM_STUDIO=1`; new public endpoint; `feature/cyrus-room-studio-image` merged (no upload store needed) |
 | 2 | `/minecraft-structure-generator/<variant>`: boss-arena, lava-arena, castle-hall, crypt, spooky-swamp, ice-cave, ruined-temple, throne-room, dungeon-room, medieval-village-house*, treehouse*, pvp-arena* | "minecraft boss arena schematic", "lava arena", "castle interior schematic" ... | tool/download | programmatic (quality-gated) | Generate this style | that kit's real renders (≥3 unique seeds per page), prompt presets, a downloadable example .schem | 0.5 each after the template (2 for the template) | kits exist for castle, lava, swamp, ice, crypt, ruins, throne, generic. *Village, treehouse and PvP need new kits/ops (`kits.ts`, `ops.ts` "tree"); publish only when they pass `quality.ts` ≥70 |
 | 3 | `/minecraft-plugin-maker` | ai minecraft plugin generator; make a minecraft plugin without coding; minecraft server plugin ai | commercial/tool | landing | Describe your plugin (sign in) | real build examples from MOD-SLATE / owner batch (prompt → commands → Test Flight result) | 2 | content flag; real builds only |
-| 4 | `/minecraft-custom-mob-maker` | minecraft custom mob maker; custom boss plugin; animated mobs | tool | landing | Make a creature | real creature renders (bonewarden, cinderhusk, direwolf, hexwitch: DP), BetterModel explainer | 2 | P0 BetterModel pack fix deployed (DP), else creatures show as magenta cubes on camera |
+| 3a (ahead of plugin maker, §1.5) | `/minecraft-custom-mob-maker` | minecraft custom mob maker; custom boss plugin; animated mobs | tool | landing | Make a creature | real creature renders (bonewarden, cinderhusk, direwolf, hexwitch: DP), BetterModel explainer | 2 | P0 BetterModel pack fix deployed (DP), else creatures show as magenta cubes on camera |
 | 5 | `/minecraft-test-flight` | test minecraft plugin before install; is this plugin safe | informational | explainer | See a real report | a real Test Flight transcript (e.g. `structures-flights-2026-10-16.json`: boot 19.7 s, checks) | 1 | none |
 | 6 | `/gallery` (+ `/mods/<slug>`) | made with cyrus; minecraft plugins made with ai | browse | gallery | Install / Remix | Spotlight API, real counters ("New" at zero), rooms saved with an opt-in licence | 2 (gallery; mod pages exist) | `cyrus_mods_public_enabled`, seed real mods (DC script), report flow |
 | 7 | `/minecraft-resource-pack-maker` (texture + pack) | minecraft resource pack maker; minecraft texture generator ai | tool | landing | Paint an item | real texture-studio outputs, held-item render loops (CN) | 1.5 | — |
 | 8 | `/minecraft-sound-maker` | minecraft custom sound effects; minecraft sfx generator | tool | landing | Make a sound set | real synthesized sets (audio players, lazy) | 1 | Sound studio is on the Saka plan |
 | 9 | `/minecraft-datapack-generator` | minecraft datapack generator; ai datapack | tool | landing | Generate a datapack | real datapack lane outputs (recipes, loot, advancements) | 1.5 | page only if the datapack is downloadable standalone (verify) |
 | 10 | `/minecraft-menu-quest-hud-designer` | minecraft gui shop plugin; quest plugin; custom hud | tool | landing | Design a menu | Designer previews (shop menu, daily quests) | 1.5 | — |
-| 11 | `/ideas/minecraft-server-ideas`, `/ideas/minecraft-plugin-ideas`, `/ideas/minecraft-mod-ideas` | minecraft server ideas; plugin ideas | informational | evergreen list | "Build this idea" (prefilled prompt) | each idea tied to a real MOD-SLATE build or flagged "not built yet" (no fake screenshots) | 1 each | slate builds for screenshots |
+| 11 (plugin-ideas: 3, see §1.5) | `/ideas/minecraft-server-ideas`, `/ideas/minecraft-plugin-ideas`, `/ideas/minecraft-mod-ideas` | minecraft server ideas; plugin ideas | informational | evergreen list | "Build this idea" (prefilled prompt) | each idea tied to a real MOD-SLATE build or flagged "not built yet" (no fake screenshots) | 1 each | slate builds for screenshots |
 | 12 | `/guides/*` (8): use a .schem with WorldEdit; load a .litematic with Litematica; place .nbt with structure blocks; add a custom boss to your server; make a plugin without coding; install a plugin on your Nxeon server; build a dungeon room for Cyrus (from STRUCTURE-BUILDER-GUIDE); BetterModel resource pack explained | how to ... | informational | HowTo guide | Try the generator | real screenshots, real commands | 0.75 each | none (WorldEdit/Litematica load test still VERIFY: DX §7.5) |
 | 13 | `/learn/*` (4): Paper vs Spigot; plugin vs datapack vs mod; schematic formats (.schem/.litematic/.nbt/.mcstructure); what is a resource pack server push | paper vs spigot; plugin vs datapack vs mod | informational | glossary | contextual tool | format tables from DW §4.1 | 0.5 each | none |
-| 14 | `/compare/cyrus-vs-blockgpt`, `/compare/cyrus-vs-mcreator`, `/compare/ai-plugin-makers` | blockgpt alternative; mcreator alternative | commercial | comparison | Try free | factual tables, dated, sourced; no "best" | 1 each | legal review of competitor claims |
+| 14 | `/compare/cyrus-vs-blockgpt`, `/compare/cyrus-vs-mcreator`, `/compare/cyrus-vs-creativemode`, `/compare/ai-plugin-makers` | blockgpt alternative; mcreator alternative | commercial | comparison | Try free | factual tables, dated, sourced; no "best" | 1 each | legal review of competitor claims |
 | 15 | nxeon.cloud `/minecraft-server-hosting` (exists): add a "Custom mods with Cyrus" block; cyrus.my `/guides/run-cyrus-mods-on-nxeon` | minecraft server hosting with custom plugins | transactional | bridge | Deploy server | live GamePlan prices, token-grant block only when `cyrus_tok_live` is on (DC) | 1 | Nxeon page edit (shared marketing header D1 overflow open) |
 
 Not built (deliberately): per-unsupported-game pages, plugin-name mirror pages, "best X" lists without real outputs, Bedrock-first pages (`.mcstructure` writer not built).
@@ -181,6 +238,28 @@ New: a public endpoint `/api/cyrus/rooms/free` (its own authz table entry), `lib
 | Competitor pages | factual, dated, sourced; no logos; no scraping (BlockGPT ToS forbids automated access: DW) |
 | AI disclosure | "AI-generated" label on gallery items; Modrinth bans primarily-AI projects (DB §6.2): tell users |
 
+### 6.1 Age and safety for the free image tool
+
+**Facts.** Cyrus/Nxeon Terms are 18+ (CT item 12). Minecraft's audience includes many under-18s and under-13s: this is general knowledge, and no audience share was verified here. The FTC's 2025 COPPA amendments added biometric identifiers, including "facial templates or faceprints", to "personal information". They took effect 2025-06-23, with compliance required by 2026-04-22 (https://securiti.ai/?p=100034, https://www.agg.com/news-insights/publications/ftc-finalizes-its-first-updates-to-childrens-privacy-rule-since-2013/). Under COPPA, a service that is "directed to children", or that has actual knowledge it is collecting from under-13s, needs verifiable parental consent. A Minecraft-keyword landing page with a kid-friendly design risks being read as child-directed. That is counsel's call, not a verified conclusion.
+
+**Recommended stance:** keep 18+ for accounts (option a). Design and copy the page for adults (server owners, builders). Never collect anything from known under-13s. Revisit 13-17 with guardian consent only after legal review.
+
+| Control | Rule |
+|---|---|
+| Age gate | Neutral age screen at sign-up, before the free generation. Ask for the date of birth with no hint of the "right" answer; no pre-filled year. Under 18: block and set a 30-day cookie so the visitor cannot just retry (FTC neutral-screen practice). Under 13: delete the entered data immediately |
+| Image storage | None by default. Hold in memory for the vision call only, re-encode (which strips EXIF/GPS), downscale to ≤1024 px, then discard. Not written to the upload store, not logged, not used for training. Store only a hash for abuse rate-limiting |
+| People and faces | The vision pre-check refuses any image where a real person or face is the subject ("build me / my friend" stays refused). No facial template is ever computed, stored or matched. Only a coarse yes/no "person present" signal, discarded right away |
+| Other refusals | sexual content, gore, self-harm, weapons glorification, hate symbols, logos, copyrighted characters or named buildings (we suggest an original "inspired by" room instead) |
+| Output | Rooms only (blocks, no text from the image), so no image content reaches the public. Gallery sharing is opt-in, and adult accounts only |
+| Abuse | report button on shared rooms; refusals logged as text reason only (`lib/cyrus/guard/refusals.ts`) |
+
+**Recommended wording.**
+- Age gate: "Cyrus accounts are for people 18 and over. Please enter your date of birth." Refusal: "Sorry, Cyrus is only for adults right now. If you run a server with a parent or guardian, ask them to set it up."
+- Image drop zone: "Drop a picture of a place, a sketch or your own concept art. No photos of people, please: we turn it into an original room and delete the picture right after."
+- Under the result: "Your picture was not saved. We keep the room, not the image."
+- Parent/guardian FAQ entry (on `/minecraft-structure-generator` and `/help`): "Is Cyrus for kids? No. Accounts are 18+. Cyrus makes building files and server plugins for Minecraft server owners. Pictures you upload are used once to suggest a style and are never stored. We refuse photos of people. If you think a child has made an account, write to <support address> and we'll delete it."
+- COPPA line in the privacy notice: "Cyrus is not directed to children under 13 and we do not knowingly collect their personal information. If we learn we have, we delete it."
+
 ---
 
 ## 7. Phased roadmap
@@ -189,7 +268,7 @@ New: a public endpoint `/api/cyrus/rooms/free` (its own authz table entry), `lib
 |---|---|---|---|
 | P-1 | rc20 is already live. Run 50 Room Studio generations on staging (or for prod preview accounts) to calibrate cost and quality; staging noindex; legal age decision (§6.1) | 1 + owner | `CYRUS_ROOM_STUDIO=1` on staging first |
 | P0 | Flagship page, free-gen mechanism (entitlement, Turnstile, caps, kill switch), 4 variants (boss arena, lava, crypt, castle), nginx paths, sitemap section, OG | 9 | `CYRUS_ROOM_STUDIO=1` prod, `cyrus_content_public_enabled`, then index flags |
-| P0.5 | Merge `feature/cyrus-room-studio-image`; add the §6.1 image safety rules + the free-tier path | 1-2 | image branch review; moderation policy |
+| P0.5 | Merge `feature/cyrus-room-studio-image`; add the §6.1 image safety rules + the free-tier path; `/minecraft-structure-generator/from-image` variant; `/ideas/minecraft-plugin-ideas` (evidence: only forums rank) | 3 | image branch review; moderation policy |
 | P1 | plugin maker, creature, texture/pack, sound, datapack, designer landings; Test Flight explainer; gallery | 10 | `cyrus_mods_public_enabled`, BetterModel fix live, seed real mods, upload store decision (only for "Use in my mod" saves) |
 | P2 | 8 guides, 4 glossary, 3 idea lists, 3 comparisons, Nxeon bridge block, 8 more variants | 10 | slate videos |
 | Ongoing | refresh, GSC review weekly | 0.5/week | — |
