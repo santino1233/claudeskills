@@ -2,7 +2,7 @@
 # Ship release/cyrus-rc21 end to end. OWNER RUNS THIS as root on the primary. Stops at the first failure.
 #   bash /root/claudeskills/agent-notes/cyrus-research/ship-rc21.sh            # asks before every production step
 #   YES=1 bash .../ship-rc21.sh                                                # no prompts
-#   STOP_AFTER_STAGING=1 bash .../ship-rc20.sh                                 # backup + main ff + staging only
+#   STOP_AFTER_STAGING=1 bash .../ship-rc21.sh                                 # backup + main ff + staging only
 #   SKIP_STAGING_DEPLOY=1 ...                                                  # staging already runs rc21
 #   TAG=modbuilder:0.N ...                                                     # force the image tag (default: next free one)
 # Order: preconditions (main == rc20, clean) -> DB backup -> main fast-forward -> new SQL on staging -> staging deploy + smoke
@@ -142,7 +142,7 @@ case "$H" in *"\"promptVersion\":\"$WANT_PROMPT\""*) echo "service prompt $WANT_
 case "$H" in *"\"version\":\"$WANT_PRESERVE\""*) echo "features.preserve $WANT_PRESERVE: OK";; *) echo "WARN: /health does not report preserve version $WANT_PRESERVE (MB_PRESERVE=off, or old image)";; esac
 case "$H" in *'"roomStudio":{'*) echo "features.roomStudio: present";; *) echo "WARN: features.roomStudio missing (MB_ROOM_STUDIO=0 on the VM, or old image)";; esac
 case "$H" in *'"images":{"version":"roomimage-1"'*) echo "features.roomStudio.images: roomimage-1";; *) echo "WARN: features.roomStudio.images missing (old image?)";; esac
-case "$H" in *'"guard":"roomimage-guard'*|*'"guard":"'*) echo "image guard: on";; *'"guard":false'*) echo "WARN: image guard is OFF (MB_ROOM_IMAGE_GUARD=0 on the VM); turn it back on before any image use";; esac
+case "$H" in *'"guard":"imageguard-'*) echo "image guard: on";; *) echo "WARN: image guard not reported (MB_ROOM_IMAGE_GUARD=0 on the VM, or old image); keep it on before any image use";; esac
 case "$H" in *'"rooms":{'*) echo "features.rooms: present";; *) echo "WARN: features.rooms missing (MB_ROOMS=0, or old image)";; esac
 echo "One real check is still needed (owner, about 0.2 US cents): bash $(dirname "$(readlink -f "$0")")/rc21-image-cli-smoke.sh"
 
