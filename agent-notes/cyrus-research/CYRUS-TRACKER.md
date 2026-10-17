@@ -596,3 +596,4 @@ Merge conflicts of structure/preflight/oracle/library-prod resolved on release/c
 - Dungeon round 3: 24 creatures, v1.26.0 mbe94b7e5992e0a1c0df8d; 10 rotating floor bosses still vanilla-type; ability refine still refused by guard; see CK file.
 - Dungeon round 4: SILENT REGRESSIONS: floors back to 100/interval 10 since v1.8.1; BetterModel wiring lost in v1.27.0/1.27.1. Last wired = v1.26.0 mbe94b7e5992e0a1c0df8d. See CK file correction.
 - Dungeon round 5: v1.33.0 mb17daa616b89bc1b6ac7e = chest/pit fixes + per-theme obstacles, wiring intact; config-merge/11 floors/room size (regression x3) and boss-floor replacement (budget x2) still undone.
+- Dungeon round 6: v1.40.0 mbf8812bb2484d3eb42902 final (11 floors, merged config, boss floors custom, legacy bosses removed, Frost abilities). Config defaults drift after refines twice.

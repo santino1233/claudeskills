@@ -108,3 +108,18 @@ Regression guard now works: builds that drop BetterModel are FAILED errorCode `r
 | C crypt obstacles | mbd34de25b010b7d02de3d | 1.32.0 | 1.03 | ok |
 | C ruins obstacles (full failed budget mba905927e5c88f8faa1d5 $4.95; minimal ok) | mb17daa616b89bc1b6ac7e | 1.33.0 | 0.88 | ok |
 FINAL v1.33.0 mb17daa616b89bc1b6ac7e: BetterModel wiring intact (24 specs, depend, attach); chest + pit fixes preserved; per-theme obstacles. STILL: max-floors 100, floor-interval 10, rooms 10x14 hard-coded, 10 vanilla-type legacy bosses, no config merge, Frost Colossus a regular spawn, no abilities. Owner: delete plugins/InfiniteDungeon/config.yml before restart and set max-floors 11 / floor-interval 3 by hand (or /dungeon admin) because merge-defaults and the 11-floor default did not ship.
+
+### Round 6 (2026-10-17, rc20 / modbuilder 0.25, prompt mb-2026-10-16.2; base v1.33.0 mb17daa616b89bc1b6ac7e)
+All wiring checked per build (depend BetterModel, MM 11 / BM 5 BetterModel refs, 3 model calls, 24 specs). No wiring/preserve events appeared in the build event stream (nothing triggered visibly); no regression failures this round.
+| Step | Build | Ver | USD | Result |
+|---|---|---|---|---|
+| B1 config merge + 11 floors/interval 3 | mb8fcdf5c69a68c7d31338 | 1.34.0 | 0.63 | ok, merge code in InfiniteDungeonPlugin |
+| B2 room size 28x36, height 10-14, arenas 44x44x20 | mb47c6016c9359b0bf4ae8 | 1.35.0 | 2.34 | ok but reverted defaults to 100/10 |
+| config restore | mba4f28ee4003d7c2db62d | 1.36.0 | 0.23 | ok |
+| D1 all boss floors (full) | mb4ef0e7870eb4a97bd481 | - | 2.53 | FAILED budget |
+| D1a floor 3 Frost Colossus boss floor | mb7a8d7310c69c575243e4 | 1.37.0 | 2.25 | ok (dungeon.frost-colossus-floor: 3) |
+| D1b remove 10 legacy bosses | mbaf7cfdc87aeb857c2dac | 1.38.0 | 1.34 | ok: BossDef count 1 (lichking only) |
+| D2 Frost Colossus abilities | mbcb4848ba72a2387d8af5 | 1.39.0 | 2.54 | ok (FrostColossusAbilities.java, icicle_volley/ground_slam config) but defaults drifted to 100/10, config-version 2 |
+| config restore 2 | mbf8812bb2484d3eb42902 | 1.40.0 | 0.30 | ok |
+FINAL v1.40.0 mbf8812bb2484d3eb42902: 11 floors, interval 3, config-version 5 merged on start, rooms 28x36 configurable, chest+pit fixes, obstacles, 24 wired creatures, floor 3/6/9/11 = Frost Colossus/Mire Treant/Molten Colossus/Lich King, legacy bosses gone, Frost Colossus abilities. Lesson: refines that rewrite config.yml revert defaults/config-version (happened twice); always grep max-floors/floor-interval/config-version afterwards.
+Still basic: floors are generated block patterns with simple obstacles (structure lane is the real fix); only Frost Colossus has bespoke abilities, the others use the built-in ability enum; not verified in game (Test Flight is boot-only).
