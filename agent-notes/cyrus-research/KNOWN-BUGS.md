@@ -196,3 +196,27 @@ it through `normalizeBetterModelPack`.
   pass the strict scan. Still open: a wiring hunk the model REPLACED with mixed code, or a renamed model key literal, needs the
   repair round; the designBoss lane misfire on "bosses on floors ..." itself (planner) is not changed here.
 - Deploy: modbuilder image bump (wiring.js in the Dockerfile COPY, prompt mb-2026-10-16.1); portal types only (optional).
+
+## 2026-10-17 - rc20: refines still silently reverted config defaults (guard said "clean") - FIXED on branch, needs image
+- Evidence (live rc20, modbuilder:0.25; records /root/cyrus-eval/dungeon-2026-10-15, workspaces build VM
+  /var/lib/modbuilder/data/builds/<id>/{build.json,ws}, read only): base v1.34.0 mb8fcdf5c69a68c7d31338 max-floors 11 /
+  boss.floor-interval 3 / config-version 1 -> B2 "room size" mb47c6016c9359b0bf4ae8 v1.35.0 shipped 100 / 10; base v1.38.0
+  mbaf7cfdc87aeb857c2dac (11 / 3 / config-version 4) -> D2 Frost Colossus mbcb4848ba72a2387d8af5 v1.39.0 shipped 100 / 10 /
+  config-version 2. Manual restores: mba4f28ee4003d7c2db62d, mbf8812bb2484d3eb42902. (The task note said config-version 5 on
+  v1.34.0: the real files say 1 there, 4 on v1.38.0, 5 only after the D2 restore v1.40.0.)
+- Why the guard missed it: lineage WAS available (16 ancestors) and the guard did run; its verdict was "clean" because the
+  model's config.yml still had 11 / 3. Both builds had the Config Studio route (assets.config); configs.js configRound runs
+  AFTER the guard and rewrites config.yml from assets/config/schema.json with "declared defaults win". That schema was written
+  by the first settings-routed build (100 / 10) and never updated by refines without the route (the service keeps the base's
+  schema file), so it put the old values back. NOT Java: getInt("dungeon.max-floors", 11) / getInt("boss.floor-interval", 3)
+  stayed in every version; no addDefault / saveDefault regeneration. Secondary: the "number with concept" naming rule let
+  "height 10 to 14 ... boss arenas" name boss.floor-interval 10.
+- Fix (branch fix/cyrus-preserve-config-defaults from main bc678074): configs.js syncStaleDefaults (a schema default the round
+  did not change follows config.yml); preserve.js keepDefaults + server.js keepDefaultsStep after the settings round, before
+  javac: every changed default (config.yml, schema, Java get*("key", fallback) / addDefault / static final fallback) the
+  request does not name goes back to the base value, config-version never decreases, notice "Kept your earlier setting X = Y",
+  preservation.kept; number must stand within 3 words of the concept; prompt mb-2026-10-17.1; pv-2026-10-17.1.
+- Measured offline on the whole real chain (65 workspaces, 42 refines, with lineage): 10/10 silent reversions restored (B2 2,
+  D2 3, v1.8.1 5), 0 false restores, 18 requested changes kept. Without lineage: 8 restored, 0 false (misses, not false hits).
+  The chain never reverted a Java literal (Java path tested on synthesized fixtures). No paid model call.
+- Deploy: modbuilder image bump (no Dockerfile change) + portal promote (types/store/Explain tab/eval; optional).
