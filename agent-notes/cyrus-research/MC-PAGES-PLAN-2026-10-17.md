@@ -2,7 +2,8 @@
 
 This is a plan only. No code was changed, nothing was built or deployed, and no paid model was called.
 Grounded in these notes: CQ, CR, CN, DB, DC, DD, DP, screens-mod-pages, DV, DW, DX (rc20), STRUCTURE-BUILDER-GUIDE, MOD-SLATE and CT. Code was read in the rc20 worktree `/tank/dev-worktrees/cyrus-int7` (`lib/cyrus/structures/studio/*`, `tokens/config-pure.ts`, `tryit/policy.ts`, `uploads.ts`, `kill-switches.ts`, `docs/cyrus/03-studios.md`) and in `/opt/nxeon/app/(marketing)`.
-**Web-verification caveat:** a fresh WebSearch pass on keyword demand and competitors was started but had not reported back when this file was written. Competitor facts below come only from sources the earlier notes already cited (CQ, DB, DW). **No search volume is known.** Every volume is UNVERIFIED. Fill them in from GSC impressions after launch, or from a Keyword Planner run by the owner.
+**Web evidence (2026-10-17):** §1.5 holds the WebSearch/WebFetch pass. Two limits apply. First, WebSearch returns a filtered set of links, not Google's real ranking, so "prominent results" does not mean "top 5". Second, minecraft.net timed out, so its legal text is quoted from mirrors. The only verified volumes are Semrush free-page figures for related head terms. **Every target query (schematic generator, plugin generator, datapack generator, image to schematic ...) has no verified volume.** Measure them with GSC after launch, or with a Keyword Planner run by the owner.
+**State correction (2026-10-17):** rc20 **is deployed**: portal release 20261016T124900Z-bc678074, modbuilder:0.25 live. Room Studio is live in production but behind `CYRUS_ROOM_STUDIO` (default OFF). Image-to-room is being built now on `feature/cyrus-room-studio-image`.
 
 ---
 
@@ -15,10 +16,10 @@ Grounded in these notes: CQ, CR, CN, DB, DC, DD, DP, screens-mod-pages, DV, DW, 
 | 3 | **Positioning against BlockGPT** (DW, FACT). BlockGPT makes colour-voxel shells: no block states, no chests, no lighting, and its downloads are paywalled. Cyrus makes **playable rooms**: walkable, lit, real stairs and slabs, markers for mobs, loot and the boss. Cyrus rooms export to .schem, .litematic and .nbt, and the "Use in my mod" button drops the room into a Test-Flight-booted plugin. Against MCreator: Cyrus is prompt-first and server-side (Paper). |
 | 4 | **Page set: 6 tool landings, about 12 room-variant pages, 1 gallery, 8 guides, 3 idea lists, 4 glossary pages, 3 honest comparisons, 2 hosting bridges.** That is about 40 URLs, a quality-gated trickle (Nxeon's 65k templated pages were dropped by Google: DB §0.4). |
 | 5 | **Build order.** P0 (about 9 agent-days): flagship plus 4 variants plus the free-gen mechanism. P1 (about 10): plugin, creature, texture/pack and datapack tools, Test Flight, gallery. P2 (about 10): guides, glossary, idea lists, comparisons. Total about 30-35 agent-days plus owner flag flips. |
-| 6 | **Hard dependencies.** rc20 needs to be deployed (Room Studio is merged in rc20, not live; modbuilder 0.25). Plus: `CYRUS_ROOM_STUDIO=1`, a decision on the production upload store (it currently returns 503 `uploads_off`), and `cyrus_content_public_enabled` then `cyrus_content_index_enabled` + `CYRUS_SITEMAP_CONTENT=1`. The cyrus.my nginx app-path regex (`deploy/cyrus/nginx-cyrus-my.conf` L72, identical to the live vhost as of 10-17) already passes games/mods/host/blog; every new root (`minecraft-*`, `guides`, `learn`, `ideas`, `compare`, `gallery`) must be added there AND to `WEB_ROOTS` in `lib/cyrus/web-paths.ts` (L23), otherwise the edge 404s it with `X-Cyrus-Edge: denied`. Room Studio has **no image input yet**, so image-to-room is new work (about 2 agent-days, DW P2). |
+| 6 | **Hard dependencies.** rc20 is deployed (20261016T124900Z-bc678074, modbuilder:0.25), so Room Studio exists in production. Still needed: `CYRUS_ROOM_STUDIO=1` (default OFF), a decision on the production upload store (it currently returns 503 `uploads_off`), and `cyrus_content_public_enabled` then `cyrus_content_index_enabled` + `CYRUS_SITEMAP_CONTENT=1`. The cyrus.my nginx app-path regex (`deploy/cyrus/nginx-cyrus-my.conf` L72, identical to the live vhost as of 10-17) already passes games/mods/host/blog; every new root (`minecraft-*`, `guides`, `learn`, `ideas`, `compare`, `gallery`) must be added there AND to `WEB_ROOTS` in `lib/cyrus/web-paths.ts` (L23), otherwise the edge 404s it with `X-Cyrus-Edge: denied`. Image-to-room is in progress on `feature/cyrus-room-studio-image`. The page needs it merged, plus the safety rules in §6.1. |
 | 7 | **Cost.** Room Studio holds 60 tokens (PLACEHOLDER, `cyrus_tok_room_studio_hold`) and settles at measured cost. DW estimates $0.08-0.12 of model cost per Saka generation (estimate; **no paid run has happened yet**). At a 500-free-generations/day global cap that is about $40-60 a day worst case (estimate). |
 
-**Single biggest risk: the age and legal mismatch.** Minecraft's audience skews young, but the Cyrus/Nxeon Terms are 18+ (CT item 12). A free, viral, image-upload tool marketed on Minecraft keywords will attract under-13s and photos of real people. Without an age gate, image moderation and a no-storage default, the tool creates a COPPA/GDPR-K exposure, plus IP exposure from "build Hogwarts" prompts. Close this before launch. A close second: quality. Free generations come from an LLM that has **never been run on a paid model in production** (DX §4). Run 50 calibration generations before launch and publish only real renders.
+**Single biggest risk: the age and legal mismatch.** Minecraft's audience skews young, but the Cyrus/Nxeon Terms are 18+ (CT item 12). A free, viral, image-upload tool marketed on Minecraft keywords will attract under-13s and photos of real people. Without an age gate, image moderation and a no-storage default, the tool creates a COPPA/GDPR-K exposure, plus IP exposure from "build Hogwarts" prompts. Close this before launch. A close second: quality. Room Studio is deployed but flag-off, and no paid-model calibration run is recorded yet (DX §4). Run 50 calibration generations before launch and publish only real renders.
 
 ---
 
@@ -68,7 +69,7 @@ Effort is in agent-days (ad). Priority 1 is highest. "Live data" means real coun
 
 | Pri | URL (cyrus.my unless noted) | Keyword cluster (volumes UNVERIFIED) | Intent | Type | Primary CTA | Embeds real data/UI | ad | Depends on |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `/minecraft-structure-generator` | ai minecraft structure generator; minecraft schematic generator; ai minecraft build generator; image to minecraft schematic | tool | tool page | Generate (1 free) | Room Studio prompt, image drop, worker preview (`room-worker.ts`), 8 real example renders, exports | 4 (page) + 3 (free-gen) + 2 (image) | rc20 deployed, `CYRUS_ROOM_STUDIO`, new public endpoint, upload decision (image only, no store) |
+| 1 | `/minecraft-structure-generator` | ai minecraft structure generator; minecraft schematic generator; ai minecraft build generator; image to minecraft schematic | tool | tool page | Generate (1 free) | Room Studio prompt, image drop, worker preview (`room-worker.ts`), 8 real example renders, exports | 4 (page) + 3 (free-gen) + 1 (wire in the image branch + §6.1 safety) | rc20 live; `CYRUS_ROOM_STUDIO=1`; new public endpoint; `feature/cyrus-room-studio-image` merged (no upload store needed) |
 | 2 | `/minecraft-structure-generator/<variant>`: boss-arena, lava-arena, castle-hall, crypt, spooky-swamp, ice-cave, ruined-temple, throne-room, dungeon-room, medieval-village-house*, treehouse*, pvp-arena* | "minecraft boss arena schematic", "lava arena", "castle interior schematic" ... | tool/download | programmatic (quality-gated) | Generate this style | that kit's real renders (≥3 unique seeds per page), prompt presets, a downloadable example .schem | 0.5 each after the template (2 for the template) | kits exist for castle, lava, swamp, ice, crypt, ruins, throne, generic. *Village, treehouse and PvP need new kits/ops (`kits.ts`, `ops.ts` "tree"); publish only when they pass `quality.ts` ≥70 |
 | 3 | `/minecraft-plugin-maker` | ai minecraft plugin generator; make a minecraft plugin without coding; minecraft server plugin ai | commercial/tool | landing | Describe your plugin (sign in) | real build examples from MOD-SLATE / owner batch (prompt → commands → Test Flight result) | 2 | content flag; real builds only |
 | 4 | `/minecraft-custom-mob-maker` | minecraft custom mob maker; custom boss plugin; animated mobs | tool | landing | Make a creature | real creature renders (bonewarden, cinderhusk, direwolf, hexwitch: DP), BetterModel explainer | 2 | P0 BetterModel pack fix deployed (DP), else creatures show as magenta cubes on camera |
@@ -114,7 +115,7 @@ Not built (deliberately): per-unsupported-game pages, plugin-name mirror pages, 
 | Analytics (real counters only) | DD beacons: `prompt_focus`, `prompt_submit`; add `free_gen_start/ok/fail`, `export_click{format}`, `use_in_mod_click`, `signup_from_tool`. Server-side: free grants used per day, cost per generation from the settle step |
 | Caching | tool pages are static shells (CDN-cacheable); the entitlement state comes from a no-store `GET /api/cyrus/rooms/free` call. Never cache the personalised HTML at Cloudflare. Set `Cache-Control: private, no-store` on the API, and keep `Vary` minimal |
 
-### 3.3 Image input (new: Room Studio has none today)
+### 3.3 Image input (in progress on `feature/cyrus-room-studio-image`; rules the public page needs on top of it)
 
 | Rule | Value |
 |---|---|
@@ -123,7 +124,7 @@ Not built (deliberately): per-unsupported-game pages, plugin-name mirror pages, 
 | Moderation | vision pre-check: refuse sexual content, gore, minors, identifiable real people ("build my friend" stays refused in v1), logos/characters. Then a text guard on the derived brief (`prompt-check.ts`, `guard/refusal-rules.ts`) |
 | Output | the vision pass writes a **style brief** (palette roles, layout, props) → normal room spec (DW §5.6). It produces "inspired by", not a replica |
 | Copyright stance | copy on the page: "Upload your own art or a photo of a place for inspiration. We build an original room in that style. We refuse recreations of named copyrighted buildings or characters." |
-| Effort | 2 ad (DW P2) + 1 ad moderation |
+| Effort | the feature itself is being built now. For the public page: about 1 ad of moderation and free-tier wiring, if the branch does not already cover §6.1 |
 
 ### 3.4 Code to extend (rc20 tree)
 
@@ -169,8 +170,10 @@ New: a public endpoint `/api/cyrus/rooms/free` (its own authz table entry), `lib
 
 | Topic | Rule |
 |---|---|
-| Brand | Footer on every page: "Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft." (the standard Minecraft Usage Guidelines disclaimer wording; owner/counsel to confirm against minecraft.net/usage-guidelines: DB §6.1 could not load it) |
-| Naming | "Minecraft" is never first in a product name and never in a logo. Use it descriptively in URLs/titles ("structure generator for Minecraft" style is safest; "minecraft-structure-generator" as a URL slug is descriptive use: counsel to confirm) |
+| Brand | Footer on every page, prominent: **"NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."** This is the Usage Guidelines template "NOT AN OFFICIAL MINECRAFT [PRODUCT/SERVICE/EVENT/etc.]..." (mirror captured 2026-09-11: https://conductatlas.com/platform/minecraft/minecraft-usage-guidelines/provision/CA-P-025271/mandatory-not-official-disclaimer-requirement/). minecraft.net timed out on 2026-10-17; verify on the primary page |
+| Naming | The guidelines allow Minecraft in "a secondary name, secondary title, or description" if it "is not the dominant element or the distinctive part" (CA-P-025281). Minecraft may not be the primary name (CA-P-025283). No Minecraft logo in our logo (CA-P-025285). Domains must not "appear official" (CA-P-025297). So: "Cyrus: AI structure generator for Minecraft" is fine. The H1 "AI Minecraft structure generator" works as a description under the Cyrus brand. Never name a product "Minecraft Builder" or register minecraft* domains |
+| Commercial scope | The guidelines cover the fan community and do not license companies to promote unrelated products (https://minecraft.net/en-us/article/commercial-use-guidelines-updated). Cyrus is a Minecraft-related tool: keep the not-affiliated line and no official look. Counsel to confirm |
+| Server-owner content | Monetisation rules (quoted in https://www.gameserverkings.com/knowledge-base/minecraft/monetising-your-server/): same access price for everyone; cosmetics OK except capes; gameplay entitlements only without competitive advantage; virtual currency with no real-world value; all-ages content, no gambling. The "plugin ideas" and "server ideas" pages must only suggest EULA-safe monetisation |
 | Assets | no Mojang textures in previews (colour table only, already the design) |
 | EULA | Cyrus sells a generation service, not mods. Public mods stay free downloads; the marketplace stays parked (DB §6.1) |
 | Kids | Terms 18+ (CT). Options: (a) keep 18+ with an age gate at sign-up and copy aimed at adults/server owners; (b) 13-17 with guardian consent (legal work). Under-13: never. Add a parent FAQ. No images of people |
@@ -184,9 +187,9 @@ New: a public endpoint `/api/cyrus/rooms/free` (its own authz table entry), `lib
 
 | Phase | Scope | ad | Gates / owner actions |
 |---|---|---|---|
-| P-1 | Deploy rc20 (`ship-rc20.sh`, modbuilder 0.25); run 50 staging Room Studio generations to calibrate cost and quality; staging noindex; legal age decision | 1 + owner | `CYRUS_ROOM_STUDIO=1` on staging |
+| P-1 | rc20 is already live. Run 50 Room Studio generations on staging (or for prod preview accounts) to calibrate cost and quality; staging noindex; legal age decision (§6.1) | 1 + owner | `CYRUS_ROOM_STUDIO=1` on staging first |
 | P0 | Flagship page, free-gen mechanism (entitlement, Turnstile, caps, kill switch), 4 variants (boss arena, lava, crypt, castle), nginx paths, sitemap section, OG | 9 | `CYRUS_ROOM_STUDIO=1` prod, `cyrus_content_public_enabled`, then index flags |
-| P0.5 | Image input + moderation | 3 | vision model choice, moderation policy |
+| P0.5 | Merge `feature/cyrus-room-studio-image`; add the §6.1 image safety rules + the free-tier path | 1-2 | image branch review; moderation policy |
 | P1 | plugin maker, creature, texture/pack, sound, datapack, designer landings; Test Flight explainer; gallery | 10 | `cyrus_mods_public_enabled`, BetterModel fix live, seed real mods, upload store decision (only for "Use in my mod" saves) |
 | P2 | 8 guides, 4 glossary, 3 idea lists, 3 comparisons, Nxeon bridge block, 8 more variants | 10 | slate videos |
 | Ongoing | refresh, GSC review weekly | 0.5/week | — |
