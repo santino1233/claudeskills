@@ -1,0 +1,375 @@
+{
+ "at": "2026-10-18T09:20:53.469Z",
+ "host": "node-2",
+ "what": "player schematic exports (.schem via WorldEdit, .nbt via /place template)",
+ "versions": [
+  {
+   "version": "1.21.11",
+   "worldedit": "worldedit-bukkit-7.4.2.jar",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.11 (6 checks, boot 20.7s, peak RSS 1198 MB)",
+   "bootMs": 20685,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "files": [
+    {
+     "id": "castle_great_hall_01",
+     "size": [
+      56,
+      26,
+      44
+     ],
+     "blocks": 21246,
+     "palette": 56,
+     "schemBytes": 10415,
+     "nbtBytes": 63551,
+     "schemSha256": "df7ffec1f0fafbfa8ac5f553332715b1ee149cad04ffc0001ba91e9cd4cb635c",
+     "warnings": [
+      "This build is 56 x 26 x 44. A structure block only loads up to 48 x 48 x 48: place it with /place template instead (no size limit), or download the .schem for WorldEdit."
+     ]
+    },
+    {
+     "id": "crypt_fallen_kings_01",
+     "size": [
+      44,
+      24,
+      52
+     ],
+     "blocks": 18361,
+     "palette": 64,
+     "schemBytes": 9135,
+     "nbtBytes": 55393,
+     "schemSha256": "221f6dc446313a812ea3ee688d89788d8b075da4349f67742a17edd9d2789186",
+     "warnings": [
+      "This build is 44 x 24 x 52. A structure block only loads up to 48 x 48 x 48: place it with /place template instead (no size limit), or download the .schem for WorldEdit."
+     ]
+    },
+    {
+     "id": "medieval_tavern_01",
+     "size": [
+      32,
+      16,
+      24
+     ],
+     "blocks": 4717,
+     "palette": 30,
+     "schemBytes": 1533,
+     "nbtBytes": 13555,
+     "schemSha256": "86aa7160a8b896659271202bc95e085d573b884d96f740866647f1a65ebc97b8",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    },
+    {
+     "id": "modern_living_01",
+     "size": [
+      36,
+      12,
+      28
+     ],
+     "blocks": 4830,
+     "palette": 23,
+     "schemBytes": 1535,
+     "nbtBytes": 13925,
+     "schemSha256": "a33bf04d382777063446c0b461c234ae331109e545fd17c822b9da0e80a3dc2f",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    },
+    {
+     "id": "spawn_plaza_01",
+     "size": [
+      48,
+      18,
+      48
+     ],
+     "blocks": 11329,
+     "palette": 41,
+     "schemBytes": 6264,
+     "nbtBytes": 35435,
+     "schemSha256": "70fe17243b175de5c426b33e8e313d205d8ff1b253c2c230e0c35ac61a64e535",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    }
+   ],
+   "rcon": [
+    "forceload-a 'forceload add -16 -16 200 80' [rss 1167 MB, 799 ms]: ok -> Marked 98 chunks in minecraft:overworld from [-1, -1] to [12, 5] to be force loaded",
+    "forceload-b 'forceload add 200 -16 400 80' [rss 1168 MB, 812 ms]: ok -> Marked 91 chunks in minecraft:overworld from [12, -1] to [25, 5] to be force loaded",
+    "place-castle_great_hall_01 'place template cyrus:castle_great_hall_01 0 0 0' [rss 1170 MB, 788 ms]: ok -> Loaded template \"cyrus:castle_great_hall_01\" at 0, 0, 0",
+    "nbt-castle_great_hall_01-2-1-1 'execute if block 2 1 1 minecraft:stone_bricks' [rss 1170 MB, 255 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-13-1-6 'execute if block 13 1 6 minecraft:andesite' [rss 1170 MB, 251 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-24-1-11 'execute if block 24 1 11 minecraft:cracked_stone_bricks' [rss 1170 MB, 252 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-5-1-20 'execute if block 5 1 20 minecraft:polished_blackstone_bricks' [rss 1170 MB, 251 ms]: ok -> Test passed",
+    "we-load-castle_great_hall_01 'schem load castle_great_hall_01.schem' [rss 1175 MB, 401 ms]: ok -> ",
+    "we-world-castle_great_hall_01 '//world world' [rss 1176 MB, 271 ms]: ok -> castle_great_hall_01.schem loaded. Paste it with //paste | Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-castle_great_hall_01 '//pos1 0,40,0' [rss 1176 MB, 255 ms]: ok -> First position set to (0, 40, 0). | ",
+    "we-place-castle_great_hall_01 '//placement pos1' [rss 1176 MB, 253 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-castle_great_hall_01 '//paste' [rss 1192 MB, 1379 ms]: ok -> The clipboard has been pasted at (0, 40, 0) | 64064 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-castle_great_hall_01-2-1-1 'execute if block 2 41 1 minecraft:stone_bricks' [rss 1192 MB, 251 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-13-1-6 'execute if block 13 41 6 minecraft:andesite' [rss 1192 MB, 252 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-24-1-11 'execute if block 24 41 11 minecraft:cracked_stone_bricks' [rss 1192 MB, 250 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-5-1-20 'execute if block 5 41 20 minecraft:polished_blackstone_bricks' [rss 1192 MB, 251 ms]: ok -> Test passed",
+    "place-crypt_fallen_kings_01 'place template cyrus:crypt_fallen_kings_01 70 0 0' [rss 1193 MB, 350 ms]: ok -> Loaded template \"cyrus:crypt_fallen_kings_01\" at 70, 0, 0",
+    "nbt-crypt_fallen_kings_01-19-0-15 'execute if block 89 0 15 minecraft:tuff' [rss 1194 MB, 251 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-20-0-26 'execute if block 90 0 26 minecraft:cobbled_deepslate' [rss 1194 MB, 251 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-15-1-16 'execute if block 85 1 16 minecraft:blackstone' [rss 1194 MB, 250 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-24-1-18 'execute if block 94 1 18 minecraft:soul_soil' [rss 1194 MB, 251 ms]: ok -> Test passed",
+    "we-load-crypt_fallen_kings_01 'schem load crypt_fallen_kings_01.schem' [rss 1194 MB, 257 ms]: ok -> ",
+    "we-world-crypt_fallen_kings_01 '//world world' [rss 1194 MB, 362 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-crypt_fallen_kings_01 '//pos1 70,40,0' [rss 1194 MB, 252 ms]: ok -> First position set to (70, 40, 0). | ",
+    "we-place-crypt_fallen_kings_01 '//placement pos1' [rss 1194 MB, 252 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-crypt_fallen_kings_01 '//paste' [rss 1194 MB, 479 ms]: ok -> The clipboard has been pasted at (70, 40, 0) | 54912 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-crypt_fallen_kings_01-19-0-15 'execute if block 89 40 15 minecraft:tuff' [rss 1194 MB, 250 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-20-0-26 'execute if block 90 40 26 minecraft:cobbled_deepslate' [rss 1194 MB, 252 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-15-1-16 'execute if block 85 41 16 minecraft:blackstone' [rss 1194 MB, 271 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-24-1-18 'execute if block 94 41 18 minecraft:soul_soil' [rss 1194 MB, 251 ms]: ok -> Test passed",
+    "place-medieval_tavern_01 'place template cyrus:medieval_tavern_01 140 0 0' [rss 1195 MB, 281 ms]: ok -> Loaded template \"cyrus:medieval_tavern_01\" at 140, 0, 0",
+    "nbt-medieval_tavern_01-0-0-0 'execute if block 140 0 0 minecraft:spruce_planks' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-5-0-15 'execute if block 145 0 15 minecraft:stripped_spruce_log' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-17-2-3 'execute if block 157 2 3 minecraft:polished_andesite' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-21-2-15 'execute if block 161 2 15 minecraft:dark_oak_planks' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "we-load-medieval_tavern_01 'schem load medieval_tavern_01.schem' [rss 1195 MB, 254 ms]: ok -> ",
+    "we-world-medieval_tavern_01 '//world world' [rss 1195 MB, 252 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-medieval_tavern_01 '//pos1 140,40,0' [rss 1195 MB, 251 ms]: ok -> First position set to (140, 40, 0). | ",
+    "we-place-medieval_tavern_01 '//placement pos1' [rss 1195 MB, 251 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-medieval_tavern_01 '//paste' [rss 1195 MB, 277 ms]: ok -> The clipboard has been pasted at (140, 40, 0) | 12288 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-medieval_tavern_01-0-0-0 'execute if block 140 40 0 minecraft:spruce_planks' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-5-0-15 'execute if block 145 40 15 minecraft:stripped_spruce_log' [rss 1195 MB, 252 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-17-2-3 'execute if block 157 42 3 minecraft:polished_andesite' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-21-2-15 'execute if block 161 42 15 minecraft:dark_oak_planks' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "place-modern_living_01 'place template cyrus:modern_living_01 210 0 0' [rss 1195 MB, 276 ms]: ok -> Loaded template \"cyrus:modern_living_01\" at 210, 0, 0",
+    "nbt-modern_living_01-0-0-0 'execute if block 210 0 0 minecraft:smooth_quartz' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "nbt-modern_living_01-3-0-8 'execute if block 213 0 8 minecraft:white_concrete' [rss 1195 MB, 252 ms]: ok -> Test passed",
+    "nbt-modern_living_01-23-1-1 'execute if block 233 1 1 minecraft:birch_planks' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "nbt-modern_living_01-12-1-4 'execute if block 222 1 4 minecraft:polished_diorite' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "we-load-modern_living_01 'schem load modern_living_01.schem' [rss 1195 MB, 253 ms]: ok -> ",
+    "we-world-modern_living_01 '//world world' [rss 1195 MB, 251 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-modern_living_01 '//pos1 210,40,0' [rss 1195 MB, 251 ms]: ok -> First position set to (210, 40, 0). | ",
+    "we-place-modern_living_01 '//placement pos1' [rss 1195 MB, 251 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-modern_living_01 '//paste' [rss 1195 MB, 284 ms]: ok -> The clipboard has been pasted at (210, 40, 0) | 12096 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-modern_living_01-0-0-0 'execute if block 210 40 0 minecraft:smooth_quartz' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "we-modern_living_01-3-0-8 'execute if block 213 40 8 minecraft:white_concrete' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "we-modern_living_01-23-1-1 'execute if block 233 41 1 minecraft:birch_planks' [rss 1195 MB, 252 ms]: ok -> Test passed",
+    "we-modern_living_01-12-1-4 'execute if block 222 41 4 minecraft:polished_diorite' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "place-spawn_plaza_01 'place template cyrus:spawn_plaza_01 280 0 0' [rss 1195 MB, 288 ms]: ok -> Loaded template \"cyrus:spawn_plaza_01\" at 280, 0, 0",
+    "nbt-spawn_plaza_01-5-0-10 'execute if block 285 0 10 minecraft:cracked_stone_bricks' [rss 1195 MB, 250 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-7-0-14 'execute if block 287 0 14 minecraft:cobblestone' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-11-0-22 'execute if block 291 0 22 minecraft:andesite' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-15-0-30 'execute if block 295 0 30 minecraft:stone_bricks' [rss 1195 MB, 251 ms]: ok -> Test passed",
+    "we-load-spawn_plaza_01 'schem load spawn_plaza_01.schem' [rss 1196 MB, 254 ms]: ok -> ",
+    "we-world-spawn_plaza_01 '//world world' [rss 1196 MB, 252 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-spawn_plaza_01 '//pos1 280,40,0' [rss 1196 MB, 251 ms]: ok -> First position set to (280, 40, 0). | ",
+    "we-place-spawn_plaza_01 '//placement pos1' [rss 1196 MB, 252 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-spawn_plaza_01 '//paste' [rss 1196 MB, 393 ms]: ok -> The clipboard has been pasted at (280, 40, 0) | 41472 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-spawn_plaza_01-5-0-10 'execute if block 285 40 10 minecraft:cracked_stone_bricks' [rss 1196 MB, 251 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-7-0-14 'execute if block 287 40 14 minecraft:cobblestone' [rss 1196 MB, 251 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-11-0-22 'execute if block 291 40 22 minecraft:andesite' [rss 1196 MB, 251 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-15-0-30 'execute if block 295 40 30 minecraft:stone_bricks' [rss 1196 MB, 251 ms]: ok -> Test passed",
+    "datapacks-enabled 'datapack list enabled' [rss 1196 MB, 259 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrusmcseo (world)], [paper (built-in)]"
+   ],
+   "log": [
+    "99 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47167, rcon 47176 (private netns, 127.0.0.1)"
+   ]
+  },
+  {
+   "version": "1.21.1",
+   "worldedit": "worldedit-bukkit-7.3.9.jar",
+   "overall": "passed",
+   "describe": "Test Flight passed on Paper 1.21.1 (6 checks, boot 26.7s, peak RSS 1085 MB)",
+   "bootMs": 26698,
+   "checks": {
+    "boot_done": "pass",
+    "plugins_enabled": "pass",
+    "startup_log_clean": "pass",
+    "rcon_checks": "pass",
+    "worldgen": "not_run",
+    "playtest": "not_run",
+    "stress": "not_run",
+    "clean_stop": "pass",
+    "no_leaks": "pass"
+   },
+   "files": [
+    {
+     "id": "castle_great_hall_01",
+     "size": [
+      56,
+      26,
+      44
+     ],
+     "blocks": 21246,
+     "palette": 56,
+     "schemBytes": 10415,
+     "nbtBytes": 63551,
+     "schemSha256": "df7ffec1f0fafbfa8ac5f553332715b1ee149cad04ffc0001ba91e9cd4cb635c",
+     "warnings": [
+      "This build is 56 x 26 x 44. A structure block only loads up to 48 x 48 x 48: place it with /place template instead (no size limit), or download the .schem for WorldEdit."
+     ]
+    },
+    {
+     "id": "crypt_fallen_kings_01",
+     "size": [
+      44,
+      24,
+      52
+     ],
+     "blocks": 18361,
+     "palette": 64,
+     "schemBytes": 9135,
+     "nbtBytes": 55393,
+     "schemSha256": "221f6dc446313a812ea3ee688d89788d8b075da4349f67742a17edd9d2789186",
+     "warnings": [
+      "This build is 44 x 24 x 52. A structure block only loads up to 48 x 48 x 48: place it with /place template instead (no size limit), or download the .schem for WorldEdit."
+     ]
+    },
+    {
+     "id": "medieval_tavern_01",
+     "size": [
+      32,
+      16,
+      24
+     ],
+     "blocks": 4717,
+     "palette": 30,
+     "schemBytes": 1533,
+     "nbtBytes": 13555,
+     "schemSha256": "86aa7160a8b896659271202bc95e085d573b884d96f740866647f1a65ebc97b8",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    },
+    {
+     "id": "modern_living_01",
+     "size": [
+      36,
+      12,
+      28
+     ],
+     "blocks": 4830,
+     "palette": 23,
+     "schemBytes": 1535,
+     "nbtBytes": 13925,
+     "schemSha256": "a33bf04d382777063446c0b461c234ae331109e545fd17c822b9da0e80a3dc2f",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    },
+    {
+     "id": "spawn_plaza_01",
+     "size": [
+      48,
+      18,
+      48
+     ],
+     "blocks": 11329,
+     "palette": 41,
+     "schemBytes": 6264,
+     "nbtBytes": 35435,
+     "schemSha256": "70fe17243b175de5c426b33e8e313d205d8ff1b253c2c230e0c35ac61a64e535",
+     "warnings": [
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game.",
+      "Some of Cyrus's quality checks did not pass for this build (for example a large flat area or a dark corner). It still loads; you may want to touch it up in game."
+     ]
+    }
+   ],
+   "rcon": [
+    "forceload-a 'forceload add -16 -16 200 80' [rss 987 MB, 456 ms]: ok -> Marked 98 chunks in minecraft:overworld from [-1, -1] to [12, 5] to be force loaded",
+    "forceload-b 'forceload add 200 -16 400 80' [rss 988 MB, 394 ms]: ok -> Marked 91 chunks in minecraft:overworld from [12, -1] to [25, 5] to be force loaded",
+    "place-castle_great_hall_01 'place template cyrus:castle_great_hall_01 0 0 0' [rss 1019 MB, 840 ms]: ok -> Loaded template \"cyrus:castle_great_hall_01\" at 0, 0, 0",
+    "nbt-castle_great_hall_01-2-1-1 'execute if block 2 1 1 minecraft:stone_bricks' [rss 1036 MB, 742 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-13-1-6 'execute if block 13 1 6 minecraft:andesite' [rss 1036 MB, 251 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-24-1-11 'execute if block 24 1 11 minecraft:cracked_stone_bricks' [rss 1036 MB, 251 ms]: ok -> Test passed",
+    "nbt-castle_great_hall_01-5-1-20 'execute if block 5 1 20 minecraft:polished_blackstone_bricks' [rss 1036 MB, 250 ms]: ok -> Test passed",
+    "we-load-castle_great_hall_01 'schem load castle_great_hall_01' [rss 1039 MB, 373 ms]: ok -> ",
+    "we-world-castle_great_hall_01 '/world world' [rss 1040 MB, 266 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-castle_great_hall_01 '/pos1 0,40,0' [rss 1040 MB, 254 ms]: ok -> First position set to (0, 40, 0). | ",
+    "we-place-castle_great_hall_01 '/placement pos1' [rss 1040 MB, 252 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-castle_great_hall_01 '/paste' [rss 1042 MB, 935 ms]: ok -> The clipboard has been pasted at (0, 40, 0) | 64064 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-castle_great_hall_01-2-1-1 'execute if block 2 41 1 minecraft:stone_bricks' [rss 1042 MB, 251 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-13-1-6 'execute if block 13 41 6 minecraft:andesite' [rss 1042 MB, 251 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-24-1-11 'execute if block 24 41 11 minecraft:cracked_stone_bricks' [rss 1043 MB, 252 ms]: ok -> Test passed",
+    "we-castle_great_hall_01-5-1-20 'execute if block 5 41 20 minecraft:polished_blackstone_bricks' [rss 1043 MB, 250 ms]: ok -> Test passed",
+    "place-crypt_fallen_kings_01 'place template cyrus:crypt_fallen_kings_01 70 0 0' [rss 1066 MB, 365 ms]: ok -> Loaded template \"cyrus:crypt_fallen_kings_01\" at 70, 0, 0",
+    "nbt-crypt_fallen_kings_01-19-0-15 'execute if block 89 0 15 minecraft:tuff' [rss 1066 MB, 251 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-20-0-26 'execute if block 90 0 26 minecraft:cobbled_deepslate' [rss 1066 MB, 250 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-15-1-16 'execute if block 85 1 16 minecraft:blackstone' [rss 1066 MB, 251 ms]: ok -> Test passed",
+    "nbt-crypt_fallen_kings_01-24-1-18 'execute if block 94 1 18 minecraft:soul_soil' [rss 1066 MB, 250 ms]: ok -> Test passed",
+    "we-load-crypt_fallen_kings_01 'schem load crypt_fallen_kings_01' [rss 1067 MB, 255 ms]: ok -> ",
+    "we-world-crypt_fallen_kings_01 '/world world' [rss 1067 MB, 251 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-crypt_fallen_kings_01 '/pos1 70,40,0' [rss 1067 MB, 252 ms]: ok -> First position set to (70, 40, 0). | ",
+    "we-place-crypt_fallen_kings_01 '/placement pos1' [rss 1067 MB, 251 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-crypt_fallen_kings_01 '/paste' [rss 1068 MB, 500 ms]: ok -> The clipboard has been pasted at (70, 40, 0) | 54912 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-crypt_fallen_kings_01-19-0-15 'execute if block 89 40 15 minecraft:tuff' [rss 1068 MB, 251 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-20-0-26 'execute if block 90 40 26 minecraft:cobbled_deepslate' [rss 1068 MB, 251 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-15-1-16 'execute if block 85 41 16 minecraft:blackstone' [rss 1069 MB, 251 ms]: ok -> Test passed",
+    "we-crypt_fallen_kings_01-24-1-18 'execute if block 94 41 18 minecraft:soul_soil' [rss 1069 MB, 250 ms]: ok -> Test passed",
+    "place-medieval_tavern_01 'place template cyrus:medieval_tavern_01 140 0 0' [rss 1069 MB, 272 ms]: ok -> Loaded template \"cyrus:medieval_tavern_01\" at 140, 0, 0",
+    "nbt-medieval_tavern_01-0-0-0 'execute if block 140 0 0 minecraft:spruce_planks' [rss 1069 MB, 251 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-5-0-15 'execute if block 145 0 15 minecraft:stripped_spruce_log' [rss 1069 MB, 252 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-17-2-3 'execute if block 157 2 3 minecraft:polished_andesite' [rss 1069 MB, 250 ms]: ok -> Test passed",
+    "nbt-medieval_tavern_01-21-2-15 'execute if block 161 2 15 minecraft:dark_oak_planks' [rss 1069 MB, 251 ms]: ok -> Test passed",
+    "we-load-medieval_tavern_01 'schem load medieval_tavern_01' [rss 1069 MB, 254 ms]: ok -> ",
+    "we-world-medieval_tavern_01 '/world world' [rss 1069 MB, 251 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-medieval_tavern_01 '/pos1 140,40,0' [rss 1069 MB, 250 ms]: ok -> First position set to (140, 40, 0). | ",
+    "we-place-medieval_tavern_01 '/placement pos1' [rss 1069 MB, 251 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-medieval_tavern_01 '/paste' [rss 1070 MB, 295 ms]: ok -> The clipboard has been pasted at (140, 40, 0) | 12288 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-medieval_tavern_01-0-0-0 'execute if block 140 40 0 minecraft:spruce_planks' [rss 1070 MB, 252 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-5-0-15 'execute if block 145 40 15 minecraft:stripped_spruce_log' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-17-2-3 'execute if block 157 42 3 minecraft:polished_andesite' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "we-medieval_tavern_01-21-2-15 'execute if block 161 42 15 minecraft:dark_oak_planks' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "place-modern_living_01 'place template cyrus:modern_living_01 210 0 0' [rss 1070 MB, 274 ms]: ok -> Loaded template \"cyrus:modern_living_01\" at 210, 0, 0",
+    "nbt-modern_living_01-0-0-0 'execute if block 210 0 0 minecraft:smooth_quartz' [rss 1070 MB, 250 ms]: ok -> Test passed",
+    "nbt-modern_living_01-3-0-8 'execute if block 213 0 8 minecraft:white_concrete' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "nbt-modern_living_01-23-1-1 'execute if block 233 1 1 minecraft:birch_planks' [rss 1070 MB, 250 ms]: ok -> Test passed",
+    "nbt-modern_living_01-12-1-4 'execute if block 222 1 4 minecraft:polished_diorite' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "we-load-modern_living_01 'schem load modern_living_01' [rss 1070 MB, 253 ms]: ok -> ",
+    "we-world-modern_living_01 '/world world' [rss 1070 MB, 251 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-modern_living_01 '/pos1 210,40,0' [rss 1070 MB, 251 ms]: ok -> First position set to (210, 40, 0). | ",
+    "we-place-modern_living_01 '/placement pos1' [rss 1070 MB, 251 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-modern_living_01 '/paste' [rss 1070 MB, 276 ms]: ok -> The clipboard has been pasted at (210, 40, 0) | 12096 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-modern_living_01-0-0-0 'execute if block 210 40 0 minecraft:smooth_quartz' [rss 1070 MB, 251 ms]: ok -> Test passed",
+    "we-modern_living_01-3-0-8 'execute if block 213 40 8 minecraft:white_concrete' [rss 1071 MB, 252 ms]: ok -> Test passed",
+    "we-modern_living_01-23-1-1 'execute if block 233 41 1 minecraft:birch_planks' [rss 1071 MB, 251 ms]: ok -> Test passed",
+    "we-modern_living_01-12-1-4 'execute if block 222 41 4 minecraft:polished_diorite' [rss 1071 MB, 252 ms]: ok -> Test passed",
+    "place-spawn_plaza_01 'place template cyrus:spawn_plaza_01 280 0 0' [rss 1084 MB, 760 ms]: ok -> Loaded template \"cyrus:spawn_plaza_01\" at 280, 0, 0",
+    "nbt-spawn_plaza_01-5-0-10 'execute if block 285 0 10 minecraft:cracked_stone_bricks' [rss 1084 MB, 250 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-7-0-14 'execute if block 287 0 14 minecraft:cobblestone' [rss 1084 MB, 251 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-11-0-22 'execute if block 291 0 22 minecraft:andesite' [rss 1084 MB, 251 ms]: ok -> Test passed",
+    "nbt-spawn_plaza_01-15-0-30 'execute if block 295 0 30 minecraft:stone_bricks' [rss 1083 MB, 250 ms]: ok -> Test passed",
+    "we-load-spawn_plaza_01 'schem load spawn_plaza_01' [rss 1083 MB, 255 ms]: ok -> ",
+    "we-world-spawn_plaza_01 '/world world' [rss 1083 MB, 251 ms]: ok -> Set the world override to world. (Use //world to go back to default) | ",
+    "we-pos-spawn_plaza_01 '/pos1 280,40,0' [rss 1083 MB, 251 ms]: ok -> First position set to (280, 40, 0). | ",
+    "we-place-spawn_plaza_01 '/placement pos1' [rss 1083 MB, 252 ms]: ok -> Now placing at pos #1. | ",
+    "we-paste-spawn_plaza_01 '/paste' [rss 1083 MB, 385 ms]: ok -> The clipboard has been pasted at (280, 40, 0) | 41472 blocks affected | 0 biomes affected | 0 entities affected | ",
+    "we-spawn_plaza_01-5-0-10 'execute if block 285 40 10 minecraft:cracked_stone_bricks' [rss 1083 MB, 251 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-7-0-14 'execute if block 287 40 14 minecraft:cobblestone' [rss 1083 MB, 252 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-11-0-22 'execute if block 291 40 22 minecraft:andesite' [rss 1083 MB, 251 ms]: ok -> Test passed",
+    "we-spawn_plaza_01-15-0-30 'execute if block 295 40 30 minecraft:stone_bricks' [rss 1083 MB, 251 ms]: ok -> Test passed",
+    "datapacks-enabled 'datapack list enabled' [rss 1083 MB, 256 ms]: ok -> There are 4 data pack(s) enabled: [vanilla (built-in)], [file/bukkit (world)], [file/cyrusmcseo (world)], [paper (built-in)]"
+   ],
+   "log": [
+    "94 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+   ],
+   "notes": [
+    "ports: server 47101, rcon 47160 (private netns, 127.0.0.1)"
+   ]
+  }
+ ]
+}
