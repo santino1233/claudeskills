@@ -19,6 +19,10 @@
 #                                           (NXEON_OIDC_PROVIDER OFF), cyrus.my/admin-host scripts refuse nginx on the primary
 #   feature/fast-deploy 29fb2453            FAST_DEPLOY machinery (OFF unless --fast / FAST_DEPLOY=1), deploy-modbuilder --check
 #   docs/cyrus-status-audit c9a7f032        docs D-72..D-82
+#   feature/cyrus-bundle-a e5908410         Minecraft first-try fixes: creature concat keys (preserve pv-2026-10-18.1), perf
+#                                           single-chunk getEntities, creature sounds only when shipped, unknown-feature autofix, Room
+#                                           Studio R7-4, floor bosses, eval planner-rules metric, Spyglass pack check CYRUS_PACK_SPYGLASS
+#                                           (OFF); service files creatures.js / perf.js / preserve.js (no Dockerfile change)
 #   feature/cyrus-minecraft-seo d213a277    20 /minecraft SEO pages (CYRUS_MC_SEO, OFF) + public schematic generator
 #                                           (CYRUS_PUBLIC_BUILDER, OFF; .schem/.nbt export) on the Room Studio job pipeline via an
 #                                           optional `policy` hook in lib/cyrus/structures/studio/jobs.ts (absent = unchanged);
@@ -28,7 +32,8 @@
 #                                           strips NUL from names (live worker error every minute on one server)
 # Manual SQL: NONE (no file under prisma/manual-migrations, prisma/schema.prisma unchanged). Steps 3/4 still diff and would
 #   apply anything new (additive only, one transaction per database).
-# Image: modbuilder 0.27 = 0.26 + capacity.js/server.js (outage) + speed.js/server.js/prompts.js (efficiency knobs, all off).
+# Image: modbuilder 0.27 = 0.26 + capacity.js/server.js (outage) + speed.js/server.js/prompts.js (efficiency knobs, all off)
+#   + creatures.js/perf.js/preserve.js (bundle A; preserve version pv-2026-10-18.1).
 #   PROMPT_VERSION stays mb-2026-10-17.1 (efficiency parts are flag-gated). New /health marker: capacity.breaker.hard.
 #   The VM env already carries MB_TIER_SAKA=claude-sonnet-5-5, MB_CACHE_TTL=5m, MB_WORKSPACE_MAP=1 (applied 2026-10-18): keep it.
 # FAST: the fast-deploy branch's dry-run (NX-fast-deploy-2026-10-18.md steps 3-4) could NOT run before this ship (its scripts
@@ -47,6 +52,7 @@ APP=/opt/nxeon
 NODE2=root@178.63.94.114
 BUILDVM=root@10.20.1.253
 WANT_PROMPT=mb-2026-10-17.1
+WANT_PRESERVE=pv-2026-10-18.1   # bundle A (creature concat keys); rc21 had pv-2026-10-17.1
 PLAN=0; [ "${1:-}" = "--plan" ] && PLAN=1
 
 say() { printf '\n\033[1m== %s\033[0m\n' "$*"; }
@@ -189,6 +195,7 @@ ask "Deploy $TAG now (rollback: TAG=$LIVE_IMG bash scripts/cyrus/deploy-modbuild
 TAG="$TAG" bash scripts/cyrus/deploy-modbuilder.sh
 H=$(health)
 case "$H" in *"\"promptVersion\":\"$WANT_PROMPT\""*) echo "service prompt $WANT_PROMPT: OK";; *) echo "WARN: /health does not report promptVersion $WANT_PROMPT";; esac
+case "$H" in *"\"version\":\"$WANT_PRESERVE\""*) echo "features.preserve $WANT_PRESERVE: OK";; *) echo "WARN: /health does not report preserve $WANT_PRESERVE (MB_PRESERVE=off or old image)";; esac
 case "$H" in *'"breaker":{'*'"hard":'*) echo "capacity.breaker.hard present: outage handling image live";; *) echo "WARN: /health capacity.breaker has no 'hard' field (old image still running?)";; esac
 case "$H" in *'"cacheTtl":"5m"'*) echo "cacheTtl 5m kept (VM env)";; *) echo "WARN: cacheTtl is not 5m: was /root/modbuilder.env changed? (EA recommends 5m)";; esac
 cat /var/lib/cyrus/guard-smoke.json 2>/dev/null || true
