@@ -25,6 +25,10 @@ bottom of each entry on what is and isn't the right home for it.
 | 10-15 | Dungeon texture bug unproven (pack not accepted?) | OPEN | needs real client |
 | 10-18 | Wizard coupon_invalid had no code recorded | LIVE-FIXED (recording only) | 3c2aed27 |
 | 10-18 | Google login on cyrus.my creates a Nxeon account (DA D3) | OPEN (owner chose ON, D-67) | DA section D3 |
+| 10-18 | Design-downgraded builds break the prompt cache on their first repair ($9.96 in 14 builds) | FIXED-ON-BRANCH (flag MB_SESSION_FREEZE) | feature/cyrus-efficiency, EA report |
+| 10-18 | Tier builds escalate a first, small compile repair to Opus (5 of 5 escalations; $5.14 vs ~$0.53) | FIXED-ON-BRANCH (flag MB_ESCALATE_KIND) | feature/cyrus-efficiency, EA report |
+| 10-18 | Refine holds 2.3x too low (32 of 34 Saka refines charged past the hold) | FIXED-ON-BRANCH (flag CYRUS_CHANGE_COST_HISTORY) | feature/cyrus-efficiency, EA report |
+| 10-18 | phaseChars.thinking is always 0 (Sonnet 5 does not stream thinking) | OPEN (documented; measure thinking as output - streamed chars/3.3) | EA report finding 5 |
 
 ---
 
@@ -295,3 +299,11 @@ it through `normalizeBetterModelPack`.
   mergeCyrusKey` wrote `ModBuild` via Nxeon's `db.$executeRaw` (the ORM ratchet only sees `db.modBuild`).
 - Fix: NXEON_SIDE extended; the write uses `cyrusDb.$executeRaw`; new raw-SQL ratchet in `test/cyrus-db-split.test.ts`.
 - Lesson: classify tables by WHO WRITES them, not by name prefix; ratchets must cover raw SQL too.
+
+## 2026-10-18 - Efficiency round findings (bundle C, feature/cyrus-efficiency, FIXED-ON-BRANCH, flags off)
+- **Cache break on design downgrade.** `designRound` deletes `rec.assets.design` after the first call when the model wrote an ordinary plugin; the next repair's `--system-prompt` is rebuilt from `rec.assets`, so it differs and the API re-writes the whole conversation (first-turn cacheRead = 2,991 = tool definitions only). Every one of 14 detected breaks was a downgraded build; $9.96. Pattern to never repeat: anything that rebuilds the system prompt (or effort) between calls of ONE session must be frozen for that session. Fix: `MB_SESSION_FREEZE`.
+- **Escalation counted every repair kind.** `repairs <= escalateAfter ? generate : escalate` sent the third repair of any kind to the next tier; after two asset repairs a 1-error compile fix went to Opus, which (new model = new cache) rewrote 54-127k tokens at Opus prices. Fix: `MB_ESCALATE_KIND` (same-kind count, never for small compile problems).
+- **Refine holds from the change text.** A refine costs what the mod's size makes it cost (it re-reads the project every request); the estimate looked at the change text. Fix: `CYRUS_CHANGE_COST_HISTORY` (last refines of the same mod as the floor of the range and the top of the hold).
+- **Instrumentation blind spot.** `phaseChars.thinking` stays 0 because thinking is not streamed as text; do not read it as "no thinking".
+Right home later: a seam/invariant test for "system prompt stable within a session" (done in test/modbuilder-efficiency-ea.test.ts for the freeze path).
+
