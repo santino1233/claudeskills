@@ -1,0 +1,28 @@
+[
+  {
+    "path": "/plans",
+    "size": "desktop",
+    "status": 200,
+    "loadMs": 1659,
+    "lcpMs": 1304,
+    "jsKB": 2196,
+    "allKB": 2907,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 5469,
+        "ih": 900,
+        "htmlOv": "visible",
+        "bodyOv": "visible",
+        "bodyH": "5468.5px"
+      },
+      "yWheel": 900,
+      "yKey": 1687,
+      "afterWheel": {
+        "y": 1687,
+        "inner": null
+      }
+    },
+    "errors": []
+  }
+]

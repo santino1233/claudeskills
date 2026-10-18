@@ -1,0 +1,56 @@
+[
+  {
+    "path": "/plans",
+    "size": "desktop",
+    "status": 0,
+    "loadMs": 148142,
+    "lcpMs": 93436,
+    "jsKB": 2196,
+    "allKB": 2907,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 5469,
+        "ih": 900,
+        "htmlOv": "visible",
+        "bodyOv": "visible",
+        "bodyH": "5468.5px"
+      },
+      "yWheel": 900,
+      "yKey": 1687,
+      "afterWheel": {
+        "y": 1687,
+        "inner": null
+      }
+    },
+    "errors": [
+      "goto: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"http://localhost:4335/plans\", waiting until \"networkidle\"\n"
+    ]
+  },
+  {
+    "path": "/plans",
+    "size": "mobile",
+    "status": 200,
+    "loadMs": 2025,
+    "lcpMs": 1060,
+    "jsKB": 2196,
+    "allKB": 2907,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 7871,
+        "ih": 844,
+        "htmlOv": "visible",
+        "bodyOv": "visible",
+        "bodyH": "7871.42px"
+      },
+      "yWheel": 900,
+      "yKey": 1638,
+      "afterWheel": {
+        "y": 1638,
+        "inner": null
+      }
+    },
+    "errors": []
+  }
+]
