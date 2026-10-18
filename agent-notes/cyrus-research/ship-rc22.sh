@@ -19,6 +19,10 @@
 #                                           (NXEON_OIDC_PROVIDER OFF), cyrus.my/admin-host scripts refuse nginx on the primary
 #   feature/fast-deploy 29fb2453            FAST_DEPLOY machinery (OFF unless --fast / FAST_DEPLOY=1), deploy-modbuilder --check
 #   docs/cyrus-status-audit c9a7f032        docs D-72..D-82
+#   feature/cyrus-minecraft-seo d213a277    20 /minecraft SEO pages (CYRUS_MC_SEO, OFF) + public schematic generator
+#                                           (CYRUS_PUBLIC_BUILDER, OFF; .schem/.nbt export) on the Room Studio job pipeline via an
+#                                           optional `policy` hook in lib/cyrus/structures/studio/jobs.ts (absent = unchanged);
+#                                           deploy/cyrus/nginx-cyrus-my.conf adds `minecraft` to the app-path regex (NOT applied here)
 #   rc22 fixes 9cde15d4                     guard smoke polls the final record (pending/unavailable != fail), backup sfx check
 #                                           LC_ALL=C both sides, launch-check never runs nginx on the primary, player-tracking
 #                                           strips NUL from names (live worker error every minute on one server)
@@ -101,6 +105,7 @@ if [ "$PLAN" = 1 ]; then
   echo "5. modbuilder image: ${TAG:-next free tag, expected modbuilder:0.27} (files: ${MB_FILES:-none}); deploy-modbuilder.sh copies, builds, restarts,"
   echo "   checks promptVersion $WANT_PROMPT + scanner sha, runs the guard smoke (now polls the final record, up to 6 min)"
   echo "6. promote-production.sh$([ "${FAST:-0}" = 1 ] && echo " --fast (after --fast --dry-run)" || echo " (BUILD_MAX_MIN=45)")"
+  echo "   (nginx minecraft path: printed at the end, NOT applied)"
   echo "7. post-checks: nxeon.cloud, cyrus.my, /api/cyrus/session, /health markers (breaker.hard), worker journal free of 0x00 errors, launch-check"
   exit 0
 fi
@@ -211,6 +216,8 @@ SESS=$(curl -fsS https://cyrus.my/api/cyrus/session || echo FAIL)
 echo "/api/cyrus/session: $SESS"; case "$SESS" in *'"signedIn":false'*) ;; *) echo "WARN: expected {\"signedIn\":false} without a cookie";; esac
 r=$(curl -s -o /dev/null -w '%{http_code}' https://nxeon.cloud/.well-known/openid-configuration || echo 000)
 echo "OIDC discovery: $r (expect 404: NXEON_OIDC_PROVIDER is off)"
+r=$(curl -s -o /dev/null -w '%{http_code}' https://nxeon.cloud/minecraft || echo 000); echo "/minecraft on nxeon.cloud: $r (expect 404: CYRUS_MC_SEO is off)"
+r=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://nxeon.cloud/api/cyrus/public/v1/builds || echo 000); echo "public builder API: $r (expect 404: CYRUS_PUBLIC_BUILDER is off)"
 systemctl is-active nxeon-web nxeon-worker
 sleep 120   # two player-tracking sweeps
 n=$(journalctl -u nxeon-worker --since "2 min ago" --no-pager 2>/dev/null | grep -c 'invalid byte sequence for encoding "UTF8": 0x00' || true)
@@ -218,6 +225,16 @@ echo "worker 0x00 errors in the last 2 min: $n (expect 0; was one per minute on 
 bash scripts/cyrus/launch-check.sh || echo "launch-check reported items; read them above (nginx-syntax is now INFO 'skipped' on the primary by design)"
 
 cat <<'EOF'
+
+NGINX (not run by this script; only needed before CYRUS_MC_SEO / CYRUS_PUBLIC_BUILDER serve on cyrus.my):
+  deploy/cyrus/nginx-cyrus-my.conf now proxies /minecraft to the app. Until it is applied, cyrus.my/minecraft is the vhost's 404
+  and launch-check's nginx-paths row may WARN. Never run the nginx binary by hand on the primary (D-82). Steps:
+   1. bash deploy/cyrus/cyrus-my-apply.sh status            # read-only diff live vhost vs template (expect only the minecraft change)
+   2. syntax check off the primary: node-2 has NO nginx installed (checked 2026-10-18), so either install nginx on node-2 and run
+      /opt/nxeon/scripts/devhost run -- bash scripts/cyrus/nginx-cyrus-my-check.sh --syntax, or review the one-line diff by eye
+   3. owner decision: I_CHECKED_ON_NODE2=1 bash deploy/cyrus/cyrus-my-apply.sh nginx   # backs up, installs, runs `nginx -t` on the
+      LIVE config (which has `user www-data;`) + systemctl reload, auto-restores on failure. This is the one sanctioned nginx run.
+   4. bash deploy/cyrus/cyrus-my-apply.sh verify
 
 DONE. rc22 is live with every new switch OFF. Next: GO-LIVE-rc22.md (same folder), wave 1.
 Watch: journalctl -u nxeon-worker -f ; on the build VM: docker logs -f modbuilder
