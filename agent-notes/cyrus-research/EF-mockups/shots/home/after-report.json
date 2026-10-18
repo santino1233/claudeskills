@@ -1,0 +1,58 @@
+[
+  {
+    "path": "/",
+    "size": "desktop",
+    "status": 200,
+    "loadMs": 1322,
+    "lcpMs": 688,
+    "jsKB": 2345,
+    "allKB": 5082,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 9274,
+        "ih": 900,
+        "htmlOv": "visible",
+        "bodyOv": "auto",
+        "bodyH": "9274.03px"
+      },
+      "yWheel": 900,
+      "yKey": 1687,
+      "afterWheel": {
+        "y": 1687,
+        "inner": null
+      }
+    },
+    "errors": [
+      "reduce is not defined"
+    ]
+  },
+  {
+    "path": "/",
+    "size": "mobile",
+    "status": 200,
+    "loadMs": 906,
+    "lcpMs": 204,
+    "jsKB": 2345,
+    "allKB": 5681,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 14149,
+        "ih": 844,
+        "htmlOv": "visible",
+        "bodyOv": "auto",
+        "bodyH": "14149.2px"
+      },
+      "yWheel": 900,
+      "yKey": 1638,
+      "afterWheel": {
+        "y": 1638,
+        "inner": null
+      }
+    },
+    "errors": [
+      "reduce is not defined"
+    ]
+  }
+]
