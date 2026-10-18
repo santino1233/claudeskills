@@ -1,6 +1,6 @@
 # EB: new Cyrus features from our research + open source (2026-10-18, Opus bundle D)
 
-Branch `feature/cyrus-newfeat` (worktree `/tank/dev-worktrees/cyrus-newfeat`, from main af5a1d55 = live rc21). NOT merged, NOT deployed, every new switch OFF. No real model spend ($0 of the $8 cap: the build-service image cannot carry these changes without a deploy, so paid builds would not have exercised them).
+Branch `feature/cyrus-newfeat` (worktree `/tank/dev-worktrees/cyrus-newfeat`), REBASED on `release/cyrus-rc22` 400bb6b0. NOT merged, NOT deployed, every new switch OFF. No real model spend ($0 of the $8 cap: the build-service image cannot carry these changes without a deploy, so paid builds would not have exercised them).
 
 ## 1. Ranked candidate list (verified against main before building)
 
@@ -39,13 +39,30 @@ Paper facts (javap, node-2): Dialog API identical on 1.21.8 / 1.21.11 / 26.2, ab
 
 Golden examples / fixtures: `test/fixtures/cyrus-eb-dialogs/` (rank_shop, guide, apply, welcome), `test/fixtures/cyrus-eb-pets/` (wolf_whistle, bee_charm). Eval prompts: 5 rows `cov-eb-*` in `services/modbuilder/eval/sets/coverage.jsonl`. Coverage archetypes updated: dialog_forms, ranks_permissions, mob_ai.
 
-## 3. Tests and real runs
-RESULTS: see section 5 (filled after the node-2 runs).
+## 3. Tests and real runs (node-2, 2026-10-18)
+- javac 0 warnings + strict scan 0 blocks / 0 warns, one mod with every EB feature (NxForms: rank shop, dialog dialogue, form, rank quest, 2 pet items, tooltip item): 1.21.1 (46 sources, no Dialogs.java), 1.21.4 (46), 1.21.8 (47, Dialogs.java), 1.21.11 (47), 26.2 JDK 25 (47).
+- Test Flight Paper 1.21.11 + LuckPerms-Bukkit 5.5.71 (MIT, Modrinth sha1 fc8bb991..., runtime libs seeded as `seeds/eb-luckperms-5.5.71-libs`), playtest bot answering REAL dialogs. Every scenario passed in at least one flight (logs in `EB-evidence/`):
+  - T-1 dialogue shown as a dialog, "A snack" button -> "Enjoy!" + 2 bread (flight-log-real7)
+  - T-7 rank button without the LuckPerms group: refused "does not exist ... (nothing was paid)", XP still 10 (real7)
+  - T-2 rank button: confirmation dialog "Buy VIP for 30 days for 5 levels?", Yes -> 5 levels left, "You are now vip for 30 days.", lp parent info shows vip (real11)
+  - T-3 confirm No pays nothing (3 wheat kept), Yes trades 3 wheat for a bread (real10, real11)
+  - T-4 form as a dialog: answers sent (text, slider, toggle, choice), "Thanks, your answer was sent.", `nxforms forms read apply` shows them, second open "You already answered this." (real7)
+  - T-5 quest rank reward: talking to the guide (dialog) -> "You are now member.", lp shows member (real7)
+  - T-6 pets: whistle calls a guard wolf, the pig its owner hit dies, next use sends the wolf home (real10)
+  - T-8 tooltip skin: the item carries minecraft:tooltip_style nx_ebdialog:tt_arcane (real7)
+- Bugs the flights found and fixed: (1) `confirm: true` without confirmText compiled to `.confirm(null)` = no confirmation (paid at once); (2) the bot's custom_click_action encoding: Paper 1.21.11 uses a length-prefixed optional nameless tag (javap on paper-1.21.11.jar), minecraft-data 3.117 describes a boolean-prefixed option (kick "Failed to decode packet"); (3) LuckPerms YAML storage needs configurate libs absent offline (flights use H2). Flight-harness notes: LuckPerms answers commands asynchronously (RCON sees nothing; the op bot reads them in chat); the flight world is peaceful (hostile pet targets vanish); playtests are capped at 180 s (the plan flies in parts); the shared runner dir is overwritten by other agents' flights, so this run used a private TF root that shares the testflight.lock.
+- Unit: test/cyrus-eb-dialogs (patch anchors, byte identity incl. the gameplay golden hash, per-version output, plugin.yml / config / deps, validation, simulator), cyrus-eb-pets, cyrus-eb-skins, cyrus-eb-clientmod, plus gameplay / designer / techniques / weapons / playtest (TS == runner JS) / apifacts / eval-set / equipment / boss / assets / docs-coverage / db-seam / db-split / host-seam / modbuilder-dockerfile: all green after the fixes (468+ tests).
+- NOT run: the 1.21.4 chat-question form fallback in a flight (the playtest bot is verified on 1.21.11 only; covered by the simulator twin), a real client, Bedrock.
 
 ## 4. Client-mod lane proof (node-2, 2026-10-18 10:19 UTC)
 - Fabric mod (`fabric.mod.json` environment `*`, main + client entrypoints) compiled with JDK 21 `javac --release 21 -Xlint:all` against `fabric-loader-0.19.5.jar` ONLY (no Loom, no Minecraft classes): 0 warnings; jar sha256 `1c5cd63907596d4836e9a8ae9c59b4ec6303465b3cf19c8bb9502184e79ea3ac`.
 - Fabric server launcher (loader 0.19.5, installer 1.1.2, Minecraft 1.21.11) on node-2: `Loading 5 mods: cyrus_probe 0.1.0, fabricloader 0.19.5 (mixinextras 0.5.5), java 21, minecraft 1.21.11`, then `[STDOUT]: [cyrus_probe] Cyrus client-mod lane probe loaded (common entrypoint)`, `Done (0.415s)`. Files: `/tank/nxeon-build/tmp/cyrus-eb/fabric/` (server/run.log).
 - Not done: a headless CLIENT (cost estimate and owner decisions in docs/cyrus/34).
+
+## 5. Hand-off: flags and deploy
+- New switches, all default OFF: CYRUS_DIALOGS + MB_DIALOGS, CYRUS_PERM_HOOKS + MB_PERM_HOOKS, CYRUS_PETS + MB_PETS, CYRUS_UI_SKINS + MB_UI_SKINS, CYRUS_CLIENT_MOD_LANE (design only, keep OFF).
+- Recommended: ship OFF in rc22; then turn on DIALOGS and PETS first (flown end to end), PERM_HOOKS once the owner accepts the LuckPerms dependency, UI_SKINS after a real-client look check.
+- Build-service image bump needed for the MB_* parts (prompts.js, server.js designPromptVersion, regenerated designer-spec.js, sheets, eval set). Portal parts and the Test Flight bot changes ship with the normal promote.
 
 ## 6. What is next (priority)
 1. Owner: switch decisions (each pair together, after a promote + image bump `MB_*` twins): CYRUS_DIALOGS, CYRUS_PERM_HOOKS, CYRUS_PETS, CYRUS_UI_SKINS. Real-client test-day steps for dialogs, tooltip skins and pets.
