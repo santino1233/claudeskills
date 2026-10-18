@@ -7,9 +7,30 @@ eval case) once there's a mechanism for that. This is NOT the same thing as
 `services/modbuilder/rules/failure-rules.json` (generated-Java-code compile failures) — see the note at the
 bottom of each entry on what is and isn't the right home for it.
 
+## Index (kept current; every change updates this table, see docs/cyrus/14-how-to-work-here.md)
+| Date | Bug | Status 2026-10-18 | Evidence |
+|---|---|---|---|
+| 10-15 | BetterModel config.yml left root-owned | LIVE-FIXED | 7be0a81f / 457fc212 (rc18), own-game.ts on main |
+| 10-15 | Black/purple checkered creature texture | LIVE-FIXED (real-client check OPEN) | followups 45b751fc (rc19) |
+| 10-15 | Intake guard false positives | LIVE-FIXED, WATCH (guard smoke FAIL today) | 660d7e35 (rc19), guard-2026-10-15.1 |
+| 10-15 | Refines silently regress | LIVE-FIXED | 45ab0502 (rc19), pv-2026-10-17.1 |
+| 10-16 | Regression guard could not recover creature wiring | LIVE-FIXED | a5d770a4 (rc20) |
+| 10-17 | Refines revert config defaults | LIVE-FIXED | 818bee9b (rc21), image 0.26 |
+| 10-18 | Deploy wizard crash from browser auto-translate (removeChild x222) | LIVE-FIXED | 0b9f935f / 8e41ce70 (rc21) |
+| 10-18 | Dashboard pages shipped all 3,000 simple-icons (6.4 MB JS) | LIVE-FIXED | af5a1d55 |
+| 10-18 | Guard smoke test FAILS on image 0.26 | OPEN | launch-check.sh 2026-10-18 09:34 |
+| 10-18 | Cyrus nightly backup stale (98 h) | OPEN | launch-check backup-fresh, alert backup-stale |
+| 10-18 | Weekly-limit outage handling R7-1..4 | OPEN (FIXED-ON-BRANCH, uncommitted: fix/cyrus-ai-outage-handling) | /tank/dev-worktrees/cyrus-outage, 8 modified files |
+| 10-15 | Creature checker false positive (model key built by concatenation) | OPEN | tracker "Infinite Dungeon round 2" |
+| 10-15 | Dungeon texture bug unproven (pack not accepted?) | OPEN | needs real client |
+| 10-18 | Wizard coupon_invalid had no code recorded | LIVE-FIXED (recording only) | 3c2aed27 |
+| 10-18 | Google login on cyrus.my creates a Nxeon account (DA D3) | OPEN (owner chose ON, D-67) | DA section D3 |
+
 ---
 
 ## 2026-10-15 — Delivered BetterModel config.yml left root-owned, silently disabling BetterModel and every dependent mod
+
+**STATUS 2026-10-18: LIVE-FIXED.** Evidence: `7be0a81f` (orchestrator `ownGame`) merged via `457fc212` into rc18; follow-up `1e0ba792` (deliverCreatures, modpack placers, engine.ts catch) and `lib/cyrus/host/own-game.ts` are on main (af5a1d55, live release 20261018T082948Z). Residual OPEN: never confirmed from the owner's ServerMod/Job rows that the incident came through the standard install path (inferred from code).
 
 **Severity**: every creature-mod or managed-config delivery to a real server, on the FIRST write of that file (not
 a regression on repeat deliveries, because the second delivery's `cur.equals(want)` check usually short-circuits
@@ -103,6 +124,8 @@ same research directory's tracker instead.
 
 ## 2026-10-15 - Infinite Dungeon "mob with the black and purple checkered texture on floor 1" (bonewarden) - SETTLED with artifacts
 
+**STATUS 2026-10-18: LIVE-FIXED (code), real-client check OPEN.** Evidence: overlay allowlist + `after-start.ts` hand-off from `feature/cyrus-followups` merged `45b751fc` (rc19, live). Not confirmed on a real client after the owner restarts the server and accepts the animated-creatures pack. The 1.13.0 wiring-loss part is covered by the regression-guard entries below.
+
 **Verdict: Cyrus delivery bug (two of them), not a client that declined the pack.** Evidence, all mechanical
 (full write-up: `DP-followups-2026-10-15.md`):
 
@@ -135,6 +158,8 @@ the generated pack is ever published and offered. A 1.21.x flight must collect `
 it through `normalizeBetterModelPack`.
 
 ## 2026-10-15 - Intake guard refused the owner's Infinite Dungeon boss refines (false positives) - FIXED on branch, needs image
+
+**STATUS 2026-10-18: LIVE-FIXED, but WATCH.** Evidence: `fix/cyrus-guard-false-positives` merged `660d7e35` (rc19), `GUARD_VERSION guard-2026-10-15.1` in main route.js, image 0.24+ (now 0.26). Dungeon rounds 3-6 still hit guard refusals before rc19 and passed after. OPEN: today's launch-check guard smoke (2026-10-18, image 0.26) FAILS (injection prompt not refused): see the new entries at the bottom; also `fp-chunk-injection` still open.
 - Builds mbbee4a3822b8cbeb16f9c (`guard:malware`), mbed127678a15c23a6b771 and mb7c8b6bb3709d2427fec2 (`guard:injection`),
   3-5 s, ~$0.003 each, tokens released. Texts: plain boss design ("icicle volley, a ground slam that slows, a frost nova,
   two phases ... a unique drop"; "Give the Frost Colossus we just added its abilities ..."). Verified FALSE POSITIVES.
@@ -153,6 +178,8 @@ it through `normalizeBetterModelPack`.
   Notes: DS-guard-false-positives-2026-10-15.md.
 
 ## 2026-10-15 - Refines silently regress what the previous version had (Test Flight passes) - FIXED on branch, needs image
+
+**STATUS 2026-10-18: LIVE-FIXED.** Evidence: `feature/cyrus-refine-regression-guard` merged `45ab0502` (rc19); `preserve.js` on main, live `preserve.mode=on pv-2026-10-17.1`. Replay on the real chain proved restores; no live regression build observed since.
 - Evidence (Infinite Dungeon chain, /root/cyrus-eval/dungeon-2026-10-15, CK-infinite-dungeon-2026-10-15.md "Round 4 + CORRECTION"):
   v1.8.1 mbdeca41d1bf0cbebd4d83 .. v1.26.0 mbe94b7e5992e0a1c0df8d shipped config.yml `max-floors: 100` / `floor-interval: 10`
   (plus the final boss health 2.5 / scale 1.3 / "all 100 floors" message) again after v1.7.0 mb3fa7542c798d8a12679e had been
@@ -174,6 +201,8 @@ it through `normalizeBetterModelPack`.
   preservation, Explain tab, economy failed_regression, eval stats). Not deployed.
 
 ## 2026-10-16 - Regression guard blocked creature-mod refines but could not recover them - FIXED on branch, needs image
+
+**STATUS 2026-10-18: LIVE-FIXED.** Evidence: `fix/cyrus-creature-wiring-recovery` 984615ac merged `a5d770a4` (rc20), `wiring.js` on main, image 0.25/0.26. Still OPEN (as written): a wiring hunk the model REPLACED with mixed code, a renamed model key literal, and the designBoss lane misfire on "bosses on floors ..." in the planner.
 - Builds mb2e1ca55853f0c13cc1c5 ($3.61), mb9c7e45e78ba7584b7190 ($1.95), mb47fc77e9605bae104d5e ($2.38), base v1.27.0
   mbaf46c4ce88096ffffaa8 (stage 34; the task note said v1.26.0 mbe94b7e5992e0a1c0df8d, the records say mbaf46...): all
   `errorCode: regression`, tokens released. Evidence: build VM /var/lib/modbuilder/data/builds/<id>/{build.json,ws} (read only).
@@ -198,6 +227,8 @@ it through `normalizeBetterModelPack`.
 - Deploy: modbuilder image bump (wiring.js in the Dockerfile COPY, prompt mb-2026-10-16.1); portal types only (optional).
 
 ## 2026-10-17 - rc20: refines still silently reverted config defaults (guard said "clean") - FIXED on branch, needs image
+
+**STATUS 2026-10-18: LIVE-FIXED.** Evidence: `fix/cyrus-preserve-config-defaults` merged `818bee9b` (rc21), live `promptVersion mb-2026-10-17.1` / `pv-2026-10-17.1` on modbuilder:0.26 (built 2026-10-18 08:15). Dungeon round 6 recorded config-default drift twice BEFORE this image; not re-observed since, but no refine has run on 0.26 yet (weekly limit).
 - Evidence (live rc20, modbuilder:0.25; records /root/cyrus-eval/dungeon-2026-10-15, workspaces build VM
   /var/lib/modbuilder/data/builds/<id>/{build.json,ws}, read only): base v1.34.0 mb8fcdf5c69a68c7d31338 max-floors 11 /
   boss.floor-interval 3 / config-version 1 -> B2 "room size" mb47c6016c9359b0bf4ae8 v1.35.0 shipped 100 / 10; base v1.38.0
@@ -220,3 +251,21 @@ it through `normalizeBetterModelPack`.
   D2 3, v1.8.1 5), 0 false restores, 18 requested changes kept. Without lineage: 8 restored, 0 false (misses, not false hits).
   The chain never reverted a Java literal (Java path tested on synthesized fixtures). No paid model call.
 - Deploy: modbuilder image bump (no Dockerfile change) + portal promote (types/store/Explain tab/eval; optional).
+
+
+---
+
+## 2026-10-18 - NEW (OPEN): guard smoke test fails after the build-account swap / image 0.26
+- Evidence: `bash scripts/cyrus/launch-check.sh` 2026-10-18 09:34 UTC: "Guard smoke result: fail, 0.1 d old: the guard did NOT refuse the injection prompt". Previous check (2026-10-15 12:20) was PASS. Since then: images 0.23 -> 0.26, guard `imageguard-2026-10-17.1` added, build token swapped twice (10-13, 10-18 09:28).
+- Not yet diagnosed: candidates are (1) the guard model call failing open while the account was limited (R7-3 "guard fails open" in the outage list), (2) a guard prompt change in 0.25/0.26, (3) the smoke itself. Do not widen the beta allow-list until a re-run passes; rollback image is 0.25.
+- Status: OPEN.
+
+## 2026-10-18 - NEW (OPEN, FIXED-ON-BRANCH uncommitted): weekly-limit outage handling (R7-1..4)
+- Evidence: dungeon round 7, `mbdc7907f98320723a9094` failed `ai_unavailable`, retry `mb19ae6387d9cd4ba8ee29` cancelled, $0 spent; tracker "Dungeon round 7". Bugs: misleading "busy" message for a weekly limit, queue keeps accepting during an open breaker, guard fails open, keyword-routed room lane.
+- Fix: `fix/cyrus-ai-outage-handling` (still = main af5a1d55; 8 uncommitted files in /tank/dev-worktrees/cyrus-outage). Status: FIXED-ON-BRANCH once committed; not merged.
+
+## 2026-10-18 - NEW (OPEN): Cyrus nightly backup stale
+- Evidence: launch check "last success 98.2 h ago"; `backup-stale` alert firing; DF noted the service was SIGTERMed 2026-10-15 05:07 during the SFX mirror. Off-box success 2026-10-14T07:20Z. Root `/` 89% used (5 GB free). Status: OPEN, owner action `systemctl start cyrus-backup.service`.
+
+## 2026-10-18 - Build service subscription token hit its weekly limit (operational, RESOLVED by swap)
+- Evidence: swap documented in tracker 120. Lesson: `swap-build-account.sh preflight` before `rollback` makes rollback restore the CURRENT token as the newest `acctbak`. Permanent fix = API key (OPEN, owner).
