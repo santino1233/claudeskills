@@ -159,49 +159,27 @@ the owner's art is the neon Y on black (it reads best on A's ground), the owner 
 owner already likes instead of replacing it. B's best ideas are kept: the index-rail idea becomes the reading-progress
 orbit, and its strict grid and mono labels discipline A's layout.
 
-## 8. Build log, screenshots, numbers
+## 8. OWNER SCOPE CHANGE (2026-10-18 evening) and what the branch now contains
 
-Branch `feature/cyrus-marketing-overhaul`, rebased on `release/cyrus-rc22` (400bb6b0). Verified on node-2: `next build`
-Compiled successfully + type check passed; tests 174/175 pass, 0 fail (marketing-v2, bridge routing, nginx vhost, content,
-seo, admin host, launch check, site links; run with the devhost Cyrus env unset). The v2 vhost could not be `nginx -t`'d:
-nginx is not installed on node-2 (and must never run on the primary): owner/coordinator to syntax-check before applying.
+The owner found the rebuilt pages generic and never asked to replace the home page. New scope, applied in commit 5eb1dff2:
+- **Home** = the existing static landing design, unchanged except the six studio cards around the core, now truly 3D (each
+  turns on its core-facing edge with its own tilt and depth, leans with the pointer, has a slab edge and a moving sheen; the
+  live card comes forward). `core.js` moves the cards with the `translate` property so its parallax/float loop no longer
+  overwrites the 3D `transform`.
+- **One nav + footer**: the same links (lib/cyrus/marketing/site.ts) on the static home and every app page; links to pages
+  that would 404 (content/mods surfaces off) are hidden. The "Core dock" (bar -> floating pill, wordmark -> Y mark with a
+  reading-progress ring) on both.
+- **Pricing**: the original section set only (plans, free plan, compare table, token rules, FAQ); the three plans stay 3D
+  slabs and now line up row by row (CSS subgrid). The token-flow strip and the hosting band were removed.
+- **Cookie banner**: Cyrus's own (`ConsentBanner variant="mk"`, CYRUS_CONSENT=1): a slim left dock with the Y mark and the
+  spectrum hairline, "Reject all" as prominent as "Accept all". Nxeon's centred card no longer appears on cyrus.my with it on.
+- **Removed**: the app home, studios, about, compare, use-case pages, the v2 host/mods/games views, the v2 sign-in, the v2
+  vhost (no nginx change is needed now), the extra OG cards and media. Host, mods, games, help, blog, legal, sign-in bodies
+  are byte-identical to release/cyrus-rc22; only the header/footer around them is the shell's (flag on).
+- **Kept**: scroll-container fix, no Nxeon chatbot/LiveChat/Org JSON-LD on cyrus.my, Cyrus root metadata, Cyrus 404, Cyrus
+  stale-version toast, SEO metadata + JSON-LD on Pricing/Help, sitemap (/plans + help), Search Console checklist.
 
-**Screenshots** (`EF-mockups/shots/`): `mock-a-*`/`mock-b-*` directions; `r1..r4/` Pricing rounds (r4 = sent to owner,
-incl. `light-plans-desktop.png`); `p1/` round 1 of every page (desktop 1440 + mobile 390, viewport + full + scrolled);
-`p2/` round 2 after fixes. Critique passes: Pricing 4 rounds (button text invisible from a reset's specificity, cards
-blank until hydration -> CSS entrance, reveal safety net, H1 wrap, spacing); every other page 2 rounds (3D slab rims
-painting over the panel faces because `filter` flattens preserve-3d -> rims behind faces, orbit too large and occluding
-the core -> smaller depth radius, oversized footer/auth wordmark, 4-line H1s on long titles -> `.sm` hero, empty studios hero
--> stacked studio windows).
+The sections 1-7 above describe the original, larger plan and are kept for the record.
 
-**Performance** (production build on node-2): First Load JS home 109 kB (page 3.78 kB incl. the 3D hero; shared 105 kB),
-Pricing 106 kB, studios/games/mods 105 kB, help/about/compare/for 106 kB, sign-in 118 kB. Real transfer measured by
-Playwright: JS 133-141 kB per page, total 368-600 kB (home 2.7 MB: the Minecraft screenshots + loop posters; videos load
-only on view). LCP on the 390 px mobile run: 236-408 ms on a warm local server (desktop numbers on the loaded node-2 are
-noise). No WebGL, no three.js, no GSAP on any marketing page.
-
-**Scroll**: every v2 page scrolls with wheel and PageDown on desktop and mobile (`scroll.yWheel/yKey` in the reports).
-
-## 9. What is done / not done
-
-Done (behind `CYRUS_MARKETING_V2`): shell (nav + footer) on every app-rendered cyrus.my page incl. help, blog, legal,
-Minecraft cluster; home 3D hero; Pricing; host (hub/game/place/combo); mods; games hub + per game (live + coming soon);
-studios hub + 10; about; compare + 3; use cases (3); v2 sign-in/sign-up/private beta (same links, CSRF/state, rate limits,
-SSO); Cyrus 404; Cyrus stale-version toast; SEO system + OG cards + sitemap; Search Console checklist (docs/cyrus/18-seo.md).
-Outside the flag: scroll-container fix, no Nxeon chatbot / LiveChat / Org JSON-LD on the Cyrus host, Cyrus root metadata.
-
-Not done: blog index/posts and help articles keep their (re-tokened) legacy markup inside the shell; forgot-password and
-verify-email are Nxeon screens inside the Nxeon hand-off (Cyrus has no password), not restyled; the static landing
-(`apps/cyrus-site`) is unchanged and stays as the nginx fallback for `/`; sign-in and legal pages could not be screenshotted
-through the dev rewrite proxy (dev artefact: Next proxies the rewrite and the middleware 404s the internal tree), so the
-v2 auth screens were shot through a devhost-only preview route (`/cyrus-mk-preview/auth`, 404 unless NXEON_DEVHOST=1).
-
-## 10. Owner decisions
-
-1. Approve direction A (Pricing showcase sent 2026-10-18) or ask for changes; accent = Ion cyan.
-2. `CYRUS_CONSENT=1` together with the flag: until then Nxeon's cookie notice (blue Nxeon button) shows on cyrus.my.
-3. Nxeon Meta Pixel / Nxeon analytics / TrackingProvider still load on app-rendered cyrus.my pages: keep, or gate behind Cyrus consent.
-4. Plan prices: Offer structured data appears automatically once a real Stripe price exists.
-5. Social account URLs for the footer (none exist, so the row is omitted).
-6. Search Console Domain property for cyrus.my + the TXT value for the coordinator to add.
-7. Flip order: merge/deploy -> `CYRUS_MARKETING_V2=1` -> v2 vhost (`scripts/cyrus/marketing-v2-apply.sh` prints steps + rollback).
+## 9. Verification and screenshots
+See the end of this file (appended after the final test + build run).
