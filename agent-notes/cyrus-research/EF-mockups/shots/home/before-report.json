@@ -1,0 +1,54 @@
+[
+  {
+    "path": "/",
+    "size": "desktop",
+    "status": 200,
+    "loadMs": 1250,
+    "lcpMs": 172,
+    "jsKB": 2344,
+    "allKB": 5079,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 9274,
+        "ih": 900,
+        "htmlOv": "visible",
+        "bodyOv": "auto",
+        "bodyH": "9274.03px"
+      },
+      "yWheel": 900,
+      "yKey": 900,
+      "afterWheel": {
+        "y": 900,
+        "inner": null
+      }
+    },
+    "errors": []
+  },
+  {
+    "path": "/",
+    "size": "mobile",
+    "status": 200,
+    "loadMs": 751,
+    "lcpMs": 104,
+    "jsKB": 2344,
+    "allKB": 5678,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 14149,
+        "ih": 844,
+        "htmlOv": "visible",
+        "bodyOv": "auto",
+        "bodyH": "14149.2px"
+      },
+      "yWheel": 900,
+      "yKey": 1638,
+      "afterWheel": {
+        "y": 1638,
+        "inner": null
+      }
+    },
+    "errors": []
+  }
+]
