@@ -18,6 +18,9 @@ bottom of each entry on what is and isn't the right home for it.
 | 10-17 | Refines revert config defaults | LIVE-FIXED | 818bee9b (rc21), image 0.26 |
 | 10-18 | Deploy wizard crash from browser auto-translate (removeChild x222) | LIVE-FIXED | 0b9f935f / 8e41ce70 (rc21) |
 | 10-18 | Dashboard pages shipped all 3,000 simple-icons (6.4 MB JS) | LIVE-FIXED | af5a1d55 |
+| 10-18 | Asset library sounds unplayable (no player; preview recipe never requested) + N+1 thumbnail signing | FIXED-ON-BRANCH | feature/cyrus-ux-audit 68723eae |
+| 10-18 | Nxeon chat bubble / hosting promo / survey / error card / 404 shown inside Cyrus | FIXED-ON-BRANCH | feature/cyrus-ux-audit 2202bcfa, 0b67b0b8, e7b585c9 |
+| 10-18 | Studio breadcrumbs "Minecraft" and category both link to the core | OPEN | StudioShell.tsx, EE audit #14 |
 | 10-18 | Guard smoke test FAILS on image 0.26 | OPEN | launch-check.sh 2026-10-18 09:34 |
 | 10-18 | Cyrus nightly backup stale (98 h) | OPEN | launch-check backup-fresh, alert backup-stale |
 | 10-18 | Weekly-limit outage handling R7-1..4 | OPEN (FIXED-ON-BRANCH, uncommitted: fix/cyrus-ai-outage-handling) | /tank/dev-worktrees/cyrus-outage, 8 modified files |
@@ -346,3 +349,10 @@ Found by a real eval through the live build service (image 0.26, tier Saka): `bz
 - Second bug found on the way (owner: "can't see any of the generated rooms"): `handleStructureList` returned `rooms: []` whenever the upload store was off, i.e. always in production, hiding every build-lane room. Listing now needs no store (`readDeps`).
 - Lessons: (1) a 500 whose size does not match our JSON envelope is a proxy page: check `/var/log/nginx/error.log` first; (2) every API envelope must log to ErrorLog, not only stderr; (3) client error paths must never assume JSON; (4) read paths must not depend on write-side infrastructure (upload store).
 - Right home later: a precheck/lint rule "no `.json().catch(() => ({}))` without a status message" for portal fetch helpers.
+
+
+## 2026-10-18: Cyrus library could not play sounds; Nxeon overlays inside Cyrus (UX audit EE)
+- Library: no `<audio>` / play control existed anywhere in the Cyrus UI, and the client only ever signed `thumb@1`, so the backend's `preview-ogg@1` (the ONLY form library audio is served in) was never requested. Every result page also fired one `POST /api/cyrus/library/v2/url` per card (up to 24, all at once, re-signed on every page change) while the production object store held 24 files for 62,777 rows, so thumbnails were cold derivations. Fixed on `feature/cyrus-ux-audit`: player on sound cards, `POST /url { ids }` batch (max 48, rate limit per id), IntersectionObserver + per-tab cache, 60 s browse cache.
+- Overlays: the dashboard layout mounts PromoTrialPopup + HeardAboutUsPrompt for every /dashboard route and the root layout mounts the Nxeon live chat everywhere; the Cyrus tree had no error.tsx / not-found.tsx, so crashes and notFound() rendered the Nxeon card / marketing 404. Fixed on the branch (`lib/cyrus/surface.ts`, HideOnCyrus, ChatWidget gate, Cyrus error/not-found).
+- Lessons: (1) a backend capability is not a feature until a screen requests it: add a UI ratchet test when shipping a server-only recipe; (2) per-card signing must be batched from the start; (3) a product mounted inside another product's layout inherits every global overlay: keep an explicit "surface" gate.
+- Right home later: a docs/cyrus/14 checklist item "new product surface: error.tsx, not-found.tsx, overlay gate".
