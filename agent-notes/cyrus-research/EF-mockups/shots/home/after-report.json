@@ -3,8 +3,8 @@
     "path": "/",
     "size": "desktop",
     "status": 200,
-    "loadMs": 1192,
-    "lcpMs": 556,
+    "loadMs": 1137,
+    "lcpMs": 544,
     "jsKB": 2345,
     "allKB": 5082,
     "scroll": {
@@ -17,35 +17,9 @@
         "bodyH": "9274.03px"
       },
       "yWheel": 900,
-      "yKey": 1439,
+      "yKey": 900,
       "afterWheel": {
-        "y": 1687,
-        "inner": null
-      }
-    },
-    "errors": []
-  },
-  {
-    "path": "/",
-    "size": "mobile",
-    "status": 200,
-    "loadMs": 761,
-    "lcpMs": 116,
-    "jsKB": 2345,
-    "allKB": 5680,
-    "scroll": {
-      "before": {
-        "y": 0,
-        "sh": 14149,
-        "ih": 844,
-        "htmlOv": "visible",
-        "bodyOv": "auto",
-        "bodyH": "14149.2px"
-      },
-      "yWheel": 900,
-      "yKey": 1638,
-      "afterWheel": {
-        "y": 1638,
+        "y": 900,
         "inner": null
       }
     },

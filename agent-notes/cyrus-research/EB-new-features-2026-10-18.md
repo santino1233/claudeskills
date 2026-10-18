@@ -1,6 +1,6 @@
 # EB: new Cyrus features from our research + open source (2026-10-18, Opus bundle D)
 
-Branch `feature/cyrus-newfeat` (worktree `/tank/dev-worktrees/cyrus-newfeat`), REBASED on `release/cyrus-rc22` 400bb6b0. NOT merged, NOT deployed, every new switch OFF. No real model spend ($0 of the $8 cap: the build-service image cannot carry these changes without a deploy, so paid builds would not have exercised them).
+Branch `feature/cyrus-newfeat` (worktree `/tank/dev-worktrees/cyrus-newfeat`), REBASED on `release/cyrus-rc22` eb002211 (head 809f56b7). NOT merged, NOT deployed, every new switch OFF. No real model spend ($0 of the $8 cap: the build-service image cannot carry these changes without a deploy, so paid builds would not have exercised them).
 
 ## 1. Ranked candidate list (verified against main before building)
 
