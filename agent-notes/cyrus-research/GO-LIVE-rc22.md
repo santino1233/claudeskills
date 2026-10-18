@@ -30,6 +30,7 @@ How to apply a switch:
 | 3 | d5bf5e43 | feature/cyrus-bundle-b bcf45a93 (f2e89c01..bcf45a93) | Beta journey fixes. CYRUS_TOK_SETTLE_V2. The 90 s lost-grace (always on). Admin: reasons on money actions, guard-refusal review/reopen, user search, per-user storage, Alerts panel. OIDC skeleton (NXEON_OIDC_PROVIDER). The cyrus.my/admin-host scripts refuse to run nginx on the primary. |
 | 4 | 270475bc | feature/fast-deploy 29fb2453 | FAST_DEPLOY machinery (off unless `--fast`), `deploy-modbuilder.sh --check`, scripts/ship-fast.sh |
 | 5 | 97f7ce4b | docs/cyrus-status-audit c9a7f032 | Docs D-72..D-82, history and status refresh |
+| 6b | 67de2d62 | feature/cyrus-minecraft-seo d213a277 (added on coordinator request) | 20 /minecraft SEO pages (CYRUS_MC_SEO) and a public prompt/picture -> .schem/.nbt generator (CYRUS_PUBLIC_BUILDER), both OFF, no migration. It plugs into the Room Studio job pipeline through an optional `policy` hook in lib/cyrus/structures/studio/jobs.ts (gate / hold / charge; absent = Room Studio unchanged). deploy/cyrus/nginx-cyrus-my.conf adds `minecraft` to the app paths (NOT applied by the ship). |
 | 6 | 9cde15d4 | rc22 small fixes | See the list below this table. |
 
 Details of row 6 (rc22 small fixes):
@@ -42,6 +43,13 @@ Details of row 6 (rc22 small fixes):
 - Player tracking strips NUL and control characters from names (`cleanPlayerName`).
   - Live symptom: Postgres 22021 `0x00` every minute for one server since at least 13:18 UTC.
   - No branch existed for this, so the fix was written here.
+
+**Structure Studio heads-up.** feature/cyrus-room-studio-v2 is still in progress and will conflict with rc22 in three files, so its agent should rebase onto release/cyrus-rc22 (or main after the ship):
+- `lib/cyrus/structures/studio/jobs.ts` (the mc-seo policy hook)
+- `services/modbuilder/server.js` (outage handling)
+- `lib/modbuilder/store.ts` (bundle B)
+
+The policy hook is small and additive: `deps.policy?.gate/hold/charge`, and with policy absent the code is byte-for-byte the old path.
 
 Merge conflicts were all in docs:
 - docs/cyrus/25-build-service.md: kept both rows' facts.
@@ -128,7 +136,8 @@ Wave 1 order:
 | 3.18 | Secret admin host `CYRUS_ADMIN_HOST`, later `CYRUS_ADMIN_HOST_ONLY=1` | W + nginx | **B-11: apply `deploy/cyrus/admin-host-apply.sh` (syntax-check on node-2 only)** | nginx change |
 | 3.19 | `CYRUS_STATUS_PAGE=1` | /etc/cyrus/alerts.env + nginx snippet | **A public status page on cyrus.my?** | needs `nginx-cyrus-status.conf.snippet` (not installed) |
 | 3.20 | Launch pair `cyrus_studio_public_enabled` + `cyrus_tok_live`, CyrusPlan prices, live payment test | DB | **Prices, legal, the live payment test (EC 9.3/9.4)** | the public launch, last |
-| 3.21 | `CYRUS_MC_SEO`, `CYRUS_PUBLIC_BUILDER` | - | not in rc22 (branch feature/cyrus-minecraft-seo, still in progress) | - |
+| 3.21 | `CYRUS_MC_SEO=1` | W + nginx | **Owner go after deploy.** Canonical host is cyrus.my (recommended). Then `CYRUS_SITEMAP_CONTENT=1` + the `cyrus_content_index_enabled` setting to list the pages in the sitemap. | The pages only serve on cyrus.my after the nginx `minecraft` path is applied (ship-rc22 prints the 4 steps; node-2 has no nginx, so the syntax check there is not possible today; never run nginx by hand on the primary). Smoke: `https://cyrus.my/minecraft` 404 -> 200; `/minecraft/build-ideas/...` example pages; the robots tag is noindex off the Cyrus host. |
+| 3.22b | `CYRUS_PUBLIC_BUILDER=1` | W | **Waits for prices and the build-service API key (3.1).** Settings: `cyrus_public_builder_price` (PLACEHOLDER), `cyrus_public_builder_anon_per_day`, `cyrus_public_builder_anon_global_per_day`, `cyrus_public_builder_free_first`. Also: whether examples need sign-in. | Anonymous visitors spend real model money on the shared subscription (weekly limit) until the API key exists. It needs the nginx `minecraft` path too (the page is /minecraft/build-generator). Smoke: POST /api/cyrus/public/v1/builds 404 -> 4xx/200; one anonymous text build, then a .schem download after sign-in. |
 | 3.22 | Upload store (`CYRUS_UPLOAD_*`) | - | **Production upload storage (owner decision pending)**: the code refuses uploads in production even with the env set (lib/cyrus/studios/deps.ts:89) | a code change is needed, not a switch |
 | 3.23 | Sound ledger 185/611 undecided while `CYRUS_SOUND_LIBRARY_CLEARED=1` | W | **Decide the rows or turn clearance off** (EC 9.5) | legal |
 
