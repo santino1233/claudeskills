@@ -23,6 +23,10 @@
 #                                           single-chunk getEntities, creature sounds only when shipped, unknown-feature autofix, Room
 #                                           Studio R7-4, floor bosses, eval planner-rules metric, Spyglass pack check CYRUS_PACK_SPYGLASS
 #                                           (OFF); service files creatures.js / perf.js / preserve.js (no Dockerfile change)
+#   feature/cyrus-ux-audit 1a0f744f         one Cyrus navigation, own error screens, library player/batching, community in-app,
+#                                           CYRUS_MODS_PUBLIC_DEFAULT (OFF)
+#   feature/cyrus-mob-skin-studio a0285d45  Mob Skin Studio (CYRUS_MOB_SKIN_STUDIO, OFF) + BUILD-SERVICE HANG FIX c9f803e3
+#                                           (javaast.outline looped on `implements A, B`): javaast.js / workspacemap.js in 0.27
 #   feature/cyrus-minecraft-seo d213a277    20 /minecraft SEO pages (CYRUS_MC_SEO, OFF) + public schematic generator
 #                                           (CYRUS_PUBLIC_BUILDER, OFF; .schem/.nbt export) on the Room Studio job pipeline via an
 #                                           optional `policy` hook in lib/cyrus/structures/studio/jobs.ts (absent = unchanged);
@@ -33,7 +37,9 @@
 # Manual SQL: NONE (no file under prisma/manual-migrations, prisma/schema.prisma unchanged). Steps 3/4 still diff and would
 #   apply anything new (additive only, one transaction per database).
 # Image: modbuilder 0.27 = 0.26 + capacity.js/server.js (outage) + speed.js/server.js/prompts.js (efficiency knobs, all off)
-#   + creatures.js/perf.js/preserve.js (bundle A; preserve version pv-2026-10-18.1).
+#   + creatures.js/perf.js/preserve.js (bundle A; preserve version pv-2026-10-18.1)
+#   + javaast.js/workspacemap.js (mob-skin branch: the 2026-10-18 hang fix). MB_WORKSPACE_MAP was turned OFF live meanwhile;
+#   re-enable it (GO-LIVE wave 1.10b) only after 0.27 is healthy. No dungeon refine before 0.27 is live.
 #   PROMPT_VERSION stays mb-2026-10-17.1 (efficiency parts are flag-gated). New /health marker: capacity.breaker.hard.
 #   The VM env already carries MB_TIER_SAKA=claude-sonnet-5-5, MB_CACHE_TTL=5m, MB_WORKSPACE_MAP=1 (applied 2026-10-18): keep it.
 # FAST: the fast-deploy branch's dry-run (NX-fast-deploy-2026-10-18.md steps 3-4) could NOT run before this ship (its scripts
