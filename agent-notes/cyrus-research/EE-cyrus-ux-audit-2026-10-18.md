@@ -269,6 +269,11 @@ Before / after shots: `ux-audit-2026-10-18/before-2026-10-15/*` and `before-*.pn
 6. Nxeon email-verify and announcement banners on Cyrus screens: keep as they are, restyle in the Cyrus look, or show inside the Cyrus bar.
 7. Library pre-warm (disk + CPU on the primary's tank HDD; ~37 KB per thumbnail, ~90 KB per audio preview): run it, and when.
 
-## Appendix: numbers
+## Appendix: numbers and verification
 
-(see below, appended after the runs)
+- Library browse on the real catalogue (node-2 throwaway copy, 62,777 rows, `ux-audit-2026-10-18/bench.txt`, 4 runs each, ms):
+  All-models plan: empty first page 4238 / 2090 / 2079 / 2406 (46,598 results); empty page 5: 2385-2501; kind=sound 273-365; "wooden door" 1638 cold then 399-511; "banshee wail" 5-232; "sword"+sprite 118-484. Saka plan (sounds only, 6,082 rows): every case 17-417. Table 47 MB (174 MB with indexes), entry JSON avg 1,699 bytes. The All-models default view is the slow one: 2-4 s per request before any thumbnail work, on every visit and every Previous/Next (now cached 10 min on the branch).
+- N+1 signing: main fired up to 24 `POST /url` per result page (code); branch: 1 batch per page for the cards on screen.
+- Tests (node-2, shim, after rebase on release/cyrus-rc22 400bb6b0): 194 tests, 193 pass; the 1 failure is rc22's own (`cyrus-security-review` route inventory lacks rows for `cyrus/public/v1/builds/*` and `cyrus/public/v1/mc-builds/[id]` from the MC SEO merge), not this branch.
+- tsc on the rebased branch: 5 errors, ALL in rc22 files this branch does not touch: `app/admin/cyrus/learning/page.tsx:148` (`reviewed` undefined), `lib/actions-cyrus-admin.ts:522` ("beta.invite_mail" not in the audit-action union), `test/fast-deploy-lib.test.ts` x3. This branch's files are type-clean.
+- `next build` stops on the first of those rc22 errors, so no production build of the branch and no "after" screenshots on `next start` were possible today; dev-mode screenshots were infeasible on the saturated build host (first `/dashboard` render 513 s). After shots: owner/coordinator to take once rc22 builds (script: `scripts/cyrus/ux-audit-shots.mjs`, fixtures in this note's header).

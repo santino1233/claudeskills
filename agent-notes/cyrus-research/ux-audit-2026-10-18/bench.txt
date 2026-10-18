@@ -1,0 +1,14 @@
+{"plan":"all","case":"empty first page","ms":[4238,2090,2079,2406],"total":46598,"rows":24,"notice":null}
+{"plan":"all","case":"empty page 5","ms":[2385,2323,2403,2501],"total":46598,"rows":24,"notice":null}
+{"plan":"all","case":"kind=sound","ms":[307,273,324,365],"total":5945,"rows":24,"notice":null}
+{"plan":"all","case":"q=wooden door","ms":[1638,469,399,511],"total":3523,"rows":24,"notice":null}
+{"plan":"all","case":"q=banshee wail","ms":[73,232,5,5],"total":9,"rows":9,"notice":null}
+{"plan":"all","case":"q=sword kind=sprite","ms":[484,202,118,254],"total":223,"rows":17,"notice":null}
+{"plan":"saka","case":"empty first page","ms":[343,383,417,297],"total":6082,"rows":24,"notice":null}
+{"plan":"saka","case":"empty page 5","ms":[392,383,285,312],"total":6082,"rows":24,"notice":null}
+{"plan":"saka","case":"kind=sound","ms":[305,302,295,298],"total":5945,"rows":24,"notice":null}
+{"plan":"saka","case":"q=wooden door","ms":[211,220,353,245],"total":981,"rows":24,"notice":null}
+{"plan":"saka","case":"q=banshee wail","ms":[77,17,71,19],"total":4,"rows":4,"notice":null}
+{"plan":"saka","case":"q=sword kind=sprite","ms":[0,0,0,0],"total":0,"rows":0,"notice":"sprite assets are locked on your plan (they need the All models plan)."}
+[{"QUERY PLAN":"Aggregate  (cost=7001.64..7001.65 rows=1 width=8) (actual rows=1 loops=1)"},{"QUERY PLAN":"  Buffers: shared hit=6035"},{"QUERY PLAN":"  ->  Seq Scan on \"CyrusCatalogEntry\" e  (cost=0.00..6841.77 rows=63945 width=0) (actual rows=62212 loops=1)"},{"QUERY PLAN":"        Filter: ((\"duplicateOf\" IS NULL) AND (status = 'published'::text))"},{"QUERY PLAN":"        Rows Removed by Filter: 569"},{"QUERY PLAN":"        Buffers: shared hit=6035"},{"QUERY PLAN":"Planning Time: 0.133 ms"},{"QUERY PLAN":"Execution Time: 24.586 ms"}]
+[{"rel":"47 MB","total":"174 MB","avg_entry_bytes":1699}]
