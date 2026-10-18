@@ -44,7 +44,20 @@ Findings:
 
 ## 3. A/B: Saka on claude-sonnet-5-5 vs claude-sonnet-5 (paid, same image 0.26, same effort medium, same 5 real-world prompts, Test Flight on)
 
-AB_TABLE
+Tags `ea-s5` (Sonnet 5, the live Saka) and `ea-s55` (`--model saka --model-id claude-sonnet-5-5`), run back to back on 2026-10-18 10:00-10:50 UTC, in-flight 1. Journals /root/cyrus-eval/ea-s5, /root/cyrus-eval/ea-s55.
+
+| prompt (lane) | Sonnet 5: $ / s / repairs / output tok | Sonnet 5.5: $ / s / repairs / output tok |
+|---|---|---|
+| rw-troll (creature) | 0.538 / 248 / 2 / 25.1k | 0.308 / 60 / 1 / 7.8k |
+| rw-shop-gui (designer) | 0.120 / 67 / 0 / 6.3k | 0.196 / 30 / 0 / 3.1k |
+| rw-kits (designer) | 0.757 / 138 / 3 / 6.1k | 0.057 / 28 / 0 / 2.6k |
+| rw-ruby-sword (texture) | 0.335 / 127 / 0 / 12.3k | 0.237 / 53 / 0 / 7.4k |
+| rw-spleef (plain) | 0.405 / 229 / 0 / 24.7k | 0.341 / 97 / 1 / 14.2k |
+| **total** | **$2.15 / 809 s / 5 repairs / 74.6k** | **$1.14 / 268 s / 2 repairs / 35.1k** |
+
+Both arms: 5/5 real pass (Test Flight plugin enabled, every planned lane shipped), first try 3/5 each. Sonnet 5.5: **-47% cost, -67% wall time, -53% output tokens, fewer requests (37 vs 63)** at the same list price. Earlier Sonnet 5 runs of rw-troll: $0.31-0.66, 158-279 s (smoke1, smoke2, bza-rw1). n=5 is small (one prompt per lane, quality not graded beyond the real-pass gates), but it agrees with BJ/BL (0.3 eval: 5.5 needs far fewer requests) and the direction is the same on 4 of 5 prompts (shop-gui cost more, still half the time).
+
+**Recommendation:** set `MB_TIER_SAKA=claude-sonnet-5-5` (owner, VM env, reversible), then watch the next 20 portal builds' pass@1 and refine regressions; widen to a real-world-smoke run (~$5) before calling it final. Biggest single lever found (time AND money). Change builds (66% of spend) were not in this A/B: a refine A/B on 5.5 is the next measurement.
 
 ## 4. Existing knobs to switch on (owner, no code)
 
@@ -52,11 +65,11 @@ AB_TABLE
 |---|---|---|---|
 | `MB_CACHE_TTL` | VM env | `5m` | real replay on portal traffic: body writes at 1.25x instead of 2x save $22.26, 16 warm cross-build prefixes would expire (+$1.87): **net -16.1% of all spend**. Reverses CA/v6 "rejected": they only counted fresh builds (8k body writes); refines write 100-150k. |
 | `MB_WORKSPACE_MAP` | VM env | `1` | 0 of 80 refines had a map; refines Glob/Grep the project first |
-| `MB_TIER_SAKA` | VM env | see section 3 | |
+| `MB_TIER_SAKA` | VM env | `claude-sonnet-5-5` | section 3: -47% $, -67% s on 5 real prompts, same pass |
 | new A, B, F, G | as above | on | low risk, measured |
 | new E, D | as above | A/B first | |
 
-Combined (est., not additive-checked): TTL 16% + freeze 4.6% + escalation 2.1% = ~22% of today's spend with near-zero quality risk; hygiene up to another 10-15% (share of change spend) if the A/B confirms.
+Combined (est., not additive-checked): TTL 16% + freeze 4.6% + escalation 2.1% = ~22% of today's spend with near-zero quality risk, plus the Sonnet 5.5 switch (-47% on fresh Saka builds in the A/B); hygiene up to another 10-15% (share of change spend) if the A/B confirms.
 
 ## 5. Measured, not built
 
@@ -71,4 +84,4 @@ A-E live in `services/modbuilder` (speed.js, server.js, prompts.js): a new modbu
 
 ## 7. Spend
 
-A/B runs: SPEND_LINE. No other model spend.
+A/B runs: ea-s55 $1.14 + ea-s5 $2.15 = **$3.29** of the $12 cap (build ids in the journals: ev-ea-s55-*, ev-ea-s5-*); no weekly-limit or ai_unavailable error. No other model spend.
