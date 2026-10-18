@@ -20,18 +20,19 @@ Example builds:
 Structured data: BreadcrumbList on every page, FAQPage, SoftwareApplication (hub and tools), HowTo (2 pages, real steps only), and ItemList of builds on the theme pages. All were seen in the rendered pages.
 
 ## Verification
-- `devhost tsc`: 0 errors.
+- Final run under the node-2 lock after the reconciliation commit (d213a277): tsc 0 errors, 210/210 scoped tests (new suites, roomstudio, host-seam, db-split, db-seam, docs-coverage, content, seo, nginx-vhost, admin-r40).
+- Earlier runs: `devhost tsc` 0 errors.
 - Tests (devhost):
   - new: `cyrus-schematic` 5/5, `cyrus-public-builder` 7/7, `cyrus-mc-seo` 6/6;
   - with roomstudio, roomstudio-image, host-seam, db-split, db-seam, seo and content: 145/145;
   - docs-coverage + admin-r40: 64/64;
   - nginx-vhost (node-2).
-- `devhost build`: EXIT=0. First-load JS: `/cyrus-web/minecraft*` 106 kB (route 1.04 kB). Generator 110 kB (route 5.22 kB); the preview generator is in a worker that loads on the first preview.
+- `devhost build`: EXIT=0 (on bf6451d3; the later reconciliation commit only moved files and added a wrapper, which tsc re-checked). First-load JS: `/cyrus-web/minecraft*` 106 kB (route 1.04 kB). Generator 110 kB (route 5.22 kB); the preview generator is in a worker that loads on the first preview.
 - **Real Paper + WorldEdit flight** on node-2: 1.21.11 + WorldEdit 7.4.2 **73/73**, and 1.21.1 + WorldEdit 7.3.9 **73/73**. 5 builds each: `/schem load`, `//paste`, `/place template` from a data pack (the 56-wide castle included), probe blocks checked with `execute if block`. Record: `mc-schematic-flights-2026-10-18.json`.
 - Findings from the flight:
   - WorldEdit 7.4 console syntax: `//pos1` and `//paste`; the file name needs its `.schem` extension.
   - Gravel and sand fall when a build is pasted in mid-air (expected; the probes skip them).
-- Screenshots (dev instance, flags on, fake backend): `agent-notes/cyrus-research/screens-mc-seo/` (01 hub, 02 castles, 03 schematic generator, 04 version 1.21.11, 05 builds index, 06 generator after a generation, 07 mobile).
+- Screenshots (dev instance, flags on, fake backend): `agent-notes/cyrus-research/screens-mc-seo/*.jpg` (on disk; jpg is not in the GitHub sync whitelist) (01 hub, 02 castles, 03 schematic generator, 04 version 1.21.11, 05 builds index, 06 generator after a generation, 07 mobile).
 
 ## Touch points other agents own (merge notes)
 - Room Studio core (now owned by feature/cyrus-room-studio-v2):
