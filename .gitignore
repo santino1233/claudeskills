@@ -10,4 +10,8 @@
 !*.patch
 !*.yml
 !secrets.tar.enc
-!*.jsonl
+# transcripts never sync (2026-10-18 secret leak)
+
+# never sync transcripts or PC project dumps
+local-pc/projects/
+*.jsonl
