@@ -104,15 +104,15 @@ Severity: S1 = blocks or misleads most users, S2 = frequent friction, S3 = polis
 |---|---|---|---|---|---|---|
 | 1 | Three navigations for the same places (top bar + side rail + Simple/Studio on cyrus.my; back strip + rail on nxeon.cloud; studio hamburger repeating the top bar) | S1 | S | `before-2026-10-15/after-cy-home-d1440.png`, `after-cy-studio-d1440.png`, `after-nx-home-d1440.png` | one Cyrus top bar on both hosts, no rail, no hamburger, Map/List in the toolbar | FIXED on branch |
 | 2 | Library sounds cannot be played | S1 | S | code (no audio element), `LibraryExplorer.tsx` | play/pause on sound cards via `preview-ogg@1` | FIXED on branch |
-| 3 | Mods are PRIVATE by default and every community surface is behind OFF launch switches, so "nothing got done" from the user's view | S1 | M | `prisma/schema.prisma` CyrusModPage visibility default; CP prod counts | public-by-default with opt-out (bundle A) + launch switches (decision 2) | OPEN |
-| 4 | In-portal community lives in the Nxeon NxLabs shell, not in Cyrus | S1 | M | `portal-fixture-shop-menu-1440.png` | Cyrus app Community section (bundle B) | OPEN |
+| 3 | Mods are PRIVATE by default and every community surface is behind OFF launch switches, so "nothing got done" from the user's view | S1 | M | `prisma/schema.prisma` CyrusModPage visibility default; CP prod counts | public-by-default with opt-out + launch switches (decision 2) | BUILT on branch behind `CYRUS_MODS_PUBLIC_DEFAULT` (off) |
+| 4 | In-portal community lives in the Nxeon NxLabs shell, not in Cyrus | S1 | M | `portal-fixture-shop-menu-1440.png` | Cyrus app Community section | BUILT on branch (`/dashboard/cyrus/app/community`); the listing EDITOR still lives in NxLabs |
 | 5 | Library slow: N+1 signing, cold derivatives (24 files for 62,777 rows), whole-catalogue ranking per page | S1 | S (fixes) + M (pre-warm) | section 1.4, `bench.txt` | batch + lazy + cache (done); pre-warm job + `sort` + indexed default ordering (bundle C) | PARTLY FIXED |
 | 6 | Nxeon chat bubble / promo popup / survey over Cyrus | S2 | XS | every before shot | HideOnCyrus + ChatWidget gate | FIXED |
 | 7 | Nxeon error card and marketing 404 inside Cyrus | S2 | XS | `app/dashboard/error.tsx`, `app/not-found.tsx` | Cyrus `error.tsx` + `not-found.tsx` | FIXED |
 | 8 | Jargon: Mod Forge/Core, auto-route, forge, held/settling, plan codes, "not switched on" | S2 | S | section 1.2 | plain words (done for the worst); glossary rule for new copy | PARTLY FIXED |
 | 9 | Studio map dominated by 5 on-hold games x 3 "Coming soon" pills | S2 | S | `after-nx-studio-d1440.png` | collapse on-hold games into ONE "More games soon" node; owner wanted coming-soon visible (memory), so this is decision 5 | OPEN |
 | 10 | Two library pages, taxonomy page has no images/audio and raw kind slugs | S2 | M | `app/dashboard/cyrus/app/library/browse/page.tsx`, `components/cyrus/library/CatalogueBrowser.tsx` | one page with the tree (bundle C) | OPEN |
-| 11 | No spotlight / trending / new-assets feed inside the app | S2 | M | reconciliation table | community home (bundle B) | OPEN |
+| 11 | No spotlight / trending / new-assets feed inside the app | S2 | M | reconciliation table | community home | BUILT on branch |
 | 12 | Remix copies only the jar (no project/revision, no source), so "iterate on it" is shallow | S2 | M | `lib/actions-cyrus-community.ts` remixCyrusMod | full fork (bundle A) | OPEN |
 | 13 | Studio pages repeat a 9-control header under the app bar | S2 | S | `StudioShell.tsx` | keep crumb + studio switch only (bundle C) | OPEN |
 | 14 | Breadcrumb "Minecraft" and category crumbs both go to the core | S3 | XS | `StudioShell.tsx` | link to the game / category view of the map (`?game=` / `?category=`) | OPEN |
@@ -244,14 +244,18 @@ Server: `sort=new|popular`; an index-friendly default order for the empty query 
 | c8c2eca6 | Plain words for token holds and locked models |
 | def4fe54 | Studio copy: Mod Forge -> Studio, auto-route and forge hints |
 | cc96a681 | docs/cyrus 04 + 06 |
+| (later) | Mods public by default with opt-out (`CYRUS_MODS_PUBLIC_DEFAULT`, off): `lib/cyrus-mods/public-default.ts`, Account + New mod switch, project-page Sharing card |
+| (later) | Community inside Cyrus: `/dashboard/cyrus/app/community` (Spotlight / Trending / New mods / New assets) + `/community/<slug>` (Remix, Star, Report), live feed `GET /api/cyrus/library/v2/new`, Community in the Cyrus bar, Home links public mods into Cyrus |
+| (later) | Library: text-free browse pages cached 10 min (searches 60 s) |
+(Commit hashes changed when the branch was rebased onto release/cyrus-rc22 400bb6b0; see `git log release/cyrus-rc22..feature/cyrus-ux-audit`.)
 
 Before / after shots: `ux-audit-2026-10-18/before-2026-10-15/*` and `before-*.png` vs `after-*.png` (same page names). Not touched: Structure Studio page, `AssetsTab.tsx`, marketing pages, login/register.
 
 ## Bundles for build agents (ready to hand over)
 
-**Bundle A: Public by default + full remix (Opus, M-L).** `CyrusCreator.defaultVisibility` (additive column, default PUBLIC) + New mod switch + account setting; `syncCyrusModPage` uses it; whitelist reader `readPublicModPage` + `/api/cyrus/mods/<slug>/public` + contract test + secret scanner; source download and prompt display opt-in; remix as a full fork (CyrusProject + revision, private config blanked, lineage chain on both pages); per-mod OG image; `CYRUS_SITE_PRIMARY` canonical plan. Files: `lib/cyrus-mods/pages.ts`, `lib/actions-cyrus-community.ts`, `lib/cyrus-mods/seo.ts`, `components/cyrus/app/NewModFlow.tsx`, prisma (additive). Do not flip any setting.
+**Bundle A: full remix + public contract hardening (Opus, M).** (Public-by-default itself is DONE on this branch, no migration: account Setting + switch.) Remaining: whitelist reader `readPublicModPage` + `/api/cyrus/mods/<slug>/public` + contract test + secret scanner; source download and prompt display opt-in; remix as a full fork (CyrusProject + revision, private config blanked, lineage chain on both pages); per-mod OG image; `CYRUS_SITE_PRIMARY` canonical plan. Files: `lib/cyrus-mods/pages.ts`, `lib/actions-cyrus-community.ts`, `lib/cyrus-mods/seo.ts`, `components/cyrus/app/NewModFlow.tsx`, prisma (additive). Do not flip any setting.
 
-**Bundle B: Community inside the Cyrus app (Opus, M).** `/dashboard/cyrus/app/community` (home: Spotlight, Trending velocity, New mods, New assets live feed with 30 s polling) and `/community/<slug>` (cyrus.my short paths) rendering the bundle-A contract in the Cyrus look, with Remix / Install / Star / Rate / Report / Discuss; Community link in the Cyrus bar behind the launch setting; NxLabs Cyrus pages redirect into it; `sort=new` on browse for the feed. Reuse spotlight.ts, featured.ts, social.ts. Coordinate the public shell with the marketing agent.
+**Bundle B: finish the in-app community (Sonnet, S-M).** (Community home, mod page, Remix/Star/Report, trending and the live feed are DONE on this branch.) Remaining: Install-on-my-server and Rate on the in-app page, threads/Discuss, collections, creator profile in Cyrus, move the listing editor (description, pictures, remix policy) out of NxLabs into the project page, redirect `/dashboard/nxlabs/cyrus/*` into Cyrus, cyrus.my short path `/community`. Coordinate the public shell with the marketing agent.
 
 **Bundle C: Library + studio calm-down (Sonnet for the library, S-M each).** One library page with the taxonomy tree, `sort=new|popular`, detail drawer, Load more/virtualisation, `peaks@1` waveform recipe + waveform on sound cards, pre-warm script (owner runs), index-friendly empty-query order; studio pages keep only breadcrumb + studio switcher (StudioShell), crumbs link to game/category views, Explain-first preview tabs, plan screen two-layer view, copy ratchet test banning the internal words list. (Not the Structure Studio page / AssetsTab.tsx while their owners are active.)
 
