@@ -40,7 +40,7 @@
 #   + creatures.js/perf.js/preserve.js (bundle A; preserve version pv-2026-10-18.1)
 #   + javaast.js/workspacemap.js (mob-skin branch: the 2026-10-18 hang fix). MB_WORKSPACE_MAP was turned OFF live meanwhile;
 #   re-enable it (GO-LIVE wave 1.10b) only after 0.27 is healthy. No dungeon refine before 0.27 is live.
-#   PROMPT_VERSION stays mb-2026-10-17.1 (efficiency parts are flag-gated). New /health marker: capacity.breaker.hard.
+#   PROMPT_VERSION mb-2026-10-17.1 -> mb-2026-10-18.1 (bundle D sheet lines; efficiency and EB prompt parts are flag-gated). New /health marker: capacity.breaker.hard.
 #   The VM env already carries MB_TIER_SAKA=claude-sonnet-5-5, MB_CACHE_TTL=5m, MB_WORKSPACE_MAP=1 (applied 2026-10-18): keep it.
 # FAST: the fast-deploy branch's dry-run (NX-fast-deploy-2026-10-18.md steps 3-4) could NOT run before this ship (its scripts
 #   only exist in /opt/nxeon after the main fast-forward, and the dry-run reads production build inputs). So the DEFAULT here is
@@ -57,7 +57,7 @@ PREV_SHA=af5a1d55          # live rc21 (release 20261018T082948Z-af5a1d55)
 APP=/opt/nxeon
 NODE2=root@178.63.94.114
 BUILDVM=root@10.20.1.253
-WANT_PROMPT=mb-2026-10-17.1
+WANT_PROMPT=mb-2026-10-18.1   # bumped in rc22: bundle D sheet lines (rc21 = mb-2026-10-17.1)
 WANT_PRESERVE=pv-2026-10-18.1   # bundle A (creature concat keys); rc21 had pv-2026-10-17.1
 PLAN=0; [ "${1:-}" = "--plan" ] && PLAN=1
 
