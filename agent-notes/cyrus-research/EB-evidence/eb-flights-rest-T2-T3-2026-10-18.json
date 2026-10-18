@@ -1,0 +1,410 @@
+{
+ "at": "2026-10-18T17:41:02.986Z",
+ "host": "node-2",
+ "realClient": false,
+ "aiModel": "none (fixture designs)",
+ "switches": "dialogs, permHooks, pets: true",
+ "luckperms": "LuckPerms-Bukkit 5.5.71 (MIT, Modrinth sha1 fc8bb9919fa77c670b7ed5c284bcb66770ea71fc), test server only",
+ "lanes": [
+  {
+   "version": "1.21.11",
+   "jdk": "21",
+   "files": 49,
+   "hash": "f98d4840cd2bee75308427873e2b5f2137896bdea9304a83988b4c9322007fc1",
+   "ok": true,
+   "jarPath": "/tank/nxeon-build/tmp/cyrus-eb/run-mve43c09/1.21.11/NxForms-1.21.11.jar",
+   "jarSha256": "7e7ad3b20357063e7dd1846cc502e7c3cb7a95158a928a00b1a54784890a9b3b",
+   "sources": 47,
+   "dialogs": true,
+   "javacWarnings": [],
+   "scanBlocks": [],
+   "scanWarns": []
+  }
+ ],
+ "flightNativeRest": {
+  "version": "1.21.11",
+  "overall": "incomplete",
+  "line": "Test Flight incomplete on Paper 1.21.11: playtest did not run",
+  "checks": {
+   "boot_done": "pass",
+   "plugins_enabled": "pass",
+   "startup_log_clean": "pass",
+   "rcon_checks": "pass",
+   "worldgen": "not_run",
+   "playtest": "not_run",
+   "stress": "not_run",
+   "clean_stop": "pass",
+   "no_leaks": "pass"
+  },
+  "rcon": [
+   "plugins 'plugins' [rss 895 MB, 267 ms]: ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - LuckPerms, NxForms | ",
+   "menus 'nxforms menu list' [rss 895 MB, 301 ms]: ok -> apply: form inputs=4 native=true stored=0 opens=command permission=- | guide: dialogue choices=3 display=dialog native=true opens=command,npc:nx_ebdialog.npc.guide permission=- | rank_shop: chest rows=3 buttons=2 opens=command permission=- ",
+   "forms 'nxforms forms' [rss 911 MB, 499 ms]: ok -> apply: 0 answers (/nxforms forms read apply) | "
+  ],
+  "log": [
+   "106 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "scenarios": [
+   {
+    "id": "T-2",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "join",
+      "status": "pass",
+      "evidence": [
+       "joined as NxPlaytest after 24382 ms at {\"x\":-1.5,\"y\":-60,\"z\":4.5}; checking messages since the join (1 so far)"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 1500 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'lp creategroup vip' -> (empty)"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 2000 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'xp set NxPlaytest 10 levels' -> Set 10 experience levels on NxPlaytest"
+      ]
+     },
+     {
+      "kind": "command",
+      "status": "pass",
+      "evidence": [
+       "sent command '/nxforms menu rank_shop'"
+      ]
+     },
+     {
+      "kind": "expect_window",
+      "status": "pass",
+      "evidence": [
+       "window \"Rank Shop\" open with 27 item(s) in its top part; want title [\"Rank Shop\"]",
+       "items: 11:gold_ingot \"VIP for 30 days\", 15:bread \"Snack\""
+      ]
+     },
+     {
+      "kind": "click_window",
+      "status": "pass",
+      "evidence": [
+       "clicked slot 11 of \"Rank Shop\" (1x gold_ingot \"VIP for 30 days\")"
+      ]
+     },
+     {
+      "kind": "expect_dialog",
+      "status": "pass",
+      "evidence": [
+       "dialog shown: Are you sure? | Buy VIP for 30 days for 5 levels? | Yes | No"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'xp query NxPlaytest levels' -> NxPlaytest has 10 experience levels"
+      ]
+     },
+     {
+      "kind": "dialog_click",
+      "status": "pass",
+      "evidence": [
+       "pressed \"Yes\" (paper:dialog_click_callback)"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"You are now vip for 30 days.\"]",
+       "messages: You are now vip for 30 days."
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'xp query NxPlaytest levels' -> NxPlaytest has 5 experience levels"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 800 ms"
+      ]
+     },
+     {
+      "kind": "command",
+      "status": "pass",
+      "evidence": [
+       "sent command '/lp user NxPlaytest parent info'"
+      ]
+     },
+     {
+      "kind": "expect_chat",
+      "status": "pass",
+      "evidence": [
+       "saw [\"vip\"]",
+       "messages: [LP] nxplaytest's Parents: (page 1 of 1 - 2 entries) | > vip - expires in 4 weeks 1 day 23 hours 59 minutes 58 seconds | > default "
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-3",
+    "status": "pass",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'give NxPlaytest minecraft:wheat 3' -> Gave 3 [Wheat] to NxPlaytest"
+      ]
+     },
+     {
+      "kind": "command",
+      "status": "pass",
+      "evidence": [
+       "sent command '/nxforms menu rank_shop'"
+      ]
+     },
+     {
+      "kind": "expect_window",
+      "status": "pass",
+      "evidence": [
+       "window \"Rank Shop\" open with 27 item(s) in its top part; want title [\"Rank Shop\"]",
+       "items: 11:gold_ingot \"VIP for 30 days\", 15:bread \"Snack\""
+      ]
+     },
+     {
+      "kind": "click_window",
+      "status": "pass",
+      "evidence": [
+       "clicked slot 15 of \"Rank Shop\" (1x bread \"Snack\")"
+      ]
+     },
+     {
+      "kind": "expect_dialog",
+      "status": "pass",
+      "evidence": [
+       "dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No"
+      ]
+     },
+     {
+      "kind": "dialog_click",
+      "status": "pass",
+      "evidence": [
+       "pressed \"No\" (paper:dialog_click_callback)"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'clear NxPlaytest minecraft:wheat 0' -> Found 3 matching item(s) on player NxPlaytest"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'clear NxPlaytest minecraft:bread 0' -> No items were found on player NxPlaytest"
+      ]
+     },
+     {
+      "kind": "command",
+      "status": "pass",
+      "evidence": [
+       "sent command '/nxforms menu rank_shop'"
+      ]
+     },
+     {
+      "kind": "expect_window",
+      "status": "pass",
+      "evidence": [
+       "window \"Rank Shop\" open with 27 item(s) in its top part; want title [\"Rank Shop\"]",
+       "items: 11:gold_ingot \"VIP for 30 days\", 15:bread \"Snack\""
+      ]
+     },
+     {
+      "kind": "click_window",
+      "status": "pass",
+      "evidence": [
+       "clicked slot 15 of \"Rank Shop\" (1x bread \"Snack\")"
+      ]
+     },
+     {
+      "kind": "expect_dialog",
+      "status": "pass",
+      "evidence": [
+       "dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No"
+      ]
+     },
+     {
+      "kind": "dialog_click",
+      "status": "pass",
+      "evidence": [
+       "pressed \"Yes\" (paper:dialog_click_callback)"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 800 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'clear NxPlaytest minecraft:bread 0' -> Found 1 matching item(s) on player NxPlaytest"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'clear NxPlaytest minecraft:wheat 0' -> No items were found on player NxPlaytest"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "T-6",
+    "status": "not_run",
+    "steps": [
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'kill @e[type=!player]' -> No entity was found"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'nxforms give wolf_whistle NxPlaytest' -> Gave 1 x wolf_whistle to NxPlaytest. | "
+      ]
+     },
+     {
+      "kind": "hold",
+      "status": "pass",
+      "evidence": [
+       "held item: iron_nugget"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 400 ms"
+      ]
+     },
+     {
+      "kind": "use_item",
+      "status": "pass",
+      "evidence": [
+       "right-clicked with iron_nugget"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 800 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=wolf]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'summon minecraft:pig 0.5 -60 2.0 {NoAI:1b,Health:6f,Tags:[\"ebtarget\"],PersistenceRequired:1b}' -> Summoned new Pig"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 1200 ms"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'execute if entity @e[type=pig,tag=ebtarget]' -> Test passed. Count: 1"
+      ]
+     },
+     {
+      "kind": "server",
+      "status": "pass",
+      "evidence": [
+       "console 'tp NxPlaytest 0.5 -60 0.5 0 0' -> Teleported NxPlaytest to 0.500000, -60.000000, 0.500000"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 600 ms"
+      ]
+     },
+     {
+      "kind": "attack_entity",
+      "status": "pass",
+      "evidence": [
+       "hit the pig 1.50 blocks away with iron_nugget"
+      ]
+     },
+     {
+      "kind": "wait",
+      "status": "pass",
+      "evidence": [
+       "waited 6000 ms"
+      ]
+     }
+    ]
+   }
+  ],
+  "runId": "tf-1-21-11-mve43k1e-ab102a"
+ }
+}

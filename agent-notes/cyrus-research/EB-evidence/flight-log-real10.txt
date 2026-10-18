@@ -1,0 +1,31 @@
+1.21.11: javac ok (47 sources, Dialogs.java true, 0 warnings []), scan blocks 0 [], warns 0
+eb-native-rest 1.21.11: Test Flight failed on Paper 1.21.11: playtest failed: bot NxPlaytest joined Paper 1.21.11 in 5223 ms (mineflayer 4.39.0, minecraft-protocol 1.68.0, op true)
+  check boot_done pass
+  check plugins_enabled pass
+  check startup_log_clean pass
+  check rcon_checks pass
+  check worldgen not_run
+  check playtest fail
+  check stress not_run
+  check clean_stop pass
+  check no_leaks pass
+  T-2 fail
+    expect_dialog fail: no new dialog since the last action
+    server not_run: skipped: an earlier step did not pass
+    dialog_click not_run: skipped: an earlier step did not pass
+    expect_chat not_run: skipped: an earlier step did not pass
+    server not_run: skipped: an earlier step did not pass
+    wait not_run: skipped: an earlier step did not pass
+    command not_run: skipped: an earlier step did not pass
+    expect_chat not_run: skipped: an earlier step did not pass
+  T-3 pass
+    expect_dialog pass: dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No
+    dialog_click pass: pressed "No" (paper:dialog_click_callback)
+    expect_dialog pass: dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No
+    dialog_click pass: pressed "Yes" (paper:dialog_click_callback)
+  T-6 pass
+    attack_entity pass: hit the pig 1.50 blocks away with iron_nugget
+  rcon: ["plugins 'plugins' [rss 885 MB, 287 ms]: ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - LuckPerms, NxForms | ","menus 'nxforms menu list' [rss 886 MB, 296 ms]: ok -> apply: form inputs=4 native=true stored=0 opens=command permission=- | guide: dialogue choices=3 display=dialog native=true opens=command,npc:nx_ebdialog.npc.guide permission=- | rank_shop: chest rows=3 buttons=2 opens=
+  log: ["106 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"]
+wrote /tank/nxeon-build/tmp/cyrus-eb/eb-flights-rest-2026-10-18.json
+EXIT

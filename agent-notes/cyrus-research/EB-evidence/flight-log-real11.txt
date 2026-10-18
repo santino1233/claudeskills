@@ -1,0 +1,25 @@
+1.21.11: javac ok (47 sources, Dialogs.java true, 0 warnings []), scan blocks 0 [], warns 0
+eb-native-rest 1.21.11: Test Flight incomplete on Paper 1.21.11: playtest did not run
+  check boot_done pass
+  check plugins_enabled pass
+  check startup_log_clean pass
+  check rcon_checks pass
+  check worldgen not_run
+  check playtest not_run
+  check stress not_run
+  check clean_stop pass
+  check no_leaks pass
+  T-2 pass
+    expect_dialog pass: dialog shown: Are you sure? | Buy VIP for 30 days for 5 levels? | Yes | No
+    dialog_click pass: pressed "Yes" (paper:dialog_click_callback)
+  T-3 pass
+    expect_dialog pass: dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No
+    dialog_click pass: pressed "No" (paper:dialog_click_callback)
+    expect_dialog pass: dialog shown: Are you sure? | Trade 3 x wheat for a Snack? | Yes | No
+    dialog_click pass: pressed "Yes" (paper:dialog_click_callback)
+  T-6 not_run
+    attack_entity pass: hit the pig 1.50 blocks away with iron_nugget
+  rcon: ["plugins 'plugins' [rss 895 MB, 267 ms]: ok -> ℹ Server Plugins (2): | Bukkit Plugins: |  - LuckPerms, NxForms | ","menus 'nxforms menu list' [rss 895 MB, 301 ms]: ok -> apply: form inputs=4 native=true stored=0 opens=command permission=- | guide: dialogue choices=3 display=dialog native=true opens=command,npc:nx_ebdialog.npc.guide permission=- | rank_shop: chest rows=3 buttons=2 opens=
+  log: ["106 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"]
+wrote /tank/nxeon-build/tmp/cyrus-eb/eb-flights-rest-2026-10-18.json
+EXIT
