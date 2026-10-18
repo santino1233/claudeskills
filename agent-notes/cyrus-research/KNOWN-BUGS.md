@@ -289,7 +289,10 @@ it through `normalizeBetterModelPack`.
   `interrupted` (service restart), `unreachable`, `lost`, `internal`, `timeout`, `admin_cancelled` used the 3-per-7-days free
   allowance, then were charged in full. A success could also be charged MORE than its hold (uncapped; the overrun silently
   took other balance).
-- Fix: settle v2 (env `CYRUS_TOK_SETTLE_V2=1`, OFF by default; owner decision B-1): cap at the hold, those codes free,
+- Also (coordinator, dungeon round 7): three `budget` failures charged in full ($2.52/$4.04/$4.09), one 2,021 tokens on a 400 hold
+  (mb6789c556704ecc5db476); a create race marked mb0a13913d48869fb3d8e5 `lost` 150 ms before the service registered it ($1.33 unbilled).
+- Fix: settle v2 (env `CYRUS_TOK_SETTLE_V2=1`, OFF by default; owner decision B-1): cap at the hold, those codes free, `budget` and
+  failures after a service drop free as `failed_ours` (label + plan-screen rule), 90 s lost-grace (always on),
   `holdSweepAction` keeps running holds (24 h ceiling). Pure + tested (`test/cyrus-bundle-b.test.ts`).
 
 ## 2026-10-18 - Data split would have moved Nxeon's own platform tables - FIXED on branch (bundle B)
