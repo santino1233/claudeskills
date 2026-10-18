@@ -85,3 +85,6 @@ A-E live in `services/modbuilder` (speed.js, server.js, prompts.js): a new modbu
 ## 7. Spend
 
 A/B runs: ea-s55 $1.14 + ea-s5 $2.15 = **$3.29** of the $12 cap (build ids in the journals: ev-ea-s55-*, ev-ea-s5-*); no weekly-limit or ai_unavailable error. No other model spend.
+
+## 8. Commits and verification
+Branch feature/cyrus-efficiency (from af5a1d55): c7315e0a (service knobs A-E), 6d6eef54 (Test Flight cadence), 2c9b6dd6 (change cost history), c7a377bd (eval --model-id), f5fb7c56 (docs + regenerated references). Tests via devhost: 327/327 (new: modbuilder-efficiency-ea, cyrus-change-cost-history; plus seam, db-seam, db-split, docs-coverage, Dockerfile, pipeline, live, guard, efficiency, speed, structure, planner, tokens-economy, mega-staging, worker-schedule). Full tsc NOT completed: two unlocked runs on the overloaded node-2 died silently (no output, exit 1), the one locked run timed out waiting for the build lock. Run `devhost run --lock -- npx tsc --noEmit` once before merging.
