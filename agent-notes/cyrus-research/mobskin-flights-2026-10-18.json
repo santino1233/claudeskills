@@ -1,0 +1,114 @@
+[
+ {
+  "at": "2026-10-18T13:58:35.457Z",
+  "host": "node-2",
+  "realClient": false,
+  "version": "1.21.11",
+  "bettermodel": "2.2.0",
+  "jar": "InfiniteDungeon-1.44.0.jar",
+  "creatures": 24,
+  "reskin": {
+   "creature": "boglurker",
+   "variant": "frost",
+   "key": "nx_oqyxirj4_boglurker",
+   "changed": 1980,
+   "paintSha": "3240240986551f8d03b14a90012346a858522b09499c553319b4b6a25d892c76",
+   "pngSha256": "ed601cddec4b1aa7ab55d5feab3ae82b18881150e9fdd8fb2b745329014df241",
+   "bbmodelSha256": "1dc4f9c507d393ab7b0c1a42dcf5d3675794fa9d08c6c0e617c605f03475a0de",
+   "before": "3c049d9baf5ab129bc6235d0638698e7b8e6ff519653befd8db7e8430e5d0669"
+  },
+  "fixtureSha256": "a3239e859b90ccd21d22e6d7c3397e0e78bcff732d6458c833cf785048d397c3",
+  "wallMs": 172450,
+  "summary": {
+   "version": "1.21.11",
+   "overall": "passed",
+   "success": true,
+   "passed": [
+    "boot_done",
+    "plugins_enabled",
+    "startup_log_clean",
+    "rcon_checks",
+    "clean_stop",
+    "no_leaks"
+   ],
+   "failed": [],
+   "skippedRequired": [],
+   "notRunOptional": [
+    "worldgen",
+    "playtest",
+    "stress"
+   ],
+   "reasons": [],
+   "bootMs": 25057,
+   "peakRssKb": 1028152,
+   "runId": "tf-1-21-11-mvdw42b6-2605db"
+  },
+  "rcon": [
+   "difficulty 'difficulty easy' [rss 980 MB, 259 ms]: ok -> The difficulty has been set to Easy",
+   "models-all 'tfcreature models' [rss 981 MB, 258 ms]: ok -> models=24 has=- keys=nx_oqyxirj4_boglurker,nx_oqyxirj4_bonearcher,nx_oqyxirj4_bonewarden,nx_oqyxirj4_castleguard,nx_oqyxirj4_cinderhusk,nx_oqyxirj4_direwolf,nx_oqyxirj4_emberimp,nx_oqyxirj4_frostbittenwraith,nx_oqyxirj4_frostcolossus,nx_oqy",
+   "models 'tfcreature models nx_oqyxirj4_boglurker' [rss 981 MB, 251 ms]: ok -> models=24 has=true keys=nx_oqyxirj4_boglurker,nx_oqyxirj4_bonearcher,nx_oqyxirj4_bonewarden,nx_oqyxirj4_castleguard,nx_oqyxirj4_cinderhusk,nx_oqyxirj4_direwolf,nx_oqyxirj4_emberimp,nx_oqyxirj4_frostbittenwraith,nx_oqyxirj4_frostcolossus,nx_",
+   "spawn 'tfcreature spawn nx_oqyxirj4_boglurker 1' [rss 991 MB, 1252 ms]: ok -> spawned=1 idle=1 trackers=1 silent=true invisible=true zombies=1 difficulty=EASY | ",
+   "attack 'tfcreature attack nx_oqyxirj4:boglurker.attack' [rss 994 MB, 284 ms]: ok -> attack_started=1 of=1 sound=nx_oqyxirj4:boglurker.attack | ",
+   "hurt 'tfcreature hurt nx_oqyxirj4:boglurker.hurt' [rss 995 MB, 251 ms]: ok -> hurt_started=1 of=1 sound=nx_oqyxirj4:boglurker.hurt | ",
+   "death 'tfcreature death nx_oqyxirj4:boglurker.death' [rss 996 MB, 251 ms]: ok -> death_started=1 of=1 sound=nx_oqyxirj4:boglurker.death | ",
+   "despawn 'tfcreature despawn' [rss 996 MB, 256 ms]: ok -> closed=1 removed=1 zombies=0 | ",
+   "bm-reload 'bettermodel reload' [rss 999 MB, 274 ms]: ok (optional) -> ",
+   "pack-wait 'tfcreature models' [rss 1003 MB, 251 ms]: ok (optional) -> models=24 has=- keys=nx_oqyxirj4_boglurker,nx_oqyxirj4_bonearcher,nx_oqyxirj4_bonewarden,nx_oqyxirj4_castleguard,nx_oqyxirj4_cinderhusk,nx_oqyxirj4_direwolf,nx_oqyxirj4_emberimp,nx_oqyxirj4_frostbittenwraith,nx_oqyxirj4_frostcolossus,nx_oqy",
+   "models-after-reload 'tfcreature models nx_oqyxirj4_boglurker' [rss 1003 MB, 250 ms]: ok -> models=24 has=true keys=nx_oqyxirj4_boglurker,nx_oqyxirj4_bonearcher,nx_oqyxirj4_bonewarden,nx_oqyxirj4_castleguard,nx_oqyxirj4_cinderhusk,nx_oqyxirj4_direwolf,nx_oqyxirj4_emberimp,nx_oqyxirj4_frostbittenwraith,nx_oqyxirj4_frostcolossus,nx_",
+   "mod-plugins 'plugins' [rss 1003 MB, 251 ms]: ok (optional) -> ℹ Server Plugins (3): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (2): |  - InfiniteDungeon, TfCreature | "
+  ],
+  "plugins": [
+   "BetterModel: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L94: [13:58:09 INFO]: [BetterModel] Enabling BetterModel v2.2.0",
+   "InfiniteDungeon: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L95: [13:58:09 INFO]: [InfiniteDungeon] Enabling InfiniteDungeon v1.44.0",
+   "TfCreature: enabled (log: enabling=true enableError=false loadError=false disabled=false; rcon plugins: true)",
+   "L97: [13:58:10 INFO]: [TfCreature] Enabling TfCreature v1.0.2",
+   "rcon plugins -> ℹ Server Plugins (3): | Paper Plugins (1): |  - BetterModel | Bukkit Plugins (2): |  - InfiniteDungeon, TfCreature | "
+  ],
+  "log": [
+   "110 startup lines scanned with 5 matchers, 2 ignores: 0 hits, 3 ignored (no-net-yggdrasil)"
+  ],
+  "logErrors": [
+   "[13:58:03] [Yggdrasil Key Fetcher/ERROR]: Failed to request yggdrasil public key",
+   "com.mojang.authlib.exceptions.MinecraftClientException: Failed to read from https://api.minecraftservices.com/publickeys due to api.minecraftservices.com",
+   "Caused by: java.net.UnknownHostException: api.minecraftservices.com",
+   "[13:58:10] [Server thread/WARN]: [BetterModel] Reason: java.net.ConnectException",
+   "[13:58:10] [Server thread/WARN]: [BetterModel] If you want to see the stack trace, set debug.exception to true in config.yml",
+   "[13:58:11] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version list",
+   "java.net.UnknownHostException: fill.papermc.io",
+   "[13:58:11] [Paper Async Task Handler Thread - 1/ERROR]: [PaperVersionFetcher] Error while parsing version",
+   "java.net.UnknownHostException: fill.papermc.io",
+   "[13:58:11] [Paper Async Task Handler Thread - 1/ERROR]: *** Error obtaining version information! Cannot fetch version info ***"
+  ],
+  "pack": {
+   "bytes": 1800721
+  },
+  "engine": {
+   "runner": "tf-lite-6",
+   "runnerSha256": "ce5045f576b9acf2abd33f4a678e2e9a54298f77986e6471934209478415acb0",
+   "node": "v24.20.0",
+   "host": "nxeon-fsn1",
+   "kernel": "7.0.2-6-pve",
+   "jdk": {
+    "release": 21,
+    "version": "21.0.12.1",
+    "dist": "jdk-21.0.12.1+1",
+    "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+   },
+   "paper": {
+    "version": "1.21.11",
+    "build": 132,
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "channel": "STABLE"
+   },
+   "isolation": {
+    "netns": "private (loopback only)",
+    "uid": 65534,
+    "noNewPrivs": true,
+    "nice": 10,
+    "activeProcessorCount": 2
+   }
+  }
+ }
+]
