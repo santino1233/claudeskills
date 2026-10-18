@@ -307,3 +307,12 @@ it through `normalizeBetterModelPack`.
 - **Instrumentation blind spot.** `phaseChars.thinking` stays 0 because thinking is not streamed as text; do not read it as "no thinking".
 Right home later: a seam/invariant test for "system prompt stable within a session" (done in test/modbuilder-efficiency-ea.test.ts for the freeze path).
 
+
+## 2026-10-18 09:57 UTC - Agent scratch `nginx -t` on the primary chowned /var/lib/nginx to nobody (live uploads broke) - CAUSE RECORDED
+- Command (bundle B agent): `bash deploy/cyrus/admin-host-apply.sh --dry-run all` -> `nginx -t -q -c /tmp/tmp.*/nginx.conf -e ...`
+  with a scratch main config lacking `user www-data;` and temp paths; nginx (as root) reset /var/lib/nginx/* ownership to the
+  default user `nobody`, so the live nginx could no longer write request-body/proxy temp files (uploads, large responses).
+  Also run minutes later: `nginx-cyrus-my-check.sh --syntax` (via cyrus-my-apply.sh --dry-run). Fixed by the coordinator.
+- Fix: the three scripts no longer run the nginx binary on the primary (render only; syntax check on node-2 via devhost).
+- Lesson: `nginx -t` is NOT read-only: it creates/chowns its temp dirs. Never run any nginx binary on the production box
+  except the owner's real `nginx -t` of the live config.
