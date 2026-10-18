@@ -1,0 +1,54 @@
+[
+  {
+    "path": "/plans",
+    "size": "desktop",
+    "status": 200,
+    "loadMs": 2275,
+    "lcpMs": 1552,
+    "jsKB": 2196,
+    "allKB": 2907,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 5829,
+        "ih": 900,
+        "htmlOv": "visible",
+        "bodyOv": "visible",
+        "bodyH": "5828.5px"
+      },
+      "yWheel": 900,
+      "yKey": 1687,
+      "afterWheel": {
+        "y": 1687,
+        "inner": null
+      }
+    },
+    "errors": []
+  },
+  {
+    "path": "/plans",
+    "size": "mobile",
+    "status": 200,
+    "loadMs": 1772,
+    "lcpMs": 816,
+    "jsKB": 2196,
+    "allKB": 2907,
+    "scroll": {
+      "before": {
+        "y": 0,
+        "sh": 8004,
+        "ih": 844,
+        "htmlOv": "visible",
+        "bodyOv": "visible",
+        "bodyH": "8003.61px"
+      },
+      "yWheel": 900,
+      "yKey": 1638,
+      "afterWheel": {
+        "y": 1638,
+        "inner": null
+      }
+    },
+    "errors": []
+  }
+]
