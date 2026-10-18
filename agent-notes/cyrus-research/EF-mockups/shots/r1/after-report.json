@@ -3,10 +3,10 @@
     "path": "/plans",
     "size": "desktop",
     "status": 200,
-    "loadMs": 23499,
-    "lcpMs": 28740,
-    "jsKB": 2278,
-    "allKB": 2606,
+    "loadMs": 21484,
+    "lcpMs": 18864,
+    "jsKB": 2283,
+    "allKB": 2979,
     "scroll": {
       "before": {
         "y": 0,
@@ -16,10 +16,10 @@
         "bodyOv": "visible",
         "bodyH": "5737.31px"
       },
-      "yWheel": 900,
-      "yKey": 900,
+      "yWheel": 0,
+      "yKey": 0,
       "afterWheel": {
-        "y": 900,
+        "y": 0,
         "inner": null
       }
     },
@@ -29,10 +29,10 @@
     "path": "/plans",
     "size": "mobile",
     "status": 200,
-    "loadMs": 4889,
-    "lcpMs": 2576,
-    "jsKB": 2278,
-    "allKB": 2606,
+    "loadMs": 9251,
+    "lcpMs": 0,
+    "jsKB": 2283,
+    "allKB": 2978,
     "scroll": {
       "before": {
         "y": 0,
