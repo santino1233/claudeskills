@@ -269,3 +269,29 @@ it through `normalizeBetterModelPack`.
 
 ## 2026-10-18 - Build service subscription token hit its weekly limit (operational, RESOLVED by swap)
 - Evidence: swap documented in tracker 120. Lesson: `swap-build-account.sh preflight` before `rollback` makes rollback restore the CURRENT token as the newest `acctbak`. Permanent fix = API key (OPEN, owner).
+
+## 2026-10-18 - First beta invite on a fresh database locks every admin out of /admin/cyrus - FIXED on branch (bundle B)
+- Found by: code trace of the private-beta journey (bundle B, Sonnet subagent, confirmed by reading `lib/preview-access.ts`).
+- Chain: no `preview_access_emails_modbuilder` row = `previewAllowlist` serves the built-in default (owner). `adminCyrusBetaAdd`
+  read the row as null -> empty list -> wrote ONLY the new emails. The same list is the gate of every `/admin/cyrus` page, so
+  the owner lost the admin (404) with the first Add. `scripts/cyrus/beta-invites.mjs add --apply` had the same flaw.
+- Fix (`feature/cyrus-bundle-b`): `effectiveBetaListPure` (start from the effective list, always keep the acting admin);
+  CLI seeds from the shared list / default; the add is audited before the mail step; failed sends are named.
+- Lesson: when a Setting has a "no row = default" fallback, every writer must start from the EFFECTIVE value, not the row.
+
+## 2026-10-18 - Token sweep made long builds free; our-side failures charged after 3 - FIXED behind CYRUS_TOK_SETTLE_V2
+- Found by: billing audit (bundle B). `sweepCyrusTokens` released ANY hold older than 3 h with charge 0, even when the build was
+  still running (it then settles against nothing). `settleCharge` treated only ai_unavailable/capacity/regression as ours:
+  `interrupted` (service restart), `unreachable`, `lost`, `internal`, `timeout`, `admin_cancelled` used the 3-per-7-days free
+  allowance, then were charged in full. A success could also be charged MORE than its hold (uncapped; the overrun silently
+  took other balance).
+- Fix: settle v2 (env `CYRUS_TOK_SETTLE_V2=1`, OFF by default; owner decision B-1): cap at the hold, those codes free,
+  `holdSweepAction` keeps running holds (24 h ceiling). Pure + tested (`test/cyrus-bundle-b.test.ts`).
+
+## 2026-10-18 - Data split would have moved Nxeon's own platform tables - FIXED on branch (bundle B)
+- `scripts/cyrus/data-split/tables.mjs` derived "Cyrus tables" from every `CREATE TABLE "Cyrus*"`, so `CyrusServerGrant`,
+  `CyrusPlatformCall`, `CyrusPlatformIdempotency`, `CyrusPlatformOutbox` (written ONLY by `lib/nxeon-platform` through Nxeon's
+  db) were on the move list: after a cut-over every grant check would read a frozen copy. Also `lib/modbuilder/store.ts
+  mergeCyrusKey` wrote `ModBuild` via Nxeon's `db.$executeRaw` (the ORM ratchet only sees `db.modBuild`).
+- Fix: NXEON_SIDE extended; the write uses `cyrusDb.$executeRaw`; new raw-SQL ratchet in `test/cyrus-db-split.test.ts`.
+- Lesson: classify tables by WHO WRITES them, not by name prefix; ratchets must cover raw SQL too.
