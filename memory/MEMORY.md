@@ -119,3 +119,4 @@
 - [Cyrus skills: universal-modder](nxeon-cyrus-skills-universal-modder.md) — MIT skills + 74-game field notes vendored/private 2026-10-12; Minecraft findings, hitscan components idea
 - [Cloudflare proxy parked](nxeon-cloudflare-proxy-parked.md) — nxeon.cloud prepared but unproxied by owner choice; why, tokens, cheap assets-host option for later
 - [Cyrus: warn, don't block](nxeon-cyrus-warn-dont-block.md) — no hard caps on user choices anywhere; soft ranges + warnings; only security/legal/money/crash limits stay hard
+- [Cyrus marketing scope](cyrus-marketing-scope-feedback.md) — change only what the owner asked; page-by-page with his PNG art; no generic full redesigns; Cyrus-own cookie banner
